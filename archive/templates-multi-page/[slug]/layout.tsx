@@ -1,0 +1,154 @@
+import { readSourceConfig, getAllSlugs } from '@/lib/dataBuilder';
+import { notFound } from 'next/navigation';
+import { 
+  MapPin, Phone, Palette
+} from 'lucide-react';
+import Link from 'next/link';
+import { ReactNode } from 'react';
+
+export async function generateStaticParams() {
+  const slugs = await getAllSlugs();
+  return slugs.map((slug) => ({
+    slug: slug,
+  }));
+}
+
+type LayoutProps = {
+  children: ReactNode;
+  params: Promise<{ slug: string }>;
+};
+
+export default async function DesignStudioLayout({ children, params }: LayoutProps) {
+  const resolvedParams = await params;
+  const { slug } = resolvedParams;
+
+  const data = await readSourceConfig(slug);
+  if (!data) return notFound();
+
+  const { clinic } = data;
+  const basePath = `/designwebsite/${slug}`;
+
+  return (
+    <div className="min-h-screen bg-gray-50 font-sans text-gray-800 selection:bg-[#202A36] selection:text-white scroll-smooth flex flex-col">
+      {/* Top Info Bar */}
+      <div className="bg-[#202A36] text-gray-300 py-3 px-8 text-[13px] border-b border-[#1a222c] relative z-50">
+        <div className="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-3 sm:gap-0">
+          <div className="flex flex-wrap items-center justify-center gap-6">
+            <span className="flex items-center gap-2">
+               {clinic.address?.full || 'Studio Location'}
+            </span>
+            <span className="hidden md:flex items-center gap-2 text-gray-400">
+               Mon-Sat, 10AM to 7PM
+            </span>
+          </div>
+          <div className="flex items-center gap-4 text-white font-medium tracking-wide">
+             <a href={`tel:${clinic.contact?.phone || ''}`} className="flex items-center gap-2 hover:text-gray-300 transition-colors">
+               <Phone className="w-3.5 h-3.5 text-gray-400" /> {clinic.contact?.phone || 'Contact Number'}
+             </a>
+          </div>
+        </div>
+      </div>
+
+      {/* Navbar */}
+      <header className="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-gray-100 transition-all duration-300">
+        <div className="max-w-7xl mx-auto px-8 h-24 flex justify-between items-center">
+          <Link href={basePath} className="leading-none">
+            <h1 className="text-xl font-bold tracking-tight text-[#202A36]">
+              {clinic.name || 'Studio Name'}
+            </h1>
+          </Link>
+          
+          <nav className="hidden lg:flex items-center gap-10 font-semibold text-xs text-gray-400 uppercase tracking-widest">
+            <Link href={`${basePath}/services`} className="hover:text-[#202A36] transition-colors">Services</Link>
+            <Link href={`${basePath}/about-us`} className="hover:text-[#202A36] transition-colors">About Us</Link>
+            <Link href={`${basePath}/gallery`} className="hover:text-[#202A36] transition-colors">Gallery</Link>
+            <Link href={`${basePath}/design-guides`} className="hover:text-[#202A36] transition-colors">Guides</Link>
+            <Link href={`${basePath}/contact-us`} className="hover:text-[#202A36] transition-colors">Contact</Link>
+          </nav>
+
+          <Link href={`${basePath}/contact-us`} className="hidden md:flex items-center gap-2 bg-[#202A36] text-white px-8 py-3.5 rounded-full font-medium hover:bg-[#1a222c] transition-colors text-sm tracking-wide shadow-sm">
+             Book Consultation
+          </Link>
+        </div>
+      </header>
+
+      {/* Main Content */}
+      <main className="grow">
+        {children}
+      </main>
+
+      {/* Footer */}
+      <footer className="bg-white border-t border-gray-200 pt-16 pb-12 px-8 mt-auto">
+        <div className="max-w-7xl mx-auto">
+          {/* Map Embed */}
+          {(() => {
+            const mapUrl = clinic.mapEmbedUrl || 
+              `https://maps.google.com/maps?q=${encodeURIComponent((clinic.name || '') + ' ' + (clinic.address?.full || ''))}&output=embed`;
+            return (
+              <div className="mb-16 rounded-3xl overflow-hidden border border-gray-200 shadow-sm bg-gray-50">
+                <iframe
+                  src={mapUrl}
+                  width="100%"
+                  height="350"
+                  style={{ border: 0 }}
+                  allowFullScreen
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  title={`Location of ${clinic.name || 'our studio'}`}
+                  className="w-full block"
+                ></iframe>
+              </div>
+            );
+          })()}
+
+          {/* Footer Navigation Grid */}
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8 mb-16 text-gray-500">
+            <div className="lg:col-span-2 space-y-6">
+              <Link href={basePath} className="flex items-center gap-4">
+                <div className="w-12 h-12 bg-gray-50 rounded-full flex items-center justify-center text-[#202A36] border border-gray-200">
+                  <Palette className="w-6 h-6" />
+                </div>
+                <h4 className="text-xl font-medium tracking-tight text-[#202A36]">{clinic.name || 'Design Studio'}</h4>
+              </Link>
+              <p className="text-gray-500 font-light leading-relaxed max-w-sm text-[16px]">{clinic.description || 'Creating refined interiors with thoughtful planning, curated materials, and client-first project coordination.'}</p>
+            </div>
+
+            <div>
+              <h5 className="text-gray-400 font-semibold mb-8 tracking-[0.15em] uppercase text-xs">Contact Info</h5>
+              <ul className="space-y-6">
+                <li className="flex items-start gap-4">
+                  <MapPin className="w-4 h-4 mt-1 shrink-0 text-gray-400" />
+                  <span className="text-[15px] font-light leading-relaxed">{clinic.address?.full || 'Studio Location'}</span>
+                </li>
+                <li className="flex items-start gap-4">
+                  <Phone className="w-4 h-4 mt-1 shrink-0 text-gray-400" />
+                  <span className="text-[15px] font-light">{clinic.contact?.phone || 'Phone Number'}</span>
+                </li>
+              </ul>
+            </div>
+
+            <div>
+              <h5 className="text-gray-400 font-semibold mb-8 tracking-[0.15em] uppercase text-xs">Quick Links</h5>
+              <ul className="space-y-4 font-light">
+                <li><Link href={`${basePath}/services`} className="hover:text-[#202A36] transition-colors inline-block w-full text-[15px]">Services</Link></li>
+                <li><Link href={`${basePath}/about-us`} className="hover:text-[#202A36] transition-colors inline-block w-full text-[15px]">About Us</Link></li>
+                <li><Link href={`${basePath}/gallery`} className="hover:text-[#202A36] transition-colors inline-block w-full text-[15px]">Gallery</Link></li>
+                <li><Link href={`${basePath}/design-guides`} className="hover:text-[#202A36] transition-colors inline-block w-full text-[15px]">Design Guides</Link></li>
+                <li><Link href={`${basePath}/contact-us`} className="hover:text-[#202A36] transition-colors inline-block w-full text-[15px]">Contact Us</Link></li>
+              </ul>
+            </div>
+          </div>
+
+          {/* Subfooter */}
+          <div className="pt-8 border-t border-gray-100 flex flex-col md:flex-row justify-between items-center gap-6 text-sm font-light text-gray-400">
+            <p>&copy; {new Date().getFullYear()} {clinic.name || 'Studio'}. All rights reserved.</p>
+            <div className="flex gap-8">
+              <a href="#" className="hover:text-gray-800 transition-colors">Privacy Policy</a>
+              <a href="#" className="hover:text-gray-800 transition-colors">Terms of Service</a>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+  );
+}
