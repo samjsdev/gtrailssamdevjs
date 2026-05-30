@@ -1,10 +1,24 @@
 import { readSourceConfig, getAllSlugs } from '@/lib/dataBuilder';
 import { notFound } from 'next/navigation';
 import { 
-  Phone, Palette
+  Phone, Palette, ArrowUpRight, Hammer
 } from 'lucide-react';
 import Link from 'next/link';
 import { ReactNode } from 'react';
+import { Cormorant_Garamond, Plus_Jakarta_Sans } from 'next/font/google';
+
+const cormorant = Cormorant_Garamond({
+  subsets: ['latin'],
+  weight: ['400', '500', '600', '700'],
+  style: ['normal', 'italic'],
+  variable: '--font-cormorant',
+});
+
+const plusJakarta = Plus_Jakarta_Sans({
+  subsets: ['latin'],
+  weight: ['300', '400', '500', '600', '700'],
+  variable: '--font-jakarta',
+});
 
 export async function generateStaticParams() {
   const slugs = await getAllSlugs();
@@ -29,47 +43,47 @@ export default async function DesignStudioLayout({ children, params }: LayoutPro
   const basePath = `/designwebsite/template2/${slug}`;
 
   return (
-    <div className="min-h-screen bg-sky-50/40 font-sans text-slate-800 selection:bg-sky-700 selection:text-white scroll-smooth flex flex-col">
+    <div className={`${plusJakarta.className} min-h-screen bg-[#FDFBF9] text-[#2A221E] selection:bg-[#B48A66] selection:text-white scroll-smooth flex flex-col`} style={{ WebkitFontSmoothing: 'antialiased' }}>
       {/* Top Info Bar */}
-      <div className="bg-sky-700 text-sky-100 py-3 px-8 text-[13px] border-b border-sky-800 relative z-50">
+      <div className="bg-[#1C1C1E] text-[#FAF6F0] py-3 px-8 text-[12px] border-b border-[#FAF6F0]/5 relative z-50 font-light tracking-wider">
         <div className="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-3 sm:gap-0">
           <div className="flex flex-wrap items-center justify-center gap-6">
-            <span className="flex items-center gap-2">
+            <span className="flex items-center gap-2 text-[#FAF6F0]/80">
                {clinic.address?.full || 'Studio Location'}
             </span>
-            <span className="hidden md:flex items-center gap-2 text-sky-200/80">
-               Mon-Sat, 10AM to 7PM
+            <span className="hidden md:flex items-center gap-2 text-[#FAF6F0]/50">
+               Mon-Sat, 9AM to 6PM
             </span>
           </div>
-          <div className="flex items-center gap-4 text-white font-medium tracking-wide">
-             <a href={`tel:${clinic.contact?.phone || ''}`} className="flex items-center gap-2 hover:text-sky-200 transition-colors">
-               <Phone className="w-3.5 h-3.5 text-sky-200" /> {clinic.contact?.phone || 'Contact Number'}
+          <div className="flex items-center gap-4 font-medium tracking-wide">
+             <a href={`tel:${clinic.contact?.phone || ''}`} className="flex items-center gap-2 hover:text-[#B48A66] transition-colors text-[#B48A66]">
+               <Phone className="w-3.5 h-3.5 text-[#B48A66]" /> {clinic.contact?.phone || 'Contact Number'}
              </a>
           </div>
         </div>
       </div>
 
-      {/* Navbar */}
-      <header className="sticky top-0 z-40 bg-white/90 backdrop-blur-md border-b border-sky-100 transition-all duration-300">
+      {/* Navbar (Matches Woodworking Dark Theme) */}
+      <header className="sticky top-0 z-40 bg-[#282828] border-b border-white/5 transition-all duration-300 shadow-md">
         <div className="max-w-7xl mx-auto px-8 h-24 flex justify-between items-center">
-          <Link href={basePath} className="flex items-center gap-4 leading-none">
-            <div className="w-12 h-12 bg-sky-100 rounded-2xl flex items-center justify-center text-sky-700 border border-sky-200">
-              <Palette className="w-6 h-6" />
+          <Link href={basePath} className="flex items-center gap-4 leading-none group">
+            <div className="w-11 h-11 bg-white/5 rounded-xl flex items-center justify-center text-[#B48A66] border border-white/10 group-hover:bg-[#B48A66] group-hover:text-white transition-all duration-300">
+              <Hammer className="w-5 h-5" />
             </div>
-            <h1 className="text-xl font-semibold tracking-tight text-sky-800">
-              {clinic.name || 'Studio Name'}
+            <h1 className={`${cormorant.className} text-2xl font-bold tracking-tight text-white`}>
+              {clinic.name || 'Craftsmanship'}
             </h1>
           </Link>
           
-          <nav className="hidden lg:flex items-center gap-10 font-semibold text-xs text-slate-500 uppercase tracking-widest">
-            <Link href="#services" className="hover:text-sky-700 transition-colors">Services</Link>
-            <Link href="#about" className="hover:text-sky-700 transition-colors">About Us</Link>
-            <Link href="#gallery" className="hover:text-sky-700 transition-colors">Gallery</Link>
-            <Link href="#contact" className="hover:text-sky-700 transition-colors">Contact</Link>
+          <nav className="hidden lg:flex items-center gap-10 font-semibold text-xs text-white/80 uppercase tracking-widest">
+            <Link href="#services" className="hover:text-[#B48A66] transition-colors relative py-1">Services</Link>
+            <Link href="#about" className="hover:text-[#B48A66] transition-colors relative py-1">About Us</Link>
+            <Link href="#gallery" className="hover:text-[#B48A66] transition-colors relative py-1">Gallery</Link>
+            <Link href="#contact" className="hover:text-[#B48A66] transition-colors relative py-1">Contact</Link>
           </nav>
  
-          <Link href="#contact" className="hidden md:flex items-center gap-2 bg-sky-600 text-white px-8 py-3.5 rounded-xl font-semibold hover:bg-sky-700 transition-colors text-sm tracking-wide shadow-sm">
-             Book Consultation
+          <Link href="#contact" className="hidden md:flex items-center gap-2 bg-[#B48A66] text-white px-8 py-3.5 rounded-xl font-semibold hover:bg-[#9E7551] transition-all text-sm tracking-wide shadow-sm hover:scale-[1.02] active:scale-[0.98]">
+             Get A Quote <ArrowUpRight className="w-4 h-4" />
           </Link>
         </div>
       </header>
@@ -80,22 +94,72 @@ export default async function DesignStudioLayout({ children, params }: LayoutPro
       </main>
  
       {/* Footer */}
-      <footer id="contact" className="bg-white border-t border-sky-100 pt-24 pb-12 px-8 mt-auto">
+      {/* Tally Forms Contact Mockup */}
+      <section className="py-24 bg-white border-t border-gray-200 z-10 relative" id="tally-form">
+        <div className="max-w-4xl mx-auto px-8 w-full text-center">
+          <div className="mb-12 space-y-4">
+             <h2 className="text-3xl sm:text-4xl font-bold tracking-tight">Ready to Start Your Project?</h2>
+             <p className="text-gray-500 font-medium">Please fill out the form below and our team will get back to you shortly.</p>
+          </div>
+          <div className="max-w-xl mx-auto w-full">
+            <form className="bg-white rounded-3xl shadow-[0_8px_30px_rgb(0,0,0,0.08)] border border-gray-100 p-8 sm:p-10 text-left space-y-6">
+              <div className="space-y-2">
+                <label htmlFor="fullName" className="block text-sm font-semibold text-gray-700 font-sans">Full Name</label>
+                <input type="text" id="fullName" placeholder="Your name" className="w-full text-gray-900 px-5 py-3.5 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#4834D4] focus:border-transparent transition-colors bg-[#FAFAFA] font-sans" />
+              </div>
+              <div className="space-y-2">
+                <label htmlFor="email" className="block text-sm font-semibold text-gray-700 font-sans">Email Address</label>
+                <input type="email" id="email" placeholder="you@company.com" className="w-full text-gray-900 px-5 py-3.5 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#4834D4] focus:border-transparent transition-colors bg-[#FAFAFA] font-sans" />
+              </div>
+              <div className="space-y-2">
+                <label htmlFor="message" className="block text-sm font-semibold text-gray-700 font-sans">Message</label>
+                <textarea id="message" rows={4} placeholder="Tell us about your project" className="w-full text-gray-900 px-5 py-3.5 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#4834D4] focus:border-transparent transition-colors resize-none bg-[#FAFAFA] font-sans"></textarea>
+              </div>
+              <button type="button" className="w-full py-4 mt-2 bg-[#4834D4] hover:bg-[#3C2BAE] text-white font-bold rounded-xl transition-colors shadow-md font-sans">
+                Request a Proposal
+              </button>
+            </form>
+          </div>
+        </div>
+      </section>
+
+      <footer id="contact" className="bg-[#FAF6F0] border-t border-[#B48A66]/15 pt-24 pb-12 px-8 mt-auto">
         <div className="max-w-7xl mx-auto">
+          {/* Map Embed */}
+          {(() => {
+            const mapUrl = clinic.mapEmbedUrl || 
+              `https://maps.google.com/maps?q=${encodeURIComponent((clinic.name || '') + ' ' + (clinic.address?.full || ''))}&output=embed`;
+            return (
+              <div className="mb-16 rounded-3xl overflow-hidden shadow-sm aspect-video sm:aspect-[21/9] border border-black/10">
+                <iframe
+                  src={mapUrl}
+                  width="100%"
+                  height="100%"
+                  style={{ border: 0 }}
+                  allowFullScreen
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  title={`Location of ${clinic.name || 'our studio'}`}
+                  className="w-full h-full block"
+                ></iframe>
+              </div>
+            );
+          })()}
+
           {/* Footer Navigation Grid */}
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8 mb-16 text-slate-500">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8 mb-16 text-[#2A221E]/70">
             <div className="lg:col-span-2 space-y-6">
               <Link href={basePath} className="flex items-center gap-4">
-                <div className="w-12 h-12 bg-sky-100 rounded-2xl flex items-center justify-center text-sky-700 border border-sky-200">
-                  <Palette className="w-6 h-6" />
+                <div className="w-11 h-11 bg-white border border-[#B48A66]/20 rounded-xl flex items-center justify-center text-[#B48A66]">
+                  <Hammer className="w-5 h-5" />
                 </div>
-                <h4 className="text-xl font-semibold tracking-tight text-sky-800">{clinic.name || 'Design Studio'}</h4>
+                <h4 className={`${cormorant.className} text-2xl font-bold tracking-tight text-[#2A221E]`}>{clinic.name || 'Craftsmanship'}</h4>
               </Link>
-              <p className="text-slate-500 font-light leading-relaxed max-w-sm text-[16px]">{clinic.description || 'Creating refined interiors with thoughtful planning, curated materials, and client-first project coordination.'}</p>
+              <p className="text-[#2A221E]/80 font-light leading-relaxed max-w-sm text-[15px]">{clinic.description || 'Delivering high-end custom carpentry, bespoke furniture, and precision woodworking tailored to your unique requirements.'}</p>
             </div>
  
             <div>
-              <h5 className="text-slate-400 font-semibold mb-8 tracking-[0.15em] uppercase text-xs">Contact Info</h5>
+              <h5 className="text-[#2A221E]/40 font-semibold mb-8 tracking-[0.15em] uppercase text-xs">Contact Info</h5>
               <ul className="space-y-6">
                 <li className="flex items-start gap-4">
                   <span className="text-[15px] font-light leading-relaxed">{clinic.address?.full || 'Studio Location'}</span>
@@ -107,30 +171,30 @@ export default async function DesignStudioLayout({ children, params }: LayoutPro
             </div>
  
             <div>
-              <h5 className="text-slate-400 font-semibold mb-8 tracking-[0.15em] uppercase text-xs">Quick Links</h5>
+              <h5 className="text-[#2A221E]/40 font-semibold mb-8 tracking-[0.15em] uppercase text-xs">Quick Links</h5>
               <ul className="space-y-4 font-light">
-                <li><Link href="#services" className="hover:text-sky-700 transition-colors inline-block w-full text-[15px]">Services</Link></li>
-                <li><Link href="#about" className="hover:text-sky-700 transition-colors inline-block w-full text-[15px]">About Us</Link></li>
-                <li><Link href="#gallery" className="hover:text-sky-700 transition-colors inline-block w-full text-[15px]">Gallery</Link></li>
-                <li><Link href="#contact" className="hover:text-sky-700 transition-colors inline-block w-full text-[15px]">Contact Us</Link></li>
+                <li><Link href="#services" className="hover:text-[#B48A66] transition-colors inline-block w-full text-[15px]">Services</Link></li>
+                <li><Link href="#about" className="hover:text-[#B48A66] transition-colors inline-block w-full text-[15px]">About Us</Link></li>
+                <li><Link href="#gallery" className="hover:text-[#B48A66] transition-colors inline-block w-full text-[15px]">Gallery</Link></li>
+                <li><Link href="#contact" className="hover:text-[#B48A66] transition-colors inline-block w-full text-[15px]">Contact Us</Link></li>
               </ul>
             </div>
           </div>
-
+ 
           {/* Subfooter */}
-          <div className="pt-8 border-t border-sky-100 flex flex-col md:flex-row justify-between items-center gap-6 text-sm font-light text-slate-400">
-            <p>&copy; {new Date().getFullYear()} {clinic.name || 'Studio'}. All rights reserved.</p>
+          <div className="pt-8 border-t border-[#B48A66]/15 flex flex-col md:flex-row justify-between items-center gap-6 text-sm font-light text-[#2A221E]/40">
+            <p>&copy; {new Date().getFullYear()} {clinic.name || 'Craftsmanship'}. All rights reserved.</p>
             <div className="flex gap-8">
-              <a href="#" className="hover:text-sky-700 transition-colors">Privacy Policy</a>
-              <a href="#" className="hover:text-sky-700 transition-colors">Terms of Service</a>
+              <a href="#" className="hover:text-[#B48A66] transition-colors">Privacy Policy</a>
+              <a href="#" className="hover:text-[#B48A66] transition-colors">Terms of Service</a>
             </div>
           </div>
         </div>
       </footer>
-          {/* WhatsApp Floating Bubble */}
+      {/* WhatsApp Floating Bubble */}
       {(() => {
         const waPhone = clinic.contact?.phone?.replace(/\D/g, '') || '919751396117';
-        const waText = `Hi, I'm interested in booking a design consultation at ${clinic.name || 'your studio'}!`;
+        const waText = `Hi, I'm interested in booking a consultation at ${clinic.name || 'your studio'}!`;
         const waLink = `https://wa.me/${waPhone}?text=${encodeURIComponent(waText)}`;
         return (
           <a
@@ -147,6 +211,6 @@ export default async function DesignStudioLayout({ children, params }: LayoutPro
           </a>
         );
       })()}
-</div>
+    </div>
   );
 }

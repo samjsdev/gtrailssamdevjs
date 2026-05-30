@@ -85,6 +85,35 @@ export default async function DesignStudioLayout({ children, params }: LayoutPro
       </main>
 
       {/* Footer */}
+      {/* Tally Forms Contact Mockup */}
+      <section className="py-24 bg-white border-t border-gray-200 z-10 relative" id="tally-form">
+        <div className="max-w-4xl mx-auto px-8 w-full text-center">
+          <div className="mb-12 space-y-4">
+             <h2 className="text-3xl sm:text-4xl font-bold tracking-tight">Ready to Start Your Project?</h2>
+             <p className="text-gray-500 font-medium">Please fill out the form below and our team will get back to you shortly.</p>
+          </div>
+          <div className="max-w-xl mx-auto w-full">
+            <form className="bg-white rounded-3xl shadow-[0_8px_30px_rgb(0,0,0,0.08)] border border-gray-100 p-8 sm:p-10 text-left space-y-6">
+              <div className="space-y-2">
+                <label htmlFor="fullName" className="block text-sm font-semibold text-gray-700 font-sans">Full Name</label>
+                <input type="text" id="fullName" placeholder="Your name" className="w-full text-gray-900 px-5 py-3.5 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#4834D4] focus:border-transparent transition-colors bg-[#FAFAFA] font-sans" />
+              </div>
+              <div className="space-y-2">
+                <label htmlFor="email" className="block text-sm font-semibold text-gray-700 font-sans">Email Address</label>
+                <input type="email" id="email" placeholder="you@company.com" className="w-full text-gray-900 px-5 py-3.5 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#4834D4] focus:border-transparent transition-colors bg-[#FAFAFA] font-sans" />
+              </div>
+              <div className="space-y-2">
+                <label htmlFor="message" className="block text-sm font-semibold text-gray-700 font-sans">Message</label>
+                <textarea id="message" rows={4} placeholder="Tell us about your project" className="w-full text-gray-900 px-5 py-3.5 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#4834D4] focus:border-transparent transition-colors resize-none bg-[#FAFAFA] font-sans"></textarea>
+              </div>
+              <button type="button" className="w-full py-4 mt-2 bg-[#4834D4] hover:bg-[#3C2BAE] text-white font-bold rounded-xl transition-colors shadow-md font-sans">
+                Request a Proposal
+              </button>
+            </form>
+          </div>
+        </div>
+      </section>
+
       <footer id="contact" className="bg-[#EAE5DF] border-t border-[#D4C3B3] pt-16 pb-12 px-8 mt-auto">
         <div className="max-w-7xl mx-auto">
           {/* Map Embed block */}

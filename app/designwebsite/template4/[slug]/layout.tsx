@@ -3,11 +3,10 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import { ReactNode } from "react";
 import { Inter } from "next/font/google";
-import "./template4.css";
 
 const inter = Inter({
   subsets: ["latin"],
-  weight: ["400", "700", "900"],
+  weight: ["300", "400", "600"],
   display: "swap",
 });
 
@@ -36,111 +35,101 @@ export default async function DesignLayout({ children, params }: LayoutProps) {
   const walink = `https://wa.me/${waphone}?text=${encodeURIComponent(watext)}`;
 
   return (
-    <div className={`template4-wrapper ${inter.className}`}>
-      {/* Island Navbar */}
-      <nav className="island-nav">
-        <div className="nav-content">
-          <Link href={basePath} className="brand">
-            <span
-              style={{
-                fontWeight: 900,
-                fontSize: "1.2rem",
-                letterSpacing: "-0.5px",
-              }}
-            >
-              {clinic.name || ""}
-            </span>
-          </Link>
-          <div className="links">
-            <Link href="#about">ABOUT US</Link>
-            <Link href="#services">SERVICES</Link>
-            <Link href="#gallery">GALLERY</Link>
-            <Link href="#contact">CONTACT</Link>
-          </div>
-          <a href={walink} target="_blank" className="btn-primary">
-            BOOK CONSULTATION
-          </a>
-          <div className="hamburger">
-            <span></span>
-            <span></span>
-            <span></span>
-          </div>
-        </div>
-      </nav>
+    <div className={`${inter.className} min-h-screen bg-stone-50 text-stone-900 selection:bg-stone-200 scroll-smooth`}>
+      {/* Elegant Transparent Navbar */}
+      <header className="absolute top-0 left-0 w-full z-50 py-8 px-6 md:px-12 flex justify-between items-center transition-all bg-gradient-to-b from-black/50 to-transparent text-white">
+        <Link href={basePath} className="text-xl md:text-2xl font-semibold tracking-widest uppercase">
+          {clinic.name || "Studio"}
+        </Link>
+        <nav className="hidden md:flex gap-8 text-sm uppercase tracking-[0.2em] font-light">
+          <Link href="#about" className="hover:text-stone-300 transition-colors">About</Link>
+          <Link href="#services" className="hover:text-stone-300 transition-colors">Services</Link>
+          <Link href="#portfolio" className="hover:text-stone-300 transition-colors">Portfolio</Link>
+          <Link href="#contact" className="hover:text-stone-300 transition-colors">Contact</Link>
+        </nav>
+        <a 
+          href={walink} 
+          target="_blank" 
+          rel="noreferrer"
+          className="hidden md:inline-block border border-white/50 px-6 py-2 text-sm uppercase tracking-widest hover:bg-white hover:text-black transition-colors"
+        >
+          Consult
+        </a>
+      </header>
 
       {/* Main Content */}
-      <main>{children}</main>
+      <main className="w-full">{children}</main>
 
-      {/* Section 5: Lead Magnet / Footer */}
-      <footer
-        className="footer-clean"
-        id="contact"
-        style={{ paddingTop: "120px" }}
-      >
-        <div className="container footer-stack">
-          <h2
-            className="massive-text"
-            style={{
-              fontSize: "3.5rem",
-              color: "var(--white)",
-              marginBottom: "10px",
-            }}
-          >
-            {clinic.name?.toUpperCase() || ""}
-          </h2>
-          <p
-            style={{
-              fontSize: "1.1rem",
-              color: "#888",
-              marginBottom: "50px",
-              letterSpacing: "1px",
-            }}
-          >
-            {clinic.tagline?.toUpperCase() || ""}
-          </p>
-
-          <p
-            className="address-text"
-            style={{ fontSize: "1rem", color: "#888", marginBottom: "30px" }}
-          >
-            {clinic.address?.full || ""}
-          </p>
-
-          <p className="copyright" style={{ color: "#666" }}>
-            &copy; {new Date().getFullYear()}.{" "}
-            {clinic.name?.toUpperCase() || ""}&reg;. ALL RIGHTS RESERVED.
-          </p>
+      {/* Minimal Footer */}
+      {/* Tally Forms Contact Mockup */}
+      <section className="py-24 bg-white border-t border-gray-200 z-10 relative" id="tally-form">
+        <div className="max-w-4xl mx-auto px-8 w-full text-center">
+          <div className="mb-12 space-y-4">
+             <h2 className="text-3xl sm:text-4xl font-bold tracking-tight">Ready to Start Your Project?</h2>
+             <p className="text-gray-500 font-medium">Please fill out the form below and our team will get back to you shortly.</p>
+          </div>
+          <div className="max-w-xl mx-auto w-full">
+            <form className="bg-white rounded-3xl shadow-[0_8px_30px_rgb(0,0,0,0.08)] border border-gray-100 p-8 sm:p-10 text-left space-y-6">
+              <div className="space-y-2">
+                <label htmlFor="fullName" className="block text-sm font-semibold text-gray-700 font-sans">Full Name</label>
+                <input type="text" id="fullName" placeholder="Your name" className="w-full text-gray-900 px-5 py-3.5 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#4834D4] focus:border-transparent transition-colors bg-[#FAFAFA] font-sans" />
+              </div>
+              <div className="space-y-2">
+                <label htmlFor="email" className="block text-sm font-semibold text-gray-700 font-sans">Email Address</label>
+                <input type="email" id="email" placeholder="you@company.com" className="w-full text-gray-900 px-5 py-3.5 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#4834D4] focus:border-transparent transition-colors bg-[#FAFAFA] font-sans" />
+              </div>
+              <div className="space-y-2">
+                <label htmlFor="message" className="block text-sm font-semibold text-gray-700 font-sans">Message</label>
+                <textarea id="message" rows={4} placeholder="Tell us about your project" className="w-full text-gray-900 px-5 py-3.5 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#4834D4] focus:border-transparent transition-colors resize-none bg-[#FAFAFA] font-sans"></textarea>
+              </div>
+              <button type="button" className="w-full py-4 mt-2 bg-[#4834D4] hover:bg-[#3C2BAE] text-white font-bold rounded-xl transition-colors shadow-md font-sans">
+                Request a Proposal
+              </button>
+            </form>
+          </div>
         </div>
-      </footer>
+      </section>
 
-      {/* WhatsApp Floating Bubble */}
-      <a
-        href={walink}
-        target="_blank"
-        className="whatsapp-bubble"
-        aria-label="Chat on WhatsApp"
-      >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 48 48"
-          width="30"
-          height="30"
-        >
-          <path
-            fill="#fff"
-            d="M24 4C12.95 4 4 12.95 4 24c0 3.55.92 6.88 2.52 9.78L4 44l10.48-2.48A19.93 19.93 0 0 0 24 44c11.05 0 20-8.95 20-20S35.05 4 24 4z"
-          />
-          <path
-            fill="#25D366"
-            d="M24 6c9.93 0 18 8.07 18 18s-8.07 18-18 18c-3.23 0-6.26-.86-8.87-2.36L6 42l2.4-8.97A17.93 17.93 0 0 1 6 24c0-9.93 8.07-18 18-18z"
-          />
-          <path
-            fill="#fff"
-            d="M17.36 14c-.38 0-.98.14-1.5.7-.52.56-1.98 1.93-1.98 4.71s2.03 5.47 2.31 5.85c.28.38 3.95 6.2 9.7 8.45 1.35.54 2.4.86 3.22 1.1 1.35.4 2.58.34 3.55.21 1.08-.15 3.33-1.36 3.8-2.67.47-1.31.47-2.43.33-2.67-.14-.24-.52-.38-.98-.52-.47-.14-2.8-1.38-3.23-1.54-.43-.14-.74-.21-1.05.21-.31.43-1.2 1.54-1.47 1.85-.27.31-.55.35-.98.14-.47-.21-1.95-.72-3.72-2.3-1.37-1.23-2.3-2.75-2.57-3.21-.28-.47-.03-.72.21-.96.21-.21.47-.55.7-.83.24-.28.31-.47.47-.78.14-.31.07-.59-.03-.83-.1-.24-1.05-2.54-1.44-3.47-.38-.92-.77-.8-1.05-.81-.27-.01-.59-.01-.9-.01z"
-          />
-        </svg>
-        <span className="wa-label">Chat with us</span>
-      </a>
+      <footer id="contact" className="bg-stone-900 text-stone-400 py-24 px-6 md:px-12 text-center flex flex-col items-center justify-center">
+
+          {/* Map Embed */}
+          {(() => {
+            const mapUrl = clinic.mapEmbedUrl || 
+              `https://maps.google.com/maps?q=${encodeURIComponent((clinic.name || '') + ' ' + (clinic.address?.full || ''))}&output=embed`;
+            return (
+              <div className="w-full max-w-4xl mx-auto mb-16 rounded-3xl overflow-hidden shadow-sm aspect-video sm:aspect-[21/9] border border-stone-800">
+                <iframe
+                  src={mapUrl}
+                  width="100%"
+                  height="100%"
+                  style={{ border: 0 }}
+                  allowFullScreen
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  title={`Location of ${clinic.name || 'our studio'}`}
+                  className="w-full h-full block border-0"
+                ></iframe>
+              </div>
+            );
+          })()}
+
+        <h2 className="text-3xl md:text-4xl text-white font-light tracking-widest uppercase mb-4">
+          {clinic.name || "Interior Studio"}
+        </h2>
+        <p className="max-w-md mx-auto font-light leading-relaxed mb-12">
+          {clinic.tagline || "Thoughtful interiors for modern living."}
+        </p>
+
+        <div className="flex flex-col md:flex-row gap-4 md:gap-12 mb-16 text-sm uppercase tracking-[0.2em]">
+          <span>{clinic.contact?.phone || "Contact"}</span>
+          <span className="hidden md:inline-flex">|</span>
+          <span>{clinic.address?.full || "Location"}</span>
+        </div>
+
+        <p className="text-xs tracking-widest opacity-50 uppercase">
+          &copy; {new Date().getFullYear()} {clinic.name || "Studio"}. All Rights Reserved.
+        </p>
+      </footer>
     </div>
   );
 }

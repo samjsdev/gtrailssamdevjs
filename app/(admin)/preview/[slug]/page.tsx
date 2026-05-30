@@ -8,7 +8,7 @@ export default function PreviewPage({ params }: { params: Promise<{ slug: string
   const { slug } = resolvedParams;
 
   const templates = [
-    { id: '1', name: 'Modern Studio', description: 'Editorial, high-contrast layout for premium residential interiors.', href: `/designwebsite/${slug}` },
+    { id: '1', name: 'Modern Studio', description: 'Editorial, high-contrast layout for premium residential interiors.', href: `/designwebsite/template1/${slug}` },
     { id: '2', name: 'Calm Home', description: 'Warm, airy presentation for approachable interior studios.', href: `/designwebsite/template2/${slug}` },
     { id: '3', name: 'Luxe Interiors', description: 'Elegant, polished theme for high-end design portfolios.', href: `/designwebsite/template3/${slug}` },
     { id: '4', name: 'Precision Studio', description: 'Bold, systems-led theme for turnkey execution teams.', href: `/designwebsite/template4/${slug}` },

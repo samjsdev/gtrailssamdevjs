@@ -4,6 +4,7 @@ export type InteriorServiceDetail = {
   description: string;
   benefits: string[];
   process: string[];
+  image?: string;
 };
 
 export type InteriorGuide = {
@@ -26,6 +27,19 @@ export const INTERIOR_HERO_IMAGES = {
   about: "https://images.unsplash.com/photo-1600210492493-0946911123ea?auto=format&fit=crop&q=80&w=2000",
   contact: "https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&q=80&w=2000",
   designer: "https://images.unsplash.com/photo-1600121848594-d8644e57abab?auto=format&fit=crop&q=80&w=1200",
+};
+
+const INTERIOR_SERVICE_IMAGES: Record<string, string> = {
+  "residential interior design": INTERIOR_HERO_IMAGES.home,
+  "modular kitchen design": INTERIOR_HERO_IMAGES.services,
+  "living room styling": INTERIOR_HERO_IMAGES.gallery,
+  "bedroom makeovers": INTERIOR_HERO_IMAGES.about,
+  "space planning": INTERIOR_HERO_IMAGES.guides,
+  "custom furniture": INTERIOR_HERO_IMAGES.contact,
+  "commercial interiors": INTERIOR_HERO_IMAGES.designer,
+  "renovation styling": INTERIOR_HERO_IMAGES.gallery,
+  "lighting design": INTERIOR_HERO_IMAGES.services,
+  "turnkey interiors": INTERIOR_HERO_IMAGES.home,
 };
 
 export const DEFAULT_INTERIOR_SERVICES = [
@@ -423,23 +437,35 @@ export const INTERIOR_GUIDES: InteriorGuide[] = [
   },
 ];
 
-export function getInteriorServiceData(serviceName: string): InteriorServiceDetail | null {
+function findInteriorServiceKey(serviceName: string): string | null {
   const lower = serviceName.toLowerCase();
 
   for (const key in INTERIOR_SERVICE_DETAILS) {
     if (lower.includes(key) || key.includes(lower)) {
-      return INTERIOR_SERVICE_DETAILS[key];
+      return key;
     }
   }
 
   const keywords = lower.split(/\s+/);
   for (const key in INTERIOR_SERVICE_DETAILS) {
     if (keywords.some((keyword) => keyword.length > 3 && key.includes(keyword))) {
-      return INTERIOR_SERVICE_DETAILS[key];
+      return key;
     }
   }
 
   return null;
+}
+
+export function getInteriorServiceData(serviceName: string): InteriorServiceDetail | null {
+  const serviceKey = findInteriorServiceKey(serviceName);
+  if (!serviceKey) return null;
+
+  const serviceData = INTERIOR_SERVICE_DETAILS[serviceKey];
+
+  return {
+    ...serviceData,
+    image: serviceData.image || INTERIOR_SERVICE_IMAGES[serviceKey] || INTERIOR_HERO_IMAGES.services,
+  };
 }
 
 export function getInteriorServiceSummary(serviceName: string): string {

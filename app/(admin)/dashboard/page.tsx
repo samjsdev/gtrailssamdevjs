@@ -1,42 +1,33 @@
-import fs from 'fs/promises';
-import path from 'path';
 import Link from 'next/link';
 import { ExternalLink, Edit } from 'lucide-react';
 import DeleteSiteButton from '@/components/DeleteSiteButton';
+import { supabase } from '@/lib/supabase';
 
 export const dynamic = 'force-dynamic';
 
 export default async function Dashboard() {
-  const dataDir = path.join(process.cwd(), 'data');
-  
   const sites: any[] = [];
   
   try {
-    const slugs = await fs.readdir(dataDir);
+    const { data, error } = await supabase
+      .from('scraped_data')
+      .select('slug, source_data, name, rating, review_count, updated_at');
     
-    for (const slug of slugs) {
-      // Prevent reading hidden files like .DS_Store
-      if (slug.startsWith('.')) continue;
-
-      try {
-        const sourcePath = path.join(dataDir, slug, 'source.json');
-        const content = await fs.readFile(sourcePath, 'utf-8');
-        const json = JSON.parse(content);
-        
+    if (!error && data) {
+      for (const item of data) {
+        const json = item.source_data as any;
         sites.push({
-          slug,
-          name: json.clinic?.name || slug,
-          rating: json.business?.rating || 'N/A',
-          reviews: json.business?.reviewCount || '0',
+          slug: item.slug,
+          name: item.name || json.clinic?.name || item.slug,
+          rating: item.rating || json.business?.rating || 'N/A',
+          reviews: item.review_count || json.business?.reviewCount || '0',
           image: json.media?.clinicImages?.[0] || 'https://via.placeholder.com/400x300?text=No+Image',
-          date: new Date(json.meta?.generatedAt || Date.now()).toLocaleDateString()
+          date: new Date(item.updated_at || json.meta?.generatedAt || Date.now()).toLocaleDateString()
         });
-      } catch (err) {
-         // Skip folders that don't have a source.json yet
       }
     }
   } catch (err) {
-    // data folder might not exist yet
+    console.error('Error fetching sites from Supabase:', err);
   }
 
   return (

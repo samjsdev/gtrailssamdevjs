@@ -2,6 +2,7 @@ import fs from 'fs/promises';
 import path from 'path';
 import { NextResponse } from 'next/server';
 import { REQUIRED_TEMPLATE_IDS, getGeneratedWebsiteRoot } from '@/lib/websiteBuild';
+import { supabase } from '@/lib/supabase';
 
 type RouteParams = {
   slug: string;
@@ -89,22 +90,51 @@ export async function GET(_request: Request, { params }: { params: Promise<Route
     return NextResponse.json({ error: 'Invalid path segment' }, { status: 400 });
   }
 
+  // 1. Try Supabase Storage first
+  const storagePath = segments.length === 0 
+    ? `${slug}/${template}/index.html`
+    : `${slug}/${template}/${segments.join('/')}`;
+
+  // If path doesn't have an extension, try index.html or .html
+  const candidates = [storagePath];
+  if (!path.extname(storagePath)) {
+    candidates.push(`${storagePath}/index.html`);
+    candidates.push(`${storagePath}.html`);
+  }
+
+  for (const candidate of candidates) {
+    const { data, error } = await supabase.storage
+      .from('templates')
+      .download(candidate);
+
+    if (!error && data) {
+      const arrayBuffer = await data.arrayBuffer();
+      return new NextResponse(Buffer.from(arrayBuffer), {
+        headers: {
+          'Content-Type': contentTypeFor(candidate),
+          'Cache-Control': 'no-store',
+        },
+      });
+    }
+  }
+
+  // 2. Fallback to local file system
   const templateRoot = path.join(getGeneratedWebsiteRoot(slug), template);
   const filePath = await resolveFilePath(templateRoot, segments);
 
-  if (!filePath) {
-    return NextResponse.json({ error: 'Preview file not found' }, { status: 404 });
+  if (filePath) {
+    try {
+      const fileBuffer = await fs.readFile(filePath);
+      return new NextResponse(fileBuffer, {
+        headers: {
+          'Content-Type': contentTypeFor(filePath),
+          'Cache-Control': 'no-store',
+        },
+      });
+    } catch {
+      // Continue to error if local read fails
+    }
   }
 
-  try {
-    const fileBuffer = await fs.readFile(filePath);
-    return new NextResponse(fileBuffer, {
-      headers: {
-        'Content-Type': contentTypeFor(filePath),
-        'Cache-Control': 'no-store',
-      },
-    });
-  } catch {
-    return NextResponse.json({ error: 'Failed to read preview file' }, { status: 500 });
-  }
+  return NextResponse.json({ error: 'Preview file not found' }, { status: 404 });
 }

@@ -1,5 +1,96 @@
 const fs = require('fs/promises');
 const path = require('path');
+const { createClient } = require('@supabase/supabase-js');
+
+// Try loading env vars if not present
+if (!process.env.SB_SERVICEROLEKEY) {
+  try {
+    const envFile = require('fs').readFileSync(path.join(process.cwd(), '.env.local'), 'utf-8');
+    envFile.split('\n').forEach(line => {
+      const [key, ...value] = line.split('=');
+      if (key && value) process.env[key.trim()] = value.join('=').trim().replace(/^["']|["']$/g, '');
+    });
+  } catch (e) {
+    // Ignore if file doesn't exist
+  }
+}
+
+// Supabase configuration
+const anonKey = process.env.SB_ANONKEY || '';
+const serviceKey = process.env.SB_SERVICEROLEKEY || '';
+
+const getRefFromToken = (token) => {
+  try {
+    const parts = token.split('.');
+    if (parts.length === 3) {
+      const payload = JSON.parse(Buffer.from(parts[1], 'base64').toString('utf-8'));
+      return payload.ref || '';
+    }
+  } catch (e) {
+    console.error('Error parsing token to extract Supabase project ref:', e);
+  }
+  return '';
+};
+
+const ref = getRefFromToken(serviceKey || anonKey);
+const supabaseUrl = ref ? `https://${ref}.supabase.co` : '';
+const supabase = (supabaseUrl && (serviceKey || anonKey)) 
+  ? createClient(supabaseUrl, serviceKey || anonKey)
+  : null;
+
+if (!supabase) {
+  console.warn('Supabase client could not be initialized. Check your SB_ANONKEY or SB_SERVICEROLEKEY.');
+}
+
+async function uploadFileToSupabase(filePath, storagePath) {
+  if (!supabase) return;
+
+  try {
+    const fileContent = await fs.readFile(filePath);
+    const ext = path.extname(filePath).toLowerCase();
+    const contentType = {
+      '.html': 'text/html',
+      '.css': 'text/css',
+      '.js': 'application/javascript',
+      '.json': 'application/json',
+      '.png': 'image/png',
+      '.jpg': 'image/jpeg',
+      '.jpeg': 'image/jpeg',
+      '.svg': 'image/svg+xml',
+      '.webp': 'image/webp',
+    }[ext] || 'application/octet-stream';
+
+    const { error } = await supabase.storage
+      .from('templates')
+      .upload(storagePath, fileContent, {
+        contentType,
+        upsert: true
+      });
+
+    if (error) {
+      console.error(`Failed to upload ${storagePath}:`, error.message);
+    }
+  } catch (err) {
+    console.error(`Error uploading ${filePath} to ${storagePath}:`, err.message);
+  }
+}
+
+async function uploadDirToSupabase(srcDir, storagePrefix) {
+  if (!supabase) return;
+
+  const entries = await fs.readdir(srcDir, { withFileTypes: true });
+
+  for (let entry of entries) {
+    const srcPath = path.join(srcDir, entry.name);
+    const destPath = `${storagePrefix}/${entry.name}`;
+
+    if (entry.isDirectory()) {
+      await uploadDirToSupabase(srcPath, destPath);
+    } else {
+      await uploadFileToSupabase(srcPath, destPath);
+    }
+  }
+}
 
 async function copyDir(src, dest) {
   try {
@@ -181,7 +272,14 @@ async function moveTemplateOutputs() {
         const targetImagesDir = path.join(targetWebsiteDir, 'images');
         await copyDir(publicImagesDir, targetImagesDir);
 
-        console.log(` -> Added ${t.id} successfully.`);
+        console.log(` -> Packaging local files for ${t.id} successfully.`);
+
+        // Upload everything to Supabase
+        if (supabase) {
+          console.log(` -> Uploading ${t.id} to Supabase...`);
+          await uploadDirToSupabase(targetWebsiteDir, `${slug}/${t.id}`);
+          console.log(` -> Uploaded ${t.id} to Supabase successfully.`);
+        }
       } catch (e) {
         console.warn(` -> Note: Source for ${t.id} not found (${t.baseHtml}). Skipping.`);
       }

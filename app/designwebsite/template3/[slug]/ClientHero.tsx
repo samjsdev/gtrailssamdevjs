@@ -1,135 +1,119 @@
 'use client';
 
-import Link from 'next/link';
-import Image from 'next/image';
 import { Fustat } from 'next/font/google';
-import { INTERIOR_HERO_IMAGES } from '@/lib/interiorContent';
 
 const fustat = Fustat({
   subsets: ['latin'],
-  weight: ['700'],
+  weight: ['400', '500', '600', '700'],
+  style: ['normal'],
 });
 
-type ClinicData = {
-  tagline?: string;
-  description?: string;
-  contact?: { phone?: string };
-};
-
-type BusinessData = {
-  reviewCount?: string | number;
-  rating?: string | number;
-  services?: string[];
-};
-
 interface ClientHeroProps {
-  clinic: ClinicData;
-  business: BusinessData;
+  clinic: any;
+  business: any;
   basePath: string;
   heroImage?: string;
 }
 
 export default function ClientHero({ clinic, business, basePath, heroImage }: ClientHeroProps) {
-  const taglineWords = (clinic.tagline || 'Thoughtful Interiors For Everyday Living').split(' ');
-  const half = Math.ceil(taglineWords.length / 2);
-  const line1 = taglineWords.slice(0, half).join(' ');
-  const line2 = taglineWords.slice(half).join(' ');
-  const clinicMetrics = [
-    { label: 'Client Reviews', value: `${business.reviewCount || '500+'}` },
-    { label: 'Average Rating', value: `${business.rating || '4.9'}/5` },
-    { label: 'Design Services', value: `${business.services?.length || 6}+` },
-    { label: 'Studio Hours', value: '10AM - 7PM' },
+  const projects = [
+    {
+      title: "Luxury Skyline",
+      location: "Berlin, Germany",
+      year: "2025",
+      image: "https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&q=80&w=600",
+      tag1: "RESIDENTIAL",
+      tag2: "SINGLE HOME"
+    },
+    {
+      title: "Bohemian Rhapsody",
+      location: "Berlin, Germany",
+      year: "2025",
+      image: "https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&q=80&w=600",
+      tag1: "RESIDENTIAL",
+      tag2: "SINGLE HOME"
+    },
+    {
+      title: "Vintage Glamour",
+      location: "Berlin, Germany",
+      year: "2025",
+      image: "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&q=80&w=600",
+      tag1: "RESIDENTIAL",
+      tag2: "SINGLE HOME"
+    },
+    {
+      title: "Living Innovation",
+      location: "Berlin, Germany",
+      year: "2025",
+      image: "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&q=80&w=600",
+      tag1: "RESIDENTIAL",
+      tag2: "SINGLE HOME"
+    }
   ];
 
   return (
-    <section className="relative overflow-hidden bg-white">
-      <div className="pointer-events-none absolute -top-55 -left-[280px] h-[560px] w-[560px] rounded-full bg-[#60B1FF]/35 blur-[120px]" />
-      <div className="pointer-events-none absolute -top-[140px] -left-[60px] h-[460px] w-[460px] rounded-full bg-[#319AFF]/30 blur-[120px]" />
-
-      <div className="relative z-10 mx-auto w-full max-w-[1600px] px-6 md:px-10 lg:px-16 pt-12 md:pt-16 pb-12 md:pb-16">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-2 items-center min-h-[680px]">
-          <div className="max-w-[700px]">
-            <div className="inline-flex items-center gap-3 rounded-full border border-black/10 bg-white/60 px-4 py-2 backdrop-blur-md mb-8">
-              <div className="flex items-center gap-1">
-                {[...Array(5)].map((_, idx) => (
-                  <svg key={idx} viewBox="0 0 20 20" className="h-4 w-4 fill-[#FF801E]" aria-hidden="true">
-                    <path d="M10 1.6l2.58 5.22 5.76.84-4.17 4.06.98 5.74L10 14.77l-5.15 2.69.98-5.74L1.66 7.66l5.76-.84L10 1.6z" />
-                  </svg>
-                ))}
-              </div>
-              <p className="text-[14px] font-medium text-slate-700">
-                {business.reviewCount || '500+'} Client Reviews
-              </p>
+    <section className="relative overflow-hidden bg-white pt-24 pb-16">
+      <div className="max-w-7xl mx-auto px-8 w-full">
+        {/* Top bar with Label and Headline */}
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 mb-12">
+          <div className="space-y-4 max-w-2xl">
+            <div className="flex items-center gap-2 text-slate-400 text-xs font-semibold uppercase tracking-widest">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#B48A66]" />
+              OUR PROJECTS
             </div>
-
-            <div className="flex flex-col mb-6">
-              <h1 className={`${fustat.className} text-[48px] md:text-[64px] lg:text-[75px] leading-[1.05] tracking-[-2px] text-slate-700`}>
-                {line1}
-              </h1>
-              <h1 className={`${fustat.className} text-[48px] md:text-[64px] lg:text-[75px] leading-[1.05] tracking-[-2px] text-[#0084FF] -mt-[8px]`}>
-                {line2}
-              </h1>
-            </div>
-
-            <p className="mt-6 text-[18px] leading-[1.6] tracking-[-1px] text-slate-600 max-w-[670px]">
-              {clinic.description || 'Welcome to our interior design studio. From spatial planning to final styling, we create rooms that feel refined, functional, and personal.'}
-            </p>
-
-            <div className="mt-10 flex flex-col sm:flex-row items-center gap-4">
-              <Link
-                href={`${basePath}/about-us`}
-                className="px-8 py-4 rounded-[16px] bg-white/70 border border-black/10 text-slate-800 font-medium backdrop-blur-[2px] [box-shadow:inset_0px_4px_4px_0px_rgba(255,255,255,0.25)] hover:bg-white transition-colors text-sm tracking-wide"
-              >
-                View the Studio
-              </Link>
-              <a
-                href={`tel:${clinic.contact?.phone || ''}`}
-                className="group inline-flex items-center gap-3 rounded-[16px] bg-[rgba(0,132,255,0.8)] px-6 py-4 text-white text-sm font-medium tracking-wide backdrop-blur-[2px] [box-shadow:inset_0px_4px_4px_0px_rgba(255,255,255,0.35)] transition-transform duration-300 hover:scale-[1.02]"
-              >
-                <span>Start Your Project</span>
-                <span className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-white text-[#0084FF]">
-                  <svg viewBox="0 0 20 20" className="h-4 w-4" aria-hidden="true">
-                    <path
-                      d="M5 10h9m0 0-3.5-3.5M14 10l-3.5 3.5"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="1.8"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                  </svg>
-                </span>
-              </a>
-            </div>
+            <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight text-slate-900 leading-tight">
+              Creative <span className="text-[#B48A66]">Projects That</span><br />Define Our Style
+            </h1>
           </div>
-
-          <div className="relative h-[420px] sm:h-[540px] lg:h-[680px] w-full overflow-hidden rounded-3xl">
-            <div className="absolute inset-0 border border-black/10 rounded-3xl [box-shadow:inset_0px_4px_4px_0px_rgba(255,255,255,0.25)] z-10 pointer-events-none" />
-            <Image
-              src={heroImage || INTERIOR_HERO_IMAGES.home}
-              alt="Interior design studio"
-              fill
-              unoptimized
-              className="object-cover w-full h-full"
-            />
-          </div>
+          <p className="text-slate-500 text-sm max-w-sm leading-relaxed font-light">
+            Our portfolio showcases a diverse range of projects, from beautifully crafted residential spaces functional and stylish commercial interiors.
+          </p>
         </div>
 
-        <div className="mt-8 md:mt-16 border-t border-slate-100 pt-10">
-          <p className="text-center text-[14px] font-medium text-slate-500 mb-8">
-            Interior Studio Metrics
-          </p>
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
-            {clinicMetrics.map((metric) => (
-              <div
-                key={metric.label}
-                className="rounded-[16px] border border-black/10 bg-white/65 backdrop-blur-md px-4 py-4 md:px-5 md:py-5 [box-shadow:inset_0px_4px_4px_0px_rgba(255,255,255,0.25)]"
-              >
-                <p className="text-[24px] md:text-[28px] font-semibold tracking-[-0.02em] text-[#0084FF]">{metric.value}</p>
-                <p className="mt-1 text-[12px] md:text-[13px] font-medium uppercase tracking-[0.08em] text-slate-600">{metric.label}</p>
+        {/* Projects Horizontal Slider/Grid */}
+        <div className="flex gap-6 overflow-x-auto pb-8 scrollbar-none snap-x snap-mandatory">
+          {projects.map((proj, idx) => (
+            <div 
+              key={idx} 
+              className="min-w-[280px] sm:min-w-[340px] flex-shrink-0 snap-start group cursor-pointer"
+            >
+              <div className="relative aspect-[4/5] rounded-3xl overflow-hidden mb-4 bg-slate-100 shadow-sm border border-slate-100">
+                <img 
+                  src={proj.image} 
+                  alt={proj.title} 
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" 
+                />
+                
+                {/* Floating Tags */}
+                <div className="absolute top-4 left-4 flex gap-2">
+                  <span className="px-3 py-1 bg-white/20 backdrop-blur-md text-[9px] font-bold text-white uppercase rounded-full tracking-wider">
+                    {proj.tag1}
+                  </span>
+                  <span className="px-3 py-1 bg-white/20 backdrop-blur-md text-[9px] font-bold text-white uppercase rounded-full tracking-wider">
+                    {proj.tag2}
+                  </span>
+                </div>
+
+                {/* View Overlay on Hover */}
+                <div className="absolute inset-0 bg-black/20 group-hover:bg-black/40 opacity-0 group-hover:opacity-100 transition-all duration-300 flex items-center justify-center">
+                  <div className="w-16 h-16 rounded-full bg-slate-900/80 backdrop-blur-xs flex items-center justify-center text-white text-xs font-semibold tracking-wider uppercase scale-75 group-hover:scale-100 transition-all duration-300 border border-white/10">
+                    View
+                  </div>
+                </div>
               </div>
-            ))}
-          </div>
+
+              {/* Title & Location details */}
+              <div className="space-y-1 pl-2">
+                <h3 className="text-lg font-semibold text-slate-900 group-hover:text-[#B48A66] transition-colors">
+                  {proj.title}
+                </h3>
+                <div className="flex justify-between text-xs text-slate-400 font-light">
+                  <span>{proj.location}</span>
+                  <span>{proj.year}</span>
+                </div>
+              </div>
+            </div>
+          ))}
         </div>
       </div>
     </section>

@@ -1,7 +1,7 @@
 import { readSourceConfig, getAllSlugs } from '@/lib/dataBuilder';
 import { notFound } from 'next/navigation';
 import { 
-  ArrowUpRight, Palette
+  ArrowUpRight, Palette, Phone, MapPin
 } from 'lucide-react';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -18,12 +18,14 @@ export async function generateStaticParams() {
 
 const fustat = Fustat({
   subsets: ['latin'],
-  weight: ['700'],
+  weight: ['400', '500', '600', '700'],
+  variable: '--font-fustat',
 });
 
 const inter = Inter({
   subsets: ['latin'],
-  weight: ['400', '500'],
+  weight: ['300', '400', '500', '600', '700'],
+  variable: '--font-inter',
 });
 
 type LayoutProps = {
@@ -43,97 +45,156 @@ export default async function DesignStudioLayout({ children, params }: LayoutPro
 
   return (
     <div
-      className={`${inter.className} min-h-screen bg-white text-slate-900 selection:bg-[#0084FF] selection:text-white scroll-smooth flex flex-col`}
+      className={`${inter.variable} ${fustat.variable} font-sans min-h-screen bg-[#FDFDFD] text-slate-900 selection:bg-[#0084FF] selection:text-white scroll-smooth flex flex-col`}
       style={{ WebkitFontSmoothing: 'antialiased' }}
     >
-      <header className="sticky top-6 z-50 flex justify-center px-4 md:px-6 transition-all duration-300">
-        <div className="w-fit">
-          <div className="flex items-center gap-4 md:gap-8 px-4 md:px-6 py-3 bg-white/80 backdrop-blur-xl rounded-full shadow-[0_12px_36px_rgba(0,0,0,0.12)] border border-white/60">
-          <Link href={basePath} className="flex items-center gap-4 leading-none">
-            <div className="relative w-10 h-10 overflow-hidden rounded-xl border border-black/10 bg-white/70">
-              <Image
-                src={INTERIOR_HERO_IMAGES.home}
-                alt="Interior design studio"
-                fill
-                sizes="40px"
-                className="object-cover"
-              />
-            </div>
-            <h1 className={`${fustat.className} text-lg md:text-xl leading-none tracking-[-0.02em] text-slate-900`}>
-              {clinic.name || 'Studio Name'}
-            </h1>
-          </Link>
-          
-          <nav className="hidden lg:flex items-center gap-8 text-[15px] font-medium text-slate-700">
-            <Link href="#services" className="hover:text-[#0084FF] transition-colors">Services</Link>
-            <Link href="#about" className="hover:text-[#0084FF] transition-colors">About Us</Link>
-            <Link href="#gallery" className="hover:text-[#0084FF] transition-colors">Gallery</Link>
-            <Link href="#contact" className="hover:text-[#0084FF] transition-colors">Contact</Link>
-          </nav>
+      {/* Blueprint background pattern */}
+      <div className="fixed inset-0 pointer-events-none bg-[radial-gradient(#e2e8f0_1px,transparent_1px)] [background-size:24px_24px] opacity-40 z-0" />
 
-          <Link
-            href="#contact"
-            className="hidden md:inline-flex items-center gap-2 rounded-xl bg-[rgba(255,255,255,0.42)] px-4 py-2 text-[14px] font-medium text-slate-900 border border-[rgba(0,0,0,0.08)] [box-shadow:inset_0px_4px_4px_0px_rgba(255,255,255,0.25)] hover:bg-[rgba(255,255,255,0.58)] transition-colors"
-          >
-            Book Consultation
-            <span className="inline-flex h-6 w-6 items-center justify-center rounded-full bg-white border border-black/10">
-              <ArrowUpRight className="h-3.5 w-3.5" />
-            </span>
-          </Link>
+      {/* Floating Capsule Header */}
+      <header className="sticky top-6 z-50 flex justify-center px-4 md:px-6 transition-all duration-300 w-full">
+        <div className="w-fit">
+          <div className="flex items-center gap-4 md:gap-8 px-4 md:px-6 py-2.5 bg-white/70 backdrop-blur-xl rounded-full shadow-[0_12px_40px_rgba(0,0,0,0.06)] border border-white/60">
+            <Link href={basePath} className="flex items-center gap-3 leading-none group">
+              <div className="relative w-9 h-9 overflow-hidden rounded-xl border border-slate-200 bg-white shadow-2xs group-hover:scale-102 transition-transform duration-300">
+                <Image
+                  src={INTERIOR_HERO_IMAGES.home}
+                  alt="Interior design studio"
+                  fill
+                  sizes="36px"
+                  className="object-cover"
+                />
+              </div>
+              <h1 className="font-fustat text-base md:text-lg font-bold tracking-tight text-slate-900">
+                {clinic.name || 'Studio Name'}
+              </h1>
+            </Link>
+            
+            <nav className="hidden lg:flex items-center gap-8 text-[13px] font-medium text-slate-500">
+              <Link href={`${basePath}`} className="hover:text-[#0084FF] transition-colors relative py-1">Home</Link>
+              <Link href={`${basePath}/about`} className="hover:text-[#0084FF] transition-colors relative py-1">About</Link>
+              <Link href={`${basePath}/services`} className="hover:text-[#0084FF] transition-colors relative py-1">Services</Link>
+              <Link href={`${basePath}/gallery`} className="hover:text-[#0084FF] transition-colors relative py-1">Gallery</Link>
+
+            </nav>
+
+            <Link
+              href="#contact"
+              className="hidden md:inline-flex items-center gap-2 rounded-full bg-slate-900 px-5 py-2 text-[12px] font-semibold text-white border border-slate-800 hover:bg-[#0084FF] hover:border-[#0084FF] transition-all shadow-xs hover:scale-[1.02] active:scale-[0.98]"
+            >
+              Book Consultation
+              <span className="inline-flex h-5 w-5 items-center justify-center rounded-full bg-white/20">
+                <ArrowUpRight className="h-3 w-3 text-white" />
+              </span>
+            </Link>
           </div>
         </div>
       </header>
 
-      <main className="grow">
+      {/* Main Content */}
+      <main className="grow relative z-10">
         {children}
       </main>
 
-      <footer id="contact" className="bg-white border-t border-slate-100 pt-24 pb-12 px-8 mt-auto">
+      {/* Footer */}
+      {/* Tally Forms Contact Mockup */}
+      <section className="py-24 bg-white border-t border-gray-200 z-10 relative" id="tally-form">
+        <div className="max-w-4xl mx-auto px-8 w-full text-center">
+          <div className="mb-12 space-y-4">
+             <h2 className="text-3xl sm:text-4xl font-bold tracking-tight">Ready to Start Your Project?</h2>
+             <p className="text-gray-500 font-medium">Please fill out the form below and our team will get back to you shortly.</p>
+          </div>
+          <div className="max-w-xl mx-auto w-full">
+            <form className="bg-white rounded-3xl shadow-[0_8px_30px_rgb(0,0,0,0.08)] border border-gray-100 p-8 sm:p-10 text-left space-y-6">
+              <div className="space-y-2">
+                <label htmlFor="fullName" className="block text-sm font-semibold text-gray-700 font-sans">Full Name</label>
+                <input type="text" id="fullName" placeholder="Your name" className="w-full text-gray-900 px-5 py-3.5 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#4834D4] focus:border-transparent transition-colors bg-[#FAFAFA] font-sans" />
+              </div>
+              <div className="space-y-2">
+                <label htmlFor="email" className="block text-sm font-semibold text-gray-700 font-sans">Email Address</label>
+                <input type="email" id="email" placeholder="you@company.com" className="w-full text-gray-900 px-5 py-3.5 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#4834D4] focus:border-transparent transition-colors bg-[#FAFAFA] font-sans" />
+              </div>
+              <div className="space-y-2">
+                <label htmlFor="message" className="block text-sm font-semibold text-gray-700 font-sans">Message</label>
+                <textarea id="message" rows={4} placeholder="Tell us about your project" className="w-full text-gray-900 px-5 py-3.5 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#4834D4] focus:border-transparent transition-colors resize-none bg-[#FAFAFA] font-sans"></textarea>
+              </div>
+              <button type="button" className="w-full py-4 mt-2 bg-[#4834D4] hover:bg-[#3C2BAE] text-white font-bold rounded-xl transition-colors shadow-md font-sans">
+                Request a Proposal
+              </button>
+            </form>
+          </div>
+        </div>
+      </section>
+
+      <footer id="contact" className="bg-[#111317] border-t border-slate-800 text-slate-400 pt-24 pb-12 px-8 mt-auto relative z-10">
         <div className="max-w-7xl mx-auto">
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8 mb-16 text-slate-500">
+          {/* Map Embed */}
+          {(() => {
+            const mapUrl = clinic.mapEmbedUrl || 
+              `https://maps.google.com/maps?q=${encodeURIComponent((clinic.name || '') + ' ' + (clinic.address?.full || ''))}&output=embed`;
+            return (
+              <div className="mb-16 rounded-3xl overflow-hidden shadow-sm aspect-video sm:aspect-[21/9] border border-black/10">
+                <iframe
+                  src={mapUrl}
+                  width="100%"
+                  height="100%"
+                  style={{ border: 0 }}
+                  allowFullScreen
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  title={`Location of ${clinic.name || 'our studio'}`}
+                  className="w-full h-full block"
+                ></iframe>
+              </div>
+            );
+          })()}
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8 mb-16">
             <div className="lg:col-span-2 space-y-6">
               <Link href={basePath} className="flex items-center gap-4">
-                <div className="w-12 h-12 bg-white rounded-2xl flex items-center justify-center text-[#0084FF] border border-slate-200">
-                  <Palette className="w-6 h-6" />
+                <div className="w-11 h-11 bg-slate-800 rounded-xl flex items-center justify-center text-white border border-slate-700">
+                  <Palette className="w-5 h-5" />
                 </div>
-                <h4 className={`${fustat.className} text-xl tracking-tight text-slate-900`}>{clinic.name || 'Design Studio'}</h4>
+                <h4 className="font-fustat text-xl font-bold tracking-tight text-white">{clinic.name || 'Design Studio'}</h4>
               </Link>
-              <p className="text-slate-500 font-normal leading-relaxed max-w-sm text-[16px]">{clinic.description || 'Creating refined interiors with thoughtful planning, curated materials, and client-first project coordination.'}</p>
+              <p className="text-slate-400 font-light leading-relaxed max-w-sm text-[15px]">{clinic.description || 'Creating refined interiors with thoughtful planning, curated materials, and client-first project coordination.'}</p>
             </div>
 
             <div>
-              <h5 className="text-slate-400 font-semibold mb-8 tracking-[0.15em] uppercase text-xs">Contact Info</h5>
+              <h5 className="text-slate-500 font-bold mb-8 tracking-[0.15em] uppercase text-xs">Contact Info</h5>
               <ul className="space-y-6">
                 <li className="flex items-start gap-4">
-                  <span className="text-[15px] font-normal leading-relaxed">{clinic.address?.full || 'Studio Location'}</span>
+                  <span className="text-[14px] font-light leading-relaxed">{clinic.address?.full || 'Studio Location'}</span>
                 </li>
                 <li className="flex items-start gap-4">
-                  <span className="text-[15px] font-normal">{clinic.contact?.phone || 'Phone Number'}</span>
+                  <span className="text-[14px] font-light">{clinic.contact?.phone || 'Phone Number'}</span>
                 </li>
               </ul>
             </div>
 
             <div>
-              <h5 className="text-slate-400 font-semibold mb-8 tracking-[0.15em] uppercase text-xs">Quick Links</h5>
-              <ul className="space-y-4 font-normal">
-                <li><Link href="#services" className="hover:text-[#0084FF] transition-colors inline-block w-full text-[15px]">Services</Link></li>
-                <li><Link href="#about" className="hover:text-[#0084FF] transition-colors inline-block w-full text-[15px]">About Us</Link></li>
-                <li><Link href="#gallery" className="hover:text-[#0084FF] transition-colors inline-block w-full text-[15px]">Gallery</Link></li>
-                <li><Link href="#contact" className="hover:text-[#0084FF] transition-colors inline-block w-full text-[15px]">Contact Us</Link></li>
+              <h5 className="text-slate-500 font-bold mb-8 tracking-[0.15em] uppercase text-xs">Quick Links</h5>
+              <ul className="space-y-4 font-light">
+                <li><Link href={`${basePath}`} className="hover:text-white transition-colors inline-block w-full text-[14px]">Home</Link></li>
+                <li><Link href={`${basePath}/about`} className="hover:text-white transition-colors inline-block w-full text-[14px]">About</Link></li>
+                <li><Link href={`${basePath}/services`} className="hover:text-white transition-colors inline-block w-full text-[14px]">Services</Link></li>
+                <li><Link href={`${basePath}/gallery`} className="hover:text-white transition-colors inline-block w-full text-[14px]">Gallery</Link></li>
+
               </ul>
             </div>
           </div>
 
-          <div className="pt-8 border-t border-slate-100 flex flex-col md:flex-row justify-between items-center gap-6 text-sm font-normal text-slate-400">
+          <div className="pt-8 border-t border-slate-800 flex flex-col md:flex-row justify-between items-center gap-6 text-sm font-light text-slate-500">
             <p>&copy; {new Date().getFullYear()} {clinic.name || 'Studio'}. All rights reserved.</p>
             <div className="flex gap-8">
-              <a href="#" className="hover:text-[#0084FF] transition-colors">Privacy Policy</a>
-              <a href="#" className="hover:text-[#0084FF] transition-colors">Terms of Service</a>
+              <a href="#" className="hover:text-white transition-colors">Privacy Policy</a>
+              <a href="#" className="hover:text-white transition-colors">Terms of Service</a>
             </div>
           </div>
         </div>
       </footer>
-          {/* WhatsApp Floating Bubble */}
+
+      {/* WhatsApp Floating Bubble */}
       {(() => {
         const waPhone = clinic.contact?.phone?.replace(/\D/g, '') || '919751396117';
         const waText = `Hi, I'm interested in booking a design consultation at ${clinic.name || 'your studio'}!`;
@@ -153,6 +214,6 @@ export default async function DesignStudioLayout({ children, params }: LayoutPro
           </a>
         );
       })()}
-</div>
+    </div>
   );
 }

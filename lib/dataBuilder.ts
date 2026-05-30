@@ -4,6 +4,7 @@ import {
   DEFAULT_INTERIOR_HIGHLIGHTS,
   DEFAULT_INTERIOR_SERVICES,
 } from '@/lib/interiorContent';
+import { supabase } from './supabase';
 
 export interface GeneratedData {
   clinic: any;
@@ -78,10 +79,55 @@ export async function createSourceConfig(slug: string, data: any): Promise<Gener
 
   await fs.writeFile(sourcePath, JSON.stringify(dataShape, null, 2), 'utf-8');
 
+  // Sync to Supabase scraped_data table
+  try {
+    const { error } = await supabase.from('scraped_data').upsert({
+      slug: dataShape.clinic.slug,
+      name: dataShape.clinic.name,
+      rating: dataShape.business.rating,
+      review_count: dataShape.business.reviewCount,
+      address: dataShape.clinic.address.full,
+      phone: dataShape.clinic.contact.phone,
+      image_urls: data.media ? [
+        ...(data.media.clinicImages || []),
+        ...(data.media.treatmentImages || []),
+        ...(data.media.otherImages || [])
+      ] : [],
+      reviews: dataShape.reviews,
+      media: dataShape.media,
+      map_embed_url: dataShape.clinic.mapEmbedUrl,
+      source_data: dataShape,
+      updated_at: new Date().toISOString()
+    });
+
+    if (error) {
+      console.error('Failed to upsert to Supabase scraped_data:', error);
+    } else {
+      console.log(`Successfully synced scraped data for "${slug}" to Supabase!`);
+    }
+  } catch (supabaseError) {
+    console.error('Error syncing scraped data to Supabase:', supabaseError);
+  }
+
   return dataShape;
 }
 
 export async function readSourceConfig(slug: string): Promise<GeneratedData | null> {
+  try {
+    const { data, error } = await supabase
+      .from('scraped_data')
+      .select('source_data')
+      .eq('slug', slug)
+      .single();
+
+    if (!error && data?.source_data) {
+      return data.source_data as GeneratedData;
+    }
+  } catch (sbEx) {
+    console.error('Error reading from Supabase:', sbEx);
+  }
+
+  // Fallback to local file for development or transition
   const sourcePath = path.join(process.cwd(), 'data', slug, 'source.json');
   try {
     const content = await fs.readFile(sourcePath, 'utf-8');
@@ -92,22 +138,30 @@ export async function readSourceConfig(slug: string): Promise<GeneratedData | nu
 }
 
 export async function getAllSlugs(): Promise<string[]> {
+  try {
+    const { data, error } = await supabase
+      .from('scraped_data')
+      .select('slug');
+
+    if (!error && data) {
+      return data.map(item => item.slug);
+    }
+  } catch (sbEx) {
+    console.error('Error fetching slugs from Supabase:', sbEx);
+  }
+
+  // Fallback to local directories
   const dataPath = path.join(process.cwd(), 'data');
   try {
     const entries = await fs.readdir(dataPath, { withFileTypes: true });
-    
-    // Check if source.json exists in each directory
     const slugs: string[] = [];
     for (const entry of entries) {
       if (entry.isDirectory()) {
+        const sourcePath = path.join(dataPath, entry.name, 'source.json');
         try {
-          const stats = await fs.stat(path.join(dataPath, entry.name, 'source.json'));
-          if (stats.isFile()) {
-            slugs.push(entry.name);
-          }
-        } catch (e) {
-          // source.json doesn't exist or isn't a file
-        }
+          await fs.access(sourcePath);
+          slugs.push(entry.name);
+        } catch {}
       }
     }
     return slugs;

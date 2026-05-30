@@ -1,6 +1,7 @@
 import { promises as fs } from 'fs';
 import path from 'path';
 import sharp from 'sharp';
+import { supabase } from './supabase';
 
 const GOOGLE_PHOTO_HOST_RE = /(googleusercontent\.com|ggpht\.com|gstatic\.com|googleapis\.com)/i;
 const MIN_TARGET_WIDTH = 1000;
@@ -127,13 +128,31 @@ export async function processAndSaveImage(
     }
 
     // Keep consistent output size/format for templates while avoiding tiny thumbnails.
-    await pipeline
+    const finalBuffer = await pipeline
       .jpeg({ quality: 80, progressive: true })
-      .toFile(outputPath);
+      .toBuffer();
 
-    // Return the local relative path for the website to serve
-    // We will need a way to serve these securely later, but for now, we'll prefix with a special route
-    return `/api/media?slug=${slug}&file=${filename}`;
+    // Upload to Supabase Storage
+    const storagePath = `${slug}/${filename}`;
+    const { error: uploadError } = await supabase.storage
+      .from('scraped_images')
+      .upload(storagePath, finalBuffer, {
+        contentType: 'image/jpeg',
+        upsert: true
+      });
+
+    if (uploadError) {
+      console.error(`Failed to upload image ${filename} to Supabase:`, uploadError);
+      // Fallback to local save
+      await fs.writeFile(outputPath, finalBuffer);
+      return `/api/media?slug=${slug}&file=${filename}`;
+    }
+
+    const { data: { publicUrl } } = supabase.storage
+      .from('scraped_images')
+      .getPublicUrl(storagePath);
+
+    return publicUrl;
   } catch (error) {
     console.error(`Failed to process image ${url}:`, error);
     return '';
