@@ -1,7 +1,7 @@
 import { promises as fs } from 'fs';
 import path from 'path';
 import sharp from 'sharp';
-import { supabase } from './supabase';
+import { storage } from './appwrite';
 
 const GOOGLE_PHOTO_HOST_RE = /(googleusercontent\.com|ggpht\.com|gstatic\.com|googleapis\.com)/i;
 const MIN_TARGET_WIDTH = 1000;
@@ -132,26 +132,20 @@ export async function processAndSaveImage(
       .jpeg({ quality: 80, progressive: true })
       .toBuffer();
 
-    // Upload to Supabase Storage
-    const storagePath = `${slug}/${filename}`;
-    const { error: uploadError } = await supabase.storage
-      .from('scraped_images')
-      .upload(storagePath, finalBuffer, {
-        contentType: 'image/jpeg',
-        upsert: true
-      });
+    // Appwrite file IDs must be alphanumeric, underscores, and hyphens (max 36 chars)
+    const fileId = `${slug}_${filename}`.substring(0, 36).replace(/[^a-zA-Z0-9-_]/g, '');
 
-    if (uploadError) {
-      console.error(`Failed to upload image ${filename} to Supabase:`, uploadError);
+    try {
+      const file = new File([new Uint8Array(finalBuffer)], filename, { type: 'image/jpeg' });
+      await storage.createFile('scraped_images', fileId, file);
+    } catch (uploadError: any) {
+      console.error(`Failed to upload image ${filename} to Appwrite:`, uploadError.message || uploadError);
       // Fallback to local save
       await fs.writeFile(outputPath, finalBuffer);
       return `/api/media?slug=${slug}&file=${filename}`;
     }
 
-    const { data: { publicUrl } } = supabase.storage
-      .from('scraped_images')
-      .getPublicUrl(storagePath);
-
+    const publicUrl = `https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/${fileId}/view?project=6a1cf32a002c668912cc`;
     return publicUrl;
   } catch (error) {
     console.error(`Failed to process image ${url}:`, error);

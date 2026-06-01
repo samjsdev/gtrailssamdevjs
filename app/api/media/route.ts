@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 import path from 'path';
 import { promises as fs } from 'fs';
-import { supabase } from '@/lib/supabase';
+import { storage } from '@/lib/appwrite';
 
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
@@ -12,14 +12,14 @@ export async function GET(request: Request) {
     return NextResponse.json({ error: 'Missing slug or file parameter' }, { status: 400 });
   }
 
-  // 1. Try Supabase Storage first
+  // 1. Try Appwrite Storage first
   try {
-    const { data, error } = await supabase.storage
-      .from('scraped_images')
-      .download(`${slug}/${file}`);
+    const fileId = `${slug}_${file}`.substring(0, 36).replace(/[^a-zA-Z0-9-_]/g, '');
+    const downloadUrl = storage.getFileDownload('scraped_images', fileId);
     
-    if (!error && data) {
-      const arrayBuffer = await data.arrayBuffer();
+    const res = await fetch(downloadUrl.toString());
+    if (res.ok) {
+      const arrayBuffer = await res.arrayBuffer();
       const ext = path.extname(file).toLowerCase();
       let mimeType = 'image/jpeg';
       if (ext === '.png') mimeType = 'image/png';
@@ -34,7 +34,7 @@ export async function GET(request: Request) {
       });
     }
   } catch (sbErr) {
-    console.error('Supabase image fetch error:', sbErr);
+    console.error('Appwrite image fetch error:', sbErr);
   }
 
   // 2. Fallback to local file system

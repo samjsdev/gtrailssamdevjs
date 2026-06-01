@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 import { scrapeGoogleBusinessProfile } from '@/lib/scraper';
 import { processAndSaveImage } from '@/lib/imageProcessor';
 import { createSourceConfig } from '@/lib/dataBuilder';
-import { hasGeneratedWebsiteOutput, runBuildDeploy } from '@/lib/websiteBuild';
+// Build trigger imports removed to speed up intake
 import path from 'path';
 import fs from 'fs/promises';
 
@@ -67,33 +67,7 @@ export async function POST(req: Request) {
             existingReviews.length >= MIN_CACHED_FIVE_STAR_REVIEWS &&
             existingImageCount >= MIN_CACHED_IMAGES
           ) {
-            if (!(await hasGeneratedWebsiteOutput(slug))) {
-              console.log(`Cache hit for ${slug}, but website output is missing. Triggering auto-build.`);
-
-              const buildResult = await runBuildDeploy(`intake-cache:${slug}`);
-              if (!buildResult.ok) {
-                return NextResponse.json(
-                  {
-                    error: 'Cached clinic found, but website auto-generation failed',
-                    slug,
-                    details: buildResult.message,
-                  },
-                  { status: 500 }
-                );
-              }
-
-              if (!(await hasGeneratedWebsiteOutput(slug))) {
-                return NextResponse.json(
-                  {
-                    error: 'Auto-build finished, but template website output is still missing',
-                    slug,
-                  },
-                  { status: 500 }
-                );
-              }
-            }
-
-            return NextResponse.json({ slug, cached: true, websiteGenerated: true });
+            return NextResponse.json({ slug, cached: true, websiteGenerated: false });
           }
         }
       } catch {
@@ -162,31 +136,7 @@ export async function POST(req: Request) {
       mapEmbedUrl: scrapedData.mapEmbedUrl,
     });
 
-    // 5. Trigger auto-generation of the deploy-ready static output
-    console.log('Triggering auto-build for static HTML exports...');
-    const buildResult = await runBuildDeploy(`intake:${slug}`);
-    if (!buildResult.ok) {
-      return NextResponse.json(
-        {
-          error: 'Source data was saved, but website auto-generation failed',
-          slug,
-          details: buildResult.message,
-        },
-        { status: 500 }
-      );
-    }
-
-    if (!(await hasGeneratedWebsiteOutput(slug))) {
-      return NextResponse.json(
-        {
-          error: 'Auto-build completed, but template website output was not found',
-          slug,
-        },
-        { status: 500 }
-      );
-    }
-
-    return NextResponse.json({ slug, websiteGenerated: true });
+    return NextResponse.json({ slug, websiteGenerated: false });
 
   } catch (error: unknown) {
     const message = error instanceof Error ? error.message : 'Scraping failed';

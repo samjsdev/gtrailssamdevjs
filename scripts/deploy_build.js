@@ -1,58 +1,47 @@
 const fs = require('fs/promises');
 const path = require('path');
-const { createClient } = require('@supabase/supabase-js');
-
 // Try loading env vars if not present
-if (!process.env.SB_SERVICEROLEKEY) {
-  try {
-    const envFile = require('fs').readFileSync(path.join(process.cwd(), '.env.local'), 'utf-8');
-    envFile.split('\n').forEach(line => {
-      const [key, ...value] = line.split('=');
-      if (key && value) process.env[key.trim()] = value.join('=').trim().replace(/^["']|["']$/g, '');
-    });
-  } catch (e) {
-    // Ignore if file doesn't exist
-  }
-}
-
-// Supabase configuration
-const anonKey = process.env.SB_ANONKEY || '';
-const serviceKey = process.env.SB_SERVICEROLEKEY || '';
-
-const getRefFromToken = (token) => {
-  try {
-    const parts = token.split('.');
-    if (parts.length === 3) {
-      const payload = JSON.parse(Buffer.from(parts[1], 'base64').toString('utf-8'));
-      return payload.ref || '';
+function loadEnv() {
+  const files = ['.env', '.env.local', '.env.production'];
+  for (const file of files) {
+    try {
+      const content = require('fs').readFileSync(path.join(process.cwd(), file), 'utf-8');
+      content.split('\n').forEach(line => {
+        const trimmed = line.trim();
+        if (!trimmed || trimmed.startsWith('#')) return;
+        const [key, ...value] = trimmed.split('=');
+        if (key && value) process.env[key.trim()] = value.join('=').trim().replace(/^["']|["']$/g, '');
+      });
+    } catch (e) {
+      // Ignore if file doesn't exist
     }
-  } catch (e) {
-    console.error('Error parsing token to extract Supabase project ref:', e);
   }
-  return '';
-};
-
-const ref = getRefFromToken(serviceKey || anonKey);
-const supabaseUrl = ref ? `https://${ref}.supabase.co` : '';
-const supabase = (supabaseUrl && (serviceKey || anonKey)) 
-  ? createClient(supabaseUrl, serviceKey || anonKey)
-  : null;
-
-if (!supabase) {
-  console.warn('Supabase client could not be initialized. Check your SB_ANONKEY or SB_SERVICEROLEKEY.');
 }
 
-async function uploadFileToSupabase(filePath, storagePath) {
-  if (!supabase) return;
+loadEnv();
+
+const PROJECT_ID = process.env.NEXT_PUBLIC_APPWRITE_PROJECT_ID || '6a1cf32a002c668912cc';
+const ENDPOINT = process.env.NEXT_PUBLIC_APPWRITE_ENDPOINT || 'https://sgp.cloud.appwrite.io/v1';
+const API_KEY = process.env.APPWgtrailskey || '';
+const crypto = require('crypto');
+
+if (!API_KEY) {
+  console.warn('Appwrite API key (APPWgtrailskey) could not be found. Assets will not be uploaded to Appwrite Storage.');
+}
+
+async function uploadFileToAppwrite(filePath, storagePath) {
+  if (!API_KEY) return;
+
+  const fileId = crypto.createHash('md5').update(storagePath).digest('hex');
 
   try {
     const fileContent = await fs.readFile(filePath);
     const ext = path.extname(filePath).toLowerCase();
     const contentType = {
-      '.html': 'text/html',
-      '.css': 'text/css',
-      '.js': 'application/javascript',
-      '.json': 'application/json',
+      '.html': 'text/html; charset=utf-8',
+      '.css': 'text/css; charset=utf-8',
+      '.js': 'application/javascript; charset=utf-8',
+      '.json': 'application/json; charset=utf-8',
       '.png': 'image/png',
       '.jpg': 'image/jpeg',
       '.jpeg': 'image/jpeg',
@@ -60,23 +49,45 @@ async function uploadFileToSupabase(filePath, storagePath) {
       '.webp': 'image/webp',
     }[ext] || 'application/octet-stream';
 
-    const { error } = await supabase.storage
-      .from('templates')
-      .upload(storagePath, fileContent, {
-        contentType,
-        upsert: true
+    // 1. Delete if exists
+    try {
+      await fetch(`${ENDPOINT}/storage/buckets/templates/files/${fileId}`, {
+        method: 'DELETE',
+        headers: {
+          'X-Appwrite-Project': PROJECT_ID,
+          'X-Appwrite-Key': API_KEY,
+        }
       });
+    } catch (e) {
+      // Ignore
+    }
 
-    if (error) {
-      console.error(`Failed to upload ${storagePath}:`, error.message);
+    // 2. Upload using native multipart FormData
+    const formData = new FormData();
+    formData.append('fileId', fileId);
+    const blob = new Blob([fileContent], { type: contentType });
+    formData.append('file', blob, path.basename(filePath));
+
+    const response = await fetch(`${ENDPOINT}/storage/buckets/templates/files`, {
+      method: 'POST',
+      headers: {
+        'X-Appwrite-Project': PROJECT_ID,
+        'X-Appwrite-Key': API_KEY,
+      },
+      body: formData
+    });
+
+    const data = await response.json();
+    if (!response.ok) {
+      console.error(`Failed to upload ${storagePath}:`, data.message || `HTTP ${response.status}`);
     }
   } catch (err) {
     console.error(`Error uploading ${filePath} to ${storagePath}:`, err.message);
   }
 }
 
-async function uploadDirToSupabase(srcDir, storagePrefix) {
-  if (!supabase) return;
+async function uploadDirToAppwrite(srcDir, storagePrefix) {
+  if (!API_KEY) return;
 
   const entries = await fs.readdir(srcDir, { withFileTypes: true });
 
@@ -85,9 +96,9 @@ async function uploadDirToSupabase(srcDir, storagePrefix) {
     const destPath = `${storagePrefix}/${entry.name}`;
 
     if (entry.isDirectory()) {
-      await uploadDirToSupabase(srcPath, destPath);
+      await uploadDirToAppwrite(srcPath, destPath);
     } else {
-      await uploadFileToSupabase(srcPath, destPath);
+      await uploadFileToAppwrite(srcPath, destPath);
     }
   }
 }
@@ -200,8 +211,26 @@ async function moveTemplateOutputs() {
   for (const slug of dataFolders) {
     console.log(`Processing template exports for slug: ${slug}`);
 
-    // Map template source directories
-    const templatesMap = [
+    // Read source.json to find if a template has been selected
+    const sourcePath = path.join(dataDir, slug, 'source.json');
+    let selectedTemplate = null;
+    try {
+      const sourceContent = await fs.readFile(sourcePath, 'utf-8');
+      const sourceData = JSON.parse(sourceContent);
+      selectedTemplate = sourceData.selected_template;
+    } catch (e) {
+      console.log(` -> No selected_template found in source.json for ${slug}.`);
+    }
+
+    if (!selectedTemplate) {
+      console.log(` -> Skipping template packaging for ${slug} (no template selected and confirmed yet).`);
+      continue;
+    }
+
+    console.log(` -> Selected template is: ${selectedTemplate}`);
+
+    // Map template source directories, filtering for the selected one
+    const allTemplates = [
       { id: 'template1', baseHtml: path.join(serverAppDir, 'template1', `${slug}.html`), subDir: path.join(serverAppDir, 'template1', slug) },
       { id: 'template2', baseHtml: path.join(serverAppDir, 'template2', `${slug}.html`), subDir: path.join(serverAppDir, 'template2', slug) },
       { id: 'template3', baseHtml: path.join(serverAppDir, 'template3', `${slug}.html`), subDir: path.join(serverAppDir, 'template3', slug) },
@@ -209,6 +238,12 @@ async function moveTemplateOutputs() {
       { id: 'template6', baseHtml: path.join(serverAppDir, 'template6', `${slug}.html`), subDir: path.join(serverAppDir, 'template6', slug) },
       { id: 'template10', baseHtml: path.join(serverAppDir, 'template10', `${slug}.html`), subDir: path.join(serverAppDir, 'template10', slug) },
     ];
+
+    const templatesMap = allTemplates.filter(t => t.id === selectedTemplate);
+    if (templatesMap.length === 0) {
+      console.warn(` -> Warning: selected template '${selectedTemplate}' is invalid or not in templates list.`);
+      continue;
+    }
 
     for (const t of templatesMap) {
       const targetWebsiteDir = path.join(dataDir, slug, 'website', t.id);
@@ -266,11 +301,11 @@ async function moveTemplateOutputs() {
 
         console.log(` -> Packaging local files for ${t.id} successfully.`);
 
-        // Upload everything to Supabase
-        if (supabase) {
-          console.log(` -> Uploading ${t.id} to Supabase...`);
-          await uploadDirToSupabase(targetWebsiteDir, `${slug}/${t.id}`);
-          console.log(` -> Uploaded ${t.id} to Supabase successfully.`);
+        // Upload everything to Appwrite
+        if (API_KEY) {
+          console.log(` -> Uploading ${t.id} to Appwrite...`);
+          await uploadDirToAppwrite(targetWebsiteDir, `${slug}/${t.id}`);
+          console.log(` -> Uploaded ${t.id} to Appwrite successfully.`);
         }
       } catch (e) {
         console.warn(` -> Note: Source for ${t.id} not found (${t.baseHtml}). Skipping.`);

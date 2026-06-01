@@ -8,8 +8,8 @@ export function Sidebar() {
   const pathname = usePathname();
 
   const links = [
-    { href: '/', label: 'New Clinic Site', icon: PlusCircle },
-    { href: '/dashboard', label: 'My Clinics', icon: LayoutDashboard },
+    { href: '/private/admin', label: 'New Clinic Site', icon: PlusCircle },
+    { href: '/private/admin/dashboard', label: 'My Clinics', icon: LayoutDashboard },
   ];
 
   return (

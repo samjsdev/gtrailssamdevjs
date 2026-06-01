@@ -4,7 +4,8 @@ import {
   DEFAULT_INTERIOR_HIGHLIGHTS,
   DEFAULT_INTERIOR_SERVICES,
 } from '@/lib/interiorContent';
-import { supabase } from './supabase';
+import crypto from 'crypto';
+import { databases } from './appwrite';
 
 export interface GeneratedData {
   clinic: any;
@@ -14,7 +15,13 @@ export interface GeneratedData {
   media: any;
   overrides: any;
   meta: any;
+  selected_template?: string;
 }
+
+export function getDocId(slug: string): string {
+  return /^[a-f0-9]{32}$/i.test(slug) ? slug : crypto.createHash('md5').update(slug).digest('hex');
+}
+
 
 export async function createSourceConfig(slug: string, data: any): Promise<GeneratedData> {
   const sourcePath = path.join(process.cwd(), 'data', slug, 'source.json');
@@ -79,13 +86,12 @@ export async function createSourceConfig(slug: string, data: any): Promise<Gener
 
   await fs.writeFile(sourcePath, JSON.stringify(dataShape, null, 2), 'utf-8');
 
-  // Sync to Supabase scraped_data table
+  // Sync to Appwrite scraped_data collection
   try {
-    const { error } = await supabase.from('scraped_data').upsert({
-      slug: dataShape.clinic.slug,
+    const documentData = {
       name: dataShape.clinic.name,
-      rating: dataShape.business.rating,
-      review_count: dataShape.business.reviewCount,
+      rating: String(dataShape.business.rating || ''),
+      review_count: String(dataShape.business.reviewCount || ''),
       address: dataShape.clinic.address.full,
       phone: dataShape.clinic.contact.phone,
       image_urls: data.media ? [
@@ -93,20 +99,27 @@ export async function createSourceConfig(slug: string, data: any): Promise<Gener
         ...(data.media.treatmentImages || []),
         ...(data.media.otherImages || [])
       ] : [],
-      reviews: dataShape.reviews,
-      media: dataShape.media,
+      reviews: JSON.stringify(dataShape.reviews),
+      media: JSON.stringify(dataShape.media),
       map_embed_url: dataShape.clinic.mapEmbedUrl,
-      source_data: dataShape,
-      updated_at: new Date().toISOString()
-    });
+      source_data: JSON.stringify(dataShape)
+    };
 
-    if (error) {
-      console.error('Failed to upsert to Supabase scraped_data:', error);
-    } else {
-      console.log(`Successfully synced scraped data for "${slug}" to Supabase!`);
+    try {
+      const docId = getDocId(dataShape.clinic.slug);
+      await databases.createDocument('gtrails', 'scraped_data', docId, documentData);
+      console.log(`Successfully created scraped data for "${slug}" in Appwrite!`);
+    } catch (err: any) {
+      if (err.code === 409 || err.message?.includes('already exists')) {
+        const docId = getDocId(dataShape.clinic.slug);
+        await databases.updateDocument('gtrails', 'scraped_data', docId, documentData);
+        console.log(`Successfully updated scraped data for "${slug}" in Appwrite!`);
+      } else {
+        throw err;
+      }
     }
-  } catch (supabaseError) {
-    console.error('Error syncing scraped data to Supabase:', supabaseError);
+  } catch (appwriteError: any) {
+    console.error('Error syncing scraped data to Appwrite:', appwriteError.message || appwriteError);
   }
 
   return dataShape;
@@ -129,17 +142,13 @@ export async function readSourceConfig(slug: string, template?: string): Promise
   let baseData: GeneratedData | null = null;
 
   try {
-    const { data, error } = await supabase
-      .from('scraped_data')
-      .select('source_data')
-      .eq('slug', slug)
-      .single();
-
-    if (!error && data?.source_data) {
-      baseData = data.source_data as GeneratedData;
+    const docId = getDocId(slug);
+    const doc = await databases.getDocument('gtrails', 'scraped_data', docId);
+    if (doc?.source_data) {
+      baseData = JSON.parse(doc.source_data) as GeneratedData;
     }
-  } catch (sbEx) {
-    console.error('Error reading from Supabase:', sbEx);
+  } catch (sbEx: any) {
+    console.error('Error reading from Appwrite:', sbEx.message || sbEx);
   }
 
   if (!baseData) {
@@ -165,15 +174,15 @@ export async function readSourceConfig(slug: string, template?: string): Promise
 
 export async function getAllSlugs(): Promise<string[]> {
   try {
-    const { data, error } = await supabase
-      .from('scraped_data')
-      .select('slug');
-
-    if (!error && data) {
-      return data.map(item => item.slug);
+    const response = await databases.listDocuments('gtrails', 'scraped_data');
+    if (response?.documents) {
+      return response.documents.map(item => {
+        const json = item.source_data ? JSON.parse(item.source_data) : {};
+        return json.clinic?.slug || item.$id;
+      });
     }
-  } catch (sbEx) {
-    console.error('Error fetching slugs from Supabase:', sbEx);
+  } catch (sbEx: any) {
+    console.error('Error fetching slugs from Appwrite:', sbEx.message || sbEx);
   }
 
   // Fallback to local directories
