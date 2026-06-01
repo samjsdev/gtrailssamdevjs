@@ -36,17 +36,17 @@ export default function ClientHero({ clinic, business, basePath, heroImage }: Cl
 
             <div className="flex flex-col sm:flex-row items-center gap-4 pt-6">
               <Link 
-                href="#services"
+                href={`${basePath}/services`}
                 className="w-full sm:w-auto px-8 py-4 bg-[#E07A5F] hover:bg-[#C9644A] text-white font-bold text-center text-xs tracking-wider uppercase transition-all"
               >
                 VIEW SERVICES
               </Link>
-              <a 
-                href="#contact"
+              <Link 
+                href={`${basePath}/contact`}
                 className="w-full sm:w-auto px-8 py-4 bg-transparent border border-white text-white hover:bg-white hover:text-slate-900 font-bold text-center text-xs tracking-wider uppercase transition-all"
               >
                 SCHEDULE APPOINTMENT
-              </a>
+              </Link>
             </div>
           </div>
         </div>

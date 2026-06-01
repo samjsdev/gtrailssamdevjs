@@ -129,7 +129,8 @@ export async function POST(req: Request) {
       otherImages: [] as string[],
     };
 
-    const imageUrlsParam = scrapedData.imageUrls;
+    // Limit to around 150 images to avoid Supabase storage upload gateway timeouts
+    const imageUrlsParam = scrapedData.imageUrls.slice(0, 150);
 
     for (let i = 0; i < imageUrlsParam.length; i++) {
         const url = imageUrlsParam[i];

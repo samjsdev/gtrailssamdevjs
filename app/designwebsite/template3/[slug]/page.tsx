@@ -1,9 +1,9 @@
-
 import { readSourceConfig } from '@/lib/dataBuilder';
 import { notFound } from 'next/navigation';
 import { Star, Plus, Minus } from 'lucide-react';
 import ClientHero from './ClientHero';
 import { Fustat } from 'next/font/google';
+import Link from 'next/link';
 
 const fustat = Fustat({
   subsets: ['latin'],
@@ -20,7 +20,7 @@ export default async function DesignStudioHome({ params }: PageProps) {
   const { slug } = resolvedParams;
   const basePath = `/designwebsite/template3/${slug}`;
 
-  const data = await readSourceConfig(slug);
+  const data = await readSourceConfig(slug, 'template3');
   if (!data) return notFound();
 
   const { clinic, business } = data;
@@ -46,9 +46,9 @@ export default async function DesignStudioHome({ params }: PageProps) {
                 {clinic?.description || "We create refined interiors with thoughtful planning, curated materials, and client-first project coordination to bring your vision to life."}
               </p>
               <div className="flex flex-wrap items-center gap-4 pt-4">
-                <a href="#contact" className="inline-flex items-center justify-center px-8 py-4 text-sm font-bold text-white bg-slate-900 rounded-full hover:bg-[#B48A66] transition-colors shadow-xl hover:shadow-[#B48A66]/20">
+                <Link href={`${basePath}/contact`} className="inline-flex items-center justify-center px-8 py-4 text-sm font-bold text-white bg-slate-900 rounded-full hover:bg-[#B48A66] transition-colors shadow-xl hover:shadow-[#B48A66]/20">
                   Start Your Project
-                </a>
+                </Link>
                 <a href="#gallery" className="inline-flex items-center justify-center px-8 py-4 text-sm font-bold text-slate-900 bg-white border border-slate-200 rounded-full hover:border-[#B48A66] hover:text-[#B48A66] transition-colors">
                   View Portfolio
                 </a>
@@ -194,9 +194,9 @@ export default async function DesignStudioHome({ params }: PageProps) {
             </div>
 
             <div className="pt-4">
-              <a href="#contact" className="inline-flex items-center justify-center px-8 py-4 text-sm font-bold text-white bg-slate-900 rounded-full hover:bg-[#B48A66] transition-colors shadow-xl">
+              <Link href={`${basePath}/contact`} className="inline-flex items-center justify-center px-8 py-4 text-sm font-bold text-white bg-slate-900 rounded-full hover:bg-[#B48A66] transition-colors shadow-xl">
                 Book Consultation
-              </a>
+              </Link>
             </div>
           </div>
         </div>

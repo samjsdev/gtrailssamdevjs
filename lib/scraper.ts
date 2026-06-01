@@ -13,6 +13,7 @@ export interface ScrapedData {
   reviewCount: string;
   address: string;
   phone: string;
+  website?: string;
   imageUrls: string[];
   reviews: ReviewData[];
   mapEmbedUrl: string;
@@ -782,6 +783,13 @@ export async function scrapeGoogleBusinessProfile(url: string, photosUrl?: strin
             .innerText()
             .catch(() => '');
 
+    // Extract Website
+    const website = await page
+        .locator('a[data-item-id="authority"], a[aria-label*="Website"], a[data-tooltip*="website"], button[data-tooltip*="website"]')
+        .first()
+        .getAttribute('href')
+        .catch(() => '') || '';
+
     // --- Extract Reviews ---
     const extractedReviews: ReviewData[] = [];
     try {
@@ -1085,10 +1093,11 @@ export async function scrapeGoogleBusinessProfile(url: string, photosUrl?: strin
       name: name.trim(),
       rating: rating.trim(),
       reviewCount: reviewCount.trim(),
-            address: cleanedAddress || 'Address not found',
-            phone: cleanedPhone || 'Phone not found',
+      address: cleanedAddress || 'Address not found',
+      phone: cleanedPhone || 'Phone not found',
+      website: website.trim(),
       imageUrls: uniqueImageUrls,
-            reviews: extractedReviews.filter(r => r.rating === 5),
+      reviews: extractedReviews.filter(r => r.rating === 5),
       mapEmbedUrl,
     };
   } catch (error) {

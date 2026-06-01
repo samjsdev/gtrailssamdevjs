@@ -88,7 +88,7 @@ const PORTFOLIO = [
 export default async function GalleryPage({ params }: { params: Promise<{ slug: string }> }) {
   const resolvedParams = await params;
   const { slug } = resolvedParams;
-  const data = await readSourceConfig(slug);
+  const data = await readSourceConfig(slug, 'template3');
   if (!data) return notFound();
 
   return (

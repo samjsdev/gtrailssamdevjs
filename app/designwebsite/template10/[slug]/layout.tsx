@@ -4,6 +4,7 @@ import { Phone, Anchor, MapPin } from 'lucide-react';
 import Link from 'next/link';
 import { ReactNode } from 'react';
 import { Archivo_Black, Inter } from 'next/font/google';
+import ClientNavbar from './ClientNavbar';
 
 export async function generateStaticParams() {
   const slugs = await getAllSlugs();
@@ -33,7 +34,7 @@ export default async function DesignStudioLayout({ children, params }: LayoutPro
   const resolvedParams = await params;
   const { slug } = resolvedParams;
 
-  const data = await readSourceConfig(slug);
+  const data = await readSourceConfig(slug, 'template10');
   if (!data) return notFound();
 
   const { clinic } = data;
@@ -41,6 +42,7 @@ export default async function DesignStudioLayout({ children, params }: LayoutPro
 
   return (
     <div className={`${inter.className} min-h-screen bg-[#1E2022] text-[#F4F1DE] selection:bg-[#E07A5F] selection:text-white scroll-smooth flex flex-col`}>
+
       {/* Top info bar */}
       <div className="bg-[#141517] border-b border-white/5 text-slate-400 py-2.5 px-8 text-xs relative z-50">
         <div className="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-2">
@@ -56,56 +58,37 @@ export default async function DesignStudioLayout({ children, params }: LayoutPro
         </div>
       </div>
 
-      {/* Navbar header */}
-      <header className="sticky top-0 z-40 bg-[#1E2022]/95 backdrop-blur-md border-b border-white/10 transition-all duration-300">
-        <div className="max-w-7xl mx-auto px-8 h-20 flex justify-between items-center">
-          <Link href={basePath} className="flex items-center gap-2">
-            <h1 className={`${archivo.className} text-lg md:text-xl tracking-tight text-white uppercase`}>
-              {clinic.name || 'Loft Studio'}
-            </h1>
-          </Link>
-          
-          <nav className="hidden lg:flex items-center gap-8 font-bold text-xs uppercase tracking-widest text-slate-400">
-            <Link href="#services" className="hover:text-white transition-colors">Services</Link>
-            <Link href="#about" className="hover:text-white transition-colors">About Us</Link>
-            <Link href="#gallery" className="hover:text-white transition-colors">Gallery</Link>
-            <Link href="#contact" className="hover:text-white transition-colors">Contact</Link>
-          </nav>
-
-          <Link href="#contact" className="hidden md:flex items-center bg-[#E07A5F] text-white px-5 py-2.5 rounded-none font-bold uppercase tracking-wider text-xs hover:bg-[#C9644A] transition-all">
-             Consultation
-          </Link>
-        </div>
-      </header>
+      {/* Sticky Shrinking Navbar */}
+      <ClientNavbar clinicName={clinic.name} basePath={basePath} />
 
       {/* Main Content */}
-      <main className="grow">
+      <main className="grow relative z-10">
         {children}
       </main>
 
       {/* Footer */}
-      {/* Tally Forms Contact Mockup */}
-      <section className="py-24 bg-white border-t border-gray-200 z-10 relative" id="tally-form">
+      {/* Tally Forms Contact Mockup - Restyled to cohesive Raw Industrial Dark Mode */}
+      <section className="py-24 bg-[#141517] border-t border-white/5 z-10 relative" id="tally-form">
         <div className="max-w-4xl mx-auto px-8 w-full text-center">
           <div className="mb-12 space-y-4">
-             <h2 className="text-3xl sm:text-4xl font-bold tracking-tight">Ready to Start Your Project?</h2>
-             <p className="text-gray-500 font-medium">Please fill out the form below and our team will get back to you shortly.</p>
+             <h2 className={`${archivo.className} text-3xl sm:text-4xl text-white uppercase`}>Ready to Start Your Project?</h2>
+             <p className="text-slate-400 font-light max-w-sm mx-auto text-sm">Please fill out the form below and our team will get back to you shortly.</p>
           </div>
           <div className="max-w-xl mx-auto w-full">
-            <form className="bg-white rounded-3xl shadow-[0_8px_30px_rgb(0,0,0,0.08)] border border-gray-100 p-8 sm:p-10 text-left space-y-6">
+            <form className="bg-[#1E2022] rounded-none border border-white/10 p-8 sm:p-10 text-left space-y-6 shadow-2xl">
               <div className="space-y-2">
-                <label htmlFor="fullName" className="block text-sm font-semibold text-gray-700 font-sans">Full Name</label>
-                <input type="text" id="fullName" placeholder="Your name" className="w-full text-gray-900 px-5 py-3.5 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#4834D4] focus:border-transparent transition-colors bg-[#FAFAFA] font-sans" />
+                <label htmlFor="fullName" className="block text-xs font-bold uppercase tracking-wider text-slate-300 font-sans">Full Name</label>
+                <input type="text" id="fullName" placeholder="Your name" className="w-full text-white px-4 py-3 rounded-none border border-white/10 focus:outline-none focus:border-[#E07A5F] transition-colors bg-[#141517] font-sans text-sm" />
               </div>
               <div className="space-y-2">
-                <label htmlFor="email" className="block text-sm font-semibold text-gray-700 font-sans">Email Address</label>
-                <input type="email" id="email" placeholder="you@company.com" className="w-full text-gray-900 px-5 py-3.5 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#4834D4] focus:border-transparent transition-colors bg-[#FAFAFA] font-sans" />
+                <label htmlFor="email" className="block text-xs font-bold uppercase tracking-wider text-slate-300 font-sans">Email Address</label>
+                <input type="email" id="email" placeholder="you@company.com" className="w-full text-white px-4 py-3 rounded-none border border-white/10 focus:outline-none focus:border-[#E07A5F] transition-colors bg-[#141517] font-sans text-sm" />
               </div>
               <div className="space-y-2">
-                <label htmlFor="message" className="block text-sm font-semibold text-gray-700 font-sans">Message</label>
-                <textarea id="message" rows={4} placeholder="Tell us about your project" className="w-full text-gray-900 px-5 py-3.5 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#4834D4] focus:border-transparent transition-colors resize-none bg-[#FAFAFA] font-sans"></textarea>
+                <label htmlFor="message" className="block text-xs font-bold uppercase tracking-wider text-slate-300 font-sans">Message</label>
+                <textarea id="message" rows={4} placeholder="Tell us about your project" className="w-full text-white px-4 py-3 rounded-none border border-white/10 focus:outline-none focus:border-[#E07A5F] transition-colors resize-none bg-[#141517] font-sans text-sm"></textarea>
               </div>
-              <button type="button" className="w-full py-4 mt-2 bg-[#4834D4] hover:bg-[#3C2BAE] text-white font-bold rounded-xl transition-colors shadow-md font-sans">
+              <button type="button" className="w-full py-4 mt-2 bg-[#E07A5F] hover:bg-[#C9644A] text-white font-bold rounded-none uppercase tracking-wider text-xs transition-colors shadow-lg font-sans">
                 Request a Proposal
               </button>
             </form>
@@ -160,10 +143,11 @@ export default async function DesignStudioLayout({ children, params }: LayoutPro
             <div>
               <h5 className="text-white font-semibold mb-6 uppercase text-xs tracking-wider">NAVIGATION</h5>
               <ul className="space-y-3 text-sm">
-                <li><Link href="#services" className="hover:text-white transition-colors">Services</Link></li>
-                <li><Link href="#about" className="hover:text-white transition-colors">About Us</Link></li>
-                <li><Link href="#gallery" className="hover:text-white transition-colors">Gallery</Link></li>
-                <li><Link href="#contact" className="hover:text-white transition-colors">Contact Us</Link></li>
+                <li><Link href={`${basePath}`} className="hover:text-white transition-colors">Home</Link></li>
+                <li><Link href={`${basePath}/about`} className="hover:text-white transition-colors">About Us</Link></li>
+                <li><Link href={`${basePath}/services`} className="hover:text-white transition-colors">Services</Link></li>
+                <li><Link href={`${basePath}/gallery`} className="hover:text-white transition-colors">Gallery</Link></li>
+                <li><Link href={`${basePath}/contact`} className="hover:text-white transition-colors">Contact Us</Link></li>
               </ul>
             </div>
           </div>

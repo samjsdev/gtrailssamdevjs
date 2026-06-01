@@ -37,7 +37,7 @@ export default async function DesignStudioLayout({ children, params }: LayoutPro
   const resolvedParams = await params;
   const { slug } = resolvedParams;
 
-  const data = await readSourceConfig(slug);
+  const data = await readSourceConfig(slug, 'template3');
   if (!data) return notFound();
 
   const { clinic } = data;
@@ -75,11 +75,11 @@ export default async function DesignStudioLayout({ children, params }: LayoutPro
               <Link href={`${basePath}/about`} className="hover:text-[#0084FF] transition-colors relative py-1">About</Link>
               <Link href={`${basePath}/services`} className="hover:text-[#0084FF] transition-colors relative py-1">Services</Link>
               <Link href={`${basePath}/gallery`} className="hover:text-[#0084FF] transition-colors relative py-1">Gallery</Link>
-
+              <Link href={`${basePath}/contact`} className="hover:text-[#0084FF] transition-colors relative py-1">Contact</Link>
             </nav>
 
             <Link
-              href="#contact"
+              href={`${basePath}/contact`}
               className="hidden md:inline-flex items-center gap-2 rounded-full bg-slate-900 px-5 py-2 text-[12px] font-semibold text-white border border-slate-800 hover:bg-[#0084FF] hover:border-[#0084FF] transition-all shadow-xs hover:scale-[1.02] active:scale-[0.98]"
             >
               Book Consultation
@@ -95,36 +95,6 @@ export default async function DesignStudioLayout({ children, params }: LayoutPro
       <main className="grow relative z-10">
         {children}
       </main>
-
-      {/* Footer */}
-      {/* Tally Forms Contact Mockup */}
-      <section className="py-24 bg-white border-t border-gray-200 z-10 relative" id="tally-form">
-        <div className="max-w-4xl mx-auto px-8 w-full text-center">
-          <div className="mb-12 space-y-4">
-             <h2 className="text-3xl sm:text-4xl font-bold tracking-tight">Ready to Start Your Project?</h2>
-             <p className="text-gray-500 font-medium">Please fill out the form below and our team will get back to you shortly.</p>
-          </div>
-          <div className="max-w-xl mx-auto w-full">
-            <form className="bg-white rounded-3xl shadow-[0_8px_30px_rgb(0,0,0,0.08)] border border-gray-100 p-8 sm:p-10 text-left space-y-6">
-              <div className="space-y-2">
-                <label htmlFor="fullName" className="block text-sm font-semibold text-gray-700 font-sans">Full Name</label>
-                <input type="text" id="fullName" placeholder="Your name" className="w-full text-gray-900 px-5 py-3.5 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#4834D4] focus:border-transparent transition-colors bg-[#FAFAFA] font-sans" />
-              </div>
-              <div className="space-y-2">
-                <label htmlFor="email" className="block text-sm font-semibold text-gray-700 font-sans">Email Address</label>
-                <input type="email" id="email" placeholder="you@company.com" className="w-full text-gray-900 px-5 py-3.5 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#4834D4] focus:border-transparent transition-colors bg-[#FAFAFA] font-sans" />
-              </div>
-              <div className="space-y-2">
-                <label htmlFor="message" className="block text-sm font-semibold text-gray-700 font-sans">Message</label>
-                <textarea id="message" rows={4} placeholder="Tell us about your project" className="w-full text-gray-900 px-5 py-3.5 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#4834D4] focus:border-transparent transition-colors resize-none bg-[#FAFAFA] font-sans"></textarea>
-              </div>
-              <button type="button" className="w-full py-4 mt-2 bg-[#4834D4] hover:bg-[#3C2BAE] text-white font-bold rounded-xl transition-colors shadow-md font-sans">
-                Request a Proposal
-              </button>
-            </form>
-          </div>
-        </div>
-      </section>
 
       <footer id="contact" className="bg-[#111317] border-t border-slate-800 text-slate-400 pt-24 pb-12 px-8 mt-auto relative z-10">
         <div className="max-w-7xl mx-auto">
@@ -152,7 +122,7 @@ export default async function DesignStudioLayout({ children, params }: LayoutPro
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8 mb-16">
             <div className="lg:col-span-2 space-y-6">
               <Link href={basePath} className="flex items-center gap-4">
-                <div className="w-11 h-11 bg-slate-800 rounded-xl flex items-center justify-center text-white border border-slate-700">
+                <div className="w-11 h-11 bg-slate-800 rounded-xl flex items-center justify-center text-[#0084FF] border border-slate-700">
                   <Palette className="w-5 h-5" />
                 </div>
                 <h4 className="font-fustat text-xl font-bold tracking-tight text-white">{clinic.name || 'Design Studio'}</h4>
@@ -179,6 +149,7 @@ export default async function DesignStudioLayout({ children, params }: LayoutPro
                 <li><Link href={`${basePath}/about`} className="hover:text-white transition-colors inline-block w-full text-[14px]">About</Link></li>
                 <li><Link href={`${basePath}/services`} className="hover:text-white transition-colors inline-block w-full text-[14px]">Services</Link></li>
                 <li><Link href={`${basePath}/gallery`} className="hover:text-white transition-colors inline-block w-full text-[14px]">Gallery</Link></li>
+                <li><Link href={`${basePath}/contact`} className="hover:text-white transition-colors inline-block w-full text-[14px]">Contact</Link></li>
 
               </ul>
             </div>

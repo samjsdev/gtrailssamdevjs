@@ -34,7 +34,7 @@ export async function createSourceConfig(slug: string, data: any): Promise<Gener
       },
       contact: {
         phone: data.phone || '',
-        website: ''
+        website: data.website || ''
       },
       mapEmbedUrl: data.mapEmbedUrl || ''
     },
@@ -112,7 +112,22 @@ export async function createSourceConfig(slug: string, data: any): Promise<Gener
   return dataShape;
 }
 
-export async function readSourceConfig(slug: string): Promise<GeneratedData | null> {
+function deepMerge(target: any, source: any): any {
+  if (!source) return target;
+  const output = { ...target };
+  for (const key of Object.keys(source)) {
+    if (source[key] && typeof source[key] === 'object' && !Array.isArray(source[key])) {
+      output[key] = deepMerge(target[key] || {}, source[key]);
+    } else {
+      output[key] = source[key];
+    }
+  }
+  return output;
+}
+
+export async function readSourceConfig(slug: string, template?: string): Promise<GeneratedData | null> {
+  let baseData: GeneratedData | null = null;
+
   try {
     const { data, error } = await supabase
       .from('scraped_data')
@@ -121,20 +136,31 @@ export async function readSourceConfig(slug: string): Promise<GeneratedData | nu
       .single();
 
     if (!error && data?.source_data) {
-      return data.source_data as GeneratedData;
+      baseData = data.source_data as GeneratedData;
     }
   } catch (sbEx) {
     console.error('Error reading from Supabase:', sbEx);
   }
 
-  // Fallback to local file for development or transition
-  const sourcePath = path.join(process.cwd(), 'data', slug, 'source.json');
-  try {
-    const content = await fs.readFile(sourcePath, 'utf-8');
-    return JSON.parse(content);
-  } catch (error) {
-    return null;
+  if (!baseData) {
+    // Fallback to local file for development or transition
+    const sourcePath = path.join(process.cwd(), 'data', slug, 'source.json');
+    try {
+      const content = await fs.readFile(sourcePath, 'utf-8');
+      baseData = JSON.parse(content);
+    } catch (error) {
+      return null;
+    }
   }
+
+  if (baseData && template) {
+    const overrides = (baseData as any).templateOverrides?.[template];
+    if (overrides) {
+      return deepMerge(baseData, overrides) as GeneratedData;
+    }
+  }
+
+  return baseData;
 }
 
 export async function getAllSlugs(): Promise<string[]> {

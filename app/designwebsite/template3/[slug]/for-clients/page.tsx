@@ -6,7 +6,7 @@ import { BookOpen } from 'lucide-react';
 export default async function ForClientsPage({ params }: { params: Promise<{ slug: string }> }) {
   const resolvedParams = await params;
   const { slug } = resolvedParams;
-  const data = await readSourceConfig(slug);
+  const data = await readSourceConfig(slug, 'template3');
   if (!data) return notFound();
 
   const guides = [

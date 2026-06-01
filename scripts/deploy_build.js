@@ -127,10 +127,6 @@ function relativePrefix(fromDir, toDir) {
 }
 
 function getTemplateRouteBase(templateId, slug) {
-  if (templateId === 'template1') {
-    return `/designwebsite/${slug}`;
-  }
-
   return `/designwebsite/${templateId}/${slug}`;
 }
 
@@ -206,15 +202,11 @@ async function moveTemplateOutputs() {
 
     // Map template source directories
     const templatesMap = [
-      { id: 'template1', baseHtml: path.join(serverAppDir, `${slug}.html`), subDir: path.join(serverAppDir, slug) },
+      { id: 'template1', baseHtml: path.join(serverAppDir, 'template1', `${slug}.html`), subDir: path.join(serverAppDir, 'template1', slug) },
       { id: 'template2', baseHtml: path.join(serverAppDir, 'template2', `${slug}.html`), subDir: path.join(serverAppDir, 'template2', slug) },
       { id: 'template3', baseHtml: path.join(serverAppDir, 'template3', `${slug}.html`), subDir: path.join(serverAppDir, 'template3', slug) },
       { id: 'template4', baseHtml: path.join(serverAppDir, 'template4', `${slug}.html`), subDir: path.join(serverAppDir, 'template4', slug) },
-      { id: 'template5', baseHtml: path.join(serverAppDir, 'template5', `${slug}.html`), subDir: path.join(serverAppDir, 'template5', slug) },
       { id: 'template6', baseHtml: path.join(serverAppDir, 'template6', `${slug}.html`), subDir: path.join(serverAppDir, 'template6', slug) },
-      { id: 'template7', baseHtml: path.join(serverAppDir, 'template7', `${slug}.html`), subDir: path.join(serverAppDir, 'template7', slug) },
-      { id: 'template8', baseHtml: path.join(serverAppDir, 'template8', `${slug}.html`), subDir: path.join(serverAppDir, 'template8', slug) },
-      { id: 'template9', baseHtml: path.join(serverAppDir, 'template9', `${slug}.html`), subDir: path.join(serverAppDir, 'template9', slug) },
       { id: 'template10', baseHtml: path.join(serverAppDir, 'template10', `${slug}.html`), subDir: path.join(serverAppDir, 'template10', slug) },
     ];
 

@@ -33,7 +33,7 @@ export default async function DesignStudioHome({ params }: PageProps) {
   const { slug } = resolvedParams;
   const basePath = `/designwebsite/template10/${slug}`;
 
-  const data = await readSourceConfig(slug);
+  const data = await readSourceConfig(slug, 'template10');
   if (!data) return notFound();
 
   const { clinic, doctor, business, media } = data;
@@ -52,7 +52,6 @@ export default async function DesignStudioHome({ params }: PageProps) {
     ...(media.treatmentImages || []),
     ...(media.otherImages || [])
   ].filter(Boolean).slice(0, 10);
-
 
   const waPhone = clinic.contact?.phone?.replace(/\D/g, '') || '919751396117';
   const waText = `Hi, I'm interested in booking a design consultation at ${clinic.name || 'your studio'}!`;
@@ -84,7 +83,7 @@ export default async function DesignStudioHome({ params }: PageProps) {
               { title: "Ergonomic Logic", desc: "Zoned lighting fixtures, cabinet clearances, and active zones sized for human comfort.", icon: Smile },
               { title: "Scheduling Security", desc: "Itemized spreadsheets and architectural sketches frozen before single site activity starts.", icon: Scale }
             ].map((feature, idx) => (
-              <div key={idx} className="flex flex-col p-6 bg-[#1E2022] border border-white/10">
+              <div key={idx} className="flex flex-col p-6 bg-[#1E2022] border border-white/10 rounded-none">
                 <div className="w-12 h-12 bg-white/5 border border-white/10 flex items-center justify-center mb-6 text-[#E07A5F]">
                   <feature.icon className="w-5 h-5" />
                 </div>
@@ -115,31 +114,39 @@ export default async function DesignStudioHome({ params }: PageProps) {
               const svcData = getInteriorServiceData(svc);
               const serviceImage = svcData?.image || INTERIOR_HERO_IMAGES.services;
               return (
-                <div key={i} className="bg-[#141517] p-8 border border-white/10 hover:border-[#E07A5F] transition-all flex flex-col justify-between min-h-[300px]">
-                  <div className="mb-6 aspect-4/3 overflow-hidden rounded-2xl bg-white/5 border border-white/10">
-                    <img src={serviceImage} alt={`${svc} service image`} className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy" />
-                  </div>
+                <div key={i} className="bg-[#141517] p-8 border border-white/10 hover:border-[#E07A5F] transition-all flex flex-col justify-between min-h-[300px] group rounded-none">
                   <div>
-                    <div className="mb-6 w-10 h-10 bg-white/5 border border-white/10 flex items-center justify-center text-[#E07A5F]">
-                      <Activity className="w-5 h-5" />
+                    <div className="mb-6 aspect-4/3 overflow-hidden rounded-none bg-white/5 border border-white/10">
+                      <img src={serviceImage} alt={`${svc} service image`} className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy" />
                     </div>
-                    <h3 className={`${archivo.className} text-lg text-white uppercase`}>{svc}</h3>
-                    <p className="text-slate-400 text-sm leading-relaxed mt-4 mb-6 font-light">
-                      {svcData?.description || getInteriorServiceSummary(svc)}
-                    </p>
+                    <div>
+                      <div className="mb-6 w-10 h-10 bg-white/5 border border-white/10 flex items-center justify-center text-[#E07A5F]">
+                        <Activity className="w-5 h-5" />
+                      </div>
+                      <h3 className={`${archivo.className} text-lg text-white uppercase`}>{svc}</h3>
+                      <p className="text-slate-400 text-sm leading-relaxed mt-4 mb-6 font-light">
+                        {svcData?.description || getInteriorServiceSummary(svc)}
+                      </p>
+                    </div>
                   </div>
-                  {svcData?.benefits && (
-                    <div className="border-t border-white/10 pt-4">
+                  
+                  <div className="border-t border-white/10 pt-4 flex items-center justify-between gap-4">
+                    {svcData?.benefits ? (
                       <ul className="space-y-1">
                         {svcData.benefits.slice(0, 2).map((b, bi) => (
-                          <li key={bi} className="text-xs text-[#E07A5F] flex items-center gap-2 font-bold uppercase">
+                          <li key={bi} className="text-[10px] text-[#E07A5F] flex items-center gap-1.5 font-bold uppercase">
                             <CheckCircle2 className="w-3.5 h-3.5 shrink-0" />
                             <span>{b}</span>
                           </li>
                         ))}
                       </ul>
-                    </div>
-                  )}
+                    ) : (
+                      <span className="text-[10px] text-zinc-500 font-bold uppercase">Fabricator Spec</span>
+                    )}
+                    <Link href={`${basePath}/services`} className="text-[10px] font-bold tracking-wider uppercase text-slate-400 group-hover:text-white transition-colors flex items-center gap-1">
+                      Details <ArrowRight className="w-3.5 h-3.5" />
+                    </Link>
+                  </div>
                 </div>
               );
             })}
@@ -194,6 +201,15 @@ export default async function DesignStudioHome({ params }: PageProps) {
                   </div>
                 </div>
               </div>
+
+              <div className="pt-6">
+                <Link 
+                  href={`${basePath}/about`} 
+                  className="inline-flex items-center justify-center px-8 py-4 bg-transparent border border-white text-white hover:bg-white hover:text-slate-900 font-bold text-xs tracking-wider uppercase transition-all"
+                >
+                  OUR CHRONOLOGY
+                </Link>
+              </div>
             </div>
           </div>
         </div>
@@ -216,7 +232,7 @@ export default async function DesignStudioHome({ params }: PageProps) {
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
             {allGalleryImages.length > 0 ? (
               allGalleryImages.map((img: string, idx: number) => (
-                <div key={idx} className="group cursor-pointer flex flex-col h-full bg-[#141517] p-4 border border-white/10 hover:border-white/20 transition-all">
+                <div key={idx} className="group cursor-pointer flex flex-col h-full bg-[#141517] p-4 border border-white/10 hover:border-white/20 transition-all rounded-none">
                   <div className="aspect-4/3 bg-slate-950 overflow-hidden relative mb-4">
                     <img src={img} alt={`Portfolio ${idx + 1}`} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy" />
                     <div className="absolute inset-0 bg-black/40 group-hover:bg-[#E07A5F]/10 transition-colors"></div>
@@ -233,7 +249,7 @@ export default async function DesignStudioHome({ params }: PageProps) {
               ))
             ) : (
               INTERIOR_GALLERY_PREVIEW.map((item, idx) => (
-                <div key={idx} className="group cursor-pointer flex flex-col h-full bg-[#141517] p-4 border border-white/10 transition-all">
+                <div key={idx} className="group cursor-pointer flex flex-col h-full bg-[#141517] p-4 border border-white/10 transition-all rounded-none">
                   <div className="aspect-4/3 bg-slate-950 overflow-hidden relative mb-4">
                     <div className="absolute inset-0 bg-black/30"></div>
                   </div>
@@ -243,9 +259,17 @@ export default async function DesignStudioHome({ params }: PageProps) {
               ))
             )}
           </div>
+
+          <div className="mt-16 text-center">
+            <Link 
+              href={`${basePath}/gallery`} 
+              className="inline-flex items-center justify-center px-10 py-4 bg-transparent border border-white text-white hover:bg-white hover:text-slate-900 font-bold text-xs tracking-wider uppercase transition-all"
+            >
+              EXPLORE FULL SHELL GALLERY
+            </Link>
+          </div>
         </div>
       </section>
-
 
       {/* REVIEWS SECTION */}
       <section className="py-24 bg-[#1E2022] border-b border-white/10">
@@ -260,7 +284,7 @@ export default async function DesignStudioHome({ params }: PageProps) {
 
           <div className="grid md:grid-cols-3 gap-6">
             {displayReviews.map((review: any, i: number) => (
-              <div key={i} className="bg-[#141517] p-8 border border-white/10 flex flex-col h-full justify-between hover:border-[#E07A5F] transition-all">
+              <div key={i} className="bg-[#141517] p-8 border border-white/10 flex flex-col h-full justify-between hover:border-[#E07A5F] transition-all rounded-none">
                 <div>
                   <div className="flex gap-0.5 mb-6">
                     {[...Array(5)].map((_, j) => (
