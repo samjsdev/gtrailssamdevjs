@@ -37,7 +37,7 @@ export default async function ServicesPage({ params }: { params: Promise<{ slug:
           <img
             src="https://interior.growhigh.studio/images/styling_decor.png"
             alt="Interior services"
-            className="absolute inset-0 w-full h-full object-cover opacity-30 grayscale"
+            className="absolute inset-0 w-full h-full object-cover opacity-30"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-[#1a1a1a] via-black/50 to-transparent" />
           <div className="absolute inset-0 bg-gradient-to-r from-[#1a1a1a]/80 to-transparent" />
@@ -124,7 +124,7 @@ export default async function ServicesPage({ params }: { params: Promise<{ slug:
                     <img 
                       src={srv.img} 
                       alt={srv.title} 
-                      className="w-full h-full object-cover grayscale opacity-70 group-hover:opacity-100 group-hover:scale-105 transition-transform duration-700 ease-out" 
+                      className="w-full h-full object-cover opacity-70 group-hover:opacity-100 group-hover:scale-105 transition-transform duration-700 ease-out" 
                     />
                   </div>
                   
@@ -223,7 +223,7 @@ export default async function ServicesPage({ params }: { params: Promise<{ slug:
                     <img 
                       src={srv.img} 
                       alt={srv.title} 
-                      className="w-full h-full object-cover grayscale opacity-70 group-hover:opacity-100 group-hover:scale-102 transition-transform duration-[1500ms] ease-out" 
+                      className="w-full h-full object-cover opacity-70 group-hover:opacity-100 group-hover:scale-102 transition-transform duration-[1500ms] ease-out" 
                     />
                   </div>
                 </div>
@@ -315,7 +315,7 @@ export default async function ServicesPage({ params }: { params: Promise<{ slug:
                   <img 
                     src={srv.img} 
                     alt={srv.title} 
-                    className="w-full h-full object-cover grayscale opacity-70 group-hover:opacity-100 group-hover:scale-[1.03] transition-transform duration-[1200ms] ease-out" 
+                    className="w-full h-full object-cover opacity-70 group-hover:opacity-100 group-hover:scale-[1.03] transition-transform duration-[1200ms] ease-out" 
                   />
                 </div>
 

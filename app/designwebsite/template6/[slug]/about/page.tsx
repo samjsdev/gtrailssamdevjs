@@ -43,7 +43,7 @@ export default async function AboutPage({ params }: { params: Promise<{ slug: st
         <img
           src={studioImage}
           alt="Studio interior"
-          className="absolute inset-0 w-full h-full object-cover grayscale"
+          className="absolute inset-0 w-full h-full object-cover"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-black/60 to-[#1a1a1a]" />
         <div className="absolute inset-0 bg-gradient-to-r from-black/60 to-transparent" />
@@ -185,7 +185,7 @@ export default async function AboutPage({ params }: { params: Promise<{ slug: st
                   <img 
                     src={doctorImage} 
                     alt={leadName} 
-                    className="w-full h-full object-cover grayscale opacity-80 hover:grayscale-0 transition-all duration-1000" 
+                    className="w-full h-full object-cover opacity-80 transition-all duration-1000" 
                   />
                 </div>
                 <div className="absolute -bottom-6 -right-6 lg:-right-10 bg-[#1a1a1a] border border-white/10 p-6 md:p-8 shadow-2xl">
@@ -229,7 +229,7 @@ export default async function AboutPage({ params }: { params: Promise<{ slug: st
                   <img 
                     src={secondaryImage} 
                     alt="Kavitha Rajan" 
-                    className="w-full h-full object-cover grayscale opacity-80 hover:grayscale-0 transition-all duration-1000" 
+                    className="w-full h-full object-cover opacity-80 transition-all duration-1000" 
                   />
                 </div>
                 <div className="absolute -bottom-6 -left-6 lg:-left-10 bg-[#1a1a1a] border border-white/10 p-6 md:p-8 shadow-2xl">

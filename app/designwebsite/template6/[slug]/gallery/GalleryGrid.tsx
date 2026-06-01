@@ -78,7 +78,7 @@ export default function GalleryGrid({ items }: GalleryGridProps) {
               <img
                 src={item.img}
                 alt={item.title}
-                className="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-102 transition-transform duration-[1200ms] ease-out"
+                className="w-full h-full object-cover group-hover:scale-102 transition-transform duration-[1200ms] ease-out"
               />
 
               {/* Dynamic Gradient Overlay */}

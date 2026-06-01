@@ -26,7 +26,7 @@ export default function ClientHero({ clinic, business, basePath, heroImage }: Cl
         <img 
           src={heroImage || INTERIOR_HERO_IMAGES.home}
           alt={clinic?.name || "Interior design studio"} 
-          className="w-full h-full object-cover object-center opacity-40 grayscale" 
+          className="w-full h-full object-cover object-center opacity-40" 
         />
         <div className="absolute inset-0 bg-gradient-to-t from-[#1a1a1a] via-[#1a1a1a]/40 to-transparent"></div>
         <div className="absolute inset-0 bg-gradient-to-r from-[#1a1a1a] via-[#1a1a1a]/80 to-transparent"></div>

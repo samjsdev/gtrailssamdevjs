@@ -95,7 +95,7 @@ export default async function DesignStudioHome({ params }: PageProps) {
                     <img
                       src={svc.image}
                       alt={svc.title}
-                      className="w-full h-full object-cover grayscale opacity-70 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700"
+                      className="w-full h-full object-cover opacity-70 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700"
                     />
                     <div className={`${playfair.className} absolute top-4 right-4 text-white/20 text-3xl font-light z-20`}>
                       {String(idx + 1).padStart(2, '0')}
@@ -155,7 +155,7 @@ export default async function DesignStudioHome({ params }: PageProps) {
               <img
                 src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=1200"
                 alt="Modern luxury interior render"
-                className="w-full h-full object-cover grayscale"
+                className="w-full h-full object-cover"
               />
             </div>
           </div>
@@ -172,7 +172,7 @@ export default async function DesignStudioHome({ params }: PageProps) {
                 <img 
                   src={doctorImage} 
                   alt={doctor?.name || "Arjun Mehta"} 
-                  className="w-full h-full object-cover grayscale opacity-80 hover:grayscale-0 hover:opacity-100 transition-all duration-1000" 
+                  className="w-full h-full object-cover opacity-80 hover:opacity-100 transition-all duration-1000" 
                 />
               </div>
               <div className="absolute -bottom-6 -right-6 lg:-right-10 bg-[#1a1a1a] border border-white/10 p-6 md:p-8 shadow-2xl">
@@ -362,7 +362,7 @@ export default async function DesignStudioHome({ params }: PageProps) {
             <img
               src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&q=80&w=1200"
               alt="Sleek luxurious interior mockup"
-              className="w-full aspect-[16/9] object-cover grayscale opacity-70 hover:opacity-100 hover:scale-101 transition-all duration-[2000ms]"
+              className="w-full aspect-[16/9] object-cover opacity-70 hover:opacity-100 hover:scale-101 transition-all duration-[2000ms]"
             />
           </div>
         </div>
