@@ -474,3 +474,43 @@ export function getInteriorServiceSummary(serviceName: string): string {
     "A personalized design service shaped around your lifestyle, budget, timeline, and the way each room needs to feel and function."
   );
 }
+
+export function getServiceImage(serviceName: string, media: any): string | null {
+  if (!media?.otherImages) return null;
+  const lower = serviceName.toLowerCase();
+  
+  // Index 6: Space planning / layout / zoning
+  if (lower.includes("space") || lower.includes("zoning") || lower.includes("layout") || lower.includes("planning")) {
+    return media.otherImages[6] || null;
+  }
+  // Index 7: Material selection / finishes / kitchen
+  if (lower.includes("material") || lower.includes("finish") || lower.includes("kitchen")) {
+    return media.otherImages[7] || null;
+  }
+  // Index 8: Lighting
+  if (lower.includes("lighting")) {
+    return media.otherImages[8] || null;
+  }
+  // Index 9: Residential
+  if (lower.includes("residential") || lower.includes("home") || lower.includes("villa") || lower.includes("apartment")) {
+    return media.otherImages[9] || null;
+  }
+  // Index 10: Commercial
+  if (lower.includes("commercial") || lower.includes("office") || lower.includes("retail") || lower.includes("corporate")) {
+    return media.otherImages[10] || null;
+  }
+  // Index 11: Styling & Decor / Bedroom / Living Room
+  if (lower.includes("styling") || lower.includes("decor") || lower.includes("bedroom") || lower.includes("living")) {
+    return media.otherImages[11] || null;
+  }
+  // Index 12: Renovation
+  if (lower.includes("renovation") || lower.includes("makeover") || lower.includes("overhaul")) {
+    return media.otherImages[12] || null;
+  }
+  // Index 13: Custom Furniture
+  if (lower.includes("furniture") || lower.includes("joinery") || lower.includes("steel") || lower.includes("millwork") || lower.includes("wood")) {
+    return media.otherImages[13] || null;
+  }
+
+  return null;
+}

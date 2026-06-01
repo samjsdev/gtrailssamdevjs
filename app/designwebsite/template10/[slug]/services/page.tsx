@@ -25,6 +25,7 @@ export default async function ServicesPage({ params }: { params: Promise<{ slug:
   const { slug } = resolvedParams;
   const data = await readSourceConfig(slug, 'template10');
   if (!data) return notFound();
+  const { media } = data;
 
   const basePath = `/designwebsite/template10/${slug}`;
 
@@ -35,7 +36,7 @@ export default async function ServicesPage({ params }: { params: Promise<{ slug:
       <section className="relative min-h-[50vh] flex flex-col justify-end pb-16 px-8 border-b-2 border-[#E07A5F] bg-[#141517]">
         <div className="absolute inset-0 z-0 opacity-20">
           <img
-            src="https://interior.growhigh.studio/images/styling_decor.png"
+            src={media?.otherImages?.[11] || "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=800&q=80"}
             alt="Drafting tables in loft"
             className="w-full h-full object-cover grayscale"
           />
@@ -75,23 +76,23 @@ export default async function ServicesPage({ params }: { params: Promise<{ slug:
               { 
                 title: "Space Zoning & Layout", 
                 desc: "Optimize every square foot with intelligent layouts that enhance flow, light, and daily living.", 
-                img: "https://images.unsplash.com/photo-1542889601-399c4f3a8402?auto=format&fit=crop&w=600&q=80", 
+                img: media?.otherImages?.[6] || "https://images.unsplash.com/photo-1542889601-399c4f3a8402?auto=format&fit=crop&w=600&q=80", 
                 subs: ["Floor Plan Design", "Furniture Layout", "Traffic Flow Optimization"],
-                link: "https://interior.growhigh.studio/services/#space-planning"
+                link: "#"
               },
               { 
                 title: "Material & Finish Selection", 
                 desc: "Curated palettes of flooring, wall treatments, and hardware that define the character of your space.", 
-                img: "https://interior.growhigh.studio/images/styling_decor.png", 
+                img: media?.otherImages?.[7] || "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=800&q=80", 
                 subs: ["Flooring & Tiling", "Wall Finishes & Paint", "Hardware & Fixtures"],
-                link: "https://interior.growhigh.studio/services/#materials"
+                link: "#"
               },
               { 
                 title: "Lighting Design", 
                 desc: "Layered lighting schemes that set the mood, enhance functionality, and showcase architectural details.", 
-                img: "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=600&q=80", 
+                img: media?.otherImages?.[8] || "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=600&q=80", 
                 subs: ["Ambient & Task Lighting", "Accent & Decorative Fixtures", "Smart Lighting Integration"],
-                link: "https://interior.growhigh.studio/services/#lighting"
+                link: "#"
               }
             ].map((srv, i) => (
               <div 
@@ -170,7 +171,7 @@ export default async function ServicesPage({ params }: { params: Promise<{ slug:
                 idx: "02.1",
                 title: "Residential Design", 
                 desc: "Transform your home into a sanctuary. We craft living spaces for all scales—from studio lofts to sprawling estates—with a focus on comfort, raw finishes, and spatial expression.", 
-                img: "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=600&q=80", 
+                img: media?.otherImages?.[9] || "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=600&q=80", 
                 subs: ["Living & Dining Rooms", "Bedrooms & Walk-in Closets", "Kitchens & Bathrooms"],
                 isReverse: false
               },
@@ -178,7 +179,7 @@ export default async function ServicesPage({ params }: { params: Promise<{ slug:
                 idx: "02.2",
                 title: "Commercial Interiors", 
                 desc: "Spaces that drive productivity and impress clients. We design offices, retail stores, and hospitality venues that align with your industrial brand identity and operational needs.", 
-                img: "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=600&q=80", 
+                img: media?.otherImages?.[10] || "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=600&q=80", 
                 subs: ["Office & Co-working Spaces", "Retail & Showroom Design", "Restaurant & Café Interiors"],
                 isReverse: true
               },
@@ -186,7 +187,7 @@ export default async function ServicesPage({ params }: { params: Promise<{ slug:
                 idx: "02.3",
                 title: "Styling & Décor", 
                 desc: "The finishing layer that brings your space to life. We source industrial lighting, raw wood details, soft textured linen, and curated lofts décor.", 
-                img: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=600&q=80", 
+                img: media?.otherImages?.[11] || "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=600&q=80", 
                 subs: ["Art Curation & Placement", "Soft Furnishing & Textiles", "Accessory & Object Styling"],
                 isReverse: false
               }
@@ -272,16 +273,16 @@ export default async function ServicesPage({ params }: { params: Promise<{ slug:
               { 
                 title: "Full Loft Renovation", 
                 desc: "End-to-end renovation management from demolition to final styling. We coordinate contractors, timelines, and budgets.", 
-                img: "https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=600&q=80", 
+                img: media?.otherImages?.[12] || "https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=600&q=80", 
                 subs: ["Structural Modifications", "Kitchen & Bathroom Overhauls", "Complete Interior Makeover"],
-                link: "https://interior.growhigh.studio/services/#renovation"
+                link: "#"
               },
               { 
                 title: "Custom Steel & Millwork", 
                 desc: "Bespoke furniture designed and crafted to fit your space perfectly. Handmade pieces with steel profiling.", 
-                img: "https://images.unsplash.com/photo-1538688525198-9b88f6f53126?auto=format&fit=crop&w=600&q=80", 
+                img: media?.otherImages?.[13] || "https://images.unsplash.com/photo-1538688525198-9b88f6f53126?auto=format&fit=crop&w=600&q=80", 
                 subs: ["Built-in Wardrobes & Storage", "Custom Tables & Seating", "Modular Kitchen Units"],
-                link: "https://interior.growhigh.studio/services/#custom-furniture"
+                link: "#"
               }
             ].map((srv, i) => (
               <div 

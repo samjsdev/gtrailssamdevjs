@@ -6,6 +6,7 @@ import {
   INTERIOR_HERO_IMAGES,
   getInteriorServiceSummary,
   getInteriorServiceData,
+  getServiceImage,
   INTERIOR_FAQS,
 } from "@/lib/interiorContent";
 import { notFound } from "next/navigation";
@@ -137,7 +138,7 @@ export default async function DesignStudioHome({ params }: PageProps) {
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
             {services.map((svc: string, index: number) => {
               const svcData = getInteriorServiceData(svc);
-              const svcImage = svcData?.image || INTERIOR_HERO_IMAGES.services;
+              const svcImage = getServiceImage(svc, media) || svcData?.image || INTERIOR_HERO_IMAGES.services;
               return (
                 <div key={index} className="group cursor-pointer">
                   <div className="aspect-[4/5] overflow-hidden mb-6 relative">

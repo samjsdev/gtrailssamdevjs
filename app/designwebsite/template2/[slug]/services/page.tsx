@@ -17,6 +17,7 @@ export default async function ServicesPage({ params }: { params: Promise<{ slug:
   const { slug } = resolvedParams;
   const data = await readSourceConfig(slug, 'template2');
   if (!data) return notFound();
+  const { media } = data;
 
   return (
     <div className="font-sans text-[#2A2421] bg-[#F7F4EF] min-h-screen pb-24 space-y-28">
@@ -56,28 +57,28 @@ export default async function ServicesPage({ params }: { params: Promise<{ slug:
               num: "01",
               title: "Space Planning & Layout Strategy",
               desc: "Optimizing traffic flows, lighting directions, and custom furniture footprints. We deliver high-fidelity spatial planning coordinates that lock in pricing parameters before manufacturing starts.",
-              image: "https://images.unsplash.com/photo-1542889601-399c4f3a8402?auto=format&fit=crop&w=400&q=80",
+              image: media?.otherImages?.[6] || "https://images.unsplash.com/photo-1542889601-399c4f3a8402?auto=format&fit=crop&w=400&q=80",
               tags: ["Floor Plan Mapping", "Traffic Flow Curation", "3D Virtual Modeling"]
             },
             {
               num: "02",
               title: "Modular Kitchen & Wardrobe Engineering",
               desc: "Manufacturing precision modular kitchens, wardrobes, and customized storage layouts directly in our Chennai woodworking facility. Every single coordinate is inspected under strict quality controls.",
-              image: "https://interior.growhigh.studio/images/custom_furniture.png",
+              image: media?.otherImages?.[13] || "https://images.unsplash.com/photo-1538688525198-9b88f6f53126?auto=format&fit=crop&w=800&q=80",
               tags: ["BWP Marine Plywood", "Acrylic & Laminate Finishes", "Custom Storage Solutions"]
             },
             {
               num: "03",
               title: "Material Library & Styling Curation",
               desc: "Developing tactile material briefs with selected natural limestones, real quartz counters, organic textile layerings, and low-VOC details that give rooms lasting character.",
-              image: "https://interior.growhigh.studio/images/styling_decor.png",
+              image: media?.otherImages?.[11] || "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=800&q=80",
               tags: ["Natural Stones", "Durable Surfaces", "Low-VOC Curation"]
             },
             {
               num: "04",
               title: "Commercial & Office Interiors",
               desc: "Optimizing workspace layouts, conference rooms, ergonomic workstations, and collaborative spaces customized entirely for Chennai's modern corporate environments.",
-              image: "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=400&q=80",
+              image: media?.otherImages?.[10] || "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=400&q=80",
               tags: ["Ergonomic Workstations", "Collaborative Hubs", "Executive Suite Styling"]
             }
           ].map((item, idx) => (
@@ -187,25 +188,25 @@ export default async function ServicesPage({ params }: { params: Promise<{ slug:
             {
               title: "Premium BWP Marine Plywood",
               desc: "Sustainably sourced boiling-water-proof plywood, ideal for modular kitchens and wet areas to ensure zero swelling or moisture damage.",
-              img: "https://images.unsplash.com/photo-1538688525198-9b88f6f53126?auto=format&fit=crop&w=400&q=80",
+              img: media?.otherImages?.[13] || "https://images.unsplash.com/photo-1538688525198-9b88f6f53126?auto=format&fit=crop&w=400&q=80",
               span: "md:col-span-7"
             },
             {
               title: "Quartz & Granite Counters",
               desc: "Hard-wearing, scratch-resistant countertops selected for heavy-duty kitchen layouts and elegant premium dining tops.",
-              img: "https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?auto=format&fit=crop&w=400&q=80",
+              img: media?.otherImages?.[7] || "https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?auto=format&fit=crop&w=400&q=80",
               span: "md:col-span-5"
             },
             {
               title: "Eco-Friendly & Anti-Fungal Finishes",
               desc: "Low-VOC acrylics, anti-fingerprint laminates, and anti-fungal materials perfect for Chennai's humid coastal environment.",
-              img: "https://interior.growhigh.studio/images/residential_design.png",
+              img: media?.otherImages?.[9] || "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=800&q=80",
               span: "md:col-span-5"
             },
             {
               title: "Upholstery & Soft Furnishings",
               desc: "Woven custom curtains, premium fabrics, and acoustic panels that add luxury, warmth, and comfortable ventilation to Chennai homes.",
-              img: "https://interior.growhigh.studio/images/styling_decor.png",
+              img: media?.otherImages?.[11] || "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=800&q=80",
               span: "md:col-span-7"
             }
           ].map((mat, mIdx) => (

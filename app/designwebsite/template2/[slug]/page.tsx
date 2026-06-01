@@ -4,6 +4,13 @@ import { Cormorant_Garamond } from 'next/font/google';
 import ClientHero from './ClientHero';
 import Link from 'next/link';
 import { Star, Plus, Minus, Check, Sparkles, Shield, Compass, ArrowUpRight, ChevronRight, Layers } from 'lucide-react';
+import {
+  DEFAULT_INTERIOR_SERVICES,
+  INTERIOR_HERO_IMAGES,
+  getInteriorServiceSummary,
+  getInteriorServiceData,
+  getServiceImage,
+} from '@/lib/interiorContent';
 
 const cormorant = Cormorant_Garamond({
   subsets: ['latin'],
@@ -24,7 +31,7 @@ export default async function DesignStudioHome({ params }: PageProps) {
   const data = await readSourceConfig(slug, 'template2');
   if (!data) return notFound();
 
-  const { clinic, business, doctor } = data;
+  const { clinic, business, doctor, media } = data;
 
   const projects = [
     {
@@ -126,32 +133,33 @@ export default async function DesignStudioHome({ params }: PageProps) {
           </div>
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
-            {[
-              { title: "Residential Design", desc: "Transform your home into a personalized sanctuary of comfort, texture, and natural style.", image: "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&q=80&w=400" },
-              { title: "Commercial Spaces", desc: "Optimize your corporate and boutique business environments for productivity and brand identity.", image: "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=400" },
-              { title: "Space Planning", desc: "Strategic Traffic flow layouts that maximize square footage without compromising on aesthetics.", image: "https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&q=80&w=400" }
-            ].map((service, idx) => (
-              <div key={idx} className="bg-[#FAF8F5]/60 rounded-[2rem] shadow-sm border border-[#EAE3D8]/60 hover:shadow-md hover:border-[#8E7056]/30 transition-all duration-300 group overflow-hidden flex flex-col">
-                <div className="relative h-48 w-full overflow-hidden">
-                  <div className="absolute inset-0 bg-[#8E7056]/20 mix-blend-multiply opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10" />
-                  <img src={service.image} alt={service.title} className="w-full h-full object-cover group-hover:scale-103 transition-transform duration-500" />
-                  <div className="absolute top-4 right-4 w-9 h-9 rounded-full bg-white/95 text-[#8E7056] flex items-center justify-center font-bold text-[11px] z-20 shadow-sm border border-[#EAE3D8]/60">
-                    0{idx + 1}
+            {(business.services?.length ? business.services : DEFAULT_INTERIOR_SERVICES).slice(0, 3).map((svc: string, idx: number) => {
+              const svcData = getInteriorServiceData(svc);
+              const svcImage = getServiceImage(svc, media) || svcData?.image || INTERIOR_HERO_IMAGES.services;
+              const svcDesc = svcData?.description || getInteriorServiceSummary(svc);
+              return (
+                <div key={idx} className="bg-[#FAF8F5]/60 rounded-[2rem] shadow-sm border border-[#EAE3D8]/60 hover:shadow-md hover:border-[#8E7056]/30 transition-all duration-300 group overflow-hidden flex flex-col">
+                  <div className="relative h-48 w-full overflow-hidden">
+                    <div className="absolute inset-0 bg-[#8E7056]/20 mix-blend-multiply opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10" />
+                    <img src={svcImage} alt={svc} className="w-full h-full object-cover group-hover:scale-103 transition-transform duration-500" />
+                    <div className="absolute top-4 right-4 w-9 h-9 rounded-full bg-white/95 text-[#8E7056] flex items-center justify-center font-bold text-[11px] z-20 shadow-sm border border-[#EAE3D8]/60">
+                      0{idx + 1}
+                    </div>
+                  </div>
+                  <div className="p-6 sm:p-8 flex-1 flex flex-col justify-between space-y-4">
+                    <div>
+                      <h3 className="text-lg font-semibold text-[#2A2421] mb-2 group-hover:text-[#8E7056] transition-colors">{svc}</h3>
+                      <p className="text-xs sm:text-[13px] text-[#2A2421]/90 leading-relaxed font-light">{svcDesc}</p>
+                    </div>
+                    <div className="pt-2">
+                      <Link href={`${basePath}/services`} className="text-[10px] font-bold uppercase tracking-wider text-[#8E7056] hover:text-[#2A2421] inline-flex items-center gap-1.5 transition-colors">
+                        Learn More <ChevronIcon />
+                      </Link>
+                    </div>
                   </div>
                 </div>
-                <div className="p-6 sm:p-8 flex-1 flex flex-col justify-between space-y-4">
-                  <div>
-                    <h3 className="text-lg font-semibold text-[#2A2421] mb-2 group-hover:text-[#8E7056] transition-colors">{service.title}</h3>
-                    <p className="text-xs sm:text-[13px] text-[#2A2421]/90 leading-relaxed font-light">{service.desc}</p>
-                  </div>
-                  <div className="pt-2">
-                    <Link href={`${basePath}/services`} className="text-[10px] font-bold uppercase tracking-wider text-[#8E7056] hover:text-[#2A2421] inline-flex items-center gap-1.5 transition-colors">
-                      Learn More <ChevronIcon />
-                    </Link>
-                  </div>
-                </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </section>

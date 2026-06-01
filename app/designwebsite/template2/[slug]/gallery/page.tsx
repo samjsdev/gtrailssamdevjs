@@ -2,6 +2,7 @@ import { readSourceConfig } from '@/lib/dataBuilder';
 import { notFound } from 'next/navigation';
 import { Cormorant_Garamond } from 'next/font/google';
 import GalleryGrid from './GalleryGrid';
+import { cleanClinicName } from '@/lib/copyCleaner';
 
 const cormorant = Cormorant_Garamond({
   subsets: ['latin'],
@@ -10,75 +11,73 @@ const cormorant = Cormorant_Garamond({
   variable: '--font-cormorant',
 });
 
-const PORTFOLIO = [
-  {
-    cat: 'Commercial',
-    title: 'Bespoke Commercial Lounge, Nungambakkam',
-    desc: 'Bespoke commercial reception lounge combining custom wood cladding and premium styling.',
-    img: 'https://interior.growhigh.studio/images/commercial_interiors.png',
-    span: 'tall' as const,
-  },
-  {
-    cat: 'Residential',
-    title: 'Contemporary Eco-Villa, ECR Road',
-    desc: 'Private residence on ECR highlighting warm natural finishes and soft ambient lighting.',
-    img: 'https://interior.growhigh.studio/images/residential_design.png',
-  },
-  {
-    cat: 'Residential',
-    title: 'Luxury Master Bedroom, Adyar',
-    desc: 'Luxury master bedroom coordination in Adyar featuring high-end modular wardrobes and integrated storage.',
-    img: 'https://images.unsplash.com/photo-1616594039964-ae9021a400a0?auto=format&fit=crop&w=800&q=80',
-    span: 'wide' as const,
-  },
-  {
-    cat: 'Residential',
-    title: 'Modern Spa-Inspired Bathroom, Besant Nagar',
-    desc: 'Spa-inspired residential bathroom with premium custom quartz countertops and washbasins.',
-    img: 'https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?auto=format&fit=crop&w=800&q=80',
-    span: 'tall' as const,
-  },
-  {
-    cat: 'Studio & Process',
-    title: 'SKETCHLAB Experience Center, Pallikaranai',
-    desc: 'Where our team coordinates custom design, modular kitchen rendering, and fabrication in Chennai.',
-    img: 'https://interior.growhigh.studio/images/principal_designer.png',
-  },
-  {
-    cat: 'Commercial',
-    title: 'Bespoke Café Interior, OMR Road',
-    desc: 'Bespoke café interior styling utilizing custom wood seating, planters, and warm ambient layout.',
-    img: 'https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=800&q=80',
-  },
-  {
-    cat: 'Studio & Process',
-    title: 'SKETCHLAB Tactile Material Library',
-    desc: 'Our curated tactile library of premium laminates, veneers, acrylic samples, and countertops.',
-    img: 'https://interior.growhigh.studio/images/styling_decor.png',
-    span: 'wide' as const,
-  },
-  {
-    cat: 'Residential',
-    title: 'Luxury Dining Room, Anna Nagar',
-    desc: 'Luxury dining room in Anna Nagar featuring custom table setups and structural architectural lighting.',
-    img: 'https://interior.growhigh.studio/images/custom_furniture.png',
-    span: 'tall' as const,
-  },
-  {
-    cat: 'Studio & Process',
-    title: 'Client Design Collaboration, Chennai Studio',
-    desc: 'Interactive 3D walkthroughs and material boards at our Pallikaranai studio.',
-    img: 'https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&w=800&q=80',
-  },
-];
-
 export default async function GalleryPage({ params }: { params: Promise<{ slug: string }> }) {
   const resolvedParams = await params;
   const { slug } = resolvedParams;
   const data = await readSourceConfig(slug, 'template2');
   if (!data) return notFound();
 
-  const doctor = data?.doctor;
+  const { clinic, media, doctor } = data;
+  const cleanName = cleanClinicName(clinic.name);
+
+  const defaultGalleryStock = [
+    "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=800&q=80",
+    "https://images.unsplash.com/photo-1616594039964-ae9021a400a0?auto=format&fit=crop&w=800&q=80",
+    "https://images.unsplash.com/photo-1556910103-1c02745aae4d?auto=format&fit=crop&w=800&q=80",
+    "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=800&q=80",
+    "https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=800&q=80",
+    "https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?auto=format&fit=crop&w=800&q=80",
+    "https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=800&q=80",
+    "https://images.unsplash.com/photo-1538688525198-9b88f6f53126?auto=format&fit=crop&w=800&q=80",
+    "https://images.unsplash.com/photo-1581579438747-1dc8d1e0ca96?auto=format&fit=crop&w=800&q=80",
+    "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=800&q=80",
+    "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=800&q=80",
+    "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=800&q=80",
+    "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=800&q=80",
+    "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=800&q=80",
+    "https://images.unsplash.com/photo-1600210492493-0946911123ea?auto=format&fit=crop&w=800&q=80",
+    "https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&w=800&q=80",
+    "https://images.unsplash.com/photo-1600121848594-d8644e57abab?auto=format&fit=crop&w=800&q=80",
+    "https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&w=800&q=80",
+    "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80",
+    "https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=800&q=80",
+    "https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=800&q=80"
+  ];
+
+  const uniqueUserImages = Array.from(new Set([
+    ...(media.clinicImages || []),
+    ...(media.treatmentImages || []),
+    ...(media.otherImages || [])
+  ].filter(Boolean)));
+
+  const PORTFOLIO = [];
+  const totalToRender = 50;
+
+  for (let i = 0; i < totalToRender; i++) {
+    let imgUrl = "";
+    let isUserImg = false;
+
+    if (uniqueUserImages.length > 0) {
+      imgUrl = uniqueUserImages[i % uniqueUserImages.length];
+      isUserImg = true;
+    } else {
+      imgUrl = defaultGalleryStock[i % defaultGalleryStock.length];
+    }
+
+    const cats = ['Residential', 'Commercial', 'Studio & Process'];
+    const cat = cats[i % cats.length];
+    const span = i % 3 === 0 ? ('wide' as const) : i % 5 === 0 ? ('tall' as const) : ('normal' as const);
+
+    PORTFOLIO.push({
+      cat,
+      title: isUserImg ? `Client Project Space #${i + 1}` : `Curated Design Space #${i + 1}`,
+      desc: isUserImg 
+        ? `Custom interior feature designed and coordinated for ${cleanName || 'our studio'}.`
+        : `Bespoke room configuration showcasing fine materials and detailing.`,
+      img: imgUrl,
+      span
+    });
+  }
 
   return (
     <div className="font-sans text-[#2A2421] bg-[#F7F4EF] min-h-screen pb-24 space-y-16">

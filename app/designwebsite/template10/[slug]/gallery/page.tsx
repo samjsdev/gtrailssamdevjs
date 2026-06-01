@@ -2,6 +2,7 @@ import { readSourceConfig } from '@/lib/dataBuilder';
 import { notFound } from 'next/navigation';
 import { Archivo_Black, Inter } from 'next/font/google';
 import GalleryGrid from './GalleryGrid';
+import { cleanClinicName } from '@/lib/copyCleaner';
 
 const archivo = Archivo_Black({
   subsets: ['latin'],
@@ -15,86 +16,73 @@ const inter = Inter({
   display: 'swap',
 });
 
-const PORTFOLIO = [
-  {
-    cat: 'Residential',
-    title: 'Urban Loft Living',
-    desc: 'Open-plan layout with sandblasted steel columns, terracotta brick walls, and concrete flooring.',
-    img: 'https://interior.growhigh.studio/images/residential_design.png',
-    span: 'tall' as const,
-  },
-  {
-    cat: 'Residential',
-    title: 'Industrial Bedroom Retreat',
-    desc: 'Muted palette featuring custom steel framing, thick wooden planks, and biophilic lighting.',
-    img: 'https://images.unsplash.com/photo-1616594039964-ae9021a400a0?auto=format&fit=crop&w=800&q=80',
-  },
-  {
-    cat: 'Residential',
-    title: 'Exposed Brick Kitchen',
-    desc: 'High-efficiency kitchen with black steel cabinets, concrete countertops, and smart storage.',
-    img: 'https://images.unsplash.com/photo-1556910103-1c02745aae4d?auto=format&fit=crop&w=800&q=80',
-    span: 'wide' as const,
-  },
-  {
-    cat: 'Commercial',
-    title: 'Steel-Framed Lobby',
-    desc: 'Double-height reception shell with exposed structural beams and custom weld joints.',
-    img: 'https://interior.growhigh.studio/images/commercial_interiors.png',
-    span: 'tall' as const,
-  },
-  {
-    cat: 'Commercial',
-    title: 'Warehouse Co-Working',
-    desc: 'Zoned workspace with raw brick partitions, focus pods, and shared styling benches.',
-    img: 'https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=800&q=80',
-  },
-  {
-    cat: 'Residential',
-    title: 'Concrete Spa Bathroom',
-    desc: 'Spa-inspired washroom carved in micro-concrete with smart LED lighting.',
-    img: 'https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?auto=format&fit=crop&w=800&q=80',
-  },
-  {
-    cat: 'Commercial',
-    title: 'Boutique Industrial Retail',
-    desc: 'Loft-themed showroom with bespoke steel racks and custom lighting displays.',
-    img: 'https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=800&q=80',
-    span: 'wide' as const,
-  },
-  {
-    cat: 'Residential',
-    title: 'Penthouse Timber Dining',
-    desc: 'Gathering space featuring a massive rustic walnut table and custom task spotlights.',
-    img: 'https://interior.growhigh.studio/images/custom_furniture.png',
-    span: 'tall' as const,
-  },
-  {
-    cat: 'Studio & Process',
-    title: 'Design Fab Lab',
-    desc: 'Our creative warehouse workspace where drawings, weld layouts, and material boards come together.',
-    img: 'https://interior.growhigh.studio/images/principal_designer.png',
-  },
-  {
-    cat: 'Studio & Process',
-    title: 'Raw Material Library',
-    desc: 'A curated showroom of brick samples, timber plaques, metal profiles, and concrete textures.',
-    img: 'https://interior.growhigh.studio/images/styling_decor.png',
-    span: 'wide' as const,
-  },
-  {
-    cat: 'Studio & Process',
-    title: 'Volumetric Layout Meeting',
-    desc: 'One-on-one drafting session with scale models, 3D plans, and materials scheduling.',
-    img: 'https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&w=800&q=80',
-  },
-];
-
 export default async function GalleryPage({ params }: { params: Promise<{ slug: string }> }) {
   const resolvedParams = await params;
   const { slug } = resolvedParams;
   const data = await readSourceConfig(slug, 'template10');
   if (!data) return notFound();
+
+  const { clinic, media } = data;
+  const cleanName = cleanClinicName(clinic.name);
+
+  const defaultGalleryStock = [
+    "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=800&q=80",
+    "https://images.unsplash.com/photo-1616594039964-ae9021a400a0?auto=format&fit=crop&w=800&q=80",
+    "https://images.unsplash.com/photo-1556910103-1c02745aae4d?auto=format&fit=crop&w=800&q=80",
+    "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=800&q=80",
+    "https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=800&q=80",
+    "https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?auto=format&fit=crop&w=800&q=80",
+    "https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=800&q=80",
+    "https://images.unsplash.com/photo-1538688525198-9b88f6f53126?auto=format&fit=crop&w=800&q=80",
+    "https://images.unsplash.com/photo-1581579438747-1dc8d1e0ca96?auto=format&fit=crop&w=800&q=80",
+    "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=800&q=80",
+    "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=800&q=80",
+    "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=800&q=80",
+    "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=800&q=80",
+    "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=800&q=80",
+    "https://images.unsplash.com/photo-1600210492493-0946911123ea?auto=format&fit=crop&w=800&q=80",
+    "https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&w=800&q=80",
+    "https://images.unsplash.com/photo-1600121848594-d8644e57abab?auto=format&fit=crop&w=800&q=80",
+    "https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&w=800&q=80",
+    "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80",
+    "https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=800&q=80",
+    "https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=800&q=80"
+  ];
+
+  const uniqueUserImages = Array.from(new Set([
+    ...(media.clinicImages || []),
+    ...(media.treatmentImages || []),
+    ...(media.otherImages || [])
+  ].filter(Boolean)));
+
+  const PORTFOLIO = [];
+  const totalToRender = 50;
+
+  for (let i = 0; i < totalToRender; i++) {
+    let imgUrl = "";
+    let isUserImg = false;
+
+    if (uniqueUserImages.length > 0) {
+      imgUrl = uniqueUserImages[i % uniqueUserImages.length];
+      isUserImg = true;
+    } else {
+      imgUrl = defaultGalleryStock[i % defaultGalleryStock.length];
+    }
+
+    const cats = ['Residential', 'Commercial', 'Studio & Process'];
+    const cat = cats[i % cats.length];
+    const span = i % 3 === 0 ? ('wide' as const) : i % 5 === 0 ? ('tall' as const) : ('normal' as const);
+
+    PORTFOLIO.push({
+      cat,
+      title: isUserImg ? `Loft Design Project #${i + 1}` : `Curated Loft Space #${i + 1}`,
+      desc: isUserImg 
+        ? `Custom loft architecture feature designed and coordinated for ${cleanName || 'our studio'}.`
+        : `Bespoke room configuration showcasing industrial materials and structural detailing.`,
+      img: imgUrl,
+      span
+    });
+  }
 
   const clinicName = data?.clinic?.name || 'Studio';
 

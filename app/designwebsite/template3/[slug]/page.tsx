@@ -4,6 +4,13 @@ import { Star, Plus, Minus } from 'lucide-react';
 import ClientHero from './ClientHero';
 import { Fustat } from 'next/font/google';
 import Link from 'next/link';
+import {
+  DEFAULT_INTERIOR_SERVICES,
+  INTERIOR_HERO_IMAGES,
+  getInteriorServiceSummary,
+  getInteriorServiceData,
+  getServiceImage,
+} from '@/lib/interiorContent';
 
 const fustat = Fustat({
   subsets: ['latin'],
@@ -23,7 +30,7 @@ export default async function DesignStudioHome({ params }: PageProps) {
   const data = await readSourceConfig(slug, 'template3');
   if (!data) return notFound();
 
-  const { clinic, business } = data;
+  const { clinic, business, media } = data;
 
   return (
     <div className="text-slate-900 bg-white min-h-screen selection:bg-[#B48A66] selection:text-white scroll-smooth relative">
@@ -94,28 +101,26 @@ export default async function DesignStudioHome({ params }: PageProps) {
           </div>
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
-            {[
-              { title: "Residential Design", desc: "Transform your home into a personalized sanctuary of comfort and style.", image: "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&q=80&w=400" },
-              { title: "Commercial Spaces", desc: "Optimize your business environment for productivity and brand identity.", image: "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=400" },
-              { title: "Space Planning", desc: "Strategic layouts that maximize functionality without compromising aesthetics.", image: "https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&q=80&w=400" },
-              { title: "Custom Furniture", desc: "Bespoke pieces designed specifically for your space and requirements.", image: "https://images.unsplash.com/photo-1538688525198-9b88f6f53126?auto=format&fit=crop&q=80&w=400" },
-              { title: "Renovation", desc: "Complete architectural updates and modernization of existing structures.", image: "https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&q=80&w=400" },
-              { title: "Project Management", desc: "Seamless execution from initial concept through final installation.", image: "https://images.unsplash.com/photo-1531834685032-c34bf0d84c77?auto=format&fit=crop&q=80&w=400" }
-            ].map((service, idx) => (
-              <div key={idx} className="bg-white rounded-3xl shadow-sm border border-slate-100 hover:shadow-md transition-all group overflow-hidden flex flex-col">
-                <div className="relative h-48 w-full overflow-hidden">
-                  <div className="absolute inset-0 bg-[#B48A66]/20 mix-blend-multiply opacity-0 group-hover:opacity-100 transition-opacity z-10" />
-                  <img src={service.image} alt={service.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
-                  <div className="absolute top-4 right-4 w-10 h-10 rounded-full bg-white/90 backdrop-blur-sm text-[#B48A66] flex items-center justify-center font-bold text-sm z-20 shadow-sm border border-white/20">
-                    {idx + 1 < 10 ? `0${idx + 1}` : idx + 1}
+            {(business.services?.length ? business.services : DEFAULT_INTERIOR_SERVICES).slice(0, 6).map((svc: string, idx: number) => {
+              const svcData = getInteriorServiceData(svc);
+              const svcImage = getServiceImage(svc, media) || svcData?.image || INTERIOR_HERO_IMAGES.services;
+              const svcDesc = svcData?.description || getInteriorServiceSummary(svc);
+              return (
+                <div key={idx} className="bg-white rounded-3xl shadow-sm border border-slate-100 hover:shadow-md transition-all group overflow-hidden flex flex-col">
+                  <div className="relative h-48 w-full overflow-hidden">
+                    <div className="absolute inset-0 bg-[#B48A66]/20 mix-blend-multiply opacity-0 group-hover:opacity-100 transition-opacity z-10" />
+                    <img src={svcImage} alt={svc} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                    <div className="absolute top-4 right-4 w-10 h-10 rounded-full bg-white/90 backdrop-blur-sm text-[#B48A66] flex items-center justify-center font-bold text-sm z-20 shadow-sm border border-white/20">
+                      {idx + 1 < 10 ? `0${idx + 1}` : idx + 1}
+                    </div>
+                  </div>
+                  <div className="p-8 flex-1 flex flex-col">
+                    <h3 className="text-xl font-bold text-slate-900 mb-3">{svc}</h3>
+                    <p className="text-sm text-slate-500 leading-relaxed font-light">{svcDesc}</p>
                   </div>
                 </div>
-                <div className="p-8 flex-1 flex flex-col">
-                  <h3 className="text-xl font-bold text-slate-900 mb-3">{service.title}</h3>
-                  <p className="text-sm text-slate-500 leading-relaxed font-light">{service.desc}</p>
-                </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </section>

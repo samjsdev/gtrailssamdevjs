@@ -18,6 +18,7 @@ import {
   INTERIOR_HERO_IMAGES,
   getInteriorServiceSummary,
   getInteriorServiceData,
+  getServiceImage,
 } from '@/lib/interiorContent';
 
 type PageProps = {
@@ -63,7 +64,7 @@ export default async function DesignStudioHome({ params }: PageProps) {
   const previewServices = servicesList.slice(0, 3).map((svc: string, idx: number) => {
     const svcData = getInteriorServiceData(svc);
     const num = `0${idx + 1}`;
-    const img = svcData?.image || "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&q=80&w=800";
+    const img = getServiceImage(svc, media) || svcData?.image || "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&q=80&w=800";
     const desc = svcData?.description || getInteriorServiceSummary(svc);
     const highlights = svcData?.benefits?.slice(0, 3) || [
       "Tactile custom finishes",

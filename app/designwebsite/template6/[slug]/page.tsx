@@ -4,7 +4,13 @@ import { Playfair_Display, Lato } from 'next/font/google';
 import Link from 'next/link';
 import ClientHero from './ClientHero';
 import { Star, Plus, Minus, Quote } from 'lucide-react';
-import { INTERIOR_HERO_IMAGES } from '@/lib/interiorContent';
+import {
+  DEFAULT_INTERIOR_SERVICES,
+  INTERIOR_HERO_IMAGES,
+  getInteriorServiceSummary,
+  getInteriorServiceData,
+  getServiceImage,
+} from '@/lib/interiorContent';
 
 const playfair = Playfair_Display({
   subsets: ['latin'],
@@ -34,14 +40,14 @@ export default async function DesignStudioHome({ params }: PageProps) {
   const heroImage = media?.clinicImages?.[0] || INTERIOR_HERO_IMAGES.home;
   const doctorImage = doctor?.images?.[0] || media?.otherImages?.[0] || INTERIOR_HERO_IMAGES.designer;
 
-  const servicesList = [
-    { title: "Residential Design", desc: "Transform your home into a personalized sanctuary of comfort and style.", image: "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&q=80&w=600" },
-    { title: "Commercial Spaces", desc: "Optimize your business environment for productivity and brand identity.", image: "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=600" },
-    { title: "Space Planning", desc: "Strategic layouts that maximize functionality without compromising aesthetics.", image: "https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&q=80&w=600" },
-    { title: "Custom Furniture", desc: "Bespoke pieces designed specifically for your space and requirements.", image: "https://images.unsplash.com/photo-1538688525198-9b88f6f53126?auto=format&fit=crop&q=80&w=600" },
-    { title: "Renovation", desc: "Complete architectural updates and modernization of existing structures.", image: "https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&q=80&w=600" },
-    { title: "Project Management", desc: "Seamless execution from initial concept through final installation.", image: "https://images.unsplash.com/photo-1531834685032-c34bf0d84c77?auto=format&fit=crop&q=80&w=600" }
-  ];
+  const servicesList = (business?.services?.length ? business.services : DEFAULT_INTERIOR_SERVICES).slice(0, 6).map((svc: string) => {
+    const svcData = getInteriorServiceData(svc);
+    return {
+      title: svc,
+      desc: svcData?.description || getInteriorServiceSummary(svc),
+      image: getServiceImage(svc, media) || svcData?.image || INTERIOR_HERO_IMAGES.services,
+    };
+  });
 
   const testimonials = [
     { author: "Morgan Dufresne", role: "Company owner", text: "I absolutely love my new modern living room! The clean lines, neutral tones, and minimalist interior create such a calming & stylish atmosphere. Highly recommend their modern interior design services!" },
@@ -87,7 +93,7 @@ export default async function DesignStudioHome({ params }: PageProps) {
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-x-10 gap-y-16">
-            {servicesList.map((svc, idx) => (
+            {servicesList.map((svc: { title: string; desc: string; image: string }, idx: number) => (
               <div key={idx} className="group flex flex-col justify-between border-t border-white/10 pt-8 hover:border-[#c59b72]/40 transition-colors duration-500">
                 <div>
                   <div className="aspect-[16/10] overflow-hidden mb-8 relative">

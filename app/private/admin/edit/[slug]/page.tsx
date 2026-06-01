@@ -85,6 +85,19 @@ const SHARED_PAGES: {
             ]
           },
           {
+            label: 'Service Images',
+            elements: [
+              { type: 'image', label: 'Space Planning & Layout Image', imageConfig: { arrayKey: 'otherImages', index: 6 } },
+              { type: 'image', label: 'Material & Finish Selection Image', imageConfig: { arrayKey: 'otherImages', index: 7 } },
+              { type: 'image', label: 'Lighting Design Image', imageConfig: { arrayKey: 'otherImages', index: 8 } },
+              { type: 'image', label: 'Residential Design Image', imageConfig: { arrayKey: 'otherImages', index: 9 } },
+              { type: 'image', label: 'Commercial Interiors Image', imageConfig: { arrayKey: 'otherImages', index: 10 } },
+              { type: 'image', label: 'Styling & Decor Image', imageConfig: { arrayKey: 'otherImages', index: 11 } },
+              { type: 'image', label: 'Full Home Renovation Image', imageConfig: { arrayKey: 'otherImages', index: 12 } },
+              { type: 'image', label: 'Custom Furniture Image', imageConfig: { arrayKey: 'otherImages', index: 13 } }
+            ]
+          },
+          {
             label: 'Contact Details',
             elements: [
               { type: 'text', label: 'Contact Phone Number', path: ['clinic', 'contact', 'phone'] },
@@ -133,6 +146,19 @@ const SHARED_PAGES: {
             elements: [
               { type: 'list', label: 'Services List (1 per line)', path: ['business', 'services'] }
             ]
+          },
+          {
+            label: 'Service Images',
+            elements: [
+              { type: 'image', label: 'Space Planning & Layout Image', imageConfig: { arrayKey: 'otherImages', index: 6 } },
+              { type: 'image', label: 'Material & Finish Selection Image', imageConfig: { arrayKey: 'otherImages', index: 7 } },
+              { type: 'image', label: 'Lighting Design Image', imageConfig: { arrayKey: 'otherImages', index: 8 } },
+              { type: 'image', label: 'Residential Design Image', imageConfig: { arrayKey: 'otherImages', index: 9 } },
+              { type: 'image', label: 'Commercial Interiors Image', imageConfig: { arrayKey: 'otherImages', index: 10 } },
+              { type: 'image', label: 'Styling & Decor Image', imageConfig: { arrayKey: 'otherImages', index: 11 } },
+              { type: 'image', label: 'Full Home Renovation Image', imageConfig: { arrayKey: 'otherImages', index: 12 } },
+              { type: 'image', label: 'Custom Furniture Image', imageConfig: { arrayKey: 'otherImages', index: 13 } }
+            ]
           }
         ]
       },
@@ -176,7 +202,140 @@ const TEMPLATE_SCHEMAS: Record<string, {
     }[];
   }[];
 }> = {
-  template1: { pages: SHARED_PAGES },
+  template1: {
+    pages: [
+      {
+        id: 'home',
+        label: 'Home Page',
+        sections: [
+          {
+            label: 'Hero Section',
+            elements: [
+              { type: 'text', label: 'Studio Name', path: ['clinic', 'name'] },
+              { type: 'text', label: 'Hero Tagline', path: ['clinic', 'tagline'] },
+              { type: 'textarea', label: 'Hero Description', path: ['clinic', 'description'] },
+              { type: 'text', label: 'Inquiry Phone Number', path: ['clinic', 'contact', 'phone'] },
+              { type: 'image', label: 'Hero Main Image', imageConfig: { arrayKey: 'clinicImages', index: 0 } }
+            ]
+          },
+          {
+            label: 'Philosophy (Why Choose Us)',
+            elements: [
+              { type: 'text', label: 'Philosophy Main Title', path: ['philosophy', 'title'] },
+              { type: 'textarea', label: 'Philosophy Main Description', path: ['philosophy', 'description'] },
+              
+              { type: 'text', label: 'Feature 1: Title', path: ['philosophy', 'feature1', 'title'] },
+              { type: 'textarea', label: 'Feature 1: Description', path: ['philosophy', 'feature1', 'desc'] },
+              { type: 'image', label: 'Feature 1: Image', imageConfig: { arrayKey: 'otherImages', index: 2 } },
+              
+              { type: 'text', label: 'Feature 2: Title', path: ['philosophy', 'feature2', 'title'] },
+              { type: 'textarea', label: 'Feature 2: Description', path: ['philosophy', 'feature2', 'desc'] },
+              { type: 'image', label: 'Feature 2: Image', imageConfig: { arrayKey: 'otherImages', index: 3 } },
+              
+              { type: 'text', label: 'Feature 3: Title', path: ['philosophy', 'feature3', 'title'] },
+              { type: 'textarea', label: 'Feature 3: Description', path: ['philosophy', 'feature3', 'desc'] },
+              { type: 'image', label: 'Feature 3: Image', imageConfig: { arrayKey: 'otherImages', index: 4 } },
+              
+              { type: 'text', label: 'Feature 4: Title', path: ['philosophy', 'feature4', 'title'] },
+              { type: 'textarea', label: 'Feature 4: Description', path: ['philosophy', 'feature4', 'desc'] },
+              { type: 'image', label: 'Feature 4: Image', imageConfig: { arrayKey: 'otherImages', index: 5 } }
+            ]
+          },
+          {
+            label: 'Services Preview',
+            elements: [
+              { type: 'list', label: 'Services List (1 per line)', path: ['business', 'services'] }
+            ]
+          },
+          {
+            label: 'About Section',
+            elements: [
+              { type: 'text', label: 'Designer Name', path: ['doctor', 'name'] },
+              { type: 'text', label: 'Designer Specialization', path: ['doctor', 'specialization'] },
+              { type: 'text', label: 'Designer Experience Details', path: ['doctor', 'experience'] },
+              { type: 'image', label: 'Principal Portrait Image', imageConfig: { arrayKey: 'otherImages', index: 0 } },
+              { type: 'text', label: 'Narrative Item 1: Title', path: ['homeAbout', 'item1', 'title'] },
+              { type: 'textarea', label: 'Narrative Item 1: Description', path: ['homeAbout', 'item1', 'desc'] },
+              { type: 'text', label: 'Narrative Item 2: Title', path: ['homeAbout', 'item2', 'title'] },
+              { type: 'textarea', label: 'Narrative Item 2: Description', path: ['homeAbout', 'item2', 'desc'] },
+              { type: 'text', label: 'Narrative Item 3: Title', path: ['homeAbout', 'item3', 'title'] },
+              { type: 'textarea', label: 'Narrative Item 3: Description', path: ['homeAbout', 'item3', 'desc'] }
+            ]
+          }
+        ]
+      },
+      {
+        id: 'about',
+        label: 'About Page',
+        sections: [
+          {
+            label: 'Story & Vision',
+            elements: [
+              { type: 'textarea', label: 'Vision Quote Statement', path: ['about', 'vision'] },
+              { type: 'image', label: 'About Page Hero Image', imageConfig: { arrayKey: 'clinicImages', index: 1 } }
+            ]
+          },
+          {
+            label: 'Creative Leadership - Lead',
+            elements: [
+              { type: 'text', label: 'Lead Name', path: ['doctor', 'name'] },
+              { type: 'textarea', label: 'Lead Vision Bio Description', path: ['doctor', 'bio'] },
+              { type: 'image', label: 'Lead Portrait Image', imageConfig: { arrayKey: 'otherImages', index: 0 } }
+            ]
+          },
+          {
+            label: 'Creative Leadership - Associate',
+            elements: [
+              { type: 'text', label: 'Associate Name', path: ['doctor2', 'name'] },
+              { type: 'text', label: 'Associate Role', path: ['doctor2', 'role'] },
+              { type: 'text', label: 'Associate Credentials info', path: ['doctor2', 'credentials'] },
+              { type: 'textarea', label: 'Associate Bio Description', path: ['doctor2', 'bio'] },
+              { type: 'image', label: 'Associate Portrait Image', imageConfig: { arrayKey: 'otherImages', index: 1 } }
+            ]
+          }
+        ]
+      },
+      {
+        id: 'services',
+        label: 'Services Page',
+        sections: [
+          {
+            label: 'Services Catalog',
+            elements: [
+              { type: 'list', label: 'Services List (1 per line)', path: ['business', 'services'] }
+            ]
+          },
+          {
+            label: 'Service Images',
+            elements: [
+              { type: 'image', label: 'Space Planning & Layout Image', imageConfig: { arrayKey: 'otherImages', index: 6 } },
+              { type: 'image', label: 'Material & Finish Selection Image', imageConfig: { arrayKey: 'otherImages', index: 7 } },
+              { type: 'image', label: 'Lighting Design Image', imageConfig: { arrayKey: 'otherImages', index: 8 } },
+              { type: 'image', label: 'Residential Design Image', imageConfig: { arrayKey: 'otherImages', index: 9 } },
+              { type: 'image', label: 'Commercial Interiors Image', imageConfig: { arrayKey: 'otherImages', index: 10 } },
+              { type: 'image', label: 'Styling & Decor Image', imageConfig: { arrayKey: 'otherImages', index: 11 } },
+              { type: 'image', label: 'Full Home Renovation Image', imageConfig: { arrayKey: 'otherImages', index: 12 } },
+              { type: 'image', label: 'Custom Furniture Image', imageConfig: { arrayKey: 'otherImages', index: 13 } }
+            ]
+          }
+        ]
+      },
+      {
+        id: 'contact',
+        label: 'Contact Page',
+        sections: [
+          {
+            label: 'Contact Information',
+            elements: [
+              { type: 'text', label: 'Contact Phone Number', path: ['clinic', 'contact', 'phone'] },
+              { type: 'text', label: 'Full Address location', path: ['clinic', 'address', 'full'] },
+              { type: 'text', label: 'Google Maps Embed URL', path: ['clinic', 'mapEmbedUrl'] }
+            ]
+          }
+        ]
+      }
+    ]
+  },
   template2: { pages: SHARED_PAGES },
   template3: { pages: SHARED_PAGES },
   template4: { pages: SHARED_PAGES },

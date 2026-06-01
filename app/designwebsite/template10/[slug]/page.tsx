@@ -15,6 +15,7 @@ import {
   INTERIOR_HERO_IMAGES,
   getInteriorServiceSummary,
   getInteriorServiceData,
+  getServiceImage,
 } from '@/lib/interiorContent';
 import { Archivo_Black } from 'next/font/google';
 
@@ -112,7 +113,7 @@ export default async function DesignStudioHome({ params }: PageProps) {
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {servicesList.map((svc: string, i: number) => {
               const svcData = getInteriorServiceData(svc);
-              const serviceImage = svcData?.image || INTERIOR_HERO_IMAGES.services;
+              const serviceImage = getServiceImage(svc, media) || svcData?.image || INTERIOR_HERO_IMAGES.services;
               return (
                 <div key={i} className="bg-[#141517] p-8 border border-white/10 hover:border-[#E07A5F] transition-all flex flex-col justify-between min-h-[300px] group rounded-none">
                   <div>
