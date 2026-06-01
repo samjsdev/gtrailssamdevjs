@@ -2,21 +2,22 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { LayoutDashboard, PlusCircle, Settings, Stethoscope } from 'lucide-react';
+import { LayoutDashboard, LayoutTemplate, PlusCircle, Settings, Globe } from 'lucide-react';
 
 export function Sidebar() {
   const pathname = usePathname();
 
   const links = [
-    { href: '/private/admin', label: 'New Clinic Site', icon: PlusCircle },
-    { href: '/private/admin/dashboard', label: 'My Clinics', icon: LayoutDashboard },
+    { href: '/private/admin', label: 'Create New Site', icon: PlusCircle },
+    { href: '/private/admin/dashboard', label: 'My Studio Sites', icon: LayoutDashboard },
+    { href: '/private/admin/template-editor', label: 'Template Editor', icon: LayoutTemplate },
   ];
 
   return (
     <aside className="w-64 bg-gray-900 border-r border-gray-800 text-gray-300 shrink-0 hidden md:flex flex-col h-full sticky top-0">
       <div className="h-16 flex items-center px-6 border-b border-gray-800 font-bold tracking-tight text-white gap-2 shrink-0">
-        <Stethoscope className="w-5 h-5 text-blue-500" />
-        ClinicGen
+        <Globe className="w-5 h-5 text-blue-500" />
+        GTrails
       </div>
       
       <nav className="flex-1 p-4 space-y-1 overflow-y-auto">

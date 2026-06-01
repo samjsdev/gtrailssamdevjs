@@ -84,7 +84,7 @@ export default function PreviewPage({ params }: { params: Promise<{ slug: string
           }
         }
       } catch (err) {
-        console.error('Failed to load clinic configuration', err);
+        console.error('Failed to load design configuration', err);
       } finally {
         setLoading(false);
       }

@@ -86,7 +86,7 @@ export default async function DesignStudioHome({ params }: PageProps) {
       <ClientHero clinic={cleanedClinic} business={business} basePath={basePath} heroImage={heroImage} />
 
       {/* WHY CHOOSE US */}
-      <WhyChooseUs basePath={basePath} />
+      <WhyChooseUs basePath={basePath} data={data} />
 
       {/* SERVICES SECTION */}
       <HomeServices
@@ -100,6 +100,7 @@ export default async function DesignStudioHome({ params }: PageProps) {
         clinic={cleanedClinic}
         doctor={doctor}
         doctorImage={doctorImage}
+        homeAbout={data.homeAbout}
       />
 
       {/* PORTFOLIO GALLERY SECTION */}

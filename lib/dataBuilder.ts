@@ -15,6 +15,11 @@ export interface GeneratedData {
   media: any;
   overrides: any;
   meta: any;
+  about?: any;
+  doctor2?: any;
+  homeAbout?: any;
+  philosophy?: any;
+  templateOverrides?: any;
   selected_template?: string;
 }
 

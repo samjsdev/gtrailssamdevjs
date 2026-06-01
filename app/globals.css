@@ -26,3 +26,9 @@ body {
   color: var(--foreground);
   font-family: 'Inter', Arial, Helvetica, sans-serif;
 }
+
+@layer components {
+  .control-input {
+    @apply w-full rounded-md border border-[#101820]/15 bg-white px-3 py-2 text-sm text-[#101820] outline-none transition focus:border-[#d85c47] focus:ring-2 focus:ring-[#d85c47]/20;
+  }
+}

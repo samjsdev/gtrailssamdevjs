@@ -1,6 +1,6 @@
 'use client';
 
-import { Ruler, Palette, Hammer, ChevronRight, Check } from 'lucide-react';
+import { ChevronRight } from 'lucide-react';
 import Link from 'next/link';
 import { cleanClinicDescription, cleanClinicName } from '@/lib/copyCleaner';
 
@@ -9,11 +9,27 @@ type HomeAboutProps = {
   clinic: any;
   doctor: any;
   doctorImage: string;
+  homeAbout?: any;
 };
 
-export default function HomeAbout({ basePath, clinic, doctor, doctorImage }: HomeAboutProps) {
+export default function HomeAbout({ basePath, clinic, doctor, doctorImage, homeAbout }: HomeAboutProps) {
   const cleanName = cleanClinicName(clinic.name);
   const cleanDesc = cleanClinicDescription(clinic.description, clinic.name);
+
+  const items = [
+    {
+      title: homeAbout?.item1?.title || 'Spatial Planning',
+      desc: homeAbout?.item1?.desc || 'We optimize flow and human circulation, ensuring every square foot serves a distinct structural and functional purpose.'
+    },
+    {
+      title: homeAbout?.item2?.title || 'Material Honesty',
+      desc: homeAbout?.item2?.desc || 'Curated natural materials, subtle rich textures, and enduring bespoke finishes that stand the test of time and age gracefully.'
+    },
+    {
+      title: homeAbout?.item3?.title || 'Seamless Execution',
+      desc: homeAbout?.item3?.desc || 'From concept blueprints and material curation to site coordination and final staging reveal, we handle every detail with absolute precision.'
+    }
+  ];
 
   return (
     <section id="about" className="relative overflow-hidden bg-[#FCFAF6] py-28 lg:py-36 selection:bg-[#C1FF72] selection:text-[#0A0A0A]">
@@ -67,20 +83,7 @@ export default function HomeAbout({ basePath, clinic, doctor, doctorImage }: Hom
 
             {/* List with custom styling trigger hover states */}
             <div className="space-y-8 pl-4 border-l border-[#0A0A0A]/5 transition-colors">
-              {[
-                {
-                  title: 'Spatial Planning',
-                  desc: 'We optimize flow and human circulation, ensuring every square foot serves a distinct structural and functional purpose.'
-                },
-                {
-                  title: 'Material Honesty',
-                  desc: 'Curated natural materials, subtle rich textures, and enduring bespoke finishes that stand the test of time and age gracefully.'
-                },
-                {
-                  title: 'Seamless Execution',
-                  desc: 'From concept blueprints and material curation to site coordination and final staging reveal, we handle every detail with absolute precision.'
-                },
-              ].map((disc, idx) => (
+              {items.map((disc, idx) => (
                 <div key={idx} className="relative group/item pl-6 py-1 hover:translate-x-1 transition-transform duration-300">
                   <div className="absolute -left-[21px] top-2.5 w-1.5 h-1.5 rounded-full bg-[#0A0A0A]/10 group-hover/item:bg-[#C1FF72] transition-colors border border-[#FCFAF6]"></div>
                   <h4 className="text-base font-bold text-[#0A0A0A] mb-1.5 flex items-center gap-2">

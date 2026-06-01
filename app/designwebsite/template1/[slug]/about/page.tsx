@@ -1,7 +1,7 @@
 import { readSourceConfig } from '@/lib/dataBuilder';
 import { notFound } from 'next/navigation';
 import { 
-  Monitor, Leaf, CalendarIcon, Home, ArrowRight, 
+  Monitor, Leaf, CalendarIcon, Home, 
   Award, Compass, Eye, Layers, Smile, Scale, Star,
   Shield, Sparkles, CheckCircle2, ArrowUpRight, Plus, Minus,
   ChevronRight, Ruler, Palette, Hammer
@@ -28,6 +28,17 @@ export default async function AboutPage({ params }: PageProps) {
   const founderName = doctor.name || 'Arjun Mehta';
   const founderImage = media.otherImages?.[0] || 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=800&q=80';
   const secondaryImage = media.otherImages?.[1] || 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=800&q=80';
+
+  // Dynamic overrides from data config
+  const visionQuote = data.about?.vision || 'We shape luxury residential spaces and commercial interiors with high-fidelity spatial planning, sustainable material curation, and strict operational integrity.';
+  const aboutHeroImage = data.about?.heroImage || media.clinicImages?.[1] || 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=1200';
+  
+  const founderBio = data.doctor?.bio || `${founderName} founded ${cleanName || 'our studio'} in 2015. With over a decade of design experience, he oversees the architectural planning, timber sourcing, and custom furniture frameworks for every residential studio build.`;
+  
+  const partnerName = data.doctor2?.name || 'Kavitha Rajan';
+  const partnerRole = data.doctor2?.role || 'ASSOCIATE PARTNER';
+  const partnerCredentials = data.doctor2?.credentials || 'B.Des, Interior Styling — NID | Certified Organic Material Consultant';
+  const partnerBio = data.doctor2?.bio || 'Kavitha has over 6 years of experience, specializing in biophilic color composition, organic linen layerings, and curation of eco-responsible decorative assets that make residences feel warm and inviting.';
 
   return (
     <div className="font-sans text-[#0A0A0A] bg-[#FCFAF6] min-h-screen selection:bg-[#C1FF72] selection:text-[#0A0A0A] scroll-smooth pb-32 space-y-28 text-left relative overflow-hidden">
@@ -56,7 +67,7 @@ export default async function AboutPage({ params }: PageProps) {
           
           <div className="lg:col-span-5 space-y-6 lg:pt-10">
             <p className="text-lg md:text-xl text-[#0A0A0A]/70 font-normal leading-relaxed border-l-2 border-[#C1FF72] pl-6 italic">
-              &ldquo;We shape luxury residential spaces and commercial interiors with high-fidelity spatial planning, sustainable material curation, and strict operational integrity.&rdquo;
+              &ldquo;{visionQuote}&rdquo;
             </p>
           </div>
         </div>
@@ -66,7 +77,7 @@ export default async function AboutPage({ params }: PageProps) {
           <div className="absolute -inset-4 border border-[#0A0A0A]/10 rounded-[2.5rem] transform rotate-1 -z-10 group-hover:rotate-0 transition-transform duration-700"></div>
           <div className="relative aspect-[21/9] rounded-[2.5rem] overflow-hidden border border-[#0A0A0A]/10 bg-white shadow-2xl">
             <img
-              src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=1200"
+              src={aboutHeroImage}
               alt="Modern studio architectural layout"
               className="w-full h-full object-cover transition-transform duration-[2000ms]"
             />
@@ -116,7 +127,7 @@ export default async function AboutPage({ params }: PageProps) {
               </div>
               
               <p className="text-[15px] text-[#0A0A0A]/70 font-normal leading-relaxed">
-                {founderName} founded {cleanName || 'our studio'} in 2015. With over a decade of design experience, he oversees the architectural planning, timber sourcing, and custom furniture frameworks for every residential studio build.
+                {founderBio}
               </p>
 
               <div className="grid grid-cols-2 gap-6 pt-5 border-t border-[#0A0A0A]/10">
@@ -142,13 +153,13 @@ export default async function AboutPage({ params }: PageProps) {
             <div className="relative aspect-[4/5] overflow-hidden">
               <img 
                 src={secondaryImage} 
-                alt="Kavitha Rajan" 
+                alt={partnerName} 
                 className="w-full h-full object-cover grayscale-[20%] group-hover:grayscale-0 transition-all duration-700 group-hover:scale-105" 
               />
               <div className="absolute inset-0 bg-gradient-to-t from-[#0A0A0A]/50 via-transparent to-transparent"></div>
               <div className="absolute bottom-6 left-6 right-6">
-                <p className="text-[11px] font-bold tracking-[0.2em] text-[#C1FF72] mb-1.5 uppercase">ASSOCIATE PARTNER</p>
-                <h3 className="font-serif text-2xl text-white font-normal tracking-wide">Kavitha Rajan</h3>
+                <p className="text-[11px] font-bold tracking-[0.2em] text-[#C1FF72] mb-1.5 uppercase">{partnerRole}</p>
+                <h3 className="font-serif text-2xl text-white font-normal tracking-wide">{partnerName}</h3>
               </div>
             </div>
             
@@ -156,11 +167,11 @@ export default async function AboutPage({ params }: PageProps) {
             <div className="p-8 lg:p-10 space-y-5">
               <div className="space-y-1.5">
                 <span className="text-[11px] font-bold tracking-[0.2em] text-[#0A0A0A]/60 uppercase">CO-DEVELOPER & STYLIST</span>
-                <p className="text-[14px] font-bold text-[#0A0A0A]">B.Des, Interior Styling — NID | Certified Organic Material Consultant</p>
+                <p className="text-[14px] font-bold text-[#0A0A0A]">{partnerCredentials}</p>
               </div>
               
               <p className="text-[15px] text-[#0A0A0A]/70 font-normal leading-relaxed">
-                Kavitha has over 6 years of experience, specializing in biophilic color composition, organic linen layerings, and curation of eco-responsible decorative assets that make residences feel warm and inviting.
+                {partnerBio}
               </p>
 
               <div className="grid grid-cols-2 gap-6 pt-5 border-t border-[#0A0A0A]/10">

@@ -1,6 +1,6 @@
 'use client';
 
-import { Compass, Layers, Smile, Scale, ArrowUpRight } from 'lucide-react';
+import { ArrowUpRight } from 'lucide-react';
 
 type FeatureItem = {
   num: string;
@@ -9,38 +9,43 @@ type FeatureItem = {
   img: string;
 };
 
-const FEATURES: FeatureItem[] = [
-  {
-    num: "01",
-    title: "Spatial Planning",
-    desc: "We prioritize natural light, structural flow, and proportions before adding finishes, ensuring the fundamental structure of the room is correct.",
-    img: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&q=80&w=800",
-  },
-  {
-    num: "02",
-    title: "Material Sourcing",
-    desc: "We select authentic materials that age gracefully—natural woods, textured stones, and patinated metals that tell a visual story.",
-    img: "https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?auto=format&fit=crop&q=80&w=800",
-  },
-  {
-    num: "03",
-    title: "Bespoke Details",
-    desc: "It’s the subtle shadow gaps, flush baseboards, and customized joinery that elevate a space from standard to exceptional.",
-    img: "https://images.unsplash.com/photo-1616594039964-ae9021a400a0?auto=format&fit=crop&q=80&w=800",
-  },
-  {
-    num: "04",
-    title: "Turnkey Execution",
-    desc: "Our rigorous project management ensures design integrity is maintained from the first concept sketch to the final styling reveal.",
-    img: "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&q=80&w=800",
-  }
-];
-
 type WhyChooseUsProps = {
   basePath: string;
+  data?: any;
 };
 
-export default function WhyChooseUs({ basePath }: WhyChooseUsProps) {
+export default function WhyChooseUs({ basePath, data }: WhyChooseUsProps) {
+  const philosophyTitle = data?.philosophy?.title || 'Designing Beyond the Surface';
+  const philosophyDescription = data?.philosophy?.description || 
+    'We believe that beautifully designed spaces should not just look impressive—they must fundamentally improve how you live, work, and feel every single day.';
+
+  const features: FeatureItem[] = [
+    {
+      num: "01",
+      title: data?.philosophy?.feature1?.title || "Spatial Planning",
+      desc: data?.philosophy?.feature1?.desc || "We prioritize natural light, structural flow, and proportions before adding finishes, ensuring the fundamental structure of the room is correct.",
+      img: data?.philosophy?.feature1?.img || data?.media?.otherImages?.[2] || "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&q=80&w=800",
+    },
+    {
+      num: "02",
+      title: data?.philosophy?.feature2?.title || "Material Sourcing",
+      desc: data?.philosophy?.feature2?.desc || "We select authentic materials that age gracefully—natural woods, textured stones, and patinated metals that tell a visual story.",
+      img: data?.philosophy?.feature2?.img || data?.media?.otherImages?.[3] || "https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?auto=format&fit=crop&q=80&w=800",
+    },
+    {
+      num: "03",
+      title: data?.philosophy?.feature3?.title || "Bespoke Details",
+      desc: data?.philosophy?.feature3?.desc || "It’s the subtle shadow gaps, flush baseboards, and customized joinery that elevate a space from standard to exceptional.",
+      img: data?.philosophy?.feature3?.img || data?.media?.otherImages?.[4] || "https://images.unsplash.com/photo-1616594039964-ae9021a400a0?auto=format&fit=crop&q=80&w=800",
+    },
+    {
+      num: "04",
+      title: data?.philosophy?.feature4?.title || "Turnkey Execution",
+      desc: data?.philosophy?.feature4?.desc || "Our rigorous project management ensures design integrity is maintained from the first concept sketch to the final styling reveal.",
+      img: data?.philosophy?.feature4?.img || data?.media?.otherImages?.[5] || "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&q=80&w=800",
+    }
+  ];
+
   return (
     <section className="py-28 lg:py-36 bg-[#0A0A0A] text-white selection:bg-[#C1FF72] selection:text-[#0A0A0A] relative overflow-hidden">
       {/* Subtle grid lines */}
@@ -57,18 +62,17 @@ export default function WhyChooseUs({ basePath }: WhyChooseUsProps) {
           </div>
 
           <h2 className="font-serif text-5xl md:text-6xl lg:text-7xl font-light tracking-tight leading-[1.05] mb-8">
-            Designing Beyond <br />
-            <span className="italic font-normal text-white/60">the Surface</span>
+            {philosophyTitle}
             <span className="text-[#C1FF72]">.</span>
           </h2>
           <p className="text-[15px] md:text-base text-white/60 font-normal leading-relaxed max-w-2xl">
-            We believe that beautifully designed spaces should not just look impressive—they must fundamentally improve how you live, work, and feel every single day.
+            {philosophyDescription}
           </p>
         </div>
 
         {/* Feature Grid (Editorial Asymmetry) */}
         <div className="grid md:grid-cols-2 gap-x-16 gap-y-20 lg:gap-y-28">
-          {FEATURES.map((feat, idx) => (
+          {features.map((feat, idx) => (
             <div key={idx} className="group relative flex flex-col text-left">
               <div className="flex gap-4 mb-4 items-center">
                 <span className="font-serif text-sm italic text-[#C1FF72]">{feat.num}</span>
@@ -102,4 +106,3 @@ export default function WhyChooseUs({ basePath }: WhyChooseUsProps) {
     </section>
   );
 }
-

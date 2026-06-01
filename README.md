@@ -1,50 +1,58 @@
 # WebAgency Templates (gtrails)
 
-This project is a Next.js application designed to generate static, tailored websites (templates) for interior design studios and related businesses based on data scraped from Google Maps. 
+This project is a Next.js application designed to generate static, tailored websites (templates) for interior design studios and related businesses based on automated intelligence, scraping workflows, and robust data management.
 
-## How It Works
+## 🏗 System Architecture & How It Works
 
-The architecture of this application revolves around taking client data (originally scraped from Google Maps), storing it in a database, rendering 10 distinct website templates dynamically, and then exporting them as independent static HTML sites.
+The architecture of this application is highly modular, functioning as a full end-to-end pipeline: it accepts a Google Maps URL, scrapes the profile in real-time, ingests the data into a distributed Appwrite backend, allows deep administrative editing, generates dynamic previews, and finally builds independent, static, cache-rewritten HTML sites deployed onto an Appwrite CDN.
 
-### 1. The Scraping Layer (External)
-The actual scraping of data (pulling business info, reviews, and images from Google Maps) happens **outside of this repository**. An external scraper process collects the raw data and inserts it directly into the Supabase database. This Next.js application acts strictly as a *consumer* of that pre-scraped data to build the templates.
+Here is a deep and detailed breakdown of each architectural layer diagnosing the entire system workflow.
 
-### 2. Data Source (Supabase)
-The primary source of truth for client data is a **Supabase database** (specifically the `scraped_data` table). When the application builds the templates for a client (using their unique `slug`), it queries Supabase to fetch their business details, reviews, images, etc.
+### 1. The Scraping Layer (Intake & Playwright)
+The scraping logic is internalized within the repository using **Playwright** via Chrome/Chromium (`lib/scraper.ts`), fully initiated through the `/api/intake` endpoint.
+*   **Execution:** A request containing a `gbpUrl` (Google Business Profile URL) initiates a Playwright session. 
+*   **Data Extraction:** The browser parses through the DOM to retrieve the business name, address, phone number, star rating, and exact text from customer reviews.
+*   **Intelligent Image Resolution & Lazy Evaluation:** The scraper features a remarkably sophisticated sub-system for images. It triggers page scrolls, manipulates DOM container `scrollTop` positions to bypass Google's lazy load, and reads `src`, `srcset`, and `style` props. It includes intelligent regex-driven link cleaning (`decodeRepeated`, `extractEmbeddedGooglePhotoUrl`) that intentionally *promotes* small thumbnail resolutions (`w24-h24`) into high-resolution native Google photo images (`=w2048-h1536`) to guarantee sharp layouts across templates.
+*   **Handling State:** When scraped, images are passed to a local `ProcessAndSaveImage` mechanism which partitions images categorically (`clinicImages`, `treatmentImages`, `otherImages`) bounding up to 150 entries to safeguard upload limits.
 
-### 3. Next.js App Router (The Templates)
-The application uses the Next.js App Router to define 10 unique website templates. Each template is structured as a dynamic route that accepts the client's `[slug]`. When Next.js builds the app, it statically generates pages for all known slugs across all 10 templates using the data from Supabase.
+### 2. The Data Store Layer (Appwrite)
+The data store has transitioned deeply from Supabase (now deprecated/disabled) to **Appwrite** mapping to the `scraped_data` collection within the `gtrails` project.
+*   **Central Truth Source:** All JSON permutations, client contacts, ratings, review lists, and dynamic overrides rest in the `scraped_data` Appwrite collection. Appwrite serves as the single source of truth for the entire application.
+*   **Idempotent Writes:** Handled intensely inside `lib/dataBuilder.ts`, scraping formats the payload securely into Appwrite. It hashes the client slug (`MD5` or raw text) for deterministic Appwrite Document IDs. If a document collision (`409` conflict) occurs, it automatically patches via `updateDocument`. 
+*   **Ephemeral Runtime Cache:** While the repository itself contains no `data/` folder, the Next.js runtime dynamically generates a local, git-ignored `data/[slug]/source.json` cache on the server disk during execution. This provides temporary fallback stability to prevent build-time crashes if Appwrite experiences network faults, though the primary synchronization always mandates `databases.updateDocument`.
 
-### 4. Static Export & Deployment (`scripts/deploy_build.js`)
-When you run the build and deploy command (`npm run build:deploy`), the following pipeline executes:
-1. **Next Build**: `next build` runs, fetching data from Supabase and statically generating the HTML/CSS/JS for all templates and all clients.
-2. **Deploy Script**: `node scripts/deploy_build.js` runs automatically after the build. This custom script takes the raw `.next/server/app` output and:
-   - Organizes the compiled HTML into a local `data/[slug]/website/templateX` folder structure.
-   - Rewrites asset paths to be perfectly relative (so the sites can be hosted anywhere, entirely independently, without a Node server).
-   - Uploads these final, static website files directly to a **Supabase Storage bucket** so they can be delivered to clients.
+### 3. The Editing Layer (Administrative Modifications)
+A gigantic administrative surface handles data sanitization and granular adjustments located at `/app/private/admin/edit/[slug]/page.tsx`.
+*   **Visual Control System:** This is a heavy Next.js frontend route supplying full CRUD visual tools for the JSON model. Site owners can correct OCR errors, modify reviews, change "doctor" or studio leadership team details, configure template overrides, and swap images.
+*   **API Broker (`/api/data`):** The client state performs massive REST requests to `app/api/data/route.ts` bridging `PUT` requests back to the local `data/[slug]/source.json` and universally patching the `source_data` field within Appwrite's NoSQL system.
+*   **Scrubbing Integration:** Because scraping is imperfect, this layer ensures the agency can adjust the narrative and remove noise (like unrelated map images mistakenly caught by the scraper).
 
-## Key Directories & Files
+### 4. The Previews Layer
+Served under `/app/preview/[slug]/page.tsx`, this route offers administrators a live look at their configurations against the actual website frameworks before rendering hard HTML.
+*   **Layout Swapping:** The previews page lists arrays of active UI frameworks (e.g., *Modern Studio*, *Luxe Interiors*, *Neo-Brutalist*, etc.). Instead of generating raw HTML initially, administrators use the Next.js interactive environment to inject the JSON configurations deep into identical React trees.
+*   **State Injection:** Previews load data by pinging `/api/data`, locking in the schema, and supplying a realistic window of exactly what the Next.js `app/designwebsite/` pages will compute over build-time.
+*   **Actionable Hand-Off:** Contains the mission-critical **"Publish"** trigger, dispatching selected `templateId` arrays payload to `/api/publish`.
 
-### `/app`
-Contains the Next.js application routes.
-- **`/app/designwebsite/template1` through `template10`**: These are the actual React/Next.js source codes for the 10 different website designs. They all have a `[slug]/page.tsx` route that fetches data from the database and renders the client's custom site.
-- **`/app/(admin)/preview`**: An administrative route used to preview how a client's site looks across the different templates.
+### 5. The Build & Deployment Layer
+Instead of utilizing standard Node.js server architectures, the system produces heavily processed static sites, ensuring instantaneous performance, no operational computing cost, and platform agnosticism.
+*   **Publish Trigger:** `app/api/publish/route.ts` is called, registering the final `selected_template` back to Appwrite, and triggering a custom local build compiler dynamically (`lib/websiteBuild.ts`).
+*   **Next.js Pre-rendering:** Under the hood, Next spins up and compiles static `.html` and `_next` chunks specifically mapping to `app/designwebsite/[templateId]/[slug]`.
+*   **Path Destructuring & Rewrites (`scripts/deploy_build.js`):** Next.js assumes it is rendering from the root (`/_next/...`). `deploy_build.js` rips the raw Next.js output files, restructures directories locally (placing them inside `data/[slug]/website/`), and runs extensive RegEx patterns replacing strictly absolute pathways into completely relative file targets. APIs calls mapped to image processors are intercepted and translated to localized `/images/` pathways.
+*   **Appwrite CDN Sync:** Immediately following HTML modification, the script uses FormData and HTTP streams inside Node to upload all HTML, CSS, script bundles, and imagery directly into Appwrite's storage buckets (`templates/files`), making the fully decoupled client site live to the cloud.
 
-### `/data`
-This folder is used for local caching and output generation. It is *not* the primary source of truth for the data.
-- **`/data/[slug]/source.json`**: A local fallback cache of the scraped data. The application uses this if the Supabase database is unreachable (e.g., during local development).
-- **`/data/[slug]/website/template[1-10]`**: The **final, compiled static HTML sites**. These are generated by the `deploy_build.js` script after a `next build`. They contain the `index.html` and `_next` assets ready for distribution.
+---
 
-### `/lib`
-Contains utility functions and business logic.
-- **`/lib/dataBuilder.ts`**: The core logic for fetching data. It provides the `readSourceConfig` function which queries Supabase first and falls back to the local `source.json` if needed. It also syncs local scrape data back to Supabase.
-- **`/lib/interiorContent.ts`**: Contains default fallback content (services, FAQs, generic images) in case a client's scraped data is sparse.
+## 📂 Key Directories
 
-### `/scripts`
-- **`/scripts/deploy_build.js`**: The crucial post-build script. It restructures the Next.js build output into independent static websites for each client and uploads them to Supabase Storage.
+*   **`/app/api/intake`**: API route orchestrating the complete Playwright scraping pipeline. 
+*   **`/app/designwebsite/template[1-10]`**: React component codesets responsible for each unique client template. 
+*   **`/app/private/admin/edit/[slug]`**: The editing layer environment. 
+*   **`/app/preview/[slug]`**: The dynamic layout selection dashboard.
+*   **`/lib/scraper.ts`**: Deep DOM traversal logic for discovering and promoting internal Google Maps imagery.
+*   **`/lib/dataBuilder.ts`**: Multi-tiered database synchronization schema wrapping both JSON on disk and Appwrite's `scraped_data` documents.
+*   **`/scripts/deploy_build.js`**: Critical regex HTML-interceptor mapping App Router payloads to universally portable static sites.
 
-## Available Scripts
+## 🚀 Available Scripts
 
-- `npm run dev`: Starts the Next.js development server on `localhost:3000`.
-- `npm run build`: Runs the standard Next.js build process (fetches data and builds pages).
-- `npm run build:deploy`: **(Main Action)** Runs the build process AND executes the deployment script to organize the static sites and upload them to Supabase.
+*   `npm run dev`: Bootstraps the local admin portal on `localhost:3000`.
+*   `npm run build:deploy`: Full workspace compilation mapping directly to the `deploy_build.js` standalone export protocols. 

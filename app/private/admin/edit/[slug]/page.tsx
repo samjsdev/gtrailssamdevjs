@@ -1,12 +1,17 @@
 'use client';
 
 import { useEffect, useState, use } from 'react';
-import { useRouter } from 'next/navigation';
-import { Loader2, Settings2, Trash2, Star, Plus, Check, ChevronDown, Image, Layout, FileText, CheckCircle2 } from 'lucide-react';
+
+import { 
+  Loader2, Settings2, Trash2, Star, Plus, Check, ChevronDown, ChevronUp,
+  Image as ImageIcon, Layout, FileText, CheckCircle2, Eye, Globe, Palette,
+  Sparkles, Layers, User, Phone, MapPin, Upload, RotateCcw, ArrowDown, ArrowUp,
+  X, Search
+} from 'lucide-react';
 
 const TEMPLATE_OPTIONS = [
   { id: 'base', name: 'Base Defaults (Global fallback for all templates)' },
-  { id: 'template1', name: 'Template 1 (Dental Clinic theme layout)' },
+  { id: 'template1', name: 'Template 1 (Bespoke Editorial theme layout)' },
   { id: 'template2', name: 'Template 2 (Garamond Luxe theme layout)' },
   { id: 'template3', name: 'Template 3 (Reference theme layout)' },
   { id: 'template4', name: 'Template 4 (Minimal Creative theme layout)' },
@@ -14,47 +19,392 @@ const TEMPLATE_OPTIONS = [
   { id: 'template10', name: 'Template 10 (Raw Industrial theme layout)' }
 ];
 
-const TEMPLATE_IMAGE_SECTIONS: Record<string, { key: string; label: string; arrayKey: 'clinicImages' | 'otherImages'; index: number }[]> = {
+// Schema defining the pages, sections, and fields for each template
+
+const SHARED_PAGES: {
+  id: string;
+  label: string;
+  sections: {
+    label: string;
+    elements: (
+      | { type: 'text' | 'textarea' | 'list'; label: string; path: string[]; imageConfig?: never }
+      | { type: 'image'; label: string; path?: never; imageConfig: { arrayKey: 'clinicImages' | 'otherImages'; index: number } }
+    )[];
+  }[];
+}[] = [
+      {
+        id: 'home',
+        label: 'Home Page',
+        sections: [
+          {
+            label: 'Hero Intro Banner',
+            elements: [
+              { type: 'text', label: 'Hero Tagline', path: ['clinic', 'tagline'] },
+              { type: 'textarea', label: 'Hero Subtext Description', path: ['clinic', 'description'] },
+              { type: 'image', label: 'Hero Main Banner Image', imageConfig: { arrayKey: 'clinicImages', index: 0 } }
+            ]
+          },
+          {
+            label: 'Philosophy & Values (Why Choose Us)',
+            elements: [
+              { type: 'text', label: 'Philosophy Section Title', path: ['philosophy', 'title'] },
+              { type: 'textarea', label: 'Philosophy Subtitle / Description', path: ['philosophy', 'description'] },
+              { type: 'text', label: 'Feature 1: Title', path: ['philosophy', 'feature1', 'title'] },
+              { type: 'textarea', label: 'Feature 1: Description', path: ['philosophy', 'feature1', 'desc'] },
+              { type: 'image', label: 'Feature 1: Custom Image', imageConfig: { arrayKey: 'otherImages', index: 2 } },
+              { type: 'text', label: 'Feature 2: Title', path: ['philosophy', 'feature2', 'title'] },
+              { type: 'textarea', label: 'Feature 2: Description', path: ['philosophy', 'feature2', 'desc'] },
+              { type: 'image', label: 'Feature 2: Custom Image', imageConfig: { arrayKey: 'otherImages', index: 3 } },
+              { type: 'text', label: 'Feature 3: Title', path: ['philosophy', 'feature3', 'title'] },
+              { type: 'textarea', label: 'Feature 3: Description', path: ['philosophy', 'feature3', 'desc'] },
+              { type: 'image', label: 'Feature 3: Custom Image', imageConfig: { arrayKey: 'otherImages', index: 4 } },
+              { type: 'text', label: 'Feature 4: Title', path: ['philosophy', 'feature4', 'title'] },
+              { type: 'textarea', label: 'Feature 4: Description', path: ['philosophy', 'feature4', 'desc'] },
+              { type: 'image', label: 'Feature 4: Custom Image', imageConfig: { arrayKey: 'otherImages', index: 5 } }
+            ]
+          },
+          {
+            label: 'About Studio Section',
+            elements: [
+              { type: 'text', label: 'Principal Designer Name', path: ['doctor', 'name'] },
+              { type: 'text', label: 'Designer Specialization', path: ['doctor', 'specialization'] },
+              { type: 'text', label: 'Designer Experience Details', path: ['doctor', 'experience'] },
+              { type: 'image', label: 'Principal Portrait Image', imageConfig: { arrayKey: 'otherImages', index: 0 } },
+              { type: 'text', label: 'Narrative Item 1: Title', path: ['homeAbout', 'item1', 'title'] },
+              { type: 'textarea', label: 'Narrative Item 1: Description', path: ['homeAbout', 'item1', 'desc'] },
+              { type: 'text', label: 'Narrative Item 2: Title', path: ['homeAbout', 'item2', 'title'] },
+              { type: 'textarea', label: 'Narrative Item 2: Description', path: ['homeAbout', 'item2', 'desc'] },
+              { type: 'text', label: 'Narrative Item 3: Title', path: ['homeAbout', 'item3', 'title'] },
+              { type: 'textarea', label: 'Narrative Item 3: Description', path: ['homeAbout', 'item3', 'desc'] }
+            ]
+          },
+          {
+            label: 'Services Preview',
+            elements: [
+              { type: 'list', label: 'Services List (1 per line)', path: ['business', 'services'] }
+            ]
+          },
+          {
+            label: 'Contact Details',
+            elements: [
+              { type: 'text', label: 'Contact Phone Number', path: ['clinic', 'contact', 'phone'] },
+              { type: 'text', label: 'Full Address location', path: ['clinic', 'address', 'full'] }
+            ]
+          }
+        ]
+      },
+      {
+        id: 'about',
+        label: 'About Page',
+        sections: [
+          {
+            label: 'Story & Vision',
+            elements: [
+              { type: 'textarea', label: 'Vision Quote Statement', path: ['about', 'vision'] },
+              { type: 'image', label: 'About Page Hero Image', imageConfig: { arrayKey: 'clinicImages', index: 1 } }
+            ]
+          },
+          {
+            label: 'Creative Leadership - Lead',
+            elements: [
+              { type: 'text', label: 'Lead Name', path: ['doctor', 'name'] },
+              { type: 'textarea', label: 'Lead Vision Bio Description', path: ['doctor', 'bio'] },
+              { type: 'image', label: 'Lead Portrait Image', imageConfig: { arrayKey: 'otherImages', index: 0 } }
+            ]
+          },
+          {
+            label: 'Creative Leadership - Associate',
+            elements: [
+              { type: 'text', label: 'Associate Name', path: ['doctor2', 'name'] },
+              { type: 'text', label: 'Associate Role', path: ['doctor2', 'role'] },
+              { type: 'text', label: 'Associate Credentials info', path: ['doctor2', 'credentials'] },
+              { type: 'textarea', label: 'Associate Bio Description', path: ['doctor2', 'bio'] },
+              { type: 'image', label: 'Associate Portrait Image', imageConfig: { arrayKey: 'otherImages', index: 1 } }
+            ]
+          }
+        ]
+      },
+      {
+        id: 'services',
+        label: 'Services Page',
+        sections: [
+          {
+            label: 'Services Catalog',
+            elements: [
+              { type: 'list', label: 'Services List (1 per line)', path: ['business', 'services'] }
+            ]
+          }
+        ]
+      },
+      {
+        id: 'gallery',
+        label: 'Gallery Page',
+        sections: [
+          {
+            label: 'Project Highlights',
+            elements: [
+              { type: 'list', label: 'Highlights List (1 per line)', path: ['business', 'highlights'] }
+            ]
+          }
+        ]
+      },
+      {
+        id: 'contact',
+        label: 'Contact Page',
+        sections: [
+          {
+            label: 'Studio Locations',
+            elements: [
+              { type: 'text', label: 'Contact Phone Number', path: ['clinic', 'contact', 'phone'] },
+              { type: 'text', label: 'Full Address location', path: ['clinic', 'address', 'full'] }
+            ]
+          }
+        ]
+      }
+    ];
+
+const TEMPLATE_SCHEMAS: Record<string, {
+  pages: {
+    id: string;
+    label: string;
+    sections: {
+      label: string;
+      elements: (
+        | { type: 'text' | 'textarea' | 'list'; label: string; path: string[]; imageConfig?: never }
+        | { type: 'image'; label: string; path?: never; imageConfig: { arrayKey: 'clinicImages' | 'otherImages'; index: number } }
+      )[];
+    }[];
+  }[];
+}> = {
+  template1: { pages: SHARED_PAGES },
+  template2: { pages: SHARED_PAGES },
+  template3: { pages: SHARED_PAGES },
+  template4: { pages: SHARED_PAGES },
+  template6: { pages: SHARED_PAGES },
+  template10: { pages: SHARED_PAGES }
+};
+
+type SchemaPage = typeof SHARED_PAGES[number];
+type SchemaSection = SchemaPage['sections'][number];
+type SchemaElement = SchemaSection['elements'][number];
+
+type CanvasSelection = {
+  sectionIndex: number;
+  elementIndex: number;
+};
+
+// Curated stock library representing premium interior aesthetics
+const PREMIUM_STOCK_IMAGES = [
+  {
+    url: 'https://images.unsplash.com/photo-1600210492493-0946911123ea?auto=format&fit=crop&q=80&w=1200',
+    label: 'Modern Cozy Living Room'
+  },
+  {
+    url: 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&q=80&w=1200',
+    label: 'Warm Scandi Kitchen & Dining'
+  },
+  {
+    url: 'https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&q=80&w=1200',
+    label: 'Luxury Marble Kitchen'
+  },
+  {
+    url: 'https://images.unsplash.com/photo-1616594039964-ae9021a400a0?auto=format&fit=crop&q=80&w=1200',
+    label: 'Serene Modern Bedroom'
+  },
+  {
+    url: 'https://images.unsplash.com/photo-1600121848594-d8644e57abab?auto=format&fit=crop&q=80&w=1200',
+    label: 'Professional Architect Studio'
+  },
+  {
+    url: 'https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&q=80&w=1200',
+    label: 'Modern Wooden Ceiling Detail'
+  },
+  {
+    url: 'https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&q=80&w=1200',
+    label: 'Rustic Industrial Workspace'
+  },
+  {
+    url: 'https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&q=80&w=1200',
+    label: 'Minimalist Hallway Corridor'
+  }
+];
+
+// Curated stock images mapped to specific template layouts
+const TEMPLATE_STOCK_IMAGES: Record<string, { url: string; label: string }[]> = {
   template1: [
-    { key: 'heroImage', label: 'Hero Main Banner Image', arrayKey: 'clinicImages', index: 0 },
-    { key: 'doctorImage', label: 'Doctor Portrait Image', arrayKey: 'otherImages', index: 0 },
-    { key: 'founderImage', label: 'About Founder Image', arrayKey: 'otherImages', index: 0 },
-    { key: 'assistantImage', label: 'About Assistant Image', arrayKey: 'otherImages', index: 1 }
+    { url: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80', label: 'Modern Architectural Studio' },
+    { url: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=800&q=80', label: 'Lead Portrait' },
+    { url: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=800&q=80', label: 'Associate Portrait' },
+    { url: 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&q=80&w=800', label: 'Cozy Dining & Kitchen' },
+    { url: 'https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?auto=format&fit=crop&w=800&q=80', label: 'Warm Living Room' },
+    { url: 'https://images.unsplash.com/photo-1616594039964-ae9021a400a0?auto=format&fit=crop&w=800&q=80', label: 'Minimalist Bed' },
+    { url: 'https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=800&q=80', label: 'Marble Kitchen Counter' },
+    { url: 'https://images.unsplash.com/photo-1542889601-399c4f3a8402?auto=format&fit=crop&w=800&q=80', label: 'Architect Drafting Desk' },
+    { url: 'https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=800&q=80', label: 'Living Room Corner' },
+    { url: 'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=800&q=80', label: 'Light Cozy Bedroom' },
+    { url: 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=800&q=80', label: 'Modern Office Space' },
+    { url: 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=800&q=80', label: 'Study Table & Chair' },
+    { url: 'https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=800&q=80', label: 'Open Concrete Architecture' },
+    { url: 'https://images.unsplash.com/photo-1538688525198-9b88f6f53126?auto=format&fit=crop&w=800&q=80', label: 'Bespoke Lounge Chair' },
+    { url: 'https://images.unsplash.com/photo-1556910103-1c02745aae4d?auto=format&fit=crop&w=800&q=80', label: 'Minimalist Dining Set' },
+    { url: 'https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=800&q=80', label: 'Bright Office Corridor' },
+    { url: 'https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=800&q=80', label: 'Boutique Storefront' },
+    { url: 'https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&w=800&q=80', label: 'Collaborative Workspace' }
   ],
   template2: [
-    { key: 'heroImage', label: 'Hero Section Image', arrayKey: 'clinicImages', index: 0 }
+    { url: 'https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&q=80&w=1600', label: 'Warm Ceiling Detail' },
+    { url: 'https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&q=80&w=600', label: 'Cozy Armchair Corner' },
+    { url: 'https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&q=80&w=600', label: 'Warm Wood Kitchen' },
+    { url: 'https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&q=80&w=600', label: 'Living Room Shelf' },
+    { url: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80', label: 'Luxury Living Space' },
+    { url: 'https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&q=80&w=400', label: 'Minimal Lounge Room' },
+    { url: 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=400', label: 'Corporate Office Area' },
+    { url: 'https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&q=80&w=400', label: 'Living Room Sofa' },
+    { url: 'https://images.unsplash.com/photo-1540518614846-7eded433c457?auto=format&fit=crop&q=80&w=400', label: 'Desk Setup' },
+    { url: 'https://images.unsplash.com/photo-1542889601-399c4f3a8402?auto=format&fit=crop&w=400&q=80', label: 'Architect Workspace' },
+    { url: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&q=80&w=800', label: 'Principal Portrait' },
+    { url: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=800&q=80', label: 'Associate Portrait' },
+    { url: 'https://images.unsplash.com/photo-1616594039964-ae9021a400a0?auto=format&fit=crop&w=800&q=80', label: 'Comfortable Bedroom' },
+    { url: 'https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?auto=format&fit=crop&q=80&w=800', label: 'Scandi Living Room' },
+    { url: 'https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=800&q=80', label: 'Commercial Interior' },
+    { url: 'https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&w=800&q=80', label: 'Meeting Room Setup' }
   ],
   template3: [
-    { key: 'heroImage', label: 'Hero Header Image', arrayKey: 'clinicImages', index: 0 }
+    { url: 'https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&q=80&w=800', label: 'Minimalist Lounge' },
+    { url: 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=400', label: 'Corporate Office' },
+    { url: 'https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&q=80&w=400', label: 'Modern Living Area' },
+    { url: 'https://images.unsplash.com/photo-1538688525198-9b88f6f53126?auto=format&fit=crop&q=80&w=400', label: 'Designer Armchair' },
+    { url: 'https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&q=80&w=400', label: 'Concrete Design Detail' },
+    { url: 'https://images.unsplash.com/photo-1531834685032-c34bf0d84c77?auto=format&fit=crop&q=80&w=400', label: 'Creative Meeting' },
+    { url: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=1200', label: 'Architectural Salon' },
+    { url: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&q=80&w=800', label: 'Principal Portrait' },
+    { url: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=800', label: 'Associate Portrait' },
+    { url: 'https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&q=80&w=1200', label: 'Wooden Ceiling' },
+    { url: 'https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&q=80&w=600', label: 'Armchair Corner' },
+    { url: 'https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&q=80&w=600', label: 'Wooden Theme Kitchen' },
+    { url: 'https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&q=80&w=600', label: 'Living Room Shelf' },
+    { url: 'https://images.unsplash.com/photo-1616594039964-ae9021a400a0?auto=format&fit=crop&q=80&w=800', label: 'Serene Bedroom' },
+    { url: 'https://images.unsplash.com/photo-1556910103-1c02745aae4d?auto=format&fit=crop&w=800&q=80', label: 'Clean Dining Layout' },
+    { url: 'https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=800&q=80', label: 'Bright Studio Office' },
+    { url: 'https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?auto=format&fit=crop&q=80&w=800', label: 'Living Room Cozy Desk' },
+    { url: 'https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=800&q=80', label: 'Commercial Interior' },
+    { url: 'https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&q=80&w=800', label: 'Group Workshop' }
   ],
   template4: [
-    { key: 'heroImage', label: 'Hero Slider Image', arrayKey: 'clinicImages', index: 0 },
-    { key: 'principalImage', label: 'Principal Designer Image', arrayKey: 'otherImages', index: 0 }
+    { url: 'https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=800&q=80', label: 'Minimalist Lounge' },
+    { url: 'https://images.unsplash.com/photo-1616594039964-ae9021a400a0?auto=format&fit=crop&w=800&q=80', label: 'Cozy Bedroom' },
+    { url: 'https://images.unsplash.com/photo-1556910103-1c02745aae4d?auto=format&fit=crop&w=800&q=80', label: 'Dining Area Set' },
+    { url: 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=800&q=80', label: 'Commercial Space' },
+    { url: 'https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=800&q=80', label: 'Light Office Space' },
+    { url: 'https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?auto=format&fit=crop&w=800&q=80', label: 'Minimalist Living Room' },
+    { url: 'https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=800&q=80', label: 'Boutique Store' },
+    { url: 'https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=800&q=80', label: 'Warm Wood Ceiling' },
+    { url: 'https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&w=800&q=80', label: 'Meeting Room Setup' }
   ],
   template6: [
-    { key: 'heroImage', label: 'Hero Landing Image', arrayKey: 'clinicImages', index: 0 },
-    { key: 'doctorImage', label: 'Styling Director Image', arrayKey: 'otherImages', index: 0 }
+    { url: 'https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&q=80&w=600', label: 'Residential Design Lounge' },
+    { url: 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=600', label: 'Commercial Meeting Area' },
+    { url: 'https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&q=80&w=600', label: 'Space Planning Lounge' },
+    { url: 'https://images.unsplash.com/photo-1538688525198-9b88f6f53126?auto=format&fit=crop&q=80&w=600', label: 'Custom Chair Design' },
+    { url: 'https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&q=80&w=600', label: 'Renovation Architecture' },
+    { url: 'https://images.unsplash.com/photo-1531834685032-c34bf0d84c77?auto=format&fit=crop&q=80&w=600', label: 'Project Management Team' },
+    { url: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=1200', label: 'Living Room Hero' },
+    { url: 'https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&q=80&w=1200', label: 'Wooden Ceilings' },
+    { url: 'https://images.unsplash.com/photo-1542889601-399c4f3a8402?auto=format&fit=crop&w=600&q=80', label: 'Studio Drafting Setup' },
+    { url: 'https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=600&q=80', label: 'Living Room Shelf Corner' },
+    { url: 'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=600&q=80', label: 'Bright Cozy Bedroom' },
+    { url: 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=600&q=80', label: 'Study Table & Plant' },
+    { url: 'https://images.unsplash.com/photo-1616594039964-ae9021a400a0?auto=format&fit=crop&w=800&q=80', label: 'Master Bedroom Bed' },
+    { url: 'https://images.unsplash.com/photo-1556910103-1c02745aae4d?auto=format&fit=crop&w=800&q=80', label: 'Modern Dining Room Set' },
+    { url: 'https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=800&q=80', label: 'Architect Office Corridor' },
+    { url: 'https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?auto=format&fit=crop&w=800&q=80', label: 'Cosy Seat Layout' },
+    { url: 'https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=800&q=80', label: 'Boutique Store Area' },
+    { url: 'https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&w=800&q=80', label: 'Active Team Studio' },
+    { url: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=800&q=80', label: 'Lead Portrait' },
+    { url: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=800&q=80', label: 'Associate Portrait' }
   ],
   template10: [
-    { key: 'heroImage', label: 'Hero Drafting Banner', arrayKey: 'clinicImages', index: 0 },
-    { key: 'doctorImage', label: 'Lead Fabricator Image', arrayKey: 'otherImages', index: 0 }
+    { url: 'https://images.unsplash.com/photo-1542889601-399c4f3a8402?auto=format&fit=crop&w=600&q=80', label: 'Studio Drafting Desk' },
+    { url: 'https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=600&q=80', label: 'Living Room Shelf Corner' },
+    { url: 'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=600&q=80', label: 'Bright Cozy Bedroom' },
+    { url: 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=600&q=80', label: 'Modern Office Room' },
+    { url: 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=600&q=80', label: 'Study Table & Desk Setup' },
+    { url: 'https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=600&q=80', label: 'Open Concrete Architecture' },
+    { url: 'https://images.unsplash.com/photo-1538688525198-9b88f6f53126?auto=format&fit=crop&w=600&q=80', label: 'Bespoke Chair Curation' },
+    { url: 'https://images.unsplash.com/photo-1616594039964-ae9021a400a0?auto=format&fit=crop&w=800&q=80', label: 'Serene Modern Bed' },
+    { url: 'https://images.unsplash.com/photo-1556910103-1c02745aae4d?auto=format&fit=crop&w=800&q=80', label: 'Dining Area Setup' },
+    { url: 'https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=800&q=80', label: 'Office Bright Corridor' },
+    { url: 'https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?auto=format&fit=crop&w=800&q=80', label: 'Cosy Seating Corner' },
+    { url: 'https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=800&q=80', label: 'Boutique Store Area' },
+    { url: 'https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&w=800&q=80', label: 'Collaborative Workspace' },
+    { url: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=800&q=80', label: 'Principal Portrait' },
+    { url: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=800&q=80', label: 'Associate Portrait' },
+    { url: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80', label: 'Living Room Hero' }
   ]
 };
 
 export default function EditPage({ params }: { params: Promise<{ slug: string }> }) {
   const resolvedParams = use(params);
   const { slug } = resolvedParams;
-  const router = useRouter();
   
   const [data, setData] = useState<any>(null);
   const [loading, setLoading] = useState(true);
-  const [savingDraft, setSavingDraft] = useState(false);
-  const [generating, setGenerating] = useState(false);
+  const [saving, setSaving] = useState(false);
   const [error, setError] = useState('');
   const [saveMessage, setSaveMessage] = useState('');
 
-  // Active Edit Scope
-  const [activeScope, setActiveScope] = useState<string>('base');
+  // UI Control State
+  const [globalTab, setGlobalTab] = useState<'info' | 'designer' | 'reviews' | 'media'>('info');
+  const [canvasScope, setCanvasScope] = useState('template1');
+  const [canvasPageId, setCanvasPageId] = useState('home');
+  const [canvasSelection, setCanvasSelection] = useState<CanvasSelection>({
+    sectionIndex: 0,
+    elementIndex: 0
+  });
+
+  // State to track image selection popup modal config
+  const [imageModal, setImageModal] = useState<{
+    isOpen: boolean;
+    scope: string;
+    arrayKey: 'clinicImages' | 'otherImages';
+    index: number;
+    label: string;
+  } | null>(null);
+
+  const [modalTab, setModalTab] = useState<'favorites' | 'business' | 'template' | 'curated' | 'upload'>('business');
+  const [previewImage, setPreviewImage] = useState<string | null>(null);
+
+  const [favorites, setFavorites] = useState<string[]>(() => {
+    if (typeof window !== 'undefined') {
+      try {
+        const saved = localStorage.getItem('gtrails_favorite_images');
+        return saved ? JSON.parse(saved) : [];
+      } catch (e) {
+        return [];
+      }
+    }
+    return [];
+  });
+
+  const toggleFavorite = (url: string) => {
+    setFavorites(prev => {
+      const next = prev.includes(url) ? prev.filter(u => u !== url) : [...prev, url];
+      try {
+        localStorage.setItem('gtrails_favorite_images', JSON.stringify(next));
+      } catch (e) {}
+      return next;
+    });
+  };
+
+  const handleUploadImageFromModal = (file: File) => {
+    if (!imageModal || !file) return;
+    const reader = new FileReader();
+    reader.onload = () => {
+      handleAssignSectionImage(imageModal.scope, imageModal.arrayKey, imageModal.index, String(reader.result || ''));
+      setImageModal(null);
+    };
+    reader.readAsDataURL(file);
+  };
 
   useEffect(() => {
     async function fetchData() {
@@ -91,8 +441,8 @@ export default function EditPage({ params }: { params: Promise<{ slug: string }>
     }
   };
 
-  const handleSaveDraft = async () => {
-    setSavingDraft(true);
+  const handleSave = async () => {
+    setSaving(true);
     setError('');
     setSaveMessage('');
 
@@ -102,60 +452,68 @@ export default function EditPage({ params }: { params: Promise<{ slug: string }>
     } catch (err: any) {
       setError(err.message);
     } finally {
-      setSavingDraft(false);
+      setSaving(false);
     }
   };
 
-  const handleGenerate = async () => {
-    setGenerating(true);
-    setError('');
-    setSaveMessage('');
-
-    try {
-      await saveSourceData();
-      router.push(`/preview/${slug}`);
-    } catch (err: any) {
-      setError(err.message);
-    } finally {
-      setGenerating(false);
-    }
-  };
-
-  // Scope-Aware Value Resolvers
-  const getNestedValue = (section: string, subsection: string, field: string) => {
+  // Scoped Overrides Helpers
+  const getOverrideValueRaw = (scope: string, path: string[]) => {
     if (!data) return '';
-    if (activeScope !== 'base') {
-      const templateOverride = data.templateOverrides?.[activeScope];
-      const val = templateOverride?.[section]?.[subsection]?.[field];
-      if (val !== undefined) return val;
+    let current = scope === 'base' ? data : data.templateOverrides?.[scope];
+    for (const p of path) {
+      current = current?.[p];
     }
-    return data[section]?.[subsection]?.[field] ?? '';
+    return current ?? '';
   };
 
-  const getArrayValue = (section: string, field: string) => {
+  const handleOverrideChange = (scope: string, path: string[], value: any) => {
+    setData((prev: any) => {
+      if (scope === 'base') {
+        const newData = { ...prev };
+        let current = newData;
+        for (let i = 0; i < path.length - 1; i++) {
+          current[path[i]] = { ...current[path[i]] };
+          current = current[path[i]];
+        }
+        current[path[path.length - 1]] = value;
+        return newData;
+      } else {
+        const overrides = prev.templateOverrides || {};
+        const templateData = overrides[scope] || {};
+        const newTemplateData = { ...templateData };
+        let current = newTemplateData;
+        for (let i = 0; i < path.length - 1; i++) {
+          current[path[i]] = { ...current[path[i]] };
+          current = current[path[i]];
+        }
+        current[path[path.length - 1]] = value;
+        return {
+          ...prev,
+          templateOverrides: {
+            ...overrides,
+            [scope]: newTemplateData
+          }
+        };
+      }
+    });
+  };
+
+  const getArrayString = (scope: string, path: string[]) => {
+    const val = getOverrideValueRaw(scope, path);
+    if (Array.isArray(val)) return val.join('\n');
+    return '';
+  };
+
+  const handleArrayStringChange = (scope: string, path: string[], value: string) => {
+    const arr = value.split('\n');
+    handleOverrideChange(scope, path, arr);
+  };
+
+  // Review overrides
+  const getReviewList = (scope: string) => {
     if (!data) return [];
-    if (activeScope !== 'base') {
-      const templateOverride = data.templateOverrides?.[activeScope];
-      const val = templateOverride?.[section]?.[field];
-      if (val !== undefined) return val;
-    }
-    return data[section]?.[field] ?? [];
-  };
-
-  const getReviewValue = (index: number, field: string) => {
-    if (!data) return '';
-    if (activeScope !== 'base') {
-      const templateOverride = data.templateOverrides?.[activeScope];
-      const val = templateOverride?.reviews?.[index]?.[field];
-      if (val !== undefined) return val;
-    }
-    return data.reviews?.[index]?.[field] ?? '';
-  };
-
-  const getReviewList = () => {
-    if (!data) return [];
-    if (activeScope !== 'base') {
-      const templateOverride = data.templateOverrides?.[activeScope];
+    if (scope !== 'base') {
+      const templateOverride = data.templateOverrides?.[scope];
       if (templateOverride?.reviews !== undefined) {
         return templateOverride.reviews;
       }
@@ -163,83 +521,18 @@ export default function EditPage({ params }: { params: Promise<{ slug: string }>
     return data.reviews || [];
   };
 
-  // Scope-Aware Edit Mutators
-  const handleScopeChange = (section: string, field: string, value: any) => {
-    if (activeScope === 'base') {
-      setData((prev: any) => ({
-        ...prev,
-        [section]: {
-          ...prev[section],
-          [field]: value
-        }
-      }));
-    } else {
-      setData((prev: any) => {
-        const overrides = prev.templateOverrides || {};
-        const templateData = overrides[activeScope] || {};
-        const sectionData = templateData[section] || {};
-        return {
-          ...prev,
-          templateOverrides: {
-            ...overrides,
-            [activeScope]: {
-              ...templateData,
-              [section]: {
-                ...sectionData,
-                [field]: value
-              }
-            }
-          }
-        };
-      });
+  const getReviewValue = (scope: string, index: number, field: string) => {
+    if (!data) return '';
+    if (scope !== 'base') {
+      const templateOverride = data.templateOverrides?.[scope];
+      const val = templateOverride?.reviews?.[index]?.[field];
+      if (val !== undefined) return val;
     }
+    return data.reviews?.[index]?.[field] ?? '';
   };
 
-  const handleScopeNestedChange = (section: string, subsection: string, field: string, value: any) => {
-    if (activeScope === 'base') {
-      setData((prev: any) => ({
-        ...prev,
-        [section]: {
-          ...prev[section],
-          [subsection]: {
-            ...prev[section][subsection],
-            [field]: value
-          }
-        }
-      }));
-    } else {
-      setData((prev: any) => {
-        const overrides = prev.templateOverrides || {};
-        const templateData = overrides[activeScope] || {};
-        const sectionData = templateData[section] || {};
-        const subData = sectionData[subsection] || {};
-        return {
-          ...prev,
-          templateOverrides: {
-            ...overrides,
-            [activeScope]: {
-              ...templateData,
-              [section]: {
-                ...sectionData,
-                [subsection]: {
-                  ...subData,
-                  [field]: value
-                }
-              }
-            }
-          }
-        };
-      });
-    }
-  };
-
-  const handleScopeArrayChange = (section: string, field: string, value: string) => {
-    const arr = value.split('\n');
-    handleScopeChange(section, field, arr);
-  };
-
-  const handleScopeReviewChange = (index: number, field: string, value: string) => {
-    if (activeScope === 'base') {
+  const handleScopeReviewChange = (scope: string, index: number, field: string, value: string) => {
+    if (scope === 'base') {
       setData((prev: any) => {
         const reviews = [...(prev.reviews || [])];
         reviews[index] = { ...reviews[index], [field]: value };
@@ -248,14 +541,14 @@ export default function EditPage({ params }: { params: Promise<{ slug: string }>
     } else {
       setData((prev: any) => {
         const overrides = prev.templateOverrides || {};
-        const templateData = overrides[activeScope] || {};
+        const templateData = overrides[scope] || {};
         const reviews = [...(templateData.reviews || prev.reviews || [])];
         reviews[index] = { ...reviews[index], [field]: value };
         return {
           ...prev,
           templateOverrides: {
             ...overrides,
-            [activeScope]: {
+            [scope]: {
               ...templateData,
               reviews
             }
@@ -265,8 +558,8 @@ export default function EditPage({ params }: { params: Promise<{ slug: string }>
     }
   };
 
-  const addScopeReview = () => {
-    if (activeScope === 'base') {
+  const addScopeReview = (scope: string) => {
+    if (scope === 'base') {
       setData((prev: any) => ({
         ...prev,
         reviews: [...(prev.reviews || []), { author: '', rating: '5', text: '' }]
@@ -274,14 +567,14 @@ export default function EditPage({ params }: { params: Promise<{ slug: string }>
     } else {
       setData((prev: any) => {
         const overrides = prev.templateOverrides || {};
-        const templateData = overrides[activeScope] || {};
+        const templateData = overrides[scope] || {};
         const reviews = [...(templateData.reviews || prev.reviews || [])];
         reviews.push({ author: '', rating: '5', text: '' });
         return {
           ...prev,
           templateOverrides: {
             ...overrides,
-            [activeScope]: {
+            [scope]: {
               ...templateData,
               reviews
             }
@@ -291,8 +584,8 @@ export default function EditPage({ params }: { params: Promise<{ slug: string }>
     }
   };
 
-  const removeScopeReview = (index: number) => {
-    if (activeScope === 'base') {
+  const removeScopeReview = (scope: string, index: number) => {
+    if (scope === 'base') {
       setData((prev: any) => {
         const reviews = [...(prev.reviews || [])];
         reviews.splice(index, 1);
@@ -301,14 +594,14 @@ export default function EditPage({ params }: { params: Promise<{ slug: string }>
     } else {
       setData((prev: any) => {
         const overrides = prev.templateOverrides || {};
-        const templateData = overrides[activeScope] || {};
+        const templateData = overrides[scope] || {};
         const reviews = [...(templateData.reviews || prev.reviews || [])];
         reviews.splice(index, 1);
         return {
           ...prev,
           templateOverrides: {
             ...overrides,
-            [activeScope]: {
+            [scope]: {
               ...templateData,
               reviews
             }
@@ -318,15 +611,52 @@ export default function EditPage({ params }: { params: Promise<{ slug: string }>
     }
   };
 
-  // Section Image Assignment Logic
-  const handleAssignSectionImage = (arrayKey: 'clinicImages' | 'otherImages', index: number, imageUrl: string) => {
+  // Theme Section Images Resolver & Mutator
+  const getSectionImageValueRaw = (scope: string, arrayKey: 'clinicImages' | 'otherImages', index: number) => {
+    if (!data) return '';
+    if (scope === 'base') {
+      return data.media?.[arrayKey]?.[index] ?? '';
+    }
+    const templateOverride = data.templateOverrides?.[scope];
+    return templateOverride?.media?.[arrayKey]?.[index] ?? '';
+  };
+
+  const getSectionImageValue = (scope: string, arrayKey: 'clinicImages' | 'otherImages', index: number) => {
+    if (!data) return '';
+    if (scope === 'base') {
+      return data.media?.[arrayKey]?.[index] ?? '';
+    }
+    const templateOverride = data.templateOverrides?.[scope];
+    const val = templateOverride?.media?.[arrayKey]?.[index];
+    if (val !== undefined && val !== '') return val;
+    return data.media?.[arrayKey]?.[index] ?? '';
+  };
+
+  const handleAssignSectionImage = (scope: string, arrayKey: 'clinicImages' | 'otherImages', index: number, imageUrl: string) => {
     setData((prev: any) => {
+      if (scope === 'base') {
+        const mediaData = prev.media || {};
+        const currentArray = [...(mediaData[arrayKey] || [])];
+
+        while (currentArray.length <= index) {
+          currentArray.push('');
+        }
+        currentArray[index] = imageUrl;
+
+        return {
+          ...prev,
+          media: {
+            ...mediaData,
+            [arrayKey]: currentArray
+          }
+        };
+      }
+
       const overrides = prev.templateOverrides || {};
-      const templateData = overrides[activeScope] || {};
+      const templateData = overrides[scope] || {};
       const mediaData = templateData.media || {};
       const currentArray = [...(mediaData[arrayKey] || prev.media?.[arrayKey] || [])];
       
-      // Pad array if index is larger than size
       while (currentArray.length <= index) {
         currentArray.push('');
       }
@@ -336,7 +666,7 @@ export default function EditPage({ params }: { params: Promise<{ slug: string }>
         ...prev,
         templateOverrides: {
           ...overrides,
-          [activeScope]: {
+          [scope]: {
             ...templateData,
             media: {
               ...mediaData,
@@ -348,15 +678,132 @@ export default function EditPage({ params }: { params: Promise<{ slug: string }>
     });
   };
 
-  const getSectionImageValue = (arrayKey: 'clinicImages' | 'otherImages', index: number) => {
-    if (!data) return '';
-    const templateOverride = data.templateOverrides?.[activeScope];
-    const val = templateOverride?.media?.[arrayKey]?.[index];
-    if (val !== undefined && val !== '') return val;
-    return data.media?.[arrayKey]?.[index] ?? '';
+  const getEffectiveValueRaw = (scope: string, path: string[]) => {
+    if (scope === 'base') return getOverrideValueRaw('base', path);
+
+    const overrideValue = getOverrideValueRaw(scope, path);
+    if (Array.isArray(overrideValue)) {
+      return overrideValue.length > 0 ? overrideValue : getOverrideValueRaw('base', path);
+    }
+    if (overrideValue !== undefined && overrideValue !== null && overrideValue !== '') {
+      return overrideValue;
+    }
+    return getOverrideValueRaw('base', path);
   };
 
-  // Stored Image Pool
+  const getCanvasElementValue = (scope: string, element: SchemaElement) => {
+    if (element.type === 'image') {
+      const { arrayKey, index } = element.imageConfig;
+      return getSectionImageValue(scope, arrayKey, index);
+    }
+
+    const raw = getEffectiveValueRaw(scope, element.path);
+    if (Array.isArray(raw)) return raw.join('\n');
+    return String(raw || '');
+  };
+
+  const getCanvasElementRawValue = (scope: string, element: SchemaElement) => {
+    if (element.type === 'image') {
+      const { arrayKey, index } = element.imageConfig;
+      return getSectionImageValueRaw(scope, arrayKey, index);
+    }
+
+    const raw = getOverrideValueRaw(scope, element.path);
+    if (Array.isArray(raw)) return raw.join('\n');
+    return String(raw || '');
+  };
+
+  const updateCanvasElementValue = (scope: string, element: SchemaElement, value: string) => {
+    if (element.type === 'image') {
+      const { arrayKey, index } = element.imageConfig;
+      handleAssignSectionImage(scope, arrayKey, index, value);
+      return;
+    }
+
+    if (element.type === 'list') {
+      handleArrayStringChange(scope, element.path, value);
+      return;
+    }
+
+    handleOverrideChange(scope, element.path, value);
+  };
+
+  const clearCanvasElementOverride = (scope: string, element: SchemaElement) => {
+    if (scope === 'base') return;
+
+    if (element.type === 'image') {
+      const { arrayKey, index } = element.imageConfig;
+      handleAssignSectionImage(scope, arrayKey, index, '');
+      return;
+    }
+
+    handleOverrideChange(scope, element.path, element.type === 'list' ? [] : '');
+  };
+
+  useEffect(() => {
+    if (imageModal && imageModal.isOpen) {
+      const currentUrl = getSectionImageValue(imageModal.scope, imageModal.arrayKey, imageModal.index);
+      setPreviewImage(currentUrl);
+    } else {
+      setPreviewImage(null);
+    }
+  }, [imageModal, data]);
+
+  const getImageAltValue = (scope: string, arrayKey: 'clinicImages' | 'otherImages', index: number, fallback: string) => {
+    if (!data) return fallback;
+    const altMap = scope === 'base'
+      ? data.mediaAlt
+      : data.templateOverrides?.[scope]?.mediaAlt;
+    return altMap?.[arrayKey]?.[index] || fallback;
+  };
+
+  const handleImageAltChange = (scope: string, arrayKey: 'clinicImages' | 'otherImages', index: number, alt: string) => {
+    setData((prev: any) => {
+      if (scope === 'base') {
+        const mediaAlt = prev.mediaAlt || {};
+        return {
+          ...prev,
+          mediaAlt: {
+            ...mediaAlt,
+            [arrayKey]: {
+              ...(mediaAlt[arrayKey] || {}),
+              [index]: alt
+            }
+          }
+        };
+      }
+
+      const overrides = prev.templateOverrides || {};
+      const templateData = overrides[scope] || {};
+      const mediaAlt = templateData.mediaAlt || {};
+      return {
+        ...prev,
+        templateOverrides: {
+          ...overrides,
+          [scope]: {
+            ...templateData,
+            mediaAlt: {
+              ...mediaAlt,
+              [arrayKey]: {
+                ...(mediaAlt[arrayKey] || {}),
+                [index]: alt
+              }
+            }
+          }
+        }
+      };
+    });
+  };
+
+  const handleCanvasImageUpload = (scope: string, element: SchemaElement, file?: File) => {
+    if (!file || element.type !== 'image') return;
+
+    const reader = new FileReader();
+    reader.onload = () => updateCanvasElementValue(scope, element, String(reader.result || ''));
+    reader.readAsDataURL(file);
+  };
+
+  // Stored Image Pool Functions
   const getAllAvailableImages = () => {
     if (!data) return [];
     return Array.from(new Set([
@@ -399,7 +846,6 @@ export default function EditPage({ params }: { params: Promise<{ slug: string }>
       const img = sourceArray[index];
       if (!img) return prev;
       
-      // Move from source array to hero images
       sourceArray.splice(index, 1);
       const clinicImages = [...(prev.media?.clinicImages || [])];
       if (!clinicImages.includes(img)) {
@@ -417,455 +863,1302 @@ export default function EditPage({ params }: { params: Promise<{ slug: string }>
     });
   };
 
-  if (loading) return <div className="h-screen flex items-center justify-center bg-gray-50"><Loader2 className="animate-spin text-blue-500 h-8 w-8" /></div>;
-  if (error) return <div className="p-8 text-red-500 bg-gray-50 min-h-screen">Error: {error}</div>;
+  if (loading) {
+    return (
+      <div className="h-screen flex flex-col items-center justify-center bg-slate-50 gap-4">
+        <Loader2 className="animate-spin text-indigo-600 h-10 w-10" />
+        <span className="text-sm font-semibold text-slate-500">Loading Configuration Builder...</span>
+      </div>
+    );
+  }
+  
+  if (error) {
+    return <div className="p-8 text-rose-500 bg-slate-50 min-h-screen font-bold font-sans">Error: {error}</div>;
+  }
+  
   if (!data) return null;
 
-  const currentTemplateSections = TEMPLATE_IMAGE_SECTIONS[activeScope] || [];
+  const canvasSchema = canvasScope === 'base' ? { pages: SHARED_PAGES } : TEMPLATE_SCHEMAS[canvasScope];
+  const canvasPage = canvasSchema.pages.find(page => page.id === canvasPageId) || canvasSchema.pages[0];
+  const selectedCanvasSection = canvasPage.sections[canvasSelection.sectionIndex] || canvasPage.sections[0];
+  const selectedCanvasElement = selectedCanvasSection?.elements[canvasSelection.elementIndex] || selectedCanvasSection?.elements[0];
+  const selectedImageConfig = selectedCanvasElement?.type === 'image' ? selectedCanvasElement.imageConfig : null;
 
   return (
-    <div className="min-h-screen bg-gray-50 p-4 md:p-8 flex flex-col items-center">
-      <div className="w-full max-w-5xl bg-white p-6 md:p-10 rounded-xl shadow-lg border border-gray-100 flex flex-col gap-8">
+    <div className="min-h-screen bg-slate-50/50 p-4 md:p-8 flex flex-col items-center font-sans">
+      <div className="w-full max-w-5xl flex flex-col gap-8">
         
-        {/* Editor Header */}
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 border-b border-gray-100 pb-6">
+        {/* Editor Sticky Header */}
+        <div className="bg-white/95 backdrop-blur-md sticky top-0 z-40 p-5 rounded-2xl border border-slate-205 shadow-sm flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
           <div>
-            <h1 className="text-3xl font-bold text-gray-800 flex items-center gap-2">
-              <Settings2 className="h-7 w-7 text-blue-500" />
-              Configure Website
+            <h1 className="text-2xl md:text-3xl font-extrabold text-slate-900 flex items-center gap-2.5">
+              <Settings2 className="h-7 w-7 text-indigo-650" />
+              Website Editor
             </h1>
-            <p className="text-gray-500 text-sm mt-1">Refine the clinic data and setup template-specific overrides.</p>
+            <p className="text-slate-500 text-xs md:text-sm mt-1">
+              Refine global studio information, manage stock media, and customize individual theme overrides.
+            </p>
           </div>
-          <div className="w-full md:w-auto flex flex-col sm:flex-row gap-3">
-            <button
-              onClick={handleSaveDraft}
-              disabled={savingDraft || generating}
-              className="flex items-center py-3 px-6 rounded-lg shadow-sm text-sm font-semibold text-gray-800 bg-gray-100 hover:bg-gray-200 disabled:bg-gray-100 disabled:text-gray-400 transition-all justify-center"
+          <div className="w-full md:w-auto flex gap-3 shrink-0">
+            <a
+              href={`/preview/${slug}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex-1 md:flex-initial flex items-center justify-center py-2.5 px-5 rounded-xl text-sm font-semibold text-slate-700 bg-white border border-slate-200 hover:bg-slate-50 active:bg-slate-100 disabled:opacity-50 transition-all shadow-xs gap-2"
             >
-              {savingDraft && <Loader2 className="animate-spin -ml-1 mr-2 h-5 w-5" />}
-              Save Changes
-            </button>
+              <Eye className="w-4 h-4 text-slate-500" />
+              View Site
+            </a>
 
             <button
-              onClick={handleGenerate}
-              disabled={savingDraft || generating}
-              className="flex items-center py-3 px-8 rounded-lg shadow-md text-sm font-bold text-white bg-blue-600 hover:bg-blue-700 disabled:bg-blue-300 transition-all justify-center"
+              onClick={handleSave}
+              disabled={saving}
+              className="flex-1 md:flex-initial flex items-center justify-center py-2.5 px-6 rounded-xl text-sm font-bold text-white bg-indigo-600 hover:bg-indigo-700 disabled:opacity-50 transition-all shadow-md shadow-indigo-600/10"
             >
-              {generating && <Loader2 className="animate-spin -ml-1 mr-2 h-5 w-5" />}
-              Save & Open Preview
+              {saving && <Loader2 className="animate-spin -ml-1 mr-2 h-4 w-4" />}
+              Save
             </button>
           </div>
         </div>
 
-        {/* Global Save Messages */}
+        {/* Global Save Messages / Errors */}
         {saveMessage && (
-          <div className="rounded-lg border border-green-200 bg-green-50 px-4 py-3 text-sm font-medium text-green-700">
-            {saveMessage}
+          <div className="rounded-xl border border-emerald-100 bg-emerald-50 px-4 py-3 text-sm font-medium text-emerald-800 flex items-center gap-2 shadow-xs animate-in fade-in duration-200">
+            <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
+            <span>{saveMessage}</span>
+          </div>
+        )}
+        {error && (
+          <div className="rounded-xl border border-rose-100 bg-rose-50 px-4 py-3 text-sm font-medium text-rose-800 flex items-center gap-2 shadow-xs animate-in fade-in duration-200">
+            <span className="w-2 h-2 rounded-full bg-rose-500 shrink-0" />
+            <span>{error}</span>
           </div>
         )}
 
-        {/* Active Edit Scope Selection Selector Banner */}
-        <div className="bg-blue-50/70 p-6 rounded-xl border border-blue-100 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <div className="flex items-center gap-3">
-            <Layout className="w-6 h-6 text-blue-600 shrink-0" />
-            <div>
-              <h3 className="font-bold text-blue-900 text-sm">Active Editing Scope</h3>
-              <p className="text-blue-700 text-xs mt-0.5">Select if you want to edit base defaults or overrides specific to an individual template.</p>
+        {/* ========================================================
+            VISUAL BUSINESS TEMPLATE EDITOR
+           ======================================================== */}
+        <div className="bg-white rounded-2xl border border-slate-200 shadow-md shadow-slate-100/50 overflow-hidden">
+          <div className="bg-slate-950 text-white p-6 md:p-8 flex flex-col gap-6">
+            <div className="flex flex-col lg:flex-row lg:items-start justify-between gap-5">
+              <div className="space-y-2">
+                <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-emerald-500/15 text-emerald-300 text-xs font-bold uppercase tracking-wider">
+                  <Layout className="w-3.5 h-3.5" /> Business Version Editor
+                </div>
+                <h2 className="text-2xl md:text-3xl font-extrabold tracking-tight">Template canvas for this business</h2>
+                <p className="text-slate-400 text-sm max-w-3xl">
+                  Edits here are saved into this slug&apos;s source data. Template selections write to <span className="font-mono text-slate-200">templateOverrides</span>, so the global template code stays untouched.
+                </p>
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 min-w-0 lg:min-w-[420px]">
+                <label className="space-y-1.5">
+                  <span className="block text-[10px] font-extrabold uppercase tracking-wider text-slate-400">Edit Scope</span>
+                  <select
+                    value={canvasScope}
+                    onChange={(e) => {
+                      setCanvasScope(e.target.value);
+                      setCanvasPageId('home');
+                      setCanvasSelection({ sectionIndex: 0, elementIndex: 0 });
+                    }}
+                    className="w-full bg-slate-900 border border-slate-700 text-white rounded-xl px-3 py-2.5 text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-emerald-400"
+                  >
+                    <option value="base">Business Defaults</option>
+                    {TEMPLATE_OPTIONS.filter(opt => opt.id !== 'base').map(opt => (
+                      <option key={opt.id} value={opt.id}>{opt.name.split(' (')[0]}</option>
+                    ))}
+                  </select>
+                </label>
+
+                <label className="space-y-1.5">
+                  <span className="block text-[10px] font-extrabold uppercase tracking-wider text-slate-400">Page</span>
+                  <select
+                    value={canvasPage.id}
+                    onChange={(e) => {
+                      setCanvasPageId(e.target.value);
+                      setCanvasSelection({ sectionIndex: 0, elementIndex: 0 });
+                    }}
+                    className="w-full bg-slate-900 border border-slate-700 text-white rounded-xl px-3 py-2.5 text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-emerald-400"
+                  >
+                    {canvasSchema.pages.map(page => (
+                      <option key={page.id} value={page.id}>{page.label}</option>
+                    ))}
+                  </select>
+                </label>
+              </div>
+            </div>
+
+            <div className="rounded-xl border border-emerald-400/20 bg-emerald-400/10 px-4 py-3 text-xs text-emerald-100">
+              {canvasScope === 'base'
+                ? 'You are editing this business default content and default stock image slots. All templates can fall back to these values.'
+                : `You are editing only this business version of ${canvasScope}. Empty template fields continue to fall back to the business defaults.`}
             </div>
           </div>
-          
-          <div className="w-full sm:w-auto">
-            <select
-              value={activeScope}
-              onChange={(e) => {
-                setActiveScope(e.target.value);
-                setSaveMessage('');
-              }}
-              className="w-full sm:w-80 bg-white border-2 border-blue-200 hover:border-blue-400 focus:outline-none focus:border-blue-500 rounded-lg px-4 py-2.5 text-sm font-semibold text-gray-800 shadow-sm cursor-pointer"
-            >
-              {TEMPLATE_OPTIONS.map((opt) => (
-                <option key={opt.id} value={opt.id}>
-                  {opt.name}
-                </option>
-              ))}
-            </select>
+
+          <div className="grid grid-cols-1 xl:grid-cols-[220px_minmax(0,1fr)_300px] bg-slate-50">
+            <aside className="border-b xl:border-b-0 xl:border-r border-slate-200 bg-white p-4">
+              <div className="flex items-center justify-between mb-3">
+                <h3 className="text-xs font-extrabold uppercase tracking-wider text-slate-600">Sections</h3>
+                <span className="text-[10px] font-bold text-slate-400">{canvasPage.sections.length} total</span>
+              </div>
+              <div className="space-y-2">
+                {canvasPage.sections.map((section, sectionIndex) => (
+                  <button
+                    key={`${canvasPage.id}-${section.label}`}
+                    type="button"
+                    onClick={() => setCanvasSelection({ sectionIndex, elementIndex: 0 })}
+                    className={`w-full text-left rounded-xl border px-3 py-3 transition-all ${
+                      canvasSelection.sectionIndex === sectionIndex
+                        ? 'border-emerald-500 bg-emerald-50 shadow-xs'
+                        : 'border-slate-200 bg-white hover:border-slate-300'
+                    }`}
+                  >
+                    <span className="block text-[10px] font-extrabold text-slate-400 uppercase tracking-wider">Section {sectionIndex + 1}</span>
+                    <span className="block text-xs font-bold text-slate-800 mt-1">{section.label}</span>
+                    <span className="block text-[11px] text-slate-500 mt-1">{section.elements.length} editable elements</span>
+                  </button>
+                ))}
+              </div>
+              <div className="mt-4 grid grid-cols-2 gap-2">
+                <button
+                  type="button"
+                  disabled={canvasSelection.sectionIndex === 0}
+                  className="flex items-center justify-center gap-1 rounded-lg border border-slate-200 px-2 py-2 text-[10px] font-bold text-slate-500 disabled:opacity-40"
+                  title="Section order is shown here for editing orientation. Template code controls final layout order."
+                >
+                  <ArrowUp className="w-3.5 h-3.5" /> Up
+                </button>
+                <button
+                  type="button"
+                  disabled={canvasSelection.sectionIndex >= canvasPage.sections.length - 1}
+                  className="flex items-center justify-center gap-1 rounded-lg border border-slate-200 px-2 py-2 text-[10px] font-bold text-slate-500 disabled:opacity-40"
+                  title="Section order is shown here for editing orientation. Template code controls final layout order."
+                >
+                  <ArrowDown className="w-3.5 h-3.5" /> Down
+                </button>
+              </div>
+            </aside>
+
+            <section className="p-4 md:p-6 min-w-0">
+              <div className="rounded-2xl border border-slate-200 bg-white overflow-hidden shadow-sm">
+                <div className="flex items-center justify-between gap-3 bg-slate-900 text-white px-4 py-3">
+                  <div className="flex items-center gap-2 text-xs font-bold">
+                    <Eye className="w-4 h-4 text-emerald-300" />
+                    Canvas Preview / {canvasPage.label}
+                  </div>
+                  <span className="text-[10px] font-bold uppercase tracking-wider text-slate-400">{canvasScope === 'base' ? 'Business Defaults' : canvasScope}</span>
+                </div>
+
+                <div className="bg-white">
+                  {canvasPage.sections.map((section, sectionIndex) => (
+                    <div
+                      key={`${section.label}-${sectionIndex}`}
+                      onClick={() => setCanvasSelection({ sectionIndex, elementIndex: 0 })}
+                      className={`relative border-b border-slate-100 p-5 md:p-7 cursor-pointer transition-all ${
+                        canvasSelection.sectionIndex === sectionIndex
+                          ? 'ring-2 ring-inset ring-emerald-500 bg-emerald-50/30'
+                          : 'hover:bg-slate-50'
+                      }`}
+                    >
+                      <div className="mb-4 flex items-center justify-between gap-3">
+                        <div>
+                          <p className="text-[10px] uppercase tracking-wider font-extrabold text-slate-400">Section {sectionIndex + 1}</p>
+                          <h4 className="text-sm font-extrabold text-slate-900">{section.label}</h4>
+                        </div>
+                        <span className="text-[10px] font-bold rounded-full bg-white border border-slate-200 px-2.5 py-1 text-slate-500">
+                          {section.elements.length} nodes
+                        </span>
+                      </div>
+
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                        {section.elements.map((element, elementIndex) => {
+                          const isSelected = canvasSelection.sectionIndex === sectionIndex && canvasSelection.elementIndex === elementIndex;
+
+                          if (element.type === 'image') {
+                            const { arrayKey, index } = element.imageConfig;
+                            const currentUrl = getSectionImageValue(canvasScope, arrayKey, index);
+                            const altText = getImageAltValue(canvasScope, arrayKey, index, element.label);
+
+                            return (
+                              <button
+                                key={`${element.label}-${elementIndex}`}
+                                type="button"
+                                onClick={(e) => {
+                                  e.stopPropagation();
+                                  setCanvasSelection({ sectionIndex, elementIndex });
+                                }}
+                                className={`text-left rounded-xl border overflow-hidden transition-all ${
+                                  isSelected ? 'border-emerald-500 ring-2 ring-emerald-500/20' : 'border-slate-200 hover:border-emerald-300'
+                                }`}
+                              >
+                                <div className="aspect-video bg-slate-100">
+                                  {currentUrl ? (
+                                    <img src={currentUrl} alt={altText} className="w-full h-full object-cover" />
+                                  ) : (
+                                    <div className="w-full h-full flex items-center justify-center text-xs text-slate-400">No image assigned</div>
+                                  )}
+                                </div>
+                                <div className="p-3 bg-white">
+                                  <p className="text-[10px] font-extrabold uppercase tracking-wider text-slate-400">Image</p>
+                                  <p className="text-xs font-bold text-slate-800 mt-1">{element.label}</p>
+                                </div>
+                              </button>
+                            );
+                          }
+
+                          const value = getCanvasElementValue(canvasScope, element);
+                          return (
+                            <button
+                              key={`${element.label}-${elementIndex}`}
+                              type="button"
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                setCanvasSelection({ sectionIndex, elementIndex });
+                              }}
+                              className={`text-left rounded-xl border bg-white p-4 transition-all ${
+                                isSelected ? 'border-emerald-500 ring-2 ring-emerald-500/20' : 'border-slate-200 hover:border-emerald-300'
+                              } ${element.type === 'textarea' || element.type === 'list' ? 'md:col-span-2' : ''}`}
+                            >
+                              <p className="text-[10px] font-extrabold uppercase tracking-wider text-slate-400">{element.type}</p>
+                              <p className="text-xs font-bold text-slate-800 mt-1">{element.label}</p>
+                              <p className={`mt-2 text-sm text-slate-700 ${element.type === 'text' ? 'font-semibold' : 'leading-6 whitespace-pre-line'}`}>
+                                {value || <span className="italic text-slate-400">Empty</span>}
+                              </p>
+                            </button>
+                          );
+                        })}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </section>
+
+            <aside className="border-t xl:border-t-0 xl:border-l border-slate-200 bg-white p-4">
+              <div className="flex items-start justify-between gap-3 mb-4">
+                <div>
+                  <h3 className="text-xs font-extrabold uppercase tracking-wider text-slate-600">Element Inspector</h3>
+                  <p className="text-xs text-slate-500 mt-1">{selectedCanvasSection?.label}</p>
+                </div>
+                {canvasScope !== 'base' && selectedCanvasElement && (
+                  <button
+                    type="button"
+                    onClick={() => clearCanvasElementOverride(canvasScope, selectedCanvasElement)}
+                    className="flex items-center gap-1 rounded-lg border border-slate-200 px-2 py-1.5 text-[10px] font-bold text-slate-600 hover:bg-slate-50"
+                    title="Clear this template override and use the business default value"
+                  >
+                    <RotateCcw className="w-3.5 h-3.5" /> Default
+                  </button>
+                )}
+              </div>
+
+              {selectedCanvasElement && (
+                <div className="space-y-4">
+                  <div className="rounded-xl border border-slate-200 bg-slate-50 p-3">
+                    <p className="text-[10px] font-extrabold uppercase tracking-wider text-slate-400">Selected Node</p>
+                    <p className="mt-1 text-sm font-bold text-slate-900">{selectedCanvasElement.label}</p>
+                    <p className="mt-1 text-xs text-slate-500">
+                      {selectedCanvasElement.type === 'image' ? 'Image source + alt text' : `Text path: ${selectedCanvasElement.path.join('.')}`}
+                    </p>
+                  </div>
+
+                  {selectedCanvasElement.type === 'image' && selectedImageConfig ? (
+                    <div className="space-y-4">
+                      <div className="aspect-video rounded-xl overflow-hidden border border-slate-200 bg-slate-100">
+                        {getSectionImageValue(canvasScope, selectedImageConfig.arrayKey, selectedImageConfig.index) ? (
+                          <img
+                            src={getSectionImageValue(canvasScope, selectedImageConfig.arrayKey, selectedImageConfig.index)}
+                            alt={getImageAltValue(canvasScope, selectedImageConfig.arrayKey, selectedImageConfig.index, selectedCanvasElement.label)}
+                            className="w-full h-full object-cover"
+                          />
+                        ) : (
+                          <div className="w-full h-full flex items-center justify-center text-xs text-slate-400">No image assigned</div>
+                        )}
+                      </div>
+
+                      <label className="space-y-1.5 block">
+                        <span className="text-[10px] font-extrabold uppercase tracking-wider text-slate-500">Choose from business & stock image pool</span>
+                        <button
+                          type="button"
+                          onClick={() => setImageModal({
+                            isOpen: true,
+                            scope: canvasScope,
+                            arrayKey: selectedImageConfig.arrayKey,
+                            index: selectedImageConfig.index,
+                            label: selectedCanvasElement.label
+                          })}
+                          className="w-full flex items-center justify-between text-slate-700 bg-white border border-slate-300 hover:border-slate-400 rounded-xl p-3 text-xs hover:bg-slate-50 active:bg-slate-100 transition-all font-semibold focus:outline-none focus:ring-2 focus:ring-emerald-500"
+                        >
+                          <span className="truncate max-w-[180px]">
+                            {getCanvasElementRawValue(canvasScope, selectedCanvasElement)
+                              ? `Selected Image (${getCanvasElementRawValue(canvasScope, selectedCanvasElement).substring(0, 20)}...)`
+                              : canvasScope !== 'base' ? 'Using Business Default' : 'Select an Image...'}
+                          </span>
+                          <span className="text-emerald-600 font-bold hover:underline shrink-0">Browse Gallery &rarr;</span>
+                        </button>
+                      </label>
+
+                      <label className="space-y-1.5 block">
+                        <span className="text-[10px] font-extrabold uppercase tracking-wider text-slate-500">Image URL</span>
+                        <input
+                          value={getCanvasElementValue(canvasScope, selectedCanvasElement)}
+                          onChange={(e) => updateCanvasElementValue(canvasScope, selectedCanvasElement, e.target.value.trim())}
+                          className="w-full text-slate-900 border border-slate-300 rounded-xl p-3 text-xs focus:ring-2 focus:ring-emerald-500 focus:outline-none"
+                          placeholder="Paste image URL"
+                        />
+                      </label>
+
+                      <label className="space-y-1.5 block">
+                        <span className="text-[10px] font-extrabold uppercase tracking-wider text-slate-500">Alt Text</span>
+                        <textarea
+                          rows={3}
+                          value={getImageAltValue(canvasScope, selectedImageConfig.arrayKey, selectedImageConfig.index, selectedCanvasElement.label)}
+                          onChange={(e) => handleImageAltChange(canvasScope, selectedImageConfig.arrayKey, selectedImageConfig.index, e.target.value)}
+                          className="w-full text-slate-900 border border-slate-300 rounded-xl p-3 text-xs focus:ring-2 focus:ring-emerald-500 focus:outline-none resize-none"
+                        />
+                      </label>
+
+                      <label className="flex cursor-pointer items-center justify-center gap-2 rounded-xl border border-dashed border-slate-300 bg-slate-50 px-4 py-3 text-xs font-bold text-slate-700 hover:bg-slate-100">
+                        <Upload className="w-4 h-4" />
+                        Upload for this business
+                        <input
+                          type="file"
+                          accept="image/*"
+                          onChange={(e) => handleCanvasImageUpload(canvasScope, selectedCanvasElement, e.target.files?.[0])}
+                          className="sr-only"
+                        />
+                      </label>
+                    </div>
+                  ) : (
+                    <label className="space-y-1.5 block">
+                      <span className="text-[10px] font-extrabold uppercase tracking-wider text-slate-500">Content</span>
+                      {selectedCanvasElement.type === 'text' ? (
+                        <input
+                          value={getCanvasElementValue(canvasScope, selectedCanvasElement)}
+                          onChange={(e) => updateCanvasElementValue(canvasScope, selectedCanvasElement, e.target.value)}
+                          className="w-full text-slate-900 border border-slate-300 rounded-xl p-3 text-sm focus:ring-2 focus:ring-emerald-500 focus:outline-none"
+                        />
+                      ) : (
+                        <textarea
+                          rows={selectedCanvasElement.type === 'list' ? 6 : 4}
+                          value={getCanvasElementValue(canvasScope, selectedCanvasElement)}
+                          onChange={(e) => updateCanvasElementValue(canvasScope, selectedCanvasElement, e.target.value)}
+                          className="w-full text-slate-900 border border-slate-300 rounded-xl p-3 text-sm focus:ring-2 focus:ring-emerald-500 focus:outline-none resize-none"
+                        />
+                      )}
+                    </label>
+                  )}
+                </div>
+              )}
+            </aside>
           </div>
         </div>
 
-        {activeScope !== 'base' && (
-          <div className="rounded-lg bg-amber-50 border border-amber-200 px-4 py-3 text-xs text-amber-800 font-medium flex items-center gap-2">
-            <span className="w-2 h-2 rounded-full bg-amber-500" />
-            <span>Currently editing overrides for <strong>{TEMPLATE_OPTIONS.find(t => t.id === activeScope)?.name.split(' (')[0]}</strong>. Empty fields will automatically fall back to Base Defaults.</span>
-          </div>
-        )}
-
-        {/* ── SECTION IMAGE ASSIGNMENT BOARD (Only for specific templates) ──── */}
-        {activeScope !== 'base' && currentTemplateSections.length > 0 && (
-          <div className="border border-gray-200 rounded-xl p-6 space-y-6">
-            <h2 className="text-lg font-bold text-gray-800 pb-2 border-b border-gray-100 flex items-center gap-2">
-              <Image className="w-5 h-5 text-blue-500" />
-              Theme Section Image Assigner
-            </h2>
-            <p className="text-xs text-gray-500 mt-1">Assign custom images from your scraped media pool directly to the layout sections of this theme.</p>
+        {/* ========================================================
+            1. GLOBAL DATA EDITOR (BASE CONFIG)
+           ======================================================== */}
+        <div className="bg-white rounded-2xl border border-slate-200 shadow-md shadow-slate-100/50 overflow-hidden">
+          <div className="bg-slate-900 text-white p-6 md:p-8 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+            <div className="space-y-1">
+              <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-indigo-500/20 text-indigo-300 text-xs font-bold uppercase tracking-wider">
+                <Globe className="w-3.5 h-3.5" /> Level 1
+              </div>
+              <h2 className="text-xl md:text-2xl font-bold tracking-tight">Global Data Editor</h2>
+              <p className="text-slate-400 text-xs md:text-sm">
+                These fields serve as baseline configurations and fallback values for all themes.
+              </p>
+            </div>
             
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {currentTemplateSections.map((sec) => {
-                const assignedUrl = getSectionImageValue(sec.arrayKey, sec.index);
+            {/* Global Tabs Nav */}
+            <div className="flex bg-slate-800 p-1 rounded-xl self-start sm:self-auto overflow-x-auto max-w-full">
+              {[
+                { id: 'info', label: 'Studio Info', icon: FileText },
+                { id: 'designer', label: 'Designer & Meta', icon: User },
+                { id: 'reviews', label: 'Reviews', icon: Star },
+                { id: 'media', label: 'Global Media Pool', icon: ImageIcon }
+              ].map((tab) => {
+                const Icon = tab.icon;
                 return (
-                  <div key={sec.key} className="p-4 bg-gray-50 rounded-xl border border-gray-200 flex flex-col justify-between gap-4">
-                    <div>
-                      <h4 className="text-sm font-bold text-gray-800">{sec.label}</h4>
-                      <span className="text-[10px] text-gray-500 font-mono block mt-0.5">resolves to [{sec.arrayKey}[{sec.index}]]</span>
-                    </div>
-
-                    {/* Preview Area */}
-                    <div className="aspect-video w-full rounded-lg bg-stone-900 border overflow-hidden relative flex items-center justify-center">
-                      {assignedUrl ? (
-                        <img src={assignedUrl} className="w-full h-full object-cover" alt={sec.label} />
-                      ) : (
-                        <span className="text-xs text-gray-400 italic">No custom image assigned (falls back to global)</span>
-                      )}
-                    </div>
-
-                    {/* Gallery Selector Dropdown */}
-                    <div className="space-y-2">
-                      <label className="block text-[11px] font-bold text-gray-600 uppercase">Select Scraped Image</label>
-                      <select
-                        value={assignedUrl}
-                        onChange={(e) => handleAssignSectionImage(sec.arrayKey, sec.index, e.target.value)}
-                        className="w-full text-xs text-gray-800 border bg-white rounded-lg p-2.5"
-                      >
-                        <option value="">-- Fallback to Global Defaults --</option>
-                        {getAllAvailableImages().map((src, sidx) => (
-                          <option key={sidx} value={src}>
-                            Scraped Image #{sidx + 1} ({src.substring(0, 45)}...)
-                          </option>
-                        ))}
-                      </select>
-
-                      <div className="pt-2">
-                        <label className="block text-[11px] font-bold text-gray-600 uppercase">Or Paste Custom Image URL</label>
-                        <input
-                          type="text"
-                          value={assignedUrl}
-                          placeholder="https://example.com/custom-image.jpg"
-                          onChange={(e) => handleAssignSectionImage(sec.arrayKey, sec.index, e.target.value.trim())}
-                          className="w-full text-xs border bg-white rounded-lg p-2.5 mt-1 focus:ring-1 focus:ring-blue-500 focus:outline-none"
-                        />
-                      </div>
-                    </div>
-                  </div>
+                  <button
+                    key={tab.id}
+                    onClick={() => setGlobalTab(tab.id as any)}
+                    className={`flex items-center gap-1.5 px-4 py-2 rounded-lg text-xs font-bold transition-all whitespace-nowrap ${
+                      globalTab === tab.id
+                        ? 'bg-slate-700 text-white shadow-xs'
+                        : 'text-slate-400 hover:text-slate-200'
+                    }`}
+                  >
+                    <Icon className="w-3.5 h-3.5" />
+                    {tab.label}
+                  </button>
                 );
               })}
             </div>
           </div>
-        )}
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
-          
-          {/* Column 1: Studio Data */}
-          <div className="space-y-5">
-            <h2 className="text-xl font-bold text-gray-800 pb-2 border-b border-gray-100 flex items-center gap-2">
-              <FileText className="w-5 h-5 text-blue-500" />
-              Studio Information
-            </h2>
-            
-            <div>
-              <label className="block text-sm font-semibold text-gray-700 mb-1">Studio Name</label>
-              <input 
-                className="w-full text-gray-900 border border-gray-300 rounded-lg p-2.5 text-sm bg-gray-50 focus:bg-white focus:ring-2 focus:ring-blue-500 focus:outline-none transition-colors" 
-                value={activeScope === 'base' ? (data.clinic?.name || '') : (data.templateOverrides?.[activeScope]?.clinic?.name ?? '')} 
-                placeholder={data.clinic?.name || ''}
-                onChange={e => handleScopeChange('clinic', 'name', e.target.value)} 
-              />
-            </div>
+          <div className="p-6 md:p-8">
+            {/* TAB: Studio Info */}
+            {globalTab === 'info' && (
+              <div className="space-y-6 max-w-3xl">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div className="space-y-2">
+                    <label className="text-xs font-extrabold uppercase tracking-wider text-slate-600 block">Studio Name</label>
+                    <input 
+                      type="text"
+                      className="w-full text-slate-900 border border-slate-300 rounded-xl p-3 text-sm focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 focus:outline-none transition-all shadow-xs" 
+                      value={getOverrideValueRaw('base', ['clinic', 'name'])} 
+                      onChange={e => handleOverrideChange('base', ['clinic', 'name'], e.target.value)} 
+                      placeholder="e.g. Artistry Interiors"
+                    />
+                  </div>
 
-            <div>
-              <label className="block text-sm font-semibold text-gray-700 mb-1">Tagline</label>
-              <input 
-                className="w-full text-gray-900 border border-gray-300 rounded-lg p-2.5 text-sm bg-gray-50 focus:bg-white focus:ring-2 focus:ring-blue-500 focus:outline-none transition-colors" 
-                value={activeScope === 'base' ? (data.clinic?.tagline || '') : (data.templateOverrides?.[activeScope]?.clinic?.tagline ?? '')} 
-                placeholder={data.clinic?.tagline || ''}
-                onChange={e => handleScopeChange('clinic', 'tagline', e.target.value)} 
-              />
-            </div>
+                  <div className="space-y-2">
+                    <label className="text-xs font-extrabold uppercase tracking-wider text-slate-600 block">Tagline</label>
+                    <input 
+                      type="text"
+                      className="w-full text-slate-900 border border-slate-300 rounded-xl p-3 text-sm focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 focus:outline-none transition-all shadow-xs" 
+                      value={getOverrideValueRaw('base', ['clinic', 'tagline'])} 
+                      onChange={e => handleOverrideChange('base', ['clinic', 'tagline'], e.target.value)} 
+                      placeholder="e.g. Crafting bespoke spaces"
+                    />
+                  </div>
+                </div>
 
-            <div>
-              <label className="block text-sm font-semibold text-gray-700 mb-1">Description</label>
-              <textarea 
-                className="w-full text-gray-900 border border-gray-300 rounded-lg p-2.5 text-sm bg-gray-50 focus:bg-white focus:ring-2 focus:ring-blue-500 focus:outline-none transition-colors resize-none" 
-                rows={4} 
-                value={activeScope === 'base' ? (data.clinic?.description || '') : (data.templateOverrides?.[activeScope]?.clinic?.description ?? '')} 
-                placeholder={data.clinic?.description || ''}
-                onChange={e => handleScopeChange('clinic', 'description', e.target.value)} 
-              />
-            </div>
+                <div className="space-y-2">
+                  <label className="text-xs font-extrabold uppercase tracking-wider text-slate-600 block">Studio Description / About</label>
+                  <textarea 
+                    className="w-full text-slate-900 border border-slate-300 rounded-xl p-3 text-sm focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 focus:outline-none transition-all shadow-xs resize-none" 
+                    rows={4} 
+                    value={getOverrideValueRaw('base', ['clinic', 'description'])} 
+                    onChange={e => handleOverrideChange('base', ['clinic', 'description'], e.target.value)} 
+                    placeholder="Provide a detailed description of your studio's design philosophy..."
+                  />
+                </div>
 
-            <div>
-              <label className="block text-sm font-semibold text-gray-700 mb-1">Phone Number</label>
-              <input 
-                className="w-full text-gray-900 border border-gray-300 rounded-lg p-2.5 text-sm bg-gray-50 focus:bg-white focus:ring-2 focus:ring-blue-500 focus:outline-none transition-colors" 
-                value={getNestedValue('clinic', 'contact', 'phone')} 
-                placeholder={data.clinic?.contact?.phone || ''}
-                onChange={e => handleScopeNestedChange('clinic', 'contact', 'phone', e.target.value)} 
-              />
-            </div>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div className="space-y-2">
+                    <label className="text-xs font-extrabold uppercase tracking-wider text-slate-600 block">Contact Phone Number</label>
+                    <div className="relative">
+                      <Phone className="absolute left-3.5 top-3.5 w-4 h-4 text-slate-400" />
+                      <input 
+                        type="text"
+                        className="w-full text-slate-900 border border-slate-300 rounded-xl pl-10 pr-4 py-3 text-sm focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 focus:outline-none transition-all shadow-xs" 
+                        value={getOverrideValueRaw('base', ['clinic', 'contact', 'phone'])} 
+                        onChange={e => handleOverrideChange('base', ['clinic', 'contact', 'phone'], e.target.value)} 
+                        placeholder="+91 98765 43210"
+                      />
+                    </div>
+                  </div>
 
-            <div>
-              <label className="block text-sm font-semibold text-gray-700 mb-1">Full Address</label>
-              <textarea 
-                className="w-full text-gray-900 border border-gray-300 rounded-lg p-2.5 text-sm bg-gray-50 focus:bg-white focus:ring-2 focus:ring-blue-500 focus:outline-none transition-colors resize-none" 
-                rows={2} 
-                value={getNestedValue('clinic', 'address', 'full')} 
-                placeholder={data.clinic?.address?.full || ''}
-                onChange={e => handleScopeNestedChange('clinic', 'address', 'full', e.target.value)} 
-              />
-            </div>
-          </div>
-
-          {/* Column 2: Business & Designer */}
-          <div className="space-y-5">
-            <h2 className="text-xl font-bold text-gray-800 pb-2 border-b border-gray-100 flex items-center gap-2">
-              <Star className="w-5 h-5 text-blue-500" />
-              Designer & Business Meta
-            </h2>
-            
-            <div className="flex gap-4">
-              <div className="flex-1">
-                <label className="block text-sm font-semibold text-gray-700 mb-1">Google Rating</label>
-                <input 
-                  className="w-full text-gray-900 border border-gray-300 rounded-lg p-2.5 text-sm bg-gray-50 focus:bg-white focus:ring-2 focus:ring-blue-500 focus:outline-none transition-colors" 
-                  value={activeScope === 'base' ? (data.business?.rating || '') : (data.templateOverrides?.[activeScope]?.business?.rating ?? '')} 
-                  placeholder={data.business?.rating || ''}
-                  onChange={e => handleScopeChange('business', 'rating', e.target.value)} 
-                />
+                  <div className="space-y-2">
+                    <label className="text-xs font-extrabold uppercase tracking-wider text-slate-600 block">Full Studio Address</label>
+                    <div className="relative">
+                      <MapPin className="absolute left-3.5 top-3.5 w-4 h-4 text-slate-400" />
+                      <input 
+                        type="text"
+                        className="w-full text-slate-900 border border-slate-300 rounded-xl pl-10 pr-4 py-3 text-sm focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 focus:outline-none transition-all shadow-xs" 
+                        value={getOverrideValueRaw('base', ['clinic', 'address', 'full'])} 
+                        onChange={e => handleOverrideChange('base', ['clinic', 'address', 'full'], e.target.value)} 
+                        placeholder="No. 12, Nungambakkam High Rd, Chennai"
+                      />
+                    </div>
+                  </div>
+                </div>
               </div>
-              <div className="flex-1">
-                <label className="block text-sm font-semibold text-gray-700 mb-1">Review Count</label>
-                <input 
-                  className="w-full text-gray-900 border border-gray-300 rounded-lg p-2.5 text-sm bg-gray-50 focus:bg-white focus:ring-2 focus:ring-blue-500 focus:outline-none transition-colors" 
-                  value={activeScope === 'base' ? (data.business?.reviewCount || '') : (data.templateOverrides?.[activeScope]?.business?.reviewCount ?? '')} 
-                  placeholder={data.business?.reviewCount || ''}
-                  onChange={e => handleScopeChange('business', 'reviewCount', e.target.value)} 
-                />
+            )}
+
+            {/* TAB: Designer & Meta */}
+            {globalTab === 'designer' && (
+              <div className="space-y-6 max-w-3xl">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                  <div className="space-y-2">
+                    <label className="text-xs font-extrabold uppercase tracking-wider text-slate-600 block">Lead Designer Name</label>
+                    <input 
+                      type="text"
+                      className="w-full text-slate-900 border border-slate-300 rounded-xl p-3 text-sm focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 focus:outline-none transition-all shadow-xs" 
+                      value={getOverrideValueRaw('base', ['doctor', 'name'])} 
+                      onChange={e => handleOverrideChange('base', ['doctor', 'name'], e.target.value)} 
+                      placeholder="e.g. Priya Raj"
+                    />
+                  </div>
+
+                  <div className="space-y-2">
+                    <label className="text-xs font-extrabold uppercase tracking-wider text-slate-600 block">Specialization</label>
+                    <input 
+                      type="text"
+                      className="w-full text-slate-900 border border-slate-300 rounded-xl p-3 text-sm focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 focus:outline-none transition-all shadow-xs" 
+                      value={getOverrideValueRaw('base', ['doctor', 'specialization'])} 
+                      onChange={e => handleOverrideChange('base', ['doctor', 'specialization'], e.target.value)} 
+                      placeholder="e.g. Interior Architect"
+                    />
+                  </div>
+
+                  <div className="space-y-2">
+                    <label className="text-xs font-extrabold uppercase tracking-wider text-slate-600 block">Experience Info</label>
+                    <input 
+                      type="text"
+                      className="w-full text-slate-900 border border-slate-300 rounded-xl p-3 text-sm focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 focus:outline-none transition-all shadow-xs" 
+                      value={getOverrideValueRaw('base', ['doctor', 'experience'])} 
+                      onChange={e => handleOverrideChange('base', ['doctor', 'experience'], e.target.value)} 
+                      placeholder="e.g. 8+ Years Experience"
+                    />
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div className="space-y-2">
+                    <label className="text-xs font-extrabold uppercase tracking-wider text-slate-600 block">Google Rating</label>
+                    <input 
+                      type="text"
+                      className="w-full text-slate-900 border border-slate-300 rounded-xl p-3 text-sm focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 focus:outline-none transition-all shadow-xs" 
+                      value={getOverrideValueRaw('base', ['business', 'rating'])} 
+                      onChange={e => handleOverrideChange('base', ['business', 'rating'], e.target.value)} 
+                      placeholder="e.g. 4.9"
+                    />
+                  </div>
+
+                  <div className="space-y-2">
+                    <label className="text-xs font-extrabold uppercase tracking-wider text-slate-600 block">Review Count</label>
+                    <input 
+                      type="text"
+                      className="w-full text-slate-900 border border-slate-300 rounded-xl p-3 text-sm focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 focus:outline-none transition-all shadow-xs" 
+                      value={getOverrideValueRaw('base', ['business', 'reviewCount'])} 
+                      onChange={e => handleOverrideChange('base', ['business', 'reviewCount'], e.target.value)} 
+                      placeholder="e.g. 142 Reviews"
+                    />
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div className="space-y-2">
+                    <label className="text-xs font-extrabold uppercase tracking-wider text-slate-600 block">Highlights (1 per line)</label>
+                    <textarea 
+                      className="w-full text-slate-900 border border-slate-300 rounded-xl p-3 text-sm focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 focus:outline-none transition-all shadow-xs resize-none" 
+                      rows={5} 
+                      value={getArrayString('base', ['business', 'highlights'])} 
+                      onChange={e => handleArrayStringChange('base', ['business', 'highlights'], e.target.value)} 
+                      placeholder="e.g. 100% Quality Guaranteed&#10;Bespoke Architecture..."
+                    />
+                  </div>
+
+                  <div className="space-y-2">
+                    <label className="text-xs font-extrabold uppercase tracking-wider text-slate-600 block">Services (1 per line)</label>
+                    <textarea 
+                      className="w-full text-slate-900 border border-slate-300 rounded-xl p-3 text-sm focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 focus:outline-none transition-all shadow-xs resize-none" 
+                      rows={5} 
+                      value={getArrayString('base', ['business', 'services'])} 
+                      onChange={e => handleArrayStringChange('base', ['business', 'services'], e.target.value)} 
+                      placeholder="e.g. Modular Kitchens&#10;Residential Renovations..."
+                    />
+                  </div>
+                </div>
               </div>
-            </div>
-            
-            <div>
-              <label className="block text-sm font-semibold text-gray-700 mb-1">Lead Designer Name</label>
-              <input 
-                className="w-full text-gray-900 border border-gray-300 rounded-lg p-2.5 text-sm bg-gray-50 focus:bg-white focus:ring-2 focus:ring-blue-500 focus:outline-none transition-colors" 
-                value={activeScope === 'base' ? (data.doctor?.name || '') : (data.templateOverrides?.[activeScope]?.doctor?.name ?? '')} 
-                placeholder={data.doctor?.name || ''}
-                onChange={e => handleScopeChange('doctor', 'name', e.target.value)} 
-              />
+            )}
+
+            {/* TAB: Reviews */}
+            {globalTab === 'reviews' && (
+              <div className="space-y-6">
+                <div className="flex justify-between items-center pb-3 border-b border-slate-100">
+                  <div>
+                    <h3 className="text-sm font-bold text-slate-800">Client Reviews</h3>
+                    <p className="text-slate-400 text-xs mt-0.5">Manage reviews showcased in global sections across layouts.</p>
+                  </div>
+                  <button 
+                    onClick={() => addScopeReview('base')} 
+                    className="flex items-center gap-1.5 text-xs bg-indigo-50 hover:bg-indigo-100 text-indigo-700 px-4 py-2.5 rounded-xl font-bold transition-all border border-indigo-100/50 shadow-xs"
+                  >
+                    <Plus className="w-3.5 h-3.5" /> Add Review
+                  </button>
+                </div>
+
+                {getReviewList('base').length > 0 ? (
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    {getReviewList('base').map((review: any, index: number) => (
+                      <div key={index} className="rounded-2xl border border-slate-200 bg-slate-50/50 p-5 relative group hover:border-slate-300 transition-colors">
+                        <div className="flex items-center justify-between mb-4">
+                          <span className="text-xs font-extrabold uppercase text-slate-400 tracking-wider">Review #{index + 1}</span>
+                          <button
+                            onClick={() => removeScopeReview('base', index)}
+                            className="inline-flex items-center gap-1 text-xs text-rose-600 hover:text-rose-700 hover:bg-rose-50 border border-transparent hover:border-rose-100 px-2.5 py-1.5 rounded-lg transition-all"
+                          >
+                            <Trash2 className="w-3.5 h-3.5" /> Remove
+                          </button>
+                        </div>
+
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
+                          <div className="space-y-1">
+                            <label className="text-[10px] font-bold text-slate-500 uppercase tracking-wider">Author Name</label>
+                            <input
+                              className="w-full text-slate-900 border border-slate-200 bg-white rounded-lg p-2.5 text-xs focus:ring-1 focus:ring-indigo-500 focus:outline-none"
+                              value={getReviewValue('base', index, 'author')}
+                              onChange={e => handleScopeReviewChange('base', index, 'author', e.target.value)}
+                              placeholder="Author name"
+                            />
+                          </div>
+
+                          <div className="space-y-1">
+                            <label className="text-[10px] font-bold text-slate-500 uppercase tracking-wider">Rating (1 to 5)</label>
+                            <input
+                              type="number"
+                              min={1}
+                              max={5}
+                              className="w-full text-slate-900 border border-slate-200 bg-white rounded-lg p-2.5 text-xs focus:ring-1 focus:ring-indigo-500 focus:outline-none"
+                              value={getReviewValue('base', index, 'rating')}
+                              onChange={e => handleScopeReviewChange('base', index, 'rating', e.target.value)}
+                              placeholder="5"
+                            />
+                          </div>
+                        </div>
+
+                        <div className="space-y-1">
+                          <label className="text-[10px] font-bold text-slate-500 uppercase tracking-wider">Feedback Content</label>
+                          <textarea
+                            rows={3}
+                            className="w-full text-slate-900 border border-slate-200 bg-white rounded-lg p-2.5 text-xs focus:ring-1 focus:ring-indigo-500 focus:outline-none resize-none"
+                            value={getReviewValue('base', index, 'text')}
+                            onChange={e => handleScopeReviewChange('base', index, 'text', e.target.value)}
+                            placeholder="Type client feedback review here..."
+                          />
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                ) : (
+                  <p className="text-sm text-slate-400 italic p-6 bg-slate-50 border border-slate-100 rounded-xl text-center">
+                    No reviews registered. Click "Add Review" to begin.
+                  </p>
+                )}
+              </div>
+            )}
+
+            {/* TAB: Media & Stock Images */}
+            {globalTab === 'media' && (
+              <div className="space-y-8">
+                {/* Scraped Asset Pool */}
+                <div className="space-y-4">
+                  <div className="flex justify-between items-center pb-3 border-b border-slate-100">
+                    <div>
+                      <h3 className="text-sm font-bold text-slate-800">Scraped Asset Pool</h3>
+                      <p className="text-slate-400 text-xs mt-0.5">Manage default image assets scraped or added manually.</p>
+                    </div>
+                    <button 
+                      onClick={addImageUrl} 
+                      className="flex items-center gap-1.5 text-xs bg-slate-100 hover:bg-slate-200 active:bg-slate-205 text-slate-700 px-4 py-2.5 rounded-xl font-bold transition-all shadow-xs"
+                    >
+                      <Plus className="w-3.5 h-3.5" /> Add Image URL
+                    </button>
+                  </div>
+
+                  {/* Hero Banner Images */}
+                  <div className="bg-indigo-50/40 p-5 rounded-2xl border border-indigo-100/50">
+                    <h4 className="text-xs font-extrabold text-indigo-900 mb-3 uppercase tracking-wider flex items-center gap-1.5">
+                      <Star className="w-4 h-4 text-indigo-500 fill-indigo-500" />
+                      Global Hero Slides (Fallback Banner Gallery)
+                    </h4>
+                    <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-5 gap-4">
+                      {data.media?.clinicImages?.length > 0 ? (
+                        data.media.clinicImages.map((src: string, i: number) => (
+                          <div key={i} className="relative group aspect-square rounded-xl overflow-hidden border border-indigo-200 shadow-xs bg-slate-100">
+                            <img src={src} className="w-full h-full object-cover" alt={`Hero ${i}`} />
+                            <div className="absolute inset-0 bg-slate-900/65 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-2">
+                              <button
+                                onClick={() => {
+                                  const img = data.media.clinicImages[i];
+                                  const newHeroArr = [...data.media.clinicImages];
+                                  newHeroArr.splice(i, 1);
+                                  setData((prev: any) => ({
+                                    ...prev,
+                                    media: {
+                                      ...prev.media,
+                                      clinicImages: newHeroArr,
+                                      otherImages: [...(prev.media.otherImages || []), img]
+                                    }
+                                  }));
+                                }}
+                                className="bg-white hover:bg-slate-100 p-2 rounded-lg text-slate-800 text-xs font-bold shadow-sm"
+                                title="Demote to other gallery"
+                              >
+                                ↓
+                              </button>
+                              <button
+                                onClick={() => removeImage('clinicImages', i)}
+                                className="bg-rose-600 hover:bg-rose-700 p-2 rounded-lg text-white shadow-sm"
+                                title="Delete"
+                              >
+                                <Trash2 className="w-4 h-4" />
+                              </button>
+                            </div>
+                          </div>
+                        ))
+                      ) : (
+                        <p className="text-xs text-slate-400 italic col-span-full">No hero slider images assigned.</p>
+                      )}
+                    </div>
+                  </div>
+
+                  {/* Rest of Gallery Sections */}
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    {/* Projects / Treatment Images */}
+                    <div className="bg-slate-50/50 p-5 rounded-2xl border border-slate-200">
+                      <h4 className="text-xs font-extrabold text-slate-700 mb-3 uppercase tracking-wider font-mono">Project Portfolio Gallery</h4>
+                      <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+                        {data.media?.treatmentImages?.length > 0 ? (
+                          data.media.treatmentImages.map((src: string, i: number) => (
+                            <div key={i} className="relative group aspect-square rounded-xl overflow-hidden border border-slate-200 bg-white">
+                              <img src={src} className="w-full h-full object-cover" alt="Treatment" />
+                              <div className="absolute inset-0 bg-slate-900/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-2">
+                                <button
+                                  onClick={() => makeHero('treatmentImages', i)}
+                                  className="bg-indigo-655 hover:bg-indigo-700 p-2 rounded-lg text-white shadow-sm"
+                                  title="Promote to Hero Slides"
+                                >
+                                  <Star className="w-4 h-4" />
+                                </button>
+                                <button
+                                  onClick={() => removeImage('treatmentImages', i)}
+                                  className="bg-rose-600 hover:bg-rose-700 p-2 rounded-lg text-white shadow-sm"
+                                  title="Delete"
+                                >
+                                  <Trash2 className="w-4 h-4" />
+                                </button>
+                              </div>
+                            </div>
+                          ))
+                        ) : (
+                          <p className="text-xs text-slate-400 italic col-span-full">No project portfolio images found.</p>
+                        )}
+                      </div>
+                    </div>
+
+                    {/* Other Images */}
+                    <div className="bg-slate-50/50 p-5 rounded-2xl border border-slate-200">
+                      <h4 className="text-xs font-extrabold text-slate-700 mb-3 uppercase tracking-wider font-mono">Other / External Images</h4>
+                      <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+                        {data.media?.otherImages?.length > 0 ? (
+                          data.media.otherImages.map((src: string, i: number) => (
+                            <div key={i} className="relative group aspect-square rounded-xl overflow-hidden border border-slate-200 bg-white">
+                              <img src={src} className="w-full h-full object-cover" alt="Other" />
+                              <div className="absolute inset-0 bg-slate-900/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-2">
+                                <button
+                                  onClick={() => makeHero('otherImages', i)}
+                                  className="bg-indigo-650 hover:bg-indigo-700 p-2 rounded-lg text-white shadow-sm"
+                                  title="Promote to Hero Slides"
+                                >
+                                  <Star className="w-4 h-4" />
+                                </button>
+                                <button
+                                  onClick={() => removeImage('otherImages', i)}
+                                  className="bg-rose-600 hover:bg-rose-700 p-2 rounded-lg text-white shadow-sm"
+                                  title="Delete"
+                                >
+                                  <Trash2 className="w-4 h-4" />
+                                </button>
+                              </div>
+                            </div>
+                          ))
+                        ) : (
+                          <p className="text-xs text-slate-400 italic col-span-full">No other images available.</p>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* PREMIUM STOCK IMAGE LIBRARY */}
+                <div className="space-y-4 border-t border-slate-100 pt-6">
+                  <div>
+                    <h3 className="text-sm font-bold text-slate-800 flex items-center gap-1.5">
+                      <Sparkles className="w-4 h-4 text-amber-500 fill-amber-500" />
+                      Premium Curated Stock Library
+                    </h3>
+                    <p className="text-slate-400 text-xs mt-0.5">
+                      Need better photography? Add high-resolution stock images directly to your global media pool.
+                    </p>
+                  </div>
+
+                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
+                    {PREMIUM_STOCK_IMAGES.map((stock, sIdx) => {
+                      const isInPool = data.media?.clinicImages?.includes(stock.url) || 
+                                       data.media?.treatmentImages?.includes(stock.url) || 
+                                       data.media?.otherImages?.includes(stock.url);
+                      return (
+                        <div key={sIdx} className="bg-slate-550 border border-slate-200 rounded-xl overflow-hidden flex flex-col justify-between hover:border-slate-300 transition-colors">
+                          <div className="aspect-video relative overflow-hidden bg-slate-205">
+                            <img src={stock.url} className="w-full h-full object-cover" alt={stock.label} />
+                            {isInPool && (
+                              <div className="absolute top-2 right-2 bg-emerald-500 text-white rounded-full p-1 shadow-sm">
+                                <Check className="w-3.5 h-3.5" />
+                              </div>
+                            )}
+                          </div>
+                          
+                          <div className="p-3 space-y-2 flex-1 flex flex-col justify-between bg-white">
+                            <span className="text-[11px] font-bold text-slate-700 leading-tight block">{stock.label}</span>
+                            <div className="flex gap-1.5 pt-2">
+                              <button
+                                onClick={() => {
+                                  if (isInPool) return;
+                                  setData((prev: any) => ({
+                                    ...prev,
+                                    media: {
+                                      ...prev.media,
+                                      otherImages: [...(prev.media.otherImages || []), stock.url]
+                                    }
+                                  }));
+                                }}
+                                disabled={isInPool}
+                                className={`w-full text-[10px] font-extrabold uppercase py-1.5 rounded-lg border transition-all text-center ${
+                                  isInPool 
+                                    ? 'bg-slate-50 border-slate-100 text-slate-400 cursor-not-allowed' 
+                                    : 'bg-white border-slate-200 hover:bg-slate-50 active:bg-slate-105 text-slate-750'
+                                }`}
+                              >
+                                {isInPool ? 'In Pool' : '+ Add to Pool'}
+                              </button>
+
+                              <button
+                                onClick={() => {
+                                  setData((prev: any) => {
+                                    const currentHero = [...(prev.media?.clinicImages || [])];
+                                    if (currentHero.includes(stock.url)) return prev;
+                                    return {
+                                      ...prev,
+                                      media: {
+                                        ...prev.media,
+                                        clinicImages: [...currentHero, stock.url]
+                                      }
+                                    };
+                                  });
+                                }}
+                                className="px-2 py-1.5 bg-indigo-50 border border-indigo-100 hover:bg-indigo-100/60 rounded-lg text-indigo-650 shrink-0"
+                                title="Add directly to global Hero slides"
+                              >
+                                <Star className="w-3 h-3 fill-indigo-600 text-indigo-600" />
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+              </div>
+            )}
+          </div>
+        </div>      {imageModal && imageModal.isOpen && (
+        <div className="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+          <div className="bg-white rounded-3xl shadow-2xl border border-slate-100 max-w-4xl w-full max-h-[92vh] flex flex-col overflow-hidden animate-in fade-in zoom-in-95 duration-200">
+            {/* Top Full-Width Image Preview */}
+            <div className="w-full h-64 md:h-72 bg-slate-950 relative overflow-hidden shrink-0 border-b border-slate-200/80 flex items-center justify-center">
+              {previewImage ? (
+                <>
+                  <img src={previewImage} className="w-full h-full object-cover opacity-90 transition-all duration-300" alt="Preview" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-950/10 to-transparent" />
+                  
+                  {/* Favorite Button on Preview Box */}
+                  <button
+                    type="button"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      toggleFavorite(previewImage);
+                    }}
+                    className="absolute top-4 right-4 p-2.5 rounded-full bg-slate-950/50 hover:bg-slate-950/75 backdrop-blur-md text-white transition-all shadow-md z-10"
+                    title={favorites.includes(previewImage) ? "Remove from Favorites" : "Add to Favorites"}
+                  >
+                    <Star className={`w-4 h-4 transition-all ${favorites.includes(previewImage) ? 'fill-amber-400 text-amber-400' : 'text-slate-100'}`} />
+                  </button>
+
+                  <div className="absolute bottom-4 left-6 right-6 flex items-end justify-between gap-4">
+                    <div className="min-w-0">
+                      <span className="text-[10px] text-emerald-400 font-extrabold uppercase tracking-wider block mb-1">
+                        {previewImage === getSectionImageValue(imageModal.scope, imageModal.arrayKey, imageModal.index)
+                          ? "● Currently Active Asset"
+                          : "Previewing Asset (Hovered)"}
+                      </span>
+                      <p className="text-xs text-slate-300 font-mono truncate max-w-lg md:max-w-xl">
+                        {previewImage}
+                      </p>
+                    </div>
+                    {previewImage !== getSectionImageValue(imageModal.scope, imageModal.arrayKey, imageModal.index) && (
+                      <button
+                        type="button"
+                        onClick={() => {
+                          handleAssignSectionImage(imageModal.scope, imageModal.arrayKey, imageModal.index, previewImage);
+                          setImageModal(null);
+                        }}
+                        className="bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold px-4 py-2 rounded-xl shadow-lg shadow-emerald-950/25 transition-all shrink-0 active:scale-95"
+                      >
+                        Apply Selected
+                      </button>
+                    )}
+                  </div>
+                </>
+              ) : (
+                <div className="w-full h-full flex flex-col items-center justify-center text-slate-500 gap-2 bg-slate-900">
+                  <ImageIcon className="w-10 h-10 text-slate-600 animate-pulse" />
+                  <span className="text-xs font-semibold text-slate-400">No Image Selected</span>
+                </div>
+              )}
             </div>
 
-            <div>
-              <label className="block text-sm font-semibold text-gray-700 mb-1">Specialization</label>
-              <input 
-                className="w-full text-gray-900 border border-gray-300 rounded-lg p-2.5 text-sm bg-gray-50 focus:bg-white focus:ring-2 focus:ring-blue-500 focus:outline-none transition-colors" 
-                value={activeScope === 'base' ? (data.doctor?.specialization || '') : (data.templateOverrides?.[activeScope]?.doctor?.specialization ?? '')} 
-                placeholder={data.doctor?.specialization || ''}
-                onChange={e => handleScopeChange('doctor', 'specialization', e.target.value)} 
-              />
+            {/* Modal Header */}
+            <div className="p-5 border-b border-slate-100 flex items-start justify-between bg-white">
+              <div>
+                <h3 className="text-md md:text-lg font-bold text-slate-900 flex items-center gap-2">
+                  <ImageIcon className="w-5 h-5 text-indigo-650" />
+                  Select Image Asset
+                </h3>
+                <p className="text-[11px] md:text-xs text-slate-500 mt-1">
+                  Configuring image slot for: <strong className="text-slate-850">{imageModal.label}</strong> (Scope: {imageModal.scope === 'base' ? 'Global Default' : imageModal.scope})
+                </p>
+              </div>
+              <button
+                onClick={() => setImageModal(null)}
+                className="p-2 text-slate-400 hover:text-slate-650 hover:bg-slate-50 rounded-xl transition-all"
+              >
+                <X className="w-5 h-5" />
+              </button>
             </div>
 
-            <div>
-              <label className="block text-sm font-semibold text-gray-700 mb-1">Experience Info</label>
-              <input 
-                className="w-full text-gray-900 border border-gray-300 rounded-lg p-2.5 text-sm bg-gray-50 focus:bg-white focus:ring-2 focus:ring-blue-500 focus:outline-none transition-colors" 
-                value={activeScope === 'base' ? (data.doctor?.experience || '') : (data.templateOverrides?.[activeScope]?.doctor?.experience ?? '')} 
-                placeholder={data.doctor?.experience || ''}
-                onChange={e => handleScopeChange('doctor', 'experience', e.target.value)} 
-              />
+            {/* Modal Tabs Navigation */}
+            <div className="px-6 py-2 border-b border-slate-100 bg-slate-50 flex gap-2 overflow-x-auto">
+              {[
+                { id: 'business', label: 'Business Image Pool' },
+                { id: 'template', label: 'Template Stock Images' },
+                { id: 'curated', label: 'Curated Stock Library' },
+                { id: 'favorites', label: `Favorites (${favorites.length})` },
+                { id: 'upload', label: 'Upload New' }
+              ].map((tab) => (
+                <button
+                  key={tab.id}
+                  type="button"
+                  onClick={() => setModalTab(tab.id as any)}
+                  className={`px-4 py-2 rounded-lg text-xs font-bold transition-all whitespace-nowrap ${
+                    modalTab === tab.id
+                      ? 'bg-indigo-600 text-white shadow-sm shadow-indigo-600/10'
+                      : 'text-slate-500 hover:text-slate-800 hover:bg-slate-100'
+                  }`}
+                >
+                  {tab.label}
+                </button>
+              ))}
             </div>
-            
-            <div className="pt-2">
-              <label className="block text-sm font-semibold text-gray-700 mb-1">Highlights (1 per line)</label>
-              <textarea 
-                className="w-full text-gray-900 border border-gray-300 rounded-lg p-2.5 text-sm bg-gray-50 focus:bg-white focus:ring-2 focus:ring-blue-500 focus:outline-none transition-colors resize-none" 
-                rows={4} 
-                value={getArrayValue('business', 'highlights').join('\n')} 
-                placeholder={(data.business?.highlights || []).join('\n')}
-                onChange={e => handleScopeArrayChange('business', 'highlights', e.target.value)} 
-              />
+
+            {/* Modal Content Scroll Area */}
+            <div className="flex-1 overflow-y-auto p-6 min-h-[250px]">
+              {/* Tab: Business Image Pool */}
+              {modalTab === 'business' && (
+                <div className="space-y-4">
+                  <div className="flex items-center justify-between">
+                    <p className="text-xs text-slate-500">
+                      Images scraped or uploaded specifically for this business page.
+                    </p>
+                    {imageModal.scope !== 'base' && (
+                      <button
+                        type="button"
+                        onClick={() => {
+                          handleAssignSectionImage(imageModal.scope, imageModal.arrayKey, imageModal.index, '');
+                          setImageModal(null);
+                        }}
+                        className="text-xs flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-slate-200 text-slate-600 hover:bg-slate-50 font-bold transition-all"
+                      >
+                        <RotateCcw className="w-3.5 h-3.5" /> Clear Override / Use Default
+                      </button>
+                    )}
+                  </div>
+                  {getAllAvailableImages().length > 0 ? (
+                    <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+                      {getAllAvailableImages().map((src, srcIdx) => {
+                        const isSelected = getSectionImageValueRaw(imageModal.scope, imageModal.arrayKey, imageModal.index) === src;
+                        return (
+                          <div
+                            key={srcIdx}
+                            onMouseEnter={() => setPreviewImage(src)}
+                            onMouseLeave={() => {
+                              const currentUrl = getSectionImageValue(imageModal.scope, imageModal.arrayKey, imageModal.index);
+                              setPreviewImage(currentUrl);
+                            }}
+                            className={`group aspect-video rounded-2xl overflow-hidden border cursor-pointer bg-slate-100 hover:shadow-lg transition-all relative ${
+                              isSelected ? 'border-emerald-500 ring-4 ring-emerald-500/20' : 'border-slate-200 hover:border-emerald-300'
+                            }`}
+                          >
+                            <img 
+                              src={src} 
+                              onClick={() => {
+                                handleAssignSectionImage(imageModal.scope, imageModal.arrayKey, imageModal.index, src);
+                                setImageModal(null);
+                              }}
+                              className="w-full h-full object-cover" 
+                              alt={`Business Image ${srcIdx + 1}`} 
+                            />
+                            {/* Favorite Button */}
+                            <button
+                              type="button"
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                toggleFavorite(src);
+                              }}
+                              className={`absolute top-2 left-2 p-1.5 rounded-full bg-slate-900/40 hover:bg-slate-900/60 backdrop-blur-xs text-white transition-all z-10 ${
+                                favorites.includes(src) 
+                                  ? 'opacity-100 scale-100' 
+                                  : 'opacity-0 group-hover:opacity-100 scale-90 hover:scale-100'
+                              }`}
+                              title={favorites.includes(src) ? "Remove from Favorites" : "Add to Favorites"}
+                            >
+                              <Star className={`w-3.5 h-3.5 transition-all ${favorites.includes(src) ? 'fill-amber-400 text-amber-400' : 'text-slate-100'}`} />
+                            </button>
+                            {isSelected && (
+                              <div className="absolute top-2 right-2 bg-emerald-500 text-white rounded-full p-1 shadow-md z-10">
+                                <Check className="w-3 h-3 font-bold" />
+                              </div>
+                            )}
+                            <div className="absolute inset-x-0 bottom-0 bg-slate-900/60 backdrop-blur-xs p-2 translate-y-full group-hover:translate-y-0 transition-transform duration-200 z-10">
+                              <span className="text-[10px] text-white font-bold block truncate">Business Image #{srcIdx + 1}</span>
+                            </div>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  ) : (
+                    <div className="text-center py-12 border border-dashed border-slate-200 rounded-2xl bg-slate-50">
+                      <ImageIcon className="w-8 h-8 text-slate-300 mx-auto mb-2" />
+                      <span className="text-xs font-semibold text-slate-400">No business images available</span>
+                    </div>
+                  )}
+                </div>
+              )}
+
+              {/* Tab: Template Stock Images */}
+              {modalTab === 'template' && (
+                <div className="space-y-4">
+                  <p className="text-xs text-slate-500">
+                    Curated high-quality stock images representing default look and feel for the active template.
+                  </p>
+                  <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+                    {/* Render Stock Images for the template or fall back to general stock images */}
+                    {((imageModal.scope !== 'base' && TEMPLATE_STOCK_IMAGES[imageModal.scope]) 
+                      ? TEMPLATE_STOCK_IMAGES[imageModal.scope] 
+                      : Object.values(TEMPLATE_STOCK_IMAGES).flat()
+                    ).map((stock, srcIdx) => {
+                      const isSelected = getSectionImageValueRaw(imageModal.scope, imageModal.arrayKey, imageModal.index) === stock.url;
+                      return (
+                        <div
+                          key={srcIdx}
+                          onMouseEnter={() => setPreviewImage(stock.url)}
+                          onMouseLeave={() => {
+                            const currentUrl = getSectionImageValue(imageModal.scope, imageModal.arrayKey, imageModal.index);
+                            setPreviewImage(currentUrl);
+                          }}
+                          className={`group aspect-video rounded-2xl overflow-hidden border cursor-pointer bg-slate-100 hover:shadow-lg transition-all relative ${
+                            isSelected ? 'border-emerald-500 ring-4 ring-emerald-500/20' : 'border-slate-200 hover:border-emerald-300'
+                          }`}
+                        >
+                          <img 
+                            src={stock.url} 
+                            onClick={() => {
+                              handleAssignSectionImage(imageModal.scope, imageModal.arrayKey, imageModal.index, stock.url);
+                              setImageModal(null);
+                            }}
+                            className="w-full h-full object-cover" 
+                            alt={stock.label} 
+                          />
+                          {/* Favorite Button */}
+                          <button
+                            type="button"
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              toggleFavorite(stock.url);
+                            }}
+                            className={`absolute top-2 left-2 p-1.5 rounded-full bg-slate-900/40 hover:bg-slate-900/60 backdrop-blur-xs text-white transition-all z-10 ${
+                              favorites.includes(stock.url) 
+                                ? 'opacity-100 scale-100' 
+                                : 'opacity-0 group-hover:opacity-100 scale-90 hover:scale-100'
+                            }`}
+                            title={favorites.includes(stock.url) ? "Remove from Favorites" : "Add to Favorites"}
+                          >
+                            <Star className={`w-3.5 h-3.5 transition-all ${favorites.includes(stock.url) ? 'fill-amber-400 text-amber-400' : 'text-slate-100'}`} />
+                          </button>
+                          {isSelected && (
+                            <div className="absolute top-2 right-2 bg-emerald-500 text-white rounded-full p-1 shadow-md z-10">
+                              <Check className="w-3 h-3 font-bold" />
+                            </div>
+                          )}
+                          <div className="absolute inset-x-0 bottom-0 bg-slate-900/60 backdrop-blur-xs p-2 translate-y-full group-hover:translate-y-0 transition-transform duration-200 z-10">
+                            <span className="text-[10px] text-white font-bold block truncate">{stock.label}</span>
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+              )}
+
+              {/* Tab: Curated Stock Library */}
+              {modalTab === 'curated' && (
+                <div className="space-y-4">
+                  <p className="text-xs text-slate-500">
+                    Browse a curated library of high-resolution stock photography for premium interior design styles.
+                  </p>
+                  <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+                    {PREMIUM_STOCK_IMAGES.map((stock, srcIdx) => {
+                      const isSelected = getSectionImageValueRaw(imageModal.scope, imageModal.arrayKey, imageModal.index) === stock.url;
+                      return (
+                        <div
+                          key={srcIdx}
+                          onMouseEnter={() => setPreviewImage(stock.url)}
+                          onMouseLeave={() => {
+                            const currentUrl = getSectionImageValue(imageModal.scope, imageModal.arrayKey, imageModal.index);
+                            setPreviewImage(currentUrl);
+                          }}
+                          className={`group aspect-video rounded-2xl overflow-hidden border cursor-pointer bg-slate-100 hover:shadow-lg transition-all relative ${
+                            isSelected ? 'border-emerald-500 ring-4 ring-emerald-500/20' : 'border-slate-200 hover:border-emerald-300'
+                          }`}
+                        >
+                          <img 
+                            src={stock.url} 
+                            onClick={() => {
+                              handleAssignSectionImage(imageModal.scope, imageModal.arrayKey, imageModal.index, stock.url);
+                              setImageModal(null);
+                            }}
+                            className="w-full h-full object-cover" 
+                            alt={stock.label} 
+                          />
+                          {/* Favorite Button */}
+                          <button
+                            type="button"
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              toggleFavorite(stock.url);
+                            }}
+                            className={`absolute top-2 left-2 p-1.5 rounded-full bg-slate-900/40 hover:bg-slate-900/60 backdrop-blur-xs text-white transition-all z-10 ${
+                              favorites.includes(stock.url) 
+                                ? 'opacity-100 scale-100' 
+                                : 'opacity-0 group-hover:opacity-100 scale-90 hover:scale-100'
+                            }`}
+                            title={favorites.includes(stock.url) ? "Remove from Favorites" : "Add to Favorites"}
+                          >
+                            <Star className={`w-3.5 h-3.5 transition-all ${favorites.includes(stock.url) ? 'fill-amber-400 text-amber-400' : 'text-slate-100'}`} />
+                          </button>
+                          {isSelected && (
+                            <div className="absolute top-2 right-2 bg-emerald-500 text-white rounded-full p-1 shadow-md z-10">
+                              <Check className="w-3 h-3 font-bold" />
+                            </div>
+                          )}
+                          <div className="absolute inset-x-0 bottom-0 bg-slate-900/60 backdrop-blur-xs p-2 translate-y-full group-hover:translate-y-0 transition-transform duration-200 z-10">
+                            <span className="text-[10px] text-white font-bold block truncate">{stock.label}</span>
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+              )}
+
+              {/* Tab: Favorites */}
+              {modalTab === 'favorites' && (
+                <div className="space-y-4">
+                  <p className="text-xs text-slate-500">
+                    Your collection of starred images. Star any image across the tabs to add it here.
+                  </p>
+                  {favorites.length > 0 ? (
+                    <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+                      {favorites.map((src, srcIdx) => {
+                        const isSelected = getSectionImageValueRaw(imageModal.scope, imageModal.arrayKey, imageModal.index) === src;
+                        return (
+                          <div
+                            key={srcIdx}
+                            onMouseEnter={() => setPreviewImage(src)}
+                            onMouseLeave={() => {
+                              const currentUrl = getSectionImageValue(imageModal.scope, imageModal.arrayKey, imageModal.index);
+                              setPreviewImage(currentUrl);
+                            }}
+                            className={`group aspect-video rounded-2xl overflow-hidden border cursor-pointer bg-slate-100 hover:shadow-lg transition-all relative ${
+                              isSelected ? 'border-emerald-500 ring-4 ring-emerald-500/20' : 'border-slate-200 hover:border-emerald-300'
+                            }`}
+                          >
+                            <img
+                              src={src}
+                              onClick={() => {
+                                handleAssignSectionImage(imageModal.scope, imageModal.arrayKey, imageModal.index, src);
+                                setImageModal(null);
+                              }}
+                              className="w-full h-full object-cover"
+                              alt={`Favorite Image ${srcIdx + 1}`}
+                            />
+                            {/* Favorite Button */}
+                            <button
+                              type="button"
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                toggleFavorite(src);
+                              }}
+                              className="absolute top-2 left-2 p-1.5 rounded-full bg-slate-900/40 hover:bg-slate-900/60 backdrop-blur-xs text-white transition-all opacity-100 z-10"
+                              title="Remove from Favorites"
+                            >
+                              <Star className="w-3.5 h-3.5 fill-amber-400 text-amber-400" />
+                            </button>
+                            {isSelected && (
+                              <div className="absolute top-2 right-2 bg-emerald-500 text-white rounded-full p-1 shadow-md z-10">
+                                <Check className="w-3 h-3 font-bold" />
+                              </div>
+                            )}
+                            <div className="absolute inset-x-0 bottom-0 bg-slate-900/60 backdrop-blur-xs p-2 translate-y-full group-hover:translate-y-0 transition-transform duration-200 z-10">
+                              <span className="text-[10px] text-white font-bold block truncate">Fav #{srcIdx + 1}</span>
+                            </div>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  ) : (
+                    <div className="text-center py-12 border border-dashed border-slate-200 rounded-2xl bg-slate-50">
+                      <Star className="w-8 h-8 text-slate-300 mx-auto mb-2" />
+                      <span className="text-xs font-semibold text-slate-400">No favorite images yet. Star some images in other tabs to show them here!</span>
+                    </div>
+                  )}
+                </div>
+              )}
+
+              {/* Tab: Upload New */}
+              {modalTab === 'upload' && (
+                <div className="space-y-6 py-6 max-w-md mx-auto">
+                  <div className="text-center">
+                    <Upload className="w-12 h-12 text-slate-350 mx-auto mb-3" />
+                    <h4 className="text-sm font-bold text-slate-800">Upload Image File</h4>
+                    <p className="text-xs text-slate-500 mt-1">
+                      Upload an image from your device to assign it directly to this slot.
+                    </p>
+                  </div>
+                  
+                  <label className="flex flex-col cursor-pointer items-center justify-center gap-3 rounded-2xl border-2 border-dashed border-slate-300 bg-slate-50 px-6 py-8 text-xs font-bold text-slate-700 hover:bg-slate-100 hover:border-indigo-400 transition-all text-center">
+                    <span className="bg-indigo-600 text-white px-4 py-2 rounded-xl border border-indigo-100">Select Local File</span>
+                    <span className="text-[10px] text-slate-400 font-normal">Supports JPEG, PNG, WEBP files</span>
+                    <input
+                      type="file"
+                      accept="image/*"
+                      onChange={(e) => {
+                        const file = e.target.files?.[0];
+                        if (file) handleUploadImageFromModal(file);
+                      }}
+                      className="sr-only"
+                    />
+                  </label>
+                </div>
+              )}
+            </div>
+
+            {/* Modal Footer */}
+            <div className="p-6 border-t border-slate-100 flex justify-end gap-3 bg-slate-50 rounded-b-3xl">
+              <button
+                type="button"
+                onClick={() => setImageModal(null)}
+                className="py-2.5 px-5 rounded-xl text-xs font-bold text-slate-750 bg-white border border-slate-200 hover:bg-slate-50 active:bg-slate-100 transition-all"
+              >
+                Close
+              </button>
             </div>
           </div>
-
-          {/* Full Width: Services */}
-          <div className="lg:col-span-2 space-y-4">
-             <h2 className="text-xl font-bold text-gray-800 pb-2 border-b border-gray-100 flex items-center gap-2">
-               <CheckCircle2 className="w-5 h-5 text-blue-500" />
-               Services configuration (1 per line)
-             </h2>
-             <div>
-                <textarea 
-                  className="w-full text-gray-900 border border-gray-300 rounded-lg p-3 text-sm bg-gray-50 focus:bg-white focus:ring-2 focus:ring-blue-500 focus:outline-none transition-colors resize-none" 
-                  rows={6} 
-                  value={getArrayValue('business', 'services').join('\n')} 
-                  placeholder={(data.business?.services || []).join('\n')}
-                  onChange={e => handleScopeArrayChange('business', 'services', e.target.value)} 
-                />
-             </div>
-          </div>
-
-          {/* Full Width: Reviews */}
-          <div className="lg:col-span-2 space-y-4">
-             <div className="flex justify-between items-center pb-2 border-b border-gray-100">
-               <h2 className="text-xl font-bold text-gray-800">Client Reviews</h2>
-               <button onClick={addScopeReview} className="flex items-center gap-2 text-sm bg-gray-100 hover:bg-gray-200 text-gray-700 px-4 py-2 rounded-lg font-medium transition-colors">
-                 <Plus className="w-4 h-4" /> Add Review
-               </button>
-             </div>
-
-             {getReviewList().length > 0 ? (
-               <div className="space-y-4">
-                 {getReviewList().map((review: any, index: number) => (
-                   <div key={index} className="rounded-xl border border-gray-200 bg-gray-50 p-4">
-                     <div className="flex items-center justify-between mb-4">
-                       <h3 className="font-semibold text-gray-800">Review {index + 1}</h3>
-                       <button
-                         onClick={() => removeScopeReview(index)}
-                         className="inline-flex items-center gap-1 text-xs bg-red-50 text-red-600 border border-red-100 hover:bg-red-100 px-2.5 py-1.5 rounded-md"
-                       >
-                         <Trash2 className="w-3.5 h-3.5" /> Remove
-                       </button>
-                     </div>
-
-                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                       <div>
-                         <label className="block text-sm font-semibold text-gray-700 mb-1">Author</label>
-                         <input
-                           className="w-full text-gray-900 border border-gray-300 rounded-lg p-2.5 text-sm bg-white focus:ring-2 focus:ring-blue-500 focus:outline-none"
-                           value={getReviewValue(index, 'author')}
-                           placeholder={data.reviews?.[index]?.author || ''}
-                           onChange={e => handleScopeReviewChange(index, 'author', e.target.value)}
-                         />
-                       </div>
-
-                       <div>
-                         <label className="block text-sm font-semibold text-gray-700 mb-1">Rating (1-5)</label>
-                         <input
-                           type="number"
-                           min={1}
-                           max={5}
-                           className="w-full text-gray-900 border border-gray-300 rounded-lg p-2.5 text-sm bg-white focus:ring-2 focus:ring-blue-500 focus:outline-none"
-                           value={getReviewValue(index, 'rating')}
-                           placeholder={data.reviews?.[index]?.rating ?? '5'}
-                           onChange={e => handleScopeReviewChange(index, 'rating', e.target.value)}
-                         />
-                       </div>
-                     </div>
-
-                     <div className="mt-4">
-                       <label className="block text-sm font-semibold text-gray-700 mb-1">Review Text</label>
-                       <textarea
-                         rows={3}
-                         className="w-full text-gray-900 border border-gray-300 rounded-lg p-2.5 text-sm bg-white focus:ring-2 focus:ring-blue-500 focus:outline-none resize-none"
-                         value={getReviewValue(index, 'text')}
-                         placeholder={data.reviews?.[index]?.text || ''}
-                         onChange={e => handleScopeReviewChange(index, 'text', e.target.value)}
-                       />
-                     </div>
-                   </div>
-                 ))}
-               </div>
-             ) : (
-               <p className="text-sm text-gray-500 italic p-4 bg-gray-50 border border-gray-100 rounded-lg">
-                 No reviews available. Click Add Review to include one.
-               </p>
-             )}
-          </div>
-
-          {/* Full Width: Scraped Media */}
-          <div className="lg:col-span-2 space-y-6 mt-4">
-             <div className="flex justify-between items-center pb-2 border-b border-gray-100">
-               <h2 className="text-xl font-bold text-gray-800">Media Pool Manager (Scraped Gallery)</h2>
-               <button onClick={addImageUrl} className="flex items-center gap-2 text-sm bg-gray-100 hover:bg-gray-200 text-gray-700 px-4 py-2 rounded-lg font-medium transition-colors">
-                 <Plus className="w-4 h-4" /> Add External Image URL
-               </button>
-             </div>
-             
-             <div className="space-y-8">
-                 {/* Hero Images Section */}
-                 <div className="bg-blue-50/50 p-4 rounded-xl border border-blue-100">
-                   <h3 className="text-md font-bold text-blue-900 mb-3 flex items-center gap-2">
-                     <Star className="w-5 h-5 text-blue-500 fill-blue-500" />
-                     Base Defaults Hero Section Slides (Max 5)
-                   </h3>
-                   <div className="flex flex-wrap gap-4">
-                     {data.media?.clinicImages?.length > 0 ? data.media.clinicImages.map((src: string, i: number) => (
-                       <div key={i} className="relative group">
-                         <img src={src} className="w-40 h-40 object-cover rounded-lg border-2 border-blue-300 shadow-sm" alt={`Hero ${i}`} />
-                         <div className="absolute top-2 right-2 flex gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
-                           <button onClick={() => {
-                             const img = data.media.clinicImages[i];
-                             const newHeroArr = [...data.media.clinicImages];
-                             newHeroArr.splice(i, 1);
-                             setData((prev: any) => ({
-                               ...prev,
-                               media: {
-                                 ...prev.media,
-                                 clinicImages: newHeroArr,
-                                 otherImages: [...(prev.media.otherImages || []), img]
-                               }
-                             }));
-                           }} className="bg-white/90 hover:bg-white p-1.5 rounded-md shadow text-gray-600 tooltip" title="Demote from Hero">
-                             ↓
-                           </button>
-                           <button onClick={() => removeImage('clinicImages', i)} className="bg-red-500/90 hover:bg-red-600 p-1.5 rounded-md shadow text-white" title="Delete">
-                             <Trash2 className="w-4 h-4" />
-                           </button>
-                         </div>
-                       </div>
-                     )) : <p className="text-sm text-gray-500 italic p-4">No hero images selected.</p>}
-                   </div>
-                 </div>
-
-                 {/* Project Images Section */}
-                 <div>
-                   <h3 className="text-md font-semibold text-gray-700 mb-3">Stored Gallery Images (Projects)</h3>
-                   <div className="flex flex-wrap gap-4">
-                     {data.media?.treatmentImages?.length > 0 ? data.media.treatmentImages.map((src: string, i: number) => (
-                       <div key={i} className="relative group">
-                         <img src={src} className="w-32 h-32 object-cover rounded-lg border border-gray-200" alt="Project" />
-                         <div className="absolute top-2 right-2 flex gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
-                           <button onClick={() => makeHero('treatmentImages', i)} className="bg-blue-500/90 hover:bg-blue-600 p-1.5 rounded-md shadow text-white" title="Set as Hero">
-                             <Star className="w-4 h-4" />
-                           </button>
-                           <button onClick={() => removeImage('treatmentImages', i)} className="bg-red-500/90 hover:bg-red-600 p-1.5 rounded-md shadow text-white" title="Delete">
-                             <Trash2 className="w-4 h-4" />
-                           </button>
-                         </div>
-                       </div>
-                     )) : <p className="text-sm text-gray-400">No project images found</p>}
-                   </div>
-                 </div>
-
-                 {/* Other/External Images Section */}
-                 <div>
-                   <h3 className="text-md font-semibold text-gray-700 mb-3">Other & External Images</h3>
-                   <div className="flex flex-wrap gap-4">
-                     {data.media?.otherImages?.length > 0 ? data.media.otherImages.map((src: string, i: number) => (
-                       <div key={i} className="relative group">
-                         <img src={src} className="w-32 h-32 object-cover rounded-lg border border-gray-200" alt="Other" />
-                         <div className="absolute top-2 right-2 flex gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
-                           <button onClick={() => makeHero('otherImages', i)} className="bg-blue-500/90 hover:bg-blue-600 p-1.5 rounded-md shadow text-white" title="Set as Hero">
-                             <Star className="w-4 h-4" />
-                           </button>
-                           <button onClick={() => removeImage('otherImages', i)} className="bg-red-500/90 hover:bg-red-600 p-1.5 rounded-md shadow text-white" title="Delete">
-                             <Trash2 className="w-4 h-4" />
-                           </button>
-                         </div>
-                       </div>
-                     )) : <p className="text-sm text-gray-400">No other images available</p>}
-                   </div>
-                 </div>
-             </div>
-          </div>
-
         </div>
+      )}
       </div>
     </div>
   );
