@@ -7,6 +7,7 @@ import Link from 'next/link';
 import { ReactNode } from 'react';
 import { cleanClinicName, cleanClinicDescription } from '@/lib/copyCleaner';
 import { Cormorant_Garamond, Plus_Jakarta_Sans } from 'next/font/google';
+import ClientHeader from './ClientHeader';
 
 const cormorant = Cormorant_Garamond({
   subsets: ['latin'],
@@ -55,7 +56,7 @@ export default async function DesignStudioLayout({ children, params }: LayoutPro
       <div className="bg-[#0A0A0A] text-[#FCFAF6]/80 py-3 px-8 text-[11px] font-bold uppercase tracking-widest border-b border-[#FCFAF6]/10 relative z-50">
         <div className="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-3 sm:gap-0">
           <div className="flex flex-wrap items-center justify-center gap-6">
-            <span className="flex items-center gap-2">
+            <span className="hidden sm:flex items-center gap-2">
               <MapPin className="w-3.5 h-3.5 text-[#C1FF72]" />
               <span className="font-semibold text-[#FCFAF6]/90">{clinic.address?.full || 'Studio Location'}</span>
             </span>
@@ -74,28 +75,7 @@ export default async function DesignStudioLayout({ children, params }: LayoutPro
       </div>
 
       {/* Navbar */}
-      <header className="sticky top-0 z-40 bg-[#FCFAF6]/95 backdrop-blur-md border-b border-[#0A0A0A]/5 transition-all duration-300">
-        <div className="max-w-7xl mx-auto px-8 h-24 flex justify-between items-center">
-          <Link href={basePath} className="leading-none group">
-            <h1 className="text-xl font-extrabold tracking-widest text-[#0A0A0A] uppercase transition-all group-hover:text-[#0A0A0A]/70 flex items-center gap-2">
-              <span>{cleanName || 'Studio Name'}</span>
-              <span className="w-1.5 h-1.5 rounded-full bg-[#C1FF72] animate-pulse"></span>
-            </h1>
-          </Link>
-          
-          <nav className="hidden lg:flex items-center gap-10 font-bold text-[11px] uppercase tracking-[0.25em]">
-            <Link href={basePath} className="text-[#0A0A0A]/70 hover:text-[#0A0A0A] transition-colors relative py-2 after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2 after:w-0 after:h-[1.5px] hover:after:w-4 after:bg-[#C1FF72] after:transition-all">Home</Link>
-            <Link href={`${basePath}/services`} className="text-[#0A0A0A]/70 hover:text-[#0A0A0A] transition-colors relative py-2 after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2 after:w-0 after:h-[1.5px] hover:after:w-4 after:bg-[#C1FF72] after:transition-all">Services</Link>
-            <Link href={`${basePath}/about`} className="text-[#0A0A0A]/70 hover:text-[#0A0A0A] transition-colors relative py-2 after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2 after:w-0 after:h-[1.5px] hover:after:w-4 after:bg-[#C1FF72] after:transition-all">About Us</Link>
-            <Link href={`${basePath}/gallery`} className="text-[#0A0A0A]/70 hover:text-[#0A0A0A] transition-colors relative py-2 after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2 after:w-0 after:h-[1.5px] hover:after:w-4 after:bg-[#C1FF72] after:transition-all">Gallery</Link>
-            <Link href={`${basePath}/contact`} className="text-[#0A0A0A]/70 hover:text-[#0A0A0A] transition-colors relative py-2 after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2 after:w-0 after:h-[1.5px] hover:after:w-4 after:bg-[#C1FF72] after:transition-all">Contact</Link>
-          </nav>
-
-          <Link href={`${basePath}/contact`} className="hidden md:flex items-center gap-2 bg-[#0A0A0A] text-[#FCFAF6] px-8 py-3.5 rounded-full font-bold text-[11px] tracking-[0.2em] uppercase hover:bg-transparent hover:text-[#0A0A0A] transition-all duration-500 shadow-sm border border-[#0A0A0A]">
-            Book Consultation
-          </Link>
-        </div>
-      </header>
+      <ClientHeader clinicName={cleanName} basePath={basePath} phone={clinic.contact?.phone || ''} />
 
       {/* Main Content */}
       <main className="grow">

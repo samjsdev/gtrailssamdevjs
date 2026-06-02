@@ -111,8 +111,8 @@ export default async function ServicesPage({ params }: { params: Promise<{ slug:
               </div>
 
               {/* Column 4: Staggered Portrait Thumbnail Image */}
-              <div className="lg:w-2/12 flex justify-end w-full">
-                <div className="w-full max-w-[160px] aspect-[4/3] rounded-2xl overflow-hidden border border-[#EAE3D8] shadow-xs relative">
+              <div className="lg:w-2/12 flex justify-start lg:justify-end w-full">
+                <div className="w-full lg:max-w-[160px] aspect-[16/9] sm:aspect-video lg:aspect-[4/3] rounded-2xl overflow-hidden border border-[#EAE3D8] shadow-xs relative">
                   <img 
                     src={item.image} 
                     alt={item.title} 

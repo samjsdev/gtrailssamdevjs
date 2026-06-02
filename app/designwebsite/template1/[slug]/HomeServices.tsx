@@ -18,14 +18,14 @@ type HomeServicesProps = {
 
 export default function HomeServices({ basePath, services }: HomeServicesProps) {
   return (
-    <section className="relative bg-[#FCFAF6] py-28 lg:py-36 selection:bg-[#C1FF72] selection:text-[#0A0A0A] border-t border-[#0A0A0A]/5">
+    <section className="relative bg-[#FCFAF6] py-20 md:py-28 lg:py-36 selection:bg-[#C1FF72] selection:text-[#0A0A0A] border-t border-[#0A0A0A]/5">
       {/* Decorative vertical line */}
       <div className="absolute right-[8%] top-0 w-px h-full bg-[#0A0A0A]/5 pointer-events-none z-0"></div>
       
       <div className="max-w-[90rem] mx-auto px-8 w-full relative z-10">
 
         {/* Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-10 mb-24">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-10 mb-16 md:mb-24">
           <div className="space-y-6 max-w-2xl text-left">
             <div className="inline-flex items-center gap-3">
               <div className="w-8 h-px bg-[#0A0A0A]"></div>
@@ -47,7 +47,7 @@ export default function HomeServices({ basePath, services }: HomeServicesProps) 
         </div>
 
         {/* Services Grid (Minimal Architectural Cards) */}
-        <div className="grid md:grid-cols-3 gap-12 lg:gap-16">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-20 md:gap-12 lg:gap-16">
           {services.map((svc, idx) => (
             <div key={idx} className="group cursor-pointer flex flex-col h-full text-left">
               {/* Image box with visual triggers */}

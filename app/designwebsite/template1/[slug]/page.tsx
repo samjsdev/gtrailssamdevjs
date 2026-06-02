@@ -141,7 +141,7 @@ export default async function DesignStudioHome({ params }: PageProps) {
                 const projectSub = ['Bespoke Craft', 'Modular Layout', 'Biophilic Details'];
                 
                 return (
-                  <div key={idx} className={`group cursor-pointer relative overflow-hidden rounded-[2.5rem] ${widths[idx % 3]} h-96 md:h-full border border-[#0A0A0A]/5 shadow-sm`}>
+                  <div key={idx} className={`group cursor-pointer relative overflow-hidden rounded-[2rem] md:rounded-[2.5rem] ${widths[idx % 3]} h-64 sm:h-80 md:h-full border border-[#0A0A0A]/5 shadow-sm`}>
                     <img 
                       src={img} 
                       alt={`Portfolio ${idx + 1}`} 
@@ -163,7 +163,7 @@ export default async function DesignStudioHome({ params }: PageProps) {
               })
             ) : (
               INTERIOR_GALLERY_PREVIEW.map((item, idx) => (
-                <div key={idx} className="group cursor-pointer relative overflow-hidden rounded-[2.5rem] w-full md:w-1/3 h-96 md:h-full bg-white border border-[#0A0A0A]/5 shadow-sm p-10 flex flex-col justify-end text-left">
+                <div key={idx} className="group cursor-pointer relative overflow-hidden rounded-[2rem] md:rounded-[2.5rem] w-full md:w-1/3 h-64 sm:h-80 md:h-full bg-white border border-[#0A0A0A]/5 shadow-sm p-8 md:p-10 flex flex-col justify-end text-left">
                   <div className="absolute top-8 right-8 w-8 h-8 rounded-full border border-[#0A0A0A]/10 flex items-center justify-center text-[#0A0A0A]/40 group-hover:bg-[#C1FF72] group-hover:text-[#0A0A0A] transition-all duration-300">
                     <ArrowRight className="w-4 h-4 -rotate-45" />
                   </div>

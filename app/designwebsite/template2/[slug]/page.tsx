@@ -208,13 +208,13 @@ export default async function DesignStudioHome({ params }: PageProps) {
           </div>
 
           {/* Projects Horizontal Slider */}
-          <div className="flex gap-6 overflow-x-auto pb-8 scrollbar-none snap-x snap-mandatory">
+          <div className="flex gap-4 overflow-x-auto pb-6 scrollbar-none snap-x snap-mandatory">
             {projects.map((proj, idx) => (
               <div 
                 key={idx} 
-                className="min-w-[285px] sm:min-w-[340px] flex-shrink-0 snap-start group cursor-pointer"
+                className="min-w-[150px] sm:min-w-[210px] flex-shrink-0 snap-start group cursor-pointer"
               >
-                <div className="relative aspect-[4/5] rounded-[2rem] overflow-hidden mb-4 bg-stone-100 shadow-sm border border-[#EAE3D8]/60">
+                <div className="relative aspect-[3/2] rounded-[1.25rem] sm:rounded-[1.75rem] overflow-hidden mb-3 bg-stone-100 shadow-sm border border-[#EAE3D8]/60">
                   <img 
                     src={proj.image} 
                     alt={proj.title} 
@@ -222,28 +222,25 @@ export default async function DesignStudioHome({ params }: PageProps) {
                   />
                   
                   {/* Floating Tags */}
-                  <div className="absolute top-4 left-4 flex gap-2">
-                    <span className="px-3 py-1 bg-white/30 backdrop-blur-md text-[8.5px] font-bold text-[#2A2421] uppercase rounded-full tracking-wider border border-white/40">
+                  <div className="absolute top-2.5 left-2.5 sm:top-3.5 sm:left-3.5 flex gap-1">
+                    <span className="px-1.5 py-0.5 sm:px-2.5 sm:py-0.5 bg-white/30 backdrop-blur-md text-[6.5px] sm:text-[7.5px] font-bold text-[#2A2421] uppercase rounded-full tracking-wider border border-white/40">
                       {proj.tag1}
-                    </span>
-                    <span className="px-3 py-1 bg-white/30 backdrop-blur-md text-[8.5px] font-bold text-[#2A2421] uppercase rounded-full tracking-wider border border-white/40">
-                      {proj.tag2}
                     </span>
                   </div>
 
                   {/* View Overlay on Hover */}
                   <div className="absolute inset-0 bg-[#2A2421]/20 group-hover:bg-[#2A2421]/40 opacity-0 group-hover:opacity-100 transition-all duration-300 flex items-center justify-center">
-                    <div className="w-14 h-14 rounded-full bg-white/95 backdrop-blur-xs flex items-center justify-center text-[#2A2421] text-[9.5px] font-bold tracking-wider uppercase scale-75 group-hover:scale-100 transition-all duration-300 shadow-sm">
+                    <div className="w-8 h-8 sm:w-11 sm:h-11 rounded-full bg-white/95 backdrop-blur-xs flex items-center justify-center text-[#2A2421] text-[7.5px] sm:text-[8.5px] font-bold tracking-wider uppercase scale-75 group-hover:scale-100 transition-all duration-300 shadow-sm">
                       View
                     </div>
                   </div>
                 </div>
 
-                <div className="space-y-1 pl-2">
-                  <h3 className="text-[15px] font-semibold text-[#2A2421] group-hover:text-[#8E7056] transition-colors">
+                <div className="space-y-0.5 pl-1">
+                  <h3 className="text-[11.5px] sm:text-[13px] font-semibold text-[#2A2421] group-hover:text-[#8E7056] transition-colors leading-tight">
                     {proj.title}
                   </h3>
-                  <div className="flex justify-between text-[11px] text-[#2A2421]/75 font-light">
+                  <div className="flex justify-between text-[8.5px] sm:text-[9.5px] text-[#2A2421]/75 font-light">
                     <span>{proj.location}</span>
                     <span>{proj.year}</span>
                   </div>

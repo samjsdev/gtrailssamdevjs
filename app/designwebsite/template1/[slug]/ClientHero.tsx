@@ -87,19 +87,6 @@ export default function ClientHero({ clinic, business, basePath, heroImage }: Cl
               />
               <div className="absolute inset-0 bg-gradient-to-t from-[#0A0A0A]/60 via-transparent to-transparent opacity-85 group-hover:opacity-40 transition-opacity duration-700"></div>
 
-              {/* Magazine-style Philosophy Label Card */}
-              <div className="absolute bottom-8 left-8 right-8 bg-[#FCFAF6] p-6 rounded-[1.5rem] shadow-xl max-w-xs border border-[#0A0A0A]/5 transform translate-y-0 group-hover:translate-y-[-5px] transition-transform duration-500">
-                <p className="font-serif text-sm italic text-[#0A0A0A]/80 leading-relaxed">
-                  "Space should not just look beautiful; it must fundamentally elevate the way you live."
-                </p>
-                <div className="mt-4 pt-4 border-t border-[#0A0A0A]/5 flex items-center justify-between">
-                  <span className="text-[11px] font-bold uppercase tracking-widest text-[#0A0A0A]/50">Philosophy</span>
-                  <div className="flex gap-1.5">
-                    <span className="w-1 h-1 rounded-full bg-[#0A0A0A]"></span>
-                    <span className="w-1 h-1 rounded-full bg-[#C1FF72]"></span>
-                  </div>
-                </div>
-              </div>
             </div>
           </div>
 

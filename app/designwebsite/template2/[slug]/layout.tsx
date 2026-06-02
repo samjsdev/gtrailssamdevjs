@@ -6,6 +6,7 @@ import {
 import Link from 'next/link';
 import { ReactNode } from 'react';
 import { Cormorant_Garamond, Plus_Jakarta_Sans } from 'next/font/google';
+import ClientHeader from './ClientHeader';
 
 const cormorant = Cormorant_Garamond({
   subsets: ['latin'],
@@ -64,30 +65,7 @@ export default async function DesignStudioLayout({ children, params }: LayoutPro
       </div>
 
       {/* Floating Capsule Header */}
-      <header className="sticky top-4 z-40 px-4 sm:px-6 md:px-8 w-full mt-4">
-        <div className="max-w-7xl mx-auto bg-white/95 backdrop-blur-md border border-[#EAE3D8]/80 rounded-full px-6 sm:px-8 py-3.5 flex justify-between items-center shadow-lg shadow-[#2A2421]/5 hover:shadow-xl transition-all duration-300">
-          <Link href={basePath} className="flex items-center gap-3 leading-none group">
-            <div className="w-9 h-9 bg-[#8E7056]/10 rounded-full flex items-center justify-center text-[#8E7056] border border-[#8E7056]/20 group-hover:bg-[#8E7056] group-hover:text-white transition-all duration-300">
-              <Sparkles className="w-4.5 h-4.5" />
-            </div>
-            <h1 className={`${cormorant.className} text-xl font-bold tracking-wide text-[#2A2421] group-hover:text-[#8E7056] transition-colors`}>
-              {clinic.name || 'SKETCHLAB'}
-            </h1>
-          </Link>
-          
-          <nav className="hidden lg:flex items-center gap-8 font-semibold text-[10px] text-[#2A2421]/90 uppercase tracking-[0.2em]">
-            <Link href={basePath} className="hover:text-[#8E7056] transition-colors py-1 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-px after:bg-[#8E7056] hover:after:w-full after:transition-all after:duration-300">Home</Link>
-            <Link href={`${basePath}/about`} className="hover:text-[#8E7056] transition-colors py-1 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-px after:bg-[#8E7056] hover:after:w-full after:transition-all after:duration-300">About</Link>
-            <Link href={`${basePath}/services`} className="hover:text-[#8E7056] transition-colors py-1 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-px after:bg-[#8E7056] hover:after:w-full after:transition-all after:duration-300">Services</Link>
-            <Link href={`${basePath}/gallery`} className="hover:text-[#8E7056] transition-colors py-1 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-px after:bg-[#8E7056] hover:after:w-full after:transition-all after:duration-300">Gallery</Link>
-            <Link href={`${basePath}/contact`} className="hover:text-[#8E7056] transition-colors py-1 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-px after:bg-[#8E7056] hover:after:w-full after:transition-all after:duration-300">Contact</Link>
-          </nav>
- 
-          <Link href={`${basePath}/contact`} className="flex items-center gap-2 bg-[#8E7056] hover:bg-[#2A2421] text-white px-5 sm:px-6 py-2.5 rounded-full font-bold uppercase tracking-widest text-[9px] transition-all duration-300 shadow-sm shadow-[#8E7056]/10 hover:scale-[1.03] active:scale-[0.97]">
-            Get A Quote <ArrowUpRight className="w-3.5 h-3.5" />
-          </Link>
-        </div>
-      </header>
+      <ClientHeader clinicName={clinic.name} basePath={basePath} phone={clinic.contact?.phone || ''} />
  
       {/* Main Content inside Padded Canvas Wrapper */}
       <main className="grow px-4 sm:px-6 md:px-8 pt-4 pb-8 max-w-7xl mx-auto w-full relative z-10">
