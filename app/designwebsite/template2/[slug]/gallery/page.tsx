@@ -51,7 +51,7 @@ export default async function GalleryPage({ params }: { params: Promise<{ slug: 
   ].filter(Boolean)));
 
   const PORTFOLIO = [];
-  const totalToRender = 50;
+  const totalToRender = uniqueUserImages.length > 0 ? Math.min(12, uniqueUserImages.length * 2) : 12;
 
   for (let i = 0; i < totalToRender; i++) {
     let imgUrl = "";

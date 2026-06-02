@@ -49,9 +49,9 @@ export default async function DesignStudioHome({ params }: PageProps) {
     : DEFAULT_INTERIOR_SERVICES;
 
   const allGalleryImages = [
-    ...(media.clinicImages || []),
     ...(media.treatmentImages || []),
-    ...(media.otherImages || [])
+    ...(media.otherImages || []),
+    ...(media.clinicImages || [])
   ].filter(Boolean).slice(0, 10);
 
   const waPhone = clinic.contact?.phone?.replace(/\D/g, '') || '919751396117';

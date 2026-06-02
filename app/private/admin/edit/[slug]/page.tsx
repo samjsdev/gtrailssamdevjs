@@ -19,333 +19,12 @@ const TEMPLATE_OPTIONS = [
   { id: 'template10', name: 'Template 10 (Raw Industrial theme layout)' }
 ];
 
-// Schema defining the pages, sections, and fields for each template
-
-const SHARED_PAGES: {
-  id: string;
-  label: string;
-  sections: {
-    label: string;
-    elements: (
-      | { type: 'text' | 'textarea' | 'list'; label: string; path: string[]; imageConfig?: never }
-      | { type: 'image'; label: string; path?: never; imageConfig: { arrayKey: 'clinicImages' | 'otherImages'; index: number } }
-    )[];
-  }[];
-}[] = [
-      {
-        id: 'home',
-        label: 'Home Page',
-        sections: [
-          {
-            label: 'Hero Intro Banner',
-            elements: [
-              { type: 'text', label: 'Hero Tagline', path: ['clinic', 'tagline'] },
-              { type: 'textarea', label: 'Hero Subtext Description', path: ['clinic', 'description'] },
-              { type: 'image', label: 'Hero Main Banner Image', imageConfig: { arrayKey: 'clinicImages', index: 0 } }
-            ]
-          },
-          {
-            label: 'Philosophy & Values (Why Choose Us)',
-            elements: [
-              { type: 'text', label: 'Philosophy Section Title', path: ['philosophy', 'title'] },
-              { type: 'textarea', label: 'Philosophy Subtitle / Description', path: ['philosophy', 'description'] },
-              { type: 'text', label: 'Feature 1: Title', path: ['philosophy', 'feature1', 'title'] },
-              { type: 'textarea', label: 'Feature 1: Description', path: ['philosophy', 'feature1', 'desc'] },
-              { type: 'image', label: 'Feature 1: Custom Image', imageConfig: { arrayKey: 'otherImages', index: 2 } },
-              { type: 'text', label: 'Feature 2: Title', path: ['philosophy', 'feature2', 'title'] },
-              { type: 'textarea', label: 'Feature 2: Description', path: ['philosophy', 'feature2', 'desc'] },
-              { type: 'image', label: 'Feature 2: Custom Image', imageConfig: { arrayKey: 'otherImages', index: 3 } },
-              { type: 'text', label: 'Feature 3: Title', path: ['philosophy', 'feature3', 'title'] },
-              { type: 'textarea', label: 'Feature 3: Description', path: ['philosophy', 'feature3', 'desc'] },
-              { type: 'image', label: 'Feature 3: Custom Image', imageConfig: { arrayKey: 'otherImages', index: 4 } },
-              { type: 'text', label: 'Feature 4: Title', path: ['philosophy', 'feature4', 'title'] },
-              { type: 'textarea', label: 'Feature 4: Description', path: ['philosophy', 'feature4', 'desc'] },
-              { type: 'image', label: 'Feature 4: Custom Image', imageConfig: { arrayKey: 'otherImages', index: 5 } }
-            ]
-          },
-          {
-            label: 'About Studio Section',
-            elements: [
-              { type: 'text', label: 'Principal Designer Name', path: ['doctor', 'name'] },
-              { type: 'text', label: 'Designer Specialization', path: ['doctor', 'specialization'] },
-              { type: 'text', label: 'Designer Experience Details', path: ['doctor', 'experience'] },
-              { type: 'image', label: 'Principal Portrait Image', imageConfig: { arrayKey: 'otherImages', index: 0 } },
-              { type: 'text', label: 'Narrative Item 1: Title', path: ['homeAbout', 'item1', 'title'] },
-              { type: 'textarea', label: 'Narrative Item 1: Description', path: ['homeAbout', 'item1', 'desc'] },
-              { type: 'text', label: 'Narrative Item 2: Title', path: ['homeAbout', 'item2', 'title'] },
-              { type: 'textarea', label: 'Narrative Item 2: Description', path: ['homeAbout', 'item2', 'desc'] },
-              { type: 'text', label: 'Narrative Item 3: Title', path: ['homeAbout', 'item3', 'title'] },
-              { type: 'textarea', label: 'Narrative Item 3: Description', path: ['homeAbout', 'item3', 'desc'] }
-            ]
-          },
-          {
-            label: 'Services Preview',
-            elements: [
-              { type: 'list', label: 'Services List (1 per line)', path: ['business', 'services'] }
-            ]
-          },
-          {
-            label: 'Service Images',
-            elements: [
-              { type: 'image', label: 'Space Planning & Layout Image', imageConfig: { arrayKey: 'otherImages', index: 6 } },
-              { type: 'image', label: 'Material & Finish Selection Image', imageConfig: { arrayKey: 'otherImages', index: 7 } },
-              { type: 'image', label: 'Lighting Design Image', imageConfig: { arrayKey: 'otherImages', index: 8 } },
-              { type: 'image', label: 'Residential Design Image', imageConfig: { arrayKey: 'otherImages', index: 9 } },
-              { type: 'image', label: 'Commercial Interiors Image', imageConfig: { arrayKey: 'otherImages', index: 10 } },
-              { type: 'image', label: 'Styling & Decor Image', imageConfig: { arrayKey: 'otherImages', index: 11 } },
-              { type: 'image', label: 'Full Home Renovation Image', imageConfig: { arrayKey: 'otherImages', index: 12 } },
-              { type: 'image', label: 'Custom Furniture Image', imageConfig: { arrayKey: 'otherImages', index: 13 } }
-            ]
-          },
-          {
-            label: 'Contact Details',
-            elements: [
-              { type: 'text', label: 'Contact Phone Number', path: ['clinic', 'contact', 'phone'] },
-              { type: 'text', label: 'Full Address location', path: ['clinic', 'address', 'full'] }
-            ]
-          }
-        ]
-      },
-      {
-        id: 'about',
-        label: 'About Page',
-        sections: [
-          {
-            label: 'Story & Vision',
-            elements: [
-              { type: 'textarea', label: 'Vision Quote Statement', path: ['about', 'vision'] },
-              { type: 'image', label: 'About Page Hero Image', imageConfig: { arrayKey: 'clinicImages', index: 1 } }
-            ]
-          },
-          {
-            label: 'Creative Leadership - Lead',
-            elements: [
-              { type: 'text', label: 'Lead Name', path: ['doctor', 'name'] },
-              { type: 'textarea', label: 'Lead Vision Bio Description', path: ['doctor', 'bio'] },
-              { type: 'image', label: 'Lead Portrait Image', imageConfig: { arrayKey: 'otherImages', index: 0 } }
-            ]
-          },
-          {
-            label: 'Creative Leadership - Associate',
-            elements: [
-              { type: 'text', label: 'Associate Name', path: ['doctor2', 'name'] },
-              { type: 'text', label: 'Associate Role', path: ['doctor2', 'role'] },
-              { type: 'text', label: 'Associate Credentials info', path: ['doctor2', 'credentials'] },
-              { type: 'textarea', label: 'Associate Bio Description', path: ['doctor2', 'bio'] },
-              { type: 'image', label: 'Associate Portrait Image', imageConfig: { arrayKey: 'otherImages', index: 1 } }
-            ]
-          }
-        ]
-      },
-      {
-        id: 'services',
-        label: 'Services Page',
-        sections: [
-          {
-            label: 'Services Catalog',
-            elements: [
-              { type: 'list', label: 'Services List (1 per line)', path: ['business', 'services'] }
-            ]
-          },
-          {
-            label: 'Service Images',
-            elements: [
-              { type: 'image', label: 'Space Planning & Layout Image', imageConfig: { arrayKey: 'otherImages', index: 6 } },
-              { type: 'image', label: 'Material & Finish Selection Image', imageConfig: { arrayKey: 'otherImages', index: 7 } },
-              { type: 'image', label: 'Lighting Design Image', imageConfig: { arrayKey: 'otherImages', index: 8 } },
-              { type: 'image', label: 'Residential Design Image', imageConfig: { arrayKey: 'otherImages', index: 9 } },
-              { type: 'image', label: 'Commercial Interiors Image', imageConfig: { arrayKey: 'otherImages', index: 10 } },
-              { type: 'image', label: 'Styling & Decor Image', imageConfig: { arrayKey: 'otherImages', index: 11 } },
-              { type: 'image', label: 'Full Home Renovation Image', imageConfig: { arrayKey: 'otherImages', index: 12 } },
-              { type: 'image', label: 'Custom Furniture Image', imageConfig: { arrayKey: 'otherImages', index: 13 } }
-            ]
-          }
-        ]
-      },
-      {
-        id: 'gallery',
-        label: 'Gallery Page',
-        sections: [
-          {
-            label: 'Project Highlights',
-            elements: [
-              { type: 'list', label: 'Highlights List (1 per line)', path: ['business', 'highlights'] }
-            ]
-          }
-        ]
-      },
-      {
-        id: 'contact',
-        label: 'Contact Page',
-        sections: [
-          {
-            label: 'Studio Locations',
-            elements: [
-              { type: 'text', label: 'Contact Phone Number', path: ['clinic', 'contact', 'phone'] },
-              { type: 'text', label: 'Full Address location', path: ['clinic', 'address', 'full'] }
-            ]
-          }
-        ]
-      }
-    ];
-
-const TEMPLATE_SCHEMAS: Record<string, {
-  pages: {
-    id: string;
-    label: string;
-    sections: {
-      label: string;
-      elements: (
-        | { type: 'text' | 'textarea' | 'list'; label: string; path: string[]; imageConfig?: never }
-        | { type: 'image'; label: string; path?: never; imageConfig: { arrayKey: 'clinicImages' | 'otherImages'; index: number } }
-      )[];
-    }[];
-  }[];
-}> = {
-  template1: {
-    pages: [
-      {
-        id: 'home',
-        label: 'Home Page',
-        sections: [
-          {
-            label: 'Hero Section',
-            elements: [
-              { type: 'text', label: 'Studio Name', path: ['clinic', 'name'] },
-              { type: 'text', label: 'Hero Tagline', path: ['clinic', 'tagline'] },
-              { type: 'textarea', label: 'Hero Description', path: ['clinic', 'description'] },
-              { type: 'text', label: 'Inquiry Phone Number', path: ['clinic', 'contact', 'phone'] },
-              { type: 'image', label: 'Hero Main Image', imageConfig: { arrayKey: 'clinicImages', index: 0 } }
-            ]
-          },
-          {
-            label: 'Philosophy (Why Choose Us)',
-            elements: [
-              { type: 'text', label: 'Philosophy Main Title', path: ['philosophy', 'title'] },
-              { type: 'textarea', label: 'Philosophy Main Description', path: ['philosophy', 'description'] },
-              
-              { type: 'text', label: 'Feature 1: Title', path: ['philosophy', 'feature1', 'title'] },
-              { type: 'textarea', label: 'Feature 1: Description', path: ['philosophy', 'feature1', 'desc'] },
-              { type: 'image', label: 'Feature 1: Image', imageConfig: { arrayKey: 'otherImages', index: 2 } },
-              
-              { type: 'text', label: 'Feature 2: Title', path: ['philosophy', 'feature2', 'title'] },
-              { type: 'textarea', label: 'Feature 2: Description', path: ['philosophy', 'feature2', 'desc'] },
-              { type: 'image', label: 'Feature 2: Image', imageConfig: { arrayKey: 'otherImages', index: 3 } },
-              
-              { type: 'text', label: 'Feature 3: Title', path: ['philosophy', 'feature3', 'title'] },
-              { type: 'textarea', label: 'Feature 3: Description', path: ['philosophy', 'feature3', 'desc'] },
-              { type: 'image', label: 'Feature 3: Image', imageConfig: { arrayKey: 'otherImages', index: 4 } },
-              
-              { type: 'text', label: 'Feature 4: Title', path: ['philosophy', 'feature4', 'title'] },
-              { type: 'textarea', label: 'Feature 4: Description', path: ['philosophy', 'feature4', 'desc'] },
-              { type: 'image', label: 'Feature 4: Image', imageConfig: { arrayKey: 'otherImages', index: 5 } }
-            ]
-          },
-          {
-            label: 'Services Preview',
-            elements: [
-              { type: 'list', label: 'Services List (1 per line)', path: ['business', 'services'] }
-            ]
-          },
-          {
-            label: 'About Section',
-            elements: [
-              { type: 'text', label: 'Designer Name', path: ['doctor', 'name'] },
-              { type: 'text', label: 'Designer Specialization', path: ['doctor', 'specialization'] },
-              { type: 'text', label: 'Designer Experience Details', path: ['doctor', 'experience'] },
-              { type: 'image', label: 'Principal Portrait Image', imageConfig: { arrayKey: 'otherImages', index: 0 } },
-              { type: 'text', label: 'Narrative Item 1: Title', path: ['homeAbout', 'item1', 'title'] },
-              { type: 'textarea', label: 'Narrative Item 1: Description', path: ['homeAbout', 'item1', 'desc'] },
-              { type: 'text', label: 'Narrative Item 2: Title', path: ['homeAbout', 'item2', 'title'] },
-              { type: 'textarea', label: 'Narrative Item 2: Description', path: ['homeAbout', 'item2', 'desc'] },
-              { type: 'text', label: 'Narrative Item 3: Title', path: ['homeAbout', 'item3', 'title'] },
-              { type: 'textarea', label: 'Narrative Item 3: Description', path: ['homeAbout', 'item3', 'desc'] }
-            ]
-          }
-        ]
-      },
-      {
-        id: 'about',
-        label: 'About Page',
-        sections: [
-          {
-            label: 'Story & Vision',
-            elements: [
-              { type: 'textarea', label: 'Vision Quote Statement', path: ['about', 'vision'] },
-              { type: 'image', label: 'About Page Hero Image', imageConfig: { arrayKey: 'clinicImages', index: 1 } }
-            ]
-          },
-          {
-            label: 'Creative Leadership - Lead',
-            elements: [
-              { type: 'text', label: 'Lead Name', path: ['doctor', 'name'] },
-              { type: 'textarea', label: 'Lead Vision Bio Description', path: ['doctor', 'bio'] },
-              { type: 'image', label: 'Lead Portrait Image', imageConfig: { arrayKey: 'otherImages', index: 0 } }
-            ]
-          },
-          {
-            label: 'Creative Leadership - Associate',
-            elements: [
-              { type: 'text', label: 'Associate Name', path: ['doctor2', 'name'] },
-              { type: 'text', label: 'Associate Role', path: ['doctor2', 'role'] },
-              { type: 'text', label: 'Associate Credentials info', path: ['doctor2', 'credentials'] },
-              { type: 'textarea', label: 'Associate Bio Description', path: ['doctor2', 'bio'] },
-              { type: 'image', label: 'Associate Portrait Image', imageConfig: { arrayKey: 'otherImages', index: 1 } }
-            ]
-          }
-        ]
-      },
-      {
-        id: 'services',
-        label: 'Services Page',
-        sections: [
-          {
-            label: 'Services Catalog',
-            elements: [
-              { type: 'list', label: 'Services List (1 per line)', path: ['business', 'services'] }
-            ]
-          },
-          {
-            label: 'Service Images',
-            elements: [
-              { type: 'image', label: 'Space Planning & Layout Image', imageConfig: { arrayKey: 'otherImages', index: 6 } },
-              { type: 'image', label: 'Material & Finish Selection Image', imageConfig: { arrayKey: 'otherImages', index: 7 } },
-              { type: 'image', label: 'Lighting Design Image', imageConfig: { arrayKey: 'otherImages', index: 8 } },
-              { type: 'image', label: 'Residential Design Image', imageConfig: { arrayKey: 'otherImages', index: 9 } },
-              { type: 'image', label: 'Commercial Interiors Image', imageConfig: { arrayKey: 'otherImages', index: 10 } },
-              { type: 'image', label: 'Styling & Decor Image', imageConfig: { arrayKey: 'otherImages', index: 11 } },
-              { type: 'image', label: 'Full Home Renovation Image', imageConfig: { arrayKey: 'otherImages', index: 12 } },
-              { type: 'image', label: 'Custom Furniture Image', imageConfig: { arrayKey: 'otherImages', index: 13 } }
-            ]
-          }
-        ]
-      },
-      {
-        id: 'contact',
-        label: 'Contact Page',
-        sections: [
-          {
-            label: 'Contact Information',
-            elements: [
-              { type: 'text', label: 'Contact Phone Number', path: ['clinic', 'contact', 'phone'] },
-              { type: 'text', label: 'Full Address location', path: ['clinic', 'address', 'full'] },
-              { type: 'text', label: 'Google Maps Embed URL', path: ['clinic', 'mapEmbedUrl'] }
-            ]
-          }
-        ]
-      }
-    ]
-  },
-  template2: { pages: SHARED_PAGES },
-  template3: { pages: SHARED_PAGES },
-  template4: { pages: SHARED_PAGES },
-  template6: { pages: SHARED_PAGES },
-  template10: { pages: SHARED_PAGES }
-};
+import { TEMPLATE_SCHEMAS, SHARED_PAGES } from './schemas';
 
 type SchemaPage = typeof SHARED_PAGES[number];
 type SchemaSection = SchemaPage['sections'][number];
 type SchemaElement = SchemaSection['elements'][number];
+type MediaArrayKey = 'clinicImages' | 'treatmentImages' | 'otherImages';
 
 type CanvasSelection = {
   sectionIndex: number;
@@ -525,7 +204,7 @@ export default function EditPage({ params }: { params: Promise<{ slug: string }>
   const [imageModal, setImageModal] = useState<{
     isOpen: boolean;
     scope: string;
-    arrayKey: 'clinicImages' | 'otherImages';
+    arrayKey: MediaArrayKey;
     index: number;
     label: string;
   } | null>(null);
@@ -576,6 +255,9 @@ export default function EditPage({ params }: { params: Promise<{ slug: string }>
           reviews: Array.isArray(json?.reviews) ? json.reviews : [],
           templateOverrides: json?.templateOverrides || {}
         });
+        if (json?.selected_template) {
+          setCanvasScope(json.selected_template);
+        }
       } catch (err: any) {
         setError(err.message);
       } finally {
@@ -771,7 +453,7 @@ export default function EditPage({ params }: { params: Promise<{ slug: string }>
   };
 
   // Theme Section Images Resolver & Mutator
-  const getSectionImageValueRaw = (scope: string, arrayKey: 'clinicImages' | 'otherImages', index: number) => {
+  const getSectionImageValueRaw = (scope: string, arrayKey: MediaArrayKey, index: number) => {
     if (!data) return '';
     if (scope === 'base') {
       return data.media?.[arrayKey]?.[index] ?? '';
@@ -780,7 +462,7 @@ export default function EditPage({ params }: { params: Promise<{ slug: string }>
     return templateOverride?.media?.[arrayKey]?.[index] ?? '';
   };
 
-  const getSectionImageValue = (scope: string, arrayKey: 'clinicImages' | 'otherImages', index: number) => {
+  const getSectionImageValue = (scope: string, arrayKey: MediaArrayKey, index: number) => {
     if (!data) return '';
     if (scope === 'base') {
       return data.media?.[arrayKey]?.[index] ?? '';
@@ -791,7 +473,7 @@ export default function EditPage({ params }: { params: Promise<{ slug: string }>
     return data.media?.[arrayKey]?.[index] ?? '';
   };
 
-  const handleAssignSectionImage = (scope: string, arrayKey: 'clinicImages' | 'otherImages', index: number, imageUrl: string) => {
+  const handleAssignSectionImage = (scope: string, arrayKey: MediaArrayKey, index: number, imageUrl: string) => {
     setData((prev: any) => {
       if (scope === 'base') {
         const mediaData = prev.media || {};
@@ -908,7 +590,7 @@ export default function EditPage({ params }: { params: Promise<{ slug: string }>
     }
   }, [imageModal, data]);
 
-  const getImageAltValue = (scope: string, arrayKey: 'clinicImages' | 'otherImages', index: number, fallback: string) => {
+  const getImageAltValue = (scope: string, arrayKey: MediaArrayKey, index: number, fallback: string) => {
     if (!data) return fallback;
     const altMap = scope === 'base'
       ? data.mediaAlt
@@ -916,7 +598,7 @@ export default function EditPage({ params }: { params: Promise<{ slug: string }>
     return altMap?.[arrayKey]?.[index] || fallback;
   };
 
-  const handleImageAltChange = (scope: string, arrayKey: 'clinicImages' | 'otherImages', index: number, alt: string) => {
+  const handleImageAltChange = (scope: string, arrayKey: MediaArrayKey, index: number, alt: string) => {
     setData((prev: any) => {
       if (scope === 'base') {
         const mediaAlt = prev.mediaAlt || {};
@@ -1684,7 +1366,7 @@ export default function EditPage({ params }: { params: Promise<{ slug: string }>
                   </div>
                 ) : (
                   <p className="text-sm text-slate-400 italic p-6 bg-slate-50 border border-slate-100 rounded-xl text-center">
-                    No reviews registered. Click "Add Review" to begin.
+                    No reviews registered. Click &quot;Add Review&quot; to begin.
                   </p>
                 )}
               </div>

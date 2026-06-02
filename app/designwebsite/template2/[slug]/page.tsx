@@ -31,38 +31,60 @@ export default async function DesignStudioHome({ params }: PageProps) {
   const data = await readSourceConfig(slug, 'template2');
   if (!data) return notFound();
 
-  const { clinic, business, doctor, media } = data;
+  const { clinic, business, doctor, media, philosophy, about } = data;
+
+  const uniqueUserImages = [
+    ...(media?.clinicImages || []),
+    ...(media?.treatmentImages || []),
+    ...(media?.otherImages || [])
+  ].filter(Boolean);
 
   const projects = [
     {
       title: "Luxury Skyline Residence",
-      location: "Adyar, Chennai",
+      location: clinic.address?.city || "Adyar, Chennai",
       year: "2025",
-      image: "https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&q=80&w=600",
+      image: uniqueUserImages[2] || "https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&q=80&w=600",
       tag1: "RESIDENTIAL",
       tag2: "SINGLE HOME"
     },
     {
       title: "Bohemian Rhapsody Villa",
-      location: "ECR Road, Chennai",
+      location: clinic.address?.city || "ECR Road, Chennai",
       year: "2025",
-      image: "https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&q=80&w=600",
+      image: uniqueUserImages[3] || "https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&q=80&w=600",
       tag1: "RESIDENTIAL",
       tag2: "SINGLE HOME"
     },
     {
       title: "Vintage Glamour Penthouse",
-      location: "Nungambakkam, Chennai",
+      location: clinic.address?.city || "Nungambakkam, Chennai",
       year: "2025",
-      image: "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&q=80&w=600",
+      image: uniqueUserImages[4] || "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&q=80&w=600",
       tag1: "RESIDENTIAL",
       tag2: "SINGLE HOME"
     },
     {
       title: "Living Innovation Studio",
-      location: "Velachery, Chennai",
+      location: clinic.address?.city || "Velachery, Chennai",
       year: "2025",
-      image: "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&q=80&w=600",
+      image: uniqueUserImages[5] || "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&q=80&w=600",
+      tag1: "RESIDENTIAL",
+      tag2: "SINGLE HOME"
+    },
+    {
+      title: "Urban Minimalist Loft",
+      location: clinic.address?.city || "Alwarpet, Chennai",
+      year: "2025",
+      image: uniqueUserImages[6] || "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&q=80&w=600",
+      tag1: "RESIDENTIAL",
+      tag2: "SINGLE HOME"
+    },
+    {
+      title: "Modern Oasis",
+      location: clinic.address?.city || "Besant Nagar, Chennai",
+      year: "2025",
+      image: uniqueUserImages[7] || "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&q=80&w=600",
       tag1: "RESIDENTIAL",
       tag2: "SINGLE HOME"
     }
@@ -71,7 +93,7 @@ export default async function DesignStudioHome({ params }: PageProps) {
   return (
     <div className="font-sans text-[#2A2421] bg-[#F7F4EF] min-h-screen selection:bg-[#8E7056] selection:text-white scroll-smooth space-y-24">
       {/* Hero & Profile Block */}
-      <ClientHero clinic={clinic} business={business} basePath={basePath} doctor={doctor} />
+      <ClientHero clinic={clinic} business={business} basePath={basePath} doctor={doctor} media={media} />
 
       {/* DESIGN PHILOSOPHY SECTION */}
       <section id="about" className="py-12 relative overflow-hidden">
@@ -87,10 +109,10 @@ export default async function DesignStudioHome({ params }: PageProps) {
             OUR DESIGN PHILOSOPHY
           </div>
           <h2 className={`${cormorant.className} text-3xl sm:text-4xl md:text-5xl font-light tracking-wide max-w-3xl mx-auto leading-tight`}>
-            Crafting Spaces That <span className="text-[#8E7056] italic">Inspire</span> &amp; Elevate Everyday Life
+            {philosophy?.title || <>Crafting Spaces That <span className="text-[#8E7056] italic">Inspire</span> &amp; Elevate Everyday Life</>}
           </h2>
           <p className="text-sm sm:text-base text-[#2A2421]/90 font-light leading-relaxed max-w-2xl mx-auto">
-            We believe that exceptional design is a perfect balance of form and function. With careful spatial planning, custom furniture styling, and premium materials, we create beautiful spaces that support your lifestyle.
+            {philosophy?.description || 'We believe that exceptional design is a perfect balance of form and function. With careful spatial planning, custom furniture styling, and premium materials, we create beautiful spaces that support your lifestyle.'}
           </p>
           <div className="pt-4">
             <Link href={`${basePath}/about`} className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-[#8E7056] hover:text-[#2A2421] transition-colors group">
@@ -103,7 +125,7 @@ export default async function DesignStudioHome({ params }: PageProps) {
         <div className="relative z-10 max-w-6xl mx-auto mt-12">
           <div className="w-full aspect-[21/9] rounded-[2.5rem] overflow-hidden shadow-sm border border-[#EAE3D8]/60">
             <img
-              src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=1200"
+              src={media?.otherImages?.[1] || "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=1200"}
               alt="Modern horizontal architectural interior"
               className="w-full h-full object-cover"
             />
@@ -307,7 +329,7 @@ export default async function DesignStudioHome({ params }: PageProps) {
               </div>
               <div className="sm:w-1/2 w-full aspect-[16/9] rounded-[1.5rem] overflow-hidden border border-[#EAE3D8]/50">
                 <img 
-                  src="https://images.unsplash.com/photo-1540518614846-7eded433c457?auto=format&fit=crop&q=80&w=400" 
+                  src={media?.otherImages?.[2] || "https://images.unsplash.com/photo-1540518614846-7eded433c457?auto=format&fit=crop&q=80&w=400"} 
                   alt="Fine material craftsmanship details" 
                   className="w-full h-full object-cover"
                 />
@@ -455,7 +477,7 @@ export default async function DesignStudioHome({ params }: PageProps) {
 
         <div className="max-w-6xl mx-auto rounded-[2.5rem] overflow-hidden shadow-sm border border-[#EAE3D8]/50">
           <img
-            src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&q=80&w=1200"
+            src={media?.otherImages?.[3] || "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&q=80&w=1200"}
             alt="Seamless elegant interior layout render"
             className="w-full aspect-[16/9] object-cover hover:scale-[1.01] transition-transform duration-[2000ms]"
           />

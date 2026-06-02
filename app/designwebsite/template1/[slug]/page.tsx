@@ -56,9 +56,9 @@ export default async function DesignStudioHome({ params }: PageProps) {
     : DEFAULT_INTERIOR_SERVICES;
 
   const allGalleryImages = [
-    ...(media.clinicImages || []),
     ...(media.treatmentImages || []),
-    ...(media.otherImages || [])
+    ...(media.otherImages || []),
+    ...(media.clinicImages || [])
   ].filter(Boolean);
 
   const previewServices = servicesList.slice(0, 3).map((svc: string, idx: number) => {

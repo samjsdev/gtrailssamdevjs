@@ -25,7 +25,7 @@ export default async function ServicesPage({ params }: { params: Promise<{ slug:
   const { slug } = resolvedParams;
   const data = await readSourceConfig(slug, 'template10');
   if (!data) return notFound();
-  const { media } = data;
+  const { media, clinic } = data;
 
   const basePath = `/designwebsite/template10/${slug}`;
 
@@ -45,11 +45,10 @@ export default async function ServicesPage({ params }: { params: Promise<{ slug:
 
         <div className="relative z-10 max-w-7xl mx-auto w-full space-y-4">
           <span className="text-xs font-bold text-[#E07A5F] tracking-[0.25em] uppercase bg-white/5 border border-white/10 px-3 py-1">
-            PRODUCTION CATALOG
+            {clinic.name || 'PRODUCTION CATALOG'}
           </span>
           <h1 className={`${archivo.className} text-4xl sm:text-5xl lg:text-7xl text-white uppercase leading-[1.05]`}>
-            Our Loft <br />
-            <span className="text-[#E07A5F]">Services</span>
+            {clinic.tagline || <>Our Loft <br /><span className="text-[#E07A5F]">Services</span></>}
           </h1>
         </div>
       </section>
