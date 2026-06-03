@@ -217,7 +217,7 @@ async function migrate() {
       for (let img of imgEntries) {
         if (img.isFile() && !img.name.startsWith('.')) {
           const imgPath = path.join(imagesDir, img.name);
-          const fileId = `${slug}_${img.name}`.substring(0, 36).replace(/[^a-zA-Z0-9-_]/g, '');
+          const fileId = crypto.createHash('md5').update(`${slug}_${img.name}`).digest('hex');
           console.log(`  -> Uploading image: ${img.name} (File ID: ${fileId})`);
           await uploadFileToBucket('scraped_images', fileId, imgPath, 'image/jpeg');
         }

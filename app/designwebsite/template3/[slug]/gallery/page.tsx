@@ -104,12 +104,12 @@ export default async function GalleryPage({ params }: { params: Promise<{ slug: 
           </div>
 
           <h1 className="text-6xl sm:text-7xl lg:text-8xl font-bold tracking-tight text-slate-900 leading-[1.05]">
-            Our Work &{' '}
-            <span className="text-[#B48A66] italic font-normal">Studio</span>
+            {clinic.name || "Our Work"} &amp;{' '}
+            <span className="text-[#B48A66] italic font-normal">Portfolio</span>
           </h1>
 
           <p className="text-xl md:text-2xl text-slate-500 font-light leading-relaxed max-w-2xl mx-auto">
-            Explore the spaces we have transformed and the creative environment where our designs come to life.
+            {clinic.description || "Explore the spaces we have transformed and the creative environment where our designs come to life."}
           </p>
 
           {/* Stats strip */}
@@ -139,7 +139,9 @@ export default async function GalleryPage({ params }: { params: Promise<{ slug: 
         </div>
 
         {/* Interactive gallery grid */}
-        <GalleryGrid items={PORTFOLIO} />
+        <section id="gallery-grid">
+          <GalleryGrid items={PORTFOLIO} />
+        </section>
 
       </div>
     </div>

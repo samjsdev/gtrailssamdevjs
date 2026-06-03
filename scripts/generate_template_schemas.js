@@ -140,23 +140,6 @@ function normalizeText(str) {
 
 // Clean and format section labels for consistent modern aesthetics
 function sanitizeSectionLabel(label, secIdx, pageId) {
-  if (pageId === 'home') {
-    if (secIdx === 0) return 'Hero Section';
-    if (secIdx === 1) return 'Why Choose Us';
-    if (secIdx === 2) return 'Services Section';
-    if (secIdx === 3) return 'About Us Section';
-    if (secIdx === 4) return 'Portfolio Gallery Section';
-    if (secIdx === 5) return 'Reviews Section';
-    if (secIdx === 6) return 'Frequently Asked Questions';
-    if (secIdx === 7) return 'Contact Section';
-  }
-
-  if (pageId === 'about') {
-    if (secIdx === 0) return 'About Us Section';
-    if (secIdx === 1) return 'Creative Leadership';
-    if (secIdx === 2) return 'Core Values';
-  }
-
   const norm = normalizeText(label);
   if (/hero|intro|welcome|banner|header/i.test(norm) || secIdx === 0) {
     return 'Hero Section';
@@ -182,7 +165,10 @@ function sanitizeSectionLabel(label, secIdx, pageId) {
   if (/contact|location|details|address/i.test(norm)) {
     return 'Contact Section';
   }
-  if (/cta|action|connect|journey/i.test(norm)) {
+  if (/journey|timeline|history|chronicle|milestone/i.test(norm)) {
+    return 'Journey Timeline';
+  }
+  if (/cta|action|connect/i.test(norm)) {
     return 'Call to Action Section';
   }
 
@@ -286,7 +272,53 @@ async function main() {
   const { clinic, business, doctor, media } = mockData;
 
   const mockTextData = [];
-  flattenTextData({ clinic, doctor, business, philosophy: mockData.philosophy, about: mockData.about, doctor2: mockData.doctor2, homeAbout: mockData.homeAbout }, mockTextData);
+  
+  // Construct baseline data with rich default fallbacks so scraper can reverse-map them
+  const baselineData = {
+    clinic,
+    doctor: {
+      ...doctor,
+      bio: doctor?.bio || 'With over a decade of hands-on experience, he oversees the master structural scoping, custom joinery modules, and carpentry execution protocols for our residential projects. He believes a home should highlight the innate warmth of stone and timber.',
+      credentials: doctor?.credentials || 'M.Des, Interior Architecture | B.Arch, Sir J.J. College',
+      quote: doctor?.quote || 'A successful home should function cleanly while highlighting the natural warmth of timber and stone.'
+    },
+    business,
+    philosophy: mockData.philosophy || {
+      title: "Designing Beyond The Surface",
+      tagline: "Biophilic principles and high-end solid woods"
+    },
+    about: mockData.about || {
+      vision: "We shape luxury residential spaces and commercial interiors with high-fidelity spatial planning, sustainable material curation, and strict operational integrity."
+    },
+    doctor2: mockData.doctor2 || {
+      name: "Kavitha Rajan",
+      role: "ASSOCIATE PARTNER",
+      credentials: "B.Des, Interior Styling — NID | Certified Organic Material Consultant",
+      bio: "Kavitha has over 6 years of experience, specializing in biophilic color composition, organic linen layerings, and curation of eco-responsible decorative assets that make residences feel warm and inviting.",
+      quote: "Organic textures tell physical stories. Our focus is to make those stories warm, inviting, and enduring."
+    },
+    homeAbout: mockData.homeAbout || {}
+  };
+  
+  flattenTextData(baselineData, mockTextData);
+
+  // Add template variations to support cross-template matches on alternative default values
+  const extraMatches = [
+    { path: ['doctor', 'bio'], value: 'Arjun Mehta founded Navaneeth interiors in 2015. With over a decade of design experience, he oversees the architectural planning, timber sourcing, and custom furniture frameworks for every residential studio build.', label: 'Principal Bio' },
+    { path: ['doctor', 'bio'], value: `${doctor?.name || 'Arjun Mehta'} founded ${clinic?.name || 'Navaneeth interiors'} in 2015. With over a decade of design experience, he oversees the architectural planning, timber sourcing, and custom furniture frameworks for every residential studio build.`, label: 'Principal Bio' },
+    { path: ['doctor', 'credentials'], value: 'M.Des, Interior Architecture — NID | B.Arch — Sir J.J. College', label: 'Principal Credentials' },
+    { path: ['doctor', 'credentials'], value: 'M.Des, National Institute of Design | B.Arch, Sir J.J. College.', label: 'Principal Credentials' },
+    { path: ['doctor', 'specialization'], value: 'Spatial Planning, Luxury Residential architecture, Custom Carpentry Systems.', label: 'Principal Specialization' },
+    { path: ['about', 'vision'], value: 'We shape luxury residential spaces and commercial interiors with high-fidelity planning, selected organic materials, and transparent project operations.', label: 'Vision Quote' },
+    { path: ['about', 'vision'], value: 'We curate luxury residential spaces and commercial interiors with high-fidelity spatial planning, sustainable organic timber sourcing, and transparent billing operations.', label: 'Vision Quote' },
+    { path: ['doctor2', 'role'], value: 'CO-FOUNDER & STYLING LEAD', label: 'Partner Role' },
+    { path: ['doctor2', 'role'], value: 'LEAD STYLIST', label: 'Partner Role' },
+    { path: ['doctor2', 'bio'], value: 'Specializing in biophilic texture layerings, material curation, and warm minimalist aesthetics, Kavitha sources sustainable furnishings, eco-responsible fabrics, and curated styling items that make our spaces feel comfortable and organic.', label: 'Partner Bio' },
+    { path: ['doctor2', 'quote'], value: 'Organic textures tell physical stories. Our focus is to make those stories warm and enduring.', label: 'Partner Quote' }
+  ];
+  extraMatches.forEach(item => {
+    mockTextData.push(item);
+  });
   
   // Sort text values by length descending to match longest matches first
   mockTextData.sort((a, b) => b.value.length - a.value.length);
@@ -365,7 +397,7 @@ async function main() {
 
       let sections = [];
       try {
-        await page.goto(url, { waitUntil: 'networkidle', timeout: 8000 });
+        await page.goto(url, { waitUntil: 'networkidle', timeout: 30000 });
         
         // Retrieve dynamic DOM elements in page environment
         sections = await page.evaluate(({ mockTextData, mockImageData, mockListData }) => {
@@ -420,87 +452,90 @@ async function main() {
               sectionTitle = sec.id;
             }
 
-            // 1. Match images
-            // Normal <img> tags
-            const imgElements = Array.from(sec.querySelectorAll('img'));
-            imgElements.forEach(img => {
-              const src = img.src;
-              if (!src) return;
+            // Skip images inside the gallery page completely, as they are dynamic bulk collections managed in the Media tab
+            const isGalleryGrid = window.location.pathname.endsWith('/gallery') || sec.id === 'gallery-grid' || sec.classList.contains('gallery-grid');
+            if (!isGalleryGrid) {
+              // Normal <img> tags
+              const imgElements = Array.from(sec.querySelectorAll('img'));
+              imgElements.forEach(img => {
+                const src = img.src;
+                if (!src) return;
 
-              const targetFileName = getBaseFileName(src);
-              if (!targetFileName) return;
+                const targetFileName = getBaseFileName(src);
+                if (!targetFileName) return;
 
-              let bestMatch = null;
-              for (const imgData of mockImageData) {
-                if (imgData.fileName === targetFileName) {
-                  if (!bestMatch) {
-                    bestMatch = imgData;
-                  } else {
-                    const prevKey = bestMatch.arrayKey;
-                    const nextKey = imgData.arrayKey;
-                    
-                    // Specific keys are prioritized over otherImages fallback keys
-                    if (nextKey === 'clinicImages' && prevKey !== 'clinicImages') {
+                let bestMatch = null;
+                for (const imgData of mockImageData) {
+                  if (imgData.fileName === targetFileName) {
+                    if (!bestMatch) {
                       bestMatch = imgData;
-                    } else if (nextKey === 'treatmentImages' && prevKey === 'otherImages') {
-                      bestMatch = imgData;
+                    } else {
+                      const prevKey = bestMatch.arrayKey;
+                      const nextKey = imgData.arrayKey;
+                      
+                      // Specific keys are prioritized over otherImages fallback keys
+                      if (nextKey === 'clinicImages' && prevKey !== 'clinicImages') {
+                        bestMatch = imgData;
+                      } else if (nextKey === 'treatmentImages' && prevKey === 'otherImages') {
+                        bestMatch = imgData;
+                      }
                     }
                   }
                 }
-              }
 
-              if (bestMatch) {
-                elements.push({
-                  type: 'image',
-                  label: bestMatch.label,
-                  imageConfig: {
-                    arrayKey: bestMatch.arrayKey,
-                    index: bestMatch.index
-                  }
-                });
-              }
-            });
+                if (bestMatch) {
+                  elements.push({
+                    type: 'image',
+                    label: bestMatch.label,
+                    imageConfig: {
+                      arrayKey: bestMatch.arrayKey,
+                      index: bestMatch.index
+                    }
+                  });
+                }
+              });
 
-            // CSS background images
-            const allElements = Array.from(sec.querySelectorAll('*'));
-            allElements.forEach(el => {
-              const bg = window.getComputedStyle(el).backgroundImage;
-              if (bg && bg !== 'none') {
-                const match = bg.match(/url\(['"]?([^'"]+)['"]?\)/);
-                if (match) {
-                  const src = match[1];
-                  const targetFileName = getBaseFileName(src);
-                  if (!targetFileName) return;
+              // CSS background images
+              const allElements = Array.from(sec.querySelectorAll('*'));
+              allElements.forEach(el => {
+                const bg = window.getComputedStyle(el).backgroundImage;
+                if (bg && bg !== 'none') {
+                  const match = bg.match(/url\(['"]?([^'"]+)['"]?\)/);
+                  if (match) {
+                    const src = match[1];
+                    const targetFileName = getBaseFileName(src);
+                    if (!targetFileName) return;
 
-                  let bestMatch = null;
-                  for (const imgData of mockImageData) {
-                    if (imgData.fileName === targetFileName) {
-                      if (!bestMatch) {
-                        bestMatch = imgData;
-                      } else {
-                        const prevKey = bestMatch.arrayKey;
-                        const nextKey = imgData.arrayKey;
-                        if (nextKey === 'clinicImages' && prevKey !== 'clinicImages') {
+                    let bestMatch = null;
+                    for (const imgData of mockImageData) {
+                      if (imgData.fileName === targetFileName) {
+                        if (!bestMatch) {
                           bestMatch = imgData;
-                        } else if (nextKey === 'treatmentImages' && prevKey === 'otherImages') {
-                          bestMatch = imgData;
+                        } else {
+                          const prevKey = bestMatch.arrayKey;
+                          const nextKey = imgData.arrayKey;
+                          if (nextKey === 'clinicImages' && prevKey !== 'clinicImages') {
+                            bestMatch = imgData;
+                          } else if (nextKey === 'treatmentImages' && prevKey === 'otherImages') {
+                            bestMatch = imgData;
+                          }
                         }
                       }
                     }
-                  }
-                  if (bestMatch) {
-                    elements.push({
-                      type: 'image',
-                      label: bestMatch.label,
-                      imageConfig: {
-                        arrayKey: bestMatch.arrayKey,
-                        index: bestMatch.index
-                      }
-                    });
+                    if (bestMatch) {
+                      elements.push({
+                        type: 'image',
+                        label: bestMatch.label,
+                        imageConfig: {
+                          arrayKey: bestMatch.arrayKey,
+                          index: bestMatch.index
+                        }
+                      });
+                    }
                   }
                 }
-              }
-            });
+              });
+            }
 
             // 2. Match lists
             for (const listData of mockListData) {
@@ -557,7 +592,7 @@ async function main() {
         }, { mockTextData, mockImageData, mockListData });
 
       } catch (err) {
-        console.warn(`  ⚠️ Scraper failed to render route: ${url}. Utilizing graceful heuristics.`);
+        console.warn(`  ⚠️ Scraper failed to render route: ${url}. Error:`, err);
       }
 
       // Convert raw sections to final schema mappings

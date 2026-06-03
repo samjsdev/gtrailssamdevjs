@@ -20,11 +20,37 @@ export default async function AboutPage({ params }: { params: Promise<{ slug: st
 
   const clinicName = data?.clinic?.name || 'SKETCHLAB';
   const doctorName = data?.doctor?.name || 'Arjun Mehta';
-  const doctorImage = 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=800&q=80';
-  const secondaryImage = 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=800&q=80';
+
+  const getValidImage = (url: string | undefined, fallback: string) => {
+    if (!url || url.includes('/api/media')) return fallback;
+    return url;
+  };
+
+  const doctorImage = getValidImage(
+    data?.media?.otherImages?.[0],
+    'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=800&q=80'
+  );
+  const secondaryImage = getValidImage(
+    data?.media?.otherImages?.[1],
+    'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=800&q=80'
+  );
+
+  const partnerName = data?.doctor2?.name || 'Kavitha Rajan';
+  const partnerRole = data?.doctor2?.role || 'LEAD STYLIST & CO-DIRECTOR';
+  const partnerCredentials = data?.doctor2?.credentials || 'B.Des — NID | Certified Organic Consultant';
+  const partnerBio = data?.doctor2?.bio || 'Kavitha leads the spatial styling and organic layouts, coordinating ambient details and biophilic textures for Chennai residential builds.';
+  const partnerQuote = data?.doctor2?.quote || 'Space feels luxurious when natural textures and soft woven details gain unique character over time.';
+
+  const collageImage = getValidImage(
+    data?.media?.clinicImages?.[1],
+    getValidImage(
+      data?.media?.otherImages?.[1],
+      "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=1200"
+    )
+  );
 
   return (
-    <div className="font-sans text-[#2A2421] bg-[#F7F4EF] min-h-screen pb-24 space-y-28">
+    <div className="font-sans text-[#2A2421] bg-[#F7F4EF] min-h-screen pb-24">
       {/* Editorial Hero Section */}
       <section className="relative pt-20 pb-8 text-center space-y-6 max-w-4xl mx-auto">
         <div className="flex items-center justify-center gap-2 text-[#8E7056] text-[10px] font-bold uppercase tracking-[0.2em]">
@@ -42,11 +68,11 @@ export default async function AboutPage({ params }: { params: Promise<{ slug: st
       </section>
 
       {/* PORTRAIT PROFILE IMAGE COLLAGE */}
-      <section className="max-w-5xl mx-auto px-4">
+      <section className="max-w-5xl mx-auto px-4 mt-4 md:mt-8">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
-          <div className="md:col-span-8 aspect-[21/9] rounded-[2.5rem] overflow-hidden border border-[#EAE3D8]/60 shadow-xs relative bg-white">
+          <div className="md:col-span-8 aspect-[4/3] sm:aspect-[16/10] md:aspect-[21/9] rounded-[2.5rem] overflow-hidden border border-[#EAE3D8]/60 shadow-xs relative bg-white">
             <img
-              src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=1200"
+              src={collageImage}
               alt="SKETCHLAB Chennai coordinate studio layout"
               className="w-full h-full object-cover"
             />
@@ -61,7 +87,7 @@ export default async function AboutPage({ params }: { params: Promise<{ slug: st
       </section>
 
       {/* CHENNAI HISTORY TIMELINE GRID */}
-      <section className="bg-white rounded-[3rem] border border-[#EAE3D8]/50 p-8 md:p-16 relative overflow-hidden shadow-sm text-left">
+      <section className="bg-white rounded-[3rem] border border-[#EAE3D8]/50 p-8 md:p-16 relative overflow-hidden shadow-sm text-left mt-24 md:mt-28">
         <div className="absolute top-0 right-0 w-96 h-96 bg-[#8E7056]/5 rounded-bl-full blur-3xl pointer-events-none" />
         
         <div className="relative z-10 max-w-5xl mx-auto space-y-12">
@@ -96,7 +122,7 @@ export default async function AboutPage({ params }: { params: Promise<{ slug: st
       </section>
 
       {/* DESIGN LEADERS SIDE-BY-SIDE PROFILES */}
-      <section className="space-y-16">
+      <section className="space-y-16 mt-24 md:mt-28">
         <div className="text-center space-y-3">
           <div className="flex items-center justify-center gap-2 text-[#8E7056] text-[10px] font-bold uppercase tracking-[0.2em]">
             <span className="w-1.5 h-1.5 rounded-full bg-[#8E7056]" />
@@ -144,23 +170,23 @@ export default async function AboutPage({ params }: { params: Promise<{ slug: st
             <div className="space-y-6">
               <div className="flex flex-col sm:flex-row items-center gap-6">
                 <div className="w-36 h-36 rounded-full overflow-hidden border-4 border-[#FAF8F5] shadow-xs shrink-0 aspect-square">
-                  <img src={secondaryImage} alt="Kavitha Rajan" className="w-full h-full object-cover grayscale opacity-95 hover:grayscale-0 transition-all duration-[600ms]" />
+                  <img src={secondaryImage} alt={partnerName} className="w-full h-full object-cover grayscale opacity-95 hover:grayscale-0 transition-all duration-[600ms]" />
                 </div>
                 <div className="space-y-1">
-                  <span className="text-[9px] font-bold tracking-widest text-[#8E7056] uppercase">LEAD STYLIST &amp; CO-DIRECTOR</span>
-                  <h3 className={`${cormorant.className} text-2.5xl font-light text-[#2A2421]`}>Kavitha Rajan</h3>
-                  <p className="text-[11px] text-[#2A2421]/75 font-light">B.Des — NID | Certified Organic Consultant</p>
+                  <span className="text-[9px] font-bold tracking-widest text-[#8E7056] uppercase">{partnerRole}</span>
+                  <h3 className={`${cormorant.className} text-2.5xl font-light text-[#2A2421]`}>{partnerName}</h3>
+                  <p className="text-[11px] text-[#2A2421]/75 font-light">{partnerCredentials}</p>
                 </div>
               </div>
 
               <p className="text-xs sm:text-[13px] text-[#2A2421]/90 leading-relaxed font-light">
-                Kavitha leads the spatial styling and organic layouts, coordinating ambient details and biophilic textures for Chennai residential builds.
+                {partnerBio}
               </p>
             </div>
 
             <div className="pt-6 border-t border-[#EAE3D8]/60 space-y-4">
               <blockquote className="italic text-[#2A2421]/90 text-[14px] font-serif leading-relaxed">
-                &ldquo;Space feels luxurious when natural textures and soft woven details gain unique character over time.&rdquo;
+                &ldquo;{partnerQuote}&rdquo;
               </blockquote>
               <div className="flex gap-2">
                 <span className="px-3 py-1 bg-[#FAF8F5] text-[9px] font-bold text-[#8E7056] uppercase tracking-wider rounded-full border border-[#EAE3D8]/60">BIOPHILIC TEXTILES</span>
@@ -172,7 +198,7 @@ export default async function AboutPage({ params }: { params: Promise<{ slug: st
       </section>
 
       {/* METRICS & STUDIO PARADIGMS */}
-      <section className="bg-white rounded-[3rem] border border-[#EAE3D8]/50 p-8 md:p-16 relative overflow-hidden shadow-sm text-left">
+      <section className="bg-white rounded-[3rem] border border-[#EAE3D8]/50 p-8 md:p-16 relative overflow-hidden shadow-sm text-left mt-24 md:mt-28">
         <div className="flex flex-col lg:flex-row gap-16 relative z-10">
           <div className="lg:w-1/3 space-y-6 lg:sticky lg:top-36 self-start">
              <div className="flex items-center gap-2 text-[#8E7056] text-[10px] font-bold uppercase tracking-[0.2em]">
@@ -207,7 +233,7 @@ export default async function AboutPage({ params }: { params: Promise<{ slug: st
       </section>
 
       {/* WHY TRUST US SECTION */}
-      <section className="text-center pt-8 space-y-12">
+      <section className="text-center pt-8 space-y-12 mt-24 md:mt-28">
         <div className="space-y-3 max-w-2xl mx-auto">
            <div className="flex items-center justify-center gap-2 text-[#8E7056] text-[10px] font-bold uppercase tracking-[0.2em]">
              <span className="w-1.5 h-1.5 rounded-full bg-[#8E7056]" />

@@ -200,6 +200,15 @@ export default function EditPage({ params }: { params: Promise<{ slug: string }>
     elementIndex: 0
   });
 
+  // Drag and drop image swap state
+  const [draggedImage, setDraggedImage] = useState<{
+    arrayKey: MediaArrayKey;
+    index: number;
+    sectionIndex: number;
+    elementIndex: number;
+  } | null>(null);
+  const [dragOverCard, setDragOverCard] = useState<string | null>(null);
+
   // State to track image selection popup modal config
   const [imageModal, setImageModal] = useState<{
     isOpen: boolean;
@@ -519,6 +528,106 @@ export default function EditPage({ params }: { params: Promise<{ slug: string }>
     });
   };
 
+  const handleSwapImages = (
+    scope: string,
+    arrayKeyA: MediaArrayKey,
+    indexA: number,
+    arrayKeyB: MediaArrayKey,
+    indexB: number
+  ) => {
+    setData((prev: any) => {
+      // Helper to retrieve the current active image value for a slot from prev
+      const getVal = (arrKey: MediaArrayKey, idx: number) => {
+        if (scope === 'base') {
+          return prev.media?.[arrKey]?.[idx] ?? '';
+        }
+        const templateOverride = prev.templateOverrides?.[scope];
+        const val = templateOverride?.media?.[arrKey]?.[idx];
+        if (val !== undefined && val !== '') return val;
+        return prev.media?.[arrKey]?.[idx] ?? '';
+      };
+
+      const valA = getVal(arrayKeyA, indexA);
+      const valB = getVal(arrayKeyB, indexB);
+
+      // Helper to assign value in a data structure and return new structure
+      const assignVal = (targetData: any, arrKey: MediaArrayKey, idx: number, value: string) => {
+        if (scope === 'base') {
+          const mediaData = { ...(targetData.media || {}) };
+          const currentArray = [...(mediaData[arrKey] || [])];
+          while (currentArray.length <= idx) {
+            currentArray.push('');
+          }
+          currentArray[idx] = value;
+          return {
+            ...targetData,
+            media: {
+              ...mediaData,
+              [arrKey]: currentArray
+            }
+          };
+        }
+
+        const overrides = { ...(targetData.templateOverrides || {}) };
+        const templateData = { ...(overrides[scope] || {}) };
+        const mediaData = { ...(templateData.media || {}) };
+        const currentArray = [...(mediaData[arrKey] || targetData.media?.[arrKey] || [])];
+        while (currentArray.length <= idx) {
+          currentArray.push('');
+        }
+        currentArray[idx] = value;
+
+        return {
+          ...targetData,
+          templateOverrides: {
+            ...overrides,
+            [scope]: {
+              ...templateData,
+              media: {
+                ...mediaData,
+                [arrKey]: currentArray
+              }
+            }
+          }
+        };
+      };
+
+      // Swap the values: A gets valB, B gets valA
+      let updatedData = assignVal(prev, arrayKeyA, indexA, valB);
+      updatedData = assignVal(updatedData, arrayKeyB, indexB, valA);
+      return updatedData;
+    });
+  };
+
+  const resolveElementLabel = (element: any) => {
+    if (!element) return '';
+    if (element.type !== 'image') return element.label;
+    const { arrayKey, index } = element.imageConfig;
+    if (arrayKey === 'otherImages' && index >= 6 && index <= 13) {
+      const services = data?.business?.services || [];
+      const serviceItems = services.length > 0 ? services : [
+        "Residential Interior Design",
+        "Modular Kitchen Design",
+        "Living Room Styling",
+        "Bedroom Makeovers",
+        "Space Planning",
+        "Custom Furniture"
+      ];
+      for (const svc of serviceItems) {
+        const lower = svc.toLowerCase();
+        if (index === 6 && (lower.includes("space") || lower.includes("zoning") || lower.includes("layout") || lower.includes("planning"))) return svc;
+        if (index === 7 && (lower.includes("material") || lower.includes("finish") || lower.includes("kitchen"))) return svc;
+        if (index === 8 && lower.includes("lighting")) return svc;
+        if (index === 9 && (lower.includes("residential") || lower.includes("home") || lower.includes("villa") || lower.includes("apartment"))) return svc;
+        if (index === 10 && (lower.includes("commercial") || lower.includes("office") || lower.includes("retail") || lower.includes("corporate"))) return svc;
+        if (index === 12 && (lower.includes("renovation") || lower.includes("makeover") || lower.includes("overhaul"))) return svc;
+        if (index === 11 && (lower.includes("styling") || lower.includes("decor") || lower.includes("bedroom") || lower.includes("living"))) return svc;
+        if (index === 13 && (lower.includes("furniture") || lower.includes("joinery") || lower.includes("steel") || lower.includes("millwork") || lower.includes("wood"))) return svc;
+      }
+    }
+    return element.label;
+  };
+
   const getEffectiveValueRaw = (scope: string, path: string[]) => {
     if (scope === 'base') return getOverrideValueRaw('base', path);
 
@@ -835,9 +944,13 @@ export default function EditPage({ params }: { params: Promise<{ slug: string }>
                 : `You are editing only this business version of ${canvasScope}. Empty template fields continue to fall back to the business defaults.`}
             </div>
           </div>
+        </div>
 
-          <div className="grid grid-cols-1 xl:grid-cols-[220px_minmax(0,1fr)_300px] bg-slate-50">
-            <aside className="border-b xl:border-b-0 xl:border-r border-slate-200 bg-white p-4">
+        {/* ========================================================
+            FLOATING EDITOR WORKSPACE
+           ======================================================== */}
+        <div className="grid grid-cols-1 xl:grid-cols-[240px_minmax(0,1fr)_320px] gap-6 items-start w-full">
+          <aside className="xl:sticky xl:top-[90px] xl:self-start xl:max-h-[calc(100vh-120px)] xl:overflow-y-auto bg-white rounded-2xl border border-slate-200 p-4 shadow-sm flex flex-col gap-4">
               <div className="flex items-center justify-between mb-3">
                 <h3 className="text-xs font-extrabold uppercase tracking-wider text-slate-600">Sections</h3>
                 <span className="text-[10px] font-bold text-slate-400">{canvasPage.sections.length} total</span>
@@ -880,9 +993,8 @@ export default function EditPage({ params }: { params: Promise<{ slug: string }>
               </div>
             </aside>
 
-            <section className="p-4 md:p-6 min-w-0">
-              <div className="rounded-2xl border border-slate-200 bg-white overflow-hidden shadow-sm">
-                <div className="flex items-center justify-between gap-3 bg-slate-900 text-white px-4 py-3">
+            <section className="min-w-0 bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden flex flex-col">
+              <div className="flex items-center justify-between gap-3 bg-slate-900 text-white px-4 py-3">
                   <div className="flex items-center gap-2 text-xs font-bold">
                     <Eye className="w-4 h-4 text-emerald-300" />
                     Canvas Preview / {canvasPage.label}
@@ -918,30 +1030,113 @@ export default function EditPage({ params }: { params: Promise<{ slug: string }>
                           if (element.type === 'image') {
                             const { arrayKey, index } = element.imageConfig;
                             const currentUrl = getSectionImageValue(canvasScope, arrayKey, index);
-                            const altText = getImageAltValue(canvasScope, arrayKey, index, element.label);
+                            const resolvedTitle = resolveElementLabel(element);
+                            const altText = getImageAltValue(canvasScope, arrayKey, index, resolvedTitle);
+
+                            const cardKey = `${sectionIndex}-${elementIndex}`;
+                            const isBeingDragged = draggedImage !== null &&
+                              draggedImage.sectionIndex === sectionIndex &&
+                              draggedImage.elementIndex === elementIndex;
+                            const isOverThisCard = dragOverCard === cardKey;
+                            const isValidDragTarget = draggedImage !== null && !isBeingDragged;
 
                             return (
                               <button
                                 key={`${element.label}-${elementIndex}`}
                                 type="button"
+                                draggable={true}
+                                onDragStart={(e) => {
+                                  setDraggedImage({ arrayKey, index, sectionIndex, elementIndex });
+                                  e.dataTransfer.effectAllowed = "move";
+                                  e.dataTransfer.setData("text/plain", JSON.stringify({ arrayKey, index, sectionIndex, elementIndex }));
+                                }}
+                                onDragEnd={() => {
+                                  setDraggedImage(null);
+                                  setDragOverCard(null);
+                                }}
+                                onDragOver={(e) => {
+                                  if (isValidDragTarget) {
+                                    e.preventDefault();
+                                  }
+                                }}
+                                onDragEnter={(e) => {
+                                  if (isValidDragTarget) {
+                                    e.preventDefault();
+                                    setDragOverCard(cardKey);
+                                  }
+                                }}
+                                onDragLeave={() => {
+                                  if (isOverThisCard) {
+                                    setDragOverCard(null);
+                                  }
+                                }}
+                                onDrop={(e) => {
+                                  e.preventDefault();
+                                  try {
+                                    const sourceDataStr = e.dataTransfer.getData("text/plain");
+                                    if (sourceDataStr) {
+                                      const source = JSON.parse(sourceDataStr);
+                                      if (
+                                        source &&
+                                        (source.arrayKey !== arrayKey || source.index !== index)
+                                      ) {
+                                        handleSwapImages(canvasScope, source.arrayKey, source.index, arrayKey, index);
+                                      }
+                                    }
+                                  } catch (err) {
+                                    console.error("Drop error:", err);
+                                  }
+                                  setDraggedImage(null);
+                                  setDragOverCard(null);
+                                }}
                                 onClick={(e) => {
                                   e.stopPropagation();
                                   setCanvasSelection({ sectionIndex, elementIndex });
                                 }}
-                                className={`text-left rounded-xl border overflow-hidden transition-all ${
-                                  isSelected ? 'border-emerald-500 ring-2 ring-emerald-500/20' : 'border-slate-200 hover:border-emerald-300'
-                                }`}
+                                className={`text-left rounded-xl border overflow-hidden transition-all duration-200 relative group/card ${
+                                  isSelected 
+                                    ? 'border-emerald-500 ring-2 ring-emerald-500/20' 
+                                    : isOverThisCard
+                                      ? 'border-dashed border-emerald-500 bg-emerald-50 ring-4 ring-emerald-500/30 scale-[1.02]'
+                                      : isValidDragTarget
+                                        ? 'border-dashed border-indigo-400 bg-indigo-50/20 animate-pulse'
+                                        : 'border-slate-200 hover:border-emerald-300'
+                                } ${isBeingDragged ? 'opacity-40 scale-95 cursor-grabbing' : ''}`}
                               >
-                                <div className="aspect-video bg-slate-100">
+                                <div className="aspect-video bg-slate-100 relative overflow-hidden">
                                   {currentUrl ? (
                                     <img src={currentUrl} alt={altText} className="w-full h-full object-cover" />
                                   ) : (
                                     <div className="w-full h-full flex items-center justify-center text-xs text-slate-400">No image assigned</div>
                                   )}
+
+                                  {/* Glassmorphism Title Overlay - Left */}
+                                  <div className="absolute top-2.5 left-2.5 px-2.5 py-1 bg-slate-900/75 backdrop-blur-md rounded-lg text-[10px] font-semibold text-white border border-white/10 shadow-sm truncate max-w-[70%] z-10 transition-all group-hover/card:bg-slate-950/80" title={resolvedTitle}>
+                                    {resolvedTitle}
+                                  </div>
+
+                                  {/* Glassmorphism Path / Slot Overlay - Right */}
+                                  <div className="absolute top-2.5 right-2.5 px-2 py-0.5 bg-emerald-500/80 backdrop-blur-md rounded-md text-[9px] font-mono text-white border border-white/10 shadow-sm z-10">
+                                    {arrayKey}[{index}]
+                                  </div>
+
+                                  {/* Drag / Swap Instructions overlay */}
+                                  {isValidDragTarget && (
+                                    <div className="absolute inset-0 bg-indigo-950/45 backdrop-blur-xs flex items-center justify-center z-20 transition-all">
+                                      <span className="bg-white/90 backdrop-blur-md text-indigo-900 text-[10px] font-bold px-3 py-1.5 rounded-full border border-indigo-100 shadow-sm">
+                                        {isOverThisCard ? "Drop to Swap ⇄" : "Drag here to Swap"}
+                                      </span>
+                                    </div>
+                                  )}
                                 </div>
-                                <div className="p-3 bg-white">
-                                  <p className="text-[10px] font-extrabold uppercase tracking-wider text-slate-400">Image</p>
-                                  <p className="text-xs font-bold text-slate-800 mt-1">{element.label}</p>
+                                <div className="p-3 bg-white border-t border-slate-100 flex items-center justify-between">
+                                  <div>
+                                    <p className="text-[10px] font-extrabold uppercase tracking-wider text-slate-400">Image Card</p>
+                                    <p className="text-xs font-bold text-slate-800 mt-0.5 truncate max-w-[150px]">{resolvedTitle}</p>
+                                  </div>
+                                  <span className="text-[9px] font-bold text-slate-400 px-1.5 py-0.5 rounded-md bg-slate-100 uppercase tracking-wide">
+                                    Draggable
+                                  </span>
                                 </div>
                               </button>
                             );
@@ -972,10 +1167,9 @@ export default function EditPage({ params }: { params: Promise<{ slug: string }>
                     </div>
                   ))}
                 </div>
-              </div>
-            </section>
+              </section>
 
-            <aside className="border-t xl:border-t-0 xl:border-l border-slate-200 bg-white p-4">
+              <aside className="xl:sticky xl:top-[90px] xl:self-start xl:max-h-[calc(100vh-120px)] xl:overflow-y-auto bg-white rounded-2xl border border-slate-200 p-5 shadow-sm flex flex-col gap-4">
               <div className="flex items-start justify-between gap-3 mb-4">
                 <div>
                   <h3 className="text-xs font-extrabold uppercase tracking-wider text-slate-600">Element Inspector</h3>
@@ -997,7 +1191,7 @@ export default function EditPage({ params }: { params: Promise<{ slug: string }>
                 <div className="space-y-4">
                   <div className="rounded-xl border border-slate-200 bg-slate-50 p-3">
                     <p className="text-[10px] font-extrabold uppercase tracking-wider text-slate-400">Selected Node</p>
-                    <p className="mt-1 text-sm font-bold text-slate-900">{selectedCanvasElement.label}</p>
+                    <p className="mt-1 text-sm font-bold text-slate-900">{resolveElementLabel(selectedCanvasElement)}</p>
                     <p className="mt-1 text-xs text-slate-500">
                       {selectedCanvasElement.type === 'image' ? 'Image source + alt text' : `Text path: ${selectedCanvasElement.path.join('.')}`}
                     </p>
@@ -1009,7 +1203,7 @@ export default function EditPage({ params }: { params: Promise<{ slug: string }>
                         {getSectionImageValue(canvasScope, selectedImageConfig.arrayKey, selectedImageConfig.index) ? (
                           <img
                             src={getSectionImageValue(canvasScope, selectedImageConfig.arrayKey, selectedImageConfig.index)}
-                            alt={getImageAltValue(canvasScope, selectedImageConfig.arrayKey, selectedImageConfig.index, selectedCanvasElement.label)}
+                            alt={getImageAltValue(canvasScope, selectedImageConfig.arrayKey, selectedImageConfig.index, resolveElementLabel(selectedCanvasElement))}
                             className="w-full h-full object-cover"
                           />
                         ) : (
@@ -1020,15 +1214,15 @@ export default function EditPage({ params }: { params: Promise<{ slug: string }>
                       <label className="space-y-1.5 block">
                         <span className="text-[10px] font-extrabold uppercase tracking-wider text-slate-500">Choose from business & stock image pool</span>
                         <button
-                          type="button"
-                          onClick={() => setImageModal({
-                            isOpen: true,
-                            scope: canvasScope,
-                            arrayKey: selectedImageConfig.arrayKey,
-                            index: selectedImageConfig.index,
-                            label: selectedCanvasElement.label
-                          })}
-                          className="w-full flex items-center justify-between text-slate-700 bg-white border border-slate-300 hover:border-slate-400 rounded-xl p-3 text-xs hover:bg-slate-50 active:bg-slate-100 transition-all font-semibold focus:outline-none focus:ring-2 focus:ring-emerald-500"
+                           type="button"
+                           onClick={() => setImageModal({
+                             isOpen: true,
+                             scope: canvasScope,
+                             arrayKey: selectedImageConfig.arrayKey,
+                             index: selectedImageConfig.index,
+                             label: resolveElementLabel(selectedCanvasElement)
+                           })}
+                           className="w-full flex items-center justify-between text-slate-700 bg-white border border-slate-300 hover:border-slate-400 rounded-xl p-3 text-xs hover:bg-slate-50 active:bg-slate-100 transition-all font-semibold focus:outline-none focus:ring-2 focus:ring-emerald-500"
                         >
                           <span className="truncate max-w-[180px]">
                             {getCanvasElementRawValue(canvasScope, selectedCanvasElement)
@@ -1053,7 +1247,7 @@ export default function EditPage({ params }: { params: Promise<{ slug: string }>
                         <span className="text-[10px] font-extrabold uppercase tracking-wider text-slate-500">Alt Text</span>
                         <textarea
                           rows={3}
-                          value={getImageAltValue(canvasScope, selectedImageConfig.arrayKey, selectedImageConfig.index, selectedCanvasElement.label)}
+                          value={getImageAltValue(canvasScope, selectedImageConfig.arrayKey, selectedImageConfig.index, resolveElementLabel(selectedCanvasElement))}
                           onChange={(e) => handleImageAltChange(canvasScope, selectedImageConfig.arrayKey, selectedImageConfig.index, e.target.value)}
                           className="w-full text-slate-900 border border-slate-300 rounded-xl p-3 text-xs focus:ring-2 focus:ring-emerald-500 focus:outline-none resize-none"
                         />
@@ -1093,7 +1287,6 @@ export default function EditPage({ params }: { params: Promise<{ slug: string }>
               )}
             </aside>
           </div>
-        </div>
 
         {/* ========================================================
             1. GLOBAL DATA EDITOR (BASE CONFIG)

@@ -35,7 +35,7 @@ export default async function ServicesPage({ params }: PageProps) {
       </div>
 
       {/* ─── HERO ─── */}
-      <section className="relative pt-32 pb-12 z-10 max-w-[90rem] mx-auto px-8 md:px-16 lg:px-24">
+      <section className="relative pt-32 pb-12 z-10 max-w-[90rem] mx-auto px-4 sm:px-8 md:px-16 lg:px-24">
         <div className="grid lg:grid-cols-12 gap-12 items-start">
           <div className="lg:col-span-7 space-y-6">
             <div className="inline-flex items-center gap-3">
@@ -76,7 +76,7 @@ export default async function ServicesPage({ params }: PageProps) {
       </div>
 
       {/* ─── 01 — FOUNDATIONAL SERVICES ─── */}
-      <section className="max-w-[90rem] mx-auto px-8 md:px-16 lg:px-24 relative z-10 space-y-16">
+      <section className="max-w-[90rem] mx-auto px-4 sm:px-8 md:px-16 lg:px-24 relative z-10 space-y-16">
         <div className="grid lg:grid-cols-12 gap-8 items-end">
           <div className="lg:col-span-6 space-y-4">
             <div className="inline-flex items-center gap-3">
@@ -114,10 +114,10 @@ export default async function ServicesPage({ params }: PageProps) {
               subs: ["Ambient & Task Lighting", "Accent & Custom Fixtures", "Smart Integration"],
             }
           ].map((srv, i) => (
-            <div key={i} className="bg-white p-8 lg:p-10 rounded-[2.5rem] border border-[#0A0A0A]/10 hover:border-[#0A0A0A]/25 hover:shadow-xl transition-all duration-500 flex flex-col group min-h-[520px] justify-between shadow-sm relative overflow-hidden">
+            <div key={i} className="bg-white p-5 sm:p-8 lg:p-10 rounded-[2rem] sm:rounded-[2.5rem] border border-[#0A0A0A]/10 hover:border-[#0A0A0A]/25 hover:shadow-xl transition-all duration-500 flex flex-col group min-h-[520px] justify-between shadow-sm relative overflow-hidden">
               <div className="space-y-6">
                 {/* Image */}
-                <div className="aspect-[4/3] overflow-hidden rounded-[1.8rem] bg-[#FCFAF6] border border-[#0A0A0A]/5 relative shadow-inner">
+                <div className="aspect-[4/3] overflow-hidden rounded-[1.3rem] sm:rounded-[1.8rem] bg-[#FCFAF6] border border-[#0A0A0A]/5 relative shadow-inner">
                   <img 
                     src={srv.img} 
                     alt={srv.title} 
@@ -156,7 +156,7 @@ export default async function ServicesPage({ params }: PageProps) {
       </section>
 
       {/* ─── 02 — TRANSFORMATIONS & STYLING (Clean Grid, No Alternating) ─── */}
-      <section className="max-w-[90rem] mx-auto px-8 md:px-16 lg:px-24 relative z-10 space-y-16">
+      <section className="max-w-[90rem] mx-auto px-4 sm:px-8 md:px-16 lg:px-24 relative z-10 space-y-16">
         <div className="grid lg:grid-cols-12 gap-8 items-end">
           <div className="lg:col-span-6 space-y-4">
             <div className="inline-flex items-center gap-3">
@@ -194,7 +194,7 @@ export default async function ServicesPage({ params }: PageProps) {
               subs: ["Art Curation & Placement", "Soft Furnishing & Textiles", "Accessory & Object Curation"],
             }
           ].map((srv, i) => (
-            <div key={i} className="bg-white rounded-[2.5rem] border border-[#0A0A0A]/10 hover:border-[#0A0A0A]/25 hover:shadow-xl transition-all duration-500 flex flex-col group shadow-sm overflow-hidden">
+            <div key={i} className="bg-white rounded-[2rem] sm:rounded-[2.5rem] border border-[#0A0A0A]/10 hover:border-[#0A0A0A]/25 hover:shadow-xl transition-all duration-500 flex flex-col group shadow-sm overflow-hidden">
               {/* Full-width image */}
               <div className="relative aspect-[4/3] overflow-hidden">
                 <img 
@@ -214,7 +214,7 @@ export default async function ServicesPage({ params }: PageProps) {
               </div>
 
               {/* Content */}
-              <div className="p-8 lg:p-10 flex flex-col grow justify-between">
+              <div className="p-6 sm:p-8 lg:p-10 flex flex-col grow justify-between">
                 <div className="space-y-4">
                   <h3 className="font-serif text-2xl lg:text-3xl font-normal tracking-wide text-[#0A0A0A]">{srv.title}</h3>
                   <p className="text-[15px] text-[#0A0A0A]/70 font-normal leading-relaxed">
@@ -238,7 +238,7 @@ export default async function ServicesPage({ params }: PageProps) {
       </section>
 
       {/* ─── 03 — SPECIALIZED EXECUTION ─── */}
-      <section className="max-w-[90rem] mx-auto px-8 md:px-16 lg:px-24 relative z-10 space-y-16">
+      <section className="max-w-[90rem] mx-auto px-4 sm:px-8 md:px-16 lg:px-24 relative z-10 space-y-16">
         <div className="grid lg:grid-cols-12 gap-8 items-end">
           <div className="lg:col-span-6 space-y-4">
             <div className="inline-flex items-center gap-3">
@@ -270,9 +270,9 @@ export default async function ServicesPage({ params }: PageProps) {
               subs: ["Bespoke Wardrobe Units", "Custom Dining Tables", "Premium Cabinetry Details"],
             }
           ].map((srv, i) => (
-            <div key={i} className="group flex flex-col justify-between bg-white rounded-[2.5rem] border border-[#0A0A0A]/10 hover:border-[#0A0A0A]/25 p-6 md:p-8 hover:shadow-xl transition-all duration-500 shadow-sm min-h-[580px]">
+            <div key={i} className="group flex flex-col justify-between bg-white rounded-[2rem] sm:rounded-[2.5rem] border border-[#0A0A0A]/10 hover:border-[#0A0A0A]/25 p-5 sm:p-8 hover:shadow-xl transition-all duration-500 shadow-sm min-h-[580px]">
               <div className="space-y-6">
-                <div className="w-full aspect-[16/10] rounded-[1.8rem] overflow-hidden border border-[#0A0A0A]/10 shadow-inner">
+                <div className="w-full aspect-[16/10] rounded-[1.3rem] sm:rounded-[1.8rem] overflow-hidden border border-[#0A0A0A]/10 shadow-inner">
                   <img 
                     src={srv.img} 
                     alt={srv.title} 

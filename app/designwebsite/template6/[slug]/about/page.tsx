@@ -26,14 +26,26 @@ export default async function AboutPage({ params }: { params: Promise<{ slug: st
   const data = await readSourceConfig(slug, 'template6');
   if (!data) return notFound();
 
-  const { clinic, doctor } = data;
+  const { clinic, doctor, doctor2, media } = data;
   const basePath = `/designwebsite/template6/${slug}`;
 
   const clinicName = clinic?.name || 'Luxe Interiors Studio';
   const leadName = doctor?.name || 'Arjun Mehta';
-  const doctorImage = doctor?.images?.[0] || 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=800&q=80';
-  const secondaryImage = 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=800&q=80';
-  const studioImage = INTERIOR_HERO_IMAGES.about || 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=1200';
+  const doctorImage = doctor?.images?.[0] || media?.otherImages?.[0] || 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=800&q=80';
+  const secondaryImage = doctor2?.images?.[0] || media?.clinicImages?.[1] || media?.otherImages?.[1] || 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=800&q=80';
+  const studioImage = data.about?.heroImage || media?.clinicImages?.[2] || media?.clinicImages?.[0] || INTERIOR_HERO_IMAGES.about || 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=1200';
+
+  const partnerName = doctor2?.name || 'Kavitha Rajan';
+  const partnerRole = doctor2?.role || 'LEAD STYLIST';
+  const partnerCredentials = doctor2?.credentials || 'B.Des, Interior Styling — NID | Certified Organic Material Consultant';
+  const partnerBio = doctor2?.bio || 'Kavitha has over 6 years of experience, specializing in biophilic color composition, organic linen layerings, and curation of eco-responsible decorative assets that make residences feel warm and inviting.';
+  const partnerQuote = doctor2?.quote || 'Organic textures tell physical stories. Our focus is to make those stories warm and enduring.';
+
+  const leadBio = doctor?.bio || `${leadName} founded ${clinicName} in 2015. With over a decade of design experience, he oversees the architectural planning, timber sourcing, and custom furniture frameworks for every residential studio build.`;
+  const leadCredentials = doctor?.credentials || 'M.Des, Interior Architecture — NID | B.Arch — Sir J.J. College';
+  const leadQuote = doctor?.quote || 'A successful home should function cleanly while highlighting the natural warmth of timber and stone.';
+  const leadSpecialization = doctor?.specialization || 'Spatial Planning, Luxury Residential architecture, Custom Carpentry Systems.';
+  const visionText = data.about?.vision || 'We shape luxury residential spaces and commercial interiors with high-fidelity planning, selected organic materials, and transparent project operations.';
 
   return (
     <div className={`${lato.className} bg-[#1a1a1a] text-zinc-300 min-h-screen pb-32`}>
@@ -61,7 +73,7 @@ export default async function AboutPage({ params }: { params: Promise<{ slug: st
       </section>
 
       {/* ── MISSION PARAGRAPH ────────────────────────────────────────────── */}
-      <section className="max-w-7xl mx-auto px-6 py-28 border-b border-white/5 relative z-10">
+      <section id="mission-statement" className="max-w-7xl mx-auto px-6 py-28 border-b border-white/5 relative z-10">
         <div className="grid lg:grid-cols-12 gap-16 items-center">
           <div className="lg:col-span-4">
             <span className={`${playfair.className} text-[120px] leading-none text-white/5 font-bold select-none block -mt-8`}>01</span>
@@ -72,7 +84,7 @@ export default async function AboutPage({ params }: { params: Promise<{ slug: st
           </div>
           <div className="lg:col-span-8">
             <p className="text-zinc-400 font-light leading-loose text-base md:text-lg">
-              We shape luxury residential spaces and commercial interiors with high-fidelity planning, selected organic materials, and transparent project operations.
+              {visionText}
             </p>
           </div>
         </div>
@@ -198,26 +210,26 @@ export default async function AboutPage({ params }: { params: Promise<{ slug: st
                 <div className="space-y-3">
                   <span className="text-[10px] font-bold tracking-[0.25em] text-zinc-500 uppercase block">FOUNDER & VISION LEAD</span>
                   <h3 className={`${playfair.className} text-4xl text-white font-light`}>{leadName}</h3>
-                  <p className="text-zinc-500 text-sm font-light">M.Des, Interior Architecture — NID | B.Arch — Sir J.J. College</p>
+                  <p className="text-zinc-500 text-sm font-light">{leadCredentials}</p>
                 </div>
                 
                 <p className="text-zinc-400 font-light leading-loose text-sm md:text-base">
-                  {leadName} founded {clinicName} in 2015. With over a decade of design experience, he oversees the architectural planning, timber sourcing, and custom furniture frameworks for every residential studio build.
+                  {leadBio}
                 </p>
 
                 <div className="grid sm:grid-cols-2 gap-8 pt-8 border-t border-white/10">
                   <div className="space-y-1">
                     <h4 className={`${playfair.className} text-lg text-white font-light`}>Expertise Core</h4>
-                    <p className="text-zinc-500 text-xs font-light leading-relaxed">Spatial Planning, Luxury Residential architecture, Custom Carpentry Systems.</p>
+                    <p className="text-zinc-500 text-xs font-light leading-relaxed">{leadSpecialization}</p>
                   </div>
                   <div className="space-y-1">
                     <h4 className={`${playfair.className} text-lg text-white font-light`}>Credentials</h4>
-                    <p className="text-zinc-500 text-xs font-light leading-relaxed">M.Des, National Institute of Design | B.Arch, Sir J.J. College.</p>
+                    <p className="text-zinc-500 text-xs font-light leading-relaxed">{leadCredentials}</p>
                   </div>
                 </div>
 
                 <blockquote className={`${playfair.className} border-l border-[#c59b72] pl-6 italic text-zinc-400 text-lg font-light`}>
-                  &ldquo;A successful home should function cleanly while highlighting the natural warmth of timber and stone.&rdquo;
+                  &ldquo;{leadQuote}&rdquo;
                 </blockquote>
               </div>
             </div>
@@ -228,25 +240,25 @@ export default async function AboutPage({ params }: { params: Promise<{ slug: st
                 <div className="aspect-[3/4] overflow-hidden border border-white/10">
                   <img 
                     src={secondaryImage} 
-                    alt="Kavitha Rajan" 
+                    alt={partnerName} 
                     className="w-full h-full object-cover opacity-80 transition-all duration-1000" 
                   />
                 </div>
                 <div className="absolute -bottom-6 -left-6 lg:-left-10 bg-[#1a1a1a] border border-white/10 p-6 md:p-8 shadow-2xl">
-                  <p className="text-[9px] font-bold tracking-[0.25em] text-[#c59b72] mb-1.5 uppercase">LEAD STYLIST</p>
-                  <h3 className={`${playfair.className} text-2xl text-white font-light`}>Kavitha Rajan</h3>
+                  <p className="text-[9px] font-bold tracking-[0.25em] text-[#c59b72] mb-1.5 uppercase">{partnerRole}</p>
+                  <h3 className={`${playfair.className} text-2xl text-white font-light`}>{partnerName}</h3>
                 </div>
               </div>
               
               <div className="lg:col-span-7 space-y-8 lg:pr-12 order-2 lg:order-1">
                 <div className="space-y-3">
-                  <span className="text-[10px] font-bold tracking-[0.25em] text-zinc-500 uppercase block">ASSOCIATE & CO-DEVELOPER</span>
-                  <h3 className={`${playfair.className} text-4xl text-white font-light`}>Kavitha Rajan</h3>
-                  <p className="text-zinc-500 text-sm font-light">B.Des, Interior Styling — NID | Certified Organic Material Consultant</p>
+                  <span className="text-[10px] font-bold tracking-[0.25em] text-zinc-500 uppercase block">{partnerRole}</span>
+                  <h3 className={`${playfair.className} text-4xl text-white font-light`}>{partnerName}</h3>
+                  <p className="text-zinc-500 text-sm font-light">{partnerCredentials}</p>
                 </div>
                 
                 <p className="text-zinc-400 font-light leading-loose text-sm md:text-base">
-                  Kavitha has over 6 years of experience, specializing in biophilic color composition, organic linen layerings, and curation of eco-responsible decorative assets that make residences feel warm and inviting.
+                  {partnerBio}
                 </p>
 
                 <div className="grid sm:grid-cols-2 gap-8 pt-8 border-t border-white/10">
@@ -261,7 +273,7 @@ export default async function AboutPage({ params }: { params: Promise<{ slug: st
                 </div>
 
                 <blockquote className={`${playfair.className} border-l border-[#c59b72] pl-6 italic text-zinc-400 text-lg font-light`}>
-                  &ldquo;Organic textures tell physical stories. Our focus is to make those stories warm and enduring.&rdquo;
+                  &ldquo;{partnerQuote}&rdquo;
                 </blockquote>
               </div>
             </div>

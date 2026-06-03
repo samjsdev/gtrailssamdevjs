@@ -17,6 +17,22 @@ export default async function AboutPage({ params }: PageProps) {
   const principalImage = doctor?.images?.[0] || media?.otherImages?.[0] || INTERIOR_HERO_IMAGES.designer;
   const secondaryImage = media?.clinicImages?.[1] || media?.treatmentImages?.[1] || media?.otherImages?.[1] || INTERIOR_HERO_IMAGES.about;
 
+  // Dynamic overrides from data config
+  const visionQuote = data.about?.vision || 'We curate luxury residential spaces and commercial interiors with high-fidelity spatial planning, sustainable organic timber sourcing, and transparent billing operations.';
+  const aboutHeroImage = data.about?.heroImage || media?.clinicImages?.[2] || media?.clinicImages?.[0] || INTERIOR_HERO_IMAGES.home;
+
+  const founderName = doctor?.name || 'Arjun Mehta';
+  const founderRole = doctor?.role || 'FOUNDER & ARCHITECTURAL LEAD';
+  const founderCredentials = doctor?.credentials || 'M.Des, Interior Architecture | B.Arch, Sir J.J. College';
+  const founderBio = doctor?.bio || 'With over a decade of hands-on experience, he oversees the master structural scoping, custom joinery modules, and carpentry execution protocols for our residential projects. He believes a home should highlight the innate warmth of stone and timber.';
+  const founderQuote = doctor?.quote || 'A successful home should function cleanly while highlighting the natural warmth of timber and stone.';
+
+  const partnerName = data.doctor2?.name || 'Kavitha Rajan';
+  const partnerRole = data.doctor2?.role || 'CO-FOUNDER & STYLING LEAD';
+  const partnerCredentials = data.doctor2?.credentials || 'B.Des, Interior Styling — NID | Certified Organic Material Consultant';
+  const partnerBio = data.doctor2?.bio || 'Specializing in biophilic texture layerings, material curation, and warm minimalist aesthetics, Kavitha sources sustainable furnishings, eco-responsible fabrics, and curated styling items that make our spaces feel comfortable and organic.';
+  const partnerQuote = data.doctor2?.quote || 'Organic textures tell physical stories. Our focus is to make those stories warm and enduring.';
+
   return (
     <div className="text-stone-900 bg-stone-50 min-h-screen pb-32 selection:bg-stone-200">
       
@@ -28,14 +44,14 @@ export default async function AboutPage({ params }: PageProps) {
             Our Studio &amp; Vision
           </h1>
           <p className="text-base md:text-lg text-stone-600 font-light max-w-2xl mx-auto leading-relaxed">
-            We curate luxury residential spaces and commercial interiors with high-fidelity spatial planning, sustainable organic timber sourcing, and transparent billing operations.
+            {visionQuote}
           </p>
         </div>
 
         {/* Panoramic Editorial Space Photo */}
         <div className="relative w-full max-w-5xl mx-auto mt-16 overflow-hidden border border-stone-250 aspect-[21/9]">
           <img
-            src={INTERIOR_HERO_IMAGES.home}
+            src={aboutHeroImage}
             alt="Minimal modern architectural design studio workspace"
             className="w-full h-full object-cover object-center transform hover:scale-[1.01] transition-transform duration-[2000ms]"
           />
@@ -122,21 +138,21 @@ export default async function AboutPage({ params }: PageProps) {
               <div className="lg:col-span-5 relative aspect-[3/4] overflow-hidden border border-stone-250">
                 <img
                   src={principalImage}
-                  alt={doctor?.name || "Lead Designer"}
+                  alt={founderName}
                   className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700"
                 />
               </div>
               <div className="lg:col-span-7 space-y-6">
                 <div className="space-y-2">
-                  <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-stone-400">FOUNDER &amp; ARCHITECTURAL LEAD</p>
-                  <h3 className="text-3xl font-light text-stone-900">{doctor?.name || "Arjun Mehta"}</h3>
-                  <p className="text-stone-500 text-xs font-light">M.Des, Interior Architecture | B.Arch, Sir J.J. College</p>
+                  <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-stone-400">{founderRole}</p>
+                  <h3 className="text-3xl font-light text-stone-900">{founderName}</h3>
+                  <p className="text-stone-500 text-xs font-light">{founderCredentials}</p>
                 </div>
                 <p className="text-stone-600 font-light leading-relaxed text-sm">
-                  With over a decade of hands-on experience, he oversees the master structural scoping, custom joinery modules, and carpentry execution protocols for our residential projects. He believes a home should highlight the innate warmth of stone and timber.
+                  {founderBio}
                 </p>
                 <div className="border-l border-stone-900 pl-6 italic text-stone-500 text-base font-light">
-                  &ldquo;A successful home should function cleanly while highlighting the natural warmth of timber and stone.&rdquo;
+                  &ldquo;{founderQuote}&rdquo;
                 </div>
               </div>
             </div>
@@ -146,21 +162,21 @@ export default async function AboutPage({ params }: PageProps) {
               <div className="lg:col-span-5 lg:order-2 relative aspect-[3/4] overflow-hidden border border-stone-250">
                 <img
                   src={secondaryImage}
-                  alt="Kavitha Rajan"
+                  alt={partnerName}
                   className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700"
                 />
               </div>
               <div className="lg:col-span-7 lg:order-1 space-y-6">
                 <div className="space-y-2">
-                  <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-stone-400">CO-FOUNDER &amp; STYLING LEAD</p>
-                  <h3 className="text-3xl font-light text-stone-900">Kavitha Rajan</h3>
-                  <p className="text-stone-500 text-xs font-light">B.Des, Interior Styling — NID | Certified Organic Material Consultant</p>
+                  <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-stone-400">{partnerRole}</p>
+                  <h3 className="text-3xl font-light text-stone-900">{partnerName}</h3>
+                  <p className="text-stone-500 text-xs font-light">{partnerCredentials}</p>
                 </div>
                 <p className="text-stone-600 font-light leading-relaxed text-sm">
-                  Specializing in biophilic texture layerings, material curation, and warm minimalist aesthetics, Kavitha sources sustainable furnishings, eco-responsible fabrics, and curated styling items that make our spaces feel comfortable and organic.
+                  {partnerBio}
                 </p>
                 <div className="border-l border-stone-900 pl-6 italic text-stone-500 text-base font-light">
-                  &ldquo;Organic textures tell physical stories. Our focus is to make those stories warm and enduring.&rdquo;
+                  &ldquo;{partnerQuote}&rdquo;
                 </div>
               </div>
             </div>

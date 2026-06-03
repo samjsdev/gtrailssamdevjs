@@ -13,43 +13,57 @@ interface ClientHeroProps {
   business: any;
   basePath: string;
   heroImage?: string;
+  media?: any;
 }
 
-export default function ClientHero({ clinic, business, basePath, heroImage }: ClientHeroProps) {
-  const projects = [
+export default function ClientHero({ clinic, business, basePath, heroImage, media }: ClientHeroProps) {
+  const uniqueUserImages = Array.from(new Set([
+    ...(media?.treatmentImages || []),
+    ...(media?.clinicImages || []),
+    ...(media?.otherImages || [])
+  ].filter(Boolean)));
+
+  const defaultProjects = [
     {
       title: "Luxury Skyline",
-      location: "Berlin, Germany",
+      location: clinic?.address?.city || "Chennai, India",
       year: "2025",
       image: "https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&q=80&w=600",
       tag1: "RESIDENTIAL",
-      tag2: "SINGLE HOME"
+      tag2: "DESIGN"
     },
     {
       title: "Bohemian Rhapsody",
-      location: "Berlin, Germany",
+      location: clinic?.address?.city || "Chennai, India",
       year: "2025",
       image: "https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&q=80&w=600",
       tag1: "RESIDENTIAL",
-      tag2: "SINGLE HOME"
+      tag2: "STYLING"
     },
     {
       title: "Vintage Glamour",
-      location: "Berlin, Germany",
+      location: clinic?.address?.city || "Chennai, India",
       year: "2025",
       image: "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&q=80&w=600",
       tag1: "RESIDENTIAL",
-      tag2: "SINGLE HOME"
+      tag2: "FABRICATION"
     },
     {
       title: "Living Innovation",
-      location: "Berlin, Germany",
+      location: clinic?.address?.city || "Chennai, India",
       year: "2025",
       image: "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&q=80&w=600",
       tag1: "RESIDENTIAL",
-      tag2: "SINGLE HOME"
+      tag2: "LAYOUT"
     }
   ];
+
+  const projects = defaultProjects.map((proj, idx) => {
+    return {
+      ...proj,
+      image: uniqueUserImages[idx % uniqueUserImages.length] || proj.image,
+    };
+  });
 
   return (
     <section className="relative overflow-hidden bg-white pt-24 pb-16">

@@ -52,7 +52,7 @@ export default async function AboutPage({ params }: PageProps) {
       </div>
 
       {/* ─── HERO ─── */}
-      <section className="relative pt-32 pb-12 z-10 max-w-[90rem] mx-auto px-8 md:px-16 lg:px-24">
+      <section className="relative pt-32 pb-12 z-10 max-w-[90rem] mx-auto px-4 sm:px-8 md:px-16 lg:px-24">
         <div className="grid lg:grid-cols-12 gap-12 items-start">
           <div className="lg:col-span-7 space-y-6">
             <div className="inline-flex items-center gap-3">
@@ -73,9 +73,9 @@ export default async function AboutPage({ params }: PageProps) {
         </div>
 
         {/* Hero Image */}
-        <div className="relative max-w-7xl mx-auto mt-16 group">
-          <div className="absolute -inset-4 border border-[#0A0A0A]/10 rounded-[2.5rem] transform rotate-1 -z-10 group-hover:rotate-0 transition-transform duration-700"></div>
-          <div className="relative aspect-[21/9] rounded-[2.5rem] overflow-hidden border border-[#0A0A0A]/10 bg-white shadow-2xl">
+        <div className="relative max-w-7xl mx-auto mt-8 sm:mt-16 group">
+          <div className="absolute -inset-4 border border-[#0A0A0A]/10 rounded-[2.5rem] transform rotate-1 -z-10 group-hover:rotate-0 transition-transform duration-700 hidden sm:block"></div>
+          <div className="relative aspect-[16/10] md:aspect-[21/9] rounded-[1.5rem] sm:rounded-[2.5rem] overflow-hidden border border-[#0A0A0A]/10 bg-white shadow-2xl">
             <img
               src={aboutHeroImage}
               alt="Modern studio architectural layout"

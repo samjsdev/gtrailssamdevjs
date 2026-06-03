@@ -291,7 +291,7 @@ export const TEMPLATE_SCHEMAS: Record<string, TemplateSchema> = {
             ]
           },
           {
-            label: "Why Choose Us",
+            label: "Designing Beyond The Surface.",
             elements: [
               {
                 type: 'image',
@@ -312,6 +312,11 @@ export const TEMPLATE_SCHEMAS: Record<string, TemplateSchema> = {
                 type: 'image',
                 label: "Philosophy Feature Image 4",
                 imageConfig: { arrayKey: 'otherImages', index: 5 }
+              },
+              {
+                type: 'text',
+                label: "Title",
+                path: ['philosophy', 'title']
               },
             ]
           },
@@ -361,7 +366,7 @@ export const TEMPLATE_SCHEMAS: Record<string, TemplateSchema> = {
             ]
           },
           {
-            label: "Portfolio Gallery Section",
+            label: "Spaces With Character .",
             elements: [
               {
                 type: 'image',
@@ -381,7 +386,7 @@ export const TEMPLATE_SCHEMAS: Record<string, TemplateSchema> = {
             ]
           },
           {
-            label: "Contact Section",
+            label: "Journey Timeline",
             elements: [
               {
                 type: 'text',
@@ -412,17 +417,22 @@ export const TEMPLATE_SCHEMAS: Record<string, TemplateSchema> = {
         label: "About Page",
         sections: [
           {
-            label: "About Us Section",
+            label: "Hero Section",
             elements: [
               {
                 type: 'image',
                 label: "Clinic / Studio Gallery Image 2",
                 imageConfig: { arrayKey: 'clinicImages', index: 1 }
               },
+              {
+                type: 'textarea',
+                label: "Vision",
+                path: ['about', 'vision']
+              },
             ]
           },
           {
-            label: "Creative Leadership",
+            label: "Meet Our Design Leaders",
             elements: [
               {
                 type: 'image',
@@ -441,8 +451,53 @@ export const TEMPLATE_SCHEMAS: Record<string, TemplateSchema> = {
               },
               {
                 type: 'textarea',
+                label: "Principal Credentials",
+                path: ['doctor', 'credentials']
+              },
+              {
+                type: 'textarea',
+                label: "Principal Bio",
+                path: ['doctor', 'bio']
+              },
+              {
+                type: 'textarea',
                 label: "Studio Name",
                 path: ['clinic', 'name']
+              },
+              {
+                type: 'textarea',
+                label: "Principal Specialization",
+                path: ['doctor', 'specialization']
+              },
+              {
+                type: 'textarea',
+                label: "Quote",
+                path: ['doctor', 'quote']
+              },
+              {
+                type: 'textarea',
+                label: "Role",
+                path: ['doctor2', 'role']
+              },
+              {
+                type: 'text',
+                label: "Name",
+                path: ['doctor2', 'name']
+              },
+              {
+                type: 'textarea',
+                label: "Credentials",
+                path: ['doctor2', 'credentials']
+              },
+              {
+                type: 'textarea',
+                label: "Bio",
+                path: ['doctor2', 'bio']
+              },
+              {
+                type: 'textarea',
+                label: "Quote",
+                path: ['doctor2', 'quote']
               },
             ]
           },
@@ -538,6 +593,16 @@ export const TEMPLATE_SCHEMAS: Record<string, TemplateSchema> = {
             elements: [
               {
                 type: 'text',
+                label: "Studio Name",
+                path: ['clinic', 'name']
+              },
+              {
+                type: 'textarea',
+                label: "Studio Description",
+                path: ['clinic', 'description']
+              },
+              {
+                type: 'text',
                 label: "Experience",
                 path: ['doctor', 'experience']
               },
@@ -615,7 +680,7 @@ export const TEMPLATE_SCHEMAS: Record<string, TemplateSchema> = {
             ]
           },
           {
-            label: "Why Choose Us",
+            label: "Crafting Spaces That Inspire & Elevate E...",
             elements: [
               {
                 type: 'image',
@@ -650,7 +715,7 @@ export const TEMPLATE_SCHEMAS: Record<string, TemplateSchema> = {
             ]
           },
           {
-            label: "About Us Section",
+            label: "Portfolio Gallery Section",
             elements: [
               {
                 type: 'image',
@@ -690,7 +755,7 @@ export const TEMPLATE_SCHEMAS: Record<string, TemplateSchema> = {
             ]
           },
           {
-            label: "Portfolio Gallery Section",
+            label: "Why Choose Us",
             elements: [
               {
                 type: 'image',
@@ -721,7 +786,7 @@ export const TEMPLATE_SCHEMAS: Record<string, TemplateSchema> = {
         label: "About Page",
         sections: [
           {
-            label: "About Us Section",
+            label: "Hero Section",
             elements: [
               {
                 type: 'text',
@@ -731,7 +796,17 @@ export const TEMPLATE_SCHEMAS: Record<string, TemplateSchema> = {
             ]
           },
           {
-            label: "Core Values",
+            label: "Section 2",
+            elements: [
+              {
+                type: 'image',
+                label: "Clinic / Studio Gallery Image 2",
+                imageConfig: { arrayKey: 'clinicImages', index: 1 }
+              },
+            ]
+          },
+          {
+            label: "Journey Timeline",
             elements: [
               {
                 type: 'textarea',
@@ -744,9 +819,29 @@ export const TEMPLATE_SCHEMAS: Record<string, TemplateSchema> = {
             label: "The Creative Designers",
             elements: [
               {
+                type: 'image',
+                label: "Principal Portrait Image",
+                imageConfig: { arrayKey: 'otherImages', index: 0 }
+              },
+              {
+                type: 'image',
+                label: "Associate Portrait Image",
+                imageConfig: { arrayKey: 'otherImages', index: 1 }
+              },
+              {
                 type: 'text',
                 label: "Name",
                 path: ['doctor', 'name']
+              },
+              {
+                type: 'text',
+                label: "Partner Role",
+                path: ['doctor2', 'role']
+              },
+              {
+                type: 'text',
+                label: "Name",
+                path: ['doctor2', 'name']
               },
             ]
           },
@@ -797,6 +892,16 @@ export const TEMPLATE_SCHEMAS: Record<string, TemplateSchema> = {
             ]
           },
           {
+            label: "Turnkey Modular Kitchens & Home Interior...",
+            elements: [
+              {
+                type: 'image',
+                label: "treatment Image 1",
+                imageConfig: { arrayKey: 'treatmentImages', index: 0 }
+              },
+            ]
+          },
+          {
             label: "The Chennai Curation Library",
             elements: [
               {
@@ -831,9 +936,14 @@ export const TEMPLATE_SCHEMAS: Record<string, TemplateSchema> = {
             label: "Hero Section",
             elements: [
               {
+                type: 'text',
+                label: "Studio Name",
+                path: ['clinic', 'name']
+              },
+              {
                 type: 'textarea',
-                label: "State",
-                path: ['clinic', 'address', 'state']
+                label: "Studio Description",
+                path: ['clinic', 'description']
               },
             ]
           },
@@ -882,19 +992,34 @@ export const TEMPLATE_SCHEMAS: Record<string, TemplateSchema> = {
             label: "Hero Section",
             elements: [
               {
+                type: 'image',
+                label: "Hero Main Banner Image",
+                imageConfig: { arrayKey: 'clinicImages', index: 0 }
+              },
+              {
                 type: 'text',
                 label: "Studio Name",
                 path: ['clinic', 'name']
+              },
+              {
+                type: 'text',
+                label: "Hero Tagline",
+                path: ['clinic', 'tagline']
               },
               {
                 type: 'textarea',
                 label: "Studio Description",
                 path: ['clinic', 'description']
               },
+              {
+                type: 'text',
+                label: "Experience",
+                path: ['doctor', 'experience']
+              },
             ]
           },
           {
-            label: "Why Choose Us",
+            label: "Services Section",
             elements: [
               {
                 type: 'image',
@@ -913,6 +1038,11 @@ export const TEMPLATE_SCHEMAS: Record<string, TemplateSchema> = {
               },
               {
                 type: 'image',
+                label: "Service Showcase Image 7",
+                imageConfig: { arrayKey: 'otherImages', index: 12 }
+              },
+              {
+                type: 'image',
                 label: "Service Showcase Image 1",
                 imageConfig: { arrayKey: 'otherImages', index: 6 }
               },
@@ -928,6 +1058,86 @@ export const TEMPLATE_SCHEMAS: Record<string, TemplateSchema> = {
               },
             ]
           },
+          {
+            label: "Portfolio Gallery Section",
+            elements: [
+              {
+                type: 'image',
+                label: "treatment Image 1",
+                imageConfig: { arrayKey: 'treatmentImages', index: 0 }
+              },
+              {
+                type: 'image',
+                label: "treatment Image 2",
+                imageConfig: { arrayKey: 'treatmentImages', index: 1 }
+              },
+              {
+                type: 'image',
+                label: "treatment Image 3",
+                imageConfig: { arrayKey: 'treatmentImages', index: 2 }
+              },
+              {
+                type: 'image',
+                label: "treatment Image 4",
+                imageConfig: { arrayKey: 'treatmentImages', index: 3 }
+              },
+              {
+                type: 'text',
+                label: "City",
+                path: ['clinic', 'address', 'city']
+              },
+            ]
+          },
+          {
+            label: "Crafting Spaces That Inspire& Elevate Ev...",
+            elements: [
+              {
+                type: 'image',
+                label: "Clinic / Studio Gallery Image 2",
+                imageConfig: { arrayKey: 'clinicImages', index: 1 }
+              },
+            ]
+          },
+          {
+            label: "About Us Section",
+            elements: [
+              {
+                type: 'image',
+                label: "Principal Portrait Image",
+                imageConfig: { arrayKey: 'otherImages', index: 0 }
+              },
+              {
+                type: 'text',
+                label: "Name",
+                path: ['doctor', 'name']
+              },
+              {
+                type: 'textarea',
+                label: "Specialization",
+                path: ['doctor', 'specialization']
+              },
+            ]
+          },
+          {
+            label: "Frequently Asked Questions",
+            elements: [
+              {
+                type: 'text',
+                label: "Contact Phone Number",
+                path: ['clinic', 'contact', 'phone']
+              },
+            ]
+          },
+          {
+            label: "Create An Even Greater Experience",
+            elements: [
+              {
+                type: 'image',
+                label: "clinic Image 3",
+                imageConfig: { arrayKey: 'clinicImages', index: 2 }
+              },
+            ]
+          },
         ]
       },
       {
@@ -935,12 +1145,87 @@ export const TEMPLATE_SCHEMAS: Record<string, TemplateSchema> = {
         label: "About Page",
         sections: [
           {
+            label: "Hero Section",
+            elements: [
+              {
+                type: 'image',
+                label: "Clinic / Studio Gallery Image 2",
+                imageConfig: { arrayKey: 'clinicImages', index: 1 }
+              },
+              {
+                type: 'textarea',
+                label: "Vision Quote",
+                path: ['about', 'vision']
+              },
+            ]
+          },
+          {
+            label: "About Us Section",
+            elements: [
+              {
+                type: 'textarea',
+                label: "Studio Name",
+                path: ['clinic', 'name']
+              },
+            ]
+          },
+          {
             label: "Meet The Design Leaders",
             elements: [
+              {
+                type: 'image',
+                label: "Principal Portrait Image",
+                imageConfig: { arrayKey: 'otherImages', index: 0 }
+              },
+              {
+                type: 'image',
+                label: "Associate Portrait Image",
+                imageConfig: { arrayKey: 'otherImages', index: 1 }
+              },
               {
                 type: 'text',
                 label: "Name",
                 path: ['doctor', 'name']
+              },
+              {
+                type: 'textarea',
+                label: "Principal Credentials",
+                path: ['doctor', 'credentials']
+              },
+              {
+                type: 'textarea',
+                label: "Principal Specialization",
+                path: ['doctor', 'specialization']
+              },
+              {
+                type: 'textarea',
+                label: "Quote",
+                path: ['doctor', 'quote']
+              },
+              {
+                type: 'textarea',
+                label: "Partner Role",
+                path: ['doctor2', 'role']
+              },
+              {
+                type: 'text',
+                label: "Name",
+                path: ['doctor2', 'name']
+              },
+              {
+                type: 'textarea',
+                label: "Credentials",
+                path: ['doctor2', 'credentials']
+              },
+              {
+                type: 'textarea',
+                label: "Bio",
+                path: ['doctor2', 'bio']
+              },
+              {
+                type: 'textarea',
+                label: "Partner Quote",
+                path: ['doctor2', 'quote']
               },
             ]
           },
@@ -1017,12 +1302,17 @@ export const TEMPLATE_SCHEMAS: Record<string, TemplateSchema> = {
         label: "Gallery Page",
         sections: [
           {
-            label: "Portfolio Gallery Section",
+            label: "Hero Section",
             elements: [
               {
-                type: 'list',
-                label: "Highlights List (1 per line)",
-                path: ['business', 'highlights']
+                type: 'text',
+                label: "Studio Name",
+                path: ['clinic', 'name']
+              },
+              {
+                type: 'textarea',
+                label: "Studio Description",
+                path: ['clinic', 'description']
               },
             ]
           },
@@ -1084,7 +1374,7 @@ export const TEMPLATE_SCHEMAS: Record<string, TemplateSchema> = {
             ]
           },
           {
-            label: "Why Choose Us",
+            label: "About Us Section",
             elements: [
               {
                 type: 'image',
@@ -1109,7 +1399,7 @@ export const TEMPLATE_SCHEMAS: Record<string, TemplateSchema> = {
             ]
           },
           {
-            label: "Services Section",
+            label: "Precision In Every Detail",
             elements: [
               {
                 type: 'list',
@@ -1119,7 +1409,7 @@ export const TEMPLATE_SCHEMAS: Record<string, TemplateSchema> = {
             ]
           },
           {
-            label: "About Us Section",
+            label: "Services Section",
             elements: [
               {
                 type: 'image',
@@ -1135,6 +1425,11 @@ export const TEMPLATE_SCHEMAS: Record<string, TemplateSchema> = {
                 type: 'image',
                 label: "Service Showcase Image 6",
                 imageConfig: { arrayKey: 'otherImages', index: 11 }
+              },
+              {
+                type: 'image',
+                label: "Service Showcase Image 7",
+                imageConfig: { arrayKey: 'otherImages', index: 12 }
               },
               {
                 type: 'image',
@@ -1160,7 +1455,22 @@ export const TEMPLATE_SCHEMAS: Record<string, TemplateSchema> = {
         label: "About Page",
         sections: [
           {
-            label: "Creative Leadership",
+            label: "Hero Section",
+            elements: [
+              {
+                type: 'image',
+                label: "clinic Image 3",
+                imageConfig: { arrayKey: 'clinicImages', index: 2 }
+              },
+              {
+                type: 'textarea',
+                label: "Vision Quote",
+                path: ['about', 'vision']
+              },
+            ]
+          },
+          {
+            label: "Journey Timeline",
             elements: [
               {
                 type: 'textarea',
@@ -1186,6 +1496,46 @@ export const TEMPLATE_SCHEMAS: Record<string, TemplateSchema> = {
                 type: 'text',
                 label: "Name",
                 path: ['doctor', 'name']
+              },
+              {
+                type: 'textarea',
+                label: "Credentials",
+                path: ['doctor', 'credentials']
+              },
+              {
+                type: 'textarea',
+                label: "Bio",
+                path: ['doctor', 'bio']
+              },
+              {
+                type: 'textarea',
+                label: "Quote",
+                path: ['doctor', 'quote']
+              },
+              {
+                type: 'textarea',
+                label: "Partner Role",
+                path: ['doctor2', 'role']
+              },
+              {
+                type: 'text',
+                label: "Name",
+                path: ['doctor2', 'name']
+              },
+              {
+                type: 'textarea',
+                label: "Credentials",
+                path: ['doctor2', 'credentials']
+              },
+              {
+                type: 'textarea',
+                label: "Partner Bio",
+                path: ['doctor2', 'bio']
+              },
+              {
+                type: 'textarea',
+                label: "Partner Quote",
+                path: ['doctor2', 'quote']
               },
             ]
           },
@@ -1215,259 +1565,14 @@ export const TEMPLATE_SCHEMAS: Record<string, TemplateSchema> = {
             label: "Hero Section",
             elements: [
               {
-                type: 'image',
-                label: "Hero Main Banner Image",
-                imageConfig: { arrayKey: 'clinicImages', index: 0 }
-              },
-              {
-                type: 'image',
-                label: "Clinic / Studio Gallery Image 2",
-                imageConfig: { arrayKey: 'clinicImages', index: 1 }
-              },
-              {
-                type: 'image',
-                label: "clinic Image 3",
-                imageConfig: { arrayKey: 'clinicImages', index: 2 }
-              },
-              {
-                type: 'image',
-                label: "clinic Image 4",
-                imageConfig: { arrayKey: 'clinicImages', index: 3 }
-              },
-              {
-                type: 'image',
-                label: "treatment Image 1",
-                imageConfig: { arrayKey: 'treatmentImages', index: 0 }
-              },
-              {
-                type: 'image',
-                label: "treatment Image 2",
-                imageConfig: { arrayKey: 'treatmentImages', index: 1 }
-              },
-              {
-                type: 'image',
-                label: "treatment Image 3",
-                imageConfig: { arrayKey: 'treatmentImages', index: 2 }
-              },
-              {
-                type: 'image',
-                label: "treatment Image 4",
-                imageConfig: { arrayKey: 'treatmentImages', index: 3 }
-              },
-              {
-                type: 'image',
-                label: "Principal Portrait Image",
-                imageConfig: { arrayKey: 'otherImages', index: 0 }
-              },
-              {
-                type: 'image',
-                label: "Associate Portrait Image",
-                imageConfig: { arrayKey: 'otherImages', index: 1 }
-              },
-              {
-                type: 'image',
-                label: "Philosophy Feature Image 1",
-                imageConfig: { arrayKey: 'otherImages', index: 2 }
-              },
-              {
-                type: 'image',
-                label: "Philosophy Feature Image 2",
-                imageConfig: { arrayKey: 'otherImages', index: 3 }
-              },
-              {
-                type: 'image',
-                label: "Philosophy Feature Image 3",
-                imageConfig: { arrayKey: 'otherImages', index: 4 }
-              },
-              {
-                type: 'image',
-                label: "Philosophy Feature Image 4",
-                imageConfig: { arrayKey: 'otherImages', index: 5 }
-              },
-              {
-                type: 'image',
-                label: "Service Showcase Image 1",
-                imageConfig: { arrayKey: 'otherImages', index: 6 }
-              },
-              {
-                type: 'image',
-                label: "Service Showcase Image 2",
-                imageConfig: { arrayKey: 'otherImages', index: 7 }
-              },
-              {
-                type: 'image',
-                label: "Service Showcase Image 3",
-                imageConfig: { arrayKey: 'otherImages', index: 8 }
-              },
-              {
-                type: 'image',
-                label: "Service Showcase Image 4",
-                imageConfig: { arrayKey: 'otherImages', index: 9 }
-              },
-              {
-                type: 'image',
-                label: "Service Showcase Image 5",
-                imageConfig: { arrayKey: 'otherImages', index: 10 }
-              },
-              {
-                type: 'image',
-                label: "Service Showcase Image 6",
-                imageConfig: { arrayKey: 'otherImages', index: 11 }
-              },
-              {
-                type: 'image',
-                label: "Service Showcase Image 7",
-                imageConfig: { arrayKey: 'otherImages', index: 12 }
-              },
-              {
-                type: 'image',
-                label: "Service Showcase Image 8",
-                imageConfig: { arrayKey: 'otherImages', index: 13 }
-              },
-              {
-                type: 'image',
-                label: "other Image 15",
-                imageConfig: { arrayKey: 'otherImages', index: 14 }
-              },
-              {
-                type: 'image',
-                label: "other Image 16",
-                imageConfig: { arrayKey: 'otherImages', index: 15 }
-              },
-              {
-                type: 'image',
-                label: "other Image 17",
-                imageConfig: { arrayKey: 'otherImages', index: 16 }
-              },
-              {
-                type: 'image',
-                label: "other Image 18",
-                imageConfig: { arrayKey: 'otherImages', index: 17 }
-              },
-              {
-                type: 'image',
-                label: "other Image 19",
-                imageConfig: { arrayKey: 'otherImages', index: 18 }
-              },
-              {
-                type: 'image',
-                label: "other Image 20",
-                imageConfig: { arrayKey: 'otherImages', index: 19 }
-              },
-              {
-                type: 'image',
-                label: "other Image 21",
-                imageConfig: { arrayKey: 'otherImages', index: 20 }
-              },
-              {
-                type: 'image',
-                label: "other Image 22",
-                imageConfig: { arrayKey: 'otherImages', index: 21 }
-              },
-              {
-                type: 'image',
-                label: "other Image 23",
-                imageConfig: { arrayKey: 'otherImages', index: 22 }
-              },
-              {
-                type: 'image',
-                label: "other Image 24",
-                imageConfig: { arrayKey: 'otherImages', index: 23 }
-              },
-              {
-                type: 'image',
-                label: "other Image 25",
-                imageConfig: { arrayKey: 'otherImages', index: 24 }
-              },
-              {
-                type: 'image',
-                label: "other Image 26",
-                imageConfig: { arrayKey: 'otherImages', index: 25 }
-              },
-              {
-                type: 'image',
-                label: "other Image 27",
-                imageConfig: { arrayKey: 'otherImages', index: 26 }
-              },
-              {
-                type: 'image',
-                label: "other Image 28",
-                imageConfig: { arrayKey: 'otherImages', index: 27 }
-              },
-              {
-                type: 'image',
-                label: "other Image 29",
-                imageConfig: { arrayKey: 'otherImages', index: 28 }
-              },
-              {
-                type: 'image',
-                label: "other Image 30",
-                imageConfig: { arrayKey: 'otherImages', index: 29 }
-              },
-              {
-                type: 'image',
-                label: "other Image 31",
-                imageConfig: { arrayKey: 'otherImages', index: 30 }
-              },
-              {
-                type: 'image',
-                label: "other Image 32",
-                imageConfig: { arrayKey: 'otherImages', index: 31 }
-              },
-              {
-                type: 'image',
-                label: "other Image 33",
-                imageConfig: { arrayKey: 'otherImages', index: 32 }
-              },
-              {
-                type: 'image',
-                label: "other Image 34",
-                imageConfig: { arrayKey: 'otherImages', index: 33 }
-              },
-              {
-                type: 'image',
-                label: "other Image 35",
-                imageConfig: { arrayKey: 'otherImages', index: 34 }
-              },
-              {
-                type: 'image',
-                label: "other Image 36",
-                imageConfig: { arrayKey: 'otherImages', index: 35 }
-              },
-              {
-                type: 'image',
-                label: "other Image 37",
-                imageConfig: { arrayKey: 'otherImages', index: 36 }
-              },
-              {
-                type: 'image',
-                label: "other Image 38",
-                imageConfig: { arrayKey: 'otherImages', index: 37 }
-              },
-              {
-                type: 'image',
-                label: "other Image 39",
-                imageConfig: { arrayKey: 'otherImages', index: 38 }
-              },
-              {
-                type: 'image',
-                label: "other Image 40",
-                imageConfig: { arrayKey: 'otherImages', index: 39 }
-              },
-              {
-                type: 'image',
-                label: "other Image 41",
-                imageConfig: { arrayKey: 'otherImages', index: 40 }
-              },
-              {
-                type: 'image',
-                label: "other Image 42",
-                imageConfig: { arrayKey: 'otherImages', index: 41 }
+                type: 'text',
+                label: "Studio Name",
+                path: ['clinic', 'name']
               },
               {
                 type: 'textarea',
-                label: "Studio Name",
-                path: ['clinic', 'name']
+                label: "Studio Description",
+                path: ['clinic', 'description']
               },
             ]
           },
@@ -1522,6 +1627,11 @@ export const TEMPLATE_SCHEMAS: Record<string, TemplateSchema> = {
               },
               {
                 type: 'image',
+                label: "Service Showcase Image 7",
+                imageConfig: { arrayKey: 'otherImages', index: 12 }
+              },
+              {
+                type: 'image',
                 label: "Service Showcase Image 1",
                 imageConfig: { arrayKey: 'otherImages', index: 6 }
               },
@@ -1538,7 +1648,17 @@ export const TEMPLATE_SCHEMAS: Record<string, TemplateSchema> = {
             ]
           },
           {
-            label: "Services Section",
+            label: "Crafting Spaces That Inspire & Elevate E...",
+            elements: [
+              {
+                type: 'image',
+                label: "Philosophy Feature Image 1",
+                imageConfig: { arrayKey: 'otherImages', index: 2 }
+              },
+            ]
+          },
+          {
+            label: "About Us Section",
             elements: [
               {
                 type: 'image',
@@ -1550,6 +1670,31 @@ export const TEMPLATE_SCHEMAS: Record<string, TemplateSchema> = {
                 label: "Name",
                 path: ['doctor', 'name']
               },
+              {
+                type: 'textarea',
+                label: "Quote",
+                path: ['doctor', 'quote']
+              },
+            ]
+          },
+          {
+            label: "Frequently Asked Questions",
+            elements: [
+              {
+                type: 'text',
+                label: "Contact Phone Number",
+                path: ['clinic', 'contact', 'phone']
+              },
+            ]
+          },
+          {
+            label: "Create An Even Greater Experience",
+            elements: [
+              {
+                type: 'image',
+                label: "Philosophy Feature Image 2",
+                imageConfig: { arrayKey: 'otherImages', index: 3 }
+              },
             ]
           },
         ]
@@ -1559,7 +1704,27 @@ export const TEMPLATE_SCHEMAS: Record<string, TemplateSchema> = {
         label: "About Page",
         sections: [
           {
-            label: "Core Values",
+            label: "Hero Section",
+            elements: [
+              {
+                type: 'image',
+                label: "clinic Image 3",
+                imageConfig: { arrayKey: 'clinicImages', index: 2 }
+              },
+            ]
+          },
+          {
+            label: "Mission Statement",
+            elements: [
+              {
+                type: 'textarea',
+                label: "Vision Quote",
+                path: ['about', 'vision']
+              },
+            ]
+          },
+          {
+            label: "About Us Section",
             elements: [
               {
                 type: 'textarea',
@@ -1572,9 +1737,64 @@ export const TEMPLATE_SCHEMAS: Record<string, TemplateSchema> = {
             label: "Meet The Design Leaders",
             elements: [
               {
+                type: 'image',
+                label: "Principal Portrait Image",
+                imageConfig: { arrayKey: 'otherImages', index: 0 }
+              },
+              {
+                type: 'image',
+                label: "Clinic / Studio Gallery Image 2",
+                imageConfig: { arrayKey: 'clinicImages', index: 1 }
+              },
+              {
                 type: 'text',
                 label: "Name",
                 path: ['doctor', 'name']
+              },
+              {
+                type: 'textarea',
+                label: "Principal Credentials",
+                path: ['doctor', 'credentials']
+              },
+              {
+                type: 'textarea',
+                label: "Principal Bio",
+                path: ['doctor', 'bio']
+              },
+              {
+                type: 'textarea',
+                label: "Specialization",
+                path: ['doctor', 'specialization']
+              },
+              {
+                type: 'textarea',
+                label: "Quote",
+                path: ['doctor', 'quote']
+              },
+              {
+                type: 'textarea',
+                label: "Partner Role",
+                path: ['doctor2', 'role']
+              },
+              {
+                type: 'text',
+                label: "Name",
+                path: ['doctor2', 'name']
+              },
+              {
+                type: 'textarea',
+                label: "Credentials",
+                path: ['doctor2', 'credentials']
+              },
+              {
+                type: 'textarea',
+                label: "Bio",
+                path: ['doctor2', 'bio']
+              },
+              {
+                type: 'textarea',
+                label: "Partner Quote",
+                path: ['doctor2', 'quote']
               },
             ]
           },
@@ -1656,262 +1876,17 @@ export const TEMPLATE_SCHEMAS: Record<string, TemplateSchema> = {
         label: "Gallery Page",
         sections: [
           {
-            label: "Portfolio Gallery Section",
+            label: "Hero Section",
             elements: [
               {
-                type: 'image',
-                label: "Hero Main Banner Image",
-                imageConfig: { arrayKey: 'clinicImages', index: 0 }
-              },
-              {
-                type: 'image',
-                label: "Clinic / Studio Gallery Image 2",
-                imageConfig: { arrayKey: 'clinicImages', index: 1 }
-              },
-              {
-                type: 'image',
-                label: "clinic Image 3",
-                imageConfig: { arrayKey: 'clinicImages', index: 2 }
-              },
-              {
-                type: 'image',
-                label: "clinic Image 4",
-                imageConfig: { arrayKey: 'clinicImages', index: 3 }
-              },
-              {
-                type: 'image',
-                label: "treatment Image 1",
-                imageConfig: { arrayKey: 'treatmentImages', index: 0 }
-              },
-              {
-                type: 'image',
-                label: "treatment Image 2",
-                imageConfig: { arrayKey: 'treatmentImages', index: 1 }
-              },
-              {
-                type: 'image',
-                label: "treatment Image 3",
-                imageConfig: { arrayKey: 'treatmentImages', index: 2 }
-              },
-              {
-                type: 'image',
-                label: "treatment Image 4",
-                imageConfig: { arrayKey: 'treatmentImages', index: 3 }
-              },
-              {
-                type: 'image',
-                label: "Principal Portrait Image",
-                imageConfig: { arrayKey: 'otherImages', index: 0 }
-              },
-              {
-                type: 'image',
-                label: "Associate Portrait Image",
-                imageConfig: { arrayKey: 'otherImages', index: 1 }
-              },
-              {
-                type: 'image',
-                label: "Philosophy Feature Image 1",
-                imageConfig: { arrayKey: 'otherImages', index: 2 }
-              },
-              {
-                type: 'image',
-                label: "Philosophy Feature Image 2",
-                imageConfig: { arrayKey: 'otherImages', index: 3 }
-              },
-              {
-                type: 'image',
-                label: "Philosophy Feature Image 3",
-                imageConfig: { arrayKey: 'otherImages', index: 4 }
-              },
-              {
-                type: 'image',
-                label: "Philosophy Feature Image 4",
-                imageConfig: { arrayKey: 'otherImages', index: 5 }
-              },
-              {
-                type: 'image',
-                label: "Service Showcase Image 1",
-                imageConfig: { arrayKey: 'otherImages', index: 6 }
-              },
-              {
-                type: 'image',
-                label: "Service Showcase Image 2",
-                imageConfig: { arrayKey: 'otherImages', index: 7 }
-              },
-              {
-                type: 'image',
-                label: "Service Showcase Image 3",
-                imageConfig: { arrayKey: 'otherImages', index: 8 }
-              },
-              {
-                type: 'image',
-                label: "Service Showcase Image 4",
-                imageConfig: { arrayKey: 'otherImages', index: 9 }
-              },
-              {
-                type: 'image',
-                label: "Service Showcase Image 5",
-                imageConfig: { arrayKey: 'otherImages', index: 10 }
-              },
-              {
-                type: 'image',
-                label: "Service Showcase Image 6",
-                imageConfig: { arrayKey: 'otherImages', index: 11 }
-              },
-              {
-                type: 'image',
-                label: "Service Showcase Image 7",
-                imageConfig: { arrayKey: 'otherImages', index: 12 }
-              },
-              {
-                type: 'image',
-                label: "Service Showcase Image 8",
-                imageConfig: { arrayKey: 'otherImages', index: 13 }
-              },
-              {
-                type: 'image',
-                label: "other Image 15",
-                imageConfig: { arrayKey: 'otherImages', index: 14 }
-              },
-              {
-                type: 'image',
-                label: "other Image 16",
-                imageConfig: { arrayKey: 'otherImages', index: 15 }
-              },
-              {
-                type: 'image',
-                label: "other Image 17",
-                imageConfig: { arrayKey: 'otherImages', index: 16 }
-              },
-              {
-                type: 'image',
-                label: "other Image 18",
-                imageConfig: { arrayKey: 'otherImages', index: 17 }
-              },
-              {
-                type: 'image',
-                label: "other Image 19",
-                imageConfig: { arrayKey: 'otherImages', index: 18 }
-              },
-              {
-                type: 'image',
-                label: "other Image 20",
-                imageConfig: { arrayKey: 'otherImages', index: 19 }
-              },
-              {
-                type: 'image',
-                label: "other Image 21",
-                imageConfig: { arrayKey: 'otherImages', index: 20 }
-              },
-              {
-                type: 'image',
-                label: "other Image 22",
-                imageConfig: { arrayKey: 'otherImages', index: 21 }
-              },
-              {
-                type: 'image',
-                label: "other Image 23",
-                imageConfig: { arrayKey: 'otherImages', index: 22 }
-              },
-              {
-                type: 'image',
-                label: "other Image 24",
-                imageConfig: { arrayKey: 'otherImages', index: 23 }
-              },
-              {
-                type: 'image',
-                label: "other Image 25",
-                imageConfig: { arrayKey: 'otherImages', index: 24 }
-              },
-              {
-                type: 'image',
-                label: "other Image 26",
-                imageConfig: { arrayKey: 'otherImages', index: 25 }
-              },
-              {
-                type: 'image',
-                label: "other Image 27",
-                imageConfig: { arrayKey: 'otherImages', index: 26 }
-              },
-              {
-                type: 'image',
-                label: "other Image 28",
-                imageConfig: { arrayKey: 'otherImages', index: 27 }
-              },
-              {
-                type: 'image',
-                label: "other Image 29",
-                imageConfig: { arrayKey: 'otherImages', index: 28 }
-              },
-              {
-                type: 'image',
-                label: "other Image 30",
-                imageConfig: { arrayKey: 'otherImages', index: 29 }
-              },
-              {
-                type: 'image',
-                label: "other Image 31",
-                imageConfig: { arrayKey: 'otherImages', index: 30 }
-              },
-              {
-                type: 'image',
-                label: "other Image 32",
-                imageConfig: { arrayKey: 'otherImages', index: 31 }
-              },
-              {
-                type: 'image',
-                label: "other Image 33",
-                imageConfig: { arrayKey: 'otherImages', index: 32 }
-              },
-              {
-                type: 'image',
-                label: "other Image 34",
-                imageConfig: { arrayKey: 'otherImages', index: 33 }
-              },
-              {
-                type: 'image',
-                label: "other Image 35",
-                imageConfig: { arrayKey: 'otherImages', index: 34 }
-              },
-              {
-                type: 'image',
-                label: "other Image 36",
-                imageConfig: { arrayKey: 'otherImages', index: 35 }
-              },
-              {
-                type: 'image',
-                label: "other Image 37",
-                imageConfig: { arrayKey: 'otherImages', index: 36 }
-              },
-              {
-                type: 'image',
-                label: "other Image 38",
-                imageConfig: { arrayKey: 'otherImages', index: 37 }
-              },
-              {
-                type: 'image',
-                label: "other Image 39",
-                imageConfig: { arrayKey: 'otherImages', index: 38 }
-              },
-              {
-                type: 'image',
-                label: "other Image 40",
-                imageConfig: { arrayKey: 'otherImages', index: 39 }
-              },
-              {
-                type: 'image',
-                label: "other Image 41",
-                imageConfig: { arrayKey: 'otherImages', index: 40 }
-              },
-              {
-                type: 'image',
-                label: "other Image 42",
-                imageConfig: { arrayKey: 'otherImages', index: 41 }
+                type: 'text',
+                label: "Studio Name",
+                path: ['clinic', 'name']
               },
               {
                 type: 'textarea',
-                label: "Studio Name",
-                path: ['clinic', 'name']
+                label: "Studio Description",
+                path: ['clinic', 'description']
               },
             ]
           },
@@ -1983,6 +1958,11 @@ export const TEMPLATE_SCHEMAS: Record<string, TemplateSchema> = {
                 type: 'image',
                 label: "Service Showcase Image 6",
                 imageConfig: { arrayKey: 'otherImages', index: 11 }
+              },
+              {
+                type: 'image',
+                label: "Service Showcase Image 7",
+                imageConfig: { arrayKey: 'otherImages', index: 12 }
               },
               {
                 type: 'image',
@@ -2082,7 +2062,7 @@ export const TEMPLATE_SCHEMAS: Record<string, TemplateSchema> = {
             ]
           },
           {
-            label: "Contact Section",
+            label: "LAUNCH Loft PLAN",
             elements: [
               {
                 type: 'textarea',
@@ -2113,7 +2093,7 @@ export const TEMPLATE_SCHEMAS: Record<string, TemplateSchema> = {
         label: "About Page",
         sections: [
           {
-            label: "About Us Section",
+            label: "Hero Section",
             elements: [
               {
                 type: 'image',
@@ -2123,7 +2103,7 @@ export const TEMPLATE_SCHEMAS: Record<string, TemplateSchema> = {
             ]
           },
           {
-            label: "Core Values",
+            label: "Portfolio Gallery Section",
             elements: [
               {
                 type: 'textarea',
@@ -2149,6 +2129,51 @@ export const TEMPLATE_SCHEMAS: Record<string, TemplateSchema> = {
                 type: 'text',
                 label: "Name",
                 path: ['doctor', 'name']
+              },
+              {
+                type: 'textarea',
+                label: "Principal Credentials",
+                path: ['doctor', 'credentials']
+              },
+              {
+                type: 'textarea',
+                label: "Principal Bio",
+                path: ['doctor', 'bio']
+              },
+              {
+                type: 'textarea',
+                label: "Principal Specialization",
+                path: ['doctor', 'specialization']
+              },
+              {
+                type: 'textarea',
+                label: "Quote",
+                path: ['doctor', 'quote']
+              },
+              {
+                type: 'textarea',
+                label: "Partner Role",
+                path: ['doctor2', 'role']
+              },
+              {
+                type: 'text',
+                label: "Name",
+                path: ['doctor2', 'name']
+              },
+              {
+                type: 'textarea',
+                label: "Credentials",
+                path: ['doctor2', 'credentials']
+              },
+              {
+                type: 'textarea',
+                label: "Bio",
+                path: ['doctor2', 'bio']
+              },
+              {
+                type: 'textarea',
+                label: "Partner Quote",
+                path: ['doctor2', 'quote']
               },
             ]
           },
@@ -2235,262 +2260,17 @@ export const TEMPLATE_SCHEMAS: Record<string, TemplateSchema> = {
         label: "Gallery Page",
         sections: [
           {
-            label: "Portfolio Gallery Section",
+            label: "Hero Section",
             elements: [
               {
-                type: 'image',
-                label: "Hero Main Banner Image",
-                imageConfig: { arrayKey: 'clinicImages', index: 0 }
-              },
-              {
-                type: 'image',
-                label: "Clinic / Studio Gallery Image 2",
-                imageConfig: { arrayKey: 'clinicImages', index: 1 }
-              },
-              {
-                type: 'image',
-                label: "clinic Image 3",
-                imageConfig: { arrayKey: 'clinicImages', index: 2 }
-              },
-              {
-                type: 'image',
-                label: "clinic Image 4",
-                imageConfig: { arrayKey: 'clinicImages', index: 3 }
-              },
-              {
-                type: 'image',
-                label: "treatment Image 1",
-                imageConfig: { arrayKey: 'treatmentImages', index: 0 }
-              },
-              {
-                type: 'image',
-                label: "treatment Image 2",
-                imageConfig: { arrayKey: 'treatmentImages', index: 1 }
-              },
-              {
-                type: 'image',
-                label: "treatment Image 3",
-                imageConfig: { arrayKey: 'treatmentImages', index: 2 }
-              },
-              {
-                type: 'image',
-                label: "treatment Image 4",
-                imageConfig: { arrayKey: 'treatmentImages', index: 3 }
-              },
-              {
-                type: 'image',
-                label: "Principal Portrait Image",
-                imageConfig: { arrayKey: 'otherImages', index: 0 }
-              },
-              {
-                type: 'image',
-                label: "Associate Portrait Image",
-                imageConfig: { arrayKey: 'otherImages', index: 1 }
-              },
-              {
-                type: 'image',
-                label: "Philosophy Feature Image 1",
-                imageConfig: { arrayKey: 'otherImages', index: 2 }
-              },
-              {
-                type: 'image',
-                label: "Philosophy Feature Image 2",
-                imageConfig: { arrayKey: 'otherImages', index: 3 }
-              },
-              {
-                type: 'image',
-                label: "Philosophy Feature Image 3",
-                imageConfig: { arrayKey: 'otherImages', index: 4 }
-              },
-              {
-                type: 'image',
-                label: "Philosophy Feature Image 4",
-                imageConfig: { arrayKey: 'otherImages', index: 5 }
-              },
-              {
-                type: 'image',
-                label: "Service Showcase Image 1",
-                imageConfig: { arrayKey: 'otherImages', index: 6 }
-              },
-              {
-                type: 'image',
-                label: "Service Showcase Image 2",
-                imageConfig: { arrayKey: 'otherImages', index: 7 }
-              },
-              {
-                type: 'image',
-                label: "Service Showcase Image 3",
-                imageConfig: { arrayKey: 'otherImages', index: 8 }
-              },
-              {
-                type: 'image',
-                label: "Service Showcase Image 4",
-                imageConfig: { arrayKey: 'otherImages', index: 9 }
-              },
-              {
-                type: 'image',
-                label: "Service Showcase Image 5",
-                imageConfig: { arrayKey: 'otherImages', index: 10 }
-              },
-              {
-                type: 'image',
-                label: "Service Showcase Image 6",
-                imageConfig: { arrayKey: 'otherImages', index: 11 }
-              },
-              {
-                type: 'image',
-                label: "Service Showcase Image 7",
-                imageConfig: { arrayKey: 'otherImages', index: 12 }
-              },
-              {
-                type: 'image',
-                label: "Service Showcase Image 8",
-                imageConfig: { arrayKey: 'otherImages', index: 13 }
-              },
-              {
-                type: 'image',
-                label: "other Image 15",
-                imageConfig: { arrayKey: 'otherImages', index: 14 }
-              },
-              {
-                type: 'image',
-                label: "other Image 16",
-                imageConfig: { arrayKey: 'otherImages', index: 15 }
-              },
-              {
-                type: 'image',
-                label: "other Image 17",
-                imageConfig: { arrayKey: 'otherImages', index: 16 }
-              },
-              {
-                type: 'image',
-                label: "other Image 18",
-                imageConfig: { arrayKey: 'otherImages', index: 17 }
-              },
-              {
-                type: 'image',
-                label: "other Image 19",
-                imageConfig: { arrayKey: 'otherImages', index: 18 }
-              },
-              {
-                type: 'image',
-                label: "other Image 20",
-                imageConfig: { arrayKey: 'otherImages', index: 19 }
-              },
-              {
-                type: 'image',
-                label: "other Image 21",
-                imageConfig: { arrayKey: 'otherImages', index: 20 }
-              },
-              {
-                type: 'image',
-                label: "other Image 22",
-                imageConfig: { arrayKey: 'otherImages', index: 21 }
-              },
-              {
-                type: 'image',
-                label: "other Image 23",
-                imageConfig: { arrayKey: 'otherImages', index: 22 }
-              },
-              {
-                type: 'image',
-                label: "other Image 24",
-                imageConfig: { arrayKey: 'otherImages', index: 23 }
-              },
-              {
-                type: 'image',
-                label: "other Image 25",
-                imageConfig: { arrayKey: 'otherImages', index: 24 }
-              },
-              {
-                type: 'image',
-                label: "other Image 26",
-                imageConfig: { arrayKey: 'otherImages', index: 25 }
-              },
-              {
-                type: 'image',
-                label: "other Image 27",
-                imageConfig: { arrayKey: 'otherImages', index: 26 }
-              },
-              {
-                type: 'image',
-                label: "other Image 28",
-                imageConfig: { arrayKey: 'otherImages', index: 27 }
-              },
-              {
-                type: 'image',
-                label: "other Image 29",
-                imageConfig: { arrayKey: 'otherImages', index: 28 }
-              },
-              {
-                type: 'image',
-                label: "other Image 30",
-                imageConfig: { arrayKey: 'otherImages', index: 29 }
-              },
-              {
-                type: 'image',
-                label: "other Image 31",
-                imageConfig: { arrayKey: 'otherImages', index: 30 }
-              },
-              {
-                type: 'image',
-                label: "other Image 32",
-                imageConfig: { arrayKey: 'otherImages', index: 31 }
-              },
-              {
-                type: 'image',
-                label: "other Image 33",
-                imageConfig: { arrayKey: 'otherImages', index: 32 }
-              },
-              {
-                type: 'image',
-                label: "other Image 34",
-                imageConfig: { arrayKey: 'otherImages', index: 33 }
-              },
-              {
-                type: 'image',
-                label: "other Image 35",
-                imageConfig: { arrayKey: 'otherImages', index: 34 }
-              },
-              {
-                type: 'image',
-                label: "other Image 36",
-                imageConfig: { arrayKey: 'otherImages', index: 35 }
-              },
-              {
-                type: 'image',
-                label: "other Image 37",
-                imageConfig: { arrayKey: 'otherImages', index: 36 }
-              },
-              {
-                type: 'image',
-                label: "other Image 38",
-                imageConfig: { arrayKey: 'otherImages', index: 37 }
-              },
-              {
-                type: 'image',
-                label: "other Image 39",
-                imageConfig: { arrayKey: 'otherImages', index: 38 }
-              },
-              {
-                type: 'image',
-                label: "other Image 40",
-                imageConfig: { arrayKey: 'otherImages', index: 39 }
-              },
-              {
-                type: 'image',
-                label: "other Image 41",
-                imageConfig: { arrayKey: 'otherImages', index: 40 }
-              },
-              {
-                type: 'image',
-                label: "other Image 42",
-                imageConfig: { arrayKey: 'otherImages', index: 41 }
+                type: 'text',
+                label: "Studio Name",
+                path: ['clinic', 'name']
               },
               {
                 type: 'textarea',
-                label: "Studio Name",
-                path: ['clinic', 'name']
+                label: "Studio Description",
+                path: ['clinic', 'description']
               },
             ]
           },

@@ -36,7 +36,7 @@ export default async function DesignStudioHome({ params }: PageProps) {
   const data = await readSourceConfig(slug, 'template6');
   if (!data) return notFound();
 
-  const { clinic, doctor, business, media } = data;
+  const { clinic, doctor, business, media, reviews } = data;
   const heroImage = media?.clinicImages?.[0] || INTERIOR_HERO_IMAGES.home;
   const doctorImage = doctor?.images?.[0] || media?.otherImages?.[0] || INTERIOR_HERO_IMAGES.designer;
 
@@ -49,12 +49,12 @@ export default async function DesignStudioHome({ params }: PageProps) {
     };
   });
 
-  const testimonials = [
-    { author: "Morgan Dufresne", role: "Company owner", text: "I absolutely love my new modern living room! The clean lines, neutral tones, and minimalist interior create such a calming & stylish atmosphere. Highly recommend their modern interior design services!" },
-    { author: "Sarah Jenkins", role: "Homeowner", text: "From Concept To Reality, The Team Turned My Vision Into A Stunning, Livable Space. I couldn't be happier with the results! The level of professionalism was outstanding." },
-    { author: "David Chen", role: "Restaurateur", text: "They completely transformed our restaurant space. The blend of contemporary elements with warm lighting created an inviting ambiance that our guests constantly compliment. Exceptional attention to detail throughout the entire process." },
+  const displayReviews = reviews && reviews.length > 0 ? reviews : [
+    { author: "Morgan Dufresne", role: "Company owner", rating: 5, text: "I absolutely love my new modern living room! The clean lines, neutral tones, and minimalist interior create such a calming & stylish atmosphere. Highly recommend their modern interior design services!" },
+    { author: "Sarah Jenkins", role: "Homeowner", rating: 5, text: "From Concept To Reality, The Team Turned My Vision Into A Stunning, Livable Space. I couldn't be happier with the results! The level of professionalism was outstanding." },
+    { author: "David Chen", role: "Restaurateur", rating: 5, text: "They completely transformed our restaurant space. The blend of contemporary elements with warm lighting created an inviting ambiance that our guests constantly compliment. Exceptional attention to detail throughout the entire process." },
     { author: "Emily Roberts", role: "Developer", text: "Working with this studio was a breeze. They handled everything from space planning to furnishing, making the renovation stress-free. The end result added significant value." },
-    { author: "Michael Torres", role: "Startup CEO", text: "We wanted a modern, functional office that sparks creativity, and they delivered perfectly. The custom furniture and strategic layout changes completely revitalized our work environment. It's a joy coming to the office every day." }
+    { author: "Michael Torres", role: "Startup CEO", rating: 5, text: "We wanted a modern, functional office that sparks creativity, and they delivered perfectly. The custom furniture and strategic layout changes completely revitalized our work environment. It's a joy coming to the office every day." }
   ];
 
   const faqs = [
@@ -159,7 +159,7 @@ export default async function DesignStudioHome({ params }: PageProps) {
           <div className="relative max-w-5xl mx-auto px-4">
             <div className="aspect-[21/9] overflow-hidden border border-white/10">
               <img
-                src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=1200"
+                src={media?.otherImages?.[2] || "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=1200"}
                 alt="Modern luxury interior render"
                 className="w-full h-full object-cover"
               />
@@ -243,7 +243,7 @@ export default async function DesignStudioHome({ params }: PageProps) {
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {testimonials.map((review, idx) => (
+            {displayReviews.slice(0, 3).map((review: any, idx: number) => (
               <div 
                 key={idx} 
                 className={`bg-[#121212] p-10 border border-white/5 shadow-xl flex flex-col justify-between group hover:border-[#c59b72]/30 transition-colors duration-500 ${
@@ -252,7 +252,7 @@ export default async function DesignStudioHome({ params }: PageProps) {
               >
                 <div className="space-y-6">
                   <div className="flex gap-1 text-[#c59b72]">
-                    {[...Array(5)].map((_, i) => (
+                    {[...Array(review.rating || 5)].map((_, i) => (
                       <Star key={i} className="w-3.5 h-3.5 fill-current" />
                     ))}
                   </div>
@@ -262,11 +262,11 @@ export default async function DesignStudioHome({ params }: PageProps) {
                 </div>
                 <div className="flex items-center gap-4 pt-8 mt-10 border-t border-white/5">
                   <div className="w-10 h-10 rounded-none bg-white/5 border border-white/10 flex items-center justify-center text-[#c59b72] font-mono text-sm uppercase">
-                    {review.author.charAt(0)}
+                    {(review.author || 'C').charAt(0)}
                   </div>
                   <div>
-                    <h4 className="text-sm font-bold text-white group-hover:text-[#c59b72] transition-colors">{review.author}</h4>
-                    <p className="text-[9px] uppercase tracking-[0.2em] text-zinc-500 font-bold mt-1">{review.role}</p>
+                    <h4 className="text-sm font-bold text-white group-hover:text-[#c59b72] transition-colors">{review.author || 'Client'}</h4>
+                    <p className="text-[9px] uppercase tracking-[0.2em] text-zinc-500 font-bold mt-1">{review.role || 'Homeowner'}</p>
                   </div>
                 </div>
               </div>
@@ -337,14 +337,19 @@ export default async function DesignStudioHome({ params }: PageProps) {
              <p className="text-zinc-400 font-light text-sm max-w-md mx-auto leading-relaxed">
                Message us on WhatsApp, and our design team will personally respond to your query.
              </p>
-             <a 
-               href="https://wa.me/919876543210" 
-               target="_blank" 
-               rel="noopener noreferrer" 
-               className="inline-block mt-4 bg-white text-black px-8 py-3.5 text-[10px] tracking-[0.2em] uppercase font-bold hover:bg-zinc-200 transition-colors"
-             >
-               WhatsApp: +91 98765 43210
-             </a>
+             {(() => {
+                const phoneClean = clinic.contact?.phone?.replace(/\D/g, '') || '919876543210';
+                return (
+                  <a 
+                    href={`https://wa.me/${phoneClean}`} 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    className="inline-block mt-4 bg-white text-black px-8 py-3.5 text-[10px] tracking-[0.2em] uppercase font-bold hover:bg-zinc-200 transition-colors"
+                  >
+                    WhatsApp: {clinic.contact?.phone || "+91 98765 43210"}
+                  </a>
+                );
+              })()}
           </div>
         </div>
       </section>
@@ -366,7 +371,7 @@ export default async function DesignStudioHome({ params }: PageProps) {
 
           <div className="max-w-5xl mx-auto overflow-hidden border border-white/10 bg-[#1a1a1a]">
             <img
-              src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&q=80&w=1200"
+              src={media?.otherImages?.[3] || "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&q=80&w=1200"}
               alt="Sleek luxurious interior mockup"
               className="w-full aspect-[16/9] object-cover opacity-70 hover:opacity-100 hover:scale-101 transition-all duration-[2000ms]"
             />

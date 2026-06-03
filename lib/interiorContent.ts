@@ -499,13 +499,13 @@ export function getServiceImage(serviceName: string, media: any): string | null 
   if (lower.includes("commercial") || lower.includes("office") || lower.includes("retail") || lower.includes("corporate")) {
     return media.otherImages[10] || null;
   }
-  // Index 11: Styling & Decor / Bedroom / Living Room
-  if (lower.includes("styling") || lower.includes("decor") || lower.includes("bedroom") || lower.includes("living")) {
-    return media.otherImages[11] || null;
-  }
   // Index 12: Renovation
   if (lower.includes("renovation") || lower.includes("makeover") || lower.includes("overhaul")) {
     return media.otherImages[12] || null;
+  }
+  // Index 11: Styling & Decor / Bedroom / Living Room
+  if (lower.includes("styling") || lower.includes("decor") || lower.includes("bedroom") || lower.includes("living")) {
+    return media.otherImages[11] || null;
   }
   // Index 13: Custom Furniture
   if (lower.includes("furniture") || lower.includes("joinery") || lower.includes("steel") || lower.includes("millwork") || lower.includes("wood")) {

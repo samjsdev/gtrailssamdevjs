@@ -99,14 +99,14 @@ export default async function GalleryPage({ params }: { params: Promise<{ slug: 
                 <span className="text-[10px] font-bold tracking-[0.35em] text-[#E07A5F] uppercase">BUILT SHELLS</span>
               </div>
               <h1 className={`${archivo.className} text-5xl sm:text-6xl lg:text-8xl text-white uppercase leading-[1.05]`}>
-                Loft Work &amp;<br />
+                {clinic.name || "Loft Work"} &amp;<br />
                 <span className="text-[#E07A5F]">Shells</span>
               </h1>
             </div>
             
             <div className="lg:col-span-5 space-y-8 lg:pb-4">
               <p className="text-slate-400 font-light leading-relaxed text-sm md:text-base">
-                Explore the spaces we have transformed and the creative environment where our designs come to life.
+                {clinic.description || "Explore the spaces we have transformed and the creative environment where our designs come to life."}
               </p>
               
               {/* Stats strip - Template 3 matching stats styled in raw metal columns */}
@@ -139,7 +139,7 @@ export default async function GalleryPage({ params }: { params: Promise<{ slug: 
       </section>
 
       {/* ── GALLERY GRID ─────────────────────────────────────────────────── */}
-      <section className="max-w-7xl mx-auto px-8 py-20 bg-[#1E2022]">
+      <section id="gallery-grid" className="max-w-7xl mx-auto px-8 py-20 bg-[#1E2022]">
         <GalleryGrid items={PORTFOLIO} />
       </section>
 

@@ -87,11 +87,11 @@ export default async function GalleryPage({ params }: PageProps) {
         </div>
 
         <h1 className="font-serif text-5xl sm:text-6xl lg:text-[4.5rem] font-light tracking-tight leading-[1.05] text-[#0A0A0A]">
-          Spaces with <span className="italic font-normal text-[#0A0A0A]/60 inline-block relative">Character.<span className="absolute bottom-2 left-0 w-full h-[1.5px] bg-[#C1FF72]"></span></span>
+          {clinic.name || "Spaces with Character."} - <span className="italic font-normal text-[#0A0A0A]/60 inline-block relative">Portfolio<span className="absolute bottom-2 left-0 w-full h-[1.5px] bg-[#C1FF72]"></span></span>
         </h1>
 
         <p className="text-base sm:text-lg text-gray-500 font-normal leading-relaxed max-w-2xl mx-auto">
-          Explore complete design previews, modular fabrications, and customized styling executions.
+          {clinic.description || "Explore complete design previews, modular fabrications, and customized styling executions."}
         </p>
 
         {/* Stats Strip */}
@@ -121,9 +121,9 @@ export default async function GalleryPage({ params }: PageProps) {
       </div>
 
       {/* Grid Container */}
-      <div className="max-w-7xl mx-auto px-8 relative z-20">
+      <section id="gallery-grid" className="max-w-7xl mx-auto px-8 relative z-20">
         <GalleryGrid items={PORTFOLIO} />
-      </div>
+      </section>
 
     </div>
   );

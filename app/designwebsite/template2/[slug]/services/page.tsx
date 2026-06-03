@@ -40,7 +40,7 @@ export default async function ServicesPage({ params }: { params: Promise<{ slug:
 
       {/* CORE EXPERTISES: LUXURIOUS ROW-BASED LIST LAYOUT */}
       <section className="space-y-12 text-left">
-        <div className="space-y-3">
+        <div className="space-y-3 px-4 sm:px-6">
           <div className="flex items-center gap-2 text-[#8E7056] text-[10px] font-bold uppercase tracking-[0.2em]">
             <span className="w-1.5 h-1.5 rounded-full bg-[#8E7056]" />
             OUR SPECIALTIES
@@ -84,35 +84,38 @@ export default async function ServicesPage({ params }: { params: Promise<{ slug:
           ].map((item, idx) => (
             <div 
               key={idx} 
-              className="py-10 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-8 group hover:bg-[#EAE3D8]/10 transition-colors duration-300 px-4 sm:px-6"
+              className="py-10 flex flex-col items-start gap-6 group hover:bg-[#EAE3D8]/10 transition-colors duration-300 px-4 sm:px-6"
             >
-              {/* Column 1: Serif Number */}
-              <div className={`${cormorant.className} text-4xl sm:text-5xl font-light text-[#8E7056] lg:w-1/12`}>
-                {item.num}
-              </div>
+              {/* Top part: Number, Title, Description side-by-side on desktop */}
+              <div className="w-full flex flex-col lg:flex-row items-start justify-between gap-8">
+                {/* Column 1: Serif Number */}
+                <div className={`${cormorant.className} text-4xl sm:text-5xl font-light text-[#8E7056] lg:w-1/12 lg:pt-1`}>
+                  {item.num}
+                </div>
 
-              {/* Column 2: Title & Micro-Pills */}
-              <div className="space-y-3 lg:w-3/12">
-                <h3 className="text-base sm:text-lg font-bold text-[#2A2421] tracking-wide">
-                  {item.title}
-                </h3>
-                <div className="flex flex-wrap gap-1.5">
-                  {item.tags.map((tag, tIdx) => (
-                    <span key={tIdx} className="px-2 py-0.5 bg-[#FAF8F5] border border-[#EAE3D8] text-[9px] text-[#2A2421]/80 rounded-full font-light">
-                      {tag}
-                    </span>
-                  ))}
+                {/* Column 2: Title & Micro-Pills */}
+                <div className="space-y-3 lg:w-4/12 lg:pt-1">
+                  <h3 className="text-base sm:text-lg font-bold text-[#2A2421] tracking-wide">
+                    {item.title}
+                  </h3>
+                  <div className="flex flex-wrap gap-1.5">
+                    {item.tags.map((tag, tIdx) => (
+                      <span key={tIdx} className="px-2 py-0.5 bg-[#FAF8F5] border border-[#EAE3D8] text-[9px] text-[#2A2421]/80 rounded-full font-light">
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Column 3: Description */}
+                <div className="lg:w-7/12 text-xs sm:text-[13px] text-[#2A2421]/90 leading-relaxed font-light lg:pt-1">
+                  {item.desc}
                 </div>
               </div>
 
-              {/* Column 3: Description */}
-              <div className="lg:w-4/12 text-xs sm:text-[13px] text-[#2A2421]/90 leading-relaxed font-light">
-                {item.desc}
-              </div>
-
-              {/* Column 4: Staggered Portrait Thumbnail Image */}
-              <div className="lg:w-2/12 flex justify-start lg:justify-end w-full">
-                <div className="w-full lg:max-w-[160px] aspect-[16/9] sm:aspect-video lg:aspect-[4/3] rounded-2xl overflow-hidden border border-[#EAE3D8] shadow-xs relative">
+              {/* Bottom part: Image below the text columns */}
+              <div className="w-full mt-4">
+                <div className="w-full aspect-[16/9] md:aspect-[21/9] rounded-[2rem] overflow-hidden border border-[#EAE3D8] shadow-sm relative">
                   <img 
                     src={item.image} 
                     alt={item.title} 
@@ -158,7 +161,7 @@ export default async function ServicesPage({ params }: { params: Promise<{ slug:
           <div className="lg:col-span-5 flex justify-center w-full">
             <div className="w-full aspect-[4/5] rounded-[2.5rem] overflow-hidden shadow-sm border border-[#EAE3D8]/50">
               <img 
-                src="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=600&q=80" 
+                src={media?.treatmentImages?.[0] || media?.clinicImages?.[0] || "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=600&q=80"} 
                 alt="Bespoke modular kitchen layout" 
                 className="w-full h-full object-cover"
               />
@@ -167,7 +170,7 @@ export default async function ServicesPage({ params }: { params: Promise<{ slug:
         </div>
       </section>
 
-      {/* MATERIAL LIBRARY BENTO GRID */}
+      {/* MATERIAL LIBRARY GRID */}
       <section className="space-y-12 text-left">
         <div className="text-center max-w-2xl mx-auto space-y-3">
           <div className="flex items-center justify-center gap-2 text-[#8E7056] text-[10px] font-bold uppercase tracking-[0.2em]">
@@ -182,44 +185,71 @@ export default async function ServicesPage({ params }: { params: Promise<{ slug:
           </p>
         </div>
 
-        {/* Custom Bento Material Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-6 mt-8">
+        {/* Premium 4-Column Grid of Compact Cards */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 lg:gap-6 mt-10">
           {[
             {
               title: "Premium BWP Marine Plywood",
               desc: "Sustainably sourced boiling-water-proof plywood, ideal for modular kitchens and wet areas to ensure zero swelling or moisture damage.",
               img: media?.otherImages?.[13] || "https://images.unsplash.com/photo-1538688525198-9b88f6f53126?auto=format&fit=crop&w=400&q=80",
-              span: "md:col-span-7"
+              tag: "Waterproof Structure"
             },
             {
               title: "Quartz & Granite Counters",
               desc: "Hard-wearing, scratch-resistant countertops selected for heavy-duty kitchen layouts and elegant premium dining tops.",
               img: media?.otherImages?.[7] || "https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?auto=format&fit=crop&w=400&q=80",
-              span: "md:col-span-5"
+              tag: "Durable Surfaces"
             },
             {
               title: "Eco-Friendly & Anti-Fungal Finishes",
               desc: "Low-VOC acrylics, anti-fingerprint laminates, and anti-fungal materials perfect for Chennai's humid coastal environment.",
               img: media?.otherImages?.[9] || "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=800&q=80",
-              span: "md:col-span-5"
+              tag: "Climate Coatings"
             },
             {
               title: "Upholstery & Soft Furnishings",
               desc: "Woven custom curtains, premium fabrics, and acoustic panels that add luxury, warmth, and comfortable ventilation to Chennai homes.",
               img: media?.otherImages?.[11] || "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=800&q=80",
-              span: "md:col-span-7"
+              tag: "Organic Textures"
             }
           ].map((mat, mIdx) => (
             <div 
               key={mIdx} 
-              className={`${mat.span} bg-white rounded-[2rem] p-6 border border-[#EAE3D8]/60 flex flex-col md:flex-row items-center gap-6 shadow-xs hover:border-[#8E7056]/30 transition-colors duration-300`}
+              className="bg-white rounded-[2rem] p-5 border border-[#EAE3D8]/60 hover:border-[#8E7056]/35 hover:-translate-y-1 hover:shadow-xs transition-all duration-500 group flex flex-col justify-between"
             >
-              <div className="space-y-3 md:w-1/2">
-                <h3 className="text-[14px] font-bold text-[#2A2421]">{mat.title}</h3>
-                <p className="text-xs text-[#2A2421]/80 font-light leading-relaxed">{mat.desc}</p>
+              <div className="space-y-4">
+                {/* Compact Editorial Image */}
+                <div className="w-full aspect-[4/3] rounded-[1.25rem] overflow-hidden border border-[#EAE3D8]/40 shadow-xs relative">
+                  <img 
+                    src={mat.img} 
+                    alt={mat.title} 
+                    className="w-full h-full object-cover group-hover:scale-103 transition-transform duration-700" 
+                  />
+                  <div className="absolute inset-0 bg-[#8E7056]/5 group-hover:opacity-0 transition-opacity duration-350" />
+                </div>
+
+                {/* Text Metadata Section */}
+                <div className="space-y-2">
+                  <div className="flex items-center gap-2.5">
+                    <span className={`${cormorant.className} text-2xl font-light italic text-[#8E7056] shrink-0`}>
+                      0{mIdx + 1}
+                    </span>
+                    <h3 className="text-[14px] sm:text-[15px] font-bold text-[#2A2421] tracking-wide leading-tight">
+                      {mat.title}
+                    </h3>
+                  </div>
+                  <p className="text-[11.5px] sm:text-[12.5px] text-[#2A2421]/90 font-light leading-relaxed">
+                    {mat.desc}
+                  </p>
+                </div>
               </div>
-              <div className="md:w-1/2 w-full aspect-[4/3] rounded-[1.25rem] overflow-hidden border border-[#EAE3D8]/50">
-                <img src={mat.img} alt={mat.title} className="w-full h-full object-cover" />
+
+              {/* Bottom Luxury Tag */}
+              <div className="pt-4 mt-3 border-t border-[#EAE3D8]/40">
+                <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 bg-[#FAF8F5] border border-[#EAE3D8] text-[8.5px] sm:text-[9px] font-bold text-[#8E7056] uppercase tracking-wider rounded-full">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#8E7056]" />
+                  {mat.tag}
+                </span>
               </div>
             </div>
           ))}

@@ -99,14 +99,14 @@ export default async function GalleryPage({ params }: { params: Promise<{ slug: 
                 <span className="text-[10px] font-bold tracking-[0.35em] text-[#c59b72] uppercase">Our Portfolio</span>
               </div>
               <h1 className={`${playfair.className} text-6xl sm:text-7xl lg:text-8xl text-white font-light leading-none`}>
-                Our Work &amp;<br />
-                <span className="italic text-zinc-400 font-light">Studio</span>
+                {clinic.name || "Our Work"} &amp;<br />
+                <span className="italic text-zinc-400 font-light">Portfolio</span>
               </h1>
             </div>
             
             <div className="lg:col-span-5 space-y-8 lg:pb-4">
               <p className="text-zinc-400 font-light leading-loose text-sm md:text-base">
-                Explore the spaces we have transformed and the creative environment where our designs come to life.
+                {clinic.description || "Explore the spaces we have transformed and the creative environment where our designs come to life."}
               </p>
               
               {/* Stats strip - Copy of template 3 exact stats */}
@@ -139,7 +139,7 @@ export default async function GalleryPage({ params }: { params: Promise<{ slug: 
       </section>
 
       {/* ── GALLERY GRID ─────────────────────────────────────────────────── */}
-      <section className="max-w-7xl mx-auto px-6 py-20 bg-[#1a1a1a]">
+      <section id="gallery-grid" className="max-w-7xl mx-auto px-6 py-20 bg-[#1a1a1a]">
         <GalleryGrid items={PORTFOLIO} />
       </section>
 

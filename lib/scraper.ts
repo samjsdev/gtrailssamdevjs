@@ -114,11 +114,16 @@ function isLikelyPhotoUrl(url: string): boolean {
 function promoteGooglePhotoUrl(url: string): string {
     if (!GOOGLE_PHOTO_HOST_RE.test(url)) return url;
 
-    return url
-        .replace(/=w\d+-h\d+(-[a-z0-9-]+)?/gi, '=w2048-h1536$1')
-        .replace(/=w\d+(?!-h)(-[a-z0-9-]+)?/gi, '=w2048$1')
-        .replace(/=s\d+(-[a-z0-9-]+)?/gi, '=s2048$1')
-        .replace(/\/w\d+-h\d+(-[a-z0-9-]+)?\//gi, '/w2048-h1536$1/');
+    // Clean size parameters in the path if any (e.g. /w100-h100/ or /s16-c/)
+    let clean = url
+        .replace(/\/w\d+-h\d+(-[a-z0-9-]+)?\//gi, '/')
+        .replace(/\/s\d+(-[a-z0-9-]+)?\//gi, '/');
+
+    // Split by '=' to get the base URL
+    const baseUrl = clean.split('=')[0];
+
+    // Return standard high-resolution format
+    return `${baseUrl}=w2048-h1536`;
 }
 
 function addImageCandidate(raw: string | null | undefined, bucket: Set<string>): void {
@@ -129,15 +134,9 @@ function addImageCandidate(raw: string | null | undefined, bucket: Set<string>):
     if (!isLikelyPhotoUrl(candidate)) return;
 
     const promoted = promoteGooglePhotoUrl(candidate);
-    let addedPromoted = false;
-    if (promoted !== candidate && isLikelyPhotoUrl(promoted)) {
+    if (isLikelyPhotoUrl(promoted)) {
         bucket.add(promoted);
-        addedPromoted = true;
     }
-
-    if (addedPromoted && isSmallDimensionUrl(candidate)) return;
-
-    bucket.add(candidate);
 }
 
 function addSrcSetCandidates(srcSet: string | null | undefined, bucket: Set<string>): void {
@@ -206,22 +205,28 @@ type ScrollStepResult = ScrollState & {
 
 async function getGalleryScrollState(page: Page): Promise<ScrollState> {
     return page.evaluate(() => {
-        const isScrollable = (el: Element): el is HTMLElement => {
-            if (!(el instanceof HTMLElement)) return false;
+        const elements = document.querySelectorAll('div, main, section');
+        let container: HTMLElement | null = null;
+        let maxDiff = -1;
+        for (let i = 0; i < elements.length; i++) {
+            const el = elements[i];
+            if (!(el instanceof HTMLElement)) continue;
             const style = window.getComputedStyle(el);
-            const overflowY = style.overflowY;
-            const overflow = style.overflow;
+            const overflowY = style.overflowY || '';
+            const overflow = style.overflow || '';
             const canScroll =
                 overflowY === 'auto' ||
                 overflowY === 'scroll' ||
                 overflow === 'auto' ||
                 overflow === 'scroll';
-            return canScroll && el.scrollHeight > el.clientHeight + 12;
-        };
-
-        const container = Array.from(document.querySelectorAll('div, main, section'))
-            .filter(isScrollable)
-            .sort((a, b) => (b.scrollHeight - b.clientHeight) - (a.scrollHeight - a.clientHeight))[0];
+            if (canScroll && el.scrollHeight > el.clientHeight + 12) {
+                const diff = el.scrollHeight - el.clientHeight;
+                if (diff > maxDiff) {
+                    maxDiff = diff;
+                    container = el;
+                }
+            }
+        }
 
         if (container) {
             const maxTop = Math.max(0, container.scrollHeight - container.clientHeight - 4);
@@ -240,22 +245,28 @@ async function getGalleryScrollState(page: Page): Promise<ScrollState> {
 
 async function nudgeGalleryForLazyLoad(page: Page): Promise<void> {
     await page.evaluate(() => {
-        const isScrollable = (el: Element): el is HTMLElement => {
-            if (!(el instanceof HTMLElement)) return false;
+        const elements = document.querySelectorAll('div, main, section');
+        let container: HTMLElement | null = null;
+        let maxDiff = -1;
+        for (let i = 0; i < elements.length; i++) {
+            const el = elements[i];
+            if (!(el instanceof HTMLElement)) continue;
             const style = window.getComputedStyle(el);
-            const overflowY = style.overflowY;
-            const overflow = style.overflow;
+            const overflowY = style.overflowY || '';
+            const overflow = style.overflow || '';
             const canScroll =
                 overflowY === 'auto' ||
                 overflowY === 'scroll' ||
                 overflow === 'auto' ||
                 overflow === 'scroll';
-            return canScroll && el.scrollHeight > el.clientHeight + 12;
-        };
-
-        const container = Array.from(document.querySelectorAll('div, main, section'))
-            .filter(isScrollable)
-            .sort((a, b) => (b.scrollHeight - b.clientHeight) - (a.scrollHeight - a.clientHeight))[0];
+            if (canScroll && el.scrollHeight > el.clientHeight + 12) {
+                const diff = el.scrollHeight - el.clientHeight;
+                if (diff > maxDiff) {
+                    maxDiff = diff;
+                    container = el;
+                }
+            }
+        }
 
         if (container) {
             const upStep = Math.max(200, Math.floor(container.clientHeight * 0.45));
@@ -270,22 +281,28 @@ async function nudgeGalleryForLazyLoad(page: Page): Promise<void> {
     await page.waitForTimeout(180);
 
     await page.evaluate(() => {
-        const isScrollable = (el: Element): el is HTMLElement => {
-            if (!(el instanceof HTMLElement)) return false;
+        const elements = document.querySelectorAll('div, main, section');
+        let container: HTMLElement | null = null;
+        let maxDiff = -1;
+        for (let i = 0; i < elements.length; i++) {
+            const el = elements[i];
+            if (!(el instanceof HTMLElement)) continue;
             const style = window.getComputedStyle(el);
-            const overflowY = style.overflowY;
-            const overflow = style.overflow;
+            const overflowY = style.overflowY || '';
+            const overflow = style.overflow || '';
             const canScroll =
                 overflowY === 'auto' ||
                 overflowY === 'scroll' ||
                 overflow === 'auto' ||
                 overflow === 'scroll';
-            return canScroll && el.scrollHeight > el.clientHeight + 12;
-        };
-
-        const container = Array.from(document.querySelectorAll('div, main, section'))
-            .filter(isScrollable)
-            .sort((a, b) => (b.scrollHeight - b.clientHeight) - (a.scrollHeight - a.clientHeight))[0];
+            if (canScroll && el.scrollHeight > el.clientHeight + 12) {
+                const diff = el.scrollHeight - el.clientHeight;
+                if (diff > maxDiff) {
+                    maxDiff = diff;
+                    container = el;
+                }
+            }
+        }
 
         if (container) {
             const downStep = Math.max(350, Math.floor(container.clientHeight * 0.95));
@@ -324,22 +341,28 @@ async function waitForLazyGrowth(
 
 async function scrollGalleryStep(page: Page): Promise<ScrollStepResult> {
     return page.evaluate(() => {
-        const isScrollable = (el: Element): el is HTMLElement => {
-            if (!(el instanceof HTMLElement)) return false;
+        const elements = document.querySelectorAll('div, main, section');
+        let container: HTMLElement | null = null;
+        let maxDiff = -1;
+        for (let i = 0; i < elements.length; i++) {
+            const el = elements[i];
+            if (!(el instanceof HTMLElement)) continue;
             const style = window.getComputedStyle(el);
-            const overflowY = style.overflowY;
-            const overflow = style.overflow;
+            const overflowY = style.overflowY || '';
+            const overflow = style.overflow || '';
             const canScroll =
                 overflowY === 'auto' ||
                 overflowY === 'scroll' ||
                 overflow === 'auto' ||
                 overflow === 'scroll';
-            return canScroll && el.scrollHeight > el.clientHeight + 12;
-        };
-
-        const container = Array.from(document.querySelectorAll('div, main, section'))
-            .filter(isScrollable)
-            .sort((a, b) => (b.scrollHeight - b.clientHeight) - (a.scrollHeight - a.clientHeight))[0];
+            if (canScroll && el.scrollHeight > el.clientHeight + 12) {
+                const diff = el.scrollHeight - el.clientHeight;
+                if (diff > maxDiff) {
+                    maxDiff = diff;
+                    container = el;
+                }
+            }
+        }
 
         if (container) {
             const before = container.scrollTop;
@@ -424,22 +447,28 @@ async function scrollDetailsPanelToRevealReviews(page: Page): Promise<void> {
         if (triggerCount > 0) return;
 
         const moved = await page.evaluate(() => {
-            const isScrollable = (el: Element): el is HTMLElement => {
-                if (!(el instanceof HTMLElement)) return false;
+            const elements = document.querySelectorAll('div, main, section');
+            let container: HTMLElement | null = null;
+            let maxDiff = -1;
+            for (let i = 0; i < elements.length; i++) {
+                const el = elements[i];
+                if (!(el instanceof HTMLElement)) continue;
                 const style = window.getComputedStyle(el);
-                const overflowY = style.overflowY;
-                const overflow = style.overflow;
+                const overflowY = style.overflowY || '';
+                const overflow = style.overflow || '';
                 const canScroll =
                     overflowY === 'auto' ||
                     overflowY === 'scroll' ||
                     overflow === 'auto' ||
                     overflow === 'scroll';
-                return canScroll && el.scrollHeight > el.clientHeight + 20;
-            };
-
-            const container = Array.from(document.querySelectorAll('div, main, section'))
-                .filter(isScrollable)
-                .sort((a, b) => (b.scrollHeight - b.clientHeight) - (a.scrollHeight - a.clientHeight))[0];
+                if (canScroll && el.scrollHeight > el.clientHeight + 20) {
+                    const diff = el.scrollHeight - el.clientHeight;
+                    if (diff > maxDiff) {
+                        maxDiff = diff;
+                        container = el;
+                    }
+                }
+            }
 
             if (!container) return false;
 
@@ -456,22 +485,22 @@ async function scrollDetailsPanelToRevealReviews(page: Page): Promise<void> {
 
 async function getReviewSurfaceSnapshot(page: Page): Promise<ReviewSurfaceSnapshot> {
     const surface = await page.evaluate(({ reviewSelector, containerSelector }) => {
-        const isScrollable = (el: Element): el is HTMLElement => {
-            if (!(el instanceof HTMLElement)) return false;
-            const style = window.getComputedStyle(el);
-            const overflowY = style.overflowY;
-            const overflow = style.overflow;
+        const candidates = new Set<HTMLElement>();
+        const elements = document.querySelectorAll(containerSelector);
+        for (let i = 0; i < elements.length; i++) {
+            const element = elements[i];
+            if (!(element instanceof HTMLElement)) continue;
+            const style = window.getComputedStyle(element);
+            const overflowY = style.overflowY || '';
+            const overflow = style.overflow || '';
             const canScroll =
                 overflowY === 'auto' ||
                 overflowY === 'scroll' ||
                 overflow === 'auto' ||
                 overflow === 'scroll';
-            return canScroll && el.scrollHeight > el.clientHeight + 20;
-        };
-
-        const candidates = new Set<HTMLElement>();
-        for (const element of Array.from(document.querySelectorAll(containerSelector))) {
-            if (isScrollable(element)) candidates.add(element);
+            if (canScroll && element.scrollHeight > element.clientHeight + 20) {
+                candidates.add(element);
+            }
         }
 
         const reviewCards = Array.from(document.querySelectorAll(reviewSelector)).slice(0, 12);
@@ -482,7 +511,18 @@ async function getReviewSurfaceSnapshot(page: Page): Promise<ReviewSurfaceSnapsh
             for (let i = 0; i < 14 && node; i++) {
                 node = node.parentElement;
                 if (!node) break;
-                if (isScrollable(node)) candidates.add(node);
+                
+                const style = window.getComputedStyle(node);
+                const overflowY = style.overflowY || '';
+                const overflow = style.overflow || '';
+                const canScroll =
+                    overflowY === 'auto' ||
+                    overflowY === 'scroll' ||
+                    overflow === 'auto' ||
+                    overflow === 'scroll';
+                if (canScroll && node.scrollHeight > node.clientHeight + 20) {
+                    candidates.add(node);
+                }
             }
         }
 
@@ -639,23 +679,21 @@ async function expandVisibleReviewBodies(page: Page): Promise<void> {
 
 async function scrollReviewPanelStep(page: Page): Promise<{ moved: boolean; atEnd: boolean }> {
     return page.evaluate(({ reviewSelector, containerSelector }) => {
-        const isScrollable = (el: Element): el is HTMLElement => {
-            if (!(el instanceof HTMLElement)) return false;
-            const style = window.getComputedStyle(el);
-            const overflowY = style.overflowY;
-            const overflow = style.overflow;
+        const candidates = new Set<HTMLElement>();
+        const explicitContainers = Array.from(document.querySelectorAll(containerSelector));
+        for (const element of explicitContainers) {
+            if (!(element instanceof HTMLElement)) continue;
+            const style = window.getComputedStyle(element);
+            const overflowY = style.overflowY || '';
+            const overflow = style.overflow || '';
             const canScroll =
                 overflowY === 'auto' ||
                 overflowY === 'scroll' ||
                 overflow === 'auto' ||
                 overflow === 'scroll';
-            return canScroll && el.scrollHeight > el.clientHeight + 20;
-        };
-
-        const candidates = new Set<HTMLElement>();
-        const explicitContainers = Array.from(document.querySelectorAll(containerSelector));
-        for (const element of explicitContainers) {
-            if (isScrollable(element)) candidates.add(element);
+            if (canScroll && element.scrollHeight > element.clientHeight + 20) {
+                candidates.add(element);
+            }
         }
 
         const reviewCards = Array.from(document.querySelectorAll(reviewSelector)).slice(0, 10);
@@ -666,7 +704,18 @@ async function scrollReviewPanelStep(page: Page): Promise<{ moved: boolean; atEn
             for (let i = 0; i < 14 && node; i++) {
                 node = node.parentElement;
                 if (!node) break;
-                if (isScrollable(node)) candidates.add(node);
+                
+                const style = window.getComputedStyle(node);
+                const overflowY = style.overflowY || '';
+                const overflow = style.overflow || '';
+                const canScroll =
+                    overflowY === 'auto' ||
+                    overflowY === 'scroll' ||
+                    overflow === 'auto' ||
+                    overflow === 'scroll';
+                if (canScroll && node.scrollHeight > node.clientHeight + 20) {
+                    candidates.add(node);
+                }
             }
         }
 
@@ -817,31 +866,6 @@ export async function scrapeGoogleBusinessProfile(url: string, photosUrl?: strin
                     const rows = Array.from(document.querySelectorAll(reviewSelector));
                     const results: { author: string; rating: number; text: string }[] = [];
 
-                    const isLikelyUiNoise = (line: string) => {
-                        return /^(Like|Share|Reply|Edit|Owner|Local Guide)$/i.test(line) ||
-                            /^(a|an|\d+)\s+(day|week|month|year)s?\s+ago$/i.test(line) ||
-                            /^\d+\s+reviews?(\s*·\s*\d+\s+photos?)?$/i.test(line);
-                    };
-
-                    const parseRating = (raw: string): number => {
-                        const normalized = raw.replace(',', '.');
-                        const starsWordMatch = normalized.match(/([1-5](?:\.[0-9])?)\s*stars?/i);
-                        if (starsWordMatch) return Number(starsWordMatch[1]);
-
-                        const slashMatch = normalized.match(/([1-5](?:\.[0-9])?)\s*\/\s*5/);
-                        if (slashMatch) return Number(slashMatch[1]);
-
-                        const outOfMatch = normalized.match(/([1-5](?:\.[0-9])?)\s*(?:out of|sur|de|von|di|dari)?\s*5/i);
-                        if (outOfMatch) return Number(outOfMatch[1]);
-
-                        const genericMatches = Array.from(normalized.matchAll(/([1-5](?:\.[0-9])?)/g))
-                            .map((match) => Number(match[1]))
-                            .filter((value) => Number.isFinite(value));
-                        if (genericMatches.length > 0) return Math.max(...genericMatches);
-
-                        return 0;
-                    };
-
                     for (const row of rows) {
                         const card = row as HTMLElement;
                         const rawAuthor = (card.querySelector('.d4r55, .TSUbDb, .WNxzHc') as HTMLElement | null)?.innerText?.trim() || '';
@@ -868,7 +892,12 @@ export async function scrapeGoogleBusinessProfile(url: string, photosUrl?: strin
                             for (const line of lines) {
                                 if (line.length < 8) continue;
                                 if (/stars?/i.test(line)) continue;
-                                if (isLikelyUiNoise(line)) continue;
+                                
+                                const isNoise = /^(Like|Share|Reply|Edit|Owner|Local Guide)$/i.test(line) ||
+                                    /^(a|an|\d+)\s+(day|week|month|year)s?\s+ago$/i.test(line) ||
+                                    /^\d+\s+reviews?(\s*·\s*\d+\s+photos?)?$/i.test(line);
+                                if (isNoise) continue;
+                                
                                 if (line.length > text.length) text = line;
                             }
                         }
@@ -879,7 +908,29 @@ export async function scrapeGoogleBusinessProfile(url: string, photosUrl?: strin
 
                         let rating = 0;
                         for (const label of ratingLabels) {
-                            const parsed = parseRating(label);
+                            const normalized = label.replace(',', '.');
+                            const starsWordMatch = normalized.match(/([1-5](?:\.[0-9])?)\s*stars?/i);
+                            let parsed = 0;
+                            if (starsWordMatch) {
+                                parsed = Number(starsWordMatch[1]);
+                            } else {
+                                const slashMatch = normalized.match(/([1-5](?:\.[0-9])?)\s*\/\s*5/);
+                                if (slashMatch) {
+                                    parsed = Number(slashMatch[1]);
+                                } else {
+                                    const outOfMatch = normalized.match(/([1-5](?:\.[0-9])?)\s*(?:out of|sur|de|von|di|dari)?\s*5/i);
+                                    if (outOfMatch) {
+                                        parsed = Number(outOfMatch[1]);
+                                    } else {
+                                        const genericMatches = Array.from(normalized.matchAll(/([1-5](?:\.[0-9])?)/g))
+                                            .map((match) => Number(match[1]))
+                                            .filter((value) => Number.isFinite(value));
+                                        if (genericMatches.length > 0) {
+                                            parsed = Math.max(...genericMatches);
+                                        }
+                                    }
+                                }
+                            }
                             if (parsed > rating) rating = parsed;
                         }
 

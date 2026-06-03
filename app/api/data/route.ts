@@ -48,14 +48,6 @@ export async function PUT(req: Request) {
       }
     }
 
-    // 2. Save locally as fallback/cache
-    const hrSlug = sourceData.clinic?.slug || slug;
-    const dataDir = path.join(process.cwd(), 'data', hrSlug);
-    const sourcePath = path.join(dataDir, 'source.json');
-
-    await fs.mkdir(dataDir, { recursive: true });
-    await fs.writeFile(sourcePath, JSON.stringify(sourceData, null, 2), 'utf-8');
-
     return NextResponse.json({ success: true, message: 'Saved successfully' });
   } catch (error) {
     console.error('Save error:', error);

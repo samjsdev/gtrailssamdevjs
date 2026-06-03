@@ -89,11 +89,11 @@ export default async function GalleryPage({ params }: { params: Promise<{ slug: 
         </div>
 
         <h1 className={`${cormorant.className} text-5xl sm:text-6xl lg:text-7xl font-light tracking-wide leading-tight`}>
-          Refined Projects &amp; <span className="text-[#8E7056] italic">Curated Spaces</span>
+          {clinic.name || "Refined Projects"} &amp; <span className="text-[#8E7056] italic">Curated Spaces</span>
         </h1>
 
         <p className="text-sm sm:text-base text-[#2A2421]/90 font-light leading-relaxed max-w-xl mx-auto">
-          Explore our completed premium interior design and turnkey fabrication projects across Chennai.
+          {clinic.description || "Explore our completed premium interior design and turnkey fabrication projects across Chennai."}
         </p>
 
         {/* Stats strip */}
@@ -123,9 +123,9 @@ export default async function GalleryPage({ params }: { params: Promise<{ slug: 
       </div>
 
       {/* Interactive gallery grid */}
-      <div className="max-w-7xl mx-auto px-4">
+      <section id="gallery-grid" className="max-w-7xl mx-auto px-4">
         <GalleryGrid items={PORTFOLIO} />
-      </div>
+      </section>
     </div>
   );
 }

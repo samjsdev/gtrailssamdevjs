@@ -49,13 +49,6 @@ export async function POST(req: Request) {
       }
     }
 
-    // 4. Save locally as fallback/cache
-    const hrSlug = updatedData.clinic?.slug || slug;
-    const dataDir = path.join(process.cwd(), 'data', hrSlug);
-    const sourcePath = path.join(dataDir, 'source.json');
-    await fs.mkdir(dataDir, { recursive: true });
-    await fs.writeFile(sourcePath, JSON.stringify(updatedData, null, 2), 'utf-8');
-
     // 5. Trigger build and package specifically for the selected template
     console.log(`[Publish API] Selected ${templateId} for slug ${slug}. Triggering build...`);
     const buildResult = await runBuildDeploy(`publish:${slug}:${templateId}`);

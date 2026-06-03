@@ -81,10 +81,10 @@ export default async function GalleryPage({ params }: { params: Promise<{ slug: 
         <div className="space-y-6 max-w-4xl mx-auto">
           <p className="text-[10px] font-bold uppercase tracking-[0.3em] text-stone-500">— EDITORIAL PORTFOLIO</p>
           <h1 className="text-4xl md:text-6xl lg:text-7xl font-light text-stone-900 leading-tight">
-            Our Work &amp; Space
+            {clinic.name || "Our Work & Space"}
           </h1>
           <p className="text-base md:text-lg text-stone-600 font-light max-w-2xl mx-auto leading-relaxed">
-            Explore the spatial designs we have developed and the clean physical library where our projects begin.
+            {clinic.description || "Explore the spatial designs we have developed and the clean physical library where our projects begin."}
           </p>
 
           {/* Minimal Stats Bar */}
@@ -112,11 +112,11 @@ export default async function GalleryPage({ params }: { params: Promise<{ slug: 
           </span>
           <div className="h-px flex-1 bg-stone-200" />
         </div>
+      </section>
 
-        {/* Interactive Gallery */}
-        <div className="max-w-5xl mx-auto text-left">
-          <GalleryGrid items={PORTFOLIO} />
-        </div>
+      {/* Interactive Gallery */}
+      <section id="gallery-grid" className="max-w-5xl mx-auto text-left px-6">
+        <GalleryGrid items={PORTFOLIO} />
       </section>
 
     </div>

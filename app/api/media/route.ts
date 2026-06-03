@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import path from 'path';
 import { promises as fs } from 'fs';
+import crypto from 'crypto';
 import { storage } from '@/lib/appwrite';
 
 export async function GET(request: Request) {
@@ -12,9 +13,30 @@ export async function GET(request: Request) {
     return NextResponse.json({ error: 'Missing slug or file parameter' }, { status: 400 });
   }
 
-  // 1. Try Appwrite Storage first
+  // 1. Try local file system first (fast, up-to-date for local dev)
+  const filePath = path.join(process.cwd(), 'data', slug, 'images', file);
+
   try {
-    const fileId = `${slug}_${file}`.substring(0, 36).replace(/[^a-zA-Z0-9-_]/g, '');
+    const fileBuffer = await fs.readFile(filePath);
+    const ext = path.extname(file).toLowerCase();
+    let mimeType = 'image/jpeg';
+    if (ext === '.png') mimeType = 'image/png';
+    else if (ext === '.webp') mimeType = 'image/webp';
+    else if (ext === '.gif') mimeType = 'image/gif';
+
+    return new NextResponse(fileBuffer, {
+      headers: {
+        'Content-Type': mimeType,
+        'Cache-Control': 'public, max-age=31536000, immutable'
+      },
+    });
+  } catch (localErr) {
+    // Local file not found, proceed to Appwrite Storage fallback
+  }
+
+  // 2. Try Appwrite Storage fallback
+  try {
+    const fileId = crypto.createHash('md5').update(`${slug}_${file}`).digest('hex');
     const downloadUrl = storage.getFileDownload('scraped_images', fileId);
     
     const res = await fetch(downloadUrl.toString());
@@ -37,25 +59,5 @@ export async function GET(request: Request) {
     console.error('Appwrite image fetch error:', sbErr);
   }
 
-  // 2. Fallback to local file system
-  const filePath = path.join(process.cwd(), 'data', slug, 'images', file);
-
-  try {
-    const fileBuffer = await fs.readFile(filePath);
-    
-    // Guess MIME type heuristically
-    const ext = path.extname(file).toLowerCase();
-    let mimeType = 'image/jpeg';
-    if (ext === '.png') mimeType = 'image/png';
-    else if (ext === '.webp') mimeType = 'image/webp';
-    else if (ext === '.gif') mimeType = 'image/gif';
-
-    return new NextResponse(fileBuffer, {
-      headers: {
-        'Content-Type': mimeType,
-      },
-    });
-  } catch (error) {
-    return NextResponse.json({ error: 'Image not found' }, { status: 404 });
-  }
+  return NextResponse.json({ error: 'Image not found' }, { status: 404 });
 }
