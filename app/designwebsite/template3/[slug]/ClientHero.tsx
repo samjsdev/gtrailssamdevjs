@@ -89,9 +89,9 @@ export default function ClientHero({ clinic, business, basePath, heroImage, medi
           {projects.map((proj, idx) => (
             <div 
               key={idx} 
-              className="min-w-[280px] sm:min-w-[340px] flex-shrink-0 snap-start group cursor-pointer"
+              className="max-w-[340px] md:max-w-[485px] flex-shrink-0 snap-start group cursor-pointer"
             >
-              <div className="relative aspect-[4/5] rounded-3xl overflow-hidden mb-4 bg-slate-100 shadow-sm border border-slate-100">
+              <div className="relative aspect-[4/3] rounded-3xl overflow-hidden mb-4 bg-slate-100 shadow-sm border border-slate-100">
                 <img 
                   src={proj.image} 
                   alt={proj.title} 
