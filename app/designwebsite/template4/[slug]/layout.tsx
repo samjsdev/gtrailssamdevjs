@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import { ReactNode } from "react";
 import { Inter } from "next/font/google";
+import ClientHeader from "./ClientHeader";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -30,37 +31,10 @@ export default async function DesignLayout({ children, params }: LayoutProps) {
   const { clinic } = data;
   const basePath = `/designwebsite/template4/${slug}`;
 
-  const waphone = clinic.contact?.phone?.replace(/\D/g, "") || "919751396117";
-  const watext = `Hi, I'm interested in booking a design consultation at ${clinic.name || "your studio"}!`;
-  const walink = `https://wa.me/${waphone}?text=${encodeURIComponent(watext)}`;
-
   return (
     <div className={`${inter.className} min-h-screen bg-stone-50 text-stone-900 selection:bg-stone-200 scroll-smooth flex flex-col`}>
       {/* Elegant Floating Glassmorphic Navbar Capsule */}
-      <header className="sticky top-6 z-50 flex justify-center px-4 w-full">
-        <div className="w-full max-w-5xl">
-          <div className="flex items-center justify-between px-6 py-3.5 bg-white/80 backdrop-blur-md rounded-full border border-stone-200/50 shadow-[0_8px_30px_rgb(0,0,0,0.04)] text-stone-900">
-            <Link href={basePath} className="text-lg md:text-xl font-semibold tracking-widest uppercase text-stone-900 hover:opacity-85 transition-opacity">
-              {clinic.name || "Studio"}
-            </Link>
-            <nav className="hidden md:flex gap-8 text-[11px] uppercase tracking-[0.25em] font-medium text-stone-500">
-              <Link href={`${basePath}`} className="hover:text-stone-900 transition-colors">Home</Link>
-              <Link href={`${basePath}/about`} className="hover:text-stone-900 transition-colors">About</Link>
-              <Link href={`${basePath}/services`} className="hover:text-stone-900 transition-colors">Services</Link>
-              <Link href={`${basePath}/gallery`} className="hover:text-stone-900 transition-colors">Portfolio</Link>
-              <Link href={`${basePath}/contact`} className="hover:text-stone-900 transition-colors">Contact</Link>
-            </nav>
-            <a 
-              href={walink} 
-              target="_blank" 
-              rel="noreferrer"
-              className="inline-flex items-center border border-stone-900 px-5 py-2 text-[10px] uppercase tracking-widest font-bold bg-stone-900 text-white hover:bg-transparent hover:text-stone-900 transition-colors rounded-full"
-            >
-              Consult
-            </a>
-          </div>
-        </div>
-      </header>
+      <ClientHeader clinic={clinic} basePath={basePath} />
 
       {/* Main Content */}
       <main className="w-full flex-grow">{children}</main>

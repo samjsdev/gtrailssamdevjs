@@ -8,6 +8,7 @@ import Image from 'next/image';
 import { ReactNode } from 'react';
 import { Fustat, Inter } from 'next/font/google';
 import { INTERIOR_HERO_IMAGES } from '@/lib/interiorContent';
+import ClientHeader from './ClientHeader';
 
 export async function generateStaticParams() {
   const slugs = await getAllSlugs();
@@ -52,44 +53,7 @@ export default async function DesignStudioLayout({ children, params }: LayoutPro
       <div className="fixed inset-0 pointer-events-none bg-[radial-gradient(#e2e8f0_1px,transparent_1px)] [background-size:24px_24px] opacity-40 z-0" />
 
       {/* Floating Capsule Header */}
-      <header className="sticky top-6 z-50 flex justify-center px-4 md:px-6 transition-all duration-300 w-full">
-        <div className="w-fit">
-          <div className="flex items-center gap-4 md:gap-8 px-4 md:px-6 py-2.5 bg-white/70 backdrop-blur-xl rounded-full shadow-[0_12px_40px_rgba(0,0,0,0.06)] border border-white/60">
-            <Link href={basePath} className="flex items-center gap-3 leading-none group">
-              <div className="relative w-9 h-9 overflow-hidden rounded-xl border border-slate-200 bg-white shadow-2xs group-hover:scale-102 transition-transform duration-300">
-                <Image
-                  src={INTERIOR_HERO_IMAGES.home}
-                  alt="Interior design studio"
-                  fill
-                  sizes="36px"
-                  className="object-cover"
-                />
-              </div>
-              <h1 className="font-fustat text-base md:text-lg font-bold tracking-tight text-slate-900">
-                {clinic.name || 'Studio Name'}
-              </h1>
-            </Link>
-            
-            <nav className="hidden lg:flex items-center gap-8 text-[13px] font-medium text-slate-500">
-              <Link href={`${basePath}`} className="hover:text-[#0084FF] transition-colors relative py-1">Home</Link>
-              <Link href={`${basePath}/about`} className="hover:text-[#0084FF] transition-colors relative py-1">About</Link>
-              <Link href={`${basePath}/services`} className="hover:text-[#0084FF] transition-colors relative py-1">Services</Link>
-              <Link href={`${basePath}/gallery`} className="hover:text-[#0084FF] transition-colors relative py-1">Gallery</Link>
-              <Link href={`${basePath}/contact`} className="hover:text-[#0084FF] transition-colors relative py-1">Contact</Link>
-            </nav>
-
-            <Link
-              href={`${basePath}/contact`}
-              className="hidden md:inline-flex items-center gap-2 rounded-full bg-slate-900 px-5 py-2 text-[12px] font-semibold text-white border border-slate-800 hover:bg-[#0084FF] hover:border-[#0084FF] transition-all shadow-xs hover:scale-[1.02] active:scale-[0.98]"
-            >
-              Book Consultation
-              <span className="inline-flex h-5 w-5 items-center justify-center rounded-full bg-white/20">
-                <ArrowUpRight className="h-3 w-3 text-white" />
-              </span>
-            </Link>
-          </div>
-        </div>
-      </header>
+      <ClientHeader clinic={clinic} basePath={basePath} />
 
       {/* Main Content */}
       <main className="grow relative z-10">

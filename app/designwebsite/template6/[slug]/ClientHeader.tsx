@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { Playfair_Display, Lato } from 'next/font/google';
+import { Menu, X } from 'lucide-react';
 
 const playfair = Playfair_Display({
   subsets: ["latin"],
@@ -23,6 +24,7 @@ interface ClientHeaderProps {
 
 export default function ClientHeader({ clinic, basePath }: ClientHeaderProps) {
   const [scrolled, setScrolled] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -43,8 +45,8 @@ export default function ClientHeader({ clinic, basePath }: ClientHeaderProps) {
   return (
     <header 
       className={`fixed top-0 w-full z-50 px-6 transition-all duration-500 ease-in-out ${
-        scrolled 
-          ? 'py-5 bg-[#1a1a1a]/95 border-b border-white/10 backdrop-blur-md shadow-2xl' 
+        scrolled || isOpen
+          ? 'py-5 bg-[#1a1a1a]/98 border-b border-white/10 backdrop-blur-md shadow-2xl' 
           : 'py-8 bg-gradient-to-b from-black/60 to-transparent border-b border-transparent'
       }`}
     >
@@ -55,6 +57,7 @@ export default function ClientHeader({ clinic, basePath }: ClientHeaderProps) {
           </span>
         </Link>
         
+        {/* Desktop Nav */}
         <nav className="hidden md:flex items-center gap-8 text-[11px] uppercase tracking-[0.25em] text-zinc-300 font-bold">
           <Link href={`${basePath}`} className="hover:text-white transition-colors">Home</Link>
           <Link href={`${basePath}/about`} className="hover:text-white transition-colors">About</Link>
@@ -63,14 +66,47 @@ export default function ClientHeader({ clinic, basePath }: ClientHeaderProps) {
           <Link href={`${basePath}/contact`} className="hover:text-white transition-colors">Contact</Link>
         </nav>
 
-        <a
-          href={walink}
-          target="_blank"
-          rel="noreferrer"
-          className="border border-zinc-500 px-6 py-2.5 text-[11px] uppercase tracking-[0.2em] text-white hover:bg-white hover:text-black transition-all"
-        >
-          Inquire
-        </a>
+        {/* Desktop Action & Mobile Toggle */}
+        <div className="flex items-center gap-4">
+          <a
+            href={walink}
+            target="_blank"
+            rel="noreferrer"
+            className="hidden sm:inline-block border border-zinc-500 px-6 py-2.5 text-[11px] uppercase tracking-[0.2em] text-white hover:bg-white hover:text-black transition-all"
+          >
+            Inquire
+          </a>
+
+          <button
+            onClick={() => setIsOpen(!isOpen)}
+            className="md:hidden text-white p-1 hover:text-zinc-300 focus:outline-none transition-colors"
+            aria-label="Toggle menu"
+          >
+            {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+          </button>
+        </div>
+      </div>
+
+      {/* Mobile Nav Drawer */}
+      <div className={`md:hidden transition-all duration-300 ease-in-out overflow-hidden ${
+        isOpen ? 'max-h-72 opacity-100 mt-4 border-t border-white/10 pt-4' : 'max-h-0 opacity-0 pointer-events-none'
+      }`}>
+        <nav className="flex flex-col gap-4 text-[11px] uppercase tracking-[0.25em] text-zinc-300 font-bold">
+          <Link href={`${basePath}`} onClick={() => setIsOpen(false)} className="hover:text-white transition-colors py-1">Home</Link>
+          <Link href={`${basePath}/about`} onClick={() => setIsOpen(false)} className="hover:text-white transition-colors py-1">About</Link>
+          <Link href={`${basePath}/services`} onClick={() => setIsOpen(false)} className="hover:text-white transition-colors py-1">Services</Link>
+          <Link href={`${basePath}/gallery`} onClick={() => setIsOpen(false)} className="hover:text-white transition-colors py-1">Gallery</Link>
+          <Link href={`${basePath}/contact`} onClick={() => setIsOpen(false)} className="hover:text-white transition-colors py-1">Contact</Link>
+          <a
+            href={walink}
+            target="_blank"
+            rel="noreferrer"
+            onClick={() => setIsOpen(false)}
+            className="sm:hidden text-center border border-zinc-500 px-6 py-2.5 text-[11px] uppercase tracking-[0.2em] text-white hover:bg-white hover:text-black transition-all mt-2"
+          >
+            Inquire
+          </a>
+        </nav>
       </div>
     </header>
   );
