@@ -97,7 +97,7 @@ export default async function AboutPage({ params }: PageProps) {
 
         {/* CORE PHILOSOPHY */}
         <section className="space-y-12">
-          <div className="flex flex-col md:flex-row gap-6 md:gap-16 items-end border-b border-stone-250 pb-8">
+          <div className="flex flex-col md:flex-row gap-6 md:gap-16 items-center md:items-end border-b border-stone-250 pb-8 text-center md:text-left">
             <div className="flex-1 space-y-4">
               <p className="text-[10px] font-bold uppercase tracking-[0.25em] text-stone-500">— THE WAY WE THINK</p>
               <h2 className="text-3xl md:text-5xl font-light text-stone-900 leading-tight">Design Principles</h2>

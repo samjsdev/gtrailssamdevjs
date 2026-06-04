@@ -17,7 +17,7 @@ export default function ClientHeader({ clinic, basePath }: ClientHeaderProps) {
   const walink = `https://wa.me/${waphone}?text=${encodeURIComponent(watext)}`;
 
   return (
-    <header className="sticky top-6 z-50 flex justify-center px-4 w-full">
+    <header className="fixed top-6 left-0 right-0 z-50 flex justify-center px-4 w-full">
       <div className="w-full max-w-5xl transition-all duration-300">
         <div className={`flex flex-col bg-white/80 backdrop-blur-md border border-stone-200/50 shadow-[0_8px_30px_rgb(0,0,0,0.04)] text-stone-900 transition-all duration-300 overflow-hidden ${
           isOpen ? 'rounded-[24px]' : 'rounded-full'
