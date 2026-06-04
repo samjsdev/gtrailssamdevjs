@@ -4,6 +4,8 @@ import Link from "next/link";
 import { ReactNode } from "react";
 import { Inter } from "next/font/google";
 import ClientHeader from "./ClientHeader";
+import SmoothScrollProvider from "./components/SmoothScrollProvider";
+import GsapInit from "./components/GsapInit";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -33,14 +35,17 @@ export default async function DesignLayout({ children, params }: LayoutProps) {
 
   return (
     <div className={`${inter.className} min-h-screen bg-stone-50 text-stone-900 selection:bg-stone-200 scroll-smooth flex flex-col`}>
-      {/* Elegant Floating Glassmorphic Navbar Capsule */}
-      <ClientHeader clinic={clinic} basePath={basePath} />
+      <SmoothScrollProvider>
+        <GsapInit />
+        
+        {/* Elegant Floating Glassmorphic Navbar Capsule */}
+        <ClientHeader clinic={clinic} basePath={basePath} />
 
-      {/* Main Content */}
-      <main className="w-full flex-grow">{children}</main>
+        {/* Main Content */}
+        <main className="w-full flex-grow">{children}</main>
 
-      <footer id="contact" className="bg-stone-900 text-stone-400 py-24 px-6 md:px-12 text-center flex flex-col items-center justify-center border-t border-stone-800">
-        {/* Map Embed */}
+        <footer id="contact" className="bg-stone-900 text-stone-400 py-24 px-6 md:px-12 text-center flex flex-col items-center justify-center border-t border-stone-800">
+          {/* Map Embed */}
         {(() => {
           const mapUrl = clinic.mapEmbedUrl || 
             `https://maps.google.com/maps?q=${encodeURIComponent((clinic.name || '') + ' ' + (clinic.address?.full || ''))}&output=embed`;
@@ -86,6 +91,7 @@ export default async function DesignLayout({ children, params }: LayoutProps) {
           &copy; {new Date().getFullYear()} {clinic.name || "Studio"}. All Rights Reserved.
         </p>
       </footer>
+      </SmoothScrollProvider>
     </div>
   );
 }

@@ -45,7 +45,7 @@ export default function GalleryGrid({ items }: GalleryGridProps) {
       </div>
 
       {/* MASONRY/GRID CONTAINER */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 auto-rows-[320px]">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 auto-rows-[320px]" data-gsap="gallery-grid">
         {filteredItems.map((item, idx) => {
           const isTall = item.span === "tall";
           const isWide = item.span === "wide";
@@ -59,6 +59,7 @@ export default function GalleryGrid({ items }: GalleryGridProps) {
               } ${
                 isWide ? "md:col-span-2" : ""
               } transition-transform duration-500`}
+              data-gsap="gallery-card"
             >
               {/* Image with rich scale transition */}
               <img

@@ -62,7 +62,7 @@ export default async function AboutPage({ params }: PageProps) {
       <div className="max-w-6xl mx-auto px-6 space-y-32 mt-16">
         
         {/* THE JOURNEY TIMELINE */}
-        <section className="bg-white border border-stone-200/80 p-8 md:p-16 lg:p-20 relative overflow-hidden">
+        <section className="bg-white border border-stone-200/80 p-8 md:p-16 lg:p-20 relative overflow-hidden" data-gsap="timeline-track">
           <div className="flex flex-col lg:flex-row gap-16 lg:gap-24 relative z-10">
             {/* Sticky info block */}
             <div className="lg:w-1/3 space-y-6 lg:sticky lg:top-36 self-start">
@@ -77,18 +77,21 @@ export default async function AboutPage({ params }: PageProps) {
             
             {/* Timeline track */}
             <div className="lg:w-2/3 relative border-l border-stone-200 pl-8 space-y-16">
+              <div className="absolute left-[-1px] top-0 w-[2px] h-full bg-stone-900 origin-top" data-gsap="timeline-progress" style={{ transform: 'scaleY(0)' }}></div>
               {[
                 { year: "2015", title: "Inception & Ethos", desc: `${clinic.name || "Our Studio"} was founded to provide premium architectural interiors that leverage biophilic principles and showcase high-end solid woods.` },
                 { year: "2018", title: "Sourcing & Joinery", desc: "Formed a proprietary material sourcing network, ensuring clean access to sustainable veneers and high-end carpenters." },
                 { year: "2021", title: "Biophilic Sourcing", desc: "Committed to absolute biophilic integrity, implementing non-toxic coatings, certified organic linen layers, and natural clay plasters." },
                 { year: "PRESENT", title: "Sought-After Residential Leader", desc: "Crafting customized high-end living spaces and boutique business environments nationwide, known for quiet warmth and tactile luxury." }
               ].map((milestone, idx) => (
-                <div key={idx} className="relative group space-y-2">
+                <div key={idx} className="relative group space-y-2" data-gsap="timeline-node">
                   {/* Timeline bullet node */}
-                  <div className="absolute w-3 h-3 bg-stone-50 border border-stone-900 rounded-full -left-[38px] top-1.5 group-hover:bg-stone-900 group-hover:scale-125 transition-all duration-300" />
-                  <span className="text-stone-400 font-bold text-sm tracking-widest">{milestone.year}</span>
-                  <h3 className="text-xl font-medium text-stone-900">{milestone.title}</h3>
-                  <p className="text-sm text-stone-500 font-light leading-relaxed max-w-lg">{milestone.desc}</p>
+                  <div className="absolute w-3 h-3 bg-stone-50 border border-stone-900 rounded-full -left-[38px] top-1.5 group-hover:bg-stone-900 group-hover:scale-125 transition-all duration-300 timeline-bullet" />
+                  <div className="timeline-content space-y-2">
+                    <span className="text-stone-400 font-bold text-sm tracking-widest">{milestone.year}</span>
+                    <h3 className="text-xl font-medium text-stone-900">{milestone.title}</h3>
+                    <p className="text-sm text-stone-500 font-light leading-relaxed max-w-lg">{milestone.desc}</p>
+                  </div>
                 </div>
               ))}
             </div>
@@ -107,14 +110,14 @@ export default async function AboutPage({ params }: PageProps) {
             </p>
           </div>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6" data-gsap="stagger-container">
             {[
               { num: "01", title: "Spatial Flow", desc: "We map the exact daily routines of your family to optimize layout circulation and maximize daylight paths." },
               { num: "02", title: "Tactility", desc: "We select real solid timbers, raw sandstones, and organic linens that develop elegant character over time." },
               { num: "03", title: "Precision Models", desc: "We build premium 3D virtual blueprints, allowing you to walk through every space and finalize cost sheets before building." },
               { num: "04", title: "Honest Curation", desc: "We protect your timeline with direct carpenter scheduling, line-by-line item reports, and transparent communication." }
             ].map((principle, idx) => (
-              <div key={idx} className="bg-white border border-stone-200 p-8 space-y-6 flex flex-col justify-between hover:border-stone-900 transition-colors duration-500 group relative overflow-hidden">
+              <div key={idx} className="bg-white border border-stone-200 p-8 space-y-6 flex flex-col justify-between hover:border-stone-900 transition-colors duration-500 group relative overflow-hidden" data-gsap="stagger-item">
                 <span className="absolute -top-4 -right-4 text-6xl font-black text-stone-100 select-none pointer-events-none group-hover:text-stone-200/50 transition-colors">{principle.num}</span>
                 <div className="space-y-4 relative z-10">
                   <h3 className="text-lg font-medium text-stone-900">{principle.title}</h3>
@@ -135,11 +138,12 @@ export default async function AboutPage({ params }: PageProps) {
           <div className="space-y-32">
             {/* Principal Designer (Arjun Mehta) */}
             <div className="grid lg:grid-cols-12 gap-12 lg:gap-16 items-center">
-              <div className="lg:col-span-5 relative aspect-[3/4] overflow-hidden border border-stone-250">
+              <div className="lg:col-span-5 relative aspect-[3/4] overflow-hidden border border-stone-250" data-gsap="parallax-container">
                 <img
                   src={principalImage}
                   alt={founderName}
                   className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700"
+                  data-gsap="parallax-img"
                 />
               </div>
               <div className="lg:col-span-7 space-y-6">
@@ -159,11 +163,12 @@ export default async function AboutPage({ params }: PageProps) {
 
             {/* Associate Stylist (Kavitha Rajan) */}
             <div className="grid lg:grid-cols-12 gap-12 lg:gap-16 items-center">
-              <div className="lg:col-span-5 lg:order-2 relative aspect-[3/4] overflow-hidden border border-stone-250">
+              <div className="lg:col-span-5 lg:order-2 relative aspect-[3/4] overflow-hidden border border-stone-250" data-gsap="parallax-container">
                 <img
                   src={secondaryImage}
                   alt={partnerName}
                   className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700"
+                  data-gsap="parallax-img"
                 />
               </div>
               <div className="lg:col-span-7 lg:order-1 space-y-6">
@@ -197,14 +202,14 @@ export default async function AboutPage({ params }: PageProps) {
               </p>
             </div>
             
-            <div className="lg:w-2/3 grid sm:grid-cols-2 gap-6 relative z-10">
+            <div className="lg:w-2/3 grid sm:grid-cols-2 gap-6 relative z-10" data-gsap="stagger-container">
               {[
                 { title: "Virtual 3D Walkthroughs", desc: "Test out circulation clearings, furniture dimensions, and solid wood textures in photo-realistic spatial blocks." },
                 { title: "Material Standards", desc: "We restrict our curations to certified timber boards, organic textiles, and natural, VOC-free plasters." },
                 { title: "Dashboard Coordination", desc: "Review real-time budget updates, item delivery timelines, and cabinetry schedules directly in your project tracker." },
                 { title: "Smart Integration", desc: "We layout sockets, audio pipelines, climate pathways, and specialized task lighting plans early in our structural blueprints." }
               ].map((std, idx) => (
-                <div key={idx} className="bg-stone-950 p-8 border border-stone-800 hover:border-stone-500 transition-colors space-y-4">
+                <div key={idx} className="bg-stone-950 p-8 border border-stone-800 hover:border-stone-500 transition-colors space-y-4" data-gsap="stagger-item">
                   <h3 className="text-sm font-semibold uppercase tracking-wider text-stone-200">{std.title}</h3>
                   <p className="text-xs text-stone-400 font-light leading-relaxed">{std.desc}</p>
                 </div>
@@ -220,7 +225,7 @@ export default async function AboutPage({ params }: PageProps) {
             <h2 className="text-3xl md:text-5xl font-light text-stone-900 leading-tight">Why Clients Trust Our Team</h2>
           </div>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-16 text-left">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-16 text-left" data-gsap="stagger-container">
             {[
               { num: "01", title: "Integrated Synergy", desc: "Architectural designers, custom joinery technicians, and biophilic stylists coordinate on a single master layout." },
               { num: "02", title: "Absolute Turnkey", desc: "We handle material acquisitions, electrical mappings, cabinetry fittings, and snag clearances from discovery to final staging." },
@@ -229,7 +234,7 @@ export default async function AboutPage({ params }: PageProps) {
               { num: "05", title: "Certified Craftsmen", desc: "We work with regional master carpenters, trusted mason blocks, and certified installers to ensure reliable execution." },
               { num: "06", title: "Detailed Handover Folders", desc: "We deliver physical material codes, paint references, hardware keys, appliance contracts, and clean upkeep manuals." }
             ].map((feature, idx) => (
-              <div key={idx} className="group space-y-4">
+              <div key={idx} className="group space-y-4" data-gsap="stagger-item">
                 <div className="flex items-center gap-4">
                   <span className="text-stone-400 font-bold text-xs tracking-widest">{feature.num}</span>
                   <h3 className="text-lg font-medium text-stone-900 group-hover:text-stone-700 transition-colors">{feature.title}</h3>

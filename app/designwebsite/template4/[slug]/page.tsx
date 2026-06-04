@@ -54,7 +54,7 @@ export default async function DesignStudioHome({ params }: PageProps) {
       {/* HERO SECTION */}
       <section className="relative h-screen min-h-[600px] w-full flex items-center justify-center overflow-hidden">
         {/* Background Image with Overlay */}
-        <div className="absolute inset-0 z-0">
+        <div className="absolute inset-0 z-0" data-gsap="hero-bg">
           <img
             src={heroImage}
             alt={clinic.name || "Interior design studio"}
@@ -65,10 +65,10 @@ export default async function DesignStudioHome({ params }: PageProps) {
 
         {/* Content */}
         <div className="relative z-10 text-center px-6 max-w-4xl mx-auto flex flex-col items-center pt-20">
-          <p className="text-white/80 uppercase tracking-[0.3em] text-xs md:text-sm font-semibold mb-6">
+          <p className="text-white/80 uppercase tracking-[0.3em] text-xs md:text-sm font-semibold mb-6" data-gsap="hero-sub">
             {clinic.name || "INTERIOR STUDIO"}
           </p>
-          <h1 className="text-4xl md:text-6xl lg:text-7xl font-light text-white leading-tight mb-8">
+          <h1 className="text-4xl md:text-6xl lg:text-7xl font-light text-white leading-tight mb-8" data-gsap="hero-title">
             {clinic.tagline || "Elevating spaces. Inspiring lives."}
           </h1>
           <a
@@ -76,6 +76,7 @@ export default async function DesignStudioHome({ params }: PageProps) {
             target="_blank"
             rel="noreferrer"
             className="px-8 py-4 bg-white text-stone-900 border border-white uppercase tracking-widest text-sm hover:bg-transparent hover:text-white transition-all duration-300"
+            data-gsap="hero-btn"
           >
             Start Your Project
           </a>
@@ -85,16 +86,17 @@ export default async function DesignStudioHome({ params }: PageProps) {
       {/* ABOUT SECTION */}
       <section id="about" className="py-24 md:py-32 px-6 bg-white">
         <div className="max-w-6xl mx-auto flex flex-col lg:flex-row items-center gap-16">
-          <div className="w-full lg:w-1/2">
-            <div className="relative aspect-[3/4] w-full max-w-md mx-auto lg:ml-0 overflow-hidden">
+          <div className="w-full lg:w-1/2" data-gsap="reveal">
+            <div className="relative aspect-[3/4] w-full max-w-md mx-auto lg:ml-0 overflow-hidden" data-gsap="parallax-container">
               <img 
                 src={doctorImage} 
                 alt="Lead designer" 
                 className="w-full h-full object-cover"
+                data-gsap="parallax-img"
               />
             </div>
           </div>
-          <div className="w-full lg:w-1/2 space-y-8">
+          <div className="w-full lg:w-1/2 space-y-8" data-gsap="reveal">
             <p className="uppercase tracking-[0.2em] text-sm text-stone-500 font-semibold">— Our Philosophy</p>
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-light text-stone-900 leading-tight">
               {doctor?.name || "The Design Vision"}
@@ -117,9 +119,9 @@ export default async function DesignStudioHome({ params }: PageProps) {
             <p className="uppercase tracking-[0.2em] text-sm text-stone-500 font-semibold mb-4">— Why Us</p>
             <h2 className="text-3xl md:text-4xl font-light text-stone-900">Precision in Every Detail</h2>
           </div>
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-12">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-12" data-gsap="stagger-container">
             {highlights.map((highlight: string, index: number) => (
-              <div key={index} className="flex flex-col text-center">
+              <div key={index} className="flex flex-col text-center" data-gsap="stagger-item">
                 <span className="text-stone-300 text-5xl font-light mb-4">0{index + 1}</span>
                 <p className="text-stone-800 font-medium tracking-wide uppercase text-sm">{highlight}</p>
               </div>
@@ -136,12 +138,12 @@ export default async function DesignStudioHome({ params }: PageProps) {
             <p className="text-stone-500 font-light max-w-2xl mx-auto">Comprehensive interior solutions tailored to elevate your environment.</p>
           </div>
           
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10" data-gsap="stagger-container">
             {services.map((svc: string, index: number) => {
               const svcData = getInteriorServiceData(svc);
               const svcImage = getServiceImage(svc, media) || svcData?.image || INTERIOR_HERO_IMAGES.services;
               return (
-                <div key={index} className="group cursor-pointer">
+                <div key={index} className="group cursor-pointer" data-gsap="stagger-item">
                   <div className="aspect-[4/5] overflow-hidden mb-6 relative">
                     <img 
                       src={svcImage} 
@@ -183,9 +185,9 @@ export default async function DesignStudioHome({ params }: PageProps) {
             <h2 className="text-3xl md:text-5xl font-light text-stone-900 leading-tight">What Our Clients Say</h2>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8" data-gsap="stagger-container">
             {(reviews?.length ? reviews : DEFAULT_INTERIOR_REVIEWS).slice(0, 3).map((review: any, index: number) => (
-              <div key={index} className="bg-white p-8 border border-stone-200/60 shadow-xs flex flex-col justify-between">
+              <div key={index} className="bg-white p-8 border border-stone-200/60 shadow-xs flex flex-col justify-between" data-gsap="stagger-item">
                 <div className="space-y-6">
                   <div className="flex gap-1 text-amber-500">
                     {[...Array(5)].map((_, i) => (
@@ -214,7 +216,7 @@ export default async function DesignStudioHome({ params }: PageProps) {
       </section>
 
       {/* FAQ SECTION */}
-      <section className="py-24 md:py-32 px-6 bg-white border-t border-stone-200/80">
+      <section className="py-24 md:py-32 px-6 bg-white border-t border-stone-200/80" data-gsap="reveal">
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-20">
             <p className="uppercase tracking-[0.2em] text-xs text-stone-500 font-semibold mb-4">— Client Queries</p>
