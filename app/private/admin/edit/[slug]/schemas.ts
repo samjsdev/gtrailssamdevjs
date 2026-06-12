@@ -274,45 +274,15 @@ export const TEMPLATE_SCHEMAS: Record<string, TemplateSchema> = {
             label: "Hero Section",
             elements: [
               {
-                type: 'image',
-                label: "Hero Main Banner Image",
-                imageConfig: { arrayKey: 'clinicImages', index: 0 }
-              },
-              {
                 type: 'text',
                 label: "Studio Name",
                 path: ['clinic', 'name']
-              },
-              {
-                type: 'text',
-                label: "Hero Tagline",
-                path: ['clinic', 'tagline']
               },
             ]
           },
           {
             label: "Designing Beyond The Surface.",
             elements: [
-              {
-                type: 'image',
-                label: "Philosophy Feature Image 1",
-                imageConfig: { arrayKey: 'otherImages', index: 2 }
-              },
-              {
-                type: 'image',
-                label: "Philosophy Feature Image 2",
-                imageConfig: { arrayKey: 'otherImages', index: 3 }
-              },
-              {
-                type: 'image',
-                label: "Philosophy Feature Image 3",
-                imageConfig: { arrayKey: 'otherImages', index: 4 }
-              },
-              {
-                type: 'image',
-                label: "Philosophy Feature Image 4",
-                imageConfig: { arrayKey: 'otherImages', index: 5 }
-              },
               {
                 type: 'text',
                 label: "Title",
@@ -324,21 +294,6 @@ export const TEMPLATE_SCHEMAS: Record<string, TemplateSchema> = {
             label: "Services Section",
             elements: [
               {
-                type: 'image',
-                label: "Service Showcase Image 4",
-                imageConfig: { arrayKey: 'otherImages', index: 9 }
-              },
-              {
-                type: 'image',
-                label: "Service Showcase Image 2",
-                imageConfig: { arrayKey: 'otherImages', index: 7 }
-              },
-              {
-                type: 'image',
-                label: "Service Showcase Image 6",
-                imageConfig: { arrayKey: 'otherImages', index: 11 }
-              },
-              {
                 type: 'list',
                 label: "Services List (1 per line)",
                 path: ['business', 'services']
@@ -349,11 +304,6 @@ export const TEMPLATE_SCHEMAS: Record<string, TemplateSchema> = {
             label: "About Us Section",
             elements: [
               {
-                type: 'image',
-                label: "Principal Portrait Image",
-                imageConfig: { arrayKey: 'otherImages', index: 0 }
-              },
-              {
                 type: 'text',
                 label: "Name",
                 path: ['doctor', 'name']
@@ -362,26 +312,6 @@ export const TEMPLATE_SCHEMAS: Record<string, TemplateSchema> = {
                 type: 'textarea',
                 label: "Experience",
                 path: ['doctor', 'experience']
-              },
-            ]
-          },
-          {
-            label: "Spaces With Character .",
-            elements: [
-              {
-                type: 'image',
-                label: "treatment Image 1",
-                imageConfig: { arrayKey: 'treatmentImages', index: 0 }
-              },
-              {
-                type: 'image',
-                label: "treatment Image 2",
-                imageConfig: { arrayKey: 'treatmentImages', index: 1 }
-              },
-              {
-                type: 'image',
-                label: "treatment Image 3",
-                imageConfig: { arrayKey: 'treatmentImages', index: 2 }
               },
             ]
           },
@@ -420,11 +350,6 @@ export const TEMPLATE_SCHEMAS: Record<string, TemplateSchema> = {
             label: "Hero Section",
             elements: [
               {
-                type: 'image',
-                label: "Clinic / Studio Gallery Image 2",
-                imageConfig: { arrayKey: 'clinicImages', index: 1 }
-              },
-              {
                 type: 'textarea',
                 label: "Vision",
                 path: ['about', 'vision']
@@ -434,16 +359,6 @@ export const TEMPLATE_SCHEMAS: Record<string, TemplateSchema> = {
           {
             label: "Meet Our Design Leaders",
             elements: [
-              {
-                type: 'image',
-                label: "Principal Portrait Image",
-                imageConfig: { arrayKey: 'otherImages', index: 0 }
-              },
-              {
-                type: 'image',
-                label: "Associate Portrait Image",
-                imageConfig: { arrayKey: 'otherImages', index: 1 }
-              },
               {
                 type: 'text',
                 label: "Name",
@@ -514,61 +429,6 @@ export const TEMPLATE_SCHEMAS: Record<string, TemplateSchema> = {
                 type: 'list',
                 label: "Services List (1 per line)",
                 path: ['business', 'services']
-              },
-            ]
-          },
-          {
-            label: "Services Section",
-            elements: [
-              {
-                type: 'image',
-                label: "Service Showcase Image 1",
-                imageConfig: { arrayKey: 'otherImages', index: 6 }
-              },
-              {
-                type: 'image',
-                label: "Service Showcase Image 2",
-                imageConfig: { arrayKey: 'otherImages', index: 7 }
-              },
-              {
-                type: 'image',
-                label: "Service Showcase Image 3",
-                imageConfig: { arrayKey: 'otherImages', index: 8 }
-              },
-            ]
-          },
-          {
-            label: "Transformations & Styling",
-            elements: [
-              {
-                type: 'image',
-                label: "Service Showcase Image 4",
-                imageConfig: { arrayKey: 'otherImages', index: 9 }
-              },
-              {
-                type: 'image',
-                label: "Service Showcase Image 5",
-                imageConfig: { arrayKey: 'otherImages', index: 10 }
-              },
-              {
-                type: 'image',
-                label: "Service Showcase Image 6",
-                imageConfig: { arrayKey: 'otherImages', index: 11 }
-              },
-            ]
-          },
-          {
-            label: "Specialized Execution",
-            elements: [
-              {
-                type: 'image',
-                label: "Service Showcase Image 7",
-                imageConfig: { arrayKey: 'otherImages', index: 12 }
-              },
-              {
-                type: 'image',
-                label: "Service Showcase Image 8",
-                imageConfig: { arrayKey: 'otherImages', index: 13 }
               },
             ]
           },
@@ -653,11 +513,6 @@ export const TEMPLATE_SCHEMAS: Record<string, TemplateSchema> = {
             label: "Hero Section",
             elements: [
               {
-                type: 'image',
-                label: "Hero Main Banner Image",
-                imageConfig: { arrayKey: 'clinicImages', index: 0 }
-              },
-              {
                 type: 'text',
                 label: "Studio Name",
                 path: ['clinic', 'name']
@@ -680,33 +535,8 @@ export const TEMPLATE_SCHEMAS: Record<string, TemplateSchema> = {
             ]
           },
           {
-            label: "Crafting Spaces That Inspire & Elevate E...",
-            elements: [
-              {
-                type: 'image',
-                label: "Associate Portrait Image",
-                imageConfig: { arrayKey: 'otherImages', index: 1 }
-              },
-            ]
-          },
-          {
             label: "Services Section",
             elements: [
-              {
-                type: 'image',
-                label: "Service Showcase Image 4",
-                imageConfig: { arrayKey: 'otherImages', index: 9 }
-              },
-              {
-                type: 'image',
-                label: "Service Showcase Image 2",
-                imageConfig: { arrayKey: 'otherImages', index: 7 }
-              },
-              {
-                type: 'image',
-                label: "Service Showcase Image 6",
-                imageConfig: { arrayKey: 'otherImages', index: 11 }
-              },
               {
                 type: 'list',
                 label: "Services List (1 per line)",
@@ -718,36 +548,6 @@ export const TEMPLATE_SCHEMAS: Record<string, TemplateSchema> = {
             label: "Portfolio Gallery Section",
             elements: [
               {
-                type: 'image',
-                label: "clinic Image 3",
-                imageConfig: { arrayKey: 'clinicImages', index: 2 }
-              },
-              {
-                type: 'image',
-                label: "clinic Image 4",
-                imageConfig: { arrayKey: 'clinicImages', index: 3 }
-              },
-              {
-                type: 'image',
-                label: "treatment Image 1",
-                imageConfig: { arrayKey: 'treatmentImages', index: 0 }
-              },
-              {
-                type: 'image',
-                label: "treatment Image 2",
-                imageConfig: { arrayKey: 'treatmentImages', index: 1 }
-              },
-              {
-                type: 'image',
-                label: "treatment Image 3",
-                imageConfig: { arrayKey: 'treatmentImages', index: 2 }
-              },
-              {
-                type: 'image',
-                label: "treatment Image 4",
-                imageConfig: { arrayKey: 'treatmentImages', index: 3 }
-              },
-              {
                 type: 'text',
                 label: "City",
                 path: ['clinic', 'address', 'city']
@@ -758,24 +558,9 @@ export const TEMPLATE_SCHEMAS: Record<string, TemplateSchema> = {
             label: "Why Choose Us",
             elements: [
               {
-                type: 'image',
-                label: "Philosophy Feature Image 1",
-                imageConfig: { arrayKey: 'otherImages', index: 2 }
-              },
-              {
                 type: 'textarea',
                 label: "Country",
                 path: ['clinic', 'address', 'country']
-              },
-            ]
-          },
-          {
-            label: "Create An Even Greater Experience",
-            elements: [
-              {
-                type: 'image',
-                label: "Philosophy Feature Image 2",
-                imageConfig: { arrayKey: 'otherImages', index: 3 }
               },
             ]
           },
@@ -796,16 +581,6 @@ export const TEMPLATE_SCHEMAS: Record<string, TemplateSchema> = {
             ]
           },
           {
-            label: "Section 2",
-            elements: [
-              {
-                type: 'image',
-                label: "Clinic / Studio Gallery Image 2",
-                imageConfig: { arrayKey: 'clinicImages', index: 1 }
-              },
-            ]
-          },
-          {
             label: "Journey Timeline",
             elements: [
               {
@@ -818,16 +593,6 @@ export const TEMPLATE_SCHEMAS: Record<string, TemplateSchema> = {
           {
             label: "The Creative Designers",
             elements: [
-              {
-                type: 'image',
-                label: "Principal Portrait Image",
-                imageConfig: { arrayKey: 'otherImages', index: 0 }
-              },
-              {
-                type: 'image',
-                label: "Associate Portrait Image",
-                imageConfig: { arrayKey: 'otherImages', index: 1 }
-              },
               {
                 type: 'text',
                 label: "Name",
@@ -865,64 +630,9 @@ export const TEMPLATE_SCHEMAS: Record<string, TemplateSchema> = {
             label: "Core Design & Fabrication Specialties",
             elements: [
               {
-                type: 'image',
-                label: "Service Showcase Image 1",
-                imageConfig: { arrayKey: 'otherImages', index: 6 }
-              },
-              {
-                type: 'image',
-                label: "Service Showcase Image 8",
-                imageConfig: { arrayKey: 'otherImages', index: 13 }
-              },
-              {
-                type: 'image',
-                label: "Service Showcase Image 6",
-                imageConfig: { arrayKey: 'otherImages', index: 11 }
-              },
-              {
-                type: 'image',
-                label: "Service Showcase Image 5",
-                imageConfig: { arrayKey: 'otherImages', index: 10 }
-              },
-              {
                 type: 'list',
                 label: "Services List (1 per line)",
                 path: ['business', 'services']
-              },
-            ]
-          },
-          {
-            label: "Turnkey Modular Kitchens & Home Interior...",
-            elements: [
-              {
-                type: 'image',
-                label: "treatment Image 1",
-                imageConfig: { arrayKey: 'treatmentImages', index: 0 }
-              },
-            ]
-          },
-          {
-            label: "The Chennai Curation Library",
-            elements: [
-              {
-                type: 'image',
-                label: "Service Showcase Image 8",
-                imageConfig: { arrayKey: 'otherImages', index: 13 }
-              },
-              {
-                type: 'image',
-                label: "Service Showcase Image 2",
-                imageConfig: { arrayKey: 'otherImages', index: 7 }
-              },
-              {
-                type: 'image',
-                label: "Service Showcase Image 4",
-                imageConfig: { arrayKey: 'otherImages', index: 9 }
-              },
-              {
-                type: 'image',
-                label: "Service Showcase Image 6",
-                imageConfig: { arrayKey: 'otherImages', index: 11 }
               },
             ]
           },
@@ -992,11 +702,6 @@ export const TEMPLATE_SCHEMAS: Record<string, TemplateSchema> = {
             label: "Hero Section",
             elements: [
               {
-                type: 'image',
-                label: "Hero Main Banner Image",
-                imageConfig: { arrayKey: 'clinicImages', index: 0 }
-              },
-              {
                 type: 'text',
                 label: "Studio Name",
                 path: ['clinic', 'name']
@@ -1022,36 +727,6 @@ export const TEMPLATE_SCHEMAS: Record<string, TemplateSchema> = {
             label: "Services Section",
             elements: [
               {
-                type: 'image',
-                label: "Service Showcase Image 4",
-                imageConfig: { arrayKey: 'otherImages', index: 9 }
-              },
-              {
-                type: 'image',
-                label: "Service Showcase Image 2",
-                imageConfig: { arrayKey: 'otherImages', index: 7 }
-              },
-              {
-                type: 'image',
-                label: "Service Showcase Image 6",
-                imageConfig: { arrayKey: 'otherImages', index: 11 }
-              },
-              {
-                type: 'image',
-                label: "Service Showcase Image 7",
-                imageConfig: { arrayKey: 'otherImages', index: 12 }
-              },
-              {
-                type: 'image',
-                label: "Service Showcase Image 1",
-                imageConfig: { arrayKey: 'otherImages', index: 6 }
-              },
-              {
-                type: 'image',
-                label: "Service Showcase Image 8",
-                imageConfig: { arrayKey: 'otherImages', index: 13 }
-              },
-              {
                 type: 'list',
                 label: "Services List (1 per line)",
                 path: ['business', 'services']
@@ -1062,26 +737,6 @@ export const TEMPLATE_SCHEMAS: Record<string, TemplateSchema> = {
             label: "Portfolio Gallery Section",
             elements: [
               {
-                type: 'image',
-                label: "treatment Image 1",
-                imageConfig: { arrayKey: 'treatmentImages', index: 0 }
-              },
-              {
-                type: 'image',
-                label: "treatment Image 2",
-                imageConfig: { arrayKey: 'treatmentImages', index: 1 }
-              },
-              {
-                type: 'image',
-                label: "treatment Image 3",
-                imageConfig: { arrayKey: 'treatmentImages', index: 2 }
-              },
-              {
-                type: 'image',
-                label: "treatment Image 4",
-                imageConfig: { arrayKey: 'treatmentImages', index: 3 }
-              },
-              {
                 type: 'text',
                 label: "City",
                 path: ['clinic', 'address', 'city']
@@ -1089,23 +744,8 @@ export const TEMPLATE_SCHEMAS: Record<string, TemplateSchema> = {
             ]
           },
           {
-            label: "Crafting Spaces That Inspire& Elevate Ev...",
-            elements: [
-              {
-                type: 'image',
-                label: "Clinic / Studio Gallery Image 2",
-                imageConfig: { arrayKey: 'clinicImages', index: 1 }
-              },
-            ]
-          },
-          {
             label: "About Us Section",
             elements: [
-              {
-                type: 'image',
-                label: "Principal Portrait Image",
-                imageConfig: { arrayKey: 'otherImages', index: 0 }
-              },
               {
                 type: 'text',
                 label: "Name",
@@ -1128,16 +768,6 @@ export const TEMPLATE_SCHEMAS: Record<string, TemplateSchema> = {
               },
             ]
           },
-          {
-            label: "Create An Even Greater Experience",
-            elements: [
-              {
-                type: 'image',
-                label: "clinic Image 3",
-                imageConfig: { arrayKey: 'clinicImages', index: 2 }
-              },
-            ]
-          },
         ]
       },
       {
@@ -1147,11 +777,6 @@ export const TEMPLATE_SCHEMAS: Record<string, TemplateSchema> = {
           {
             label: "Hero Section",
             elements: [
-              {
-                type: 'image',
-                label: "Clinic / Studio Gallery Image 2",
-                imageConfig: { arrayKey: 'clinicImages', index: 1 }
-              },
               {
                 type: 'textarea',
                 label: "Vision Quote",
@@ -1172,16 +797,6 @@ export const TEMPLATE_SCHEMAS: Record<string, TemplateSchema> = {
           {
             label: "Meet The Design Leaders",
             elements: [
-              {
-                type: 'image',
-                label: "Principal Portrait Image",
-                imageConfig: { arrayKey: 'otherImages', index: 0 }
-              },
-              {
-                type: 'image',
-                label: "Associate Portrait Image",
-                imageConfig: { arrayKey: 'otherImages', index: 1 }
-              },
               {
                 type: 'text',
                 label: "Name",
@@ -1242,56 +857,6 @@ export const TEMPLATE_SCHEMAS: Record<string, TemplateSchema> = {
                 type: 'list',
                 label: "Services List (1 per line)",
                 path: ['business', 'services']
-              },
-            ]
-          },
-          {
-            label: "Services Section",
-            elements: [
-              {
-                type: 'image',
-                label: "Service Showcase Image 1",
-                imageConfig: { arrayKey: 'otherImages', index: 6 }
-              },
-              {
-                type: 'image',
-                label: "Service Showcase Image 2",
-                imageConfig: { arrayKey: 'otherImages', index: 7 }
-              },
-              {
-                type: 'image',
-                label: "Service Showcase Image 3",
-                imageConfig: { arrayKey: 'otherImages', index: 8 }
-              },
-              {
-                type: 'image',
-                label: "Service Showcase Image 7",
-                imageConfig: { arrayKey: 'otherImages', index: 12 }
-              },
-              {
-                type: 'image',
-                label: "Service Showcase Image 8",
-                imageConfig: { arrayKey: 'otherImages', index: 13 }
-              },
-            ]
-          },
-          {
-            label: "Transformations",
-            elements: [
-              {
-                type: 'image',
-                label: "Service Showcase Image 4",
-                imageConfig: { arrayKey: 'otherImages', index: 9 }
-              },
-              {
-                type: 'image',
-                label: "Service Showcase Image 5",
-                imageConfig: { arrayKey: 'otherImages', index: 10 }
-              },
-              {
-                type: 'image',
-                label: "Service Showcase Image 6",
-                imageConfig: { arrayKey: 'otherImages', index: 11 }
               },
             ]
           },
@@ -1357,11 +922,6 @@ export const TEMPLATE_SCHEMAS: Record<string, TemplateSchema> = {
             label: "Hero Section",
             elements: [
               {
-                type: 'image',
-                label: "Hero Main Banner Image",
-                imageConfig: { arrayKey: 'clinicImages', index: 0 }
-              },
-              {
                 type: 'textarea',
                 label: "Studio Name",
                 path: ['clinic', 'name']
@@ -1376,11 +936,6 @@ export const TEMPLATE_SCHEMAS: Record<string, TemplateSchema> = {
           {
             label: "About Us Section",
             elements: [
-              {
-                type: 'image',
-                label: "Principal Portrait Image",
-                imageConfig: { arrayKey: 'otherImages', index: 0 }
-              },
               {
                 type: 'text',
                 label: "Name",
@@ -1412,36 +967,6 @@ export const TEMPLATE_SCHEMAS: Record<string, TemplateSchema> = {
             label: "Services Section",
             elements: [
               {
-                type: 'image',
-                label: "Service Showcase Image 4",
-                imageConfig: { arrayKey: 'otherImages', index: 9 }
-              },
-              {
-                type: 'image',
-                label: "Service Showcase Image 2",
-                imageConfig: { arrayKey: 'otherImages', index: 7 }
-              },
-              {
-                type: 'image',
-                label: "Service Showcase Image 6",
-                imageConfig: { arrayKey: 'otherImages', index: 11 }
-              },
-              {
-                type: 'image',
-                label: "Service Showcase Image 7",
-                imageConfig: { arrayKey: 'otherImages', index: 12 }
-              },
-              {
-                type: 'image',
-                label: "Service Showcase Image 1",
-                imageConfig: { arrayKey: 'otherImages', index: 6 }
-              },
-              {
-                type: 'image',
-                label: "Service Showcase Image 8",
-                imageConfig: { arrayKey: 'otherImages', index: 13 }
-              },
-              {
                 type: 'list',
                 label: "Services List (1 per line)",
                 path: ['business', 'services']
@@ -1457,11 +982,6 @@ export const TEMPLATE_SCHEMAS: Record<string, TemplateSchema> = {
           {
             label: "Hero Section",
             elements: [
-              {
-                type: 'image',
-                label: "clinic Image 3",
-                imageConfig: { arrayKey: 'clinicImages', index: 2 }
-              },
               {
                 type: 'textarea',
                 label: "Vision Quote",
@@ -1482,16 +1002,6 @@ export const TEMPLATE_SCHEMAS: Record<string, TemplateSchema> = {
           {
             label: "About Us Section",
             elements: [
-              {
-                type: 'image',
-                label: "Principal Portrait Image",
-                imageConfig: { arrayKey: 'otherImages', index: 0 }
-              },
-              {
-                type: 'image',
-                label: "Clinic / Studio Gallery Image 2",
-                imageConfig: { arrayKey: 'clinicImages', index: 1 }
-              },
               {
                 type: 'text',
                 label: "Name",
@@ -1611,36 +1121,6 @@ export const TEMPLATE_SCHEMAS: Record<string, TemplateSchema> = {
             label: "Hero Section",
             elements: [
               {
-                type: 'image',
-                label: "Service Showcase Image 4",
-                imageConfig: { arrayKey: 'otherImages', index: 9 }
-              },
-              {
-                type: 'image',
-                label: "Service Showcase Image 2",
-                imageConfig: { arrayKey: 'otherImages', index: 7 }
-              },
-              {
-                type: 'image',
-                label: "Service Showcase Image 6",
-                imageConfig: { arrayKey: 'otherImages', index: 11 }
-              },
-              {
-                type: 'image',
-                label: "Service Showcase Image 7",
-                imageConfig: { arrayKey: 'otherImages', index: 12 }
-              },
-              {
-                type: 'image',
-                label: "Service Showcase Image 1",
-                imageConfig: { arrayKey: 'otherImages', index: 6 }
-              },
-              {
-                type: 'image',
-                label: "Service Showcase Image 8",
-                imageConfig: { arrayKey: 'otherImages', index: 13 }
-              },
-              {
                 type: 'list',
                 label: "Services List (1 per line)",
                 path: ['business', 'services']
@@ -1648,23 +1128,8 @@ export const TEMPLATE_SCHEMAS: Record<string, TemplateSchema> = {
             ]
           },
           {
-            label: "Crafting Spaces That Inspire & Elevate E...",
-            elements: [
-              {
-                type: 'image',
-                label: "Philosophy Feature Image 1",
-                imageConfig: { arrayKey: 'otherImages', index: 2 }
-              },
-            ]
-          },
-          {
             label: "About Us Section",
             elements: [
-              {
-                type: 'image',
-                label: "Principal Portrait Image",
-                imageConfig: { arrayKey: 'otherImages', index: 0 }
-              },
               {
                 type: 'text',
                 label: "Name",
@@ -1687,32 +1152,12 @@ export const TEMPLATE_SCHEMAS: Record<string, TemplateSchema> = {
               },
             ]
           },
-          {
-            label: "Create An Even Greater Experience",
-            elements: [
-              {
-                type: 'image',
-                label: "Philosophy Feature Image 2",
-                imageConfig: { arrayKey: 'otherImages', index: 3 }
-              },
-            ]
-          },
         ]
       },
       {
         id: 'about',
         label: "About Page",
         sections: [
-          {
-            label: "Hero Section",
-            elements: [
-              {
-                type: 'image',
-                label: "clinic Image 3",
-                imageConfig: { arrayKey: 'clinicImages', index: 2 }
-              },
-            ]
-          },
           {
             label: "Mission Statement",
             elements: [
@@ -1736,16 +1181,6 @@ export const TEMPLATE_SCHEMAS: Record<string, TemplateSchema> = {
           {
             label: "Meet The Design Leaders",
             elements: [
-              {
-                type: 'image',
-                label: "Principal Portrait Image",
-                imageConfig: { arrayKey: 'otherImages', index: 0 }
-              },
-              {
-                type: 'image',
-                label: "Clinic / Studio Gallery Image 2",
-                imageConfig: { arrayKey: 'clinicImages', index: 1 }
-              },
               {
                 type: 'text',
                 label: "Name",
@@ -1808,64 +1243,9 @@ export const TEMPLATE_SCHEMAS: Record<string, TemplateSchema> = {
             label: "Hero Section",
             elements: [
               {
-                type: 'image',
-                label: "Service Showcase Image 6",
-                imageConfig: { arrayKey: 'otherImages', index: 11 }
-              },
-              {
                 type: 'list',
                 label: "Services List (1 per line)",
                 path: ['business', 'services']
-              },
-            ]
-          },
-          {
-            label: "Services Section",
-            elements: [
-              {
-                type: 'image',
-                label: "Service Showcase Image 1",
-                imageConfig: { arrayKey: 'otherImages', index: 6 }
-              },
-              {
-                type: 'image',
-                label: "Service Showcase Image 2",
-                imageConfig: { arrayKey: 'otherImages', index: 7 }
-              },
-              {
-                type: 'image',
-                label: "Service Showcase Image 3",
-                imageConfig: { arrayKey: 'otherImages', index: 8 }
-              },
-              {
-                type: 'image',
-                label: "Service Showcase Image 7",
-                imageConfig: { arrayKey: 'otherImages', index: 12 }
-              },
-              {
-                type: 'image',
-                label: "Service Showcase Image 8",
-                imageConfig: { arrayKey: 'otherImages', index: 13 }
-              },
-            ]
-          },
-          {
-            label: "Transformations",
-            elements: [
-              {
-                type: 'image',
-                label: "Service Showcase Image 4",
-                imageConfig: { arrayKey: 'otherImages', index: 9 }
-              },
-              {
-                type: 'image',
-                label: "Service Showcase Image 5",
-                imageConfig: { arrayKey: 'otherImages', index: 10 }
-              },
-              {
-                type: 'image',
-                label: "Service Showcase Image 6",
-                imageConfig: { arrayKey: 'otherImages', index: 11 }
               },
             ]
           },
@@ -1925,11 +1305,6 @@ export const TEMPLATE_SCHEMAS: Record<string, TemplateSchema> = {
             label: "Hero Section",
             elements: [
               {
-                type: 'image',
-                label: "Hero Main Banner Image",
-                imageConfig: { arrayKey: 'clinicImages', index: 0 }
-              },
-              {
                 type: 'textarea',
                 label: "Studio Description",
                 path: ['clinic', 'description']
@@ -1945,36 +1320,6 @@ export const TEMPLATE_SCHEMAS: Record<string, TemplateSchema> = {
             label: "Services Section",
             elements: [
               {
-                type: 'image',
-                label: "Service Showcase Image 4",
-                imageConfig: { arrayKey: 'otherImages', index: 9 }
-              },
-              {
-                type: 'image',
-                label: "Service Showcase Image 2",
-                imageConfig: { arrayKey: 'otherImages', index: 7 }
-              },
-              {
-                type: 'image',
-                label: "Service Showcase Image 6",
-                imageConfig: { arrayKey: 'otherImages', index: 11 }
-              },
-              {
-                type: 'image',
-                label: "Service Showcase Image 7",
-                imageConfig: { arrayKey: 'otherImages', index: 12 }
-              },
-              {
-                type: 'image',
-                label: "Service Showcase Image 1",
-                imageConfig: { arrayKey: 'otherImages', index: 6 }
-              },
-              {
-                type: 'image',
-                label: "Service Showcase Image 8",
-                imageConfig: { arrayKey: 'otherImages', index: 13 }
-              },
-              {
                 type: 'list',
                 label: "Services List (1 per line)",
                 path: ['business', 'services']
@@ -1984,11 +1329,6 @@ export const TEMPLATE_SCHEMAS: Record<string, TemplateSchema> = {
           {
             label: "About Us Section",
             elements: [
-              {
-                type: 'image',
-                label: "Principal Portrait Image",
-                imageConfig: { arrayKey: 'otherImages', index: 0 }
-              },
               {
                 type: 'text',
                 label: "Name",
@@ -2003,61 +1343,6 @@ export const TEMPLATE_SCHEMAS: Record<string, TemplateSchema> = {
                 type: 'text',
                 label: "Experience",
                 path: ['doctor', 'experience']
-              },
-            ]
-          },
-          {
-            label: "Portfolio Gallery Section",
-            elements: [
-              {
-                type: 'image',
-                label: "treatment Image 1",
-                imageConfig: { arrayKey: 'treatmentImages', index: 0 }
-              },
-              {
-                type: 'image',
-                label: "treatment Image 2",
-                imageConfig: { arrayKey: 'treatmentImages', index: 1 }
-              },
-              {
-                type: 'image',
-                label: "treatment Image 3",
-                imageConfig: { arrayKey: 'treatmentImages', index: 2 }
-              },
-              {
-                type: 'image',
-                label: "treatment Image 4",
-                imageConfig: { arrayKey: 'treatmentImages', index: 3 }
-              },
-              {
-                type: 'image',
-                label: "Principal Portrait Image",
-                imageConfig: { arrayKey: 'otherImages', index: 0 }
-              },
-              {
-                type: 'image',
-                label: "Associate Portrait Image",
-                imageConfig: { arrayKey: 'otherImages', index: 1 }
-              },
-              {
-                type: 'image',
-                label: "Philosophy Feature Image 1",
-                imageConfig: { arrayKey: 'otherImages', index: 2 }
-              },
-              {
-                type: 'image',
-                label: "Philosophy Feature Image 2",
-                imageConfig: { arrayKey: 'otherImages', index: 3 }
-              },
-              {
-                type: 'image',
-                label: "Philosophy Feature Image 3",
-                imageConfig: { arrayKey: 'otherImages', index: 4 }
-              },
-              {
-                type: 'image',
-                label: "Philosophy Feature Image 4",
-                imageConfig: { arrayKey: 'otherImages', index: 5 }
               },
             ]
           },
@@ -2093,16 +1378,6 @@ export const TEMPLATE_SCHEMAS: Record<string, TemplateSchema> = {
         label: "About Page",
         sections: [
           {
-            label: "Hero Section",
-            elements: [
-              {
-                type: 'image',
-                label: "Clinic / Studio Gallery Image 2",
-                imageConfig: { arrayKey: 'clinicImages', index: 1 }
-              },
-            ]
-          },
-          {
             label: "Portfolio Gallery Section",
             elements: [
               {
@@ -2115,16 +1390,6 @@ export const TEMPLATE_SCHEMAS: Record<string, TemplateSchema> = {
           {
             label: "The Design Directors",
             elements: [
-              {
-                type: 'image',
-                label: "Principal Portrait Image",
-                imageConfig: { arrayKey: 'otherImages', index: 0 }
-              },
-              {
-                type: 'image',
-                label: "Associate Portrait Image",
-                imageConfig: { arrayKey: 'otherImages', index: 1 }
-              },
               {
                 type: 'text',
                 label: "Name",
@@ -2187,11 +1452,6 @@ export const TEMPLATE_SCHEMAS: Record<string, TemplateSchema> = {
             label: "Hero Section",
             elements: [
               {
-                type: 'image',
-                label: "Service Showcase Image 6",
-                imageConfig: { arrayKey: 'otherImages', index: 11 }
-              },
-              {
                 type: 'text',
                 label: "Studio Name",
                 path: ['clinic', 'name']
@@ -2200,56 +1460,6 @@ export const TEMPLATE_SCHEMAS: Record<string, TemplateSchema> = {
                 type: 'text',
                 label: "Hero Tagline",
                 path: ['clinic', 'tagline']
-              },
-            ]
-          },
-          {
-            label: "Services Section",
-            elements: [
-              {
-                type: 'image',
-                label: "Service Showcase Image 1",
-                imageConfig: { arrayKey: 'otherImages', index: 6 }
-              },
-              {
-                type: 'image',
-                label: "Service Showcase Image 2",
-                imageConfig: { arrayKey: 'otherImages', index: 7 }
-              },
-              {
-                type: 'image',
-                label: "Service Showcase Image 3",
-                imageConfig: { arrayKey: 'otherImages', index: 8 }
-              },
-              {
-                type: 'image',
-                label: "Service Showcase Image 7",
-                imageConfig: { arrayKey: 'otherImages', index: 12 }
-              },
-              {
-                type: 'image',
-                label: "Service Showcase Image 8",
-                imageConfig: { arrayKey: 'otherImages', index: 13 }
-              },
-            ]
-          },
-          {
-            label: "Transformations",
-            elements: [
-              {
-                type: 'image',
-                label: "Service Showcase Image 4",
-                imageConfig: { arrayKey: 'otherImages', index: 9 }
-              },
-              {
-                type: 'image',
-                label: "Service Showcase Image 5",
-                imageConfig: { arrayKey: 'otherImages', index: 10 }
-              },
-              {
-                type: 'image',
-                label: "Service Showcase Image 6",
-                imageConfig: { arrayKey: 'otherImages', index: 11 }
               },
             ]
           },

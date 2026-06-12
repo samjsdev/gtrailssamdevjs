@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 import { readSourceConfig, getDocId } from '@/lib/dataBuilder';
-import { runBuildDeploy } from '@/lib/websiteBuild';
+import { exportStandaloneProject } from '@/lib/websiteBuild';
 import path from 'path';
 import fs from 'fs/promises';
 import crypto from 'crypto';
@@ -26,7 +26,7 @@ export async function POST(req: Request) {
       selected_template: templateId
     };
 
-    // 3. Save to Appwrite
+    // 3. Save to Appwrite (keeps the admin dashboard accurate)
     const docId = getDocId(slug);
     const documentData = {
       name: updatedData.clinic?.name || slug,
@@ -49,21 +49,31 @@ export async function POST(req: Request) {
       }
     }
 
-    // 5. Trigger build and package specifically for the selected template
-    console.log(`[Publish API] Selected ${templateId} for slug ${slug}. Triggering build...`);
-    const buildResult = await runBuildDeploy(`publish:${slug}:${templateId}`);
+    // 4. Also save selected_template to local source.json
+    const localSourceDir = path.join(process.cwd(), 'data', slug);
+    const localSourcePath = path.join(localSourceDir, 'source.json');
+    try {
+      await fs.mkdir(localSourceDir, { recursive: true });
+      await fs.writeFile(localSourcePath, JSON.stringify(updatedData, null, 2), 'utf-8');
+    } catch (writeErr: any) {
+      console.error('Local source.json write error:', writeErr.message || writeErr);
+    }
+
+    // 5. Export standalone Next.js project to build/[slug]/
+    console.log(`[Publish API] Selected ${templateId} for slug ${slug}. Exporting standalone project...`);
+    const buildResult = await exportStandaloneProject(slug, templateId);
 
     if (!buildResult.ok) {
-      console.error(`[Publish API] Build failed: ${buildResult.message}`);
+      console.error(`[Publish API] Export failed: ${buildResult.message}`);
       return NextResponse.json({
-        error: 'Data updated, but static build failed',
+        error: 'Data updated, but standalone export failed',
         details: buildResult.message
       }, { status: 500 });
     }
 
     return NextResponse.json({
       success: true,
-      liveUrl: `/website/${slug}`,
+      buildPath: `build/${slug}`,
       templateId
     });
   } catch (error: any) {

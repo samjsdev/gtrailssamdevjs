@@ -67,6 +67,7 @@ export default function PreviewPage({ params }: { params: Promise<{ slug: string
   const [selectedTemplateId, setSelectedTemplateId] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
   const [publishing, setPublishing] = useState(false);
+  const [unpublishing, setUnpublishing] = useState(false);
   const [publishProgress, setPublishProgress] = useState<string>('');
   const [publishError, setPublishError] = useState<string>('');
   const [isSuccess, setIsSuccess] = useState(false);
@@ -97,12 +98,12 @@ export default function PreviewPage({ params }: { params: Promise<{ slug: string
     setPublishError('');
     setIsSuccess(false);
 
-    // Mock progress steps for good user experience
+    // Progress steps for standalone build export
     const progressSteps = [
       'Registering selected layout preferences...',
-      'Compiling production bundles and media optimization...',
-      'Packaging static HTML files and structural maps...',
-      'Uploading website assets to Appwrite Storage CDN...',
+      'Downloading images and assets locally...',
+      'Generating standalone Next.js project...',
+      'Packaging build folder for independent build...',
     ];
 
     let stepIndex = 0;
@@ -127,16 +128,42 @@ export default function PreviewPage({ params }: { params: Promise<{ slug: string
       const result = await res.json();
 
       if (!res.ok) {
-        throw new Error(result.error || 'Failed to compile and publish website');
+        const details = result.details ? `\nDetails: ${result.details}` : '';
+        throw new Error((result.error || 'Failed to export standalone project') + details);
       }
 
       setSelectedTemplateId(templateId);
       setIsSuccess(true);
     } catch (err: any) {
       clearInterval(progressInterval);
-      setPublishError(err.message || 'An error occurred during build/deployment.');
+      setPublishError(err.message || 'An error occurred during standalone export.');
     } finally {
       setPublishing(false);
+    }
+  };
+
+  const handleUnpublish = async () => {
+    setUnpublishing(true);
+    setPublishError('');
+
+    try {
+      const res = await fetch('/api/unpublish', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ slug })
+      });
+
+      const result = await res.json();
+
+      if (!res.ok) {
+        throw new Error(result.error || 'Failed to unpublish project');
+      }
+
+      setSelectedTemplateId(null);
+    } catch (err: any) {
+      setPublishError(err.message || 'An error occurred during unpublishing.');
+    } finally {
+      setUnpublishing(false);
     }
   };
 
@@ -179,7 +206,7 @@ export default function PreviewPage({ params }: { params: Promise<{ slug: string
             Choose &amp; Publish Website Design
           </h2>
           <p className="text-gray-500 text-base leading-relaxed">
-            Preview each layout dynamically loaded with your scraped business details. Once you find the perfect match, click <strong>Publish</strong> to package it as a fast static site.
+            Preview each layout dynamically loaded with your scraped business details. Once you find the perfect match, click <strong>Confirm &amp; Publish</strong> to export a standalone Next.js project you can build independently.
           </p>
         </div>
 
@@ -233,25 +260,29 @@ export default function PreviewPage({ params }: { params: Promise<{ slug: string
                       <Eye className="w-4 h-4 text-gray-400" /> Preview Layout
                     </a>
                     
-                    <button
-                      onClick={() => handlePublish(tpl.id)}
-                      disabled={publishing}
-                      className={`w-full py-2.5 px-4 rounded-xl text-sm font-bold tracking-wide transition-all flex items-center justify-center gap-2 ${
-                        isCurrent
-                          ? 'bg-blue-50 text-blue-600 border border-blue-100 cursor-default'
-                          : 'bg-blue-600 text-white hover:bg-blue-700 shadow-sm'
-                      }`}
-                    >
-                      {isCurrent ? (
-                        <>
-                          <Check className="w-4 h-4" /> Already Published
-                        </>
-                      ) : (
-                        <>
-                          <Globe className="w-4 h-4" /> Confirm &amp; Publish
-                        </>
-                      )}
-                    </button>
+                    {isCurrent ? (
+                      <div className="flex gap-2 w-full">
+                        <div className="flex-1 py-2.5 px-4 rounded-xl text-sm font-bold tracking-wide bg-blue-50 text-blue-600 border border-blue-100 flex items-center justify-center gap-2 cursor-default">
+                          <Check className="w-4 h-4" /> Published
+                        </div>
+                        <button
+                          onClick={handleUnpublish}
+                          disabled={unpublishing}
+                          className="py-2.5 px-4 rounded-xl text-sm font-bold tracking-wide bg-red-50 text-red-600 border border-red-100 hover:bg-red-100 transition-all flex items-center justify-center disabled:opacity-50"
+                          title="Undo Publishing"
+                        >
+                          {unpublishing ? <Loader2 className="w-4 h-4 animate-spin" /> : 'Undo'}
+                        </button>
+                      </div>
+                    ) : (
+                      <button
+                        onClick={() => handlePublish(tpl.id)}
+                        disabled={publishing || unpublishing}
+                        className="w-full py-2.5 px-4 rounded-xl text-sm font-bold tracking-wide transition-all flex items-center justify-center gap-2 bg-blue-600 text-white hover:bg-blue-700 shadow-sm disabled:opacity-50"
+                      >
+                        <Globe className="w-4 h-4" /> Confirm &amp; Publish
+                      </button>
+                    )}
                   </div>
                 </div>
               </div>
@@ -269,8 +300,8 @@ export default function PreviewPage({ params }: { params: Promise<{ slug: string
             </div>
             
             <div className="space-y-2">
-              <h3 className="font-bold text-xl text-gray-900">Compiling Static Assets</h3>
-              <p className="text-gray-500 text-sm">Please hold on. We are generating your production website bundle.</p>
+              <h3 className="font-bold text-xl text-gray-900">Exporting Standalone Project</h3>
+              <p className="text-gray-500 text-sm">Please hold on. We are generating your standalone Next.js project with all assets.</p>
             </div>
 
             <div className="bg-gray-50 border rounded-xl p-4 font-mono text-xs text-gray-600 leading-normal text-left flex items-start gap-3">
@@ -278,7 +309,7 @@ export default function PreviewPage({ params }: { params: Promise<{ slug: string
               <span>{publishProgress}</span>
             </div>
             
-            <p className="text-[10px] text-gray-400">This takes about 20-30 seconds depending on Next.js build optimization.</p>
+            <p className="text-[10px] text-gray-400">This takes about 20-60 seconds depending on image downloads and project size.</p>
           </div>
         </div>
       )}
@@ -292,33 +323,29 @@ export default function PreviewPage({ params }: { params: Promise<{ slug: string
             </div>
             
             <div className="space-y-2">
-              <h3 className="font-bold text-2xl text-gray-900">Website is Live!</h3>
+              <h3 className="font-bold text-2xl text-gray-900">Project Exported!</h3>
               <p className="text-gray-500 text-sm">
-                Your data has been successfully packaged into the production template and is now published.
+                Your standalone Next.js project has been generated with all data and images included locally.
               </p>
             </div>
 
-            <div className="bg-green-50/50 border border-green-100 rounded-xl p-4 space-y-1.5 text-center">
-              <span className="text-[10px] font-bold text-green-700 tracking-widest uppercase">LIVE URL ADDRESS</span>
-              <a 
-                href={`/website/${slug}`} 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="block text-blue-600 hover:text-blue-800 font-semibold text-sm underline truncate"
-              >
-                /website/{slug}
-              </a>
+            <div className="bg-green-50/50 border border-green-100 rounded-xl p-4 space-y-2.5 text-center">
+              <span className="text-[10px] font-bold text-green-700 tracking-widest uppercase">BUILD FOLDER</span>
+              <p className="text-gray-800 font-mono text-sm font-bold">
+                build/{slug}/
+              </p>
+            </div>
+
+            <div className="bg-gray-50 border rounded-xl p-4 text-left space-y-2">
+              <span className="text-[10px] font-bold text-gray-500 tracking-widest uppercase">TO BUILD THE STATIC SITE</span>
+              <div className="font-mono text-xs text-gray-700 bg-gray-100 rounded-lg p-3 space-y-1">
+                <p>cd build/{slug}</p>
+                <p>npm run build</p>
+              </div>
+              <p className="text-[11px] text-gray-400">Output will be in <span className="font-mono font-bold">build/{slug}/out/</span></p>
             </div>
 
             <div className="flex flex-col gap-2 pt-2">
-              <a
-                href={`/website/${slug}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-full flex items-center justify-center gap-2 py-3 px-4 bg-blue-600 hover:bg-blue-700 text-white font-bold text-sm rounded-xl transition-all shadow-md"
-              >
-                Visit Live Site <ArrowRight className="w-4 h-4" />
-              </a>
 
               <div className="flex gap-2">
                 <button
@@ -345,7 +372,7 @@ export default function PreviewPage({ params }: { params: Promise<{ slug: string
           <div className="bg-red-50 border border-red-200 rounded-xl p-4 flex gap-3 text-sm text-red-700 items-start">
             <AlertCircle className="w-5 h-5 shrink-0 text-red-500 mt-0.5" />
             <div>
-              <h4 className="font-bold text-red-900 mb-1">Publication Failed</h4>
+              <h4 className="font-bold text-red-900 mb-1">Export Failed</h4>
               <p>{publishError}</p>
               <button 
                 onClick={() => setPublishError('')}
