@@ -12,6 +12,8 @@ import {
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
+import Script from "next/script";
+import WorkCycleTimeline from "./WorkCycleTimeline";
 
 type PageProps = {
   params?: any;
@@ -161,6 +163,8 @@ export default async function DesignStudioHome({ params }: PageProps) {
         </div>
       </section>
 
+      <WorkCycleTimeline />
+
       {/* TRUST STRIP / PARTNERS */}
       <section className="py-16 bg-stone-900 text-stone-400 border-t border-b border-stone-850">
         <div className="max-w-6xl mx-auto px-6">
@@ -185,7 +189,7 @@ export default async function DesignStudioHome({ params }: PageProps) {
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8" data-gsap="stagger-container">
-            {(reviews?.length ? reviews : DEFAULT_INTERIOR_REVIEWS).slice(0, 3).map((review: any, index: number) => (
+            {(reviews?.length ? reviews : DEFAULT_INTERIOR_REVIEWS).slice(0, 6).map((review: any, index: number) => (
               <div key={index} className="bg-white p-8 border border-stone-200/60 shadow-xs flex flex-col justify-between" data-gsap="stagger-item">
                 <div className="space-y-6">
                   <div className="flex gap-1 text-amber-500">
@@ -211,6 +215,57 @@ export default async function DesignStudioHome({ params }: PageProps) {
               </div>
             ))}
           </div>
+        </div>
+      </section>
+      {/* INSTAGRAM FEED SECTION */}
+      <section className="py-24 bg-white border-t border-stone-200/80 overflow-hidden">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6" data-gsap="reveal">
+            <div>
+              <p className="uppercase tracking-[0.2em] text-xs text-stone-500 font-semibold mb-4">— Social</p>
+              <h2 className="text-3xl md:text-5xl font-light text-stone-900 leading-tight">Follow Our Journey</h2>
+            </div>
+            <a 
+              href="https://www.instagram.com/360degreeinteriorchennai/" 
+              target="_blank" 
+              rel="noreferrer"
+              className="inline-flex items-center gap-3 px-6 py-3 border border-stone-200 text-stone-900 hover:bg-stone-900 hover:text-white transition-colors duration-300 uppercase tracking-widest text-xs font-semibold group"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4">
+                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/>
+              </svg>
+              @360degreeinteriorchennai
+            </a>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6" data-gsap="stagger-container">
+            {[
+              "C4dDo4kKFGP",
+              "DYyjemUJiXD",
+              "DVxhKEmCbvS",
+            ].map((postId, index) => (
+              <div 
+                key={index}
+                className="bg-white shadow-sm rounded-sm overflow-hidden flex justify-center w-full"
+                data-gsap="stagger-item"
+              >
+                <blockquote 
+                  className="instagram-media" 
+                  data-instgrm-captioned 
+                  data-instgrm-permalink={`https://www.instagram.com/reel/${postId}/?utm_source=ig_embed&amp;utm_campaign=loading`} 
+                  data-instgrm-version="14" 
+                  style={{ background:'#FFF', border:'0', borderRadius:'3px', boxShadow:'0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15)', margin: '1px', maxWidth:'540px', minWidth:'326px', padding:'0', width:'99.375%' }}
+                >
+                  <div style={{ padding: '16px' }}>
+                    <a href={`https://www.instagram.com/reel/${postId}/?utm_source=ig_embed&amp;utm_campaign=loading`} style={{ background:'#FFFFFF', lineHeight:0, padding:'0 0', textAlign:'center', textDecoration:'none', width:'100%' }} target="_blank" rel="noreferrer">
+                      View this post on Instagram
+                    </a>
+                  </div>
+                </blockquote>
+              </div>
+            ))}
+          </div>
+          <Script async src="//www.instagram.com/embed.js" strategy="lazyOnload" />
         </div>
       </section>
 

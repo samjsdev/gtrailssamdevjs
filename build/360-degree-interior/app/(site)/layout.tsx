@@ -75,7 +75,7 @@ export default async function DesignLayout({ children, params }: LayoutProps) {
           <Link href={`${basePath}`} className="hover:text-white transition-colors">Home</Link>
           <Link href={`${basePath}/about`} className="hover:text-white transition-colors">About</Link>
           <Link href={`${basePath}/services`} className="hover:text-white transition-colors">Services</Link>
-          <Link href={`${basePath}/gallery`} className="hover:text-white transition-colors">Portfolio</Link>
+          <Link href={`${basePath}/gallery`} className="hover:text-white transition-colors">Gallery</Link>
           <Link href={`${basePath}/contact`} className="hover:text-white transition-colors">Contact</Link>
         </div>
 

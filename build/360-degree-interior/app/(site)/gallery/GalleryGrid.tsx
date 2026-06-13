@@ -1,8 +1,8 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useCallback } from "react";
 
-type PortfolioItem = {
+type GalleryItem = {
   cat: string;
   title: string;
   desc: string;
@@ -11,18 +11,33 @@ type PortfolioItem = {
 };
 
 type GalleryGridProps = {
-  items: PortfolioItem[];
+  items: GalleryItem[];
 };
 
 export default function GalleryGrid({ items }: GalleryGridProps) {
   const [activeTab, setActiveTab] = useState<string>("All");
-  const [lightboxImg, setLightboxImg] = useState<string | null>(null);
+  const [lightboxIdx, setLightboxIdx] = useState<number | null>(null);
 
   const categories = ["All", "Residential", "Commercial", "Studio & Process"];
 
   const filteredItems = activeTab === "All"
     ? items
     : items.filter(item => item.cat.toLowerCase() === activeTab.toLowerCase() || (activeTab === "Studio & Process" && item.cat.includes("Studio")));
+
+  const openLightbox = useCallback((idx: number) => setLightboxIdx(idx), []);
+  const closeLightbox = useCallback(() => setLightboxIdx(null), []);
+
+  const goNext = useCallback(() => {
+    if (lightboxIdx === null) return;
+    setLightboxIdx((lightboxIdx + 1) % filteredItems.length);
+  }, [lightboxIdx, filteredItems.length]);
+
+  const goPrev = useCallback(() => {
+    if (lightboxIdx === null) return;
+    setLightboxIdx((lightboxIdx - 1 + filteredItems.length) % filteredItems.length);
+  }, [lightboxIdx, filteredItems.length]);
+
+  const lightboxItem = lightboxIdx !== null ? filteredItems[lightboxIdx] : null;
 
   return (
     <div className="space-y-12">
@@ -44,70 +59,86 @@ export default function GalleryGrid({ items }: GalleryGridProps) {
         ))}
       </div>
 
-      {/* MASONRY/GRID CONTAINER */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 auto-rows-[320px]" data-gsap="gallery-grid">
-        {filteredItems.map((item, idx) => {
-          const isTall = item.span === "tall";
-          const isWide = item.span === "wide";
-          
-          return (
-            <div
-              key={idx}
-              onClick={() => setLightboxImg(item.img)}
-              className={`group relative overflow-hidden border border-stone-250 cursor-zoom-in bg-stone-100 ${
-                isTall ? "md:row-span-2" : ""
-              } ${
-                isWide ? "md:col-span-2" : ""
-              } transition-transform duration-500`}
-              data-gsap="gallery-card"
-            >
-              {/* Image with rich scale transition */}
-              <img
-                src={item.img}
-                alt={item.title}
-                className="w-full h-full object-cover transform group-hover:scale-103 transition-transform duration-[1500ms] ease-out"
-              />
+      {/* UNIFORM GRID */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6" data-gsap="gallery-grid">
+        {filteredItems.map((item, idx) => (
+          <div
+            key={idx}
+            onClick={() => openLightbox(idx)}
+            className="group relative overflow-hidden border border-stone-200 cursor-zoom-in bg-stone-100 aspect-square transition-all duration-500 hover:border-stone-400 hover:shadow-lg"
+            data-gsap="gallery-card"
+          >
+            {/* Image fills card uniformly */}
+            <img
+              src={item.img}
+              alt={item.title}
+              loading="lazy"
+              className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700 ease-out"
+            />
 
-              {/* Minimal Dark Hover Overlay */}
-              <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex flex-col justify-end p-6 md:p-8">
-                <div className="text-white transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500 ease-out space-y-2">
-                  <span className="text-[9px] font-bold uppercase tracking-[0.2em] text-white/70 bg-white/10 px-2 py-1 backdrop-blur-sm rounded-full w-fit inline-block">
-                    {item.cat}
-                  </span>
-                  <h3 className="text-lg md:text-xl font-light tracking-wide">{item.title}</h3>
-                  <p className="text-xs text-white/60 font-light max-w-sm line-clamp-2 leading-relaxed">
-                    {item.desc}
-                  </p>
-                </div>
+            {/* Hover Overlay */}
+            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-400 flex flex-col justify-end p-4">
+              <div className="text-white transform translate-y-3 group-hover:translate-y-0 transition-transform duration-400 ease-out space-y-1">
+                <span className="text-[8px] font-bold uppercase tracking-[0.2em] text-white/70">
+                  {item.cat}
+                </span>
+                <h3 className="text-sm font-light tracking-wide">{item.title}</h3>
               </div>
             </div>
-          );
-        })}
+          </div>
+        ))}
       </div>
 
       {/* LIGHTBOX MODAL */}
-      {lightboxImg && (
+      {lightboxItem && (
         <div 
-          className="fixed inset-0 z-[100] flex items-center justify-center bg-black/95 backdrop-blur-sm p-4 animate-fade-in cursor-zoom-out"
-          onClick={() => setLightboxImg(null)}
+          className="fixed inset-0 z-[100] flex items-center justify-center bg-black/95 backdrop-blur-sm p-4 cursor-zoom-out"
+          onClick={closeLightbox}
         >
-          {/* Close trigger */}
+          {/* Close button */}
           <button 
-            onClick={() => setLightboxImg(null)}
-            className="absolute top-6 right-6 text-white/60 hover:text-white text-xs uppercase tracking-widest font-bold flex items-center gap-2 border border-white/20 rounded-full px-4 py-2 hover:bg-white/5 transition-colors"
+            onClick={closeLightbox}
+            className="absolute top-6 right-6 text-white/60 hover:text-white text-xs uppercase tracking-widest font-bold flex items-center gap-2 border border-white/20 rounded-full px-4 py-2 hover:bg-white/5 transition-colors z-10"
           >
             Close
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-4 h-4">
               <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
             </svg>
           </button>
-          
+
+          {/* Previous button */}
+          <button
+            onClick={(e) => { e.stopPropagation(); goPrev(); }}
+            className="absolute left-4 md:left-8 top-1/2 -translate-y-1/2 text-white/50 hover:text-white border border-white/20 rounded-full w-10 h-10 flex items-center justify-center hover:bg-white/10 transition-colors z-10"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-5 h-5">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
+            </svg>
+          </button>
+
+          {/* Next button */}
+          <button
+            onClick={(e) => { e.stopPropagation(); goNext(); }}
+            className="absolute right-4 md:right-8 top-1/2 -translate-y-1/2 text-white/50 hover:text-white border border-white/20 rounded-full w-10 h-10 flex items-center justify-center hover:bg-white/10 transition-colors z-10"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-5 h-5">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+            </svg>
+          </button>
+
+          {/* Image */}
           <div className="max-w-5xl max-h-[85vh] overflow-hidden relative" onClick={(e) => e.stopPropagation()}>
             <img 
-              src={lightboxImg} 
-              alt="Zoomed portfolio workspace" 
+              src={lightboxItem.img} 
+              alt={lightboxItem.title} 
               className="max-w-full max-h-[80vh] object-contain mx-auto shadow-2xl border border-white/10"
             />
+            <div className="text-center mt-4 space-y-1">
+              <p className="text-white/80 text-sm font-light">{lightboxItem.title}</p>
+              <p className="text-white/40 text-[10px] uppercase tracking-widest font-bold">
+                {lightboxIdx !== null ? lightboxIdx + 1 : 0} / {filteredItems.length} — {lightboxItem.cat}
+              </p>
+            </div>
           </div>
         </div>
       )}

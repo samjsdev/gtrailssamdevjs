@@ -476,8 +476,16 @@ export function getInteriorServiceSummary(serviceName: string): string {
 }
 
 export function getServiceImage(serviceName: string, media: any): string | null {
-  if (!media?.otherImages) return null;
   const lower = serviceName.toLowerCase();
+  
+  if (lower.includes("kitchen")) {
+    return "/images/otherImages-28.jpg";
+  }
+  if (lower.includes("furniture")) {
+    return "/images/otherImages-87.jpg";
+  }
+
+  if (!media?.otherImages) return null;
   
   // Index 6: Space planning / layout / zoning
   if (lower.includes("space") || lower.includes("zoning") || lower.includes("layout") || lower.includes("planning")) {

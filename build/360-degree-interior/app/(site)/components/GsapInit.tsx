@@ -199,6 +199,57 @@ export default function GsapInit() {
         }
       }
 
+      // 7. WORK CYCLE TIMELINE ANIMATIONS (HOME PAGE)
+      const workCycleTrack = document.querySelector('[data-gsap="work-cycle-track"]');
+      if (workCycleTrack) {
+        const items = workCycleTrack.querySelectorAll('[data-gsap="work-cycle-item"]');
+        items.forEach((item: any) => {
+          const imgContainer = item.querySelector('[data-gsap="work-cycle-img-container"]');
+          const img = item.querySelector('[data-gsap="work-cycle-img"]');
+          const text = item.querySelector('[data-gsap="work-cycle-text"]');
+          const num = item.querySelector('[data-gsap="work-cycle-num"]');
+
+          const tl = gsap.timeline({
+            scrollTrigger: {
+              trigger: item,
+              start: 'top 75%',
+              toggleActions: 'play none none none',
+            }
+          });
+
+          // Image reveal and scale down
+          if (imgContainer && img) {
+            tl.fromTo(imgContainer,
+              { opacity: 0, y: 30 },
+              { opacity: 1, y: 0, duration: 1.0, ease: 'power3.out' }
+            )
+            .fromTo(img,
+              { scale: 1.05 },
+              { scale: 1, duration: 1.5, ease: 'power2.out' },
+              '-=1.0' // start at same time
+            );
+          }
+
+          // Number watermark fade in
+          if (num) {
+            tl.fromTo(num,
+              { opacity: 0, x: -20 },
+              { opacity: 0.2, x: 0, duration: 0.8, ease: 'power2.out' },
+              '-=1.2'
+            );
+          }
+
+          // Text slide up and fade in
+          if (text) {
+            tl.fromTo(text,
+              { opacity: 0, y: 40 },
+              { opacity: 1, y: 0, duration: 0.8, ease: 'power3.out' },
+              '-=1.0' // start slightly after image starts
+            );
+          }
+        });
+      }
+
       // Initial ScrollTrigger layout calculations refresh
       ScrollTrigger.refresh();
     });

@@ -20,9 +20,9 @@ export default async function AboutPage({ params }: PageProps) {
   const visionQuote = data.about?.vision || 'We curate luxury residential spaces and commercial interiors with high-fidelity spatial planning, sustainable organic timber sourcing, and transparent billing operations.';
   const aboutHeroImage = data.about?.heroImage || media?.clinicImages?.[2] || media?.clinicImages?.[0] || INTERIOR_HERO_IMAGES.home;
 
-  const founderName = doctor?.name || 'Arjun Mehta';
-  const founderRole = doctor?.role || 'FOUNDER & ARCHITECTURAL LEAD';
-  const founderCredentials = doctor?.credentials || 'M.Des, Interior Architecture | B.Arch, Sir J.J. College';
+  const founderName = doctor?.name || 'S Renuka';
+  const founderRole = doctor?.role || 'FOUNDER & LEAD Designer';
+  const founderCredentials = doctor?.credentials || '';
   const founderBio = doctor?.bio || 'With over a decade of hands-on experience, he oversees the master structural scoping, custom joinery modules, and carpentry execution protocols for our residential projects. He believes a home should highlight the innate warmth of stone and timber.';
   const founderQuote = doctor?.quote || 'A successful home should function cleanly while highlighting the natural warmth of timber and stone.';
 
@@ -160,30 +160,7 @@ export default async function AboutPage({ params }: PageProps) {
               </div>
             </div>
 
-            {/* Associate Stylist (Kavitha Rajan) */}
-            <div className="grid lg:grid-cols-12 gap-12 lg:gap-16 items-center">
-              <div className="lg:col-span-5 lg:order-2 relative aspect-[3/4] overflow-hidden border border-stone-250" data-gsap="parallax-container">
-                <img
-                  src={secondaryImage}
-                  alt={partnerName}
-                  className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700"
-                  data-gsap="parallax-img"
-                />
-              </div>
-              <div className="lg:col-span-7 lg:order-1 space-y-6">
-                <div className="space-y-2">
-                  <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-stone-400">{partnerRole}</p>
-                  <h3 className="text-3xl font-light text-stone-900">{partnerName}</h3>
-                  <p className="text-stone-500 text-xs font-light">{partnerCredentials}</p>
-                </div>
-                <p className="text-stone-600 font-light leading-relaxed text-sm">
-                  {partnerBio}
-                </p>
-                <div className="border-l border-stone-900 pl-6 italic text-stone-500 text-base font-light">
-                  &ldquo;{partnerQuote}&rdquo;
-                </div>
-              </div>
-            </div>
+
           </div>
         </section>
 

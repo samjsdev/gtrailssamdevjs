@@ -1,8 +1,10 @@
 import { readSourceConfig } from '@/lib/sourceData';
 import { notFound } from "next/navigation";
 import GalleryGrid from "./GalleryGrid";
-import { INTERIOR_HERO_IMAGES } from "@/lib/interiorContent";
+import ProjectsSection from "./ProjectsSection";
 import { cleanClinicName } from "@/lib/copyCleaner";
+import fs from 'fs';
+import path from 'path';
 
 export default async function GalleryPage({ params }: { params?: any }) {
   const slug = ''; // standalone: slug not needed for data loading
@@ -13,64 +15,97 @@ export default async function GalleryPage({ params }: { params?: any }) {
   const { clinic, media } = data;
   const cleanName = cleanClinicName(clinic.name);
 
-  const defaultGalleryStock = [
-    "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=800&q=80",
-    "https://images.unsplash.com/photo-1616594039964-ae9021a400a0?auto=format&fit=crop&w=800&q=80",
-    "https://images.unsplash.com/photo-1556910103-1c02745aae4d?auto=format&fit=crop&w=800&q=80",
-    "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=800&q=80",
-    "https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=800&q=80",
-    "https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?auto=format&fit=crop&w=800&q=80",
-    "https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=800&q=80",
-    "https://images.unsplash.com/photo-1538688525198-9b88f6f53126?auto=format&fit=crop&w=800&q=80",
-    "https://images.unsplash.com/photo-1581579438747-1dc8d1e0ca96?auto=format&fit=crop&w=800&q=80",
-    "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=800&q=80",
-    "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=800&q=80",
-    "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=800&q=80",
-    "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=800&q=80",
-    "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=800&q=80",
-    "https://images.unsplash.com/photo-1600210492493-0946911123ea?auto=format&fit=crop&w=800&q=80",
-    "https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&w=800&q=80",
-    "https://images.unsplash.com/photo-1600121848594-d8644e57abab?auto=format&fit=crop&w=800&q=80",
-    "https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&w=800&q=80",
-    "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80",
-    "https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=800&q=80",
-    "https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=800&q=80"
+  // Load project images dynamically from public directory
+  const projectRootDir = process.cwd();
+  
+  const medavakkamPath = path.join(projectRootDir, 'public', 'images', 'interiorimages', 'project-medavakkam');
+  const taramaniPath = path.join(projectRootDir, 'public', 'images', 'interiorimages', 'ramaniyam-taramani');
+  const interiorimagesPath = path.join(projectRootDir, 'public', 'images', 'interiorimages');
+
+  let medavakkamImages: string[] = [];
+  try {
+    if (fs.existsSync(medavakkamPath)) {
+      medavakkamImages = fs.readdirSync(medavakkamPath)
+        .filter(file => /\.(png|jpe?g|webp|svg)$/i.test(file))
+        .map(file => `/images/interiorimages/project-medavakkam/${file}`);
+    }
+  } catch (e) {
+    console.error(e);
+  }
+
+  let taramaniImages: string[] = [];
+  try {
+    if (fs.existsSync(taramaniPath)) {
+      taramaniImages = fs.readdirSync(taramaniPath)
+        .filter(file => /\.(png|jpe?g|webp|svg)$/i.test(file))
+        .map(file => `/images/interiorimages/ramaniyam-taramani/${file}`);
+    }
+  } catch (e) {
+    console.error(e);
+  }
+
+  let cycleImages: string[] = [];
+  try {
+    if (fs.existsSync(interiorimagesPath)) {
+      cycleImages = fs.readdirSync(interiorimagesPath)
+        .filter(file => /^cycle\d+\.webp$/i.test(file))
+        .map(file => `/images/interiorimages/${file}`);
+    }
+  } catch (e) {
+    console.error(e);
+  }
+
+  const projectsData = [
+    {
+      id: "medavakkam",
+      name: "Project - Medavakkam",
+      category: "Residential" as const,
+      description: "Bespoke residential interior work featuring customized storage, premium partitions, and kitchen modular installations.",
+      images: medavakkamImages
+    },
+    {
+      id: "taramani",
+      name: "Ramaniyam Taramani",
+      category: "Commercial" as const,
+      description: "Premium execution in high-rise layouts, highlighting precise partition grids, materials, and elegant textures.",
+      images: taramaniImages
+    },
+    {
+      id: "process",
+      name: "Studio & Process",
+      category: "Studio & Process" as const,
+      description: "Visual walkthrough of our design workflow, detailed engineering stages, and site coordination.",
+      images: cycleImages
+    }
   ];
 
-  const uniqueUserImages = Array.from(new Set([
+  // Collect all images, deduplicate, and filter out broken/api paths
+  const allImages = Array.from(new Set([
     ...(media.clinicImages || []),
-    ...(media.treatmentImages || []),
-    ...(media.otherImages || [])
-  ].filter(Boolean)));
+    ...(media.otherImages || []),
+  ].filter((img: string) => {
+    if (!img) return false;
+    // Remove /api/media paths (broken) and keep only local /images/ paths
+    if (img.includes('/api/media')) return false;
+    return true;
+  })));
 
-  const PORTFOLIO = [];
-  const totalToRender = 50;
+  const cats = ['Residential', 'Commercial', 'Studio & Process'];
 
-  for (let i = 0; i < totalToRender; i++) {
-    let imgUrl = "";
-    let isUserImg = false;
-
-    if (uniqueUserImages.length > 0) {
-      imgUrl = uniqueUserImages[i % uniqueUserImages.length];
-      isUserImg = true;
-    } else {
-      imgUrl = defaultGalleryStock[i % defaultGalleryStock.length];
-    }
-
-    const cats = ['Residential', 'Commercial', 'Studio & Process'];
+  // One card per unique image — no repeats
+  const GALLERY_ITEMS = allImages.map((imgUrl, i) => {
     const cat = cats[i % cats.length];
-    const span = i % 3 === 0 ? ('wide' as const) : i % 5 === 0 ? ('tall' as const) : undefined;
+    const span: 'tall' | 'wide' | undefined =
+      i % 7 === 0 ? 'wide' : i % 11 === 0 ? 'tall' : undefined;
 
-    PORTFOLIO.push({
+    return {
       cat,
-      title: isUserImg ? `Client Project Space #${i + 1}` : `Curated Design Space #${i + 1}`,
-      desc: isUserImg 
-        ? `Custom interior feature designed and coordinated for ${cleanName || 'our studio'}.`
-        : `Bespoke room configuration showcasing fine materials and detailing.`,
+      title: `Project Space #${i + 1}`,
+      desc: `Custom interior feature designed and coordinated for ${cleanName || 'our studio'}.`,
       img: imgUrl,
-      span
-    });
-  }
+      span,
+    };
+  });
 
   return (
     <div className="text-stone-900 bg-stone-50 min-h-screen pb-32 selection:bg-stone-200">
@@ -78,7 +113,7 @@ export default async function GalleryPage({ params }: { params?: any }) {
       {/* HEADER HERO */}
       <section className="relative pt-36 pb-16 px-6 max-w-6xl mx-auto text-center z-10 space-y-16">
         <div className="space-y-6 max-w-4xl mx-auto">
-          <p className="text-[10px] font-bold uppercase tracking-[0.3em] text-stone-500">— EDITORIAL PORTFOLIO</p>
+          <p className="text-[10px] font-bold uppercase tracking-[0.3em] text-stone-500">— EDITORIAL GALLERY</p>
           <h1 className="text-4xl md:text-6xl lg:text-7xl font-light text-stone-900 leading-tight">
             {clinic.name || "Our Work & Space"}
           </h1>
@@ -89,8 +124,8 @@ export default async function GalleryPage({ params }: { params?: any }) {
           {/* Minimal Stats Bar */}
           <div className="flex flex-wrap justify-center gap-x-12 gap-y-6 pt-8 max-w-2xl mx-auto">
             {[
+              { val: `${allImages.length + medavakkamImages.length + taramaniImages.length + cycleImages.length}+`, tag: "PROJECT PHOTOS" },
               { val: "200+", tag: "STUDIOS DELIVERED" },
-              { val: "12", tag: "SHOWCASE GALLERIES" },
               { val: "10+", tag: "YEARS ARCHITECTURE" }
             ].map((stat, idx) => (
               <div key={idx} className="flex flex-col items-center">
@@ -107,7 +142,23 @@ export default async function GalleryPage({ params }: { params?: any }) {
         <div className="flex items-center gap-6 max-w-5xl mx-auto opacity-80">
           <div className="h-px flex-1 bg-stone-200" />
           <span className="text-[9px] font-bold uppercase tracking-[0.25em] text-stone-400">
-            FINE PRINT EXHIBITION
+            PROJECTS
+          </span>
+          <div className="h-px flex-1 bg-stone-200" />
+        </div>
+      </section>
+
+      {/* Featured Projects Grid Section */}
+      <section className="max-w-5xl mx-auto text-left px-6 pb-20">
+        <ProjectsSection projects={projectsData} />
+      </section>
+
+      {/* Divider for Gallery Archive */}
+      <section className="max-w-5xl mx-auto px-6 py-6">
+        <div className="flex items-center gap-6 opacity-80">
+          <div className="h-px flex-1 bg-stone-200" />
+          <span className="text-[9px] font-bold uppercase tracking-[0.25em] text-stone-400">
+            GALLERY ARCHIVE
           </span>
           <div className="h-px flex-1 bg-stone-200" />
         </div>
@@ -115,7 +166,7 @@ export default async function GalleryPage({ params }: { params?: any }) {
 
       {/* Interactive Gallery */}
       <section id="gallery-grid" className="max-w-5xl mx-auto text-left px-6">
-        <GalleryGrid items={PORTFOLIO} />
+        <GalleryGrid items={GALLERY_ITEMS} />
       </section>
 
     </div>

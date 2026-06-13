@@ -30,10 +30,10 @@ export default function ClientHeader({ clinic, basePath }: ClientHeaderProps) {
 
             {/* Desktop Nav */}
             <nav className="hidden md:flex gap-8 text-[11px] uppercase tracking-[0.25em] font-medium text-stone-500">
-              <Link href={`${basePath}`} className="hover:text-stone-900 transition-colors">Home</Link>
+              <Link href={`${basePath || '/'}`} className="hover:text-stone-900 transition-colors">Home</Link>
               <Link href={`${basePath}/about`} className="hover:text-stone-900 transition-colors">About</Link>
               <Link href={`${basePath}/services`} className="hover:text-stone-900 transition-colors">Services</Link>
-              <Link href={`${basePath}/gallery`} className="hover:text-stone-900 transition-colors">Portfolio</Link>
+              <Link href={`${basePath}/gallery`} className="hover:text-stone-900 transition-colors">Gallery</Link>
               <Link href={`${basePath}/contact`} className="hover:text-stone-900 transition-colors">Contact</Link>
             </nav>
 
@@ -63,10 +63,10 @@ export default function ClientHeader({ clinic, basePath }: ClientHeaderProps) {
             isOpen ? 'max-h-64 border-t border-stone-100 opacity-100' : 'max-h-0 opacity-0 pointer-events-none'
           }`}>
             <nav className="flex flex-col gap-4 px-6 py-5 text-[11px] uppercase tracking-[0.25em] font-medium text-stone-500">
-              <Link href={`${basePath}`} onClick={() => setIsOpen(false)} className="hover:text-stone-900 transition-colors">Home</Link>
+              <Link href={`${basePath || '/'}`} onClick={() => setIsOpen(false)} className="hover:text-stone-900 transition-colors">Home</Link>
               <Link href={`${basePath}/about`} onClick={() => setIsOpen(false)} className="hover:text-stone-900 transition-colors">About</Link>
               <Link href={`${basePath}/services`} onClick={() => setIsOpen(false)} className="hover:text-stone-900 transition-colors">Services</Link>
-              <Link href={`${basePath}/gallery`} onClick={() => setIsOpen(false)} className="hover:text-stone-900 transition-colors">Portfolio</Link>
+              <Link href={`${basePath}/gallery`} onClick={() => setIsOpen(false)} className="hover:text-stone-900 transition-colors">Gallery</Link>
               <Link href={`${basePath}/contact`} onClick={() => setIsOpen(false)} className="hover:text-stone-900 transition-colors">Contact</Link>
               <a 
                 href={walink} 
