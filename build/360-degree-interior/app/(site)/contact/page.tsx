@@ -1,9 +1,35 @@
 import { readSourceConfig } from '@/lib/sourceData';
 import { notFound } from "next/navigation";
+import type { Metadata } from 'next';
 
 type PageProps = {
   params?: any;
 };
+
+export async function generateMetadata(): Promise<Metadata> {
+  const data = await readSourceConfig(undefined, 'template4');
+  const clinicName = data?.clinic?.name || "360 Degree Interior";
+  const desc = `Get in touch with ${clinicName} for booking a design consultation. Visit our showroom in Adyar, Chennai, or message us directly on WhatsApp.`;
+
+  return {
+    title: `Contact Us | Book a Consultation | ${clinicName}`,
+    description: desc,
+    keywords: [
+      "Contact 360 Degree Interior",
+      "Interior Showroom Adyar Chennai",
+      "Book Design Consultation",
+      "WhatsApp Interior Designer Chennai",
+      clinicName
+    ],
+    openGraph: {
+      title: `Contact Us | Book a Consultation | ${clinicName}`,
+      description: desc,
+      type: "website",
+      locale: "en_IN",
+      siteName: clinicName,
+    },
+  };
+}
 
 export default async function ContactPage({ params }: PageProps) {
   const slug = ''; // standalone: slug not needed for data loading
@@ -36,12 +62,12 @@ export default async function ContactPage({ params }: PageProps) {
           <div className="lg:col-span-5 space-y-8 bg-white p-8 md:p-12 border border-stone-200 shadow-sm relative overflow-hidden">
             <div className="absolute top-0 right-0 w-48 h-48 bg-stone-50 rounded-bl-full -z-0 border-l border-b border-stone-100"></div>
             
-            <div className="font-bold flex items-center gap-3 mb-8 text-xl tracking-wider uppercase text-stone-900 relative z-10">
+            <h2 id="coordinates-heading" className="font-bold flex items-center gap-3 mb-8 text-xl tracking-wider uppercase text-stone-900 relative z-10">
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-5 h-5 shrink-0 text-stone-600">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M9.813 15.904L9 21l8.982-11.795H13.62l.813-5.109L5.454 15.904h4.359z" />
               </svg> 
               Coordinates
-            </div>
+            </h2>
 
             <div className="space-y-8 relative z-10">
               <div className="flex items-start gap-4">
@@ -52,7 +78,7 @@ export default async function ContactPage({ params }: PageProps) {
                   </svg>
                 </div>
                 <div>
-                  <h4 className="text-[10px] font-bold uppercase tracking-wider text-stone-400">Showroom Address</h4>
+                  <h3 className="text-[10px] font-bold uppercase tracking-wider text-stone-400">Showroom Address</h3>
                   <p className="text-xs text-stone-900 font-medium mt-1 leading-relaxed">
                     {clinic.address?.full || '1/20, Anna Street, Velachery - Tambaram Main Rd, Pallikaranai, Chennai, Tamil Nadu 600100'}
                   </p>
@@ -66,9 +92,9 @@ export default async function ContactPage({ params }: PageProps) {
                   </svg>
                 </div>
                 <div>
-                  <h4 className="text-[10px] font-bold uppercase tracking-wider text-stone-400">Direct Contact</h4>
+                  <h3 className="text-[10px] font-bold uppercase tracking-wider text-stone-400">Direct Contact</h3>
                   <p className="text-xs text-stone-900 font-medium mt-1">
-                    <a href={`tel:${clinic.contact?.phone || ''}`} className="hover:text-stone-600 transition-colors">
+                    <a id="contact-phone-link" href={`tel:${clinic.contact?.phone || ''}`} className="hover:text-stone-600 transition-colors">
                       {clinic.contact?.phone || 'Contact Number'}
                     </a>
                   </p>
@@ -79,10 +105,11 @@ export default async function ContactPage({ params }: PageProps) {
 
             <div className="flex items-center justify-between p-6 bg-stone-50 border border-stone-200 rounded-none relative z-10 mt-8">
               <div>
-                <h4 className="text-xs font-semibold text-stone-900 uppercase tracking-wider">Chat on WhatsApp</h4>
+                  <h3 id="whatsapp-heading" className="text-xs font-semibold text-stone-900 uppercase tracking-wider">Chat on WhatsApp</h3>
                 <p className="text-[10px] text-stone-400 mt-0.5">Instant design coordination.</p>
               </div>
               <a 
+                id="contact-whatsapp-button"
                 href={walink} 
                 target="_blank" 
                 rel="noopener noreferrer" 
@@ -93,35 +120,25 @@ export default async function ContactPage({ params }: PageProps) {
             </div>
           </div>
 
-          {/* Right Column: Native proposal Form */}
+          {/* Right Column: Google Form Integration */}
           <div className="lg:col-span-7 bg-white p-8 md:p-12 border border-stone-200 shadow-sm relative overflow-hidden">
-            <div className="font-bold flex items-center gap-3 mb-8 text-xl tracking-wider uppercase text-stone-900 relative z-10">
+            <h2 id="message-form-heading" className="font-bold flex items-center gap-3 mb-8 text-xl tracking-wider uppercase text-stone-900 relative z-10">
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-5 h-5 shrink-0 text-stone-600">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
               </svg>
               Send a Message
-            </div>
+            </h2>
             
-            <form className="space-y-6 relative z-10">
-              <div className="space-y-2">
-                <label htmlFor="fullName" className="block text-[10px] font-bold uppercase tracking-wider text-stone-400">Full Name</label>
-                <input type="text" id="fullName" placeholder="Your name" className="w-full text-stone-900 px-4 py-3 border border-stone-200 focus:outline-none focus:border-stone-900 bg-stone-50 text-xs" />
-              </div>
-              <div className="space-y-2">
-                <label htmlFor="email" className="block text-[10px] font-bold uppercase tracking-wider text-stone-400">Email Address</label>
-                <input type="email" id="email" placeholder="you@example.com" className="w-full text-stone-900 px-4 py-3 border border-stone-200 focus:outline-none focus:border-stone-900 bg-stone-50 text-xs" />
-              </div>
-              <div className="space-y-2">
-                <label htmlFor="message" className="block text-[10px] font-bold uppercase tracking-wider text-stone-400">Project Details</label>
-                <textarea id="message" rows={5} placeholder="Describe your dream space, kitchen layout preferences, specific challenges, or structural coordinates..." className="w-full text-stone-900 px-4 py-3 border border-stone-200 focus:outline-none focus:border-stone-900 bg-stone-50 text-xs resize-none"></textarea>
-              </div>
-              <button type="button" className="w-full py-4 mt-2 bg-stone-900 hover:bg-stone-850 text-white font-bold text-[10px] uppercase tracking-widest transition-all duration-300 shadow-sm flex items-center justify-center gap-2">
-                Request a Proposal 
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-3.5 h-3.5">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M6 12L3.269 3.126A59.768 59.768 0 0121.485 12 59.77 59.77 0 013.27 20.876L5.999 12zm0 0h7.5" />
-                </svg>
-              </button>
-            </form>
+            <iframe
+              id="contact-form-iframe"
+              src="https://docs.google.com/forms/d/e/1FAIpQLSdfYBDLFToYidjSU3rU7oomyXQ71fzGjRw8WXdgo0i4aS9H4A/viewform?embedded=true"
+              width="100%"
+              height="850"
+              className="w-full border-0 relative z-10"
+              title="Contact Inquiry Form"
+            >
+              Loading…
+            </iframe>
           </div>
         </div>
       </div>

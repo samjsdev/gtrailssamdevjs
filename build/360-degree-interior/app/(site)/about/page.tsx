@@ -1,10 +1,38 @@
 import { readSourceConfig } from '@/lib/sourceData';
 import { notFound } from "next/navigation";
 import { INTERIOR_HERO_IMAGES } from "@/lib/interiorContent";
+import type { Metadata } from 'next';
 
 type PageProps = {
   params?: any;
 };
+
+export async function generateMetadata(): Promise<Metadata> {
+  const data = await readSourceConfig(undefined, 'template4');
+  const clinicName = data?.clinic?.name || "360 Degree Interior";
+  const desc = data?.clinic?.description || "Learn about our design journey, principles, biophilic material sourcing standards, and meet our founders.";
+
+  return {
+    title: `About Us | Studio & Vision | ${clinicName}`,
+    description: desc,
+    keywords: [
+      "About 360 Degree Interior",
+      "Renuka Interior Designer",
+      "Biophilic Design",
+      "Sustainable Timber Curation",
+      "Design Philosophy",
+      "Turnkey Interior Execution",
+      clinicName
+    ],
+    openGraph: {
+      title: `About Us | Studio & Vision | ${clinicName}`,
+      description: desc,
+      type: "website",
+      locale: "en_IN",
+      siteName: clinicName,
+    },
+  };
+}
 
 export default async function AboutPage({ params }: PageProps) {
   const slug = ''; // standalone: slug not needed for data loading
@@ -141,7 +169,7 @@ export default async function AboutPage({ params }: PageProps) {
                 <img
                   src={principalImage}
                   alt={founderName}
-                  className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700"
+                  className="w-full h-full object-cover transition-all duration-700"
                   data-gsap="parallax-img"
                 />
               </div>

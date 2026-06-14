@@ -5,6 +5,33 @@ import ProjectsSection from "./ProjectsSection";
 import { cleanClinicName } from "@/lib/copyCleaner";
 import fs from 'fs';
 import path from 'path';
+import type { Metadata } from 'next';
+
+export async function generateMetadata(): Promise<Metadata> {
+  const data = await readSourceConfig(undefined, 'template4');
+  const clinicName = data?.clinic?.name || "360 Degree Interior";
+  const desc = "Browse our design projects portfolio, featuring customized space layouts, premium materials, and custom carpentry work in Chennai.";
+
+  return {
+    title: `Our Work & Gallery | Turnkey Design Portfolio | ${clinicName}`,
+    description: desc,
+    keywords: [
+      "Interior Design Portfolio",
+      "Interior Sourcing Library",
+      "Medavakkam Interior Project",
+      "Ramaniyam Taramani Interior Project",
+      "Biophilic Curation Gallery",
+      clinicName
+    ],
+    openGraph: {
+      title: `Our Work & Gallery | Turnkey Design Portfolio | ${clinicName}`,
+      description: desc,
+      type: "website",
+      locale: "en_IN",
+      siteName: clinicName,
+    },
+  };
+}
 
 export default async function GalleryPage({ params }: { params?: any }) {
   const slug = ''; // standalone: slug not needed for data loading
@@ -55,6 +82,18 @@ export default async function GalleryPage({ params }: { params?: any }) {
     console.error(e);
   }
 
+  let fbImages: string[] = [];
+  try {
+    const fbImagesPath = path.join(projectRootDir, 'public', 'images', 'fbimages');
+    if (fs.existsSync(fbImagesPath)) {
+      fbImages = fs.readdirSync(fbImagesPath)
+        .filter(file => /\.(png|jpe?g|webp|svg)$/i.test(file))
+        .map(file => `/images/fbimages/${file}`);
+    }
+  } catch (e) {
+    console.error(e);
+  }
+
   const projectsData = [
     {
       id: "medavakkam",
@@ -83,6 +122,7 @@ export default async function GalleryPage({ params }: { params?: any }) {
   const allImages = Array.from(new Set([
     ...(media.clinicImages || []),
     ...(media.otherImages || []),
+    ...fbImages,
   ].filter((img: string) => {
     if (!img) return false;
     // Remove /api/media paths (broken) and keep only local /images/ paths

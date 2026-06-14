@@ -8,10 +8,38 @@ import {
   getServiceImage,
 } from "@/lib/interiorContent";
 import ServicesClient from "./ServicesClient";
+import type { Metadata } from 'next';
 
 type PageProps = {
   params?: any;
 };
+
+export async function generateMetadata(): Promise<Metadata> {
+  const data = await readSourceConfig(undefined, 'template4');
+  const clinicName = data?.clinic?.name || "360 Degree Interior";
+  const desc = "Discover our comprehensive interior services in Chennai: Residential Design, Modular Kitchens, Living Room Styling, and Custom Furniture.";
+
+  return {
+    title: `Our Services | Design & Custom Joinery Execution | ${clinicName}`,
+    description: desc,
+    keywords: [
+      "Interior Services Chennai",
+      "Residential Interior Design",
+      "Modular Kitchen Design",
+      "Living Room Styling",
+      "Bedroom Makeovers",
+      "Custom Joinery Sourcing",
+      clinicName
+    ],
+    openGraph: {
+      title: `Our Services | Design & Custom Joinery Execution | ${clinicName}`,
+      description: desc,
+      type: "website",
+      locale: "en_IN",
+      siteName: clinicName,
+    },
+  };
+}
 
 export default async function ServicesPage({ params }: PageProps) {
   const slug = ''; // standalone: slug not needed for data loading

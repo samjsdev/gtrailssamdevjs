@@ -52,6 +52,7 @@ export default function ProjectsSection({ projects }: ProjectsSectionProps) {
           return (
             <div
               key={project.id}
+              id={`project-card-${project.id}`}
               onClick={() => openProjectPopup(project.id)}
               className="group relative cursor-pointer overflow-hidden border border-stone-200 bg-white transition-all duration-500 hover:border-stone-400 hover:shadow-xl flex flex-col"
             >
@@ -77,9 +78,9 @@ export default function ProjectsSection({ projects }: ProjectsSectionProps) {
                       {project.category}
                     </span>
                   </div>
-                  <h3 className="text-lg font-light text-stone-900 tracking-wide group-hover:text-stone-700 transition-colors">
+                  <h2 className="text-lg font-light text-stone-900 tracking-wide group-hover:text-stone-700 transition-colors">
                     {project.name}
-                  </h3>
+                  </h2>
                   <p className="text-xs text-stone-500 font-light leading-relaxed">
                     {project.description}
                   </p>
@@ -115,6 +116,7 @@ export default function ProjectsSection({ projects }: ProjectsSectionProps) {
             
             {/* Close Button */}
             <button
+              id="project-modal-close"
               onClick={closeProjectPopup}
               className="text-white/60 hover:text-white text-xs uppercase tracking-widest font-bold flex items-center gap-2 border border-white/20 rounded-full px-4 py-2 hover:bg-white/5 transition-colors"
             >
@@ -130,6 +132,7 @@ export default function ProjectsSection({ projects }: ProjectsSectionProps) {
             
             {/* Prev Navigation Button */}
             <button
+              id="project-modal-prev"
               onClick={(e) => { e.stopPropagation(); goPrev(); }}
               className="absolute left-4 md:left-8 top-1/2 -translate-y-1/2 text-white/50 hover:text-white border border-white/20 rounded-full w-12 h-12 flex items-center justify-center hover:bg-white/10 transition-colors z-20"
             >
@@ -149,6 +152,7 @@ export default function ProjectsSection({ projects }: ProjectsSectionProps) {
 
             {/* Next Navigation Button */}
             <button
+              id="project-modal-next"
               onClick={(e) => { e.stopPropagation(); goNext(); }}
               className="absolute right-4 md:right-8 top-1/2 -translate-y-1/2 text-white/50 hover:text-white border border-white/20 rounded-full w-12 h-12 flex items-center justify-center hover:bg-white/10 transition-colors z-20"
             >
@@ -166,6 +170,7 @@ export default function ProjectsSection({ projects }: ProjectsSectionProps) {
             {currentImages.map((imgSrc, idx) => (
               <button
                 key={idx}
+                id={`project-modal-thumbnail-${idx}`}
                 onClick={() => setActiveImageIdx(idx)}
                 className={`relative w-16 h-12 flex-shrink-0 border overflow-hidden transition-all duration-300 ${
                   activeImageIdx === idx ? "border-white scale-105" : "border-white/20 opacity-50 hover:opacity-100"

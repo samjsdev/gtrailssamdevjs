@@ -15,53 +15,28 @@ type GalleryGridProps = {
 };
 
 export default function GalleryGrid({ items }: GalleryGridProps) {
-  const [activeTab, setActiveTab] = useState<string>("All");
   const [lightboxIdx, setLightboxIdx] = useState<number | null>(null);
-
-  const categories = ["All", "Residential", "Commercial", "Studio & Process"];
-
-  const filteredItems = activeTab === "All"
-    ? items
-    : items.filter(item => item.cat.toLowerCase() === activeTab.toLowerCase() || (activeTab === "Studio & Process" && item.cat.includes("Studio")));
 
   const openLightbox = useCallback((idx: number) => setLightboxIdx(idx), []);
   const closeLightbox = useCallback(() => setLightboxIdx(null), []);
 
   const goNext = useCallback(() => {
     if (lightboxIdx === null) return;
-    setLightboxIdx((lightboxIdx + 1) % filteredItems.length);
-  }, [lightboxIdx, filteredItems.length]);
+    setLightboxIdx((lightboxIdx + 1) % items.length);
+  }, [lightboxIdx, items.length]);
 
   const goPrev = useCallback(() => {
     if (lightboxIdx === null) return;
-    setLightboxIdx((lightboxIdx - 1 + filteredItems.length) % filteredItems.length);
-  }, [lightboxIdx, filteredItems.length]);
+    setLightboxIdx((lightboxIdx - 1 + items.length) % items.length);
+  }, [lightboxIdx, items.length]);
 
-  const lightboxItem = lightboxIdx !== null ? filteredItems[lightboxIdx] : null;
+  const lightboxItem = lightboxIdx !== null ? items[lightboxIdx] : null;
 
   return (
     <div className="space-y-12">
-      {/* FILTER TABS */}
-      <div className="flex flex-wrap justify-center gap-6 text-[10px] uppercase tracking-[0.25em] font-semibold border-b border-stone-200 pb-6 max-w-2xl mx-auto">
-        {categories.map((cat) => (
-          <button
-            key={cat}
-            onClick={() => setActiveTab(cat)}
-            className={`relative py-2 transition-colors duration-300 ${
-              activeTab === cat ? "text-stone-900" : "text-stone-400 hover:text-stone-600"
-            }`}
-          >
-            {cat}
-            {activeTab === cat && (
-              <span className="absolute bottom-0 left-0 w-full h-[1px] bg-stone-900 animate-fade-in" />
-            )}
-          </button>
-        ))}
-      </div>
-
       {/* UNIFORM GRID */}
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6" data-gsap="gallery-grid">
-        {filteredItems.map((item, idx) => (
+        {items.map((item, idx) => (
           <div
             key={idx}
             onClick={() => openLightbox(idx)}
@@ -136,7 +111,7 @@ export default function GalleryGrid({ items }: GalleryGridProps) {
             <div className="text-center mt-4 space-y-1">
               <p className="text-white/80 text-sm font-light">{lightboxItem.title}</p>
               <p className="text-white/40 text-[10px] uppercase tracking-widest font-bold">
-                {lightboxIdx !== null ? lightboxIdx + 1 : 0} / {filteredItems.length} — {lightboxItem.cat}
+                {lightboxIdx !== null ? lightboxIdx + 1 : 0} / {items.length} — {lightboxItem.cat}
               </p>
             </div>
           </div>

@@ -28,6 +28,9 @@ export default function ServicesClient({ servicesList }: { servicesList: Service
             >
               {/* Image Container */}
               <div
+                id={`service-image-zoom-${idx}`}
+                role="button"
+                aria-label={`Zoom in on ${srv.title} project image`}
                 className="w-full lg:w-1/2 aspect-[4/3] border border-stone-250 overflow-hidden relative group cursor-zoom-in bg-stone-100 flex-shrink-0"
                 onClick={() => setLightboxImg(srv.image)}
               >
@@ -50,9 +53,9 @@ export default function ServicesClient({ servicesList }: { servicesList: Service
                       {srv.tagline}
                     </span>
                   </div>
-                  <h3 className="text-2xl md:text-3xl font-light text-stone-900 leading-snug">
+                  <h2 className="text-2xl md:text-3xl font-light text-stone-900 leading-snug">
                     {srv.title}
-                  </h3>
+                  </h2>
                   <p className="text-stone-500 font-light text-sm leading-relaxed">
                     {srv.description}
                   </p>
@@ -62,9 +65,9 @@ export default function ServicesClient({ servicesList }: { servicesList: Service
                   {/* Highlights/Benefits */}
                   {srv.benefits.length > 0 && (
                     <div>
-                      <h4 className="text-[9px] font-bold text-stone-400 uppercase tracking-widest mb-3">
+                      <h3 className="text-[9px] font-bold text-stone-400 uppercase tracking-widest mb-3">
                         Key Highlights
-                      </h4>
+                      </h3>
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-2">
                         {srv.benefits.map((feat, fidx) => (
                           <div key={fidx} className="flex items-center gap-2 text-xs text-stone-700 font-light">
@@ -79,9 +82,9 @@ export default function ServicesClient({ servicesList }: { servicesList: Service
                   {/* Execution Process */}
                   {srv.process.length > 0 && (
                     <div>
-                      <h4 className="text-[9px] font-bold text-stone-400 uppercase tracking-widest mb-3">
+                      <h3 className="text-[9px] font-bold text-stone-400 uppercase tracking-widest mb-3">
                         Design & Delivery Process
-                      </h4>
+                      </h3>
                       <ol className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-3">
                         {srv.process.map((step, sidx) => (
                           <li key={sidx} className="text-xs text-stone-600 font-light flex gap-2">
@@ -136,6 +139,7 @@ export default function ServicesClient({ servicesList }: { servicesList: Service
           onClick={() => setLightboxImg(null)}
         >
           <button
+            id="service-lightbox-close"
             onClick={() => setLightboxImg(null)}
             className="absolute top-6 right-6 text-white/60 hover:text-white text-xs uppercase tracking-widest font-bold flex items-center gap-2 border border-white/20 rounded-full px-4 py-2 hover:bg-white/5 transition-colors"
           >
