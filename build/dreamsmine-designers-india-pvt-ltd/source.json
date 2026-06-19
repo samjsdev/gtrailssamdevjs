@@ -1,0 +1,71 @@
+{
+  "clinic": {
+    "name": "Dreamsmine Designers",
+    "slug": "dreamsmine-designers-india-pvt-ltd",
+    "tagline": "Thoughtful Interiors for Everyday Living",
+    "description": "Welcome to Dreamsmine Designers India Pvt Ltd. We create refined, functional interiors tailored to your lifestyle, budget, and space.",
+    "address": {
+      "full": "Pallavaram Kundrathur Main Road, 3rd, 4th Main Rd, Samaya Puram, Chennai, Tamil Nadu 600128",
+      "area": "",
+      "city": "Samaya Puram",
+      "state": "Chennai",
+      "country": "India"
+    },
+    "contact": {
+      "phone": "09176600046",
+      "website": ""
+    },
+    "mapEmbedUrl": "https://maps.google.com/maps?q=Dreamsmine%20Designers%20India%20Pvt%20Ltd%20Pallavaram%20Kundrathur%20Main%20Road%2C%203rd%2C%204th%20Main%20Rd%2C%20Samaya%20Puram%2C%20Chennai%2C%20Tamil%20Nadu%20600128&output=embed"
+  },
+  "business": {
+    "rating": "3.0",
+    "reviewCount": "",
+    "timings": [],
+    "services": [
+      "Residential Interior Design",
+      "Modular Kitchen Design",
+      "Living Room Styling",
+      "Bedroom Makeovers",
+      "Space Planning",
+      "Custom Furniture"
+    ],
+    "highlights": [
+      "Personalized design concepts",
+      "Material and finish guidance",
+      "Transparent project planning",
+      "End-to-end execution support"
+    ]
+  },
+  "doctor": {
+    "name": "Dreamsmine Studio Team",
+    "images": [],
+    "experience": "5+ years",
+    "specialization": "Interior Design & Turnkey Execution"
+  },
+  "reviews": [],
+  "media": {
+    "clinicImages": [
+      "/images/clinicImages-1.jpg",
+      "/images/clinicImages-2.jpg",
+      "/images/clinicImages-3.jpg",
+      "/images/clinicImages-4.jpg"
+    ],
+    "treatmentImages": [
+      "/images/treatmentImages-1.jpg",
+      "/images/treatmentImages-2.jpg",
+      "/images/treatmentImages-3.jpg",
+      "/images/treatmentImages-4.jpg"
+    ],
+    "otherImages": []
+  },
+  "overrides": {
+    "doctorName": "",
+    "doctorImages": [],
+    "extraImages": []
+  },
+  "meta": {
+    "generatedAt": "2026-06-19T12:36:59.831Z",
+    "source": "google_maps"
+  },
+  "selected_template": "template1"
+}

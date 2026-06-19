@@ -1,0 +1,176 @@
+{
+  "clinic": {
+    "name": "SKETCHLAB",
+    "slug": "sketchlab-interior-designers-in-pallikaranai-for-modular-kitchen-commercial-interiors-office-interior-designers",
+    "tagline": "Thoughtful Interiors for Everyday Living",
+    "description": "Welcome to SKETCHLAB | Interior Designers in Pallikaranai for Modular Kitchen, Commercial Interiors, Office Interior Designers... We create refined, functional interiors tailored to your lifestyle, budget, and space.",
+    "address": {
+      "full": "1/20, Anna Street, Velachery - Tambaram Main Rd, Pallikaranai, Chennai, Tamil Nadu 600100",
+      "area": "",
+      "city": "Pallikaranai",
+      "state": "Chennai",
+      "country": "India"
+    },
+    "contact": {
+      "phone": "+91 95787 84758",
+      "website": ""
+    },
+    "mapEmbedUrl": "https://maps.google.com/maps?q=SKETCHLAB%20%7C%20Interior%20Designers%20in%20Pallikaranai%20for%20Modular%20Kitchen%2C%20Commercial%20Interiors%2C%20Office%20Interior%20Designers..%201%2F20%2C%20Anna%20Street%2C%20Velachery%20-%20Tambaram%20Main%20Rd%2C%20Pallikaranai%2C%20Chennai%2C%20Tamil%20Nadu%20600100&output=embed"
+  },
+  "business": {
+    "rating": "5.0",
+    "reviewCount": "",
+    "timings": [],
+    "services": [
+      "Residential Interior Design",
+      "Modular Kitchen Design",
+      "Living Room Styling",
+      "Bedroom Makeovers",
+      "Space Planning",
+      "Custom Furniture"
+    ],
+    "highlights": [
+      "Personalized design concepts",
+      "Material and finish guidance",
+      "Transparent project planning",
+      "End-to-end execution support"
+    ]
+  },
+  "doctor": {
+    "name": "SKETCHLAB Studio Team",
+    "images": [],
+    "experience": "5+ years",
+    "specialization": "Interior Design & Turnkey Execution"
+  },
+  "reviews": [],
+  "media": {
+    "clinicImages": [
+      "/images/clinicImages-1.jpg",
+      "/images/clinicImages-2.jpg",
+      "/images/clinicImages-3.jpg",
+      "/images/clinicImages-4.jpg"
+    ],
+    "treatmentImages": [
+      "/images/treatmentImages-1.jpg",
+      "/images/treatmentImages-2.jpg",
+      "/images/treatmentImages-3.jpg",
+      "/images/treatmentImages-4.jpg"
+    ],
+    "otherImages": [
+      "/images/otherImages-1.jpg",
+      "/images/otherImages-2.jpg",
+      "/images/otherImages-3.jpg",
+      "/images/otherImages-4.jpg",
+      "/images/otherImages-5.jpg",
+      "/images/otherImages-6.jpg",
+      "/images/otherImages-7.jpg",
+      "/images/otherImages-8.jpg",
+      "/images/otherImages-9.jpg",
+      "/images/otherImages-10.jpg",
+      "/images/otherImages-11.jpg",
+      "/images/otherImages-12.jpg",
+      "/images/otherImages-13.jpg",
+      "/images/otherImages-14.jpg",
+      "/images/otherImages-15.jpg",
+      "/images/otherImages-16.jpg",
+      "/images/otherImages-17.jpg",
+      "/images/otherImages-18.jpg",
+      "/images/otherImages-19.jpg",
+      "/images/otherImages-20.jpg",
+      "/images/otherImages-21.jpg",
+      "/images/otherImages-22.jpg",
+      "/images/otherImages-23.jpg",
+      "/images/otherImages-24.jpg",
+      "/images/otherImages-25.jpg",
+      "/images/otherImages-26.jpg",
+      "/images/otherImages-27.jpg",
+      "/images/otherImages-28.jpg",
+      "/images/otherImages-29.jpg",
+      "/images/otherImages-30.jpg",
+      "/images/otherImages-31.jpg",
+      "/images/otherImages-32.jpg",
+      "/images/otherImages-33.jpg",
+      "/images/otherImages-34.jpg",
+      "/images/otherImages-35.jpg",
+      "/images/otherImages-36.jpg",
+      "/images/otherImages-37.jpg",
+      "/images/otherImages-38.jpg",
+      "/images/otherImages-39.jpg",
+      "/images/otherImages-40.jpg",
+      "/images/otherImages-41.jpg",
+      "/images/otherImages-42.jpg",
+      "/images/otherImages-43.jpg",
+      "/images/otherImages-44.jpg",
+      "/images/otherImages-45.jpg"
+    ]
+  },
+  "overrides": {
+    "doctorName": "",
+    "doctorImages": [],
+    "extraImages": []
+  },
+  "meta": {
+    "generatedAt": "2026-06-03T03:10:59.806Z",
+    "source": "google_maps"
+  },
+  "templateOverrides": {
+    "template4": {
+      "media": {
+        "otherImages": [
+          "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/0710ce332c82fec2f3b5c798b6e501ff/view?project=6a1cf32a002c668912cc",
+          "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/387d2f89651079c1c5cdefcd87745806/view?project=6a1cf32a002c668912cc",
+          "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/8dbe9e067a265060714f258bceef3bcc/view?project=6a1cf32a002c668912cc",
+          "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/c22ed8df34f90178be888d5a77b1bfa9/view?project=6a1cf32a002c668912cc",
+          "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/8c6662419f07762a4cd774a412b3ff3d/view?project=6a1cf32a002c668912cc",
+          "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/6000a40846e035a537aa1f80091eacc8/view?project=6a1cf32a002c668912cc",
+          "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/61eca5cb98d0d2e7a70ae349e0e0e030/view?project=6a1cf32a002c668912cc",
+          "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/cb01218257f07c1cec6a932a40ee7bdd/view?project=6a1cf32a002c668912cc",
+          "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/642d6dc9dd97eb787a45e8035cc61f4e/view?project=6a1cf32a002c668912cc",
+          "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/67e8f4ce0d2ebd8efcd8ae9a9e3f558e/view?project=6a1cf32a002c668912cc",
+          "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/b30e525221f5bfa5a62c920f85535d42/view?project=6a1cf32a002c668912cc",
+          "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/4a4f3423ef4ef9f2fa27b90e923ff5dc/view?project=6a1cf32a002c668912cc",
+          "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/94abf067dd521eef3b286368bc8b7853/view?project=6a1cf32a002c668912cc",
+          "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/544502acbb53893d52e66c316569fda9/view?project=6a1cf32a002c668912cc",
+          "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/71d79f6719bf2f1766f10971720071ba/view?project=6a1cf32a002c668912cc",
+          "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/e2dd16756b539f2459a2c2f22bc3ff0a/view?project=6a1cf32a002c668912cc",
+          "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/7f96eb90e49841de318d58f2d800fa30/view?project=6a1cf32a002c668912cc",
+          "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/d6801f155ca450cdc01f47043cb12f5d/view?project=6a1cf32a002c668912cc",
+          "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/42a3831a40fe253455465f974cd04c74/view?project=6a1cf32a002c668912cc",
+          "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/759ce7ca05e563b2fd322ffb25a304d9/view?project=6a1cf32a002c668912cc",
+          "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/74a8ede15ad9e981cd6a22f281dcfa7b/view?project=6a1cf32a002c668912cc",
+          "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/4a4f3423ef4ef9f2fa27b90e923ff5dc/view?project=6a1cf32a002c668912cc",
+          "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/5e5e75bc0c904cfbc208ea742b4e28a3/view?project=6a1cf32a002c668912cc",
+          "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/61eca5cb98d0d2e7a70ae349e0e0e030/view?project=6a1cf32a002c668912cc",
+          "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/7955a6c1f7f9f501d93f9aa6088abb2b/view?project=6a1cf32a002c668912cc",
+          "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/3a672e260e2c00a2064686053d6c4d0a/view?project=6a1cf32a002c668912cc",
+          "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/e85ec2bfe38b51cb0a1b083b2ff1d8e7/view?project=6a1cf32a002c668912cc",
+          "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/8481bfa6c9501669845ccf41bcbcb154/view?project=6a1cf32a002c668912cc",
+          "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/5ebf6385752a6b71f96c0d4c152339ba/view?project=6a1cf32a002c668912cc",
+          "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/5444466cca65edc77c614b4161a9c9c9/view?project=6a1cf32a002c668912cc",
+          "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/e1f4c05358834d1410dec9375fb3b5c4/view?project=6a1cf32a002c668912cc",
+          "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/bb04653c14d7c08a295d52126c823c7d/view?project=6a1cf32a002c668912cc",
+          "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/8525dbd35eb8d456672b13374ddac91e/view?project=6a1cf32a002c668912cc",
+          "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/41874b9a7a357e8f8a1e3ef7c8bd76fd/view?project=6a1cf32a002c668912cc",
+          "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/87d8c9672671d5786b4340cbcc6e127a/view?project=6a1cf32a002c668912cc",
+          "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/ce00bbcc6d32fc2f974ca68d6035a5b2/view?project=6a1cf32a002c668912cc",
+          "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/67e8f4ce0d2ebd8efcd8ae9a9e3f558e/view?project=6a1cf32a002c668912cc",
+          "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/53d35c96707234ce30b7bc41e24e4b35/view?project=6a1cf32a002c668912cc",
+          "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/c5ce1f864a6e98216aba936d268e7685/view?project=6a1cf32a002c668912cc",
+          "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/9274c482e0e48d33a93319ec5f3fe9de/view?project=6a1cf32a002c668912cc",
+          "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/a894756fe79e212023e5a28eae7dbbdd/view?project=6a1cf32a002c668912cc",
+          "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/35f1eac7efc623cecddc8232f6e5a302/view?project=6a1cf32a002c668912cc",
+          "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/629dfbc50fcb73bd59232f6dc958b220/view?project=6a1cf32a002c668912cc",
+          "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/853807a20843783c18102d3405ac6510/view?project=6a1cf32a002c668912cc",
+          "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/6998af69a71d6fea280e37cd7e653f64/view?project=6a1cf32a002c668912cc"
+        ],
+        "clinicImages": [
+          "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/dcdd018aaebea17ad5dbe814707fb1d3/view?project=6a1cf32a002c668912cc",
+          "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/1a145adae5a0d6988b82b4f10176a24c/view?project=6a1cf32a002c668912cc",
+          "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/73e827119112c0f113d0a6bd3522fb81/view?project=6a1cf32a002c668912cc",
+          "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/aa617493e79db64e35018a1327a3b6b4/view?project=6a1cf32a002c668912cc"
+        ]
+      }
+    }
+  },
+  "selected_template": "template2"
+}

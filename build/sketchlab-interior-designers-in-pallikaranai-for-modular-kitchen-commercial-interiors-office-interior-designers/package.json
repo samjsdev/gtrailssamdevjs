@@ -1,0 +1,10 @@
+{
+  "name": "sketchlab-interior-designers-in-pallikaranai-for-modular-kitchen-commercial-interiors-office-interior-designers",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start"
+  }
+}
