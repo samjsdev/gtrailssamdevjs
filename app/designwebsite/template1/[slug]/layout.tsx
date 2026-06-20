@@ -6,21 +6,14 @@ import {
 import Link from 'next/link';
 import { ReactNode } from 'react';
 import { cleanClinicName, cleanClinicDescription } from '@/lib/copyCleaner';
-import { Cormorant_Garamond, Plus_Jakarta_Sans } from 'next/font/google';
+import { Jost } from 'next/font/google';
 import ClientHeader from './ClientHeader';
+import SmoothScrollProvider from '@/components/SmoothScrollProvider';
 
-const cormorant = Cormorant_Garamond({
+const jost = Jost({
   subsets: ['latin'],
   display: 'swap',
-  variable: '--font-cormorant',
-  weight: ['300', '400', '500', '600', '700'],
-  style: ['normal', 'italic'],
-});
-
-const jakarta = Plus_Jakarta_Sans({
-  subsets: ['latin'],
-  display: 'swap',
-  variable: '--font-jakarta',
+  variable: '--font-jost',
   weight: ['300', '400', '500', '600', '700', '800'],
 });
 
@@ -51,7 +44,8 @@ export default async function DesignStudioLayout({ children, params }: LayoutPro
   const cleanDesc = cleanClinicDescription(clinic.description, clinic.name);
 
   return (
-    <div className={`${cormorant.variable} ${jakarta.variable} min-h-screen bg-[#FCFAF6] font-sans text-[#0A0A0A] selection:bg-[#C1FF72] selection:text-[#0A0A0A] scroll-smooth flex flex-col`}>
+    <div className={`${jost.variable} min-h-screen bg-[#FAF9F6] font-sans text-[#121212] selection:bg-[#D4AF37] selection:text-[#FAF9F6] scroll-smooth flex flex-col`}>
+      <SmoothScrollProvider>
       {/* Top Info Bar */}
       <div className="bg-[#0A0A0A] text-[#FCFAF6]/80 py-3 px-8 text-[11px] font-bold uppercase tracking-widest border-b border-[#FCFAF6]/10 relative z-50">
         <div className="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-3 sm:gap-0">
@@ -187,6 +181,7 @@ export default async function DesignStudioLayout({ children, params }: LayoutPro
           </a>
         );
       })()}
+      </SmoothScrollProvider>
     </div>
   );
 }

@@ -2,91 +2,84 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-import { Menu, X, Phone } from 'lucide-react';
+import { Menu, Phone, X } from 'lucide-react';
 
-interface ClientHeaderProps {
+type ClientHeaderProps = {
   clinicName: string;
   basePath: string;
   phone: string;
-}
+};
+
+const links = [
+  { label: 'Home', href: '/' },
+  { label: 'Services', href: '/services' },
+  { label: 'About Us', href: '/about' },
+  { label: 'Works', href: '/gallery' },
+  { label: 'Contact', href: '/contact' },
+];
 
 export default function ClientHeader({ clinicName, basePath, phone }: ClientHeaderProps) {
-  const [isOpen, setIsOpen] = useState(false);
-
-  const toggleMenu = () => setIsOpen(!isOpen);
-  const closeMenu = () => setIsOpen(false);
+  const [open, setOpen] = useState(false);
 
   return (
-    <>
-      <header className="sticky top-0 z-40 bg-[#FCFAF6]/95 backdrop-blur-md border-b border-[#0A0A0A]/5 transition-all duration-300">
-        <div className="max-w-7xl mx-auto px-8 h-24 flex justify-between items-center relative">
-          <Link href={basePath} className="leading-none group z-50">
-            <h1 className="text-xl font-extrabold tracking-widest text-[#0A0A0A] uppercase transition-all group-hover:text-[#0A0A0A]/70 flex items-center gap-2">
-              <span>{clinicName || 'Studio Name'}</span>
-              <span className="w-1.5 h-1.5 rounded-full bg-[#C1FF72] animate-pulse"></span>
-            </h1>
+    <header className="sticky top-0 z-50 border-b border-[var(--line)] bg-[rgba(244,240,231,0.92)] backdrop-blur-xl">
+      <div className="site-grid grid min-h-[72px] grid-cols-[1fr_auto] items-center gap-4 py-3 lg:grid-cols-[1fr_auto_auto]">
+        <Link href={basePath || '/'} onClick={() => setOpen(false)} className="min-w-0 border-l-4 border-[var(--ink)] pl-3">
+          <span className="block truncate text-sm font-black uppercase tracking-[0.18em] md:text-base">{clinicName}</span>
+          <span className="block text-[0.62rem] font-black uppercase tracking-[0.22em] text-[var(--steel)]">
+            Architecture / Civil / Interiors
+          </span>
+        </Link>
+
+        <nav className="hidden items-center border-x border-[var(--line)] lg:flex">
+          {links.map((link) => (
+            <Link
+              key={link.label}
+              href={`${basePath}${link.href}`}
+              className="border-r border-[var(--line)] px-5 py-4 text-[0.68rem] font-black uppercase tracking-[0.2em] text-black/62 transition last:border-r-0 hover:bg-[var(--ink)] hover:text-white"
+            >
+              {link.label}
+            </Link>
+          ))}
+        </nav>
+
+        <div className="hidden items-center gap-2 md:flex">
+          {phone ? (
+            <a href={`tel:${phone}`} className="btn-line">
+              <Phone className="h-4 w-4" />
+              Call
+            </a>
+          ) : null}
+          <Link href={`${basePath}/contact`} className="btn-solid">
+            Start Brief
           </Link>
-          
-          {/* Desktop Nav Links */}
-          <nav className="hidden lg:flex items-center gap-10 font-bold text-[11px] uppercase tracking-[0.25em]">
-            <Link href={basePath} className="text-[#0A0A0A]/70 hover:text-[#0A0A0A] transition-colors relative py-2 after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2 after:w-0 after:h-[1.5px] hover:after:w-4 after:bg-[#C1FF72] after:transition-all">Home</Link>
-            <Link href={`${basePath}/services`} className="text-[#0A0A0A]/70 hover:text-[#0A0A0A] transition-colors relative py-2 after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2 after:w-0 after:h-[1.5px] hover:after:w-4 after:bg-[#C1FF72] after:transition-all">Services</Link>
-            <Link href={`${basePath}/about`} className="text-[#0A0A0A]/70 hover:text-[#0A0A0A] transition-colors relative py-2 after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2 after:w-0 after:h-[1.5px] hover:after:w-4 after:bg-[#C1FF72] after:transition-all">About Us</Link>
-            <Link href={`${basePath}/gallery`} className="text-[#0A0A0A]/70 hover:text-[#0A0A0A] transition-colors relative py-2 after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2 after:w-0 after:h-[1.5px] hover:after:w-4 after:bg-[#C1FF72] after:transition-all">Gallery</Link>
-            <Link href={`${basePath}/contact`} className="text-[#0A0A0A]/70 hover:text-[#0A0A0A] transition-colors relative py-2 after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2 after:w-0 after:h-[1.5px] hover:after:w-4 after:bg-[#C1FF72] after:transition-all">Contact</Link>
-          </nav>
-
-          <div className="flex items-center gap-4">
-            {/* Desktop CTA Button */}
-            <Link href={`${basePath}/contact`} className="hidden md:flex items-center gap-2 bg-[#0A0A0A] text-[#FCFAF6] px-8 py-3.5 rounded-full font-bold text-[11px] tracking-[0.2em] uppercase hover:bg-transparent hover:text-[#0A0A0A] transition-all duration-500 shadow-sm border border-[#0A0A0A]">
-              Book Consultation
-            </Link>
-
-            {/* Mobile Hamburger toggle */}
-            <button
-              onClick={toggleMenu}
-              aria-label="Toggle Navigation Menu"
-              className="lg:hidden w-11 h-11 rounded-full bg-[#0A0A0A] text-[#FCFAF6] flex items-center justify-center hover:bg-[#C1FF72] hover:text-[#0A0A0A] transition-all duration-300 active:scale-95 focus:outline-none z-50 border border-[#0A0A0A]"
-            >
-              {isOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
-            </button>
-          </div>
         </div>
 
-        {/* Mobile Navigation Panel */}
-        <div 
-          className={`lg:hidden absolute top-24 left-0 right-0 bg-[#FCFAF6]/98 backdrop-blur-md border-b border-[#0A0A0A]/5 px-8 py-8 shadow-2xl transition-all duration-500 ease-in-out origin-top z-40 overflow-hidden ${
-            isOpen ? 'opacity-100 scale-100 pointer-events-auto' : 'opacity-0 scale-95 pointer-events-none'
-          }`}
+        <button
+          type="button"
+          onClick={() => setOpen((value) => !value)}
+          className="grid h-11 w-11 place-items-center border border-[var(--line-strong)] bg-[var(--white)] lg:hidden"
+          aria-expanded={open}
+          aria-label="Toggle navigation"
         >
-          <nav className="flex flex-col gap-6 text-left font-bold text-xs uppercase tracking-[0.2em] py-4">
-            <Link href={basePath} onClick={closeMenu} className="py-2 hover:text-[#C1FF72] hover:translate-x-1 transition-all border-b border-[#0A0A0A]/5 text-[#0A0A0A]">Home</Link>
-            <Link href={`${basePath}/services`} onClick={closeMenu} className="py-2 hover:text-[#C1FF72] hover:translate-x-1 transition-all border-b border-[#0A0A0A]/5 text-[#0A0A0A]">Our Services</Link>
-            <Link href={`${basePath}/about`} onClick={closeMenu} className="py-2 hover:text-[#C1FF72] hover:translate-x-1 transition-all border-b border-[#0A0A0A]/5 text-[#0A0A0A]">About Us</Link>
-            <Link href={`${basePath}/gallery`} onClick={closeMenu} className="py-2 hover:text-[#C1FF72] hover:translate-x-1 transition-all border-b border-[#0A0A0A]/5 text-[#0A0A0A]">Portfolio Gallery</Link>
-            <Link href={`${basePath}/contact`} onClick={closeMenu} className="py-2 hover:text-[#C1FF72] hover:translate-x-1 transition-all border-b border-[#0A0A0A]/5 text-[#0A0A0A]">Contact Us</Link>
-          </nav>
+          {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+        </button>
+      </div>
 
-          <div className="flex flex-col gap-4 mt-6 pt-6 border-t border-[#0A0A0A]/5">
-            {phone && (
-              <a 
-                href={`tel:${phone}`} 
-                onClick={closeMenu} 
-                className="flex items-center justify-center gap-2 text-xs font-bold uppercase tracking-wider py-3 rounded-full bg-[#0A0A0A]/5 border border-[#0A0A0A]/10 hover:bg-[#C1FF72] hover:text-[#0A0A0A] hover:border-[#C1FF72] transition-all duration-300 text-[#0A0A0A]"
-              >
-                <Phone className="w-3.5 h-3.5" /> Call Studio
-              </a>
-            )}
-            <Link 
-              href={`${basePath}/contact`} 
-              onClick={closeMenu} 
-              className="flex items-center justify-center gap-2 bg-[#0A0A0A] text-[#FCFAF6] py-3.5 rounded-full font-bold uppercase tracking-widest text-[10px] hover:bg-[#C1FF72] hover:text-[#0A0A0A] border border-[#0A0A0A] transition-all duration-300 shadow-sm"
+      <div className={`overflow-hidden border-t border-[var(--line)] bg-[var(--paper)] transition-[max-height,opacity] duration-300 lg:hidden ${open ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'}`}>
+        <div className="site-grid grid gap-2 py-3">
+          {links.map((link) => (
+            <Link
+              key={link.label}
+              href={`${basePath}${link.href}`}
+              onClick={() => setOpen(false)}
+              className="border border-[var(--line)] bg-[var(--white)] px-4 py-4 text-sm font-black uppercase tracking-[0.12em]"
             >
-              Book Consultation
+              {link.label}
             </Link>
-          </div>
+          ))}
         </div>
-      </header>
-    </>
+      </div>
+    </header>
   );
 }

@@ -5,8 +5,10 @@ import {
 } from 'lucide-react';
 import Link from 'next/link';
 import ClientHero from './ClientHero';
+import BrandsMarquee from './BrandsMarquee';
+import ServicesSlider from './ServicesSlider';
+import ProjectsSlider from './ProjectsSlider';
 import WhyChooseUs from './WhyChooseUs';
-import HomeServices from './HomeServices';
 import HomeAbout from './HomeAbout';
 import ReviewsSlider from '@/components/ReviewsSlider';
 import { cleanClinicName, cleanClinicDescription } from '@/lib/copyCleaner';
@@ -84,16 +86,19 @@ export default async function DesignStudioHome({ params }: PageProps) {
   return (
     <div className="font-sans text-[#0A0A0A] bg-[#FCFAF6] min-h-screen selection:bg-[#C1FF72] selection:text-[#0A0A0A] scroll-smooth">
       {/* HERO SECTION */}
-      <ClientHero clinic={cleanedClinic} business={business} basePath={basePath} heroImage={heroImage} />
+      <ClientHero clinic={cleanedClinic} business={business} basePath={basePath} />
+
+      {/* BRANDS MARQUEE */}
+      <BrandsMarquee />
+
+      {/* SERVICES SLIDER */}
+      <ServicesSlider />
+
+      {/* PROJECTS SLIDER */}
+      <ProjectsSlider />
 
       {/* WHY CHOOSE US */}
       <WhyChooseUs basePath={basePath} data={data} />
-
-      {/* SERVICES SECTION */}
-      <HomeServices
-        basePath={basePath}
-        services={previewServices}
-      />
 
       {/* ABOUT US SECTION */}
       <HomeAbout

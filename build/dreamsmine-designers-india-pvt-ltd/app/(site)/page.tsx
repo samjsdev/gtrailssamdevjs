@@ -1,332 +1,315 @@
 import { readSourceConfig } from '@/lib/sourceData';
 import { notFound } from 'next/navigation';
-import { 
-  Star, ArrowRight, Quote, Plus, Minus, Phone, MapPin, Sparkles, HelpCircle 
-} from 'lucide-react';
 import Link from 'next/link';
-import ClientHero from './ClientHero';
-import WhyChooseUs from './WhyChooseUs';
-import HomeServices from './HomeServices';
-import HomeAbout from './HomeAbout';
-import ReviewsSlider from '@/components/ReviewsSlider';
-import { cleanClinicName, cleanClinicDescription } from '@/lib/copyCleaner';
+import Image from 'next/image';
+import { ArrowRight, CheckCircle2, DraftingCompass, HardHat, ShieldCheck } from 'lucide-react';
 import {
-  DEFAULT_INTERIOR_REVIEWS,
-  DEFAULT_INTERIOR_SERVICES,
-  INTERIOR_FAQS,
-  INTERIOR_GALLERY_PREVIEW,
-  INTERIOR_HERO_IMAGES,
-  getInteriorServiceSummary,
-  getInteriorServiceData,
-  getServiceImage,
-} from '@/lib/interiorContent';
+  elevationImages,
+  heroImages,
+  materialBrands,
+  processSteps,
+  servicePillars,
+  trustMarkers,
+  villaShowcase,
+  walkthroughVideos,
+  homePackageInclusions,
+  brandVideos,
+} from '@/lib/siteContent';
+import VerticalImageCarousel from './VerticalImageCarousel';
+import VideoSequence from './VideoSequence';
+import VerticalVideoCarousel from './VerticalVideoCarousel';
 
 type PageProps = {
-  params?: any;
+  params?: Promise<{ slug?: string }>;
 };
 
-export default async function DesignStudioHome({ params }: PageProps) {
-  const slug = ''; // standalone: slug not needed for data loading
-  const basePath = ``;
+const heroSlides = [
+  { src: heroImages[0], title: 'Turnkey duplex construction', label: 'Premium villa' },
+  { src: heroImages[1], title: 'Facade-led family homes', label: 'Exterior design' },
+  { src: heroImages[2], title: 'Built with site discipline', label: 'Civil execution' },
+  { src: heroImages[3], title: 'Vastu planned residences', label: 'Planning' },
+];
 
-  const data = await readSourceConfig(undefined, 'template1');
+export default async function HomePage({ params }: PageProps) {
+  const resolvedParams = params ? await params : {};
+  const data = await readSourceConfig(resolvedParams.slug, 'template1');
   if (!data) return notFound();
 
-  const { clinic, doctor, business, media } = data;
-  
-  // Apply copy cleaner to raw clinic variables
-  const cleanName = cleanClinicName(clinic.name);
-  const cleanDesc = cleanClinicDescription(clinic.description, clinic.name);
-  
-  const cleanedClinic = {
-    ...clinic,
-    name: cleanName,
-    description: cleanDesc
-  };
-
-  const heroImage = media.clinicImages?.[0] || INTERIOR_HERO_IMAGES.home;
-  const doctorImage = media.otherImages?.[0] || INTERIOR_HERO_IMAGES.designer;
-
-  const displayReviews = data.reviews && data.reviews.length > 0 ? data.reviews : DEFAULT_INTERIOR_REVIEWS;
-  const faqs = INTERIOR_FAQS;
-
-  const servicesList = business.services?.length
-    ? business.services
-    : DEFAULT_INTERIOR_SERVICES;
-
-  const allGalleryImages = [
-    ...(media.treatmentImages || []),
-    ...(media.otherImages || []),
-    ...(media.clinicImages || [])
-  ].filter(Boolean);
-
-  const previewServices = servicesList.slice(0, 3).map((svc: string, idx: number) => {
-    const svcData = getInteriorServiceData(svc);
-    const num = `0${idx + 1}`;
-    const img = getServiceImage(svc, media) || svcData?.image || "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&q=80&w=800";
-    const desc = svcData?.description || getInteriorServiceSummary(svc);
-    const highlights = svcData?.benefits?.slice(0, 3) || [
-      "Tactile custom finishes",
-      "Ergonomic space mapping",
-      "Line-item budget logging"
-    ];
-
-    return { num, title: svc, desc, img, highlights };
-  });
-  
-  const previewGallery = allGalleryImages.slice(0, 3);
-
-  const waPhone = clinic.contact?.phone?.replace(/\D/g, '') || '919751396117';
-  const waText = `Hi, I'm interested in booking a design consultation at ${cleanName || 'your studio'}!`;
-  const waLink = `https://wa.me/${waPhone}?text=${encodeURIComponent(waText)}`;
+  const { clinic, business, reviews } = data;
+  const basePath = '';
 
   return (
-    <div className="font-sans text-[#0A0A0A] bg-[#FCFAF6] min-h-screen selection:bg-[#C1FF72] selection:text-[#0A0A0A] scroll-smooth">
-      {/* HERO SECTION */}
-      <ClientHero clinic={cleanedClinic} business={business} basePath={basePath} heroImage={heroImage} />
-
-      {/* WHY CHOOSE US */}
-      <WhyChooseUs basePath={basePath} data={data} />
-
-      {/* SERVICES SECTION */}
-      <HomeServices
-        basePath={basePath}
-        services={previewServices}
-      />
-
-      {/* ABOUT US SECTION */}
-      <HomeAbout
-        basePath={basePath}
-        clinic={cleanedClinic}
-        doctor={doctor}
-        doctorImage={doctorImage}
-        homeAbout={data.homeAbout}
-      />
-
-      {/* PORTFOLIO GALLERY SECTION */}
-      <section id="gallery" className="py-28 lg:py-36 bg-[#FCFAF6] overflow-hidden relative border-t border-[#0A0A0A]/5">
-        {/* Subtle grid line */}
-        <div className="absolute left-[8%] top-0 w-px h-full bg-[#0A0A0A]/5 pointer-events-none"></div>
-        
-        <div className="max-w-[90rem] mx-auto px-8 w-full relative z-10">
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-10 mb-24">
-            <div className="space-y-6 max-w-2xl text-left">
-              <div className="inline-flex items-center gap-3">
-                <div className="w-8 h-px bg-[#0A0A0A]"></div>
-                <span className="text-[11px] font-bold tracking-[0.25em] uppercase text-[#0A0A0A]/70">Portfolio Preview</span>
+    <div>
+      <section className="border-b border-[var(--line)] bg-[var(--paper)] py-8">
+        <div className="site-grid">
+          <div className="grid gap-6 lg:grid-cols-[65fr_35fr] lg:items-stretch bg-[var(--paper)] p-4 sm:p-6 rounded-3xl border border-[var(--line-strong)] shadow-sm min-h-[75vh] lg:min-h-[85vh]">
+            <div className="grid content-between bg-[var(--white)] p-6 md:p-10 rounded-2xl border border-[var(--line)] shadow-sm">
+              <div>
+                <span className="eyebrow">CHENNAI DESIGN-BUILD COMPANY</span>
+                <h1 className="mt-5 max-w-5xl break-words text-[2.75rem] font-black uppercase leading-[0.86] tracking-[-0.065em] sm:text-6xl md:text-7xl">
+                  Infra Developers<br />And Interior Designers
+                </h1>
+                <h2 className="mt-5 text-xl font-black uppercase tracking-[-0.03em] text-[var(--oxide)] sm:text-2xl">
+                  Architecture, civil work and interiors
+                </h2>
+                <p className="mt-5 max-w-2xl text-base font-medium leading-7 text-black/68 md:text-lg md:leading-8">
+                  We are a Chennai-based design-build company for homeowners who want all key services managed by one accountable team.
+                </p>
               </div>
-              <h2 className="font-serif text-5xl lg:text-7xl font-light tracking-tight leading-[1.05] text-[#0A0A0A]">
-                Spaces with <br />
-                <span className="italic font-normal text-[#0A0A0A]/60">Character</span> <span className="text-[#C1FF72]">.</span>
-              </h2>
-            </div>
-            
-            <Link
-              href={`${basePath}/gallery`}
-              className="group inline-flex items-center gap-4 text-[#0A0A0A] font-bold tracking-[0.15em] uppercase text-[11px] hover:text-[#0A0A0A]/70 transition-colors shrink-0"
-            >
-              <span className="border-b border-[#0A0A0A]/20 hover:border-[#0A0A0A] pb-1 transition-colors">View Complete Archive</span>
-              <span className="w-9 h-9 rounded-full border border-[#0A0A0A] group-hover:bg-[#C1FF72] group-hover:border-[#C1FF72] flex items-center justify-center transition-all duration-300">
-                <ArrowRight className="w-3.5 h-3.5 text-[#0A0A0A] -rotate-45" />
-              </span>
-            </Link>
-          </div>
 
-          <div className="flex flex-wrap md:flex-nowrap gap-8 h-auto md:h-[65vh]">
-            {previewGallery.length > 0 ? (
-              previewGallery.map((img: string, idx: number) => {
-                const widths = ['w-full md:w-[35%]', 'w-full md:w-[45%]', 'w-full md:w-[20%]'];
-                const projectNames = ['Residential Living', 'Culinary Kitchen Space', 'Bedroom Sanctuary'];
-                const projectSub = ['Bespoke Craft', 'Modular Layout', 'Biophilic Details'];
-                
-                return (
-                  <div key={idx} className={`group cursor-pointer relative overflow-hidden rounded-[2rem] md:rounded-[2.5rem] ${widths[idx % 3]} h-64 sm:h-80 md:h-full border border-[#0A0A0A]/5 shadow-sm`}>
-                    <img 
-                      src={img} 
-                      alt={`Portfolio ${idx + 1}`} 
-                      className="w-full h-full object-cover grayscale-[30%] group-hover:scale-105 group-hover:grayscale-0 transition-all duration-[1200ms]" 
-                      loading="lazy" 
-                    />
-                    <div className="absolute inset-0 bg-[#0A0A0A]/35 group-hover:bg-[#0A0A0A]/10 transition-colors duration-700"></div>
-                    
-                    <div className="absolute inset-0 flex flex-col justify-end p-8 opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-y-3 group-hover:translate-y-0">
-                      <p className="text-[#C1FF72] text-[11px] font-bold uppercase tracking-[0.2em] mb-2">
-                        {projectSub[idx % 3]}
-                      </p>
-                      <h4 className="text-white text-2xl font-serif font-normal tracking-wide">
-                        {projectNames[idx % 3]}
-                      </h4>
-                    </div>
+              <div className="mt-10 grid grid-cols-2 gap-4">
+                {[
+                  { value: '15+', label: 'Years Experience' },
+                  { value: '200+', label: 'Projects Built' },
+                  { value: 'ISO 9001', label: 'Certified' },
+                  { value: '100%', label: 'Vastu Planned' }
+                ].map((stat, i) => (
+                  <div key={i} className="flex flex-col items-center justify-center border border-[var(--line-strong)] bg-[var(--white)] py-6 px-4 rounded-2xl hover:bg-[var(--paper)] transition-all shadow-sm group">
+                    <span className="text-3xl sm:text-4xl font-black uppercase tracking-[-0.04em] text-[var(--ink)] group-hover:text-[var(--oxide)] transition-colors">{stat.value}</span>
+                    <span className="mt-2 text-[0.65rem] sm:text-[0.7rem] font-black uppercase tracking-[0.15em] text-black/50 text-center leading-tight">{stat.label}</span>
                   </div>
-                )
-              })
-            ) : (
-              INTERIOR_GALLERY_PREVIEW.map((item, idx) => (
-                <div key={idx} className="group cursor-pointer relative overflow-hidden rounded-[2rem] md:rounded-[2.5rem] w-full md:w-1/3 h-64 sm:h-80 md:h-full bg-white border border-[#0A0A0A]/5 shadow-sm p-8 md:p-10 flex flex-col justify-end text-left">
-                  <div className="absolute top-8 right-8 w-8 h-8 rounded-full border border-[#0A0A0A]/10 flex items-center justify-center text-[#0A0A0A]/40 group-hover:bg-[#C1FF72] group-hover:text-[#0A0A0A] transition-all duration-300">
-                    <ArrowRight className="w-4 h-4 -rotate-45" />
-                  </div>
-                  <div>
-                    <p className="text-[#0A0A0A]/60 text-[11px] font-bold tracking-[0.25em] uppercase mb-2">{item.sub}</p>
-                    <h4 className="text-[#0A0A0A] text-xl font-serif font-normal tracking-wide">{item.title}</h4>
-                  </div>
-                </div>
-              ))
-            )}
+                ))}
+              </div>
+            </div>
+
+            <div className="flex flex-col gap-4 h-full">
+              <div className="rounded-2xl overflow-hidden border border-[var(--line)] shadow-sm flex-1 relative min-h-[350px]">
+                <VerticalImageCarousel slides={heroSlides} />
+              </div>
+              
+              <div className="flex flex-col gap-3 sm:flex-row">
+                <Link href={`${basePath}/contact`} className="btn-solid rounded-xl text-center py-4 flex-1">
+                  Start Project Brief
+                </Link>
+                <Link href={`${basePath}/gallery`} className="btn-line rounded-xl text-center py-4 flex-1">
+                  See Built Work
+                </Link>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* REVIEWS SECTION */}
-      <section className="py-28 lg:py-36 bg-[#0A0A0A] text-white relative overflow-hidden">
-        {/* Subtle glowing sphere background */}
-        <div className="absolute bottom-[-20%] left-[-10%] w-[50vw] h-[50vw] rounded-full bg-[#C1FF72]/5 blur-[120px] pointer-events-none z-0"></div>
-        
-        <div className="max-w-[90rem] mx-auto px-8 w-full relative z-10">
-          <div className="flex flex-col items-center text-center space-y-6 mb-24">
-            <div className="inline-flex items-center gap-3">
-              <div className="w-8 h-px bg-[#C1FF72]/30"></div>
-              <span className="text-[11px] font-bold tracking-[0.25em] uppercase text-[#C1FF72]">Client Stories</span>
-              <div className="w-8 h-px bg-[#C1FF72]/30"></div>
-            </div>
-            <h2 className="font-serif text-5xl lg:text-7xl font-light tracking-tight leading-[1.05]">
-              Living in our <br />
-              <span className="italic font-normal text-[#FCFAF6]/60">Designs</span>.
-            </h2>
-          </div>
 
-          {displayReviews.length > 5 ? (
-            <div className="invert grayscale">
-              <ReviewsSlider reviews={displayReviews} theme="template1" />
+
+      <section className="bg-[var(--white)] py-16 md:py-24 border-b border-[var(--line)] overflow-hidden">
+        <div className="site-grid">
+          <div className="grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:items-stretch">
+            
+            <div className="relative order-last lg:order-first h-full">
+              <VerticalImageCarousel slides={[
+                { src: "/images/all/premium-villas/villa-09.webp", title: "Contemporary Duplex", label: "Completed Build" },
+                { src: "/images/all/premium-villas/villa-04.webp", title: "Compact Urban Villa", label: "Vastu Planned" },
+                { src: "/images/all/premium-villas/villa-06.webp", title: "Premium Residence", label: "Turnkey Execution" },
+              ]} />
+              
+              <div className="absolute top-4 right-4 z-20 bg-[var(--white)] rounded-full h-20 w-20 flex items-center justify-center shadow-xl border border-[var(--line-strong)] hidden sm:flex">
+                 <div className="text-center">
+                   <p className="text-xl font-black uppercase leading-none">ISO</p>
+                   <p className="mt-1 text-[0.45rem] font-black uppercase tracking-[0.2em] text-[var(--oxide)]">9001</p>
+                 </div>
+              </div>
             </div>
-          ) : (
-            <div className="grid md:grid-cols-3 gap-8 text-left">
-              {displayReviews.map((review: any, i: number) => (
-                <div key={i} className="flex flex-col p-10 rounded-[2.5rem] border border-white/10 hover:border-[#C1FF72]/20 transition-all duration-500 bg-white/[0.02] shadow-xl hover:translate-y-[-4px] group">
-                  <div className="text-[#C1FF72] mb-10">
-                    <Quote className="w-8 h-8 opacity-40 group-hover:opacity-100 transition-opacity duration-300" />
-                  </div>
-                  <p className="text-white/80 font-serif text-base md:text-lg leading-relaxed font-normal mb-10 grow italic">&ldquo;{review.text}&rdquo;</p>
-                  <div className="flex items-center gap-4 border-t border-white/5 pt-6 mt-auto">
-                    <div className="w-10 h-10 bg-white/5 rounded-full flex items-center justify-center font-bold text-xs text-[#C1FF72] border border-white/10 group-hover:bg-[#C1FF72] group-hover:text-[#0A0A0A] transition-colors duration-300">
-                      {review.author ? review.author.charAt(0) : 'U'}
-                    </div>
-                    <div>
-                      <h4 className="font-bold text-white uppercase tracking-[0.2em] text-[11px] mb-1">{review.author || 'Client'}</h4>
-                      <div className="flex gap-0.5">
-                        {[...Array(5)].map((_, j) => (
-                          <Star key={j} className={`w-3.5 h-3.5 ${j < parseInt(review.rating) ? 'fill-[#C1FF72] text-[#C1FF72]' : 'fill-[#FCFAF6]/10 text-transparent'}`} />
-                        ))}
-                      </div>
-                    </div>
-                  </div>
+
+            <div className="order-first lg:order-last flex flex-col justify-center">
+              <div>
+                <span className="inline-block bg-[var(--safety)] text-black px-3 py-1 text-xs font-black uppercase tracking-[0.2em] mb-5">Limited Time Offer</span>
+                <h2 className="text-5xl sm:text-6xl md:text-7xl font-black uppercase tracking-[-0.05em] leading-[0.9]">
+                  Quality Homes<br />
+                  <span className="text-[var(--oxide)]">Honest Price</span>
+                </h2>
+              </div>
+              
+              <div className="mt-8 flex flex-wrap gap-4 items-end">
+                <div className="bg-[var(--ink)] text-white p-6 md:p-8">
+                  <p className="text-[0.62rem] font-black uppercase tracking-[0.18em] text-white/60">Our Price / Just</p>
+                  <p className="mt-1 text-5xl sm:text-6xl font-black uppercase tracking-[-0.04em]">Rs.2299<span className="text-xl">/sqft</span></p>
                 </div>
+                <div className="flex flex-col gap-3 p-5 md:p-6 border border-[var(--line-strong)]">
+                   <p className="text-2xl font-black uppercase tracking-[-0.02em]">Build With Us</p>
+                   <p className="text-xs font-bold uppercase tracking-[0.1em] text-[var(--oxide)] flex items-center gap-2">
+                     <DraftingCompass className="h-4 w-4" /> 100% Vastu Plan
+                   </p>
+                </div>
+              </div>
+
+              <div className="mt-10">
+                <p className="text-[0.62rem] font-black uppercase tracking-[0.18em] text-black/50 mb-5">Package Inclusions</p>
+                <div className="grid sm:grid-cols-2 gap-y-4 gap-x-8">
+                  {homePackageInclusions.map((item, i) => (
+                    <div key={i} className="flex items-center gap-3 border-b border-[var(--line)] pb-3">
+                      <CheckCircle2 className="h-5 w-5 text-[var(--oxide)] shrink-0" />
+                      <span className="text-sm font-black uppercase tracking-[0.05em]">{item}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <VerticalVideoCarousel videos={brandVideos} />
+
+      <section className="bg-[var(--paper)] py-16 md:py-24">
+        <div className="site-grid">
+          <div className="grid gap-12 lg:grid-cols-[0.35fr_1fr] lg:items-start">
+            
+            <div className="sticky top-24">
+              <span className="eyebrow">SERVICES MATRIX</span>
+              <h2 className="mt-4 text-4xl sm:text-5xl font-black uppercase tracking-[-0.04em] leading-[0.9]">Everything needed to make a perfect home at one place</h2>
+              <h3 className="mt-6 text-xl font-black uppercase tracking-[-0.03em] text-[var(--oxide)]">Plan, visualize, build and delivery</h3>
+              <p className="section-subheading mt-4">
+                Four compact service pillars cover the complete journey from Vastu planning to exterior elevation, civil execution and interior fit-out.
+              </p>
+            </div>
+
+            <div className="grid sm:grid-cols-2 gap-6">
+              {servicePillars.map((service, index) => (
+                <Link key={service.title} href={`${basePath}/services`} className="group panel block overflow-hidden bg-[var(--white)] hover:border-[var(--ink)] transition-colors">
+                  <div className="image-box aspect-square border-x-0 border-t-0">
+                    <Image src={service.image} alt={service.title} fill sizes="(max-width: 1024px) 100vw, 33vw" className="object-cover transition duration-500 group-hover:scale-105" unoptimized />
+                  </div>
+                  <div className="p-6">
+                    <p className="text-[0.62rem] font-black uppercase tracking-[0.18em] text-[var(--oxide)]">0{index + 1} / {service.eyebrow}</p>
+                    <h3 className="mt-3 text-2xl font-black uppercase leading-[0.95] tracking-[-0.05em]">{service.title}</h3>
+                    <p className="mt-3 text-sm font-medium leading-6 text-black/62">{service.summary}</p>
+                  </div>
+                </Link>
               ))}
             </div>
-          )}
+
+          </div>
         </div>
       </section>
 
-      {/* FAQ SECTION */}
-      <section className="py-28 lg:py-36 bg-[#FCFAF6] border-b border-[#0A0A0A]/5 relative overflow-hidden">
-        <div className="absolute right-[5%] top-0 w-px h-full bg-[#0A0A0A]/5 pointer-events-none"></div>
-
-        <div className="max-w-4xl mx-auto px-8 w-full relative z-10">
-          <div className="mb-24 space-y-6 text-center flex flex-col items-center">
-            <div className="inline-flex items-center gap-3">
-              <span className="text-[11px] font-bold text-[#0A0A0A]/70 tracking-[0.25em] uppercase">Common Queries</span>
+      <section className="bg-[var(--concrete)] py-20 md:py-32">
+        <div className="site-grid">
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-10">
+            <div className="max-w-3xl">
+              <div className="flex items-center gap-3 mb-6">
+                <div className="h-[2px] w-12 bg-[var(--oxide)]"></div>
+                <span className="text-xs font-black uppercase tracking-[0.2em] text-[var(--oxide)]">Premium Materials</span>
+              </div>
+              <h2 className="text-4xl sm:text-5xl md:text-6xl font-black uppercase tracking-[-0.04em] leading-[0.95]">
+                Uncompromising Quality <br className="hidden md:block"/> In Every Detail
+              </h2>
             </div>
-            <div className="flex flex-col items-center">
-              <h2 className="font-serif text-5xl md:text-6xl lg:text-7xl font-light text-[#0A0A0A] leading-[1.05] tracking-tight">Frequently Asked</h2>
-              <h2 className="font-serif text-5xl md:text-6xl lg:text-7xl font-light text-[#0A0A0A] leading-[1.05] tracking-tight mt-1">Questions<span className="text-[#C1FF72]">.</span></h2>
+            <div className="max-w-sm">
+              <p className="text-sm md:text-base font-medium leading-relaxed text-black/60 border-l-2 border-[var(--line-strong)] pl-6">
+                For all the buildings we have constructed so far, we have exclusively used ISI-certified, first-quality products to ensure generational durability.
+              </p>
             </div>
           </div>
-
-          <div className="space-y-6 text-left">
-            {faqs.map((faq, idx) => (
-              <details key={idx} className="group border border-[#0A0A0A]/5 rounded-[2rem] bg-white px-8 open:bg-white open:border-[#0A0A0A]/10 hover:border-[#0A0A0A]/10 transition-all duration-300 shadow-sm">
-                <summary className="flex items-center justify-between py-6 cursor-pointer list-none font-serif font-normal text-lg md:text-xl text-[#0A0A0A] focus:outline-none">
-                  <span className="pr-8">{faq.q}</span>
-                  <span className="flex shrink-0 w-8 h-8 items-center justify-center rounded-full bg-[#FCFAF6] group-open:bg-[#C1FF72] group-open:text-[#0A0A0A] transition-colors border border-[#0A0A0A]/5">
-                    <Plus className="w-3.5 h-3.5 group-open:hidden text-[#0A0A0A]/60" />
-                    <Minus className="w-3.5 h-3.5 hidden group-open:block text-[#0A0A0A]" />
-                  </span>
-                </summary>
-                <p className="text-[#0A0A0A]/70 font-normal leading-relaxed pb-8 text-[15px] border-t border-[#0A0A0A]/5 pt-4 mt-1">
-                  {faq.a}
-                </p>
-              </details>
+          
+          <div className="mt-16 md:mt-24 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 border-l border-t border-[var(--line-strong)]">
+            {[
+              { name: "UltraTech Cement", logo: "/images/all/logos/ultratechlogo.png" },
+              { name: "Asian Paints", logo: "/images/all/logos/asianpaintslogo.jpeg" },
+              { name: "KAG Tiles", logo: "/images/all/logos/kagtileslogo.jpeg" },
+              { name: "ARS 550 D TMT", logo: "/images/all/logos/arssteel.png" },
+              { name: "Parryware", logo: "/images/all/logos/parryware.png" },
+              { name: "Legrand", logo: "/images/all/logos/legrand.png" },
+              { name: "Godrej Locks", logo: "/images/all/logos/godrej.jpeg", scale: "scale-[1.35]" },
+              { name: "Orbit Wires", logo: "/images/all/logos/orbit.png" },
+              { name: "Finolex Pipes", logo: "/images/all/logos/finolexpipes.jpeg" },
+              { name: "Premium Assured", logo: null }
+            ].map((brand, i) => (
+              <div key={brand.name} className="group flex flex-col items-center justify-center p-6 sm:p-8 border-r border-b border-[var(--line-strong)] bg-[var(--white)] aspect-[4/3] sm:aspect-square transition-all duration-500 hover:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.1)] hover:-translate-y-1 hover:z-10 relative">
+                {brand.logo ? (
+                  <>
+                    <div className="relative h-20 sm:h-24 w-full mb-4 sm:mb-6 transition-transform duration-500 group-hover:scale-110">
+                      <div className={`relative w-full h-full ${brand.scale || ''}`}>
+                        <Image src={brand.logo} alt={brand.name} fill className="object-contain mix-blend-darken" unoptimized />
+                      </div>
+                    </div>
+                    <h3 className="text-[0.55rem] sm:text-[0.65rem] font-black uppercase tracking-[0.15em] text-black/40 group-hover:text-[var(--oxide)] transition-colors duration-500 text-center">
+                      {brand.name}
+                    </h3>
+                  </>
+                ) : (
+                  <div className="flex flex-col items-center justify-center h-full text-center">
+                    <ShieldCheck className="h-8 w-8 text-[var(--oxide)] mb-3 opacity-80 group-hover:scale-110 transition-transform duration-500" />
+                    <p className="text-[0.65rem] font-black uppercase tracking-[0.1em] text-black">100% Quality</p>
+                    <p className="mt-1 text-[0.55rem] font-bold uppercase tracking-[0.2em] text-black/50">Guaranteed</p>
+                  </div>
+                )}
+              </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* FINAL CTA SECTION */}
-      <section className="py-28 lg:py-36 bg-[#0A0A0A] text-white selection:bg-[#C1FF72] selection:text-[#0A0A0A] relative overflow-hidden">
-        <div className="absolute right-[-10%] bottom-[-10%] w-[55vw] h-[55vw] rounded-full border border-white/[0.03] pointer-events-none"></div>
-
-        <div className="max-w-[90rem] mx-auto px-8 w-full relative z-10">
-          <div className="flex flex-col lg:flex-row gap-16 lg:gap-24 items-center justify-between">
-            <div className="flex-1 text-left space-y-8">
-              <div className="space-y-4">
-                <h2 className="font-serif text-5xl md:text-6xl font-light text-white leading-[1.05] tracking-tight">Your Design Journey</h2>
-                <h2 className="font-serif text-5xl md:text-6xl font-light text-[#C1FF72] leading-[1.05] tracking-tight">Starts Here<span className="text-white">.</span></h2>
+      <section className="py-16 md:py-24 overflow-hidden border-b border-[var(--line)] bg-[var(--white)]">
+        <div className="site-grid mb-10">
+          <span className="eyebrow">PROJECT GALLERY</span>
+          <h2 className="section-heading mt-4">Built with precision</h2>
+        </div>
+        
+        <div className="flex flex-col gap-6">
+          <div className="marquee-track flex w-max gap-6">
+            {[...elevationImages, ...elevationImages].map((img, i) => (
+              <div key={i} className="relative h-64 w-96 shrink-0 border border-[var(--line)] bg-[var(--concrete)]">
+                <Image src={img} alt="Exterior Elevation" fill className="object-cover" unoptimized />
               </div>
-              <p className="text-sm md:text-base text-white/60 font-normal max-w-lg leading-relaxed">
-                Bring your space closer to the way you want to live. Connect with us to shape a clear design path forward.
+            ))}
+          </div>
+          <div className="marquee-track-reverse flex w-max gap-6">
+            {[
+              "/images/all/premium-villas/villa-01.webp",
+              "/images/all/premium-villas/villa-02.webp",
+              "/images/all/premium-villas/villa-03.webp",
+              "/images/all/premium-villas/villa-04.webp",
+              "/images/all/premium-villas/villa-06.webp",
+              "/images/all/premium-villas/villa-07.webp",
+              "/images/all/premium-villas/villa-01.webp",
+              "/images/all/premium-villas/villa-02.webp",
+              "/images/all/premium-villas/villa-03.webp",
+              "/images/all/premium-villas/villa-04.webp",
+              "/images/all/premium-villas/villa-06.webp",
+              "/images/all/premium-villas/villa-07.webp",
+            ].map((img, i) => (
+              <div key={i} className="relative h-64 w-96 shrink-0 border border-[var(--line)] bg-[var(--concrete)]">
+                <Image src={img} alt="Premium Villa" fill className="object-cover" unoptimized />
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-[var(--paper)] py-16 md:py-24 border-b border-[var(--line)]">
+        <div className="site-grid">
+          <div className="grid lg:grid-cols-[1fr_1fr] gap-12 lg:gap-20 items-center">
+            
+            <div className="max-w-2xl">
+              <span className="eyebrow text-[var(--oxide)]">PROJECT ESTIMATE</span>
+              <h2 className="mt-6 text-4xl sm:text-5xl md:text-6xl font-black uppercase tracking-[-0.04em] leading-[1.05]">
+                Transparent Pricing,<br/>No Hidden Costs
+              </h2>
+              <p className="mt-6 text-base md:text-lg text-black/70 leading-relaxed font-medium">
+                Fill out the brief form to receive a detailed, line-item quotation for your dream home. Our design-build experts will get back to you with a clear cost breakdown based on your plot size and requirements.
               </p>
-              <div className="space-y-6 pt-6 border-t border-white/5 max-w-md">
-                <div className="flex items-center gap-4">
-                  <div className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-[#C1FF72]">
-                    <Phone className="w-4 h-4" />
-                  </div>
-                  <div>
-                    <h4 className="text-[11px] text-[#FCFAF6]/60 uppercase tracking-[0.2em] font-bold">Call Us Directly</h4>
-                    <p className="text-base font-bold text-white mt-1 hover:text-[#C1FF72] transition-colors">
-                      <a href={`tel:${clinic.contact?.phone || ''}`}>{clinic.contact?.phone || 'Contact Number'}</a>
-                    </p>
-                  </div>
+              
+              <div className="mt-10 grid gap-6 sm:grid-cols-2 border-t border-[var(--line)] pt-10">
+                <div>
+                  <h3 className="text-xl font-black uppercase tracking-[-0.02em] text-[var(--oxide)]">01 / Share Details</h3>
+                  <p className="mt-2 text-sm text-black/60 font-medium">Tell us about your plot size, location, and family requirements.</p>
                 </div>
-                <div className="flex items-center gap-4">
-                  <div className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-[#C1FF72]">
-                    <MapPin className="w-4 h-4" />
-                  </div>
-                  <div>
-                    <h4 className="text-[11px] text-[#FCFAF6]/60 uppercase tracking-[0.2em] font-bold">Studio Location</h4>
-                    <p className="text-sm font-semibold text-white mt-1 leading-relaxed">{clinic.address?.full || 'Address'}</p>
-                  </div>
+                <div>
+                  <h3 className="text-xl font-black uppercase tracking-[-0.02em] text-[var(--oxide)]">02 / Get Estimate</h3>
+                  <p className="mt-2 text-sm text-black/60 font-medium">Receive a transparent quotation covering civil work to interiors.</p>
                 </div>
               </div>
             </div>
 
-            {/* Premium WhatsApp Engagement Box */}
-            <div className="bg-[#FCFAF6]/5 border border-white/10 rounded-[2.5rem] p-10 lg:p-12 flex flex-col items-center text-center gap-6 min-w-[320px] max-w-md shadow-2xl relative z-10 backdrop-blur-sm group">
-              <div className="w-20 h-20 rounded-full bg-[#25D366] flex items-center justify-center shadow-2xl relative group-hover:scale-105 transition-transform duration-500">
-                <div className="absolute inset-0 bg-[#25D366] rounded-full animate-ping opacity-25"></div>
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" className="w-10 h-10 relative z-10">
-                  <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
-                </svg>
-              </div>
-              <div className="space-y-2">
-                <h3 className="font-serif text-xl md:text-2xl font-normal text-white tracking-wide">Chat On WhatsApp</h3>
-                <p className="text-white/60 font-normal text-[13px] max-w-xs">
-                  Get instant answers, share project references, and book your consultation in minutes.
-                </p>
-              </div>
-              <a
-                href={waLink}
-                target="_blank"
-                rel="noreferrer"
-                className="w-full bg-[#25D366] hover:bg-[#1db954] text-white font-bold py-4 rounded-xl transition-all hover:scale-[1.02] active:scale-[0.98] flex items-center justify-center gap-3 text-[11px] tracking-widest uppercase shadow-lg"
-              >
-                Start Conversation
-              </a>
-              <p className="text-[#FCFAF6]/40 text-[11px] font-bold uppercase tracking-widest">Usually replies in minutes</p>
+            <div className="w-full flex justify-center border border-[var(--line-strong)] bg-[var(--white)] p-2 md:p-6 rounded-3xl shadow-xl relative">
+              <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdsYUIz-6IWzBpZXEpOIrAiVt1iiD8lRr3Gto5o7zjz0Ubq8Q/viewform?embedded=true" width="640" height="826" frameBorder="0" marginHeight={0} marginWidth={0} className="w-full max-w-[640px] rounded-xl bg-transparent">Loading…</iframe>
             </div>
+
           </div>
         </div>
       </section>
     </div>
   );
 }
-

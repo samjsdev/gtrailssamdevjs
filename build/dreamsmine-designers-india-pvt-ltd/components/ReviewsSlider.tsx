@@ -27,12 +27,12 @@ type ThemeClasses = {
 
 const THEME_CLASSES: Record<SliderTheme, ThemeClasses> = {
   template1: {
-    card: 'bg-white p-10 rounded-4xl border border-[#E5E5E5] flex flex-col h-full hover:shadow-xl hover:border-[#0A0A0A] transition-all duration-300',
-    starActive: 'fill-[#C1FF72] text-[#0A0A0A]',
+    card: 'bg-white p-10 rounded-4xl border border-[#E5E5E5] flex flex-col h-full hover:shadow-xl hover:border-[#D4A03C] transition-all duration-300',
+    starActive: 'fill-[#D4A03C] text-[#101820]',
     starInactive: 'fill-[#FCFAF6] text-[#E5E5E5]',
     quote: 'text-[#0A0A0A] leading-relaxed mb-10 text-[16px] grow font-bold text-lg',
     divider: 'border-[#E5E5E5]',
-    badge: 'w-10 h-10 bg-[#FCFAF6] border border-[#E5E5E5] rounded-full flex items-center justify-center text-[#0A0A0A] font-extrabold text-sm',
+    badge: 'w-10 h-10 bg-[#FCFAF6] border border-[#E5E5E5]  flex items-center justify-center text-[#0A0A0A] font-extrabold text-sm',
     author: 'font-bold text-sm text-[#0A0A0A] uppercase tracking-wider',
     navButton: 'border border-[#0A0A0A] text-[#0A0A0A] hover:bg-[#0A0A0A] hover:text-white',
     navButtonDisabled: 'border border-[#E5E5E5] text-gray-300 cursor-not-allowed',
@@ -40,12 +40,12 @@ const THEME_CLASSES: Record<SliderTheme, ThemeClasses> = {
     navDotActive: 'bg-[#0A0A0A]',
   },
   template2: {
-    card: 'bg-white p-10 rounded-3xl border border-gray-100 flex flex-col h-full hover:shadow-lg hover:border-gray-300 transition-all duration-300',
+    card: 'bg-white p-10  border border-gray-100 flex flex-col h-full hover:shadow-lg hover:border-gray-300 transition-all duration-300',
     starActive: 'fill-gray-800 text-gray-800',
     starInactive: 'fill-gray-200 text-gray-200',
     quote: 'text-gray-600 leading-relaxed mb-10 text-[16px] grow font-light',
     divider: 'border-gray-100',
-    badge: 'w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center text-blue-900 font-semibold text-sm',
+    badge: 'w-10 h-10 bg-gray-100  flex items-center justify-center text-blue-900 font-semibold text-sm',
     author: 'font-semibold text-sm text-blue-900 uppercase tracking-wider',
     navButton: 'border border-blue-900 text-blue-900 hover:bg-blue-900 hover:text-white',
     navButtonDisabled: 'border border-gray-200 text-gray-300 cursor-not-allowed',
@@ -53,12 +53,12 @@ const THEME_CLASSES: Record<SliderTheme, ThemeClasses> = {
     navDotActive: 'bg-blue-900',
   },
   template3: {
-    card: 'bg-white p-10 rounded-3xl border border-gray-100 flex flex-col h-full hover:shadow-lg hover:border-gray-300 transition-all duration-300',
+    card: 'bg-white p-10  border border-gray-100 flex flex-col h-full hover:shadow-lg hover:border-gray-300 transition-all duration-300',
     starActive: 'fill-gray-800 text-gray-800',
     starInactive: 'fill-gray-200 text-gray-200',
     quote: 'text-gray-600 leading-relaxed mb-10 text-[16px] grow font-light',
     divider: 'border-gray-100',
-    badge: 'w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center text-[#0084FF] font-semibold text-sm',
+    badge: 'w-10 h-10 bg-gray-100  flex items-center justify-center text-[#0084FF] font-semibold text-sm',
     author: 'font-semibold text-sm text-[#0084FF] uppercase tracking-wider',
     navButton: 'border border-[#0084FF] text-[#0084FF] hover:bg-[#0084FF] hover:text-white',
     navButtonDisabled: 'border border-gray-200 text-gray-300 cursor-not-allowed',
@@ -126,7 +126,7 @@ export default function ReviewsSlider({ reviews, theme }: { reviews: ReviewItem[
             aria-label="Previous reviews"
             onClick={() => canGoPrev && setCurrentSlide((value) => value - 1)}
             disabled={!canGoPrev}
-            className={`inline-flex h-10 w-10 items-center justify-center rounded-full transition-colors ${
+            className={`inline-flex h-10 w-10 items-center justify-center  transition-colors ${
               canGoPrev ? classes.navButton : classes.navButtonDisabled
             }`}
           >
@@ -140,7 +140,7 @@ export default function ReviewsSlider({ reviews, theme }: { reviews: ReviewItem[
                 type="button"
                 aria-label={`Go to slide ${dotIndex + 1}`}
                 onClick={() => setCurrentSlide(dotIndex)}
-                className={`h-2.5 w-2.5 rounded-full transition-colors ${
+                className={`h-2.5 w-2.5  transition-colors ${
                   dotIndex === currentSlide ? classes.navDotActive : classes.navDot
                 }`}
               />
@@ -152,7 +152,7 @@ export default function ReviewsSlider({ reviews, theme }: { reviews: ReviewItem[
             aria-label="Next reviews"
             onClick={() => canGoNext && setCurrentSlide((value) => value + 1)}
             disabled={!canGoNext}
-            className={`inline-flex h-10 w-10 items-center justify-center rounded-full transition-colors ${
+            className={`inline-flex h-10 w-10 items-center justify-center  transition-colors ${
               canGoNext ? classes.navButton : classes.navButtonDisabled
             }`}
           >

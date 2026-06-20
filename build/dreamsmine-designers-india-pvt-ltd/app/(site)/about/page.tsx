@@ -1,312 +1,174 @@
 import { readSourceConfig } from '@/lib/sourceData';
 import { notFound } from 'next/navigation';
-import { 
-  Monitor, Leaf, CalendarIcon, Home, 
-  Award, Compass, Eye, Layers, Smile, Scale, Star,
-  Shield, Sparkles, CheckCircle2, ArrowUpRight, Plus, Minus,
-  ChevronRight, Ruler, Palette, Hammer
-} from 'lucide-react';
-import { cleanClinicName, cleanClinicDescription } from '@/lib/copyCleaner';
+import Image from 'next/image';
+import Link from 'next/link';
+import { ArrowRight, Building2, ClipboardCheck, HardHat, ShieldCheck } from 'lucide-react';
+import { cleanClinicName } from '@/lib/copyCleaner';
+import { materialBrands, processSteps, trustMarkers, walkthroughVideos } from '@/lib/siteContent';
+import VideoSequence from '../VideoSequence';
 
 type PageProps = {
-  params?: any;
+  params?: Promise<{ slug?: string }>;
 };
 
 export default async function AboutPage({ params }: PageProps) {
-  const slug = ''; // standalone: slug not needed for data loading
-  const basePath = ``;
-
-  const data = await readSourceConfig(undefined, 'template1');
+  const resolvedParams = params ? await params : {};
+  const data = await readSourceConfig(resolvedParams.slug, 'template1');
   if (!data) return notFound();
 
-  const { clinic, doctor, media } = data;
-  
+  const { clinic, doctor } = data;
   const cleanName = cleanClinicName(clinic.name);
-  const cleanDesc = cleanClinicDescription(clinic.description, clinic.name);
-  
-  const founderName = doctor.name || 'Arjun Mehta';
-  const founderImage = media.otherImages?.[0] || 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=800&q=80';
-  const secondaryImage = media.otherImages?.[1] || 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=800&q=80';
-
-  // Dynamic overrides from data config
-  const visionQuote = data.about?.vision || 'We shape luxury residential spaces and commercial interiors with high-fidelity spatial planning, sustainable material curation, and strict operational integrity.';
-  const aboutHeroImage = data.about?.heroImage || media.clinicImages?.[1] || 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=1200';
-  
-  const founderBio = data.doctor?.bio || `${founderName} founded ${cleanName || 'our studio'} in 2015. With over a decade of design experience, he oversees the architectural planning, timber sourcing, and custom furniture frameworks for every residential studio build.`;
-  
-  const partnerName = data.doctor2?.name || 'Kavitha Rajan';
-  const partnerRole = data.doctor2?.role || 'ASSOCIATE PARTNER';
-  const partnerCredentials = data.doctor2?.credentials || 'B.Des, Interior Styling — NID | Certified Organic Material Consultant';
-  const partnerBio = data.doctor2?.bio || 'Kavitha has over 6 years of experience, specializing in biophilic color composition, organic linen layerings, and curation of eco-responsible decorative assets that make residences feel warm and inviting.';
+  const basePath = '';
 
   return (
-    <div className="font-sans text-[#0A0A0A] bg-[#FCFAF6] min-h-screen selection:bg-[#C1FF72] selection:text-[#0A0A0A] scroll-smooth pb-32 space-y-28 text-left relative overflow-hidden">
-      
-      {/* Structural Architectural Grid Lines */}
-      <div className="absolute inset-0 pointer-events-none z-0">
-        <div className="absolute left-[6%] top-0 w-px h-full bg-[#0A0A0A]/5"></div>
-        <div className="absolute right-[6%] top-0 w-px h-full bg-[#0A0A0A]/5"></div>
-        <div className="absolute left-[33%] top-0 w-px h-full bg-[#0A0A0A]/[0.02] hidden lg:block"></div>
-        <div className="absolute left-[66%] top-0 w-px h-full bg-[#0A0A0A]/[0.02] hidden lg:block"></div>
-      </div>
-
-      {/* ─── HERO ─── */}
-      <section className="relative pt-32 pb-12 z-10 max-w-[90rem] mx-auto px-4 sm:px-8 md:px-16 lg:px-24">
-        <div className="grid lg:grid-cols-12 gap-12 items-start">
-          <div className="lg:col-span-7 space-y-6">
-            <div className="inline-flex items-center gap-3">
-              <span className="w-2 h-2 rounded-full bg-[#0A0A0A]"></span>
-              <span className="text-[11px] font-bold text-[#0A0A0A] tracking-[0.25em] uppercase">OUR HERITAGE</span>
-            </div>
-            
-            <h1 className="font-serif text-5xl sm:text-6xl lg:text-7xl font-light tracking-tight leading-[1.05] text-[#0A0A0A]">
-              About <span className="italic font-normal text-[#0A0A0A]/70 inline-block relative">Our Studio<span className="absolute bottom-2 left-0 w-full h-1 bg-[#C1FF72] -z-10"></span></span> &amp; Vision
-            </h1>
+    <div>
+      <section className="site-grid py-16 md:py-24">
+        <div className="grid gap-6 border-b border-[var(--line-strong)] pb-8 md:grid-cols-[0.72fr_1fr]">
+          <div>
+            <span className="eyebrow">STUDIO POSITIONING</span>
+            <h1 className="section-heading mt-4">A design studio that understands construction risk.</h1>
           </div>
-          
-          <div className="lg:col-span-5 space-y-6 lg:pt-10">
-            <p className="text-lg md:text-xl text-[#0A0A0A]/70 font-normal leading-relaxed border-l-2 border-[#C1FF72] pl-6 italic">
-              &ldquo;{visionQuote}&rdquo;
+          <div>
+            <h2 className="text-3xl font-black uppercase leading-none tracking-[-0.05em]">Premium homes need disciplined drawings and disciplined sites.</h2>
+            <p className="section-subheading mt-4">
+              {cleanName} combines architecture, civil engineering, Vastu planning, exterior visualization and turnkey interiors for clients who want a single accountable partner.
             </p>
-          </div>
-        </div>
-
-        {/* Hero Image */}
-        <div className="relative max-w-7xl mx-auto mt-8 sm:mt-16 group">
-          <div className="absolute -inset-4 border border-[#0A0A0A]/10 rounded-[2.5rem] transform rotate-1 -z-10 group-hover:rotate-0 transition-transform duration-700 hidden sm:block"></div>
-          <div className="relative aspect-[16/10] md:aspect-[21/9] rounded-[1.5rem] sm:rounded-[2.5rem] overflow-hidden border border-[#0A0A0A]/10 bg-white shadow-2xl">
-            <img
-              src={aboutHeroImage}
-              alt="Modern studio architectural layout"
-              className="w-full h-full object-cover transition-transform duration-[2000ms]"
-            />
           </div>
         </div>
       </section>
 
-      {/* Divider */}
-      <div className="max-w-[90rem] mx-auto px-8 md:px-16 lg:px-24 relative z-10">
-        <div className="h-px bg-[#0A0A0A]/10 w-full" />
-      </div>
-
-      {/* ─── TEAM — Side-by-side balanced cards ─── */}
-      <section className="max-w-[90rem] mx-auto px-8 md:px-16 lg:px-24 relative z-10 space-y-16">
-        <div className="text-center max-w-2xl mx-auto space-y-4">
-          <div className="flex items-center justify-center gap-2 text-[#0A0A0A]/70 text-[11px] font-bold uppercase tracking-widest">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#0A0A0A]" />
-            CREATIVE LEADERSHIP
+      <section className="site-grid pb-16 md:pb-24">
+        <div className="grid gap-3 lg:grid-cols-[1.1fr_0.9fr]">
+          <div className="image-box min-h-[520px]">
+            <Image src="/images/all/premium-villas/villa-06.webp" alt="Completed Dreamsmine villa exterior" fill sizes="(max-width: 1024px) 100vw, 55vw" className="object-cover" priority unoptimized />
           </div>
-          <h2 className="font-serif text-4xl sm:text-5xl font-light text-[#0A0A0A] tracking-tight">
-            Meet Our <span className="italic font-normal text-[#0A0A0A]/70">Design Leaders</span>
-          </h2>
-        </div>
-
-        <div className="grid md:grid-cols-2 gap-12 lg:gap-16">
-          {/* Team Member 1 */}
-          <div className="bg-white rounded-[2.5rem] border border-[#0A0A0A]/10 overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 group">
-            {/* Portrait */}
-            <div className="relative aspect-[4/5] overflow-hidden">
-              <img 
-                src={founderImage} 
-                alt={founderName} 
-                className="w-full h-full object-cover grayscale-[20%] group-hover:grayscale-0 transition-all duration-700 group-hover:scale-105" 
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#0A0A0A]/50 via-transparent to-transparent"></div>
-              <div className="absolute bottom-6 left-6 right-6">
-                <p className="text-[11px] font-bold tracking-[0.2em] text-[#C1FF72] mb-1.5 uppercase">PRINCIPAL ARCHITECT</p>
-                <h3 className="font-serif text-2xl text-white font-normal tracking-wide">{founderName}</h3>
-              </div>
-            </div>
-            
-            {/* Bio */}
-            <div className="p-8 lg:p-10 space-y-5">
-              <div className="space-y-1.5">
-                <span className="text-[11px] font-bold tracking-[0.2em] text-[#0A0A0A]/60 uppercase">FOUNDER & VISION LEAD</span>
-                <p className="text-[14px] font-bold text-[#0A0A0A]">M.Des, Interior Architecture — NID | B.Arch — Sir J.J. College</p>
-              </div>
-              
-              <p className="text-[15px] text-[#0A0A0A]/70 font-normal leading-relaxed">
-                {founderBio}
+          <div className="grid gap-3">
+            <div className="panel p-6">
+              <span className="eyebrow">FOUNDER-LED REVIEW</span>
+              <h2 className="mt-4 text-4xl font-black uppercase leading-[0.9] tracking-[-0.055em]">{doctor.name || 'G. Thirumurugan'}</h2>
+              <p className="section-subheading mt-4">
+                Founder involvement keeps design decisions, budget expectations, site quality and handover commitments connected.
               </p>
-
-              <div className="grid grid-cols-2 gap-6 pt-5 border-t border-[#0A0A0A]/10">
-                <div className="space-y-1.5">
-                  <h4 className="font-serif text-base font-bold text-[#0A0A0A]">Expertise Core</h4>
-                  <p className="text-[14px] text-[#0A0A0A]/70 leading-relaxed">Spatial Planning, Luxury Residential architecture, Custom Carpentry Systems.</p>
-                </div>
-                <div className="space-y-1.5">
-                  <h4 className="font-serif text-base font-bold text-[#0A0A0A]">Credentials</h4>
-                  <p className="text-[14px] text-[#0A0A0A]/70 leading-relaxed">M.Des, National Institute of Design | B.Arch, Sir J.J. College.</p>
-                </div>
-              </div>
-
-              <blockquote className="border-l-2 border-[#C1FF72] pl-5 italic text-[#0A0A0A]/70 text-base font-serif mt-4">
-                &ldquo;A successful home should function cleanly while highlighting the natural warmth of timber and stone.&rdquo;
-              </blockquote>
             </div>
-          </div>
-
-          {/* Team Member 2 */}
-          <div className="bg-white rounded-[2.5rem] border border-[#0A0A0A]/10 overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 group">
-            {/* Portrait */}
-            <div className="relative aspect-[4/5] overflow-hidden">
-              <img 
-                src={secondaryImage} 
-                alt={partnerName} 
-                className="w-full h-full object-cover grayscale-[20%] group-hover:grayscale-0 transition-all duration-700 group-hover:scale-105" 
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#0A0A0A]/50 via-transparent to-transparent"></div>
-              <div className="absolute bottom-6 left-6 right-6">
-                <p className="text-[11px] font-bold tracking-[0.2em] text-[#C1FF72] mb-1.5 uppercase">{partnerRole}</p>
-                <h3 className="font-serif text-2xl text-white font-normal tracking-wide">{partnerName}</h3>
-              </div>
-            </div>
-            
-            {/* Bio */}
-            <div className="p-8 lg:p-10 space-y-5">
-              <div className="space-y-1.5">
-                <span className="text-[11px] font-bold tracking-[0.2em] text-[#0A0A0A]/60 uppercase">CO-DEVELOPER & STYLIST</span>
-                <p className="text-[14px] font-bold text-[#0A0A0A]">{partnerCredentials}</p>
-              </div>
-              
-              <p className="text-[15px] text-[#0A0A0A]/70 font-normal leading-relaxed">
-                {partnerBio}
-              </p>
-
-              <div className="grid grid-cols-2 gap-6 pt-5 border-t border-[#0A0A0A]/10">
-                <div className="space-y-1.5">
-                  <h4 className="font-serif text-base font-bold text-[#0A0A0A]">Curation Focus</h4>
-                  <p className="text-[14px] text-[#0A0A0A]/70 leading-relaxed">Sustainable materials, biophilic room setups, color theory curation, fabric layer styles.</p>
-                </div>
-                <div className="space-y-1.5">
-                  <h4 className="font-serif text-base font-bold text-[#0A0A0A]">Achievements</h4>
-                  <p className="text-[14px] text-[#0A0A0A]/70 leading-relaxed">NID B.Des Honors | Certified Organic Paint and Lacquer Assessor.</p>
-                </div>
-              </div>
-
-              <blockquote className="border-l-2 border-[#C1FF72] pl-5 italic text-[#0A0A0A]/70 text-base font-serif mt-4">
-                &ldquo;Organic textures tell physical stories. Our focus is to make those stories warm, inviting, and enduring.&rdquo;
-              </blockquote>
+            <div className="bg-[var(--ink)] p-6 text-[var(--white)]">
+              <span className="eyebrow text-[var(--safety)]">OPERATING BELIEF</span>
+              <h3 className="mt-4 text-4xl font-black uppercase leading-[0.9] tracking-[-0.055em]">
+                Beautiful homes are engineered before they are decorated.
+              </h3>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Divider */}
-      <div className="max-w-[90rem] mx-auto px-8 md:px-16 lg:px-24 relative z-10">
-        <div className="h-px bg-[#0A0A0A]/10 w-full" />
-      </div>
-
-      {/* ─── PROCESS & TECHNOLOGY ─── */}
-      <section className="max-w-[90rem] mx-auto px-8 md:px-16 lg:px-24 relative z-10 space-y-16">
-        <div className="grid lg:grid-cols-12 gap-8 items-end">
-          <div className="lg:col-span-6 space-y-4">
-            <div className="inline-flex items-center gap-3">
-              <span className="text-[11px] font-bold text-[#0A0A0A]/70 tracking-[0.25em] uppercase font-mono">03 / BLUEPRINT PROCESS</span>
-            </div>
-            <h2 className="font-serif text-4xl sm:text-5xl font-light text-[#0A0A0A] tracking-tight">
-              Process &amp; <span className="italic font-normal text-[#0A0A0A]/70">Technology</span>
-            </h2>
-          </div>
-          <div className="lg:col-span-6">
-            <p className="text-[15px] md:text-base text-[#0A0A0A]/70 leading-relaxed">
-              We leverage detailed digital project tools to ensure material schedules are locked in and delivery checklists are met perfectly.
-            </p>
-          </div>
-        </div>
-        
-        <div className="grid sm:grid-cols-2 gap-8 relative z-10">
-          {[
-            { title: "3D & VR Visuals", desc: "Experience precise virtual room layouts, circulation lines, and real wood textures before starting modular execution.", icon: Monitor },
-            { title: "Material Sourcing Protocol", desc: "We enforce strict sourcing benchmarks, choosing sustainable solid timbers, natural clay, and eco coatings.", icon: Leaf },
-            { title: "Unified Dashboard", desc: "Review real-time project updates, carpentry timelines, and material schedules directly in your client interface.", icon: CalendarIcon },
-            { title: "Smart Architecture", desc: "We integrate climate systems, structured audio setups, and custom lighting paths early in our structural layouts.", icon: Home }
-          ].map((std, i) => (
-            <div key={i} className="bg-white p-8 rounded-[2.5rem] border border-[#0A0A0A]/10 hover:border-[#0A0A0A]/25 shadow-sm hover:shadow-xl transition-all duration-300 group text-left flex gap-6 items-start">
-              <div className="w-14 h-14 bg-[#FCFAF6] border border-[#0A0A0A]/10 rounded-2xl flex items-center justify-center text-[#0A0A0A] group-hover:bg-[#C1FF72] transition-colors duration-500 shrink-0 shadow-sm">
-                <std.icon className="w-6 h-6" />
-              </div>
-              <div className="space-y-2">
-                <h3 className="font-serif text-xl font-bold text-[#0A0A0A] tracking-wide">{std.title}</h3>
-                <p className="text-[15px] text-[#0A0A0A]/70 leading-relaxed font-normal">{std.desc}</p>
-              </div>
+      <section className="bg-[var(--ink)] py-12 text-[var(--white)]">
+        <div className="site-grid grid gap-3 md:grid-cols-4">
+          {trustMarkers.map((marker) => (
+            <div key={marker.label} className="border border-white/16 p-5">
+              <p className="text-4xl font-black uppercase tracking-[-0.055em]">{marker.value}</p>
+              <p className="mt-2 text-[0.64rem] font-black uppercase tracking-[0.18em] text-white/52">{marker.label}</p>
             </div>
           ))}
         </div>
       </section>
 
-      {/* ─── TIMELINE ─── */}
-      <section className="py-28 bg-[#FCFAF6] border-t border-b border-[#0A0A0A]/10 relative z-10 overflow-hidden">
-        <div className="max-w-[90rem] mx-auto px-8 md:px-16 lg:px-24">
-          <div className="flex flex-col lg:flex-row gap-16 lg:gap-24">
-            {/* Left sticky column */}
-            <div className="lg:w-1/3 space-y-6 lg:sticky lg:top-36 self-start text-left">
-              <div className="inline-flex items-center gap-3">
-                <span className="text-[11px] font-bold tracking-[0.25em] uppercase text-[#0A0A0A]/70 font-mono">04 / TIMELINE MILESTONES</span>
-              </div>
-              <h2 className="font-serif text-4xl md:text-5xl font-light text-[#0A0A0A] tracking-tight">
-                Our Journey &amp; <br />
-                <span className="italic font-normal text-[#0A0A0A]/70">Evolution</span>
-              </h2>
-              <p className="text-[15px] md:text-base text-[#0A0A0A]/70 leading-relaxed">
-                From a small boutique studio to an industry partner for premium turnkey renovations, our commitment to craft has never wavered.
-              </p>
-            </div>
-            
-            {/* Right timeline column */}
-            <div className="lg:w-2/3 relative border-l-2 border-[#0A0A0A]/10 ml-4 md:ml-0 space-y-16 py-4">
-              {[
-                { year: "2015", title: "Practice Launch", desc: `${cleanName || 'Luxe Interiors Studio'} was established to deliver luxury-grade interior architecture with a deep respect for natural materials and client lifestyle requirements.` },
-                { year: "2018", title: "Bespoke Cabinetry & 3D Studio", desc: "Expanded our operations, adding a specialized 3D studio and partnering with premium carpenters to execute custom furniture details directly." },
-                { year: "2021", title: "Biophilic Sourcing Protocol", desc: "Introduced smart planning software and committed to a rigorous biophilic design framework using low-VOC coatings and timber." },
-                { year: "TODAY", title: "Holistic Turnkey Delivery", desc: "Managing comprehensive residential design and commercial renovations nationwide, recognized for timeless, warm minimal rooms." }
-              ].map((milestone, i) => (
-                <div key={i} className="relative pl-10 md:pl-16 group text-left">
-                  {/* Node */}
-                  <div className="absolute w-4 h-4 bg-white border-[3px] border-[#0A0A0A] rounded-full -left-[9px] top-1.5 group-hover:bg-[#C1FF72] group-hover:scale-125 transition-all duration-500 shadow-sm" />
-                  <span className="text-[#0A0A0A]/50 font-serif font-light italic text-2xl block mb-2">{milestone.year}</span>
-                  <h3 className="font-serif text-2xl font-normal text-[#0A0A0A] mb-3 group-hover:text-[#0A0A0A]/70 transition-colors">{milestone.title}</h3>
-                  <p className="text-[15px] text-[#0A0A0A]/70 leading-relaxed font-normal">{milestone.desc}</p>
-                </div>
-              ))}
-            </div>
+      <section className="site-grid py-16 md:py-24">
+        <div className="grid gap-6 border-b border-[var(--line-strong)] pb-8 md:grid-cols-[0.72fr_1fr]">
+          <div>
+            <span className="eyebrow">WHY CLIENTS TRUST US</span>
+            <h2 className="section-heading mt-4">Design excellence with construction accountability.</h2>
+          </div>
+          <div>
+            <h3 className="text-2xl font-black uppercase tracking-[-0.04em]">The website must make trust obvious within seconds.</h3>
+            <p className="section-subheading mt-3">
+              ISO systems, warranty, maintenance, recognizable materials and visible site progress are placed before decorative studio claims.
+            </p>
           </div>
         </div>
-      </section>
 
-      {/* ─── WHY TRUST US ─── */}
-      <section className="max-w-[90rem] mx-auto px-8 md:px-16 lg:px-24 relative z-10 space-y-16">
-        <div className="text-center max-w-2xl mx-auto space-y-4">
-           <div className="flex items-center justify-center gap-2 text-[#0A0A0A]/70 text-[11px] font-bold uppercase tracking-widest">
-             <span className="w-1.5 h-1.5 rounded-full bg-[#0A0A0A]" />
-             STUDIO SINCERITY
-           </div>
-           <h2 className="font-serif text-4xl sm:text-5xl font-light text-[#0A0A0A] tracking-tight">
-             Why Clients Trust <span className="italic font-normal text-[#0A0A0A]/70">Our Team</span>
-           </h2>
-        </div>
-
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-14 mt-8 text-left">
-           {[
-             { num: "01", title: "Multidisciplinary Coordination", desc: "Architects, custom carpenters, and interior stylists coordinate seamlessly under a single strategic design brief." },
-             { num: "02", title: "Full Turnkey Operations", desc: "We manage design, procurement, municipal permissions, and masonry works from first sketch through final handover." },
-             { num: "03", title: "Bespoke Space Audits", desc: "We design custom joinery and spatial layouts entirely customized around your family's daily routine." },
-             { num: "04", title: "Operational Sincerity", desc: "We deliver full line-by-line materials lists and transparent carpenter pricing. No unexpected markup lists." },
-             { num: "05", title: "Reliable Subcontracting", desc: "We maintain ongoing relationships with high-end artisans and certified installers for execution security." },
-             { num: "06", title: "Physical Handover Pack", desc: "We provide physical maintenance guides, material codes, paint references, and appliance contracts at project close." }
-           ].map((feature, i) => (
-             <div key={i} className="group cursor-default space-y-4">
-                <div className="flex items-center gap-4">
-                  <span className="text-[#0A0A0A]/30 font-serif text-xl italic font-bold">{feature.num}</span>
-                  <h3 className="font-serif font-normal text-[#0A0A0A] text-xl group-hover:text-[#0A0A0A]/70 transition-colors tracking-wide">{feature.title}</h3>
-                </div>
-                <div className="w-full h-px bg-[#0A0A0A]/10 group-hover:bg-[#C1FF72] transition-colors" />
-                <p className="text-[15px] text-[#0A0A0A]/70 leading-relaxed font-normal pr-4">{feature.desc}</p>
-             </div>
-           ))}
+        <div className="mt-8 grid gap-3 md:grid-cols-4">
+          {[
+            { icon: ShieldCheck, title: 'Certified quality', text: 'ISO 9001 systems anchor quality conversations.' },
+            { icon: HardHat, title: 'Site control', text: 'Civil execution is part of the offer, not outsourced mystery.' },
+            { icon: ClipboardCheck, title: 'Handover clarity', text: 'Maintenance and warranty are named up front.' },
+            { icon: Building2, title: 'Brand materials', text: 'Recognizable vendors make quality tangible.' },
+          ].map((item) => (
+            <div key={item.title} className="panel p-5">
+              <item.icon className="h-7 w-7 text-[var(--oxide)]" />
+              <h3 className="mt-5 text-xl font-black uppercase leading-none tracking-[-0.05em]">{item.title}</h3>
+              <p className="mt-4 text-sm font-medium leading-6 text-black/62">{item.text}</p>
+            </div>
+          ))}
         </div>
       </section>
 
+      <section className="bg-[var(--concrete)] py-16 md:py-24">
+        <div className="site-grid grid gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
+          <div>
+            <span className="eyebrow">VISIBLE WORKFLOW</span>
+            <h2 className="section-heading mt-4">Site progress is part of the brand.</h2>
+            <h3 className="mt-5 text-3xl font-black uppercase tracking-[-0.045em]">Videos help clients see how execution moves.</h3>
+            <p className="section-subheading mt-3">
+              A premium architecture site should show both final visuals and the discipline of the build process.
+            </p>
+          </div>
+          <VideoSequence videos={walkthroughVideos} label="Studio Proof" title="Construction visibility" />
+        </div>
+      </section>
+
+      <section className="site-grid py-16 md:py-24">
+        <div className="grid gap-6 border-b border-[var(--line-strong)] pb-8 md:grid-cols-[0.72fr_1fr]">
+          <div>
+            <span className="eyebrow">MATERIAL NETWORK</span>
+            <h2 className="section-heading mt-4">Quality made legible.</h2>
+          </div>
+          <div>
+            <h3 className="text-2xl font-black uppercase tracking-[-0.04em]">Clients recognize trust through brands and specifications.</h3>
+            <p className="section-subheading mt-3">
+              The material ecosystem supports the engineering claim and reduces uncertainty around construction quality.
+            </p>
+          </div>
+        </div>
+
+        <div className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-6">
+          {materialBrands.map((brand) => (
+            <div key={brand} className="panel p-5 text-center text-sm font-black uppercase tracking-[0.12em]">
+              {brand}
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section className="bg-[var(--white)] py-16 md:py-24">
+        <div className="site-grid">
+          <div className="grid gap-6 border-b border-[var(--line-strong)] pb-8 md:grid-cols-[0.72fr_1fr]">
+            <div>
+              <span className="eyebrow">METHOD</span>
+              <h2 className="section-heading mt-4">A predictable build rhythm.</h2>
+            </div>
+            <div>
+              <h3 className="text-2xl font-black uppercase tracking-[-0.04em]">Every stage produces a decision clients can review.</h3>
+              <p className="section-subheading mt-3">
+                The process is simple to skim and structured enough to communicate engineering confidence.
+              </p>
+            </div>
+          </div>
+
+          <div className="mt-8 grid gap-3 md:grid-cols-4">
+            {processSteps.map((step) => (
+              <div key={step.step} className="panel p-5">
+                <p className="text-5xl font-black tracking-[-0.06em] text-[var(--oxide)]">{step.step}</p>
+                <h3 className="mt-5 text-xl font-black uppercase leading-none tracking-[-0.05em]">{step.title}</h3>
+                <p className="mt-4 text-sm font-medium leading-6 text-black/62">{step.text}</p>
+              </div>
+            ))}
+          </div>
+
+          <Link href={`${basePath}/contact`} className="btn-solid mt-8">
+            Meet the Studio
+            <ArrowRight className="h-4 w-4" />
+          </Link>
+        </div>
+      </section>
     </div>
   );
 }

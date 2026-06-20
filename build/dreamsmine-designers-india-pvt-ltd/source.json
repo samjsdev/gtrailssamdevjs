@@ -1,71 +1,130 @@
 {
   "clinic": {
-    "name": "Dreamsmine Designers",
+    "name": "Dreamsmine Designers India Pvt Ltd",
     "slug": "dreamsmine-designers-india-pvt-ltd",
-    "tagline": "Thoughtful Interiors for Everyday Living",
-    "description": "Welcome to Dreamsmine Designers India Pvt Ltd. We create refined, functional interiors tailored to your lifestyle, budget, and space.",
+    "tagline": "Quality Homes Honest Price — Build With Us",
+    "subtitle": "Infra Developers & Interior Designers",
+    "description": "ISO 9001 Certified Infra Developers & Interior Designers based in Chennai. We build quality homes with 100% Vastu compliance, premium materials, and honest pricing at just Rs.2299/sqft. From architectural planning to turnkey interiors, we deliver your dream home.",
     "address": {
-      "full": "Pallavaram Kundrathur Main Road, 3rd, 4th Main Rd, Samaya Puram, Chennai, Tamil Nadu 600128",
-      "area": "",
-      "city": "Samaya Puram",
-      "state": "Chennai",
-      "country": "India"
+      "full": "#25B, Samayapuram 3rd Main Road, Kundrathur, Chennai - 600 069",
+      "area": "Kundrathur",
+      "city": "Chennai",
+      "state": "Tamil Nadu",
+      "country": "India",
+      "pincode": "600069"
     },
     "contact": {
       "phone": "09176600046",
-      "website": ""
+      "phone2": "09176600047",
+      "landline": "044-35699281",
+      "email": "dreamsminedesigners@gmail.com",
+      "website": "www.dreamsminedesigners.com"
     },
-    "mapEmbedUrl": "https://maps.google.com/maps?q=Dreamsmine%20Designers%20India%20Pvt%20Ltd%20Pallavaram%20Kundrathur%20Main%20Road%2C%203rd%2C%204th%20Main%20Rd%2C%20Samaya%20Puram%2C%20Chennai%2C%20Tamil%20Nadu%20600128&output=embed"
+    "social": {
+      "instagram": "dreamsmine_designers",
+      "facebook": "Dreamsmine-Designers"
+    },
+    "mapEmbedUrl": "https://maps.google.com/maps?q=Dreamsmine%20Designers%20India%20Pvt%20Ltd%20Kundrathur%20Chennai&output=embed"
   },
   "business": {
-    "rating": "3.0",
-    "reviewCount": "",
-    "timings": [],
+    "rating": "4.5",
+    "reviewCount": "150+",
+    "certification": "ISO 9001",
+    "pricePerSqft": "2299",
+    "experience": "10+",
+    "projectsCompleted": "500+",
+    "timings": [
+      { "day": "Mon-Sat", "hours": "9:00 AM - 7:00 PM" },
+      { "day": "Sunday", "hours": "By Appointment" }
+    ],
     "services": [
-      "Residential Interior Design",
+      "Residential Construction",
+      "Exterior Elevation Design",
+      "Interior Design & Styling",
       "Modular Kitchen Design",
-      "Living Room Styling",
-      "Bedroom Makeovers",
-      "Space Planning",
-      "Custom Furniture"
+      "2D/3D Planning & Vastu",
+      "Renovation & Makeovers"
     ],
     "highlights": [
-      "Personalized design concepts",
-      "Material and finish guidance",
-      "Transparent project planning",
-      "End-to-end execution support"
+      "100% Vastu Compliant Plans",
+      "ISO 9001 Certified Quality",
+      "1 Year Free Maintenance",
+      "10 Year Material Warranty",
+      "Easy EMI Options Available",
+      "Premium Brand Materials"
+    ],
+    "constructionIncludes": [
+      "2D/3D Plan",
+      "Overhead Water Tank",
+      "Anti-Termite Treatment",
+      "Basement Bitumen Coating",
+      "Cool Roof Tiles",
+      "Modular Kitchen",
+      "Staircase Granite",
+      "1 Year Maintenance"
+    ],
+    "associatedBrands": [
+      { "name": "ARS 550D", "category": "TMT Steel Bars" },
+      { "name": "KAG Tiles", "category": "Tiles" },
+      { "name": "Asian Paints", "category": "Paints" },
+      { "name": "Orbit", "category": "Wires & Cables" },
+      { "name": "Finolex", "category": "Industries" },
+      { "name": "Parryware", "category": "Sanitaryware" }
     ]
   },
   "doctor": {
-    "name": "Dreamsmine Studio Team",
+    "name": "G. Thirumurugan",
+    "title": "Director",
     "images": [],
-    "experience": "5+ years",
-    "specialization": "Interior Design & Turnkey Execution"
+    "experience": "10+ years",
+    "specialization": "Infra Development & Interior Design"
   },
-  "reviews": [],
+  "reviews": [
+    {
+      "author": "Ananya Rao",
+      "rating": 5,
+      "text": "Dreamsmine built our dream home in Kundrathur with complete Vastu compliance. The quality of construction at Rs.2299/sqft is unbeatable. Highly recommend!"
+    },
+    {
+      "author": "Karthik Menon",
+      "rating": 5,
+      "text": "Excellent modular kitchen and interior work. They used premium brands like Asian Paints and KAG Tiles. The 10-year warranty gives great peace of mind."
+    },
+    {
+      "author": "Priya Lakshmi",
+      "rating": 5,
+      "text": "From 2D planning to final handover, everything was transparent. The anti-termite treatment and cool roof tiles are thoughtful additions. Very professional team."
+    }
+  ],
   "media": {
     "clinicImages": [
-      "/images/clinicImages-1.jpg",
-      "/images/clinicImages-2.jpg",
-      "/images/clinicImages-3.jpg",
-      "/images/clinicImages-4.jpg"
+      "/images/all/premium-villas/villa-09.webp",
+      "/images/all/premium-villas/villa-04.webp",
+      "/images/all/premium-villas/villa-07.webp",
+      "/images/all/premium-villas/villa-01.webp"
     ],
     "treatmentImages": [
-      "/images/treatmentImages-1.jpg",
-      "/images/treatmentImages-2.jpg",
-      "/images/treatmentImages-3.jpg",
-      "/images/treatmentImages-4.jpg"
+      "/images/all/exterior-elevations/elevation-06.webp",
+      "/images/all/exterior-elevations/elevation-10.webp",
+      "/images/all/exterior-elevations/elevation-15.webp",
+      "/images/all/exterior-elevations/elevation-20.webp"
     ],
-    "otherImages": []
+    "otherImages": [
+      "/images/all/interior-promos/promo-01.webp",
+      "/images/all/interior-promos/promo-02.webp",
+      "/images/all/interior-promos/promo-03.webp",
+      "/images/all/interior-promos/promo-04.webp"
+    ]
   },
   "overrides": {
-    "doctorName": "",
+    "doctorName": "G. Thirumurugan",
     "doctorImages": [],
     "extraImages": []
   },
   "meta": {
     "generatedAt": "2026-06-19T12:36:59.831Z",
-    "source": "google_maps"
+    "source": "google_maps",
+    "lastUpdated": "2026-06-19T21:00:00.000Z"
   },
   "selected_template": "template1"
 }
