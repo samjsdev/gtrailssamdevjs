@@ -166,7 +166,7 @@ export const DEFAULT_INTERIOR_REVIEWS = [
   {
     author: "Ananya Rao",
     rating: 5,
-    text: "Dreamsmine built our dream home in Kundrathur with complete Vastu compliance. The quality of construction at Rs.2299/sqft is unbeatable. Highly recommend!",
+    text: "Dreamsmine built our dream home in Kundrathur with complete Vastu compliance. The quality of construction at Rs.2200/sqft is unbeatable. Highly recommend!",
   },
   {
     author: "Karthik Menon",
@@ -187,7 +187,7 @@ export const DEFAULT_INTERIOR_REVIEWS = [
 export const INTERIOR_FAQS = [
   {
     q: "What is the cost per square foot for residential construction?",
-    a: "Our residential construction starts at Rs.2299/sqft. This includes 2D/3D planning, Vastu compliance, overhead water tank, anti-termite treatment, basement bitumen coating, cool roof tiles, modular kitchen, staircase granite, and 1 year free maintenance. The final cost may vary based on specific design requirements and material choices.",
+    a: "Our residential construction starts at Rs.2200/sqft. This includes 2D/3D planning, Vastu compliance, overhead water tank, anti-termite treatment, basement bitumen coating, cool roof tiles, modular kitchen, staircase granite, and 1 year free maintenance. The final cost may vary based on specific design requirements and material choices.",
   },
   {
     q: "Do you provide 100% Vastu compliant house plans?",
@@ -256,11 +256,11 @@ export const INTERIOR_SERVICE_DETAILS: Record<string, ServiceDetail> = {
     iconKey: "building",
     tagline: "Quality homes built with honest pricing and premium materials.",
     description:
-      "We build individual houses, duplex villas, and multi-floor residences from foundation to finishing. Every project includes 100% Vastu compliant planning, premium brand materials (ARS TMT, KAG Tiles, Asian Paints), and a comprehensive warranty. Our Rs.2299/sqft package covers 2D/3D planning, anti-termite treatment, modular kitchen, and much more.",
+      "We build individual houses, duplex villas, and multi-floor residences from foundation to finishing. Every project includes 100% Vastu compliant planning, premium brand materials (ARS TMT, KAG Tiles, Asian Paints), and a comprehensive warranty. Our Rs.2200/sqft package covers 2D/3D planning, anti-termite treatment, modular kitchen, and much more.",
     benefits: [
       "100% Vastu compliant architectural planning",
       "Premium materials from trusted brands (ARS, KAG, Asian Paints)",
-      "Rs.2299/sqft all-inclusive construction package",
+      "Rs.2200/sqft all-inclusive construction package",
       "1 Year free maintenance + 10 Year material warranty",
       "Anti-termite treatment & basement bitumen coating included",
       "Modular kitchen & staircase granite included",
@@ -388,7 +388,7 @@ export const BUSINESS_STATS = [
   { value: 500, suffix: "+", label: "Projects Completed" },
   { value: 10, suffix: "+", label: "Years Experience" },
   { value: 100, suffix: "%", label: "Vastu Compliant" },
-  { value: 2299, prefix: "₹", suffix: "", label: "Per Sq.ft" },
+  { value: 2200, prefix: "₹", suffix: "", label: "Per Sq.ft" },
 ];
 
 /* ============================================

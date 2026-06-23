@@ -45,7 +45,7 @@ export default async function HomePage({ params }: PageProps) {
           <div className="grid gap-6 lg:grid-cols-[65fr_35fr] lg:items-stretch bg-[var(--paper)] p-4 sm:p-6 rounded-3xl border border-[var(--line-strong)] shadow-sm min-h-[75vh] lg:min-h-[85vh]">
             <div className="grid content-between bg-[var(--white)] p-6 md:p-10 rounded-2xl border border-[var(--line)] shadow-sm">
               <div>
-                <span className="eyebrow">CHENNAI DESIGN-BUILD COMPANY</span>
+                <span className="eyebrow">Dreamsmine Designers India Pvt Ltd</span>
                 <h1 className="mt-5 max-w-5xl break-words text-[2.75rem] font-black uppercase leading-[0.86] tracking-[-0.065em] sm:text-6xl md:text-7xl">
                   Infra Developers<br />And Interior Designers
                 </h1>
@@ -123,7 +123,7 @@ export default async function HomePage({ params }: PageProps) {
               <div className="mt-8 flex flex-wrap gap-4 items-end">
                 <div className="bg-[var(--ink)] text-white p-6 md:p-8">
                   <p className="text-[0.62rem] font-black uppercase tracking-[0.18em] text-white/60">Our Price / Just</p>
-                  <p className="mt-1 text-5xl sm:text-6xl font-black uppercase tracking-[-0.04em]">Rs.2299<span className="text-xl">/sqft</span></p>
+                  <p className="mt-1 text-5xl sm:text-6xl font-black uppercase tracking-[-0.04em]">Rs.2200<span className="text-xl">/sqft</span></p>
                 </div>
                 <div className="flex flex-col gap-3 p-5 md:p-6 border border-[var(--line-strong)]">
                    <p className="text-2xl font-black uppercase tracking-[-0.02em]">Build With Us</p>
@@ -143,6 +143,11 @@ export default async function HomePage({ params }: PageProps) {
                     </div>
                   ))}
                 </div>
+                <div className="mt-8">
+                  <Link href={`${basePath}/services`} className="btn-solid rounded-xl px-8 py-4 inline-flex">
+                    View Full Packages
+                  </Link>
+                </div>
               </div>
             </div>
 
@@ -156,7 +161,7 @@ export default async function HomePage({ params }: PageProps) {
         <div className="site-grid">
           <div className="grid gap-12 lg:grid-cols-[0.35fr_1fr] lg:items-start">
             
-            <div className="sticky top-24">
+            <div className="md:sticky md:top-24">
               <span className="eyebrow">SERVICES MATRIX</span>
               <h2 className="mt-4 text-4xl sm:text-5xl font-black uppercase tracking-[-0.04em] leading-[0.9]">Everything needed to make a perfect home at one place</h2>
               <h3 className="mt-6 text-xl font-black uppercase tracking-[-0.03em] text-[var(--oxide)]">Plan, visualize, build and delivery</h3>
@@ -196,10 +201,13 @@ export default async function HomePage({ params }: PageProps) {
                 Uncompromising Quality <br className="hidden md:block"/> In Every Detail
               </h2>
             </div>
-            <div className="max-w-sm">
+            <div className="max-w-sm flex flex-col items-start gap-6">
               <p className="text-sm md:text-base font-medium leading-relaxed text-black/60 border-l-2 border-[var(--line-strong)] pl-6">
                 For all the buildings we have constructed so far, we have exclusively used ISI-certified, first-quality products to ensure generational durability.
               </p>
+              <Link href={`${basePath}/about`} className="btn-line rounded-xl px-6 py-3 ml-6">
+                Learn About Our Standards
+              </Link>
             </div>
           </div>
           
@@ -211,12 +219,12 @@ export default async function HomePage({ params }: PageProps) {
               { name: "ARS 550 D TMT", logo: "/images/all/logos/arssteel.png" },
               { name: "Parryware", logo: "/images/all/logos/parryware.png" },
               { name: "Legrand", logo: "/images/all/logos/legrand.png" },
-              { name: "Godrej Locks", logo: "/images/all/logos/godrej.jpeg", scale: "scale-[1.35]" },
+              { name: "Godrej Locks", logo: "/images/all/logos/godrej.png", scale: "scale-[1.35]" },
               { name: "Orbit Wires", logo: "/images/all/logos/orbit.png" },
               { name: "Finolex Pipes", logo: "/images/all/logos/finolexpipes.jpeg" },
               { name: "Premium Assured", logo: null }
             ].map((brand, i) => (
-              <div key={brand.name} className="group flex flex-col items-center justify-center p-6 sm:p-8 border-r border-b border-[var(--line-strong)] bg-[var(--white)] aspect-[4/3] sm:aspect-square transition-all duration-500 hover:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.1)] hover:-translate-y-1 hover:z-10 relative">
+              <div key={brand.name} className="group flex flex-col items-center justify-center p-6 sm:p-8 border-r border-b border-[var(--line-strong)] bg-[var(--white)] min-h-[150px] sm:min-h-[200px] h-full transition-all duration-500 hover:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.1)] hover:-translate-y-1 hover:z-10 relative">
                 {brand.logo ? (
                   <>
                     <div className="relative h-20 sm:h-24 w-full mb-4 sm:mb-6 transition-transform duration-500 group-hover:scale-110">
@@ -242,9 +250,14 @@ export default async function HomePage({ params }: PageProps) {
       </section>
 
       <section className="py-16 md:py-24 overflow-hidden border-b border-[var(--line)] bg-[var(--white)]">
-        <div className="site-grid mb-10">
-          <span className="eyebrow">PROJECT GALLERY</span>
-          <h2 className="section-heading mt-4">Built with precision</h2>
+        <div className="site-grid mb-10 flex flex-col md:flex-row md:items-end justify-between gap-6">
+          <div>
+            <span className="eyebrow">PROJECT GALLERY</span>
+            <h2 className="section-heading mt-4">Built with precision</h2>
+          </div>
+          <Link href={`${basePath}/gallery`} className="btn-line rounded-xl px-6 py-3 shrink-0">
+            View Full Portfolio
+          </Link>
         </div>
         
         <div className="flex flex-col gap-6">
@@ -304,7 +317,7 @@ export default async function HomePage({ params }: PageProps) {
             </div>
 
             <div className="w-full flex justify-center border border-[var(--line-strong)] bg-[var(--white)] p-2 md:p-6 rounded-3xl shadow-xl relative">
-              <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdsYUIz-6IWzBpZXEpOIrAiVt1iiD8lRr3Gto5o7zjz0Ubq8Q/viewform?embedded=true" width="640" height="826" frameBorder="0" marginHeight={0} marginWidth={0} className="w-full max-w-[640px] rounded-xl bg-transparent">Loading…</iframe>
+              <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdsYUIz-6IWzBpZXEpOIrAiVt1iiD8lRr3Gto5o7zjz0Ubq8Q/viewform?embedded=true" width="640" height="826" frameBorder="0" marginHeight={0} marginWidth={0} className="w-full max-w-[640px] min-h-[1200px] md:min-h-[850px] rounded-xl bg-transparent">Loading…</iframe>
             </div>
 
           </div>

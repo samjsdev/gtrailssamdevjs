@@ -97,6 +97,8 @@ export default async function SiteLayout({ children, params }: LayoutProps) {
               <Link href={`${basePath}/about`} className="hover:text-[var(--safety)] transition-colors">Studio</Link>
               <Link href={`${basePath}/gallery`} className="hover:text-[var(--safety)] transition-colors">Works</Link>
               <Link href={`${basePath}/contact`} className="hover:text-[var(--safety)] transition-colors">Contact</Link>
+              <Link href={`${basePath}/privacy`} className="hover:text-[var(--safety)] transition-colors">Privacy</Link>
+              <Link href={`${basePath}/terms`} className="hover:text-[var(--safety)] transition-colors">Terms</Link>
             </nav>
           </div>
         </div>

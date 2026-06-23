@@ -11,7 +11,7 @@ export const heroImages = [
   "/images/all/premium-villas/villa-05.webp",
   "/images/all/premium-villas/villa-06.webp",
   "/images/all/premium-villas/villa-08.webp",
-  "/images/all/exterior-elevations/elevation-31.webp",
+  "/images/all/exterior-elevations/elevation-12.webp",
 ];
 
 export const villaShowcase = [
@@ -40,7 +40,7 @@ export const elevationImages = [
   "/images/all/exterior-elevations/elevation-10.webp",
   "/images/all/exterior-elevations/elevation-15.webp",
   "/images/all/exterior-elevations/elevation-20.webp",
-  "/images/all/exterior-elevations/elevation-27.webp",
+  "/images/all/exterior-elevations/elevation-30.webp",
   "/images/all/exterior-elevations/elevation-41.webp",
 ];
 
@@ -142,18 +142,21 @@ export const processSteps = [
 
 export const trustMarkers = [
   { value: "ISO 9001", label: "Certified quality systems" },
-  { value: "500+", label: "Projects completed" },
+  { value: "200+", label: "Projects completed" },
   { value: "10 yr", label: "Material warranty" },
   { value: "1 yr", label: "Free maintenance" },
 ];
 
 export const materialBrands = [
-  "ARS 550D",
-  "KAG Tiles",
+  "UltraTech Cement",
   "Asian Paints",
-  "Orbit",
-  "Finolex",
+  "KAG Tiles",
+  "ARS 550D",
   "Parryware",
+  "Legrand",
+  "Godrej Locks",
+  "Finolex",
+  "Orbit",
 ];
 
 export const homePackageInclusions = [
@@ -183,7 +186,7 @@ export const auditInsights = {
   palette:
     "Existing assets lean dark green, yellow-gold, orange, white, and black. The redesign refines that into ink, limestone, muted olive, clay, and restrained brass.",
   embeddedText:
-    "Several promo and brand assets include embedded offers: Rs.2299/sqft, 100% Vastu Plan, 1 year maintenance, 10 year material warranty, flat 25-40% offers, easy EMI, modular kitchen, and contact numbers.",
+    "Several promo and brand assets include embedded offers: Rs.2200/sqft, 100% Vastu Plan, 1 year maintenance, 10 year material warranty, flat 25-40% offers, easy EMI, modular kitchen, and contact numbers.",
 };
 
 export function classifyAsset(path: string): Asset {
@@ -223,7 +226,7 @@ export function classifyAsset(path: string): Asset {
   }
 
   if (folder === "exterior-elevations") {
-    const isPlan = /52|53|54|55/.test(fileName) || (isWhatsApp && /36\.|50|57|58/.test(fileName));
+    const isPlan = /49|50|51|52|53|54|55/.test(fileName) || (isWhatsApp && /36\.|50|57|58/.test(fileName));
     return {
       path,
       category: isPlan ? "Vastu plan and layout" : "Modern exterior elevation",
