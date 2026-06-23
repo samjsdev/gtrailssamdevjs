@@ -9,9 +9,10 @@ interface ClientHeroProps {
   clinic: any;
   business: any;
   basePath: string;
+  data?: any;
 }
 
-export default function ClientHero({ clinic, business, basePath }: ClientHeroProps) {
+export default function ClientHero({ clinic, business, basePath, data }: ClientHeroProps) {
   const cleanName = cleanClinicName(clinic.name);
   const cleanTagline = clinic.tagline || 'Quality Homes Honest Price — Build With Us';
   const cleanDesc = cleanClinicDescription(clinic.description, clinic.name);
@@ -45,6 +46,11 @@ export default function ClientHero({ clinic, business, basePath }: ClientHeroPro
     return () => ctx.revert();
   }, []);
 
+  const heroData = (data as any)?.hero || {};
+  const line1 = heroData.line1 || 'Quality Homes';
+  const line2 = heroData.line2 || 'Honest Price';
+  const line3 = heroData.line3 || '— Build With Us';
+
   return (
     <div ref={heroRef} className="relative min-h-[95vh] bg-[#0A0A0A] flex flex-col selection:bg-[#C1FF72] selection:text-[#0A0A0A] overflow-hidden">
       
@@ -72,10 +78,11 @@ export default function ClientHero({ clinic, business, basePath }: ClientHeroPro
               <span>{cleanName || 'Dreamsmine Designers India Pvt Ltd'}</span>
             </div>
 
+
             <h1 ref={textRef} className="font-serif text-5xl sm:text-7xl lg:text-[6rem] font-bold text-[#FCFAF6] leading-[1.05] tracking-tight mb-8">
-              <span className="block overflow-hidden"><span className="block">Quality Homes</span></span>
-              <span className="block overflow-hidden"><span className="block italic font-light text-[#C1FF72]">Honest Price</span></span>
-              <span className="block overflow-hidden"><span className="block">— Build With Us</span></span>
+              <span className="block overflow-hidden"><span className="block">{line1}</span></span>
+              <span className="block overflow-hidden"><span className="block italic font-light text-[#C1FF72]">{line2}</span></span>
+              <span className="block overflow-hidden"><span className="block">{line3}</span></span>
             </h1>
 
             <div className="flex flex-col md:flex-row gap-10 md:items-center mt-8">

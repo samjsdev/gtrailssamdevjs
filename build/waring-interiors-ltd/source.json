@@ -1,0 +1,109 @@
+{
+  "clinic": {
+    "name": "Waring Interiors Ltd",
+    "slug": "waring-interiors-ltd",
+    "tagline": "Thoughtful Interiors for Everyday Living",
+    "description": "Welcome to Waring Interiors Ltd. We create refined, functional interiors tailored to your lifestyle, budget, and space.",
+    "address": {
+      "full": "Address not found",
+      "area": "",
+      "city": "",
+      "state": "Tamil Nadu",
+      "country": "India"
+    },
+    "contact": {
+      "phone": "447714729637",
+      "website": ""
+    },
+    "mapEmbedUrl": "https://maps.google.com/maps?q=Waring%20Interiors%20Ltd&output=embed"
+  },
+  "business": {
+    "rating": "",
+    "reviewCount": "",
+    "timings": [],
+    "services": [
+      "Residential Interior Design",
+      "Modular Kitchen Design",
+      "Living Room Styling",
+      "Bedroom Makeovers",
+      "Space Planning",
+      "Custom Furniture"
+    ],
+    "highlights": [
+      "Personalized design concepts",
+      "Material and finish guidance",
+      "Transparent project planning",
+      "End-to-end execution support"
+    ]
+  },
+  "doctor": {
+    "name": "Waring Studio Team",
+    "images": [],
+    "experience": "5+ years",
+    "specialization": "Interior Design & Turnkey Execution"
+  },
+  "reviews": [],
+  "media": {
+    "clinicImages": [
+      "/images/clinicImages-1.jpg",
+      "/images/clinicImages-2.jpg",
+      "/images/clinicImages-3.jpg",
+      "/images/clinicImages-4.jpg"
+    ],
+    "treatmentImages": [
+      "/images/treatmentImages-1.jpg",
+      "/images/treatmentImages-2.jpg",
+      "/images/treatmentImages-3.jpg",
+      "/images/treatmentImages-4.jpg"
+    ],
+    "otherImages": []
+  },
+  "overrides": {
+    "doctorName": "",
+    "doctorImages": [],
+    "extraImages": []
+  },
+  "meta": {
+    "generatedAt": "2026-06-04T03:41:50.223Z",
+    "source": "google_maps"
+  },
+  "templateOverrides": {
+    "template1": {
+      "media": {
+        "clinicImages": [
+          "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/764dda5bb6592cc742bd514b76d8ec07/view?project=6a1cf32a002c668912cc",
+          "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/32f8020c73e458bbc9f138c28d9b2c5c/view?project=6a1cf32a002c668912cc",
+          "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/2e0907285481297bd47648c26482858b/view?project=6a1cf32a002c668912cc",
+          "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/7776185682120b2dc436ab29133acd60/view?project=6a1cf32a002c668912cc"
+        ]
+      }
+    },
+    "template4": {
+      "media": {
+        "clinicImages": [
+          "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/764dda5bb6592cc742bd514b76d8ec07/view?project=6a1cf32a002c668912cc",
+          "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/32f8020c73e458bbc9f138c28d9b2c5c/view?project=6a1cf32a002c668912cc",
+          "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/2e0907285481297bd47648c26482858b/view?project=6a1cf32a002c668912cc",
+          "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/7776185682120b2dc436ab29133acd60/view?project=6a1cf32a002c668912cc"
+        ],
+        "otherImages": [
+          "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/6ffa2960804fa86ae9f5ab38b23ccab8/view?project=6a1cf32a002c668912cc",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&q=80&w=1200",
+          "https://images.unsplash.com/photo-1556910103-1c02745aae4d?auto=format&fit=crop&w=800&q=80",
+          "",
+          "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&q=80&w=1200",
+          "",
+          "https://images.unsplash.com/photo-1600121848594-d8644e57abab?auto=format&fit=crop&q=80&w=1200",
+          "https://images.unsplash.com/photo-1616594039964-ae9021a400a0?auto=format&fit=crop&q=80&w=1200",
+          "https://images.unsplash.com/photo-1600210492493-0946911123ea?auto=format&fit=crop&q=80&w=1200"
+        ]
+      }
+    }
+  },
+  "selected_template": "template4"
+}

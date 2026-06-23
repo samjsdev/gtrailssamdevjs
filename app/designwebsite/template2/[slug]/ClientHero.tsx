@@ -112,11 +112,13 @@ export default function ClientHero({ clinic, business, basePath, doctor, media }
               {doctor?.name || 'Crafting Precision Spaces'}
             </h2>
             <p className="text-[13.5px] leading-relaxed text-[#2A2421]/90 font-light">
-              At {clinic.name || 'SKETCHLAB'}, we understand the challenges of creating exceptional modular kitchens and customized residential spaces in Chennai. We take full ownership of custom modular manufacturing, material procurement, and turnkey styling.
+              {doctor?.bio || `At ${clinic.name || 'SKETCHLAB'}, we understand the challenges of creating exceptional modular kitchens and customized residential spaces in Chennai. We take full ownership of custom modular manufacturing, material procurement, and turnkey styling.`}
             </p>
-            <p className="text-[13.5px] leading-relaxed text-[#2A2421]/90 font-light">
-              As premier interior solution providers, we make it our mission to simplify the design process, ensuring that every project is executed flawlessly from initial 3D visualization to final site handover.
-            </p>
+            {!doctor?.bio && (
+              <p className="text-[13.5px] leading-relaxed text-[#2A2421]/90 font-light">
+                As premier interior solution providers, we make it our mission to simplify the design process, ensuring that every project is executed flawlessly from initial 3D visualization to final site handover.
+              </p>
+            )}
           </div>
 
           {/* Organic Portrait Crop */}

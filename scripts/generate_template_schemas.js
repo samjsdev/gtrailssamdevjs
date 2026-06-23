@@ -403,9 +403,9 @@ async function main() {
         sections = await page.evaluate(({ mockTextData, mockImageData, mockListData }) => {
           // Normalize text in client context
           function normalize(str) {
-            if (!str) return '';
-            return str.toLowerCase().replace(/[^a-z0-9]/g, '').trim();
-          }
+  if (!str) return '';
+  return String(str).toLowerCase().replace(/[^a-z0-9]/g, '').trim();
+}
 
           // Bulletproof Next.js and raw image base filename extractor
           function getBaseFileName(urlStr) {
@@ -568,7 +568,7 @@ async function main() {
                 const normVal = normalize(item.value);
                 if (!normVal || normVal.length < 3) continue;
 
-                if (normText.includes(normVal)) {
+                if (normText.includes(normVal) || (normText.length > 15 && normVal.includes(normText))) {
                   const parent = textNode.parentElement;
                   const parentTag = parent ? parent.tagName.toLowerCase() : '';
                   const type = (item.value.length > 60 || parentTag === 'p') ? 'textarea' : 'text';
@@ -640,9 +640,11 @@ async function main() {
       });
 
       // If scraping failed or returned 0 sections, gracefully fallback to the baseline shared page schema
-      if (cleanSections.length === 0) {
+      const totalElements = cleanSections.reduce((acc, sec) => acc + sec.elements.length, 0);
+      if (cleanSections.length === 0 || totalElements < 3) {
         const fallbackPage = BASE_SHARED_PAGES.find(p => p.id === pageCfg.id);
         if (fallbackPage) {
+          cleanSections.length = 0;
           cleanSections.push(...JSON.parse(JSON.stringify(fallbackPage.sections)));
         }
       }

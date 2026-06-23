@@ -86,7 +86,7 @@ export default async function DesignStudioHome({ params }: PageProps) {
   return (
     <div className="font-sans text-[#0A0A0A] bg-[#FCFAF6] min-h-screen selection:bg-[#C1FF72] selection:text-[#0A0A0A] scroll-smooth">
       {/* HERO SECTION */}
-      <ClientHero clinic={cleanedClinic} business={business} basePath={basePath} />
+      <ClientHero clinic={cleanedClinic} business={business} basePath={basePath} data={data} />
 
       {/* BRANDS MARQUEE */}
       <BrandsMarquee />

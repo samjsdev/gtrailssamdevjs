@@ -111,8 +111,21 @@ function isLikelyPhotoUrl(url: string): boolean {
     return true;
 }
 
+function getImageId(url: string): string {
+    try {
+        const parsed = new URL(url);
+        if (parsed.search) {
+            return parsed.pathname + parsed.search;
+        }
+        return parsed.pathname;
+    } catch {
+        return url;
+    }
+}
+
 function promoteGooglePhotoUrl(url: string): string {
     if (!GOOGLE_PHOTO_HOST_RE.test(url)) return url;
+    if (url.includes('?')) return url;
 
     // Clean size parameters in the path if any (e.g. /w100-h100/ or /s16-c/)
     let clean = url
@@ -126,7 +139,7 @@ function promoteGooglePhotoUrl(url: string): string {
     return `${baseUrl}=w2048-h1536`;
 }
 
-function addImageCandidate(raw: string | null | undefined, bucket: Set<string>): void {
+function addImageCandidate(raw: string | null | undefined, bucket: Map<string, string>): void {
     if (!raw) return;
 
     const candidate = normalizeCandidateUrl(raw).split(/\s+/)[0] || '';
@@ -135,11 +148,14 @@ function addImageCandidate(raw: string | null | undefined, bucket: Set<string>):
 
     const promoted = promoteGooglePhotoUrl(candidate);
     if (isLikelyPhotoUrl(promoted)) {
-        bucket.add(promoted);
+        const id = getImageId(promoted);
+        if (!bucket.has(id)) {
+            bucket.set(id, promoted);
+        }
     }
 }
 
-function addSrcSetCandidates(srcSet: string | null | undefined, bucket: Set<string>): void {
+function addSrcSetCandidates(srcSet: string | null | undefined, bucket: Map<string, string>): void {
     if (!srcSet) return;
 
     for (const entry of srcSet.split(',')) {
@@ -155,7 +171,7 @@ function cleanLabeledText(value: string): string {
         .trim();
 }
 
-async function collectImageCandidates(page: Page, bucket: Set<string>): Promise<void> {
+async function collectImageCandidates(page: Page, bucket: Map<string, string>): Promise<void> {
     const images = page.locator('img, [style*="background-image"]');
     const imageCount = await images.count();
 
@@ -317,7 +333,7 @@ async function nudgeGalleryForLazyLoad(page: Page): Promise<void> {
 
 async function waitForLazyGrowth(
     page: Page,
-    bucket: Set<string>,
+    bucket: Map<string, string>,
     beforeCount: number,
     beforeHeight: number,
 ): Promise<{ foundMore: boolean; scrollHeight: number }> {
@@ -980,7 +996,7 @@ export async function scrapeGoogleBusinessProfile(url: string, photosUrl?: strin
     }
     // -----------------------
 
-        const imageUrlSet = new Set<string>();
+        const imageUrlSet = new Map<string, string>();
 
     if (photosUrl) {
         console.log(`Navigating directly to photos URL: ${photosUrl}...`);
@@ -1108,7 +1124,7 @@ export async function scrapeGoogleBusinessProfile(url: string, photosUrl?: strin
         console.log('Error during gallery scroll/harvest loop, keeping currently collected images...');
     }
 
-        const uniqueImageUrls = Array.from(imageUrlSet);
+        const uniqueImageUrls = Array.from(imageUrlSet.values());
 
     console.log(`Scraped ${name}. Found ${uniqueImageUrls.length} images.`);
 
