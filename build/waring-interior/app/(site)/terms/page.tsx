@@ -23,9 +23,9 @@ export default async function TermsPage() {
         
         <div className="space-y-8 text-stone-600 font-light leading-relaxed">
           <section>
-            <h2 className="text-xl font-medium text-stone-800 mb-4 uppercase tracking-widest text-sm">1. Agreement to Terms</h2>
+            <h2 className="text-xl font-medium text-stone-800 mb-4 uppercase tracking-widest text-sm">1. Agreement to Terms & Compliance</h2>
             <p>
-              These Terms and Conditions constitute a legally binding agreement made between you, whether personally or on behalf of an entity ("you") and {clinicName} ("we," "us" or "our"), concerning your access to and use of the website as well as any other media form, media channel, mobile website or mobile application related, linked, or otherwise connected thereto.
+              These Terms and Conditions constitute a legally binding agreement made between you, whether personally or on behalf of an entity ("you") and {clinicName} ("we," "us" or "our"), concerning your access to and use of the website as well as any other media form, media channel, mobile website or mobile application related, linked, or otherwise connected thereto. These terms are designed to be compliant with the laws and regulations of the United Kingdom and the European Union.
             </p>
           </section>
 

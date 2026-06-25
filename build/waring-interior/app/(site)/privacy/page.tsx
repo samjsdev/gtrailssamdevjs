@@ -24,40 +24,37 @@ export default async function PrivacyPage() {
         
         <div className="space-y-8 text-stone-600 font-light leading-relaxed">
           <section>
-            <h2 className="text-xl font-medium text-stone-800 mb-4 uppercase tracking-widest text-sm">1. Introduction</h2>
+            <h2 className="text-xl font-medium text-stone-800 mb-4 uppercase tracking-widest text-sm">1. Introduction & Compliance</h2>
             <p>
-              At {clinicName}, we respect your privacy and are committed to protecting your personal data. This privacy policy will inform you as to how we look after your personal data when you visit our website and tell you about your privacy rights.
+              At {clinicName}, we respect your privacy and are committed to protecting your personal data. This privacy policy informs you as to how we look after your personal data when you visit our website. Our privacy practices are designed to be compliant with applicable laws in the United Kingdom and the European Union, including the General Data Protection Regulation (GDPR).
             </p>
           </section>
 
           <section>
-            <h2 className="text-xl font-medium text-stone-800 mb-4 uppercase tracking-widest text-sm">2. The Data We Collect</h2>
+            <h2 className="text-xl font-medium text-stone-800 mb-4 uppercase tracking-widest text-sm">2. Voluntary Data Collection</h2>
             <p>
-              We may collect, use, store and transfer different kinds of personal data about you which we have grouped together as follows:
+              We only collect personal contact information that you voluntarily provide to us by your own free will. This may occur when you fill out a form or contact us directly. The data we may collect in these instances includes:
             </p>
             <ul className="list-disc pl-6 mt-4 space-y-2">
-              <li><strong>Identity Data:</strong> includes first name, last name, username or similar identifier.</li>
-              <li><strong>Contact Data:</strong> includes billing address, delivery address, email address and telephone numbers.</li>
-              <li><strong>Technical Data:</strong> includes internet protocol (IP) address, your login data, browser type and version, time zone setting and location.</li>
+              <li><strong>Identity & Contact Data:</strong> Includes your name, postal address, and contact email address.</li>
             </ul>
           </section>
 
           <section>
-            <h2 className="text-xl font-medium text-stone-800 mb-4 uppercase tracking-widest text-sm">3. How We Use Your Data</h2>
+            <h2 className="text-xl font-medium text-stone-800 mb-4 uppercase tracking-widest text-sm">3. Tracking, Analytics & Cookies</h2>
             <p>
-              We will only use your personal data when the law allows us to. Most commonly, we will use your personal data in the following circumstances:
+              While we rely on your voluntary submission for contact details, we and our third-party service providers may automatically collect certain technical information when you visit our site.
             </p>
             <ul className="list-disc pl-6 mt-4 space-y-2">
-              <li>Where we need to perform the contract we are about to enter into or have entered into with you.</li>
-              <li>Where it is necessary for our legitimate interests (or those of a third party) and your interests and fundamental rights do not override those interests.</li>
-              <li>Where we need to comply with a legal obligation.</li>
+              <li><strong>Google Analytics:</strong> We use Google Analytics to analyze website traffic and user behavior. Google Analytics uses cookies and may collect data such as your IP address, your geographic region, browser type, and interaction with our pages.</li>
+              <li><strong>Third-Party Embeds:</strong> Our website utilizes external services, including Google Forms for inquiries and Instagram embeds for displaying our portfolio. These platforms may set their own cookies and track your interactions according to their respective privacy policies.</li>
             </ul>
           </section>
 
           <section>
-            <h2 className="text-xl font-medium text-stone-800 mb-4 uppercase tracking-widest text-sm">4. Data Security</h2>
+            <h2 className="text-xl font-medium text-stone-800 mb-4 uppercase tracking-widest text-sm">4. Your Data Protection Rights</h2>
             <p>
-              We have put in place appropriate security measures to prevent your personal data from being accidentally lost, used or accessed in an unauthorised way, altered or disclosed.
+              If you are a resident of the UK or the EU, you have certain rights under data protection laws, including the right to request access to, correction of, or deletion of your personal data. You also have the right to restrict or object to our processing of your data.
             </p>
           </section>
 
