@@ -6,17 +6,17 @@ import { ArrowRight } from "lucide-react";
 const services = [
   {
     title: "Construction",
-    price: "@Just Rs.2299/sqft",
-    desc: "100% Vastu Plan, 1 Year Maintenance, Overhead Water Tank.",
-    image: "/images/all/exterior-elevations/elevation-10.webp",
+    price: "Premium Quality",
+    desc: "100% Vastu Plan, 1 Year Maintenance, High Quality Materials.",
+    image: "https://images.unsplash.com/photo-1541888081628-912b7a97dc95?auto=format&fit=crop&q=80&w=1200",
     color: "bg-[#0A0A0A]",
     textColor: "text-[#FCFAF6]"
   },
   {
     title: "Home Interiors",
-    price: "Starts From 1.5L",
-    desc: "10 Year Material Warranty, Modular Kitchen, Easy EMI Option.",
-    image: "/images/all/interior-promos/promo-01.webp",
+    price: "Custom Quotes",
+    desc: "Material Warranty, Modular Kitchens, Premium Finishes.",
+    image: "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&q=80&w=1200",
     color: "bg-[#FCFAF6]",
     textColor: "text-[#0A0A0A]"
   },
@@ -24,15 +24,15 @@ const services = [
     title: "Architectural Planning",
     price: "2D/3D Elevations",
     desc: "Custom layouts, structurally sound, aesthetics driven.",
-    image: "/images/all/exterior-elevations/elevation-06.webp",
+    image: "https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&q=80&w=1200",
     color: "bg-[#C1FF72]",
     textColor: "text-[#0A0A0A]"
   },
   {
     title: "Renovations",
-    price: "Custom Quote",
-    desc: "Anti-termite treatment, staircase granite, cool roof tiles.",
-    image: "/images/all/interior-promos/promo-07.webp",
+    price: "Expert Execution",
+    desc: "Turnkey execution, smart space planning, modern upgrades.",
+    image: "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&q=80&w=1200",
     color: "bg-[#151515]",
     textColor: "text-[#FCFAF6]"
   }
@@ -47,7 +47,7 @@ export default function ServicesSlider() {
         <div className="max-w-2xl">
           <h2 className="text-4xl md:text-6xl font-serif font-bold tracking-tight mb-6">Our Services</h2>
           <p className="text-[#0A0A0A]/60 text-lg leading-relaxed">
-            From foundation to finishing, we provide end-to-end solutions. Honest pricing and premium materials, delivered by Chennai's leading developers.
+            From foundation to finishing, we provide end-to-end solutions. Honest pricing and premium materials, delivered by industry leading experts.
           </p>
         </div>
         <div className="flex gap-4">

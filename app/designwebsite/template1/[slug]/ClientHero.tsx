@@ -56,16 +56,24 @@ export default function ClientHero({ clinic, business, basePath, data }: ClientH
       
       {/* Background Video */}
       <div className="absolute inset-0 z-0 opacity-40">
-        <video 
-          autoPlay 
-          muted 
-          loop 
-          playsInline 
-          className="w-full h-full object-cover"
-          poster="/images/all/premium-villas/villa-09.webp"
-        >
-          <source src="/images/all/brand-assets/walkthrough-02.mp4" type="video/mp4" />
-        </video>
+        {data?.hero?.video ? (
+          <video 
+            autoPlay 
+            muted 
+            loop 
+            playsInline 
+            className="w-full h-full object-cover"
+            poster={data?.media?.clinicImages?.[0] || "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&q=80&w=2000"}
+          >
+            <source src={data.hero.video} type="video/mp4" />
+          </video>
+        ) : (
+          <img 
+            src={data?.media?.clinicImages?.[0] || "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&q=80&w=2000"} 
+            alt="Hero background" 
+            className="w-full h-full object-cover"
+          />
+        )}
         <div className="absolute inset-0 bg-gradient-to-t from-[#0A0A0A] via-[#0A0A0A]/50 to-transparent"></div>
       </div>
       
@@ -74,8 +82,7 @@ export default function ClientHero({ clinic, business, basePath, data }: ClientH
           
           <div className="max-w-4xl text-left">
             <div className="inline-flex items-center gap-3 mb-6 tracking-[0.2em] text-xs font-bold uppercase text-[#FCFAF6]/80 overflow-hidden">
-              <span className="w-2 h-2 rounded-full bg-[#C1FF72]"></span>
-              <span>{cleanName || 'Dreamsmine Designers India Pvt Ltd'}</span>
+              <span>{cleanName || 'Premium Architecture & Interiors'}</span>
             </div>
 
 
@@ -103,18 +110,14 @@ export default function ClientHero({ clinic, business, basePath, data }: ClientH
 
             {/* Highlights/Offers Banner */}
             <div ref={offersRef} className="flex flex-wrap gap-4 mt-16">
-              <div className="bg-[#FCFAF6]/10 backdrop-blur-md border border-[#FCFAF6]/20 text-[#FCFAF6] px-6 py-3 rounded-full text-sm font-bold tracking-wider uppercase">
-                Flat 40% Offer
-              </div>
-              <div className="bg-[#FCFAF6]/10 backdrop-blur-md border border-[#FCFAF6]/20 text-[#FCFAF6] px-6 py-3 rounded-full text-sm font-bold tracking-wider uppercase">
-                10 Year Material Warranty
-              </div>
-              <div className="bg-[#FCFAF6]/10 backdrop-blur-md border border-[#FCFAF6]/20 text-[#FCFAF6] px-6 py-3 rounded-full text-sm font-bold tracking-wider uppercase">
-                100% Vastu Plan
-              </div>
-              <div className="bg-[#FCFAF6]/10 backdrop-blur-md border border-[#FCFAF6]/20 text-[#FCFAF6] px-6 py-3 rounded-full text-sm font-bold tracking-wider uppercase flex items-center gap-2">
-                <span className="w-2 h-2 rounded-full bg-[#C1FF72]"></span> Easy EMI
-              </div>
+              {(business?.highlights?.length > 0 ? business.highlights.slice(0, 4) : [
+                "Bespoke Design", "Premium Materials", "End-to-End Execution", "Transparent Pricing"
+              ]).map((highlight: string, idx: number) => (
+                <div key={idx} className="bg-[#FCFAF6]/10 backdrop-blur-md border border-[#FCFAF6]/20 text-[#FCFAF6] px-6 py-3 rounded-full text-sm font-bold tracking-wider uppercase flex items-center gap-2">
+                  {idx === 0 && <span className="w-2 h-2 rounded-full bg-[#C1FF72]"></span>}
+                  {highlight}
+                </div>
+              ))}
             </div>
 
           </div>

@@ -8,11 +8,11 @@ import Image from "next/image";
 gsap.registerPlugin(ScrollTrigger);
 
 const projects = [
-  { src: "/images/all/premium-villas/villa-09.webp", title: "Premium Villas" },
-  { src: "/images/all/premium-villas/villa-04.webp", title: "Luxury Exteriors" },
-  { src: "/images/all/exterior-elevations/elevation-15.webp", title: "Modern Elevation" },
-  { src: "/images/all/exterior-elevations/elevation-20.webp", title: "Classic Facade" },
-  { src: "/images/all/interior-promos/promo-04.webp", title: "Interior Layouts" },
+  { src: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&q=80&w=1200", title: "Premium Villas" },
+  { src: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&q=80&w=1200", title: "Luxury Exteriors" },
+  { src: "https://images.unsplash.com/photo-1600121848594-d8644e57abab?auto=format&fit=crop&q=80&w=1200", title: "Modern Elevation" },
+  { src: "https://images.unsplash.com/photo-1616594039964-ae9021a400a0?auto=format&fit=crop&q=80&w=1200", title: "Classic Facade" },
+  { src: "https://images.unsplash.com/photo-1600210492493-0946911123ea?auto=format&fit=crop&q=80&w=1200", title: "Interior Layouts" },
 ];
 
 export default function ProjectsSlider() {
@@ -56,7 +56,7 @@ export default function ProjectsSlider() {
         <div>
           <h2 className="text-4xl md:text-6xl font-serif font-medium tracking-tight mb-4">Our Featured Projects</h2>
           <p className="text-[#FCFAF6]/60 max-w-xl text-lg">
-            Showcasing our excellence in architecture, infra development, and premium interior design. Experience the Dreamsmine standard.
+            Showcasing our excellence in architecture, infra development, and premium interior design. Experience the premium standard.
           </p>
         </div>
         <div className="hidden md:block text-[#C1FF72] uppercase tracking-widest text-sm font-bold">

@@ -179,7 +179,10 @@ export async function readSourceConfig(slug: string, template?: string): Promise
 
 export async function getAllSlugs(): Promise<string[]> {
   try {
-    const response = await databases.listDocuments('gtrails', 'scraped_data');
+    const { Query } = require('appwrite');
+    const response = await databases.listDocuments('gtrails', 'scraped_data', [
+      Query.limit(5000)
+    ]);
     if (response?.documents) {
       return response.documents.map(item => {
         const json = item.source_data ? JSON.parse(item.source_data) : {};
