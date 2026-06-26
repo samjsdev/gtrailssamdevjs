@@ -17,6 +17,7 @@ const TEMPLATE_OPTIONS = [
   { id: 'template4', name: 'Template 4 (Minimal Creative theme layout)' },
   { id: 'template6', name: 'Template 6 (Glassmorphism Flow layout)' },
   { id: 'template7', name: 'Template 7 (Lumina Interior layout)' },
+  { id: 'template8', name: 'Template 8 (Property Match layout)' },
   { id: 'template10', name: 'Template 10 (Raw Industrial theme layout)' }
 ];
 
@@ -165,6 +166,10 @@ const TEMPLATE_STOCK_IMAGES: Record<string, { url: string; label: string }[]> = 
   template7: [
     { url: 'https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&q=80&w=600', label: 'Lumina Design Lounge' },
     { url: 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=600', label: 'Lumina Meeting Area' }
+  ],
+  template8: [
+    { url: 'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&q=80&w=600', label: 'Property Match' },
+    { url: 'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&q=80&w=600', label: 'Real Estate Home' }
   ],
   template10: [
     { url: 'https://images.unsplash.com/photo-1542889601-399c4f3a8402?auto=format&fit=crop&w=600&q=80', label: 'Studio Drafting Desk' },

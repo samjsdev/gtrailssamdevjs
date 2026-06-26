@@ -58,6 +58,14 @@ const TEMPLATES = [
     tag: 'Premium Interior'
   },
   { 
+    id: 'template8', 
+    name: 'Template 8 - Property Match', 
+    description: 'Modern real estate template featuring rounded cards, soft drop shadows, and a deep blue primary color.', 
+    color: 'from-indigo-400/20 to-blue-800/20',
+    accentColor: '#2b347b',
+    tag: 'Real Estate'
+  },
+  { 
     id: 'template10', 
     name: 'Template 10 - Urban Industrial', 
     description: 'Raw grids, steel frames, and concrete textures. Tailored for industrial loft designs and rustic decors.', 
