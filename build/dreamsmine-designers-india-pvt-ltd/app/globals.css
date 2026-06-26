@@ -226,11 +226,11 @@ textarea {
 }
 
 .marquee-track {
-  animation: marquee 26s linear infinite;
+  animation: marquee 34s linear infinite;
 }
 
 .marquee-track-reverse {
-  animation: marquee 26s linear infinite reverse;
+  animation: marquee 34s linear infinite reverse;
 }
 
 .carousel-fade {

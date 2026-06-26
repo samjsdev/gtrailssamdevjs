@@ -155,6 +155,54 @@ export default async function HomePage({ params }: PageProps) {
         </div>
       </section>
 
+      <section className="py-16 md:py-24 overflow-hidden border-b border-[var(--line)] bg-[var(--white)]">
+        <div className="site-grid mb-10 flex flex-col md:flex-row md:items-end justify-between gap-6">
+          <div>
+            <span className="eyebrow">PROJECT GALLERY</span>
+            <h2 className="section-heading mt-4">Built with precision</h2>
+          </div>
+          <Link href={`${basePath}/gallery`} className="btn-line rounded-xl px-6 py-3 shrink-0">
+            View Full Portfolio
+          </Link>
+        </div>
+        
+        <div className="flex flex-col gap-10">
+          <div className="flex flex-col gap-4">
+            <h3 className="site-grid text-lg sm:text-xl font-bold uppercase tracking-widest text-[var(--black)] opacity-60">Completed Projects</h3>
+            <div className="marquee-track flex w-max gap-6">
+            {[...elevationImages, ...elevationImages].map((img, i) => (
+              <div key={i} className="relative aspect-[3/4] w-[350px] md:w-[420px] shrink-0 border border-[var(--line)] bg-[var(--concrete)]">
+                <Image src={img} alt="Exterior Elevation" fill className="object-cover" unoptimized />
+              </div>
+            ))}
+            </div>
+          </div>
+          <div className="flex flex-col gap-4">
+            <h3 className="site-grid text-lg sm:text-xl font-bold uppercase tracking-widest text-[var(--black)] opacity-60">Ongoing Projects</h3>
+            <div className="marquee-track-reverse flex w-max gap-6">
+            {[
+              "/images/all/premium-villas/villa-01.webp",
+              "/images/all/premium-villas/villa-02.webp",
+              "/images/all/premium-villas/villa-03.webp",
+              "/images/all/premium-villas/villa-04.webp",
+              "/images/all/premium-villas/villa-06.webp",
+              "/images/all/premium-villas/villa-07.webp",
+              "/images/all/premium-villas/villa-01.webp",
+              "/images/all/premium-villas/villa-02.webp",
+              "/images/all/premium-villas/villa-03.webp",
+              "/images/all/premium-villas/villa-04.webp",
+              "/images/all/premium-villas/villa-06.webp",
+              "/images/all/premium-villas/villa-07.webp",
+            ].map((img, i) => (
+              <div key={i} className="relative aspect-[3/4] w-[350px] md:w-[420px] shrink-0 border border-[var(--line)] bg-[var(--concrete)]">
+                <Image src={img} alt="Premium Villa" fill className="object-cover" unoptimized />
+              </div>
+            ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
       <VerticalVideoCarousel videos={brandVideos} />
 
       <section className="bg-[var(--paper)] py-16 md:py-24">
@@ -243,48 +291,6 @@ export default async function HomePage({ params }: PageProps) {
                     <p className="mt-1 text-[0.55rem] font-bold uppercase tracking-[0.2em] text-black/50">Guaranteed</p>
                   </div>
                 )}
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="py-16 md:py-24 overflow-hidden border-b border-[var(--line)] bg-[var(--white)]">
-        <div className="site-grid mb-10 flex flex-col md:flex-row md:items-end justify-between gap-6">
-          <div>
-            <span className="eyebrow">PROJECT GALLERY</span>
-            <h2 className="section-heading mt-4">Built with precision</h2>
-          </div>
-          <Link href={`${basePath}/gallery`} className="btn-line rounded-xl px-6 py-3 shrink-0">
-            View Full Portfolio
-          </Link>
-        </div>
-        
-        <div className="flex flex-col gap-6">
-          <div className="marquee-track flex w-max gap-6">
-            {[...elevationImages, ...elevationImages].map((img, i) => (
-              <div key={i} className="relative h-64 w-96 shrink-0 border border-[var(--line)] bg-[var(--concrete)]">
-                <Image src={img} alt="Exterior Elevation" fill className="object-cover" unoptimized />
-              </div>
-            ))}
-          </div>
-          <div className="marquee-track-reverse flex w-max gap-6">
-            {[
-              "/images/all/premium-villas/villa-01.webp",
-              "/images/all/premium-villas/villa-02.webp",
-              "/images/all/premium-villas/villa-03.webp",
-              "/images/all/premium-villas/villa-04.webp",
-              "/images/all/premium-villas/villa-06.webp",
-              "/images/all/premium-villas/villa-07.webp",
-              "/images/all/premium-villas/villa-01.webp",
-              "/images/all/premium-villas/villa-02.webp",
-              "/images/all/premium-villas/villa-03.webp",
-              "/images/all/premium-villas/villa-04.webp",
-              "/images/all/premium-villas/villa-06.webp",
-              "/images/all/premium-villas/villa-07.webp",
-            ].map((img, i) => (
-              <div key={i} className="relative h-64 w-96 shrink-0 border border-[var(--line)] bg-[var(--concrete)]">
-                <Image src={img} alt="Premium Villa" fill className="object-cover" unoptimized />
               </div>
             ))}
           </div>

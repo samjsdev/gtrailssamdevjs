@@ -21,7 +21,7 @@ export default async function ContactPage({ params }: PageProps) {
   const landline = clinic.contact?.landline || '044-3569 9281';
   
   const email1 = clinic.contact?.email || 'info@dreamsminedesigners.com';
-  const email2 = clinic.contact?.email2 || 'dreamsminedesigners@gmail.com';
+  const email2 = clinic.contact?.email2 || 'dreamsminedesigners2021@gmail.com';
   
   const waPhone = phone1.replace(/\D/g, '') || '9176600046';
   const waLink = `https://wa.me/${waPhone}?text=${encodeURIComponent(`Hi ${cleanName}, I want to discuss a home design and construction project.`)}`;

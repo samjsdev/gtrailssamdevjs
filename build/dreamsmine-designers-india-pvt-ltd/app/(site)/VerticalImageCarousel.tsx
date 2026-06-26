@@ -20,7 +20,7 @@ export default function VerticalImageCarousel({ slides }: VerticalImageCarouselP
   const [touchEnd, setTouchEnd] = useState<number | null>(null);
 
   useEffect(() => {
-    const duration = 4500;
+    const duration = 2600;
     const timer = window.setInterval(() => {
       setActive((current) => (current + 1) % slides.length);
     }, duration);
@@ -31,7 +31,7 @@ export default function VerticalImageCarousel({ slides }: VerticalImageCarouselP
   useEffect(() => {
     setProgress(0);
     const startTime = Date.now();
-    const duration = 4500;
+    const duration = 2600;
     
     let frame: number;
     const updateProgress = () => {

@@ -73,7 +73,7 @@ export default async function SiteLayout({ children, params }: LayoutProps) {
                     </a>
                     <a href={`mailto:${email}`} className="flex items-center gap-4 hover:text-[var(--safety)] transition-colors break-all">
                       <Mail className="h-5 w-5 text-white/30" />
-                      {email || 'dreamsminedesigners@gmail.com'}
+                      {email || 'dreamsminedesigners2021@gmail.com'}
                     </a>
                   </div>
                 </div>
