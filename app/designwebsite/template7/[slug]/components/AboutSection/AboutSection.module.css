@@ -1,0 +1,240 @@
+.section {
+  padding: 6rem 1.5rem;
+  background-color: var(--bg);
+  position: relative;
+  overflow: hidden;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.grid {
+  display: grid;
+  gap: 4rem;
+  align-items: center;
+}
+
+@media (min-width: 1024px) {
+  .grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 6rem;
+  }
+}
+
+/* Content Side */
+.content {
+  display: flex;
+  flex-direction: column;
+}
+
+.meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+  font-family: monospace;
+  font-size: 0.875rem;
+}
+
+.badge {
+  color: var(--accent-2);
+  font-weight: 600;
+  letter-spacing: 0.05em;
+}
+
+.id {
+  color: var(--muted-2);
+}
+
+.name {
+  font-family: var(--serif-font);
+  font-size: 3rem;
+  font-weight: 300;
+  color: var(--text);
+  line-height: 1.1;
+  margin-bottom: 0.5rem;
+}
+
+.role {
+  font-size: 1.125rem;
+  color: var(--muted);
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+
+.divider {
+  height: 1px;
+  background: linear-gradient(90deg, var(--accent-2) 0%, transparent 100%);
+  margin: 2rem 0;
+  opacity: 0.3;
+}
+
+.description {
+  color: var(--muted);
+  line-height: 1.8;
+  font-size: 1.05rem;
+  margin-bottom: 2.5rem;
+}
+
+/* Specs Grid */
+.specs {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  list-style: none;
+  margin-bottom: 3rem;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  padding: 1.5rem 0;
+}
+
+.specItem {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.specItem:not(:last-child) {
+  border-right: 1px solid var(--border);
+}
+
+.specLabel {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--muted-2);
+}
+
+.specValue {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--text);
+}
+
+/* Actions */
+.actions {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.btnPrimary {
+  padding: 0.875rem 2rem;
+  background-color: var(--text);
+  color: var(--bg);
+  font-weight: 500;
+  border-radius: 0.25rem;
+  transition: all 0.2s ease;
+  border: 1px solid var(--text);
+}
+
+.btnPrimary:hover {
+  background-color: transparent;
+  color: var(--text);
+}
+
+.btnSecondary {
+  padding: 0.875rem 2rem;
+  background-color: transparent;
+  color: var(--text);
+  font-weight: 500;
+  border-radius: 0.25rem;
+  border: 1px solid var(--border);
+  transition: all 0.2s ease;
+}
+
+.btnSecondary:hover {
+  border-color: var(--accent-2);
+  color: var(--accent-2);
+}
+
+/* Visual Side */
+.visual {
+  position: relative;
+  padding: 1rem;
+}
+
+.imageFrame {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4/5;
+  max-width: 450px;
+  margin: 0 auto;
+}
+
+.image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: grayscale(100%) contrast(1.1);
+  transition: filter 0.5s ease;
+}
+
+.imageFrame:hover .image {
+  filter: grayscale(0%) contrast(1);
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: var(--glow);
+  pointer-events: none;
+  mix-blend-mode: overlay;
+}
+
+.scanline {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--accent-2);
+  opacity: 0.5;
+  box-shadow: 0 0 10px var(--accent-2);
+  animation: scan 4s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes scan {
+  0% { top: 0%; opacity: 0; }
+  10% { opacity: 0.8; }
+  90% { opacity: 0.8; }
+  100% { top: 100%; opacity: 0; }
+}
+
+/* Technical Corners */
+.cornerTL, .cornerTR, .cornerBL, .cornerBR {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border-color: var(--accent-2);
+  border-style: solid;
+  pointer-events: none;
+  transition: all 0.3s ease;
+}
+
+.imageFrame:hover .cornerTL,
+.imageFrame:hover .cornerTR,
+.imageFrame:hover .cornerBL,
+.imageFrame:hover .cornerBR {
+  width: 30px;
+  height: 30px;
+  border-color: var(--text);
+}
+
+.cornerTL { top: -10px; left: -10px; border-width: 2px 0 0 2px; }
+.cornerTR { top: -10px; right: -10px; border-width: 2px 2px 0 0; }
+.cornerBL { bottom: -10px; left: -10px; border-width: 0 0 2px 2px; }
+.cornerBR { bottom: -10px; right: -10px; border-width: 0 2px 2px 0; }
+
+.label {
+  position: absolute;
+  bottom: -2rem;
+  right: 0;
+  font-family: monospace;
+  font-size: 0.75rem;
+  color: var(--muted-2);
+  letter-spacing: 0.1em;
+}

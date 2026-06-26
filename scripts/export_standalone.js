@@ -36,7 +36,7 @@ function loadEnv() {
 loadEnv();
 
 const PROJECT_ROOT = process.cwd();
-const ACTIVE_TEMPLATES = ['template1', 'template2', 'template3', 'template4', 'template6', 'template10'];
+const ACTIVE_TEMPLATES = ['template1', 'template2', 'template3', 'template4', 'template6', 'template7', 'template10'];
 
 // Unsplash fallback images used in interiorContent.ts
 const UNSPLASH_FALLBACKS = {

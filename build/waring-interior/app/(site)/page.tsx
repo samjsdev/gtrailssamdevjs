@@ -37,14 +37,14 @@ export async function generateMetadata(): Promise<Metadata> {
       "Bedroom Makeovers",
       "Space Planning",
       "Custom Furniture",
-      "Chennai interior design agency",
+      "interior design agency",
       clinicName
     ],
     openGraph: {
       title: `${clinicName} | ${tagline}`,
       description: desc,
       type: "website",
-      locale: "en_IN",
+      locale: "en_GB",
       siteName: clinicName,
     },
   };

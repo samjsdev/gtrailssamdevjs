@@ -38,6 +38,7 @@ const TEMPLATE_SCHEMAS: Record<string, {
   template3: { pages: SHARED_PAGES },
   template4: { pages: SHARED_PAGES },
   template6: { pages: SHARED_PAGES },
+  template7: { pages: SHARED_PAGES },
   template10: { pages: SHARED_PAGES }
 `;
   

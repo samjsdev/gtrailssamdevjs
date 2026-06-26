@@ -1,0 +1,177 @@
+.hero {
+    position: relative;
+    height: calc(100vh - 100px);
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow: hidden;
+}
+
+.headline {
+    font-family: var(--sans-font);
+    font-size: 5rem;
+    font-weight: 600;
+    text-align: center;
+    line-height: 1.1;
+    position: absolute;
+    top: 8%;
+    z-index: 1;
+    width: 100%;
+    max-width: 1200px;
+    padding: 0 2rem;
+    letter-spacing: -0.02em;
+    color: var(--accent-2);
+}
+
+.sceneContainer {
+    position: absolute;
+    top: 20%;
+    width: 100%;
+    height: 80%;
+    z-index: 2;
+}
+
+.sceneContainer::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(220, 38, 38, 0.15) 0%, rgba(220, 38, 38, 0.08) 30%, rgba(220, 38, 38, 0.03) 50%, transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: -1;
+}
+
+[data-theme='dark'] .sceneContainer::before {
+    background: radial-gradient(circle, rgba(239, 68, 68, 0.2) 0%, rgba(239, 68, 68, 0.1) 30%, rgba(239, 68, 68, 0.04) 50%, transparent 70%);
+}
+
+/* Hotspots */
+.hotspot {
+    position: absolute;
+    background: var(--surface);
+    color: var(--text);
+    padding: 0.5rem 1rem;
+    border-radius: 50px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    box-shadow: 0 4px 20px var(--glow-2), 0 0 40px var(--glow), inset 0 0 20px var(--tint);
+    border: 1px solid var(--accent-2);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    z-index: 10;
+    backdrop-filter: blur(10px);
+}
+
+.hotspotLeft {
+    top: 40%;
+    left: 20%;
+}
+
+.hotspotRight {
+    top: 45%;
+    right: 20%;
+}
+
+.hotspotIcon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Cards */
+.card {
+    position: absolute;
+    background: var(--surface);
+    padding: 1.5rem;
+    border-radius: 12px;
+    width: 300px;
+    color: var(--text);
+    border: 1px solid var(--border);
+    box-shadow: 0 8px 32px var(--glow-2), 0 0 60px var(--glow), inset 0 0 30px var(--tint);
+    z-index: 10;
+    backdrop-filter: blur(10px);
+}
+
+.cardWhite {
+    background: var(--bg);
+    color: var(--text);
+    border: 1px solid var(--accent-2);
+    box-shadow: 0 8px 32px var(--glow-2), 0 0 60px var(--glow);
+}
+
+.cardBottomLeft {
+    bottom: 2rem;
+    left: 4rem;
+}
+
+.cardBottomRight {
+    bottom: 2rem;
+    right: 4rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.cardTitle {
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+    display: inline-block;
+    background: var(--surface-2);
+    padding: 0.2rem 0.6rem;
+    border-radius: 4px;
+    color: var(--accent-2);
+}
+
+.cardWhite .cardTitle {
+    background: var(--accent);
+    color: var(--accent-contrast);
+}
+
+.cardText {
+    font-size: 0.9rem;
+    line-height: 1.4;
+    margin-bottom: 1rem;
+    color: var(--muted);
+}
+
+.cardLink {
+    font-size: 0.8rem;
+    text-decoration: underline;
+    cursor: pointer;
+    color: var(--accent-2);
+}
+
+.dentalImage {
+    border-radius: 8px;
+    object-fit: cover;
+}
+
+.btnAction {
+    background: var(--accent-2);
+    color: var(--accent-contrast);
+    border: none;
+    padding: 0.6rem 1.2rem;
+    border-radius: 50px;
+    font-weight: 500;
+    font-size: 0.8rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px var(--glow-2), 0 0 25px var(--glow);
+}
+
+.btnAction:hover {
+    background: var(--accent);
+    box-shadow: 0 4px 20px var(--glow-3), 0 0 35px var(--glow-2);
+}
+
+.btnAction:hover {
+    background: var(--accent);
+}

@@ -25,7 +25,7 @@ const DEFAULT_SLUG = 'navaneeth-interiors';
 const LOCAL_DATA_FILE = path.join(PROJECT_ROOT, 'data', DEFAULT_SLUG, 'source.json');
 
 // List of templates to process (folders in app/designwebsite)
-const ACTIVE_TEMPLATES = ['template1', 'template2', 'template3', 'template4', 'template6', 'template10'];
+const ACTIVE_TEMPLATES = ['template1', 'template2', 'template3', 'template4', 'template6', 'template7', 'template10'];
 
 // Standard core page structure
 const CORE_PAGES = ['home', 'about', 'services', 'gallery', 'contact'];

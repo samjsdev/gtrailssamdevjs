@@ -11,7 +11,7 @@ import {
 const TEMPLATES = [
   { 
     id: 'template1', 
-    name: 'Modern Studio', 
+    name: 'Template 1 - Modern Studio', 
     description: 'Editorial, high-contrast layout with elegant serif headings. Tailored for premium residential interiors.', 
     color: 'from-amber-500/20 to-orange-600/20',
     accentColor: '#C1FF72',
@@ -19,7 +19,7 @@ const TEMPLATES = [
   },
   { 
     id: 'template2', 
-    name: 'Calm Home', 
+    name: 'Template 2 - Calm Home', 
     description: 'Warm, airy presentation with sophisticated spacing. Best for approachable and organic interior design studios.', 
     color: 'from-emerald-500/20 to-teal-600/20',
     accentColor: '#10B981',
@@ -27,7 +27,7 @@ const TEMPLATES = [
   },
   { 
     id: 'template3', 
-    name: 'Luxe Interiors', 
+    name: 'Template 3 - Luxe Interiors', 
     description: 'Minimalist, high-end theme featuring large, immersive imagery for premium luxury portfolios.', 
     color: 'from-blue-500/20 to-indigo-600/20',
     accentColor: '#3B82F6',
@@ -35,7 +35,7 @@ const TEMPLATES = [
   },
   { 
     id: 'template4', 
-    name: 'Precision Studio', 
+    name: 'Template 4 - Precision Studio', 
     description: 'Bold, grid-based layouts and structured frameworks. Ideal for design-build teams and turnkey contractors.', 
     color: 'from-purple-500/20 to-pink-600/20',
     accentColor: '#A855F7',
@@ -43,15 +43,23 @@ const TEMPLATES = [
   },
   { 
     id: 'template6', 
-    name: 'Neo-Brutalist Flow', 
+    name: 'Template 6 - Neo-Brutalist Flow', 
     description: 'Flat shadows, vintage highlights, and bold borders. Perfect for avant-garde design agencies.', 
     color: 'from-rose-500/20 to-red-600/20',
     accentColor: '#F43F5E',
     tag: 'Avant-Garde'
   },
   { 
+    id: 'template7', 
+    name: 'Template 7 - Lumina Interior', 
+    description: 'Premium interior design layout featuring a clean interface and smooth animations.', 
+    color: 'from-blue-400/20 to-cyan-600/20',
+    accentColor: '#06B6D4',
+    tag: 'Premium Interior'
+  },
+  { 
     id: 'template10', 
-    name: 'Urban Industrial', 
+    name: 'Template 10 - Urban Industrial', 
     description: 'Raw grids, steel frames, and concrete textures. Tailored for industrial loft designs and rustic decors.', 
     color: 'from-gray-500/20 to-slate-700/20',
     accentColor: '#475569',

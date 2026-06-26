@@ -1,0 +1,26 @@
+.toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    color: var(--text);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 10px var(--glow), inset 0 0 15px var(--tint);
+}
+
+.toggle:hover {
+    background: var(--surface-2);
+    border-color: var(--accent-2);
+    color: var(--accent-2);
+    box-shadow: 0 4px 20px var(--glow-2), 0 0 30px var(--glow);
+}
+
+.toggle:focus {
+    outline: 2px solid var(--accent-2);
+    outline-offset: 2px;
+}

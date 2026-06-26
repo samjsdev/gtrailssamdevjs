@@ -5,7 +5,7 @@ import util from 'util';
 
 const execAsync = util.promisify(exec);
 
-export const REQUIRED_TEMPLATE_IDS = ['template1', 'template2', 'template3', 'template4', 'template6', 'template10'] as const;
+export const REQUIRED_TEMPLATE_IDS = ['template1', 'template2', 'template3', 'template4', 'template6', 'template7', 'template10'] as const;
 
 export function getGeneratedWebsiteRoot(slug: string): string {
   return path.join(process.cwd(), 'data', slug, 'website');

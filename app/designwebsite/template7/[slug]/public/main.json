@@ -1,0 +1,268 @@
+{
+  "site": {
+    "name": "Waring Interiors Design Studio",
+    "tagline": "Premium Interior Design Studio"
+  },
+  "navbar": {
+    "logo": {
+      "text": "Waring Interiors"
+    },
+    "links": [
+      {
+        "label": "Home",
+        "href": "/"
+      },
+      {
+        "label": "About Us",
+        "href": "/about"
+      },
+      {
+        "label": "Services",
+        "href": "/services"
+      },
+      {
+        "label": "Projects",
+        "href": "/gallery"
+      },
+      {
+        "label": "Contact",
+        "href": "/contact"
+      }
+    ],
+    "cta": {
+      "label": "Book Consultation",
+      "href": "/contact"
+    }
+  },
+  "hero": {
+    "headline": "A freedom to live in beauty and comfort",
+    "hotspots": [
+      {
+        "icon": "🛋️",
+        "text": "Premium Interior Design",
+        "position": {
+          "top": null,
+          "left": null
+        },
+        "variant": "left"
+      },
+      {
+        "icon": "📐",
+        "text": "Expert Space Planning",
+        "position": {
+          "top": null,
+          "left": null
+        },
+        "variant": "right"
+      },
+      {
+        "icon": "✨",
+        "text": "Bespoke Furniture Design",
+        "position": {
+          "top": "65%",
+          "left": "30%"
+        },
+        "variant": "custom"
+      }
+    ],
+    "cards": {
+      "about": {
+        "label": "About Us",
+        "title": "Excellence in Modern Design",
+        "description": "Led by our expert team, we provide professional, luxurious, and functional living spaces.",
+        "cta": {
+          "label": "Learn More ↗",
+          "href": "/about"
+        }
+      },
+      "appointment": {
+        "title": "Live with Elegance",
+        "image": "https://images.unsplash.com/photo-1593696140826-c58b021acf8b?auto=format&fit=crop&w=800&q=80",
+        "cta": {
+          "label": "Book Consultation",
+          "href": "/contact"
+        }
+      }
+    }
+  },
+  "stats": [
+    {
+      "number": "1500+",
+      "label": "Happy Clients",
+      "variant": "highlight",
+      "image": "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=800&q=80"
+    },
+    {
+      "number": "1250+",
+      "label": "Rooms Styled",
+      "variant": "default",
+      "image": "https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?auto=format&fit=crop&w=800&q=80"
+    },
+    {
+      "number": "750+",
+      "label": "Custom Furniture",
+      "variant": "accent",
+      "image": "https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&w=800&q=80"
+    },
+    {
+      "number": "500+",
+      "label": "Homes Renovated",
+      "variant": "default",
+      "image": "https://images.unsplash.com/photo-1556910103-1c02745a872f?auto=format&fit=crop&w=800&q=80"
+    },
+    {
+      "number": "250+",
+      "label": "Commercial Spaces",
+      "variant": "default",
+      "image": "https://images.unsplash.com/photo-1518455027359-f3f8164ba6bd?auto=format&fit=crop&w=800&q=80"
+    },
+    {
+      "number": "5000+",
+      "label": "Projects Completed",
+      "variant": "default",
+      "image": "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=800&q=80"
+    }
+  ],
+  "contact": {
+    "map": {
+      "embedUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d158781.33230635442!2d-0.793740263683057!3d51.61111603525232!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4876612df243886b%3A0xcda6b7384a7e9389!2sBeaconsfield%20HP9%2C%20UK!5e0!3m2!1sen!2sin!4v1714828000000!5m2!1sen!2sin"
+    },
+    "social": {
+      "instagram": "https://www.instagram.com/",
+      "facebook": "https://www.facebook.com/"
+    },
+    "whatsapp": {
+      "phone": "+447714729637",
+      "message": "Hello! I would like to know more about your design services."
+    }
+  },
+  "booking": {
+    "calEmbedScriptSrc": "https://app.cal.com/embed/embed.js",
+    "calLink": "demo/design-appointment",
+    "calNamespace": "design-appointment"
+  },
+  "services": {
+    "header": {
+      "title": "Curated",
+      "highlight": "Designs",
+      "description": "Comprehensive design solutions delivered with precision, creativity, and care under one roof."
+    },
+    "essentialCare": {
+      "number": "01",
+      "title": "Essential Styling",
+      "description": "The foundation of a beautiful home starts with smart layout and color choices.",
+      "services": [
+        {
+          "title": "Space Planning",
+          "description": "Maximize your living space with our expert layout configurations.",
+          "image": "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=800&q=80",
+          "features": [
+            "Floor Plans",
+            "Furniture Layouts",
+            "Flow Optimization"
+          ]
+        },
+        {
+          "title": "Color Consultation",
+          "description": "Find the perfect palette to match your style and set the right mood.",
+          "image": "https://images.unsplash.com/photo-1593696140826-c58b021acf8b?auto=format&fit=crop&w=800&q=80",
+          "features": [
+            "Paint Selection",
+            "Material Palettes",
+            "Lighting Integration"
+          ]
+        },
+        {
+          "title": "Furnishing",
+          "description": "Curated furniture selections to complement your space and lifestyle.",
+          "image": "https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&w=800&q=80",
+          "features": [
+            "Custom Furniture",
+            "Upholstery",
+            "Decor Selection"
+          ]
+        }
+      ]
+    },
+    "transformations": {
+      "number": "02",
+      "title": "Transformations",
+      "orthodontics": {
+        "title": "Full Renovations",
+        "description": "Complete overhauls of your living spaces. We manage everything from demolition to final styling.",
+        "gallery": [
+          {
+            "src": "https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?auto=format&fit=crop&w=800&q=80",
+            "alt": "Living Room"
+          },
+          {
+            "src": "https://images.unsplash.com/photo-1556910103-1c02745a872f?auto=format&fit=crop&w=800&q=80",
+            "alt": "Kitchen"
+          },
+          {
+            "src": "https://images.unsplash.com/photo-1505693314120-0d443867891c?auto=format&fit=crop&w=800&q=80",
+            "alt": "Bedroom"
+          }
+        ],
+        "features": [
+          "Structural Changes",
+          "Project Management",
+          "Turnkey Solutions"
+        ]
+      },
+      "implants": {
+        "title": "Kitchen & Bath",
+        "description": "Specialized designs for the most important rooms in your house, blending functionality with luxury.",
+        "image": "https://images.unsplash.com/photo-1556910103-1c02745a872f?auto=format&fit=crop&w=800&q=80",
+        "features": [
+          "Custom Cabinetry",
+          "High-end Fixtures",
+          "Smart Storage"
+        ]
+      },
+      "cosmetic": {
+        "title": "Commercial Spaces",
+        "description": "Inspiring workspaces, retail environments, and hospitality venues designed for success.",
+        "image": "https://images.unsplash.com/photo-1518455027359-f3f8164ba6bd?auto=format&fit=crop&w=800&q=80",
+        "features": [
+          "Office Design",
+          "Retail Layouts",
+          "Brand Integration"
+        ]
+      }
+    },
+    "advancedProcedures": {
+      "number": "03",
+      "title": "Advanced Services",
+      "services": [
+        {
+          "title": "Smart Home Integration",
+          "description": "Seamlessly incorporate the latest technology into your interior design.",
+          "image": "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=800&q=80",
+          "features": [
+            "Automated Lighting",
+            "Climate Control",
+            "Security Systems"
+          ]
+        },
+        {
+          "title": "Sustainable Design",
+          "description": "Eco-friendly materials and energy-efficient solutions for a greener home.",
+          "image": "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=800&q=80",
+          "features": [
+            "Green Materials",
+            "Energy Efficiency",
+            "Indoor Air Quality"
+          ]
+        }
+      ]
+    },
+    "cta": {
+      "title": "Start Your",
+      "highlight": "Transformation",
+      "suffix": "Today",
+      "description": "Experience the perfect blend of spatial precision and artistic excellence. Let us craft the space you've always deserved.",
+      "button": "Book Consultation"
+    }
+  }
+}

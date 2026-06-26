@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { Menu, X, Phone } from 'lucide-react';
 
 interface ClientHeaderProps {
@@ -12,6 +13,7 @@ interface ClientHeaderProps {
 
 export default function ClientHeader({ clinicName, basePath, phone }: ClientHeaderProps) {
   const [isOpen, setIsOpen] = useState(false);
+  const pathname = usePathname();
 
   const toggleMenu = () => setIsOpen(!isOpen);
   const closeMenu = () => setIsOpen(false);
@@ -29,11 +31,11 @@ export default function ClientHeader({ clinicName, basePath, phone }: ClientHead
           
           {/* Desktop Nav Links */}
           <nav className="hidden lg:flex items-center gap-10 font-bold text-[11px] uppercase tracking-[0.25em]">
-            <Link href={basePath} className="text-[#0A0A0A]/70 hover:text-[#0A0A0A] transition-colors relative py-2 after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2 after:w-0 after:h-[1.5px] hover:after:w-4 after:bg-[#C1FF72] after:transition-all">Home</Link>
-            <Link href={`${basePath}/services`} className="text-[#0A0A0A]/70 hover:text-[#0A0A0A] transition-colors relative py-2 after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2 after:w-0 after:h-[1.5px] hover:after:w-4 after:bg-[#C1FF72] after:transition-all">Services</Link>
-            <Link href={`${basePath}/about`} className="text-[#0A0A0A]/70 hover:text-[#0A0A0A] transition-colors relative py-2 after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2 after:w-0 after:h-[1.5px] hover:after:w-4 after:bg-[#C1FF72] after:transition-all">About Us</Link>
-            <Link href={`${basePath}/gallery`} className="text-[#0A0A0A]/70 hover:text-[#0A0A0A] transition-colors relative py-2 after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2 after:w-0 after:h-[1.5px] hover:after:w-4 after:bg-[#C1FF72] after:transition-all">Gallery</Link>
-            <Link href={`${basePath}/contact`} className="text-[#0A0A0A]/70 hover:text-[#0A0A0A] transition-colors relative py-2 after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2 after:w-0 after:h-[1.5px] hover:after:w-4 after:bg-[#C1FF72] after:transition-all">Contact</Link>
+            <Link href={basePath} className={`${pathname === basePath ? 'text-[#0A0A0A] after:w-4' : 'text-[#0A0A0A]/70'} hover:text-[#0A0A0A] transition-colors relative py-2 after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2 after:w-0 after:h-[1.5px] hover:after:w-4 after:bg-[#C1FF72] after:transition-all`}>Home</Link>
+            <Link href={`${basePath}/services`} className={`${pathname === `${basePath}/services` ? 'text-[#0A0A0A] after:w-4' : 'text-[#0A0A0A]/70'} hover:text-[#0A0A0A] transition-colors relative py-2 after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2 after:w-0 after:h-[1.5px] hover:after:w-4 after:bg-[#C1FF72] after:transition-all`}>Services</Link>
+            <Link href={`${basePath}/about`} className={`${pathname === `${basePath}/about` ? 'text-[#0A0A0A] after:w-4' : 'text-[#0A0A0A]/70'} hover:text-[#0A0A0A] transition-colors relative py-2 after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2 after:w-0 after:h-[1.5px] hover:after:w-4 after:bg-[#C1FF72] after:transition-all`}>About Us</Link>
+            <Link href={`${basePath}/gallery`} className={`${pathname === `${basePath}/gallery` ? 'text-[#0A0A0A] after:w-4' : 'text-[#0A0A0A]/70'} hover:text-[#0A0A0A] transition-colors relative py-2 after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2 after:w-0 after:h-[1.5px] hover:after:w-4 after:bg-[#C1FF72] after:transition-all`}>Gallery</Link>
+            <Link href={`${basePath}/contact`} className={`${pathname === `${basePath}/contact` ? 'text-[#0A0A0A] after:w-4' : 'text-[#0A0A0A]/70'} hover:text-[#0A0A0A] transition-colors relative py-2 after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2 after:w-0 after:h-[1.5px] hover:after:w-4 after:bg-[#C1FF72] after:transition-all`}>Contact</Link>
           </nav>
 
           <div className="flex items-center gap-4">
@@ -60,11 +62,11 @@ export default function ClientHeader({ clinicName, basePath, phone }: ClientHead
           }`}
         >
           <nav className="flex flex-col gap-6 text-left font-bold text-xs uppercase tracking-[0.2em] py-4">
-            <Link href={basePath} onClick={closeMenu} className="py-2 hover:text-[#C1FF72] hover:translate-x-1 transition-all border-b border-[#0A0A0A]/5 text-[#0A0A0A]">Home</Link>
-            <Link href={`${basePath}/services`} onClick={closeMenu} className="py-2 hover:text-[#C1FF72] hover:translate-x-1 transition-all border-b border-[#0A0A0A]/5 text-[#0A0A0A]">Our Services</Link>
-            <Link href={`${basePath}/about`} onClick={closeMenu} className="py-2 hover:text-[#C1FF72] hover:translate-x-1 transition-all border-b border-[#0A0A0A]/5 text-[#0A0A0A]">About Us</Link>
-            <Link href={`${basePath}/gallery`} onClick={closeMenu} className="py-2 hover:text-[#C1FF72] hover:translate-x-1 transition-all border-b border-[#0A0A0A]/5 text-[#0A0A0A]">Portfolio Gallery</Link>
-            <Link href={`${basePath}/contact`} onClick={closeMenu} className="py-2 hover:text-[#C1FF72] hover:translate-x-1 transition-all border-b border-[#0A0A0A]/5 text-[#0A0A0A]">Contact Us</Link>
+            <Link href={basePath} onClick={closeMenu} className={`py-2 hover:text-[#C1FF72] hover:translate-x-1 transition-all border-b border-[#0A0A0A]/5 ${pathname === basePath ? 'text-[#C1FF72]' : 'text-[#0A0A0A]'}`}>Home</Link>
+            <Link href={`${basePath}/services`} onClick={closeMenu} className={`py-2 hover:text-[#C1FF72] hover:translate-x-1 transition-all border-b border-[#0A0A0A]/5 ${pathname === `${basePath}/services` ? 'text-[#C1FF72]' : 'text-[#0A0A0A]'}`}>Our Services</Link>
+            <Link href={`${basePath}/about`} onClick={closeMenu} className={`py-2 hover:text-[#C1FF72] hover:translate-x-1 transition-all border-b border-[#0A0A0A]/5 ${pathname === `${basePath}/about` ? 'text-[#C1FF72]' : 'text-[#0A0A0A]'}`}>About Us</Link>
+            <Link href={`${basePath}/gallery`} onClick={closeMenu} className={`py-2 hover:text-[#C1FF72] hover:translate-x-1 transition-all border-b border-[#0A0A0A]/5 ${pathname === `${basePath}/gallery` ? 'text-[#C1FF72]' : 'text-[#0A0A0A]'}`}>Portfolio Gallery</Link>
+            <Link href={`${basePath}/contact`} onClick={closeMenu} className={`py-2 hover:text-[#C1FF72] hover:translate-x-1 transition-all border-b border-[#0A0A0A]/5 ${pathname === `${basePath}/contact` ? 'text-[#C1FF72]' : 'text-[#0A0A0A]'}`}>Contact Us</Link>
           </nav>
 
           <div className="flex flex-col gap-4 mt-6 pt-6 border-t border-[#0A0A0A]/5">
