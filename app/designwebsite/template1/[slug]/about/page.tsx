@@ -26,12 +26,12 @@ export default async function AboutPage({ params }: PageProps) {
   const cleanDesc = cleanClinicDescription(clinic.description, clinic.name);
   
   const founderName = doctor.name || 'Arjun Mehta';
-  const founderImage = media.otherImages?.[0] || 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=800&q=80';
-  const secondaryImage = media.otherImages?.[1] || 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=800&q=80';
+  const founderImage = media.otherImages?.[0] || 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=2000&q=80';
+  const secondaryImage = media.otherImages?.[1] || 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=2000&q=80';
 
   // Dynamic overrides from data config
   const visionQuote = data.about?.vision || 'We shape luxury residential spaces and commercial interiors with high-fidelity spatial planning, sustainable material curation, and strict operational integrity.';
-  const aboutHeroImage = data.about?.heroImage || media.clinicImages?.[1] || 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=1200';
+  const aboutHeroImage = data.about?.heroImage || media.clinicImages?.[1] || 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=2000';
   
   const founderBio = data.doctor?.bio || `${founderName} founded ${cleanName || 'our studio'} in 2015. With over a decade of design experience, he oversees the architectural planning, timber sourcing, and custom furniture frameworks for every residential studio build.`;
   

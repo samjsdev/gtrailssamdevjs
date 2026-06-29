@@ -1,0 +1,191 @@
+{
+  "website": "Interior Design Studio",
+  "header": {
+    "headings": [
+      "Interior Design Studio"
+    ],
+    "text": [
+      "Home",
+      "About Us",
+      "Services",
+      "Projects",
+      "Contact",
+      "Book Consultation"
+    ],
+    "image_sources": []
+  },
+  "sections": [
+    {
+      "section_name": "Hero Section",
+      "headings": [
+        "ABOUT US",
+        "About Interior Design Studio"
+      ],
+      "text": [
+        "Interior Design Studio is a full-service design studio serving the city, committed to excellence."
+      ],
+      "image_sources": []
+    },
+    {
+      "section_name": "Our Journey",
+      "headings": [
+        "Growing with care, staying personal.",
+        "Inception",
+        "Expansion",
+        "Growing Reach",
+        "Comprehensive Design"
+      ],
+      "text": [
+        "Our Journey",
+        "2014",
+        "Our studio was founded with a mission to provide high-quality, accessible interior design services.",
+        "2017",
+        "We expanded our reach by opening a new studio, serving a wider range of clients and projects.",
+        "2020",
+        "Continuing our commitment, we established another studio to provide comprehensive design services to more families.",
+        "TODAY",
+        "We are now a full-service design studio offering all specialties under one roof."
+      ],
+      "image_sources": []
+    },
+    {
+      "section_name": "Our Philosophy",
+      "headings": [
+        "How we care for you",
+        "Empathy",
+        "Convenience",
+        "Innovation",
+        "Integrity"
+      ],
+      "text": [
+        "Our Philosophy",
+        "A client-first practice built on empathy, clarity, and modern design that keeps every interaction comfortable and transparent.",
+        "Client-first mindset",
+        "01",
+        "Every client deserves warm, attentive care — delivered with patience, listening, and kindness.",
+        "02",
+        "Comprehensive care in one place, coordinated schedules, and clear guidance so visits stay simple.",
+        "03",
+        "Modern diagnostics, gentle techniques, and technology-forward treatments for precise, comfortable outcomes.",
+        "04",
+        "Transparent plans, clear pricing, and honest guidance-no surprises, just trust."
+      ],
+      "image_sources": []
+    },
+    {
+      "section_name": "Founder Profile",
+      "headings": [
+        "Founder Name"
+      ],
+      "text": [
+        "Founder Profile",
+        "B.Arch, M.Des (Interior Architecture)",
+        "\"Experience-led design with clarity and trust.\"",
+        "Our founder established the studio with over 12 years of experience. They specialize in spatial design and provide expert consultation for residential and commercial projects.",
+        "Core Specializations",
+        "Residential Design",
+        "Commercial Spaces",
+        "Sustainable Design",
+        "Full Renovations",
+        "Color Consultation",
+        "Space Planning",
+        "Custom Furniture",
+        "Smart Homes",
+        "Education",
+        "B.Arch - Prestigious Architecture College",
+        "M.Des - Institute of Design Studies",
+        "Philosophy",
+        "Compassionate care, transparency, and no hidden charges."
+      ],
+      "image_sources": [
+        "https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=2000&q=80"
+      ]
+    },
+    {
+      "section_name": "Design Team",
+      "headings": [
+        "Expert Designers",
+        "John Smith",
+        "Alice Brown"
+      ],
+      "text": [
+        "Design Team",
+        "A multidisciplinary team of designers dedicated to complex projects, ensuring every client receives expert design tailored to their unique needs.",
+        "LEAD ARCHITECT",
+        "B.Arch, M.Arch • 6+ Years",
+        "Residential layouts, sustainable architecture, adaptive reuse.",
+        "SENIOR STYLIST",
+        "B.Des Interior Design",
+        "Color palettes, material selection, furniture curation."
+      ],
+      "image_sources": [
+        "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=2000&q=80",
+        "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=2000&q=80"
+      ]
+    },
+    {
+      "section_name": "Why Choose Us",
+      "headings": [
+        "Why clients trust Interior Design Studio",
+        "Expert Design Team",
+        "Modern Aesthetics",
+        "Personalized Spaces",
+        "Transparent Pricing",
+        "Award-Winning",
+        "End-to-End Service"
+      ],
+      "text": [
+        "Client Confidence",
+        "We combine creativity, craftsmanship, and a client-first approach to deliver exceptional interior designs that you can rely on.",
+        "Architects and interior designers collaborate to bring your vision to life perfectly.",
+        "We blend contemporary trends with timeless elegance to create spaces you will love forever.",
+        "Every design is uniquely tailored to your lifestyle, preferences, and personal taste.",
+        "Honest, upfront cost estimates with no hidden fees, so you can plan your project with confidence.",
+        "Rated 5-stars by hundreds of happy clients, building a legacy of excellence in design.",
+        "From concept to final installation, we handle everything so you can simply enjoy your new space."
+      ],
+      "image_sources": []
+    },
+    {
+      "section_name": "Call to Action",
+      "headings": [
+        "Ready to take the next step?"
+      ],
+      "text": [
+        "Next Step",
+        "Speak with our team and get a clear treatment plan with transparent pricing-focused on comfort, precision, and long-term satisfaction.",
+        "Book a Consultation →",
+        "Call +1 (555) 123-4567",
+        "Consultation Promise",
+        "Clear explanation of treatment options and expected outcomes.",
+        "Transparent pricing discussion before any procedure starts.",
+        "Care plan coordinated by the right specialist for your case."
+      ],
+      "image_sources": []
+    }
+  ],
+  "footer": {
+    "headings": [
+      "Interior Design Studio",
+      "Explore",
+      "Services",
+      "Get in Touch"
+    ],
+    "text": [
+      "Welcome to Interior Design Studio. We create refined, functional interiors tailored to your lifestyle, budget, and space.",
+      "Accepting New Projects",
+      "Home",
+      "About Us",
+      "Services",
+      "Contact",
+      "Space Planning",
+      "Color Consultation",
+      "Custom Furniture",
+      "Full Renovations",
+      "© 2026 Interior Design Studio. All rights reserved.",
+      "Privacy Policy",
+      "Terms of Service"
+    ],
+    "image_sources": []
+  }
+}

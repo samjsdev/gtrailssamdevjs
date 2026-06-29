@@ -48,7 +48,13 @@ export default function Hero() {
   const { basePath, data } = useTemplateData();
   const tlRef = useRef<gsap.core.Timeline | null>(null);
 
-  const heroImages = INITIAL_IMAGES; // Using stock images by default as requested
+  // Read texts from data or fallback to home.json defaults
+  const watermarkText = data?.clinic?.name || 'Interior Design Studio';
+  const ctaText = data?.hero?.ctaText || 'Consult Now';
+
+  // Read images from data.media.clinicImages or fallback to stock
+  const dataImages = data?.media?.clinicImages?.filter(Boolean) || [];
+  const heroImages = dataImages.length >= 5 ? dataImages.slice(0, 5) : INITIAL_IMAGES;
 
   useGSAP(() => {
 
@@ -145,7 +151,7 @@ export default function Hero() {
                  textShadow: '0 4px 20px rgba(186, 219, 255, 0.4)',
                  WebkitTextStroke: '2px rgba(255,255,255,0.8)'
              }}>
-           {data?.business?.name || data?.clinic?.name || 'LUMINA INTERIOR'}
+           {watermarkText}
          </h1>
       </div>
 
@@ -180,7 +186,7 @@ export default function Hero() {
             {/* Bottom Floating CTA */}
             <div className="absolute bottom-[10%] left-1/2 -translate-x-1/2 z-50">
                <Link href={`${basePath}/appointment`} className="group glass-card pl-6 pr-2 py-2 md:pl-8 rounded-full flex items-center gap-3 md:gap-4 hover:bg-white transition-all font-semibold text-slate-700 shadow-2xl border border-white/60 hover:scale-105 duration-300 whitespace-nowrap">
-                  <span className="tracking-wide text-xs md:text-sm uppercase">Consult Now</span>
+                  <span className="tracking-wide text-xs md:text-sm uppercase">{ctaText}</span>
                   <span className="w-10 h-10 rounded-full bg-[#2563eb] text-white flex items-center justify-center group-hover:bg-[#1d4ed8] transition-colors shadow-lg">
                      <svg className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
                   </span>

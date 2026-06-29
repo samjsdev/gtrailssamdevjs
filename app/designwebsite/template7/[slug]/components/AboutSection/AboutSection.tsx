@@ -16,16 +16,24 @@ export default function AboutSection({ data }: { data?: any }) {
   const clinic = data?.clinic || {};
   const business = data?.business || {};
   const doctor = data?.doctor || {};
+  const about = data?.about || {};
+  const leader = data?.leader || {};
   
-  const clinicName = clinic.name || 'Lumina';
-  const clinicDesc = clinic.description || 'Lumina Interior is a premium design studio dedicated to transforming everyday environments into extraordinary experiences.';
+  const clinicName = clinic.name || 'Interior Design Studio';
+  const clinicDesc = about.description || clinic.description || 'Welcome to Interior Design Studio. We create refined, functional interiors tailored to your lifestyle, budget, and space.';
+  const aboutSubtitle = about.subtitle || 'Who We Are';
+  const aboutTitle = about.title || 'Crafting Timeless Spaces with Purpose and Elegance.';
+  const expertiseTitle = about.expertiseTitle || 'Our Expertise';
+  const expertiseSubtitle = about.expertiseSubtitle || 'What We Do';
   
-  const leaderName = doctor.name || 'Sarah Lumina';
-  const leaderFirstName = leaderName.split(' ')[0] || 'Sarah';
-  const leaderRole = doctor.specialization || 'Principal Interior Architect';
-  const expMatch = doctor.experience?.match(/(\d+)/);
-  const leaderExp = expMatch ? expMatch[1] : '12';
-  const leaderImg = doctor.images?.[0] || 'https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=800&q=80';
+  const leaderSectionTitle = leader.title || 'The Leader';
+  const leaderName = doctor.name || 'The Leader';
+  const leaderFirstName = leaderName.split(' ')[0] || 'Founder';
+  const leaderRole = doctor.specialization || 'Interior Design & Turnkey Execution';
+  const leaderExp = doctor.experience || '5+';
+  const leaderQuote = leader.quote || '"Design is not just about aesthetics; it\'s about creating an environment that elevates your everyday life."';
+  const leaderBio = doctor.bio || 'With a visionary approach to modern architecture and a deep understanding of spatial psychology, we have led our studio to become a recognized design firm. Our philosophy centers on transparency, compassionate client care, and uncompromising elegance.';
+  const leaderImg = data?.media?.otherImages?.[0] || 'https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=2000&q=80';
 
   const servicesList = (business.services?.length ? business.services : [
     'Residential Design', 'Commercial Spaces', 'Full Renovations', 'Custom Furnishing'
@@ -89,15 +97,15 @@ export default function AboutSection({ data }: { data?: any }) {
         <div className="who-section max-w-4xl mx-auto text-center">
            <div className="who-reveal flex items-center justify-center gap-3 mb-6">
               <div className="h-px w-12 bg-[var(--accent)]" />
-              <span className="text-sm font-bold text-[var(--accent)] tracking-[0.2em] uppercase">Who We Are</span>
+              <span className="text-sm font-bold text-[var(--accent)] tracking-[0.2em] uppercase">{aboutSubtitle}</span>
               <div className="h-px w-12 bg-[var(--accent)]" />
            </div>
            
            <h2 className="who-reveal text-4xl md:text-5xl lg:text-6xl font-serif font-light text-[var(--text)] leading-[1.2] mb-8">
-             Crafting <span className="font-semibold text-[var(--accent)]">Timeless</span> Spaces with Purpose and Elegance.
+             {aboutTitle}
            </h2>
            
-           <p className="who-reveal text-lg md:text-xl text-[var(--muted)] leading-relaxed max-w-3xl mx-auto">
+           <p className="who-reveal text-lg md:text-xl text-[var(--muted)] leading-relaxed max-w-3xl mx-auto whitespace-pre-wrap">
              {clinicDesc}
            </p>
         </div>
@@ -108,9 +116,9 @@ export default function AboutSection({ data }: { data?: any }) {
                <div>
                   <div className="flex items-center gap-3 mb-4">
                      <div className="h-px w-8 bg-[var(--accent-2)]" />
-                     <span className="text-sm font-bold text-[var(--accent-2)] tracking-[0.2em] uppercase">Our Expertise</span>
+                     <span className="text-sm font-bold text-[var(--accent-2)] tracking-[0.2em] uppercase">{expertiseTitle}</span>
                   </div>
-                  <h2 className="text-3xl md:text-4xl font-serif text-[var(--text)]">What We Do</h2>
+                  <h2 className="text-3xl md:text-4xl font-serif text-[var(--text)]">{expertiseSubtitle}</h2>
                </div>
                <Link href="/services" className="text-[var(--accent)] hover:text-[var(--accent-2)] transition-colors font-medium flex items-center gap-2">
                  View All Services <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
@@ -158,7 +166,7 @@ export default function AboutSection({ data }: { data?: any }) {
               <div className="flex flex-col">
                  <div className="leader-text flex items-center gap-3 mb-4">
                     <div className="h-px w-8 bg-[var(--accent)]" />
-                    <span className="text-sm font-bold text-[var(--accent)] tracking-[0.2em] uppercase">The Leader</span>
+                    <span className="text-sm font-bold text-[var(--accent)] tracking-[0.2em] uppercase">{leaderSectionTitle}</span>
                  </div>
 
                  <h2 className="leader-text text-4xl md:text-5xl font-serif font-light mb-2 text-[var(--text)]">
@@ -168,12 +176,12 @@ export default function AboutSection({ data }: { data?: any }) {
 
                  <blockquote className="leader-text relative mb-8 pl-6 border-l-2 border-[var(--accent)]">
                      <p className="text-2xl font-light italic text-[var(--text)] leading-relaxed">
-                         "Design is not just about aesthetics; it's about creating an environment that elevates your everyday life."
+                         {leaderQuote}
                      </p>
                  </blockquote>
 
-                 <p className="leader-text text-[1.05rem] leading-relaxed text-[var(--muted-2)] mb-10 max-w-xl">
-                   With a visionary approach to modern architecture and a deep understanding of spatial psychology, {leaderFirstName} has led {clinicName} to become a recognized design studio. Our philosophy centers on transparency, compassionate client care, and uncompromising elegance.
+                 <p className="leader-text text-[1.05rem] leading-relaxed text-[var(--muted-2)] mb-10 max-w-xl whitespace-pre-wrap">
+                   {leaderBio}
                  </p>
 
                  {/* Signature & CTA */}

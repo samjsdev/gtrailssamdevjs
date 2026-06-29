@@ -98,19 +98,19 @@ export default async function ServicesPage({ params }: PageProps) {
             { 
               title: "Space Planning & Layout", 
               desc: "Optimize every square foot with intelligent layouts that enhance flow, natural light, and daily living.", 
-              img: media?.otherImages?.[6] || "https://images.unsplash.com/photo-1542889601-399c4f3a8402?auto=format&fit=crop&w=800&q=80", 
+              img: media?.otherImages?.[6] || "https://images.unsplash.com/photo-1542889601-399c4f3a8402?auto=format&fit=crop&w=2000&q=80", 
               subs: ["Floor Plan Design", "Furniture Layout", "Traffic Flow Audit"],
             },
             { 
               title: "Material & Finish Selection", 
               desc: "Curated palettes of durable flooring, tactile wall finishes, and solid hardware that define the character of your space.", 
-              img: media?.otherImages?.[7] || "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=800&q=80", 
+              img: media?.otherImages?.[7] || "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=2000&q=80", 
               subs: ["Flooring & Tiling", "Wall Finishes & Paint", "Hardware & Fixtures"],
             },
             { 
               title: "Lighting Design", 
               desc: "Layered lighting schemes that set the mood, enhance task functionality, and showcase custom joinery details.", 
-              img: media?.otherImages?.[8] || "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=800&q=80", 
+              img: media?.otherImages?.[8] || "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=2000&q=80", 
               subs: ["Ambient & Task Lighting", "Accent & Custom Fixtures", "Smart Integration"],
             }
           ].map((srv, i) => (
@@ -178,19 +178,19 @@ export default async function ServicesPage({ params }: PageProps) {
             { 
               title: "Residential Design", 
               desc: "Transform your home into a sanctuary. We craft living spaces for all scales—from studio apartments to sprawling villas—with a focus on comfort, timeless aesthetics, and personal expression.", 
-              img: media?.otherImages?.[9] || "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=800&q=80", 
+              img: media?.otherImages?.[9] || "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=2000&q=80", 
               subs: ["Living & Dining Rooms", "Bedrooms & Walk-in Closets", "Kitchens & Bathrooms"],
             },
             { 
               title: "Commercial Interiors", 
               desc: "Spaces that drive productivity and impress clients. We design offices, retail stores, and hospitality venues that align perfectly with your brand identity and operational needs.", 
-              img: media?.otherImages?.[10] || "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=800&q=80", 
+              img: media?.otherImages?.[10] || "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=2000&q=80", 
               subs: ["Office & Co-working Spaces", "Retail & Showroom Design", "Restaurant & Café Interiors"],
             },
             { 
               title: "Styling & Décor", 
               desc: "The finishing layer that brings your space to life. We source custom art, textiles, accessories, and curated organic objects that add warmth, depth, and character to every room.", 
-              img: media?.otherImages?.[11] || "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=800&q=80", 
+              img: media?.otherImages?.[11] || "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=2000&q=80", 
               subs: ["Art Curation & Placement", "Soft Furnishing & Textiles", "Accessory & Object Curation"],
             }
           ].map((srv, i) => (
@@ -260,13 +260,13 @@ export default async function ServicesPage({ params }: PageProps) {
             { 
               title: "Full Home Renovation", 
               desc: "Complete civil renovation management from safe site demolitions to visual handover. We strictly coordinate subcontractor timetables, materials deliveries, and structural blueprints.", 
-              img: media?.otherImages?.[12] || "https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=800&q=80", 
+              img: media?.otherImages?.[12] || "https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=2000&q=80", 
               subs: ["Structural Demolitions", "Bathroom Overhauls", "Full Masonry Coordination"],
             },
             { 
               title: "Custom Furniture & Joinery", 
               desc: "Bespoke wardrobes, TV cabinetry, and kitchen storage systems detailed entirely around your measurements. Fabricated with verified boiling water proof plywood, durable hardware, and fine wood veneer finishes.", 
-              img: media?.otherImages?.[13] || "https://images.unsplash.com/photo-1538688525198-9b88f6f53126?auto=format&fit=crop&w=800&q=80", 
+              img: media?.otherImages?.[13] || "https://images.unsplash.com/photo-1538688525198-9b88f6f53126?auto=format&fit=crop&w=2000&q=80", 
               subs: ["Bespoke Wardrobe Units", "Custom Dining Tables", "Premium Cabinetry Details"],
             }
           ].map((srv, i) => (

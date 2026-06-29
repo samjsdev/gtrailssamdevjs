@@ -46,7 +46,7 @@ export default function Home({ data }: { data?: any }) {
       </LazySection>
       <WhyChooseUs data={data} />
       <StatsGrid data={data} />
-      <TestimonialsSection data={data} />
+      <CTASection data={data} />
     </div>
   );
 }

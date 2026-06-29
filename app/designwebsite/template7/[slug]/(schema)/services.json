@@ -1,0 +1,190 @@
+{
+  "website": "Interior Design Studio",
+  "header": {
+    "headings": [
+      "Interior Design Studio"
+    ],
+    "text": [
+      "Home",
+      "About Us",
+      "Services",
+      "Projects",
+      "Contact",
+      "Book Consultation"
+    ],
+    "image_sources": []
+  },
+  "sections": [
+    {
+      "section_name": "Hero Section",
+      "headings": [
+        "Curated Designs"
+      ],
+      "text": [
+        "World Class Design",
+        "Comprehensive design solutions delivered with precision, creativity, and care under one roof.",
+        "Residential",
+        "Commercial",
+        "Hospitality",
+        "Retail"
+      ],
+      "image_sources": []
+    },
+    {
+      "section_name": "Essential Styling",
+      "headings": [
+        "Essential Styling",
+        "Space Planning",
+        "Color Consultation",
+        "Furnishing"
+      ],
+      "text": [
+        "01",
+        "The foundation of a beautiful home starts with smart layout and color choices.",
+        "Maximize your living space with our expert layout configurations.",
+        "Floor Plans",
+        "Furniture Layouts",
+        "Flow Optimization",
+        "Find the perfect palette to match your style and set the right mood.",
+        "Paint Selection",
+        "Material Palettes",
+        "Lighting Integration",
+        "Curated furniture selections to complement your space and lifestyle.",
+        "Custom Furniture",
+        "Upholstery",
+        "Decor Selection"
+      ],
+      "image_sources": []
+    },
+    {
+      "section_name": "Full Renovations",
+      "headings": [
+        "Full Renovations"
+      ],
+      "text": [
+        "02 — Transformations",
+        "Complete overhauls of your living spaces. We manage everything from demolition to final styling.",
+        "Structural Changes",
+        "Project Management",
+        "Turnkey Solutions"
+      ],
+      "image_sources": [
+        "https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?auto=format&fit=crop&w=800&q=80"
+      ]
+    },
+    {
+      "section_name": "Kitchen & Bath",
+      "headings": [
+        "Kitchen & Bath"
+      ],
+      "text": [
+        "03 — Restoration",
+        "Specialized designs for the most important rooms in your house, blending functionality with luxury.",
+        "Custom Cabinetry",
+        "High-end Fixtures",
+        "Smart Storage"
+      ],
+      "image_sources": [
+        "https://images.unsplash.com/photo-1556910103-1c02745a872f?auto=format&fit=crop&w=800&q=80"
+      ]
+    },
+    {
+      "section_name": "Commercial Spaces",
+      "headings": [
+        "Commercial Spaces",
+        "Custom Furniture",
+        "Bespoke Design",
+        "Lighting & Decor"
+      ],
+      "text": [
+        "04 — Aesthetics",
+        "Inspiring workspaces, retail environments, and hospitality venues designed for success.",
+        "Tailored specifically to your vision and functional needs.",
+        "Expertly curated lighting and decor for immediate, brilliant results."
+      ],
+      "image_sources": [
+        "https://images.unsplash.com/photo-1518455027359-f3f8164ba6bd?auto=format&fit=crop&w=800&q=80"
+      ]
+    },
+    {
+      "section_name": "Advanced Services",
+      "headings": [
+        "Advanced Services",
+        "Smart Home Integration",
+        "Sustainable Design"
+      ],
+      "text": [
+        "Seamlessly incorporate the latest technology into your interior design.",
+        "Automated Lighting",
+        "Climate Control",
+        "Security Systems",
+        "Eco-friendly materials and energy-efficient solutions for a greener home.",
+        "Green Materials",
+        "Energy Efficiency",
+        "Indoor Air Quality"
+      ],
+      "image_sources": [
+        "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=800&q=80",
+        "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=800&q=80"
+      ]
+    },
+    {
+      "section_name": "Why Choose Us",
+      "headings": [
+        "Why clients trust Interior Design Studio",
+        "Expert Design Team",
+        "Modern Aesthetics",
+        "Personalized Spaces",
+        "Transparent Pricing",
+        "Award-Winning",
+        "End-to-End Service"
+      ],
+      "text": [
+        "Client Confidence",
+        "We combine creativity, craftsmanship, and a client-first approach to deliver exceptional interior designs that you can rely on.",
+        "Architects and interior designers collaborate to bring your vision to life perfectly.",
+        "We blend contemporary trends with timeless elegance to create spaces you will love forever.",
+        "Every design is uniquely tailored to your lifestyle, preferences, and personal taste.",
+        "Honest, upfront cost estimates with no hidden fees, so you can plan your project with confidence.",
+        "Rated 5-stars by hundreds of happy clients, building a legacy of excellence in design.",
+        "From concept to final installation, we handle everything so you can simply enjoy your new space."
+      ],
+      "image_sources": []
+    },
+    {
+      "section_name": "Call to Action",
+      "headings": [
+        "Ready for your new space?"
+      ],
+      "text": [
+        "Book Appointment",
+        "Call Us Now"
+      ],
+      "image_sources": []
+    }
+  ],
+  "footer": {
+    "headings": [
+      "Interior Design Studio",
+      "Explore",
+      "Services",
+      "Get in Touch"
+    ],
+    "text": [
+      "Welcome to Interior Design Studio. We create refined, functional interiors tailored to your lifestyle, budget, and space.",
+      "Accepting New Projects",
+      "Home",
+      "About Us",
+      "Services",
+      "Contact",
+      "Space Planning",
+      "Color Consultation",
+      "Custom Furniture",
+      "Full Renovations",
+      "© 2026 Interior Design Studio. All rights reserved.",
+      "Privacy Policy",
+      "Terms of Service"
+    ],
+    "image_sources": []
+  }
+}

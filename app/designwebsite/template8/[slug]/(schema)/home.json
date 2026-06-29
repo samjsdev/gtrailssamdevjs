@@ -1,0 +1,194 @@
+{
+  "website": "Interior Design Studio",
+  "header": {
+    "headings": [
+      "Interior Design Studio"
+    ],
+    "text": [
+      "Home",
+      "About",
+      "Services",
+      "Gallery",
+      "Contact",
+      "+1 (555) 123-4567"
+    ],
+    "image_sources": []
+  },
+  "sections": [
+    {
+      "section_name": "Hero Carousel",
+      "headings": [
+        "Luxury Villa",
+        "Corporate Office"
+      ],
+      "text": [
+        "Featured",
+        "Elevating modern interiors with thoughtful design and premium craftsmanship.",
+        "Bohemian Chic",
+        "Luxury Villa",
+        "Corporate Office",
+        "Art Deco Suite",
+        "Modern Minimalist"
+      ],
+      "image_sources": [
+        "/images/template8/hero-pool/hero-5.webp",
+        "/images/template8/hero-pool/hero-6.webp",
+        "/images/template8/hero-pool/hero-3.webp",
+        "/images/template8/hero-pool/hero-7.webp",
+        "/images/template8/hero-pool/hero-1.webp"
+      ]
+    },
+    {
+      "section_name": "About / Statistics",
+      "headings": [
+        "Your Trusted Interior Design Partners",
+        "30+",
+        "5k+",
+        "07+",
+        "33+"
+      ],
+      "text": [
+        "We specialize in crafting beautiful, functional spaces tailored precisely to your lifestyle. Let us bring your vision to life through thoughtful design and seamless execution.",
+        "Satisfied Customer",
+        "Award wining",
+        "Years of Experience",
+        "Projects Delivered"
+      ],
+      "image_sources": [
+        "https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&q=80&w=2000"
+      ]
+    },
+    {
+      "section_name": "Core Services",
+      "headings": [
+        "Our Core Services",
+        "Residential Design",
+        "Commercial Spaces",
+        "Space Planning",
+        "Custom Furniture",
+        "Material Selection",
+        "Styling & Decor"
+      ],
+      "text": [
+        "A comprehensive suite of interior design solutions, from foundational planning to the final decorative touches.",
+        "Complete interior design solutions for homes, creating warm, personalized living spaces.",
+        "Functional and inspiring designs for offices, retail stores, and boutique environments.",
+        "Optimized floor plans that maximize flow, comfort, and functionality in any given area.",
+        "Bespoke furniture design crafted perfectly for your space, aesthetic, and daily use.",
+        "Curating the perfect palette of paints, wall coverings, sustainable woods, and fabrics.",
+        "The final layer of polish—selecting art, lighting, and accessories to complete your vision.",
+        "Explore Portfolio"
+      ],
+      "image_sources": [
+        "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&q=80&w=800",
+        "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=800",
+        "https://images.unsplash.com/photo-1503602642458-232111445657?auto=format&fit=crop&q=80&w=800",
+        "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?auto=format&fit=crop&q=80&w=800",
+        "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&q=80&w=800",
+        "https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&q=80&w=800"
+      ]
+    },
+    {
+      "section_name": "Recent Projects",
+      "headings": [
+        "Discover Our Recent Projects",
+        "Luxury Penthouse Living",
+        "Modern Loft Kitchen",
+        "Minimalist Master Suite"
+      ],
+      "text": [
+        "Browse through our curated portfolio of residential and commercial interiors. Each project is a testament to our commitment to quality and style.",
+        "City Center, Downtown",
+        "Completed 2023",
+        "Creative District, Westside",
+        "Completed 2024",
+        "Suburban Retreat",
+        "More Projects"
+      ],
+      "image_sources": [
+        "https://images.unsplash.com/photo-1600210491892-03d54c0aaf87?auto=format&fit=crop&q=80&w=2000",
+        "https://images.unsplash.com/photo-1556910103-1c02745aae4d?auto=format&fit=crop&q=80&w=2000",
+        "https://images.unsplash.com/photo-1616594039964-ae9021a400a0?auto=format&fit=crop&q=80&w=2000",
+        "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=2000"
+      ]
+    },
+    {
+      "section_name": "Testimonials",
+      "headings": [
+        "What Our Clients Say",
+        "Jane Doe",
+        "John Smith",
+        "Alice & Bob"
+      ],
+      "text": [
+        "Read stories from clients whose homes we've transformed with our dedicated interior design services.",
+        "They completely transformed our living room. The attention to detail and ability to capture our personal style was remarkable. Highly recommended!",
+        "Happy Client",
+        "The turnkey execution was flawless. They handled everything from demolition to the final styling of the bookshelves. Our home feels brand new.",
+        "We loved how they optimized our floor plan. What used to be a cramped kitchen is now an open, airy space where we love to entertain guests."
+      ],
+      "image_sources": [
+        "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=150&q=80",
+        "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=150&q=80",
+        "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&w=150&q=80"
+      ]
+    },
+    {
+      "section_name": "Highlight Designs",
+      "headings": [
+        "Our Highlight Designs",
+        "Modern Living",
+        "Classic Elegance",
+        "Bohemian Chic",
+        "Industrial Space"
+      ],
+      "text": [
+        "Explore our most stunning interior design projects, showcasing our versatility and attention to detail across various styles.",
+        "Residential",
+        "Luxury",
+        "Studio",
+        "Commercial"
+      ],
+      "image_sources": [
+        "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=2000&q=80",
+        "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=2000&q=80",
+        "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&w=2000&q=80",
+        "https://images.unsplash.com/photo-1542889601-399c4f3a8402?auto=format&fit=crop&w=2000&q=80"
+      ]
+    },
+    {
+      "section_name": "Call to Action",
+      "headings": [
+        "Ready to Transform Your Space?"
+      ],
+      "text": [
+        "Whether you are renovating a single room or building a new home, our expert designers are ready to guide you through every step of the process.",
+        "Contact Us Now",
+        "View Portfolio"
+      ],
+      "image_sources": []
+    }
+  ],
+  "footer": {
+    "headings": [
+      "Interior Design Studio",
+      "Quick Links",
+      "Contact Us"
+    ],
+    "text": [
+      "Elevating spaces with thoughtful interior design and bespoke solutions. We bring your vision to life through creativity and expert craftsmanship.",
+      "Home",
+      "About Us",
+      "Services",
+      "Gallery",
+      "Contact",
+      "123 Generic Street, Suite 100, Metropolis, ST 12345",
+      "+1 (555) 123-4567",
+      "hello@example.com",
+      "© 2026 Interior Design Studio. All rights reserved.",
+      "Privacy Policy",
+      "Terms of Service"
+    ],
+    "image_sources": []
+  }
+}

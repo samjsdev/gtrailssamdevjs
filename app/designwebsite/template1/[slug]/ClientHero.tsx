@@ -63,13 +63,13 @@ export default function ClientHero({ clinic, business, basePath, data }: ClientH
             loop 
             playsInline 
             className="w-full h-full object-cover"
-            poster={data?.media?.clinicImages?.[0] || "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&q=80&w=2000"}
+            poster={data?.media?.clinicImages?.[0] || "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&q=100&w=2560"}
           >
             <source src={data.hero.video} type="video/mp4" />
           </video>
         ) : (
           <img 
-            src={data?.media?.clinicImages?.[0] || "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&q=80&w=2000"} 
+            src={data?.media?.clinicImages?.[0] || "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&q=100&w=2560"} 
             alt="Hero background" 
             className="w-full h-full object-cover"
           />

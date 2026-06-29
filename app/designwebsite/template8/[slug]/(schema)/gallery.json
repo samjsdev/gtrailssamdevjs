@@ -1,0 +1,90 @@
+{
+  "website": "Interior Design Studio",
+  "header": {
+    "headings": [
+      "Interior Design Studio"
+    ],
+    "text": [
+      "Home",
+      "About",
+      "Services",
+      "Gallery",
+      "Contact",
+      "+1 (555) 123-4567"
+    ],
+    "image_sources": []
+  },
+  "sections": [
+    {
+      "section_name": "Hero Section",
+      "headings": [
+        "Our Gallery"
+      ],
+      "text": [
+        "Portfolio",
+        "A curated selection of our finest interior transformations, where luxury meets functionality."
+      ],
+      "image_sources": []
+    },
+    {
+      "section_name": "Gallery Images",
+      "headings": [
+        "Curated Interior"
+      ],
+      "text": [
+        "Project 01",
+        "Project 02",
+        "Project 03",
+        "Project 04",
+        "Project 05",
+        "Project 06",
+        "Project 07",
+        "Project 08"
+      ],
+      "image_sources": [
+        "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=800&q=80",
+        "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=800&q=80",
+        "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&w=800&q=80",
+        "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=800&q=80",
+        "https://images.unsplash.com/photo-1542889601-399c4f3a8402?auto=format&fit=crop&w=800&q=80",
+        "https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&w=800&q=80",
+        "https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=800&q=80",
+        "https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&w=800&q=80"
+      ]
+    },
+    {
+      "section_name": "Call to Action",
+      "headings": [
+        "Ready to Transform Your Space?"
+      ],
+      "text": [
+        "Whether you are renovating a single room or building a new home, our expert designers are ready to guide you through every step of the process.",
+        "Contact Us Now",
+        "View Portfolio"
+      ],
+      "image_sources": []
+    }
+  ],
+  "footer": {
+    "headings": [
+      "Interior Design Studio",
+      "Quick Links",
+      "Contact Us"
+    ],
+    "text": [
+      "Elevating spaces with thoughtful interior design and bespoke solutions. We bring your vision to life through creativity and expert craftsmanship.",
+      "Home",
+      "About Us",
+      "Services",
+      "Gallery",
+      "Contact",
+      "123 Generic Street, Suite 100, Metropolis, ST 12345",
+      "+1 (555) 123-4567",
+      "hello@example.com",
+      "© 2026 Interior Design Studio. All rights reserved.",
+      "Privacy Policy",
+      "Terms of Service"
+    ],
+    "image_sources": []
+  }
+}

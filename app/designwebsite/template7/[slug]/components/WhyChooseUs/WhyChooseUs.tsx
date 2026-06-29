@@ -8,7 +8,10 @@ import { useGSAP } from '@gsap/react';
 gsap.registerPlugin(ScrollTrigger);
 
 export default function WhyChooseUs({ data }: { data?: any }) {
-  const clinicName = data?.clinic?.name || 'Lumina Interior';
+  const clinicName = data?.clinic?.name || 'Interior Design Studio';
+  const subtitle = data?.philosophy?.subtitle || 'Client Confidence';
+  const title = data?.philosophy?.title || 'Why clients trust';
+  const desc = data?.philosophy?.description || 'We combine creativity, craftsmanship, and a client-first approach to deliver exceptional interior designs that you can rely on.';
   const containerRef = useRef<HTMLElement>(null);
 
   useGSAP(() => {
@@ -102,14 +105,14 @@ export default function WhyChooseUs({ data }: { data?: any }) {
         <div className="why-choose-header mb-20 md:mb-28 max-w-3xl">
           <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-[var(--border)] bg-[var(--surface-2)] mb-6">
              <span className="w-1.5 h-1.5 rounded-full bg-[var(--accent-2)]"></span>
-             <span className="font-mono text-[10px] text-[var(--muted)] tracking-widest uppercase">Client Confidence</span>
+             <span className="font-mono text-[10px] text-[var(--muted)] tracking-widest uppercase">{subtitle}</span>
           </div>
-          <h2 className="text-4xl md:text-6xl font-light mb-6 text-[var(--text)] leading-tight" style={{ fontFamily: 'var(--serif-font)' }}>
-            Why clients trust <br />
+          <h2 className="text-4xl md:text-6xl font-light mb-6 text-[var(--text)] leading-tight whitespace-pre-line" style={{ fontFamily: 'var(--serif-font)' }}>
+            {title} <br />
             <span className="italic text-[var(--accent)]">{clinicName}</span>
           </h2>
-          <p className="text-lg md:text-xl text-[var(--muted)] leading-relaxed max-w-2xl border-l-2 border-[var(--accent-2)] pl-6">
-            We combine creativity, craftsmanship, and a client-first approach to deliver exceptional interior designs that you can rely on.
+          <p className="text-lg md:text-xl text-[var(--muted)] leading-relaxed max-w-2xl border-l-2 border-[var(--accent-2)] pl-6 whitespace-pre-wrap">
+            {desc}
           </p>
         </div>
 

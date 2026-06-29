@@ -1,41 +1,57 @@
 'use client';
 
 import Image from 'next/image';
-import { Sofa, ChefHat, BedDouble } from 'lucide-react';
+import { Sofa, ChefHat, BedDouble, ArrowRight } from 'lucide-react';
+import { useTemplateData } from './context/TemplateContext';
 
 export default function PropertiesSection() {
+  const { data } = useTemplateData();
+  const projData = data?.home?.sections?.[3] || {};
+
+  const mainHeading = projData.headings?.[0] || 'Discover Our Recent\nProjects';
+  const mainText = projData.text?.[0] || 'Browse through our curated portfolio of residential and commercial interiors. Each project is a testament to our commitment to quality and style.';
+
+  const defaultImages = [
+    'https://images.unsplash.com/photo-1600210491892-03d54c0aaf87?auto=format&fit=crop&q=80&w=2000',
+    'https://images.unsplash.com/photo-1556910103-1c02745aae4d?auto=format&fit=crop&q=80&w=2000',
+    'https://images.unsplash.com/photo-1616594039964-ae9021a400a0?auto=format&fit=crop&q=80&w=2000',
+    'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=2000'
+  ];
+
+  const getImg = (i: number) => data?.media?.recentProjects?.[i] || projData.image_sources?.[i] || defaultImages[i];
+
   const projects = [
     {
-      title: 'Luxury Penthouse Living',
-      location: 'Marine Drive, Downtown',
-      price: 'Completed 2023',
+      title: projData.headings?.[1] || 'Luxury Penthouse Living',
+      location: projData.text?.[1] || 'Marine Drive, Downtown',
+      price: projData.text?.[2] || 'Completed 2023',
       living: 1,
       dining: 1,
       bedrooms: 3,
-      image: 'https://images.unsplash.com/photo-1600210491892-03d54c0aaf87?auto=format&fit=crop&q=80&w=800'
+      image: getImg(0)
     },
     {
-      title: 'Modern Loft Kitchen',
-      location: 'Arts District, Westside',
-      price: 'Completed 2024',
+      title: projData.headings?.[2] || 'Modern Loft Kitchen',
+      location: projData.text?.[3] || 'Arts District, Westside',
+      price: projData.text?.[4] || 'Completed 2024',
       living: 1,
       dining: 1,
       bedrooms: 2,
-      image: 'https://images.unsplash.com/photo-1556910103-1c02745aae4d?auto=format&fit=crop&q=80&w=800'
+      image: getImg(1)
     },
     {
-      title: 'Minimalist Master Suite',
-      location: 'Suburban Retreat',
-      price: 'Completed 2023',
+      title: projData.headings?.[3] || 'Minimalist Master Suite',
+      location: projData.text?.[5] || 'Suburban Retreat',
+      price: projData.text?.[2] || 'Completed 2023',
       living: 1,
       dining: 0,
       bedrooms: 1,
-      image: 'https://images.unsplash.com/photo-1616594039964-ae9021a400a0?auto=format&fit=crop&q=80&w=800'
+      image: getImg(2)
     },
     {
-      title: 'Explore Portfolio',
+      title: projData.text?.[6] || 'More Projects',
       isExplore: true,
-      image: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=800'
+      image: getImg(3)
     }
   ];
 
@@ -43,19 +59,20 @@ export default function PropertiesSection() {
     <section className="px-4 md:px-8 py-16 max-w-7xl mx-auto">
       <div className="flex flex-col md:flex-row justify-between items-end mb-12">
         <div className="max-w-md">
-          <h2 className="text-4xl md:text-5xl font-bold text-[#1A1D27] leading-tight mb-4">
-            Discover Our Recent<br />Projects
+          <h2 data-gsap="reveal" className="text-4xl md:text-5xl font-bold text-[#1A1D27] leading-tight mb-4 whitespace-pre-line">
+            {mainHeading}
           </h2>
         </div>
-        <div className="max-w-md text-sm text-gray-500 pb-2">
-          Browse through our curated portfolio of residential and commercial interiors. Each project is a testament to our commitment to quality and style.
+        <div data-gsap="reveal" className="max-w-md text-sm text-gray-500 pb-2">
+          {mainText}
         </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div data-gsap="stagger-container" className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {projects.map((proj, idx) => (
           <div 
             key={idx} 
+            data-gsap="stagger-item"
             className="group relative rounded-[40px] overflow-hidden h-[350px] shadow-sm hover:shadow-lg transition cursor-pointer"
           >
             {/* Background Image */}
@@ -91,11 +108,14 @@ export default function PropertiesSection() {
                 </div>
               </div>
             ) : (
-              <div className="absolute inset-0 flex items-center justify-center bg-[#2b347b]/40 mix-blend-multiply">
-                 <div className="z-30 bg-[#2b347b] w-28 h-28 rounded-full flex items-center justify-center text-white border-4 border-white shadow-xl cursor-pointer hover:scale-110 transition absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-                  <span className="text-sm font-semibold tracking-widest uppercase rotate-45 text-center px-2">Portfolio</span>
+              <>
+                <div className="absolute inset-0 flex items-center justify-center bg-[#2b347b]/40 mix-blend-multiply"></div>
+                <div className="absolute inset-0 flex items-center justify-center z-10">
+                  <span className="bg-white text-[#1A1D27] px-8 py-4 rounded-full font-bold shadow-xl flex items-center gap-2 hover:scale-105 transition">
+                    {proj.title} <ArrowRight className="w-5 h-5" />
+                  </span>
                 </div>
-              </div>
+              </>
             )}
           </div>
         ))}

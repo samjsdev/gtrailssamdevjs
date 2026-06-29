@@ -6,8 +6,12 @@ import { useGSAP } from '@gsap/react';
 
 gsap.registerPlugin(ScrollTrigger);
 
-const CTASection = () => {
+const CTASection = ({ data }: { data?: any }) => {
   const containerRef = useRef<HTMLElement>(null);
+  const title = data?.cta?.title || 'Ready to take the next step?';
+  const description = data?.cta?.description || 'Speak with our team and get a clear treatment plan with transparent pricing-focused on comfort, precision, and long-term oral health.';
+  const buttonText = data?.cta?.buttonText || 'Book a Consultation';
+  const phone = data?.clinic?.contact?.phone || '+91 95436 02232';
 
   useGSAP(() => {
     const tl = gsap.timeline({
@@ -52,19 +56,19 @@ const CTASection = () => {
             <div>
               <p className="font-mono text-xs tracking-[0.2em] uppercase text-[var(--accent)] mb-4">Next Step</p>
               <h2 className="cta-title text-4xl md:text-5xl font-light mb-6 text-[var(--text)] leading-[1.05]" style={{ fontFamily: 'var(--serif-font)' }}>
-                Ready to take the next step?
+                {title}
               </h2>
-              <p className="cta-copy text-base md:text-lg max-w-2xl text-[var(--muted)] leading-relaxed mb-8">
-                Speak with our team and get a clear treatment plan with transparent pricing-focused on comfort, precision, and long-term oral health.
+              <p className="cta-copy text-base md:text-lg max-w-2xl text-[var(--muted)] leading-relaxed mb-8 whitespace-pre-wrap">
+                {description}
               </p>
 
               <div className="cta-actions flex flex-col sm:flex-row gap-4 items-stretch sm:items-center">
                 <Link href="/contact" className="group inline-flex justify-center items-center gap-2 px-8 py-4 font-semibold rounded-xl bg-[var(--accent)] text-white hover:bg-[var(--accent)]/90 transition-all duration-200 shadow-lg shadow-[var(--accent)]/25">
-                  Book a Consultation
+                  {buttonText}
                   <span className="transition-transform duration-200 group-hover:translate-x-0.5">→</span>
                 </Link>
-                <a href="tel:+919543602232" className="inline-flex justify-center items-center px-8 py-4 font-medium rounded-xl border border-[var(--border)] bg-[var(--surface-2)] text-[var(--text)] hover:border-[var(--accent-2)] hover:text-[var(--accent)] transition-colors">
-                  Call +91 95436 02232
+                <a href={`tel:${phone.replace(/[^0-9+]/g, '')}`} className="inline-flex justify-center items-center px-8 py-4 font-medium rounded-xl border border-[var(--border)] bg-[var(--surface-2)] text-[var(--text)] hover:border-[var(--accent-2)] hover:text-[var(--accent)] transition-colors">
+                  Call {phone}
                 </a>
               </div>
             </div>

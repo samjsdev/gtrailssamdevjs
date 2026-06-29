@@ -1,0 +1,164 @@
+{
+  "website": "Interior Design Studio",
+  "header": {
+    "headings": [
+      "Interior Design Studio"
+    ],
+    "text": [
+      "Home",
+      "About",
+      "Services",
+      "Gallery",
+      "Contact",
+      "+1 (555) 123-4567"
+    ],
+    "image_sources": []
+  },
+  "sections": [
+    {
+      "section_name": "Hero Section",
+      "headings": [
+        "Our Services"
+      ],
+      "text": [
+        "Expertise",
+        "Tailored interior design solutions crafted to elevate your living and working environments."
+      ],
+      "image_sources": [
+        "https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&q=80&w=2560"
+      ]
+    },
+    {
+      "section_name": "Service Details",
+      "headings": [
+        "Residential Design",
+        "Commercial Spaces",
+        "Space Planning",
+        "Custom Furniture",
+        "Material Selection",
+        "Styling & Decor"
+      ],
+      "text": [
+        "Complete interior design solutions for homes, creating warm, personalized living spaces. We focus on transforming every room—from the grand foyer to the private bedroom sanctuary—into a cohesive narrative that reflects your unique lifestyle.",
+        "Functional and inspiring designs for offices, retail stores, and boutique environments. Our commercial designs balance striking aesthetics with operational efficiency, ensuring your physical space elevates your brand identity and enhances employee productivity.",
+        "Optimized floor plans that maximize flow, comfort, and functionality in any given area. We analyze structural constraints and traffic patterns to produce intelligent layouts that make spaces feel infinitely larger and vastly more intuitive to navigate.",
+        "Bespoke furniture design crafted perfectly for your space, aesthetic, and daily use. Collaborating with master craftsmen, we design and produce unique, heirloom-quality pieces—from expansive dining tables to precisely engineered built-in cabinetry.",
+        "Curating the perfect palette of paints, wall coverings, sustainable woods, and fabrics. We guide you through our extensive library of premium, globally sourced materials to build a tactile foundation that defines the atmosphere of your space.",
+        "The final layer of polish—selecting art, lighting, and accessories to complete your vision. This crucial phase turns a beautiful house into a lived-in home through the careful placement of curated objects, ambient lighting, and rich textural layers."
+      ],
+      "image_sources": [
+        "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&q=80&w=1200",
+        "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=1200",
+        "https://images.unsplash.com/photo-1503602642458-232111445657?auto=format&fit=crop&q=80&w=1200",
+        "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?auto=format&fit=crop&q=80&w=1200",
+        "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&q=80&w=1200",
+        "https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&q=80&w=1200"
+      ]
+    },
+    {
+      "section_name": "Design Philosophy",
+      "headings": [
+        "Our Design Philosophy",
+        "Listen & Understand",
+        "Conceptualize",
+        "Execute & Deliver"
+      ],
+      "text": [
+        "A proven, seamless approach to transforming your vision into reality.",
+        "01",
+        "We begin by deeply understanding your lifestyle, preferences, and vision to ensure the foundation of our design aligns perfectly with your needs.",
+        "02",
+        "Our creative team translates your vision into detailed concepts, mood boards, and layouts that bring the envisioned space to life before execution.",
+        "03",
+        "With meticulous attention to detail, we manage the entire execution process, ensuring a seamless journey from the blueprint to the final reveal."
+      ],
+      "image_sources": []
+    },
+    {
+      "section_name": "The Work Cycle",
+      "headings": [
+        "The Work Cycle",
+        "Client Meeting",
+        "Concept Design",
+        "Visualize Design",
+        "Estimation & Agreement",
+        "Project Implementation",
+        "Completion & Handover"
+      ],
+      "text": [
+        "Our Chronicle",
+        "Phase 01",
+        "We begin by deeply understanding your vision, lifestyle, and the unique potential of your space.",
+        "Phase 02",
+        "Translating ideas into comprehensive mood boards, spatial layouts, and photorealistic 3D renders.",
+        "Phase 03",
+        "Hand-selecting premium finishes, bespoke furnishings, and exquisite textures to elevate the design.",
+        "Phase 04",
+        "Developing rigorous timelines, technical drawings, and resource allocations for flawless execution.",
+        "Phase 05",
+        "Our master craftsmen and project managers bring the vision to life with uncompromising precision.",
+        "Phase 06",
+        "The final layer of polish—staging your space to perfection before welcoming you to your new sanctuary."
+      ],
+      "image_sources": [
+        "https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&w=800&q=80",
+        "https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=800&q=80",
+        "https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&w=800&q=80",
+        "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=800&q=80",
+        "https://images.unsplash.com/photo-1581094794329-c8112a89af12?auto=format&fit=crop&w=800&q=80",
+        "https://images.unsplash.com/photo-1618219908412-a29a1bb7b86e?auto=format&fit=crop&w=800&q=80"
+      ]
+    },
+    {
+      "section_name": "Why Partner With Us",
+      "headings": [
+        "Why Partner With Us",
+        "Bespoke Designs",
+        "Sustainable Materials",
+        "On-Time Delivery",
+        "Award-Winning"
+      ],
+      "text": [
+        "Every project is uniquely tailored to your personal aesthetic and functional needs.",
+        "We prioritize eco-friendly, ethically sourced materials without compromising luxury.",
+        "Rigorous project management ensures your sanctuary is ready exactly when promised.",
+        "Recognized globally for our meticulous attention to detail and innovative concepts."
+      ],
+      "image_sources": []
+    },
+    {
+      "section_name": "Call to Action",
+      "headings": [
+        "Ready to Transform Your Space?"
+      ],
+      "text": [
+        "Whether you are renovating a single room or building a new home, our expert designers are ready to guide you through every step of the process.",
+        "Contact Us Now",
+        "View Portfolio"
+      ],
+      "image_sources": []
+    }
+  ],
+  "footer": {
+    "headings": [
+      "Interior Design Studio",
+      "Quick Links",
+      "Contact Us"
+    ],
+    "text": [
+      "Elevating spaces with thoughtful interior design and bespoke solutions. We bring your vision to life through creativity and expert craftsmanship.",
+      "Home",
+      "About Us",
+      "Services",
+      "Gallery",
+      "Contact",
+      "123 Generic Street, Suite 100, Metropolis, ST 12345",
+      "+1 (555) 123-4567",
+      "hello@example.com",
+      "© 2026 Interior Design Studio. All rights reserved.",
+      "Privacy Policy",
+      "Terms of Service"
+    ],
+    "image_sources": []
+  }
+}

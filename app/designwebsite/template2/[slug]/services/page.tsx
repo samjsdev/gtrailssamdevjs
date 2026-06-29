@@ -64,14 +64,14 @@ export default async function ServicesPage({ params }: { params: Promise<{ slug:
               num: "02",
               title: "Modular Kitchen & Wardrobe Engineering",
               desc: "Manufacturing precision modular kitchens, wardrobes, and customized storage layouts directly in our Chennai woodworking facility. Every single coordinate is inspected under strict quality controls.",
-              image: media?.otherImages?.[13] || "https://images.unsplash.com/photo-1538688525198-9b88f6f53126?auto=format&fit=crop&w=800&q=80",
+              image: media?.otherImages?.[13] || "https://images.unsplash.com/photo-1538688525198-9b88f6f53126?auto=format&fit=crop&w=2000&q=80",
               tags: ["BWP Marine Plywood", "Acrylic & Laminate Finishes", "Custom Storage Solutions"]
             },
             {
               num: "03",
               title: "Material Library & Styling Curation",
               desc: "Developing tactile material briefs with selected natural limestones, real quartz counters, organic textile layerings, and low-VOC details that give rooms lasting character.",
-              image: media?.otherImages?.[11] || "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=800&q=80",
+              image: media?.otherImages?.[11] || "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=2000&q=80",
               tags: ["Natural Stones", "Durable Surfaces", "Low-VOC Curation"]
             },
             {
@@ -161,7 +161,7 @@ export default async function ServicesPage({ params }: { params: Promise<{ slug:
           <div className="lg:col-span-5 flex justify-center w-full">
             <div className="w-full aspect-[4/5] rounded-[2.5rem] overflow-hidden shadow-sm border border-[#EAE3D8]/50">
               <img 
-                src={media?.treatmentImages?.[0] || media?.clinicImages?.[0] || "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=600&q=80"} 
+                src={media?.treatmentImages?.[0] || media?.clinicImages?.[0] || "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=2000&q=80"} 
                 alt="Bespoke modular kitchen layout" 
                 className="w-full h-full object-cover"
               />
@@ -203,13 +203,13 @@ export default async function ServicesPage({ params }: { params: Promise<{ slug:
             {
               title: "Eco-Friendly & Anti-Fungal Finishes",
               desc: "Low-VOC acrylics, anti-fingerprint laminates, and anti-fungal materials perfect for Chennai's humid coastal environment.",
-              img: media?.otherImages?.[9] || "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=800&q=80",
+              img: media?.otherImages?.[9] || "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=2000&q=80",
               tag: "Climate Coatings"
             },
             {
               title: "Upholstery & Soft Furnishings",
               desc: "Woven custom curtains, premium fabrics, and acoustic panels that add luxury, warmth, and comfortable ventilation to Chennai homes.",
-              img: media?.otherImages?.[11] || "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=800&q=80",
+              img: media?.otherImages?.[11] || "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=2000&q=80",
               tag: "Organic Textures"
             }
           ].map((mat, mIdx) => (

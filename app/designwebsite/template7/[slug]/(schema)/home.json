@@ -1,0 +1,241 @@
+{
+  "website": "Interior Design Studio",
+  "header": {
+    "headings": [
+      "Interior Design Studio"
+    ],
+    "text": [
+      "Home",
+      "About Us",
+      "Services",
+      "Projects",
+      "Contact",
+      "Book Consultation"
+    ],
+    "image_sources": []
+  },
+  "sections": [
+    {
+      "section_name": "Hero Section",
+      "headings": [
+        "Interior Design Studio"
+      ],
+      "text": [
+        "Consult Now"
+      ],
+      "image_sources": [
+        "https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&w=800&q=80",
+        "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=800&q=80",
+        "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1200&q=80",
+        "https://images.unsplash.com/photo-1615876234886-fd9a39fda97f?auto=format&fit=crop&w=800&q=80",
+        "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=800&q=80"
+      ]
+    },
+    {
+      "section_name": "Who We Are & What We Do",
+      "headings": [
+        "Crafting Timeless Spaces with Purpose and Elegance.",
+        "What We Do",
+        "Residential Interior Design",
+        "Modular Kitchen Design",
+        "Living Room Styling",
+        "Bedroom Makeovers"
+      ],
+      "text": [
+        "Who We Are",
+        "Welcome to Interior Design Studio. We create refined, functional interiors tailored to your lifestyle, budget, and space.",
+        "Our Expertise",
+        "View All Services",
+        "Residential interior design brings layout, color, lighting, furniture, storage, and material choices into one cohesive plan. We translate your routines, taste, and budget into rooms that feel polished without losing comfort.",
+        "A well-designed modular kitchen balances workflow, durable finishes, appliance planning, storage zones, and beautiful detailing.",
+        "Living room styling shapes the first impression of the home. We balance seating, rugs, curtains, wall finishes, lighting, art, and decor so the room feels inviting and composed.",
+        "Bedroom design combines comfort, storage, lighting, and mood. We plan wardrobes, bed backdrops, side tables, soft furnishings, and lighting layers so the room supports sleep, dressing, reading, and quiet downtime."
+      ],
+      "image_sources": []
+    },
+    {
+      "section_name": "The Leader",
+      "headings": [
+        "Studio Team"
+      ],
+      "text": [
+        "5+",
+        "Years Design Experience",
+        "The Leader",
+        "Interior Design & Turnkey Execution",
+        "\"Design is not just about aesthetics; it's about creating an environment that elevates your everyday life.\"",
+        "With a visionary approach to modern architecture and a deep understanding of spatial psychology, we have led our studio to become a recognized design firm. Our philosophy centers on transparency, compassionate client care, and uncompromising elegance.",
+        "Founder",
+        "Book Consultation"
+      ],
+      "image_sources": [
+        "https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=2000&q=80"
+      ]
+    },
+    {
+      "section_name": "Explore Our Designs",
+      "headings": [
+        "Explore Our Designs"
+      ],
+      "text": [
+        "Our Services",
+        "Residential Interior Design",
+        "Modular Kitchen Design",
+        "Living Room Styling",
+        "Bedroom Makeovers",
+        "Space Planning",
+        "1 / 5"
+      ],
+      "image_sources": [
+        "https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?auto=format&fit=crop&w=2000&q=80",
+        "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?auto=format&fit=crop&w=2000&q=80",
+"https://images.unsplash.com/photo-1505693314120-0d443867891c?auto=format&fit=crop&w=2000&q=80",
+        "https://images.unsplash.com/photo-1518455027359-f3f8164ba6bd?auto=format&fit=crop&w=2000&q=80",
+        "https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?auto=format&fit=crop&w=2000&q=80"
+      ]
+    },
+    {
+      "section_name": "Featured Projects",
+      "headings": [
+        "Real spaces. Real beauty.",
+        "Modern Living.",
+        "Gourmet Kitchens.",
+        "Minimalist Bedrooms.",
+        "Home Offices.",
+        "Luxury Bathrooms.",
+        "Dining Rooms.",
+        "Outdoor Living."
+      ],
+      "text": [
+        "FEATURED PROJECTS",
+        "View Project Gallery",
+        "Spaces designed for comfort and style.",
+        "Functional elegance for culinary creativity.",
+        "Serene retreats for restful nights.",
+        "Inspiring environments for focused work.",
+        "Spa-inspired retreats at home.",
+        "Where memories are made around the table.",
+        "Seamless indoor-outdoor experiences."
+      ],
+      "image_sources": [
+        "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=2000&q=80",
+        "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?auto=format&fit=crop&w=2000&q=80",
+        "https://images.unsplash.com/photo-1505693314120-0d443867891c?auto=format&fit=crop&w=2000&q=80",
+        "https://images.unsplash.com/photo-1518455027359-f3f8164ba6bd?auto=format&fit=crop&w=2000&q=80",
+        "https://images.unsplash.com/photo-1620626011761-996317b8d101?auto=format&fit=crop&w=2000&q=80",
+        "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=2000&q=80",
+        "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=2000&q=80"
+      ]
+    },
+    {
+      "section_name": "Why Choose Us",
+      "headings": [
+        "Why clients trust Interior Design Studio",
+        "Expert Design Team",
+        "Modern Aesthetics",
+        "Personalized Spaces",
+        "Transparent Pricing",
+        "Award-Winning",
+        "End-to-End Service"
+      ],
+      "text": [
+        "Client Confidence",
+        "We combine creativity, craftsmanship, and a client-first approach to deliver exceptional interior designs that you can rely on.",
+        "Architects and interior designers collaborate to bring your vision to life perfectly.",
+        "We blend contemporary trends with timeless elegance to create spaces you will love forever.",
+        "Every design is uniquely tailored to your lifestyle, preferences, and personal taste.",
+        "Honest, upfront cost estimates with no hidden fees, so you can plan your project with confidence.",
+        "Rated 5-stars by hundreds of happy clients, building a legacy of excellence in design.",
+        "From concept to final installation, we handle everything so you can simply enjoy your new space."
+      ],
+      "image_sources": []
+    },
+    {
+      "section_name": "Comprehensive Design",
+      "headings": [
+        "Comprehensive Design. Curated for You.",
+        "Design Discovery",
+        "Modular Kitchen Design",
+        "Dedicated Support",
+        "Bedroom Makeovers"
+      ],
+      "text": [
+        "SPATIAL PLANNING",
+        "MODERN FURNITURE",
+        "From conceptual sketches to full renovations, we provide the highest standard of interior design in a seamless, enjoyable process.",
+        "CONSULTATION",
+        "Initial consultations to understand your vision, lifestyle, and spatial needs perfectly.",
+        "RENOVATION",
+        "Transform your environment with bespoke materials, lighting, and furniture.",
+        "Expert guidance throughout your entire design journey.",
+        "Furnishing"
+      ],
+      "image_sources": [
+        "https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=2000&q=80",
+        "https://images.unsplash.com/photo-1593696140826-c58b021acf8b?auto=format&fit=crop&w=2000&q=80",
+        "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=2000&q=80",
+        "https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&w=2000&q=80"
+      ]
+    },
+    {
+      "section_name": "Testimonials",
+      "headings": [
+        "Why Clients Choose Us",
+        "Jane Doe",
+        "John Smith",
+        "Alice Brown",
+        "Bob White"
+      ],
+      "text": [
+        "// CLIENT_REVIEWS",
+        "Trusted by Homeowners",
+        "Full Home Renovation",
+        "\"I hired this studio for my full home renovation. Really it was a wonderful experience. The design team was always polite and creative. Taking care of a client's vision is so good in this place. I am really satisfied with the final look. And also the fees were very reasonable.\"",
+        "Space Planning",
+        "\"One of the Top Notch Interior Designers in the city. They explained well about the space optimization and what we should do now and also talked about future steps needed for scaling the aesthetics. Awesome care, polite and professional team.\"",
+        "Kitchen & Living Room",
+        "\"My family recently underwent a complete living room and kitchen makeover, and we couldn't be happier with the experience. The entire process, from consultation to completion, was handled with exceptional care and professionalism.\"",
+        "Residential Design",
+        "\"One of the best agencies. I went for the first time with a lot of doubts in my mind but beyond my expectations everything was so good. Especially the lead designer was so polite and kind enough. They explained each and every step clearly.\""
+      ],
+      "image_sources": []
+    },
+    {
+      "section_name": "Call to Action",
+      "headings": [
+        "Ready to take the next step?"
+      ],
+      "text": [
+        "CONSULTATIONS OPEN",
+        "Speak with our design team and get a clear project plan with transparent pricing—focused on aesthetics, functionality, and long-term satisfaction.",
+        "Book a Consultation →",
+        "Call +1 (555) 123-4567"
+      ],
+      "image_sources": []
+    }
+  ],
+  "footer": {
+    "headings": [
+      "Interior Design Studio",
+      "Explore",
+      "Services",
+      "Get in Touch"
+    ],
+    "text": [
+      "Welcome to Interior Design Studio. We create refined, functional interiors tailored to your lifestyle, budget, and space.",
+      "Accepting New Projects",
+      "Home",
+      "About Us",
+      "Services",
+      "Contact",
+      "Space Planning",
+      "Color Consultation",
+      "Custom Furniture",
+      "Full Renovations",
+      "© 2026 Interior Design Studio. All rights reserved.",
+      "Privacy Policy",
+      "Terms of Service"
+    ],
+    "image_sources": []
+  }
+}

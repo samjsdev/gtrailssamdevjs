@@ -28,11 +28,11 @@ export default async function AboutPage({ params }: { params: Promise<{ slug: st
 
   const doctorImage = getValidImage(
     data?.media?.otherImages?.[0],
-    'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=800&q=80'
+    'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=2000&q=80'
   );
   const secondaryImage = getValidImage(
     data?.media?.otherImages?.[1],
-    'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=800&q=80'
+    'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=2000&q=80'
   );
 
   const partnerName = data?.doctor2?.name || 'Kavitha Rajan';
@@ -45,7 +45,7 @@ export default async function AboutPage({ params }: { params: Promise<{ slug: st
     data?.media?.clinicImages?.[1],
     getValidImage(
       data?.media?.otherImages?.[1],
-      "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=1200"
+      "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=2000"
     )
   );
 
