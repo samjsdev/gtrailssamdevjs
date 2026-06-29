@@ -26,7 +26,7 @@ import { TEMPLATE_SCHEMAS, SHARED_PAGES } from './schemas';
 type SchemaPage = typeof SHARED_PAGES[number];
 type SchemaSection = SchemaPage['sections'][number];
 type SchemaElement = SchemaSection['elements'][number];
-type MediaArrayKey = 'clinicImages' | 'treatmentImages' | 'otherImages';
+type MediaArrayKey = 'aboutHero' | 'aboutStats' | 'clinicImages' | 'coreServices' | 'heroCarousel' | 'highlightDesigns' | 'otherImages' | 'recentProjects' | 'servicesHero' | 'servicesList' | 'testimonials' | 'treatmentImages' | 'workCycle';
 
 type CanvasSelection = {
   sectionIndex: number;

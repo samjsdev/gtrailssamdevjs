@@ -5,7 +5,7 @@ import { ArrowRight } from 'lucide-react';
 
 import { useTemplateData } from './context/TemplateContext';
 
-export default function TeamSection() {
+export default function TeamSection({ doctor, media }: { doctor?: any; media?: any } = {}) {
   const { data } = useTemplateData();
   const highlightData = data?.home?.sections?.[5] || {};
 

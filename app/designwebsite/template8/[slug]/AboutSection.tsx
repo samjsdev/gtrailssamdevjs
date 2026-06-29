@@ -4,7 +4,7 @@ import Image from 'next/image';
 
 import { useTemplateData } from './context/TemplateContext';
 
-export default function AboutSection({ sourcePage = 'home' }: { sourcePage?: 'home' | 'about' }) {
+export default function AboutSection({ sourcePage = 'home', business, media }: { sourcePage?: 'home' | 'about', business?: any, media?: any }) {
   const { data } = useTemplateData();
   const aboutData = data?.[sourcePage]?.sections?.[1] || {};
 

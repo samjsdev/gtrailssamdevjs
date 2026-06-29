@@ -56,7 +56,7 @@ export default async function DesignStudioLayout({ children, params }: LayoutPro
           <div className="w-full h-72 md:h-96 rounded-3xl overflow-hidden bg-white/5 border border-white/10 mb-16 shadow-lg">
             <iframe
               title="Google Maps Location"
-              src={`https://www.google.com/maps?q=${encodeURIComponent(clinic?.address?.full || clinic?.contact?.address || data?.home?.footer?.text?.[6] || 'New York, NY')}&output=embed`}
+              src={`https://www.google.com/maps?q=${encodeURIComponent(clinic?.address?.full || clinic?.contact?.address || (data as any)?.home?.footer?.text?.[6] || 'New York, NY')}&output=embed`}
               width="100%"
               height="100%"
               style={{ border: 0 }}

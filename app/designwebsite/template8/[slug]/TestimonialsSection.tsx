@@ -4,7 +4,7 @@ import { Star, Quote } from 'lucide-react';
 import Image from 'next/image';
 import { useTemplateData } from './context/TemplateContext';
 
-export default function TestimonialsSection({ sourcePage = 'home', sectionIndex = 4 }: { sourcePage?: 'home' | 'about', sectionIndex?: number }) {
+export default function TestimonialsSection({ sourcePage = 'home', sectionIndex = 4, reviews }: { sourcePage?: 'home' | 'about', sectionIndex?: number, reviews?: any }) {
   const { data } = useTemplateData();
   const testData = data?.[sourcePage]?.sections?.[sectionIndex] || {};
 

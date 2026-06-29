@@ -215,7 +215,7 @@ export default function TreatmentShowcase({ data }: { data?: any }) {
         <div className="grid lg:grid-cols-[1fr_2.5fr] gap-12 items-center">
           {/* Treatment Selection */}
           <div className="space-y-3">
-            {treatments.map((treatment, index) => {
+            {treatments.map((treatment: any, index: number) => {
               const isActive = index === activeIndex;
               return (
                 <button
@@ -263,7 +263,7 @@ export default function TreatmentShowcase({ data }: { data?: any }) {
 
             {/* Slide counter */}
             <div className="flex items-center justify-center gap-2 pt-4">
-              {treatments.map((_, idx) => (
+              {treatments.map((_: any, idx: number) => (
                 <button
                   key={idx}
                   onClick={() => handleSelect(idx)}

@@ -4,7 +4,7 @@
 
 export type SchemaElement =
   | { type: 'text' | 'textarea' | 'list'; label: string; path: string[]; imageConfig?: never }
-  | { type: 'image'; label: string; path?: never; imageConfig: { arrayKey: 'clinicImages' | 'treatmentImages' | 'otherImages'; index: number } };
+  | { type: 'image'; label: string; path?: never; imageConfig: { arrayKey: 'aboutHero' | 'aboutStats' | 'clinicImages' | 'coreServices' | 'heroCarousel' | 'highlightDesigns' | 'otherImages' | 'recentProjects' | 'servicesHero' | 'servicesList' | 'testimonials' | 'treatmentImages' | 'workCycle'; index: number } };
 
 export type SchemaSection = {
   label: string;
@@ -669,8 +669,8 @@ export const TEMPLATE_SCHEMAS: Record<string, TemplateSchema> = {
           {
             label: 'Hero Carousel',
             elements: [
-              { type: 'list', label: 'Headings', path: ['home', 'sections', 0, 'headings'] },
-              { type: 'list', label: 'Text elements', path: ['home', 'sections', 0, 'text'] },
+              { type: 'list', label: 'Headings', path: ['home', 'sections', '0', 'headings'] },
+              { type: 'list', label: 'Text elements', path: ['home', 'sections', '0', 'text'] },
               { type: 'image', label: 'Slide Image 1', imageConfig: { arrayKey: 'heroCarousel', index: 0 } },
               { type: 'image', label: 'Slide Image 2', imageConfig: { arrayKey: 'heroCarousel', index: 1 } },
               { type: 'image', label: 'Slide Image 3', imageConfig: { arrayKey: 'heroCarousel', index: 2 } },
@@ -681,16 +681,16 @@ export const TEMPLATE_SCHEMAS: Record<string, TemplateSchema> = {
           {
             label: 'About / Statistics',
             elements: [
-              { type: 'list', label: 'Headings', path: ['home', 'sections', 1, 'headings'] },
-              { type: 'list', label: 'Text elements', path: ['home', 'sections', 1, 'text'] },
+              { type: 'list', label: 'Headings', path: ['home', 'sections', '1', 'headings'] },
+              { type: 'list', label: 'Text elements', path: ['home', 'sections', '1', 'text'] },
               { type: 'image', label: 'Section Image', imageConfig: { arrayKey: 'aboutStats', index: 0 } }
             ]
           },
           {
             label: 'Core Services',
             elements: [
-              { type: 'list', label: 'Headings', path: ['home', 'sections', 2, 'headings'] },
-              { type: 'list', label: 'Text elements', path: ['home', 'sections', 2, 'text'] },
+              { type: 'list', label: 'Headings', path: ['home', 'sections', '2', 'headings'] },
+              { type: 'list', label: 'Text elements', path: ['home', 'sections', '2', 'text'] },
               { type: 'image', label: 'Service Image 1', imageConfig: { arrayKey: 'coreServices', index: 0 } },
               { type: 'image', label: 'Service Image 2', imageConfig: { arrayKey: 'coreServices', index: 1 } },
               { type: 'image', label: 'Service Image 3', imageConfig: { arrayKey: 'coreServices', index: 2 } },
@@ -702,8 +702,8 @@ export const TEMPLATE_SCHEMAS: Record<string, TemplateSchema> = {
           {
             label: 'Recent Projects',
             elements: [
-              { type: 'list', label: 'Headings', path: ['home', 'sections', 3, 'headings'] },
-              { type: 'list', label: 'Text elements', path: ['home', 'sections', 3, 'text'] },
+              { type: 'list', label: 'Headings', path: ['home', 'sections', '3', 'headings'] },
+              { type: 'list', label: 'Text elements', path: ['home', 'sections', '3', 'text'] },
               { type: 'image', label: 'Project Image 1', imageConfig: { arrayKey: 'recentProjects', index: 0 } },
               { type: 'image', label: 'Project Image 2', imageConfig: { arrayKey: 'recentProjects', index: 1 } },
               { type: 'image', label: 'Project Image 3', imageConfig: { arrayKey: 'recentProjects', index: 2 } },
@@ -713,8 +713,8 @@ export const TEMPLATE_SCHEMAS: Record<string, TemplateSchema> = {
           {
             label: 'Testimonials',
             elements: [
-              { type: 'list', label: 'Headings', path: ['home', 'sections', 4, 'headings'] },
-              { type: 'list', label: 'Text elements', path: ['home', 'sections', 4, 'text'] },
+              { type: 'list', label: 'Headings', path: ['home', 'sections', '4', 'headings'] },
+              { type: 'list', label: 'Text elements', path: ['home', 'sections', '4', 'text'] },
               { type: 'image', label: 'Client Image 1', imageConfig: { arrayKey: 'testimonials', index: 0 } },
               { type: 'image', label: 'Client Image 2', imageConfig: { arrayKey: 'testimonials', index: 1 } },
               { type: 'image', label: 'Client Image 3', imageConfig: { arrayKey: 'testimonials', index: 2 } }
@@ -723,8 +723,8 @@ export const TEMPLATE_SCHEMAS: Record<string, TemplateSchema> = {
           {
             label: 'Highlight Designs',
             elements: [
-              { type: 'list', label: 'Headings', path: ['home', 'sections', 5, 'headings'] },
-              { type: 'list', label: 'Text elements', path: ['home', 'sections', 5, 'text'] },
+              { type: 'list', label: 'Headings', path: ['home', 'sections', '5', 'headings'] },
+              { type: 'list', label: 'Text elements', path: ['home', 'sections', '5', 'text'] },
               { type: 'image', label: 'Design Image 1', imageConfig: { arrayKey: 'highlightDesigns', index: 0 } },
               { type: 'image', label: 'Design Image 2', imageConfig: { arrayKey: 'highlightDesigns', index: 1 } },
               { type: 'image', label: 'Design Image 3', imageConfig: { arrayKey: 'highlightDesigns', index: 2 } },
@@ -734,8 +734,8 @@ export const TEMPLATE_SCHEMAS: Record<string, TemplateSchema> = {
           {
             label: 'Call to Action',
             elements: [
-              { type: 'list', label: 'Headings', path: ['home', 'sections', 6, 'headings'] },
-              { type: 'list', label: 'Text elements', path: ['home', 'sections', 6, 'text'] }
+              { type: 'list', label: 'Headings', path: ['home', 'sections', '6', 'headings'] },
+              { type: 'list', label: 'Text elements', path: ['home', 'sections', '6', 'text'] }
             ]
           },
           {
@@ -762,38 +762,38 @@ export const TEMPLATE_SCHEMAS: Record<string, TemplateSchema> = {
           {
             label: 'Hero Section',
             elements: [
-              { type: 'list', label: 'Headings', path: ['about', 'sections', 0, 'headings'] },
-              { type: 'list', label: 'Text elements', path: ['about', 'sections', 0, 'text'] },
+              { type: 'list', label: 'Headings', path: ['about', 'sections', '0', 'headings'] },
+              { type: 'list', label: 'Text elements', path: ['about', 'sections', '0', 'text'] },
               { type: 'image', label: 'Hero Image', imageConfig: { arrayKey: 'aboutHero', index: 0 } }
             ]
           },
           {
             label: 'About / Statistics',
             elements: [
-              { type: 'list', label: 'Headings', path: ['about', 'sections', 1, 'headings'] },
-              { type: 'list', label: 'Text elements', path: ['about', 'sections', 1, 'text'] },
+              { type: 'list', label: 'Headings', path: ['about', 'sections', '1', 'headings'] },
+              { type: 'list', label: 'Text elements', path: ['about', 'sections', '1', 'text'] },
               { type: 'image', label: 'Section Image', imageConfig: { arrayKey: 'aboutStats', index: 0 } }
             ]
           },
           {
             label: 'The Journey',
             elements: [
-              { type: 'list', label: 'Headings', path: ['about', 'sections', 2, 'headings'] },
-              { type: 'list', label: 'Text elements', path: ['about', 'sections', 2, 'text'] }
+              { type: 'list', label: 'Headings', path: ['about', 'sections', '2', 'headings'] },
+              { type: 'list', label: 'Text elements', path: ['about', 'sections', '2', 'text'] }
             ]
           },
           {
             label: 'Design Philosophy',
             elements: [
-              { type: 'list', label: 'Headings', path: ['about', 'sections', 3, 'headings'] },
-              { type: 'list', label: 'Text elements', path: ['about', 'sections', 3, 'text'] }
+              { type: 'list', label: 'Headings', path: ['about', 'sections', '3', 'headings'] },
+              { type: 'list', label: 'Text elements', path: ['about', 'sections', '3', 'text'] }
             ]
           },
           {
             label: 'The Work Cycle',
             elements: [
-              { type: 'list', label: 'Headings', path: ['about', 'sections', 4, 'headings'] },
-              { type: 'list', label: 'Text elements', path: ['about', 'sections', 4, 'text'] },
+              { type: 'list', label: 'Headings', path: ['about', 'sections', '4', 'headings'] },
+              { type: 'list', label: 'Text elements', path: ['about', 'sections', '4', 'text'] },
               { type: 'image', label: 'Cycle Image 1', imageConfig: { arrayKey: 'workCycle', index: 0 } },
               { type: 'image', label: 'Cycle Image 2', imageConfig: { arrayKey: 'workCycle', index: 1 } },
               { type: 'image', label: 'Cycle Image 3', imageConfig: { arrayKey: 'workCycle', index: 2 } },
@@ -805,8 +805,8 @@ export const TEMPLATE_SCHEMAS: Record<string, TemplateSchema> = {
           {
             label: 'Testimonials',
             elements: [
-              { type: 'list', label: 'Headings', path: ['about', 'sections', 5, 'headings'] },
-              { type: 'list', label: 'Text elements', path: ['about', 'sections', 5, 'text'] },
+              { type: 'list', label: 'Headings', path: ['about', 'sections', '5', 'headings'] },
+              { type: 'list', label: 'Text elements', path: ['about', 'sections', '5', 'text'] },
               { type: 'image', label: 'Client Image 1', imageConfig: { arrayKey: 'testimonials', index: 0 } },
               { type: 'image', label: 'Client Image 2', imageConfig: { arrayKey: 'testimonials', index: 1 } },
               { type: 'image', label: 'Client Image 3', imageConfig: { arrayKey: 'testimonials', index: 2 } }
@@ -815,8 +815,8 @@ export const TEMPLATE_SCHEMAS: Record<string, TemplateSchema> = {
           {
             label: 'Call to Action',
             elements: [
-              { type: 'list', label: 'Headings', path: ['about', 'sections', 6, 'headings'] },
-              { type: 'list', label: 'Text elements', path: ['about', 'sections', 6, 'text'] }
+              { type: 'list', label: 'Headings', path: ['about', 'sections', '6', 'headings'] },
+              { type: 'list', label: 'Text elements', path: ['about', 'sections', '6', 'text'] }
             ]
           },
           {
@@ -843,16 +843,16 @@ export const TEMPLATE_SCHEMAS: Record<string, TemplateSchema> = {
           {
             label: 'Hero Section',
             elements: [
-              { type: 'list', label: 'Headings', path: ['services', 'sections', 0, 'headings'] },
-              { type: 'list', label: 'Text elements', path: ['services', 'sections', 0, 'text'] },
+              { type: 'list', label: 'Headings', path: ['services', 'sections', '0', 'headings'] },
+              { type: 'list', label: 'Text elements', path: ['services', 'sections', '0', 'text'] },
               { type: 'image', label: 'Hero Image', imageConfig: { arrayKey: 'servicesHero', index: 0 } }
             ]
           },
           {
             label: 'Service Details',
             elements: [
-              { type: 'list', label: 'Headings', path: ['services', 'sections', 1, 'headings'] },
-              { type: 'list', label: 'Text elements', path: ['services', 'sections', 1, 'text'] },
+              { type: 'list', label: 'Headings', path: ['services', 'sections', '1', 'headings'] },
+              { type: 'list', label: 'Text elements', path: ['services', 'sections', '1', 'text'] },
               { type: 'image', label: 'Service Image 1', imageConfig: { arrayKey: 'servicesList', index: 0 } },
               { type: 'image', label: 'Service Image 2', imageConfig: { arrayKey: 'servicesList', index: 1 } },
               { type: 'image', label: 'Service Image 3', imageConfig: { arrayKey: 'servicesList', index: 2 } },
@@ -864,15 +864,15 @@ export const TEMPLATE_SCHEMAS: Record<string, TemplateSchema> = {
           {
             label: 'Design Philosophy',
             elements: [
-              { type: 'list', label: 'Headings', path: ['services', 'sections', 2, 'headings'] },
-              { type: 'list', label: 'Text elements', path: ['services', 'sections', 2, 'text'] }
+              { type: 'list', label: 'Headings', path: ['services', 'sections', '2', 'headings'] },
+              { type: 'list', label: 'Text elements', path: ['services', 'sections', '2', 'text'] }
             ]
           },
           {
             label: 'The Work Cycle',
             elements: [
-              { type: 'list', label: 'Headings', path: ['services', 'sections', 3, 'headings'] },
-              { type: 'list', label: 'Text elements', path: ['services', 'sections', 3, 'text'] },
+              { type: 'list', label: 'Headings', path: ['services', 'sections', '3', 'headings'] },
+              { type: 'list', label: 'Text elements', path: ['services', 'sections', '3', 'text'] },
               { type: 'image', label: 'Cycle Image 1', imageConfig: { arrayKey: 'workCycle', index: 0 } },
               { type: 'image', label: 'Cycle Image 2', imageConfig: { arrayKey: 'workCycle', index: 1 } },
               { type: 'image', label: 'Cycle Image 3', imageConfig: { arrayKey: 'workCycle', index: 2 } },
@@ -884,15 +884,15 @@ export const TEMPLATE_SCHEMAS: Record<string, TemplateSchema> = {
           {
             label: 'Why Partner With Us',
             elements: [
-              { type: 'list', label: 'Headings', path: ['services', 'sections', 4, 'headings'] },
-              { type: 'list', label: 'Text elements', path: ['services', 'sections', 4, 'text'] }
+              { type: 'list', label: 'Headings', path: ['services', 'sections', '4', 'headings'] },
+              { type: 'list', label: 'Text elements', path: ['services', 'sections', '4', 'text'] }
             ]
           },
           {
             label: 'Call to Action',
             elements: [
-              { type: 'list', label: 'Headings', path: ['services', 'sections', 5, 'headings'] },
-              { type: 'list', label: 'Text elements', path: ['services', 'sections', 5, 'text'] }
+              { type: 'list', label: 'Headings', path: ['services', 'sections', '5', 'headings'] },
+              { type: 'list', label: 'Text elements', path: ['services', 'sections', '5', 'text'] }
             ]
           },
           {
@@ -919,15 +919,15 @@ export const TEMPLATE_SCHEMAS: Record<string, TemplateSchema> = {
           {
             label: 'Hero Section',
             elements: [
-              { type: 'list', label: 'Headings', path: ['gallery', 'sections', 0, 'headings'] },
-              { type: 'list', label: 'Text elements', path: ['gallery', 'sections', 0, 'text'] }
+              { type: 'list', label: 'Headings', path: ['gallery', 'sections', '0', 'headings'] },
+              { type: 'list', label: 'Text elements', path: ['gallery', 'sections', '0', 'text'] }
             ]
           },
           {
             label: 'Gallery Images',
             elements: [
-              { type: 'list', label: 'Headings', path: ['gallery', 'sections', 1, 'headings'] },
-              { type: 'list', label: 'Text elements', path: ['gallery', 'sections', 1, 'text'] },
+              { type: 'list', label: 'Headings', path: ['gallery', 'sections', '1', 'headings'] },
+              { type: 'list', label: 'Text elements', path: ['gallery', 'sections', '1', 'text'] },
               { type: 'image', label: 'Image 1', imageConfig: { arrayKey: 'otherImages', index: 0 } },
               { type: 'image', label: 'Image 2', imageConfig: { arrayKey: 'otherImages', index: 1 } },
               { type: 'image', label: 'Image 3', imageConfig: { arrayKey: 'otherImages', index: 2 } },
@@ -941,8 +941,8 @@ export const TEMPLATE_SCHEMAS: Record<string, TemplateSchema> = {
           {
             label: 'Call to Action',
             elements: [
-              { type: 'list', label: 'Headings', path: ['gallery', 'sections', 2, 'headings'] },
-              { type: 'list', label: 'Text elements', path: ['gallery', 'sections', 2, 'text'] }
+              { type: 'list', label: 'Headings', path: ['gallery', 'sections', '2', 'headings'] },
+              { type: 'list', label: 'Text elements', path: ['gallery', 'sections', '2', 'text'] }
             ]
           },
           {
@@ -969,16 +969,16 @@ export const TEMPLATE_SCHEMAS: Record<string, TemplateSchema> = {
           {
             label: 'Contact Information',
             elements: [
-              { type: 'list', label: 'Headings', path: ['contact', 'sections', 0, 'headings'] },
-              { type: 'list', label: 'Text elements', path: ['contact', 'sections', 0, 'text'] },
+              { type: 'list', label: 'Headings', path: ['contact', 'sections', '0', 'headings'] },
+              { type: 'list', label: 'Text elements', path: ['contact', 'sections', '0', 'text'] },
               { type: 'image', label: 'Background Image', imageConfig: { arrayKey: 'clinicImages', index: 0 } }
             ]
           },
           {
             label: 'Contact Form',
             elements: [
-              { type: 'list', label: 'Headings', path: ['contact', 'sections', 1, 'headings'] },
-              { type: 'list', label: 'Text elements', path: ['contact', 'sections', 1, 'text'] }
+              { type: 'list', label: 'Headings', path: ['contact', 'sections', '1', 'headings'] },
+              { type: 'list', label: 'Text elements', path: ['contact', 'sections', '1', 'text'] }
             ]
           },
           {

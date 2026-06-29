@@ -152,7 +152,7 @@ export default function ServicesClient() {
                                             {essDescs[idx]}
                                         </p>
                                         <ul className="space-y-3 border-t border-slate-200/50 pt-6">
-                                            {allSubs[idx]?.map((f, i) => (
+                                            {allSubs[idx]?.map((f: any, i: number) => (
                                                 <li key={i} className="flex items-center gap-3 text-sm font-medium text-slate-600">
                                                     <span className="w-1 h-1 rounded-full bg-blue-400" />
                                                     {f}
@@ -405,7 +405,7 @@ export default function ServicesClient() {
                 <section className="py-32 px-6 bg-slate-900 text-white text-center">
                      <div className="max-w-4xl mx-auto fade-up">
                         <h2 className="text-5xl md:text-7xl font-light mb-12 whitespace-pre-line" style={{ fontFamily: 'var(--serif-font)' }}>
-                            {ctaTitle.split('\n').map((line, i) => i === 1 ? <span key={i} className="italic text-blue-400">{line}</span> : <React.Fragment key={i}>{line}<br/></React.Fragment>)}
+                            {ctaTitle.split('\n').map((line: any, i: number) => i === 1 ? <span key={i} className="block italic font-serif text-[var(--accent)]">{line}</span> : <React.Fragment key={i}>{line}<br/></React.Fragment>)}
                         </h2>
                         <div className="flex flex-col sm:flex-row justify-center gap-6">
                             <Link href={`${basePath}/contact`} className="px-10 py-5 bg-white text-slate-900 text-sm font-bold uppercase tracking-widest hover:bg-blue-50 transition-colors">

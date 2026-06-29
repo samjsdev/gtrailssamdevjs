@@ -41,7 +41,7 @@ export default function AboutSection({ data }: { data?: any }) {
     const svcData = getInteriorServiceData(svc);
     return {
       title: svc,
-      icon: svcData?.icon || '✨',
+      icon: (svcData as any)?.icon || '✨',
       description: svcData?.description || getInteriorServiceSummary(svc) || 'Transforming spaces into personalized environments.'
     };
   });

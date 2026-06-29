@@ -69,15 +69,16 @@ export default async function DesignStudioLayout({
   if (!data) return notFound();
 
   // Deeply merge so that empty scraped fields don't overwrite template defaults
+  const templateData = data as any;
   const mergedData = {
     ...mainData,
     ...data,
-    navbar: data.navbar || mainData.navbar,
-    hero: data.hero || mainData.hero,
-    stats: data.stats || mainData.stats,
-    contact: data.contact || mainData.contact,
-    booking: data.booking || mainData.booking,
-    services: data.services || mainData.services,
+    navbar: templateData.navbar || mainData.navbar,
+    hero: templateData.hero || mainData.hero,
+    stats: templateData.stats || mainData.stats,
+    contact: templateData.contact || mainData.contact,
+    booking: templateData.booking || mainData.booking,
+    services: templateData.services || mainData.services,
   };
 
   const basePath = `/designwebsite/template7/${slug}`;

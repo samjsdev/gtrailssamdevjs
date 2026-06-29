@@ -3,7 +3,7 @@
 import { ArrowRight } from 'lucide-react';
 import { useTemplateData } from './context/TemplateContext';
 
-export default function CTASection({ clinic, sourcePage = 'home', sectionIndex = 6 }: { clinic?: any, sourcePage?: 'home' | 'about' | 'services', sectionIndex?: number }) {
+export default function CTASection({ clinic, sourcePage = 'home', sectionIndex = 6 }: { clinic?: any, sourcePage?: string, sectionIndex?: number }) {
   const { data } = useTemplateData();
   const ctaData = data?.[sourcePage]?.sections?.[sectionIndex] || {};
   
