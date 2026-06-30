@@ -85,8 +85,10 @@ const Footer = () => {
             <h3 className="text-sm font-bold text-slate-900 tracking-wider uppercase mb-2">Get in Touch</h3>
             
             <div className="flex flex-col gap-4">
-              {data?.contact?.phone && (
-               <a href={`tel:${data.contact.phone}`} className="flex items-center gap-4 p-4 rounded-2xl bg-white border border-slate-100 shadow-sm hover:shadow-md hover:border-blue-100 transition-all group">
+              {(() => {
+                const phone = data?.contact?.phone || '+1 (555) 123-4567';
+                return (
+               <a href={`tel:${phone}`} className="flex items-center gap-4 p-4 rounded-2xl bg-white border border-slate-100 shadow-sm hover:shadow-md hover:border-blue-100 transition-all group">
                   <div className="w-10 h-10 rounded-full bg-blue-50 flex items-center justify-center text-blue-600 group-hover:bg-blue-600 group-hover:text-white transition-colors">
                     <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
@@ -94,13 +96,16 @@ const Footer = () => {
                   </div>
                   <div>
                     <p className="text-xs text-slate-400 font-semibold uppercase tracking-wider">Direct Line</p>
-                    <p className="text-slate-900 font-bold group-hover:text-blue-700 transition-colors">{data.contact.phone}</p>
+                    <p className="text-slate-900 font-bold group-hover:text-blue-700 transition-colors">{phone}</p>
                   </div>
                </a>
-              )}
+                );
+              })()}
 
-              {data?.contact?.email && (
-               <a href={`mailto:${data.contact.email}`} className="flex items-center gap-4 p-4 rounded-2xl bg-white border border-slate-100 shadow-sm hover:shadow-md hover:border-blue-100 transition-all group">
+              {(() => {
+                const email = data?.contact?.email || 'hello@yourcompany.com';
+                return (
+               <a href={`mailto:${email}`} className="flex items-center gap-4 p-4 rounded-2xl bg-white border border-slate-100 shadow-sm hover:shadow-md hover:border-blue-100 transition-all group">
                   <div className="w-10 h-10 rounded-full bg-indigo-50 flex items-center justify-center text-indigo-600 group-hover:bg-indigo-600 group-hover:text-white transition-colors">
                     <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
@@ -109,11 +114,12 @@ const Footer = () => {
                   <div>
                     <p className="text-xs text-slate-400 font-semibold uppercase tracking-wider mb-1">Email</p>
                     <p className="text-slate-700 font-medium text-sm leading-relaxed truncate max-w-[150px]">
-                      {data.contact.email}
+                      {email}
                     </p>
                   </div>
                </a>
-              )}
+                );
+              })()}
 
               {data?.contact?.address && (
                <div className="flex items-start gap-4 p-4 rounded-2xl bg-white border border-slate-100 shadow-sm">

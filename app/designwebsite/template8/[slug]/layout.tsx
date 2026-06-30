@@ -98,11 +98,11 @@ export default async function DesignStudioLayout({ children, params }: LayoutPro
                 </li>
                 <li className="flex items-center gap-3">
                   <span>📞</span>
-                  <span>{clinic?.contact?.phone || '+1 (555) 123-4567'}</span>
+                  <span>{(clinic?.contact?.phone && /\d/.test(clinic.contact.phone)) ? clinic.contact.phone : '+1 (555) 123-4567'}</span>
                 </li>
                 <li className="flex items-center gap-3">
                   <span>✉️</span>
-                  <span>{clinic?.contact?.email || 'hello@yourcompany.com'}</span>
+                  <span>{(clinic?.contact?.email && clinic.contact.email.includes('@')) ? clinic.contact.email : 'hello@yourcompany.com'}</span>
                 </li>
               </ul>
             </div>

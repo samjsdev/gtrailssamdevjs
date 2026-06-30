@@ -16,8 +16,10 @@ export default function ContactClient() {
   const emailLabel = contactData.headings?.[3] || 'Email';
 
   const address = data?.clinic?.address?.full || contactData.text?.[1] || '123 Design Boulevard, Creative District, NY 10001';
-  const phone = data?.clinic?.contact?.phone || contactData.text?.[2] || '+1 (555) 123-4567';
-  const email = data?.clinic?.contact?.email || contactData.text?.[3] || 'hello@yourcompany.com';
+  const rawPhone = data?.clinic?.contact?.phone || contactData.text?.[2];
+  const phone = (rawPhone && /\d/.test(rawPhone)) ? rawPhone : '+1 (555) 123-4567';
+  const rawEmail = data?.clinic?.contact?.email || contactData.text?.[3];
+  const email = (rawEmail && rawEmail.includes('@')) ? rawEmail : 'hello@yourcompany.com';
 
   const contactImage = data?.media?.clinicImages?.[0] || contactData.image_sources?.[0] || 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=2560';
 

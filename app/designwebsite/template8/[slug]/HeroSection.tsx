@@ -20,9 +20,17 @@ const DEFAULT_POOL = [
 /* ─────────────────── Layout Constants ─────────────────── */
 // We use 7 cards to allow smooth sliding in from right and out to left.
 // Indices: 0 (hidden left), 1, 2, 3 (center), 4, 5 (visible), 6 (hidden right).
-const STEP    = 19.5;     
-const WIDTH   = 16.5;     
-const OFFSET  = -16.75;  
+// Desktop values
+const STEP_D    = 19.5;     
+const WIDTH_D   = 16.5;     
+const OFFSET_D  = -16.75;
+// Mobile values (fewer visible, bigger cards)
+const STEP_M    = 34;     
+const WIDTH_M   = 30;     
+// To center index 3 (which flies): left = OFFSET_M + 3 * STEP_M. 
+// We want center = 50%, so left = 50 - (WIDTH_M / 2) = 35. 
+// 35 = OFFSET_M + 3 * 34 => OFFSET_M = 35 - 102 = -67
+const OFFSET_M  = -67;
 
 const SLIDE_MS = 1000;
 const FLY_MS   = 900;
@@ -35,6 +43,18 @@ type HeroLayer = { src: string; title: string; uid: number; z: number };
 
 export default function HeroSection({ clinic, media }: { clinic?: any; media?: any }) {
   const { data } = useTemplateData();
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth < 768);
+    check();
+    window.addEventListener('resize', check);
+    return () => window.removeEventListener('resize', check);
+  }, []);
+
+  const STEP   = isMobile ? STEP_M   : STEP_D;
+  const WIDTH  = isMobile ? WIDTH_M  : WIDTH_D;
+  const OFFSET = isMobile ? OFFSET_M : OFFSET_D;
   const heroData = data?.home?.sections?.[0] || {};
   const customImages = data?.media?.heroCarousel || heroData.image_sources || [];
   
@@ -139,7 +159,22 @@ export default function HeroSection({ clinic, media }: { clinic?: any; media?: a
 
     // We apply an initial scale to the inner image, and tween it to 1. 
     // This creates an organic zooming-out effect that perfectly masks the bounding box aspect ratio shift.
-    flyer.innerHTML = `<img src="${imgSrc}" alt="" style="width:100%;height:100%;object-fit:cover;display:block;transform:scale(1.2);transform-origin:center;" />`;
+    // We also include the identical gradient and text here so it expands with the image and prevents any flashing.
+    flyer.innerHTML = `
+      <img src="${imgSrc}" alt="" style="width:100%;height:100%;object-fit:cover;display:block;transform:scale(1.2);transform-origin:center;" />
+      <div style="position:absolute; inset:0; background: linear-gradient(to top, rgba(15, 23, 42, 0.9), rgba(15, 23, 42, 0.2), transparent);"></div>
+      <div class="absolute bottom-4 md:bottom-10 left-4 md:left-10 right-4 md:right-6 text-white z-10" style="pointer-events: none;">
+        <span class="inline-block px-2 md:px-3 py-1 mb-2 md:mb-3 text-[0.55rem] md:text-[0.65rem] font-semibold uppercase tracking-[0.2em] bg-white/15 backdrop-blur-sm rounded-full border border-white/20">
+          ${badgeText}
+        </span>
+        <h3 class="text-lg md:text-5xl font-bold mb-1 md:mb-3 leading-tight drop-shadow-md">
+          ${title}
+        </h3>
+        <p class="text-white/80 max-w-md text-[0.65rem] md:text-base leading-relaxed line-clamp-2">
+          ${descriptionText}
+        </p>
+      </div>
+    `;
     section.appendChild(flyer);
 
     const flyerImg = flyer.querySelector('img');
@@ -152,7 +187,7 @@ export default function HeroSection({ clinic, media }: { clinic?: any; media?: a
       top: fT,
       width: fW,
       height: fH,
-      borderRadius: '32px',
+      borderRadius: isMobile ? '20px' : '32px',
       duration: FLY_MS / 1000,
       ease: 'power3.inOut',
       onComplete: () => {
@@ -162,7 +197,15 @@ export default function HeroSection({ clinic, media }: { clinic?: any; media?: a
         setHeroLayers(prev =>
           [...prev, { src: imgSrc, title, uid: nextUid(), z: newZ }].slice(-2)
         );
-        flyer.remove();
+        
+        // Fade out the flyer slowly to mask any image decoding/rendering delay in the underlying React layer
+        gsap.to(flyer, {
+          opacity: 0,
+          duration: 0.4,
+          onComplete: () => {
+            if (flyer.parentNode) flyer.remove();
+          }
+        });
         
         if (onComplete) onComplete();
       },
@@ -235,18 +278,21 @@ export default function HeroSection({ clinic, media }: { clinic?: any; media?: a
   return (
     <section
       ref={sectionRef}
-      className="relative px-4 md:px-8 mt-6 mb-12"
+      className="relative px-4 md:px-8 mt-6 mb-4 md:mb-8"
       style={{ isolation: 'isolate' }}
     >
       <div
         className="max-w-7xl mx-auto relative w-full"
-        style={{ height: 'clamp(520px, 72vh, 760px)' }}
+        style={{ height: isMobile ? 'clamp(420px, 65vh, 540px)' : 'clamp(520px, 72vh, 760px)' }}
       >
         {/* ─── Hero Display Area ─── */}
         <div
           ref={heroRef}
-          className="absolute top-0 left-0 w-full h-[calc(100%-210px)] rounded-[32px] overflow-hidden z-[5]"
-          style={{ background: 'linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%)' }}
+          className="absolute top-0 left-0 w-full rounded-[20px] md:rounded-[32px] overflow-hidden z-[5]"
+          style={{
+            height: isMobile ? 'calc(100% - 140px)' : 'calc(100% - 210px)',
+            background: 'linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%)'
+          }}
         >
           {heroLayers.length === 0 && (
             <div className="absolute inset-0 flex items-center justify-center z-0">
@@ -272,14 +318,14 @@ export default function HeroSection({ clinic, media }: { clinic?: any; media?: a
                 unoptimized
               />
               <div className="absolute inset-0 bg-gradient-to-t from-[#0f172a]/90 via-[#0f172a]/20 to-transparent" />
-              <div className="absolute bottom-6 md:bottom-10 left-6 md:left-10 right-6 text-white z-10">
-                <span className="inline-block px-3 py-1 mb-3 text-[0.65rem] font-semibold uppercase tracking-[0.2em] bg-white/15 backdrop-blur-sm rounded-full border border-white/20">
+              <div className="absolute bottom-4 md:bottom-10 left-4 md:left-10 right-4 md:right-6 text-white z-10">
+                <span className="inline-block px-2 md:px-3 py-1 mb-2 md:mb-3 text-[0.55rem] md:text-[0.65rem] font-semibold uppercase tracking-[0.2em] bg-white/15 backdrop-blur-sm rounded-full border border-white/20">
                   {badgeText}
                 </span>
-                <h3 className="text-2xl md:text-5xl font-bold mb-2 md:mb-3 leading-tight drop-shadow-md">
+                <h3 className="text-lg md:text-5xl font-bold mb-1 md:mb-3 leading-tight drop-shadow-md">
                   {layer.title}
                 </h3>
-                <p className="text-white/80 max-w-md text-xs md:text-base leading-relaxed line-clamp-2">
+                <p className="text-white/80 max-w-md text-[0.65rem] md:text-base leading-relaxed line-clamp-2">
                   {descriptionText}
                 </p>
               </div>
@@ -290,7 +336,8 @@ export default function HeroSection({ clinic, media }: { clinic?: any; media?: a
         {/* ─── Bottom Carousel ─── */}
         <div
           ref={carouselRef}
-          className="absolute bottom-0 left-0 w-full h-[210px] overflow-hidden z-[4]"
+          className="absolute bottom-0 left-0 w-full overflow-hidden z-[4]"
+          style={{ height: isMobile ? '140px' : '210px' }}
         >
           {cards.map((card, i) => {
             const isCenter = i === 3;
@@ -347,7 +394,7 @@ export default function HeroSection({ clinic, media }: { clinic?: any; media?: a
 
                   {/* Label */}
                   <div className="w-full bg-white border-t border-gray-100 px-1 flex items-center justify-center shrink-0" style={{ height: '25%' }}>
-                    <span className="text-[clamp(0.55rem,0.7vw,0.72rem)] font-bold uppercase tracking-wider text-gray-800 text-center line-clamp-1">
+                    <span className="text-[clamp(0.5rem,0.7vw,0.72rem)] font-bold uppercase tracking-wider text-gray-800 text-center line-clamp-1">
                       {card.title}
                     </span>
                   </div>

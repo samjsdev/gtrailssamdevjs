@@ -12,7 +12,8 @@ export default function CTASection({ clinic, sourcePage = 'home', sectionIndex =
   const btnText1 = ctaData.text?.[1] || 'Contact Us Now';
   const btnText2 = ctaData.text?.[2] || 'View Portfolio';
 
-  const phone = clinic?.contact?.phone || '+880 1819 427 078';
+  const rawPhone = clinic?.contact?.phone;
+  const phone = (rawPhone && /\d/.test(rawPhone)) ? rawPhone : '+1 (555) 123-4567';
   const cleanPhone = phone.replace(/\D/g, '');
 
   return (

@@ -22,7 +22,7 @@ export default function AboutSection({ sourcePage = 'home', business, media }: {
   ];
 
   return (
-    <section className="px-4 md:px-8 py-16 max-w-7xl mx-auto">
+    <section className="px-4 md:px-8 pt-8 pb-16 md:py-16 max-w-7xl mx-auto">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
         
         {/* Left Column - Stats */}

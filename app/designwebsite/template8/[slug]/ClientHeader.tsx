@@ -25,7 +25,8 @@ export default function ClientHeader({
     { name: 'Contact', href: `${basePath}/contact` },
   ];
 
-  const phone = clinic.contact?.phone || '+880 1819 427 078';
+  const rawPhone = clinic.contact?.phone;
+  const phone = (rawPhone && /\d/.test(rawPhone)) ? rawPhone : '+1 (555) 123-4567';
 
   return (
     <>
@@ -36,7 +37,7 @@ export default function ClientHeader({
           <div className="w-8 h-8 rounded-full bg-[#2b347b] flex items-center justify-center text-white font-bold text-xs shadow-md">
             {(cleanName || 'Logo').charAt(0).toUpperCase()}
           </div>
-          <span className="font-bold text-[#2b347b] text-lg tracking-tight hidden sm:block">
+          <span className="font-bold text-[#2b347b] text-sm sm:text-lg tracking-tight line-clamp-1 max-w-[140px] sm:max-w-none">
             {cleanName || 'Logo'}
           </span>
         </Link>

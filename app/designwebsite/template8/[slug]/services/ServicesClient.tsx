@@ -31,18 +31,19 @@ export default function ServicesClient() {
   return (
     <div className="w-full bg-[#f8f9fa]">
       {/* Services Hero */}
-      <section className="relative w-full h-[400px] md:h-[500px] flex items-center justify-center overflow-hidden -mt-32 pt-32">
+      <section className="relative w-full h-[50vh] min-h-[400px] md:h-[500px] flex items-center justify-center overflow-hidden -mt-[80px] md:-mt-[104px] pt-[80px] md:pt-[104px]">
         <Image 
           src={heroImage} 
           alt={heroHeading} 
           fill 
           className="object-cover"
+          priority
         />
         <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/60"></div>
-        <div className="relative z-10 text-center px-4 md:px-12 py-10 md:py-16 backdrop-blur-sm bg-white/5 border border-white/10 rounded-[40px] shadow-2xl max-w-3xl mx-4">
-          <p className="text-sm font-bold uppercase tracking-[0.3em] text-white/80 mb-4">{heroSub}</p>
-          <h1 className="text-5xl md:text-6xl font-bold mb-6 text-white tracking-tight">{heroHeading}</h1>
-          <p className="text-lg md:text-xl text-white/90 font-light max-w-2xl mx-auto leading-relaxed">
+        <div className="relative z-10 text-center px-6 md:px-12 py-8 md:py-16 backdrop-blur-sm bg-white/5 border border-white/10 rounded-[32px] md:rounded-[40px] shadow-2xl max-w-3xl w-[calc(100%-2rem)] md:w-auto mx-auto mt-4 md:mt-0">
+          <p className="text-xs md:text-sm font-bold uppercase tracking-[0.3em] text-white/80 mb-3 md:mb-4">{heroSub}</p>
+          <h1 className="text-4xl md:text-6xl font-bold mb-4 md:mb-6 text-white tracking-tight leading-tight">{heroHeading}</h1>
+          <p className="text-base md:text-xl text-white/90 font-light max-w-2xl mx-auto leading-relaxed">
             {heroDesc}
           </p>
         </div>
