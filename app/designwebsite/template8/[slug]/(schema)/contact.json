@@ -1,0 +1,80 @@
+{
+  "website": "Interior Design Studio",
+  "header": {
+    "headings": [
+      "Interior Design Studio"
+    ],
+    "text": [
+      "Home",
+      "About",
+      "Services",
+      "Gallery",
+      "Contact",
+      "+1 (555) 123-4567"
+    ],
+    "image_sources": []
+  },
+  "sections": [
+    {
+      "section_name": "Contact Information",
+      "headings": [
+        "Let's Talk Design.",
+        "Office",
+        "Phone",
+        "Email"
+      ],
+      "text": [
+        "Ready to transform your space? Get in touch with our team of experts to discuss your vision, process, and next steps.",
+        "123 Generic Street, Suite 100, Metropolis, ST 12345",
+        "+1 (555) 123-4567",
+        "hello@example.com"
+      ],
+      "image_sources": [
+        "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=2560"
+      ]
+    },
+    {
+      "section_name": "Contact Form",
+      "headings": [
+        "Send a Message"
+      ],
+      "text": [
+        "We'll get back to you within 24 hours.",
+        "First Name",
+        "Last Name",
+        "Email Address",
+        "Project Type",
+        "Select a project type...",
+        "Residential Design",
+        "Commercial / Office",
+        "Full Renovation",
+        "Design Consultation",
+        "Message",
+        "Send Message"
+      ],
+      "image_sources": []
+    }
+  ],
+  "footer": {
+    "headings": [
+      "Interior Design Studio",
+      "Quick Links",
+      "Contact Us"
+    ],
+    "text": [
+      "Elevating spaces with thoughtful interior design and bespoke solutions. We bring your vision to life through creativity and expert craftsmanship.",
+      "Home",
+      "About Us",
+      "Services",
+      "Gallery",
+      "Contact",
+      "123 Generic Street, Suite 100, Metropolis, ST 12345",
+      "+1 (555) 123-4567",
+      "hello@example.com",
+      "© 2026 Interior Design Studio. All rights reserved.",
+      "Privacy Policy",
+      "Terms of Service"
+    ],
+    "image_sources": []
+  }
+}

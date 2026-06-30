@@ -11,6 +11,16 @@ gsap.registerPlugin(ScrollTrigger);
 export default function StatsGrid({ data }: { data?: any }) {
   const containerRef = useRef<HTMLDivElement>(null);
 
+  const title = data?.comprehensive?.title || 'Comprehensive Design.\\nCurated for You.';
+  const description = data?.comprehensive?.description || 'From conceptual sketches to full renovations, we provide the highest standard of interior design in a seamless, enjoyable process.';
+  
+  const images = [
+    data?.media?.clinicImages?.[5] || "https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=2000&q=80",
+    data?.media?.clinicImages?.[6] || "https://images.unsplash.com/photo-1593696140826-c58b021acf8b?auto=format&fit=crop&w=2000&q=80",
+    data?.media?.clinicImages?.[7] || "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=2000&q=80",
+    data?.media?.clinicImages?.[8] || "https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&w=2000&q=80"
+  ];
+
   useGSAP(() => {
     if (!containerRef.current) return;
 
@@ -71,12 +81,11 @@ export default function StatsGrid({ data }: { data?: any }) {
         
         {/* Section Header */}
         <div className="text-center max-w-2xl mx-auto mb-12 md:mb-16">
-          <h2 className="stats-header-el text-3xl md:text-5xl font-bold text-[var(--accent)] mb-6 leading-tight">
-            Comprehensive Design.<br/>
-            <span className="text-slate-800">Curated for You.</span>
+          <h2 className="stats-header-el text-3xl md:text-5xl font-bold text-[var(--accent)] mb-6 leading-tight whitespace-pre-line">
+            {title}
           </h2>
-          <p className="stats-header-el text-lg text-slate-500">
-            From conceptual sketches to full renovations, we provide the highest standard of interior design in a seamless, enjoyable process.
+          <p className="stats-header-el text-lg text-slate-500 whitespace-pre-wrap">
+            {description}
           </p>
         </div>
 
@@ -87,7 +96,7 @@ export default function StatsGrid({ data }: { data?: any }) {
           <div className="stat-card col-span-1 md:col-span-8 relative group rounded-[32px] md:rounded-[40px] overflow-hidden glass-card border-[3px] border-white/50 bg-gradient-to-br from-blue-50 to-blue-100/50 min-h-[300px]">
              <div className="absolute inset-0 z-0">
                <Image 
-                 src="https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=800&q=80" 
+                 src={images[0]} 
                  alt="Design Consultation" 
                  fill 
                  className="object-cover opacity-30 transition-transform duration-700 group-hover:scale-105"
@@ -110,7 +119,7 @@ export default function StatsGrid({ data }: { data?: any }) {
           <div className="stat-card col-span-1 md:col-span-4 row-span-1 md:row-span-2 relative group rounded-[32px] md:rounded-[40px] overflow-hidden glass-card border-[3px] border-white/50 bg-slate-900 min-h-[350px]">
              <div className="absolute inset-0 z-0">
                <Image 
-                 src={data?.media?.otherImages?.[0] || "https://images.unsplash.com/photo-1593696140826-c58b021acf8b?auto=format&fit=crop&w=800&q=80"}
+                 src={images[1]}
                  alt="Space Makeover" 
                  fill 
                  className="object-cover opacity-60 transition-transform duration-700 group-hover:scale-105"
@@ -134,7 +143,7 @@ export default function StatsGrid({ data }: { data?: any }) {
           <div className="stat-card col-span-1 md:col-span-4 relative group rounded-[32px] md:rounded-[40px] overflow-hidden glass-card border-[3px] border-white/50 bg-blue-50 min-h-[250px]">
              <div className="absolute inset-0 z-0">
                <Image 
-                 src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=800&q=80" 
+                 src={images[2]} 
                  alt="Dedicated Support" 
                  fill 
                  className="object-cover opacity-30 transition-transform duration-700 group-hover:scale-105"
@@ -155,7 +164,7 @@ export default function StatsGrid({ data }: { data?: any }) {
           <div className="stat-card col-span-1 md:col-span-4 relative group rounded-[32px] md:rounded-[40px] overflow-hidden bg-slate-800 text-white shadow-xl shadow-blue-500/20 min-h-[250px]">
              <div className="absolute inset-0 z-0">
                <Image 
-                 src="https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&w=800&q=80" 
+                 src={images[3]} 
                  alt="Furnishing" 
                  fill 
                  className="object-cover opacity-40 transition-transform duration-700 group-hover:scale-105"

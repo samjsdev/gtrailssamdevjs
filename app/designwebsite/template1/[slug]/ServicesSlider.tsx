@@ -8,7 +8,7 @@ const services = [
     title: "Construction",
     price: "Premium Quality",
     desc: "100% Vastu Plan, 1 Year Maintenance, High Quality Materials.",
-    image: "https://images.unsplash.com/photo-1541888081628-912b7a97dc95?auto=format&fit=crop&q=80&w=1200",
+    image: "https://images.unsplash.com/photo-1541888081628-912b7a97dc95?auto=format&fit=crop&q=80&w=2000",
     color: "bg-[#0A0A0A]",
     textColor: "text-[#FCFAF6]"
   },
@@ -16,7 +16,7 @@ const services = [
     title: "Home Interiors",
     price: "Custom Quotes",
     desc: "Material Warranty, Modular Kitchens, Premium Finishes.",
-    image: "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&q=80&w=1200",
+    image: "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&q=80&w=2000",
     color: "bg-[#FCFAF6]",
     textColor: "text-[#0A0A0A]"
   },
@@ -24,7 +24,7 @@ const services = [
     title: "Architectural Planning",
     price: "2D/3D Elevations",
     desc: "Custom layouts, structurally sound, aesthetics driven.",
-    image: "https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&q=80&w=1200",
+    image: "https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&q=80&w=2000",
     color: "bg-[#C1FF72]",
     textColor: "text-[#0A0A0A]"
   },
@@ -32,7 +32,7 @@ const services = [
     title: "Renovations",
     price: "Expert Execution",
     desc: "Turnkey execution, smart space planning, modern upgrades.",
-    image: "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&q=80&w=1200",
+    image: "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&q=80&w=2000",
     color: "bg-[#151515]",
     textColor: "text-[#FCFAF6]"
   }

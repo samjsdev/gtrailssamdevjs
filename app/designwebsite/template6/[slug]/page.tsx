@@ -159,7 +159,7 @@ export default async function DesignStudioHome({ params }: PageProps) {
           <div className="relative max-w-5xl mx-auto px-4">
             <div className="aspect-[21/9] overflow-hidden border border-white/10">
               <img
-                src={media?.otherImages?.[2] || "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=1200"}
+                src={media?.otherImages?.[2] || "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=2000"}
                 alt="Modern luxury interior render"
                 className="w-full h-full object-cover"
               />
@@ -371,7 +371,7 @@ export default async function DesignStudioHome({ params }: PageProps) {
 
           <div className="max-w-5xl mx-auto overflow-hidden border border-white/10 bg-[#1a1a1a]">
             <img
-              src={media?.otherImages?.[3] || "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&q=80&w=1200"}
+              src={media?.otherImages?.[3] || "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&q=80&w=2000"}
               alt="Sleek luxurious interior mockup"
               className="w-full aspect-[16/9] object-cover opacity-70 hover:opacity-100 hover:scale-101 transition-all duration-[2000ms]"
             />

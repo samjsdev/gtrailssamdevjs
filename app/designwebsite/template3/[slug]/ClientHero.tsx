@@ -28,7 +28,7 @@ export default function ClientHero({ clinic, business, basePath, heroImage, medi
       title: "Luxury Skyline",
       location: clinic?.address?.city || "Chennai, India",
       year: "2025",
-      image: "https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&q=80&w=600",
+      image: "https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&q=100&w=2560",
       tag1: "RESIDENTIAL",
       tag2: "DESIGN"
     },
@@ -36,7 +36,7 @@ export default function ClientHero({ clinic, business, basePath, heroImage, medi
       title: "Bohemian Rhapsody",
       location: clinic?.address?.city || "Chennai, India",
       year: "2025",
-      image: "https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&q=80&w=600",
+      image: "https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&q=100&w=2560",
       tag1: "RESIDENTIAL",
       tag2: "STYLING"
     },
@@ -44,7 +44,7 @@ export default function ClientHero({ clinic, business, basePath, heroImage, medi
       title: "Vintage Glamour",
       location: clinic?.address?.city || "Chennai, India",
       year: "2025",
-      image: "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&q=80&w=600",
+      image: "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&q=100&w=2560",
       tag1: "RESIDENTIAL",
       tag2: "FABRICATION"
     },
@@ -52,7 +52,7 @@ export default function ClientHero({ clinic, business, basePath, heroImage, medi
       title: "Living Innovation",
       location: clinic?.address?.city || "Chennai, India",
       year: "2025",
-      image: "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&q=80&w=600",
+      image: "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&q=100&w=2560",
       tag1: "RESIDENTIAL",
       tag2: "LAYOUT"
     }

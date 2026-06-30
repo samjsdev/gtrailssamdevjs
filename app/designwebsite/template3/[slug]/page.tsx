@@ -74,7 +74,7 @@ export default async function DesignStudioHome({ params }: PageProps) {
               <div className="absolute inset-0 bg-[#B48A66] rounded-3xl rotate-3 opacity-10"></div>
               <div className="relative aspect-[4/5] sm:aspect-square lg:aspect-[4/5] rounded-3xl overflow-hidden shadow-2xl border border-slate-100">
                 <img
-                  src={media?.clinicImages?.[0] || "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&q=80&w=800"}
+                  src={media?.clinicImages?.[0] || "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&q=80&w=2000"}
                   alt="Modern luxury interior"
                   className="w-full h-full object-cover"
                 />
@@ -166,7 +166,7 @@ export default async function DesignStudioHome({ params }: PageProps) {
         <div className="relative z-10 max-w-6xl w-full px-8 flex justify-center">
           <div className="w-full aspect-[21/9] rounded-2xl overflow-hidden shadow-2xl border border-slate-200">
             <img
-              src={media?.clinicImages?.[1] || media?.otherImages?.[1] || "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=1200"}
+              src={media?.clinicImages?.[1] || media?.otherImages?.[1] || "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=2000"}
               alt="Modern horizontal architectural render"
               className="w-full h-full object-cover"
             />
@@ -179,7 +179,7 @@ export default async function DesignStudioHome({ params }: PageProps) {
         <div className="max-w-7xl mx-auto px-8 w-full grid lg:grid-cols-12 gap-16 items-center">
           <div className="lg:col-span-5 relative">
             <div className="w-full aspect-[3/4] rounded-[2.5rem] overflow-hidden shadow-2xl">
-              <img src={media?.otherImages?.[0] || "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&q=80&w=800"} alt="Principal Designer" className="w-full h-full object-cover grayscale opacity-90 hover:grayscale-0 transition-all duration-700" />
+              <img src={media?.otherImages?.[0] || "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&q=80&w=2000"} alt="Principal Designer" className="w-full h-full object-cover grayscale opacity-90 hover:grayscale-0 transition-all duration-700" />
             </div>
             <div className="absolute -bottom-6 -right-6 lg:-right-12 bg-slate-900 text-white p-6 md:p-8 rounded-3xl shadow-xl">
               <p className="text-xs font-bold tracking-[0.2em] text-[#B48A66] mb-2 uppercase">PRINCIPAL DESIGNER</p>
@@ -342,7 +342,7 @@ export default async function DesignStudioHome({ params }: PageProps) {
 
           <div className="max-w-6xl mx-auto rounded-3xl overflow-hidden shadow-xl border border-slate-200">
             <img
-              src={media?.clinicImages?.[2] || media?.otherImages?.[2] || "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&q=80&w=1200"}
+              src={media?.clinicImages?.[2] || media?.otherImages?.[2] || "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&q=80&w=2000"}
               alt="Sleek luxurious interior mockup"
               className="w-full aspect-[16/9] object-cover hover:scale-101 transition-transform duration-[2000ms]"
             />

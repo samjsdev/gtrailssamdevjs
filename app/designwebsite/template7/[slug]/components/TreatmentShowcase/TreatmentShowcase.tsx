@@ -25,13 +25,16 @@ export default function TreatmentShowcase({ data }: { data?: any }) {
   const lastTimeRef = useRef<number | null>(null);
   const elapsedTimeRef = useRef<number>(0);
 
+  const sectionTitle = data?.gallery?.exploreTitle || 'Explore Our Designs';
   const services = data?.business?.services?.length ? data.business.services : ['Living Room Design', 'Modern Kitchens', 'Bedroom Styling', 'Home Office', 'Outdoor Spaces'];
-  const images = [
-    'https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?auto=format&fit=crop&w=800&q=80',
-    'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?auto=format&fit=crop&w=1200&q=80',
-    'https://images.unsplash.com/photo-1505693314120-0d443867891c?auto=format&fit=crop&w=800&q=80',
-    'https://images.unsplash.com/photo-1518455027359-f3f8164ba6bd?auto=format&fit=crop&w=800&q=80',
-    'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80'
+  const dataImages = data?.media?.otherImages?.filter(Boolean) || [];
+  
+  const images = dataImages.length > 1 ? dataImages.slice(1, 6) : [
+    'https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?auto=format&fit=crop&w=2000&q=80',
+    'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?auto=format&fit=crop&w=2000&q=80',
+    'https://images.unsplash.com/photo-1505693314120-0d443867891c?auto=format&fit=crop&w=2000&q=80',
+    'https://images.unsplash.com/photo-1518455027359-f3f8164ba6bd?auto=format&fit=crop&w=2000&q=80',
+    'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=2000&q=80'
   ];
 
   const treatments = services.slice(0, 5).map((srv: string, i: number) => ({
@@ -205,14 +208,14 @@ export default function TreatmentShowcase({ data }: { data?: any }) {
             <span className="text-sm font-semibold text-[var(--accent)] uppercase tracking-wider">Our Services</span>
           </span>
           <h2 className="treatment-showcase-title text-4xl md:text-5xl lg:text-6xl font-bold text-[var(--text)] tracking-tight">
-            Explore Our Designs
+            {sectionTitle}
           </h2>
         </div>
 
         <div className="grid lg:grid-cols-[1fr_2.5fr] gap-12 items-center">
           {/* Treatment Selection */}
           <div className="space-y-3">
-            {treatments.map((treatment, index) => {
+            {treatments.map((treatment: any, index: number) => {
               const isActive = index === activeIndex;
               return (
                 <button
@@ -260,7 +263,7 @@ export default function TreatmentShowcase({ data }: { data?: any }) {
 
             {/* Slide counter */}
             <div className="flex items-center justify-center gap-2 pt-4">
-              {treatments.map((_, idx) => (
+              {treatments.map((_: any, idx: number) => (
                 <button
                   key={idx}
                   onClick={() => handleSelect(idx)}

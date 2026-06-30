@@ -8,11 +8,11 @@ import Image from "next/image";
 gsap.registerPlugin(ScrollTrigger);
 
 const projects = [
-  { src: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&q=80&w=1200", title: "Premium Villas" },
-  { src: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&q=80&w=1200", title: "Luxury Exteriors" },
-  { src: "https://images.unsplash.com/photo-1600121848594-d8644e57abab?auto=format&fit=crop&q=80&w=1200", title: "Modern Elevation" },
-  { src: "https://images.unsplash.com/photo-1616594039964-ae9021a400a0?auto=format&fit=crop&q=80&w=1200", title: "Classic Facade" },
-  { src: "https://images.unsplash.com/photo-1600210492493-0946911123ea?auto=format&fit=crop&q=80&w=1200", title: "Interior Layouts" },
+  { src: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&q=80&w=2000", title: "Premium Villas" },
+  { src: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&q=80&w=2000", title: "Luxury Exteriors" },
+  { src: "https://images.unsplash.com/photo-1600121848594-d8644e57abab?auto=format&fit=crop&q=80&w=2000", title: "Modern Elevation" },
+  { src: "https://images.unsplash.com/photo-1616594039964-ae9021a400a0?auto=format&fit=crop&q=80&w=2000", title: "Classic Facade" },
+  { src: "https://images.unsplash.com/photo-1600210492493-0946911123ea?auto=format&fit=crop&q=80&w=2000", title: "Interior Layouts" },
 ];
 
 export default function ProjectsSlider() {

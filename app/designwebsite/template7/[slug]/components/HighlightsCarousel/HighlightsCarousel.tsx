@@ -11,62 +11,38 @@ type Slide = {
 };
 
 export default function HighlightsCarousel({ data }: { data?: any }) {
+  const mainHeading = data?.projects?.title || "Real spaces. \\n Real beauty.";
+  const smallHeading = data?.projects?.subtitle || "FEATURED PROJECTS";
+
   const slides: Slide[] = useMemo(
     () => {
-      const defaultSlides: Slide[] = [
-      {
-        id: 's1',
-        title: 'Modern Living.',
-        subtitle: 'Spaces designed for comfort and style.',
+      const defaultTitles = ["Modern Living.", "Gourmet Kitchens.", "Minimalist Bedrooms.", "Home Offices.", "Luxury Bathrooms.", "Dining Rooms.", "Outdoor Living."];
+      const defaultSubtitles = ["Spaces designed for comfort and style.", "Functional elegance for culinary creativity.", "Serene retreats for restful nights.", "Inspiring environments for focused work.", "Spa-inspired retreats at home.", "Where memories are made around the table.", "Seamless indoor-outdoor experiences."];
+      const defaultImages = [
+        'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=2000&q=80',
+        'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?auto=format&fit=crop&w=2000&q=80',
+        'https://images.unsplash.com/photo-1505693314120-0d443867891c?auto=format&fit=crop&w=2000&q=80',
+        'https://images.unsplash.com/photo-1518455027359-f3f8164ba6bd?auto=format&fit=crop&w=2000&q=80',
+        'https://images.unsplash.com/photo-1620626011761-996317b8d101?auto=format&fit=crop&w=2000&q=80',
+        'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=2000&q=80',
+        'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=2000&q=80'
+      ];
+
+      const titles = data?.business?.highlights?.length ? data.business.highlights : defaultTitles;
+      const subtitles = data?.projects?.descriptions?.length ? data.projects.descriptions : defaultSubtitles;
+      
+      const dataImages = data?.media?.treatmentImages?.filter(Boolean) || [];
+      const images = dataImages.length > 1 ? dataImages : defaultImages;
+
+      return defaultTitles.map((_, i) => ({
+        id: `s${i + 1}`,
+        title: titles[i] || defaultTitles[i] || '',
+        subtitle: subtitles[i] || defaultSubtitles[i] || '',
         kind: 'image',
-        src: 'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=800&q=80'
-      },
-      {
-        id: 's2',
-        title: 'Gourmet Kitchens.',
-        subtitle: 'Functional elegance for culinary creativity.',
-        kind: 'image',
-        src: 'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?auto=format&fit=crop&w=800&q=80'
-      },
-      {
-        id: 's3',
-        title: 'Minimalist Bedrooms.',
-        subtitle: 'Serene retreats for restful nights.',
-        kind: 'image',
-        src: 'https://images.unsplash.com/photo-1505693314120-0d443867891c?auto=format&fit=crop&w=800&q=80'
-      },
-      {
-        id: 's4',
-        title: 'Home Offices.',
-        subtitle: 'Inspiring environments for focused work.',
-        kind: 'image',
-        src: 'https://images.unsplash.com/photo-1518455027359-f3f8164ba6bd?auto=format&fit=crop&w=800&q=80'
-      },
-      {
-        id: 's5',
-        title: 'Luxury Bathrooms.',
-        subtitle: 'Spa-inspired retreats at home.',
-        kind: 'image',
-        src: 'https://images.unsplash.com/photo-1620626011761-996317b8d101?auto=format&fit=crop&w=800&q=80'
-      },
-      {
-        id: 's6',
-        title: 'Dining Rooms.',
-        subtitle: 'Where memories are made around the table.',
-        kind: 'image',
-        src: 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=800&q=80'
-      },
-      {
-        id: 's7',
-        title: 'Outdoor Living.',
-        subtitle: 'Seamless indoor-outdoor experiences.',
-        kind: 'image',
-        src: 'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=800&q=80'
-      },
-    ];
-      return defaultSlides;
+        src: images[i] || defaultImages[i] || defaultImages[0]
+      }));
     },
-    []
+    [data]
   );
 
   const viewportRef = useRef<HTMLDivElement | null>(null);
@@ -196,11 +172,10 @@ export default function HighlightsCarousel({ data }: { data?: any }) {
           <div>
             <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-card mb-4 border border-blue-100 shadow-sm">
               <span className="w-2 h-2 rounded-full bg-blue-600"></span>
-              <span className="text-sm font-bold text-blue-900 uppercase tracking-wider">FEATURED PROJECTS</span>
+              <span className="text-sm font-bold text-blue-900 uppercase tracking-wider">{smallHeading}</span>
             </span>
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-slate-900 tracking-tight">
-              Real spaces. <br/>
-              <span className="text-blue-600">Real beauty.</span>
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-slate-900 tracking-tight whitespace-pre-line">
+              {mainHeading}
             </h2>
           </div>
           <a href="/treatments" className="inline-flex items-center gap-2 px-8 py-3 rounded-full bg-blue-600 text-white font-semibold hover:bg-blue-700 transition-colors shadow-lg hover:shadow-blue-500/30">

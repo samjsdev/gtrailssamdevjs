@@ -138,7 +138,7 @@ export default function Contact() {
 
                <div className="w-full h-[370px] overflow-hidden rounded-2xl bg-slate-100 border border-slate-200 relative">
                   <iframe
-                    src={contact.map.embedUrl}
+                    src={contact?.map?.embedUrl || `https://www.google.com/maps?q=${encodeURIComponent(data?.clinic?.address?.full || contact?.footer?.text?.[6] || 'New York, NY')}&output=embed`}
                     className="absolute inset-0 w-full h-full"
                     loading="lazy"
                     referrerPolicy="no-referrer-when-downgrade"

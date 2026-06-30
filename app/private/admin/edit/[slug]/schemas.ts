@@ -264,8 +264,7 @@ export const SHARED_PAGES: SchemaPage[] = [
 ];
 
 export const TEMPLATE_SCHEMAS: Record<string, TemplateSchema> = {
-  
-    template1: {
+  template1: {
     pages: [
       {
         id: 'home',
@@ -274,48 +273,177 @@ export const TEMPLATE_SCHEMAS: Record<string, TemplateSchema> = {
           {
             label: "Hero Section",
             elements: [
-              { type: 'text', label: 'Studio Name', path: ['clinic', 'name'] },
-              { type: 'text', label: 'Hero Line 1', path: ['hero', 'line1'] },
-              { type: 'text', label: 'Hero Line 2', path: ['hero', 'line2'] },
-              { type: 'text', label: 'Hero Line 3', path: ['hero', 'line3'] },
-              { type: 'textarea', label: 'Studio Description', path: ['clinic', 'description'] },
-              { type: 'image', label: 'Hero Background Image', imageConfig: { arrayKey: 'clinicImages', index: 0 } },
-              { type: 'text', label: 'Contact Phone', path: ['clinic', 'contact', 'phone'] }
-            ]
-          },
-          {
-            label: "Services Slider",
-            elements: [
-              { type: 'list', label: 'Services List', path: ['business', 'services'] }
-            ]
-          },
-          {
-            label: "Why Choose Us",
-            elements: [
-              { type: 'list', label: 'Key Highlights', path: ['business', 'highlights'] }
+              {
+                type: 'text',
+                label: "Studio Name",
+                path: ['clinic', 'name']
+              },
+              {
+                type: 'text',
+                label: "Hero Tagline",
+                path: ['clinic', 'tagline']
+              },
+              {
+                type: 'textarea',
+                label: "Studio Description",
+                path: ['clinic', 'description']
+              },
+              {
+                type: 'image',
+                label: "Hero Main Banner Image",
+                imageConfig: { arrayKey: 'clinicImages', index: 0 }
+              },
+              {
+                type: 'list',
+                label: "Highlights List (1 per line)",
+                path: ['business', 'highlights']
+              },
             ]
           },
           {
             label: "About Us Section",
             elements: [
-              { type: 'text', label: 'Principal Designer Name', path: ['doctor', 'name'] },
-              { type: 'text', label: 'Specialization', path: ['doctor', 'specialization'] },
-              { type: 'textarea', label: 'Designer Bio', path: ['doctor', 'bio'] },
-              { type: 'image', label: 'Designer Portrait', imageConfig: { arrayKey: 'otherImages', index: 0 } }
+              {
+                type: 'text',
+                label: "Principal Designer Name",
+                path: ['doctor', 'name']
+              },
+              {
+                type: 'text',
+                label: "Designer Experience Details",
+                path: ['doctor', 'experience']
+              },
+              {
+                type: 'image',
+                label: "Principal Portrait Image",
+                imageConfig: { arrayKey: 'otherImages', index: 0 }
+              },
             ]
           },
           {
-            label: "Contact & Footer",
+            label: "Services Section",
             elements: [
-              { type: 'textarea', label: 'Full Address', path: ['clinic', 'address', 'full'] },
-              { type: 'text', label: 'Contact Phone', path: ['clinic', 'contact', 'phone'] }
+              {
+                type: 'list',
+                label: "Services List (1 per line)",
+                path: ['business', 'services']
+              },
             ]
-          }
+          },
+          {
+            label: "Contact Section",
+            elements: [
+              {
+                type: 'text',
+                label: "Contact Phone Number",
+                path: ['clinic', 'contact', 'phone']
+              },
+              {
+                type: 'text',
+                label: "Full Address location",
+                path: ['clinic', 'address', 'full']
+              },
+            ]
+          },
         ]
-      }
+      },
+      {
+        id: 'about',
+        label: "About Page",
+        sections: [
+          {
+            label: "About Us Section",
+            elements: [
+              {
+                type: 'text',
+                label: "Studio Name",
+                path: ['clinic', 'name']
+              },
+              {
+                type: 'textarea',
+                label: "Studio Description",
+                path: ['clinic', 'description']
+              },
+              {
+                type: 'image',
+                label: "Clinic / Studio Gallery Image 2",
+                imageConfig: { arrayKey: 'clinicImages', index: 1 }
+              },
+            ]
+          },
+          {
+            label: "Creative Leadership - Lead",
+            elements: [
+              {
+                type: 'text',
+                label: "Principal Designer Name",
+                path: ['doctor', 'name']
+              },
+              {
+                type: 'image',
+                label: "Principal Portrait Image",
+                imageConfig: { arrayKey: 'otherImages', index: 0 }
+              },
+            ]
+          },
+        ]
+      },
+      {
+        id: 'services',
+        label: "Services Page",
+        sections: [
+          {
+            label: "Services Section",
+            elements: [
+              {
+                type: 'list',
+                label: "Services List (1 per line)",
+                path: ['business', 'services']
+              },
+            ]
+          },
+        ]
+      },
+      {
+        id: 'gallery',
+        label: "Gallery Page",
+        sections: [
+          {
+            label: "Portfolio Gallery Section",
+            elements: [
+              {
+                type: 'list',
+                label: "Highlights List (1 per line)",
+                path: ['business', 'highlights']
+              },
+            ]
+          },
+        ]
+      },
+      {
+        id: 'contact',
+        label: "Contact Page",
+        sections: [
+          {
+            label: "Contact Section",
+            elements: [
+              {
+                type: 'text',
+                label: "Contact Phone Number",
+                path: ['clinic', 'contact', 'phone']
+              },
+              {
+                type: 'text',
+                label: "Full Address location",
+                path: ['clinic', 'address', 'full']
+              },
+            ]
+          },
+        ]
+      },
     ]
   },
-    template2: {
+  template2: {
     pages: [
       {
         id: 'home',
@@ -324,55 +452,1102 @@ export const TEMPLATE_SCHEMAS: Record<string, TemplateSchema> = {
           {
             label: "Hero Section",
             elements: [
-              { type: 'text', label: 'Studio Name', path: ['clinic', 'name'] },
-              { type: 'text', label: 'Hero Tagline', path: ['clinic', 'tagline'] },
-              { type: 'textarea', label: 'Studio Description', path: ['clinic', 'description'] },
-              { type: 'image', label: 'Hero Background Image', imageConfig: { arrayKey: 'clinicImages', index: 0 } }
+              {
+                type: 'text',
+                label: "Studio Name",
+                path: ['clinic', 'name']
+              },
+              {
+                type: 'text',
+                label: "Hero Tagline",
+                path: ['clinic', 'tagline']
+              },
+              {
+                type: 'textarea',
+                label: "Studio Description",
+                path: ['clinic', 'description']
+              },
+              {
+                type: 'image',
+                label: "Hero Main Banner Image",
+                imageConfig: { arrayKey: 'clinicImages', index: 0 }
+              },
+              {
+                type: 'list',
+                label: "Highlights List (1 per line)",
+                path: ['business', 'highlights']
+              },
             ]
           },
           {
-            label: "Who We Are",
+            label: "About Us Section",
             elements: [
-              { type: 'text', label: 'Years Experience', path: ['doctor', 'experience'] },
-              { type: 'text', label: 'Designer Name', path: ['doctor', 'name'] },
-              { type: 'textarea', label: 'Bio / Who We Are Text', path: ['doctor', 'bio'] },
-              { type: 'image', label: 'Portrait Image', imageConfig: { arrayKey: 'otherImages', index: 0 } }
+              {
+                type: 'text',
+                label: "Principal Designer Name",
+                path: ['doctor', 'name']
+              },
+              {
+                type: 'text',
+                label: "Designer Experience Details",
+                path: ['doctor', 'experience']
+              },
+              {
+                type: 'image',
+                label: "Principal Portrait Image",
+                imageConfig: { arrayKey: 'otherImages', index: 0 }
+              },
             ]
           },
           {
-            label: "Design Philosophy",
+            label: "Services Section",
             elements: [
-              { type: 'text', label: 'Philosophy Title', path: ['philosophy', 'title'] },
-              { type: 'textarea', label: 'Philosophy Description', path: ['philosophy', 'description'] },
-              { type: 'image', label: 'Philosophy Large Image', imageConfig: { arrayKey: 'clinicImages', index: 0 } }
+              {
+                type: 'list',
+                label: "Services List (1 per line)",
+                path: ['business', 'services']
+              },
             ]
           },
           {
-            label: "Services Preview",
+            label: "Contact Section",
             elements: [
-              { type: 'list', label: 'Services List', path: ['business', 'services'] }
+              {
+                type: 'text',
+                label: "Contact Phone Number",
+                path: ['clinic', 'contact', 'phone']
+              },
+              {
+                type: 'text',
+                label: "Full Address location",
+                path: ['clinic', 'address', 'full']
+              },
             ]
           },
-          {
-            label: "Luxe Benefits",
-            elements: [
-              { type: 'list', label: 'Highlights/Benefits', path: ['business', 'highlights'] }
-            ]
-          },
-          {
-            label: "Contact & Footer",
-            elements: [
-              { type: 'text', label: 'Contact Phone', path: ['clinic', 'contact', 'phone'] }
-            ]
-          }
         ]
-      }
+      },
+      {
+        id: 'about',
+        label: "About Page",
+        sections: [
+          {
+            label: "About Us Section",
+            elements: [
+              {
+                type: 'text',
+                label: "Studio Name",
+                path: ['clinic', 'name']
+              },
+              {
+                type: 'textarea',
+                label: "Studio Description",
+                path: ['clinic', 'description']
+              },
+              {
+                type: 'image',
+                label: "Clinic / Studio Gallery Image 2",
+                imageConfig: { arrayKey: 'clinicImages', index: 1 }
+              },
+            ]
+          },
+          {
+            label: "Creative Leadership - Lead",
+            elements: [
+              {
+                type: 'text',
+                label: "Principal Designer Name",
+                path: ['doctor', 'name']
+              },
+              {
+                type: 'image',
+                label: "Principal Portrait Image",
+                imageConfig: { arrayKey: 'otherImages', index: 0 }
+              },
+            ]
+          },
+        ]
+      },
+      {
+        id: 'services',
+        label: "Services Page",
+        sections: [
+          {
+            label: "Services Section",
+            elements: [
+              {
+                type: 'list',
+                label: "Services List (1 per line)",
+                path: ['business', 'services']
+              },
+            ]
+          },
+        ]
+      },
+      {
+        id: 'gallery',
+        label: "Gallery Page",
+        sections: [
+          {
+            label: "Portfolio Gallery Section",
+            elements: [
+              {
+                type: 'list',
+                label: "Highlights List (1 per line)",
+                path: ['business', 'highlights']
+              },
+            ]
+          },
+        ]
+      },
+      {
+        id: 'contact',
+        label: "Contact Page",
+        sections: [
+          {
+            label: "Contact Section",
+            elements: [
+              {
+                type: 'text',
+                label: "Contact Phone Number",
+                path: ['clinic', 'contact', 'phone']
+              },
+              {
+                type: 'text',
+                label: "Full Address location",
+                path: ['clinic', 'address', 'full']
+              },
+            ]
+          },
+        ]
+      },
     ]
   },
-  template3: { pages: SHARED_PAGES },
-  template4: { pages: SHARED_PAGES },
-  template6: { pages: SHARED_PAGES },
-  template7: { pages: SHARED_PAGES },
-  template10: { pages: SHARED_PAGES },
-  base: { pages: SHARED_PAGES }
+  template3: {
+    pages: [
+      {
+        id: 'home',
+        label: "Home Page",
+        sections: [
+          {
+            label: "Hero Section",
+            elements: [
+              {
+                type: 'text',
+                label: "Studio Name",
+                path: ['clinic', 'name']
+              },
+              {
+                type: 'text',
+                label: "Hero Tagline",
+                path: ['clinic', 'tagline']
+              },
+              {
+                type: 'textarea',
+                label: "Studio Description",
+                path: ['clinic', 'description']
+              },
+              {
+                type: 'image',
+                label: "Hero Main Banner Image",
+                imageConfig: { arrayKey: 'clinicImages', index: 0 }
+              },
+              {
+                type: 'list',
+                label: "Highlights List (1 per line)",
+                path: ['business', 'highlights']
+              },
+            ]
+          },
+          {
+            label: "About Us Section",
+            elements: [
+              {
+                type: 'text',
+                label: "Principal Designer Name",
+                path: ['doctor', 'name']
+              },
+              {
+                type: 'text',
+                label: "Designer Experience Details",
+                path: ['doctor', 'experience']
+              },
+              {
+                type: 'image',
+                label: "Principal Portrait Image",
+                imageConfig: { arrayKey: 'otherImages', index: 0 }
+              },
+            ]
+          },
+          {
+            label: "Services Section",
+            elements: [
+              {
+                type: 'list',
+                label: "Services List (1 per line)",
+                path: ['business', 'services']
+              },
+            ]
+          },
+          {
+            label: "Contact Section",
+            elements: [
+              {
+                type: 'text',
+                label: "Contact Phone Number",
+                path: ['clinic', 'contact', 'phone']
+              },
+              {
+                type: 'text',
+                label: "Full Address location",
+                path: ['clinic', 'address', 'full']
+              },
+            ]
+          },
+        ]
+      },
+      {
+        id: 'about',
+        label: "About Page",
+        sections: [
+          {
+            label: "About Us Section",
+            elements: [
+              {
+                type: 'text',
+                label: "Studio Name",
+                path: ['clinic', 'name']
+              },
+              {
+                type: 'textarea',
+                label: "Studio Description",
+                path: ['clinic', 'description']
+              },
+              {
+                type: 'image',
+                label: "Clinic / Studio Gallery Image 2",
+                imageConfig: { arrayKey: 'clinicImages', index: 1 }
+              },
+            ]
+          },
+          {
+            label: "Creative Leadership - Lead",
+            elements: [
+              {
+                type: 'text',
+                label: "Principal Designer Name",
+                path: ['doctor', 'name']
+              },
+              {
+                type: 'image',
+                label: "Principal Portrait Image",
+                imageConfig: { arrayKey: 'otherImages', index: 0 }
+              },
+            ]
+          },
+        ]
+      },
+      {
+        id: 'services',
+        label: "Services Page",
+        sections: [
+          {
+            label: "Services Section",
+            elements: [
+              {
+                type: 'list',
+                label: "Services List (1 per line)",
+                path: ['business', 'services']
+              },
+            ]
+          },
+        ]
+      },
+      {
+        id: 'gallery',
+        label: "Gallery Page",
+        sections: [
+          {
+            label: "Portfolio Gallery Section",
+            elements: [
+              {
+                type: 'list',
+                label: "Highlights List (1 per line)",
+                path: ['business', 'highlights']
+              },
+            ]
+          },
+        ]
+      },
+      {
+        id: 'contact',
+        label: "Contact Page",
+        sections: [
+          {
+            label: "Contact Section",
+            elements: [
+              {
+                type: 'text',
+                label: "Contact Phone Number",
+                path: ['clinic', 'contact', 'phone']
+              },
+              {
+                type: 'text',
+                label: "Full Address location",
+                path: ['clinic', 'address', 'full']
+              },
+            ]
+          },
+        ]
+      },
+      {
+        id: 'for-clients',
+        label: "For Clients Page",
+        sections: [
+        ]
+      },
+    ]
+  },
+  template4: {
+    pages: [
+      {
+        id: 'home',
+        label: "Home Page",
+        sections: [
+          {
+            label: "Hero Section",
+            elements: [
+              {
+                type: 'text',
+                label: "Studio Name",
+                path: ['clinic', 'name']
+              },
+              {
+                type: 'text',
+                label: "Hero Tagline",
+                path: ['clinic', 'tagline']
+              },
+              {
+                type: 'textarea',
+                label: "Studio Description",
+                path: ['clinic', 'description']
+              },
+              {
+                type: 'image',
+                label: "Hero Main Banner Image",
+                imageConfig: { arrayKey: 'clinicImages', index: 0 }
+              },
+              {
+                type: 'list',
+                label: "Highlights List (1 per line)",
+                path: ['business', 'highlights']
+              },
+            ]
+          },
+          {
+            label: "About Us Section",
+            elements: [
+              {
+                type: 'text',
+                label: "Principal Designer Name",
+                path: ['doctor', 'name']
+              },
+              {
+                type: 'text',
+                label: "Designer Experience Details",
+                path: ['doctor', 'experience']
+              },
+              {
+                type: 'image',
+                label: "Principal Portrait Image",
+                imageConfig: { arrayKey: 'otherImages', index: 0 }
+              },
+            ]
+          },
+          {
+            label: "Services Section",
+            elements: [
+              {
+                type: 'list',
+                label: "Services List (1 per line)",
+                path: ['business', 'services']
+              },
+            ]
+          },
+          {
+            label: "Contact Section",
+            elements: [
+              {
+                type: 'text',
+                label: "Contact Phone Number",
+                path: ['clinic', 'contact', 'phone']
+              },
+              {
+                type: 'text',
+                label: "Full Address location",
+                path: ['clinic', 'address', 'full']
+              },
+            ]
+          },
+        ]
+      },
+      {
+        id: 'about',
+        label: "About Page",
+        sections: [
+          {
+            label: "About Us Section",
+            elements: [
+              {
+                type: 'text',
+                label: "Studio Name",
+                path: ['clinic', 'name']
+              },
+              {
+                type: 'textarea',
+                label: "Studio Description",
+                path: ['clinic', 'description']
+              },
+              {
+                type: 'image',
+                label: "Clinic / Studio Gallery Image 2",
+                imageConfig: { arrayKey: 'clinicImages', index: 1 }
+              },
+            ]
+          },
+          {
+            label: "Creative Leadership - Lead",
+            elements: [
+              {
+                type: 'text',
+                label: "Principal Designer Name",
+                path: ['doctor', 'name']
+              },
+              {
+                type: 'image',
+                label: "Principal Portrait Image",
+                imageConfig: { arrayKey: 'otherImages', index: 0 }
+              },
+            ]
+          },
+        ]
+      },
+      {
+        id: 'services',
+        label: "Services Page",
+        sections: [
+          {
+            label: "Services Section",
+            elements: [
+              {
+                type: 'list',
+                label: "Services List (1 per line)",
+                path: ['business', 'services']
+              },
+            ]
+          },
+        ]
+      },
+      {
+        id: 'gallery',
+        label: "Gallery Page",
+        sections: [
+          {
+            label: "Portfolio Gallery Section",
+            elements: [
+              {
+                type: 'list',
+                label: "Highlights List (1 per line)",
+                path: ['business', 'highlights']
+              },
+            ]
+          },
+        ]
+      },
+      {
+        id: 'contact',
+        label: "Contact Page",
+        sections: [
+          {
+            label: "Contact Section",
+            elements: [
+              {
+                type: 'text',
+                label: "Contact Phone Number",
+                path: ['clinic', 'contact', 'phone']
+              },
+              {
+                type: 'text',
+                label: "Full Address location",
+                path: ['clinic', 'address', 'full']
+              },
+            ]
+          },
+        ]
+      },
+    ]
+  },
+  template6: {
+    pages: [
+      {
+        id: 'home',
+        label: "Home Page",
+        sections: [
+          {
+            label: "Hero Section",
+            elements: [
+              {
+                type: 'text',
+                label: "Studio Name",
+                path: ['clinic', 'name']
+              },
+              {
+                type: 'text',
+                label: "Hero Tagline",
+                path: ['clinic', 'tagline']
+              },
+              {
+                type: 'textarea',
+                label: "Studio Description",
+                path: ['clinic', 'description']
+              },
+              {
+                type: 'image',
+                label: "Hero Main Banner Image",
+                imageConfig: { arrayKey: 'clinicImages', index: 0 }
+              },
+              {
+                type: 'list',
+                label: "Highlights List (1 per line)",
+                path: ['business', 'highlights']
+              },
+            ]
+          },
+          {
+            label: "About Us Section",
+            elements: [
+              {
+                type: 'text',
+                label: "Principal Designer Name",
+                path: ['doctor', 'name']
+              },
+              {
+                type: 'text',
+                label: "Designer Experience Details",
+                path: ['doctor', 'experience']
+              },
+              {
+                type: 'image',
+                label: "Principal Portrait Image",
+                imageConfig: { arrayKey: 'otherImages', index: 0 }
+              },
+            ]
+          },
+          {
+            label: "Services Section",
+            elements: [
+              {
+                type: 'list',
+                label: "Services List (1 per line)",
+                path: ['business', 'services']
+              },
+            ]
+          },
+          {
+            label: "Contact Section",
+            elements: [
+              {
+                type: 'text',
+                label: "Contact Phone Number",
+                path: ['clinic', 'contact', 'phone']
+              },
+              {
+                type: 'text',
+                label: "Full Address location",
+                path: ['clinic', 'address', 'full']
+              },
+            ]
+          },
+        ]
+      },
+      {
+        id: 'about',
+        label: "About Page",
+        sections: [
+          {
+            label: "About Us Section",
+            elements: [
+              {
+                type: 'text',
+                label: "Studio Name",
+                path: ['clinic', 'name']
+              },
+              {
+                type: 'textarea',
+                label: "Studio Description",
+                path: ['clinic', 'description']
+              },
+              {
+                type: 'image',
+                label: "Clinic / Studio Gallery Image 2",
+                imageConfig: { arrayKey: 'clinicImages', index: 1 }
+              },
+            ]
+          },
+          {
+            label: "Creative Leadership - Lead",
+            elements: [
+              {
+                type: 'text',
+                label: "Principal Designer Name",
+                path: ['doctor', 'name']
+              },
+              {
+                type: 'image',
+                label: "Principal Portrait Image",
+                imageConfig: { arrayKey: 'otherImages', index: 0 }
+              },
+            ]
+          },
+        ]
+      },
+      {
+        id: 'services',
+        label: "Services Page",
+        sections: [
+          {
+            label: "Services Section",
+            elements: [
+              {
+                type: 'list',
+                label: "Services List (1 per line)",
+                path: ['business', 'services']
+              },
+            ]
+          },
+        ]
+      },
+      {
+        id: 'gallery',
+        label: "Gallery Page",
+        sections: [
+          {
+            label: "Portfolio Gallery Section",
+            elements: [
+              {
+                type: 'list',
+                label: "Highlights List (1 per line)",
+                path: ['business', 'highlights']
+              },
+            ]
+          },
+        ]
+      },
+      {
+        id: 'contact',
+        label: "Contact Page",
+        sections: [
+          {
+            label: "Contact Section",
+            elements: [
+              {
+                type: 'text',
+                label: "Contact Phone Number",
+                path: ['clinic', 'contact', 'phone']
+              },
+              {
+                type: 'text',
+                label: "Full Address location",
+                path: ['clinic', 'address', 'full']
+              },
+            ]
+          },
+        ]
+      },
+    ]
+  },
+  template7: {
+    pages: [
+      {
+        id: 'home',
+        label: "Home Page",
+        sections: [
+          {
+            label: "Hero Section",
+            elements: [
+              {
+                type: 'text',
+                label: "Studio Name",
+                path: ['clinic', 'name']
+              },
+              {
+                type: 'text',
+                label: "Hero Tagline",
+                path: ['clinic', 'tagline']
+              },
+              {
+                type: 'textarea',
+                label: "Studio Description",
+                path: ['clinic', 'description']
+              },
+              {
+                type: 'image',
+                label: "Hero Main Banner Image",
+                imageConfig: { arrayKey: 'clinicImages', index: 0 }
+              },
+              {
+                type: 'list',
+                label: "Highlights List (1 per line)",
+                path: ['business', 'highlights']
+              },
+            ]
+          },
+          {
+            label: "About Us Section",
+            elements: [
+              {
+                type: 'text',
+                label: "Principal Designer Name",
+                path: ['doctor', 'name']
+              },
+              {
+                type: 'text',
+                label: "Designer Experience Details",
+                path: ['doctor', 'experience']
+              },
+              {
+                type: 'image',
+                label: "Principal Portrait Image",
+                imageConfig: { arrayKey: 'otherImages', index: 0 }
+              },
+            ]
+          },
+          {
+            label: "Services Section",
+            elements: [
+              {
+                type: 'list',
+                label: "Services List (1 per line)",
+                path: ['business', 'services']
+              },
+            ]
+          },
+          {
+            label: "Contact Section",
+            elements: [
+              {
+                type: 'text',
+                label: "Contact Phone Number",
+                path: ['clinic', 'contact', 'phone']
+              },
+              {
+                type: 'text',
+                label: "Full Address location",
+                path: ['clinic', 'address', 'full']
+              },
+            ]
+          },
+        ]
+      },
+      {
+        id: 'about',
+        label: "About Page",
+        sections: [
+          {
+            label: "About Us Section",
+            elements: [
+              {
+                type: 'text',
+                label: "Studio Name",
+                path: ['clinic', 'name']
+              },
+              {
+                type: 'textarea',
+                label: "Studio Description",
+                path: ['clinic', 'description']
+              },
+              {
+                type: 'image',
+                label: "Clinic / Studio Gallery Image 2",
+                imageConfig: { arrayKey: 'clinicImages', index: 1 }
+              },
+            ]
+          },
+          {
+            label: "Creative Leadership - Lead",
+            elements: [
+              {
+                type: 'text',
+                label: "Principal Designer Name",
+                path: ['doctor', 'name']
+              },
+              {
+                type: 'image',
+                label: "Principal Portrait Image",
+                imageConfig: { arrayKey: 'otherImages', index: 0 }
+              },
+            ]
+          },
+        ]
+      },
+      {
+        id: 'services',
+        label: "Services Page",
+        sections: [
+          {
+            label: "Services Section",
+            elements: [
+              {
+                type: 'list',
+                label: "Services List (1 per line)",
+                path: ['business', 'services']
+              },
+            ]
+          },
+        ]
+      },
+      {
+        id: 'gallery',
+        label: "Gallery Page",
+        sections: [
+          {
+            label: "Portfolio Gallery Section",
+            elements: [
+              {
+                type: 'list',
+                label: "Highlights List (1 per line)",
+                path: ['business', 'highlights']
+              },
+            ]
+          },
+        ]
+      },
+      {
+        id: 'contact',
+        label: "Contact Page",
+        sections: [
+          {
+            label: "Contact Section",
+            elements: [
+              {
+                type: 'text',
+                label: "Contact Phone Number",
+                path: ['clinic', 'contact', 'phone']
+              },
+              {
+                type: 'text',
+                label: "Full Address location",
+                path: ['clinic', 'address', 'full']
+              },
+            ]
+          },
+        ]
+      },
+      {
+        id: 'appointment',
+        label: "Appointment Page",
+        sections: [
+        ]
+      },
+      {
+        id: 'privacy',
+        label: "Privacy Page",
+        sections: [
+        ]
+      },
+      {
+        id: 'team',
+        label: "Team Page",
+        sections: [
+        ]
+      },
+      {
+        id: 'terms',
+        label: "Terms Page",
+        sections: [
+        ]
+      },
+    ]
+  },
+  template10: {
+    pages: [
+      {
+        id: 'home',
+        label: "Home Page",
+        sections: [
+          {
+            label: "Hero Section",
+            elements: [
+              {
+                type: 'text',
+                label: "Studio Name",
+                path: ['clinic', 'name']
+              },
+              {
+                type: 'text',
+                label: "Hero Tagline",
+                path: ['clinic', 'tagline']
+              },
+              {
+                type: 'textarea',
+                label: "Studio Description",
+                path: ['clinic', 'description']
+              },
+              {
+                type: 'image',
+                label: "Hero Main Banner Image",
+                imageConfig: { arrayKey: 'clinicImages', index: 0 }
+              },
+              {
+                type: 'list',
+                label: "Highlights List (1 per line)",
+                path: ['business', 'highlights']
+              },
+            ]
+          },
+          {
+            label: "About Us Section",
+            elements: [
+              {
+                type: 'text',
+                label: "Principal Designer Name",
+                path: ['doctor', 'name']
+              },
+              {
+                type: 'text',
+                label: "Designer Experience Details",
+                path: ['doctor', 'experience']
+              },
+              {
+                type: 'image',
+                label: "Principal Portrait Image",
+                imageConfig: { arrayKey: 'otherImages', index: 0 }
+              },
+            ]
+          },
+          {
+            label: "Services Section",
+            elements: [
+              {
+                type: 'list',
+                label: "Services List (1 per line)",
+                path: ['business', 'services']
+              },
+            ]
+          },
+          {
+            label: "Contact Section",
+            elements: [
+              {
+                type: 'text',
+                label: "Contact Phone Number",
+                path: ['clinic', 'contact', 'phone']
+              },
+              {
+                type: 'text',
+                label: "Full Address location",
+                path: ['clinic', 'address', 'full']
+              },
+            ]
+          },
+        ]
+      },
+      {
+        id: 'about',
+        label: "About Page",
+        sections: [
+          {
+            label: "About Us Section",
+            elements: [
+              {
+                type: 'text',
+                label: "Studio Name",
+                path: ['clinic', 'name']
+              },
+              {
+                type: 'textarea',
+                label: "Studio Description",
+                path: ['clinic', 'description']
+              },
+              {
+                type: 'image',
+                label: "Clinic / Studio Gallery Image 2",
+                imageConfig: { arrayKey: 'clinicImages', index: 1 }
+              },
+            ]
+          },
+          {
+            label: "Creative Leadership - Lead",
+            elements: [
+              {
+                type: 'text',
+                label: "Principal Designer Name",
+                path: ['doctor', 'name']
+              },
+              {
+                type: 'image',
+                label: "Principal Portrait Image",
+                imageConfig: { arrayKey: 'otherImages', index: 0 }
+              },
+            ]
+          },
+        ]
+      },
+      {
+        id: 'services',
+        label: "Services Page",
+        sections: [
+          {
+            label: "Services Section",
+            elements: [
+              {
+                type: 'list',
+                label: "Services List (1 per line)",
+                path: ['business', 'services']
+              },
+            ]
+          },
+        ]
+      },
+      {
+        id: 'gallery',
+        label: "Gallery Page",
+        sections: [
+          {
+            label: "Portfolio Gallery Section",
+            elements: [
+              {
+                type: 'list',
+                label: "Highlights List (1 per line)",
+                path: ['business', 'highlights']
+              },
+            ]
+          },
+        ]
+      },
+      {
+        id: 'contact',
+        label: "Contact Page",
+        sections: [
+          {
+            label: "Contact Section",
+            elements: [
+              {
+                type: 'text',
+                label: "Contact Phone Number",
+                path: ['clinic', 'contact', 'phone']
+              },
+              {
+                type: 'text',
+                label: "Full Address location",
+                path: ['clinic', 'address', 'full']
+              },
+            ]
+          },
+        ]
+      },
+    ]
+  },
+  base: {
+    pages: SHARED_PAGES
+  }
 };

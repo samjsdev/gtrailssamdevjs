@@ -44,7 +44,7 @@ export default async function DesignStudioHome({ params }: PageProps) {
       title: "Luxury Skyline Residence",
       location: clinic.address?.city || "Adyar, Chennai",
       year: "2025",
-      image: uniqueUserImages[2] || "https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&q=80&w=600",
+      image: uniqueUserImages[2] || "https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&q=80&w=2000",
       tag1: "RESIDENTIAL",
       tag2: "SINGLE HOME"
     },
@@ -52,7 +52,7 @@ export default async function DesignStudioHome({ params }: PageProps) {
       title: "Bohemian Rhapsody Villa",
       location: clinic.address?.city || "ECR Road, Chennai",
       year: "2025",
-      image: uniqueUserImages[3] || "https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&q=80&w=600",
+      image: uniqueUserImages[3] || "https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&q=80&w=2000",
       tag1: "RESIDENTIAL",
       tag2: "SINGLE HOME"
     },
@@ -60,7 +60,7 @@ export default async function DesignStudioHome({ params }: PageProps) {
       title: "Vintage Glamour Penthouse",
       location: clinic.address?.city || "Nungambakkam, Chennai",
       year: "2025",
-      image: uniqueUserImages[4] || "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&q=80&w=600",
+      image: uniqueUserImages[4] || "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&q=80&w=2000",
       tag1: "RESIDENTIAL",
       tag2: "SINGLE HOME"
     },
@@ -68,7 +68,7 @@ export default async function DesignStudioHome({ params }: PageProps) {
       title: "Living Innovation Studio",
       location: clinic.address?.city || "Velachery, Chennai",
       year: "2025",
-      image: uniqueUserImages[5] || "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&q=80&w=600",
+      image: uniqueUserImages[5] || "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&q=80&w=2000",
       tag1: "RESIDENTIAL",
       tag2: "SINGLE HOME"
     },
@@ -76,7 +76,7 @@ export default async function DesignStudioHome({ params }: PageProps) {
       title: "Urban Minimalist Loft",
       location: clinic.address?.city || "Alwarpet, Chennai",
       year: "2025",
-      image: uniqueUserImages[6] || "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&q=80&w=600",
+      image: uniqueUserImages[6] || "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&q=80&w=2000",
       tag1: "RESIDENTIAL",
       tag2: "SINGLE HOME"
     },
@@ -84,7 +84,7 @@ export default async function DesignStudioHome({ params }: PageProps) {
       title: "Modern Oasis",
       location: clinic.address?.city || "Besant Nagar, Chennai",
       year: "2025",
-      image: uniqueUserImages[7] || "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&q=80&w=600",
+      image: uniqueUserImages[7] || "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&q=80&w=2000",
       tag1: "RESIDENTIAL",
       tag2: "SINGLE HOME"
     }
@@ -125,7 +125,7 @@ export default async function DesignStudioHome({ params }: PageProps) {
         <div className="relative z-10 max-w-6xl mx-auto mt-12">
           <div className="w-full aspect-[4/3] sm:aspect-[16/9] md:aspect-[21/9] rounded-[2.5rem] overflow-hidden shadow-sm border border-[#EAE3D8]/60">
             <img
-              src={media?.clinicImages?.[0] || media?.otherImages?.[1] || "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=1200"}
+              src={media?.clinicImages?.[0] || media?.otherImages?.[1] || "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=2000"}
               alt="Modern horizontal architectural interior"
               className="w-full h-full object-cover"
             />
@@ -474,7 +474,7 @@ export default async function DesignStudioHome({ params }: PageProps) {
 
         <div className="max-w-6xl mx-auto rounded-[2.5rem] overflow-hidden shadow-sm border border-[#EAE3D8]/50">
           <img
-            src={media?.otherImages?.[3] || "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&q=80&w=1200"}
+            src={media?.otherImages?.[3] || "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&q=80&w=2000"}
             alt="Seamless elegant interior layout render"
             className="w-full aspect-[16/9] object-cover hover:scale-[1.01] transition-transform duration-[2000ms]"
           />

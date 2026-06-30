@@ -21,7 +21,7 @@ interface ClientHeroProps {
 
 export default function ClientHero({ clinic, business, basePath, doctor, media }: ClientHeroProps) {
   // Luxe interior design image
-  const backgroundImage = media?.clinicImages?.[0] || 'https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&q=80&w=1600';
+  const backgroundImage = media?.clinicImages?.[0] || 'https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&q=100&w=2560';
 
   return (
     <div className="space-y-6 w-full relative z-10">
@@ -125,7 +125,7 @@ export default function ClientHero({ clinic, business, basePath, doctor, media }
           <div className="md:w-2/5 flex justify-center w-full">
             <div className="relative w-56 h-56 rounded-full overflow-hidden border-4 border-white/50 shadow-md aspect-square bg-stone-100 group">
               <img 
-                src={media?.otherImages?.[0] || "https://images.unsplash.com/photo-1542889601-399c4f3a8402?auto=format&fit=crop&w=400&q=80"} 
+                src={media?.otherImages?.[0] || "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=800&q=80"} 
                 alt="Principal designer team work" 
                 className="w-full h-full object-cover grayscale opacity-90 transition-all duration-700 group-hover:scale-105 group-hover:grayscale-0"
               />

@@ -31,9 +31,9 @@ export default async function AboutPage({ params }: { params: Promise<{ slug: st
 
   const clinicName = clinic?.name || 'Luxe Interiors Studio';
   const leadName = doctor?.name || 'Arjun Mehta';
-  const doctorImage = doctor?.images?.[0] || media?.otherImages?.[0] || 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=800&q=80';
-  const secondaryImage = doctor2?.images?.[0] || media?.clinicImages?.[1] || media?.otherImages?.[1] || 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=800&q=80';
-  const studioImage = data.about?.heroImage || media?.clinicImages?.[2] || media?.clinicImages?.[0] || INTERIOR_HERO_IMAGES.about || 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=1200';
+  const doctorImage = doctor?.images?.[0] || media?.otherImages?.[0] || 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=2000&q=80';
+  const secondaryImage = doctor2?.images?.[0] || media?.clinicImages?.[1] || media?.otherImages?.[1] || 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=2000&q=80';
+  const studioImage = data.about?.heroImage || media?.clinicImages?.[2] || media?.clinicImages?.[0] || INTERIOR_HERO_IMAGES.about || 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=2000';
 
   const partnerName = doctor2?.name || 'Kavitha Rajan';
   const partnerRole = doctor2?.role || 'LEAD STYLIST';

@@ -14,8 +14,8 @@ export default async function AboutPage({ params }: { params: Promise<{ slug: st
 
   const clinicName = data?.clinic?.name || 'Luxe Interiors Studio';
   const doctorName = data?.doctor?.name || 'Arjun Mehta';
-  const doctorImage = data?.media?.otherImages?.[0] || 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=800&q=80';
-  const secondaryImage = data?.media?.otherImages?.[1] || 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=800&q=80';
+  const doctorImage = data?.media?.otherImages?.[0] || 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=2000&q=80';
+  const secondaryImage = data?.media?.otherImages?.[1] || 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=2000&q=80';
 
   return (
     <div className="text-slate-900 bg-white min-h-screen pb-32 relative overflow-hidden selection:bg-[#B48A66] selection:text-white scroll-smooth">
@@ -53,7 +53,7 @@ export default async function AboutPage({ params }: { params: Promise<{ slug: st
             <div className="absolute inset-0 bg-[#B48A66] rounded-3xl rotate-2 opacity-10"></div>
             <div className="relative aspect-[21/9] rounded-3xl overflow-hidden shadow-2xl border border-slate-100 bg-white">
               <img
-                src={data?.media?.clinicImages?.[1] || data?.media?.otherImages?.[1] || "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=1200"}
+                src={data?.media?.clinicImages?.[1] || data?.media?.otherImages?.[1] || "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=2000"}
                 alt="Modern studio architectural layout"
                 className="w-full h-full object-cover hover:scale-102 transition-transform duration-[2000ms]"
               />

@@ -24,25 +24,25 @@ export default function WhyChooseUs({ basePath, data }: WhyChooseUsProps) {
       num: "01",
       title: data?.philosophy?.feature1?.title || "Spatial Planning",
       desc: data?.philosophy?.feature1?.desc || "We prioritize natural light, structural flow, and proportions before adding finishes, ensuring the fundamental structure of the room is correct.",
-      img: data?.philosophy?.feature1?.img || data?.media?.otherImages?.[2] || "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&q=80&w=800",
+      img: data?.philosophy?.feature1?.img || data?.media?.otherImages?.[2] || "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&q=80&w=2000",
     },
     {
       num: "02",
       title: data?.philosophy?.feature2?.title || "Material Sourcing",
       desc: data?.philosophy?.feature2?.desc || "We select authentic materials that age gracefully—natural woods, textured stones, and patinated metals that tell a visual story.",
-      img: data?.philosophy?.feature2?.img || data?.media?.otherImages?.[3] || "https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?auto=format&fit=crop&q=80&w=800",
+      img: data?.philosophy?.feature2?.img || data?.media?.otherImages?.[3] || "https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?auto=format&fit=crop&q=80&w=2000",
     },
     {
       num: "03",
       title: data?.philosophy?.feature3?.title || "Bespoke Details",
       desc: data?.philosophy?.feature3?.desc || "It’s the subtle shadow gaps, flush baseboards, and customized joinery that elevate a space from standard to exceptional.",
-      img: data?.philosophy?.feature3?.img || data?.media?.otherImages?.[4] || "https://images.unsplash.com/photo-1616594039964-ae9021a400a0?auto=format&fit=crop&q=80&w=800",
+      img: data?.philosophy?.feature3?.img || data?.media?.otherImages?.[4] || "https://images.unsplash.com/photo-1616594039964-ae9021a400a0?auto=format&fit=crop&q=80&w=2000",
     },
     {
       num: "04",
       title: data?.philosophy?.feature4?.title || "Turnkey Execution",
       desc: data?.philosophy?.feature4?.desc || "Our rigorous project management ensures design integrity is maintained from the first concept sketch to the final styling reveal.",
-      img: data?.philosophy?.feature4?.img || data?.media?.otherImages?.[5] || "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&q=80&w=800",
+      img: data?.philosophy?.feature4?.img || data?.media?.otherImages?.[5] || "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&q=80&w=2000",
     }
   ];
 

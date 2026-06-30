@@ -1,0 +1,183 @@
+{
+  "website": "Interior Design Studio",
+  "header": {
+    "headings": [
+      "Interior Design Studio"
+    ],
+    "text": [
+      "Home",
+      "About",
+      "Services",
+      "Gallery",
+      "Contact",
+      "+1 (555) 123-4567"
+    ],
+    "image_sources": []
+  },
+  "sections": [
+    {
+      "section_name": "Hero Section",
+      "headings": [
+        "About Us"
+      ],
+      "text": [
+        "Crafting spaces that inspire and elevate everyday living."
+      ],
+      "image_sources": [
+        "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&q=80&w=2560"
+      ]
+    },
+    {
+      "section_name": "About / Statistics",
+      "headings": [
+        "Your Trusted Interior Design Partners",
+        "30+",
+        "5k+",
+        "07+",
+        "33+"
+      ],
+      "text": [
+        "We specialize in crafting beautiful, functional spaces tailored precisely to your lifestyle. Let us bring your vision to life through thoughtful design and seamless execution.",
+        "Satisfied Customer",
+        "Award wining",
+        "Years of Experience",
+        "Projects Delivered"
+      ],
+      "image_sources": [
+        "https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&q=80&w=2000"
+      ]
+    },
+    {
+      "section_name": "The Journey",
+      "headings": [
+        "The Journey",
+        "Inception & Ethos",
+        "Sourcing & Joinery",
+        "Biophilic Sourcing",
+        "Sought-After Residential Leader"
+      ],
+      "text": [
+        "— OUR CHRONICLE",
+        "From a small boutique laboratory of carpenters to an award-winning turnkey architecture agency, our commitment to natural materials remains constant.",
+        "2015",
+        "Our studio was founded to provide premium architectural interiors that leverage biophilic principles and showcase high-end solid woods.",
+        "2018",
+        "Formed a proprietary material sourcing network, ensuring clean access to sustainable veneers and high-end carpenters.",
+        "2021",
+        "Committed to absolute biophilic integrity, implementing non-toxic coatings, certified organic linen layers, and natural clay plasters.",
+        "PRESENT",
+        "Crafting customized high-end living spaces and boutique business environments nationwide, known for quiet warmth and tactile luxury."
+      ],
+      "image_sources": []
+    },
+    {
+      "section_name": "Design Philosophy",
+      "headings": [
+        "Our Design Philosophy",
+        "Listen & Understand",
+        "Conceptualize",
+        "Execute & Deliver"
+      ],
+      "text": [
+        "A proven, seamless approach to transforming your vision into reality.",
+        "01",
+        "We begin by deeply understanding your lifestyle, preferences, and vision to ensure the foundation of our design aligns perfectly with your needs.",
+        "02",
+        "Our creative team translates your vision into detailed concepts, mood boards, and layouts that bring the envisioned space to life before execution.",
+        "03",
+        "With meticulous attention to detail, we manage the entire execution process, ensuring a seamless journey from the blueprint to the final reveal."
+      ],
+      "image_sources": []
+    },
+    {
+      "section_name": "The Work Cycle",
+      "headings": [
+        "The Work Cycle",
+        "Client Meeting",
+        "Concept Design",
+        "Visualize Design",
+        "Estimation & Agreement",
+        "Project Implementation",
+        "Completion & Handover"
+      ],
+      "text": [
+        "Our Chronicle",
+        "Phase 01",
+        "We begin by deeply understanding your vision, lifestyle, and the unique potential of your space.",
+        "Phase 02",
+        "Translating ideas into comprehensive mood boards, spatial layouts, and photorealistic 3D renders.",
+        "Phase 03",
+        "Hand-selecting premium finishes, bespoke furnishings, and exquisite textures to elevate the design.",
+        "Phase 04",
+        "Developing rigorous timelines, technical drawings, and resource allocations for flawless execution.",
+        "Phase 05",
+        "Our master craftsmen and project managers bring the vision to life with uncompromising precision.",
+        "Phase 06",
+        "The final layer of polish—staging your space to perfection before welcoming you to your new sanctuary."
+      ],
+      "image_sources": [
+        "https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&w=800&q=80",
+        "https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=800&q=80",
+        "https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&w=800&q=80",
+        "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=800&q=80",
+        "https://images.unsplash.com/photo-1581094794329-c8112a89af12?auto=format&fit=crop&w=800&q=80",
+        "https://images.unsplash.com/photo-1618219908412-a29a1bb7b86e?auto=format&fit=crop&w=800&q=80"
+      ]
+    },
+    {
+      "section_name": "Testimonials",
+      "headings": [
+        "What Our Clients Say",
+        "Jane Doe",
+        "John Smith",
+        "Alice & Bob"
+      ],
+      "text": [
+        "Read stories from clients whose homes we've transformed with our dedicated interior design services.",
+        "They completely transformed our living room. The attention to detail and ability to capture our personal style was remarkable. Highly recommended!",
+        "Happy Client",
+        "The turnkey execution was flawless. They handled everything from demolition to the final styling of the bookshelves. Our home feels brand new.",
+        "We loved how they optimized our floor plan. What used to be a cramped kitchen is now an open, airy space where we love to entertain guests."
+      ],
+      "image_sources": [
+        "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=150&q=80",
+        "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=150&q=80",
+        "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&w=150&q=80"
+      ]
+    },
+    {
+      "section_name": "Call to Action",
+      "headings": [
+        "Ready to Transform Your Space?"
+      ],
+      "text": [
+        "Whether you are renovating a single room or building a new home, our expert designers are ready to guide you through every step of the process.",
+        "Contact Us Now",
+        "View Portfolio"
+      ],
+      "image_sources": []
+    }
+  ],
+  "footer": {
+    "headings": [
+      "Interior Design Studio",
+      "Quick Links",
+      "Contact Us"
+    ],
+    "text": [
+      "Elevating spaces with thoughtful interior design and bespoke solutions. We bring your vision to life through creativity and expert craftsmanship.",
+      "Home",
+      "About Us",
+      "Services",
+      "Gallery",
+      "Contact",
+      "123 Generic Street, Suite 100, Metropolis, ST 12345",
+      "+1 (555) 123-4567",
+      "hello@example.com",
+      "© 2026 Interior Design Studio. All rights reserved.",
+      "Privacy Policy",
+      "Terms of Service"
+    ],
+    "image_sources": []
+  }
+}
