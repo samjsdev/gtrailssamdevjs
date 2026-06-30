@@ -5,19 +5,19 @@ import Image from 'next/image';
 const categories = [
   {
     title: 'Modern Minimalist',
-    image: 'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&q=80&w=2000',
+    image: '/images/stock/d6c16cd8.webp',
   },
   {
     title: 'Classic Elegance',
-    image: 'https://images.unsplash.com/photo-1556910103-1c02745aae4d?auto=format&fit=crop&q=80&w=2000',
+    image: '/images/stock/a7b4cc83.webp',
   },
   {
     title: 'Bohemian Chic',
-    image: 'https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&q=80&w=2000',
+    image: '/images/stock/8ce16a71.webp',
   },
   {
     title: 'Industrial Urban',
-    image: 'https://images.unsplash.com/photo-1542889601-399c4f3a8402?auto=format&fit=crop&q=80&w=2000',
+    image: '/images/stock/de20674b.webp',
   }
 ];
 

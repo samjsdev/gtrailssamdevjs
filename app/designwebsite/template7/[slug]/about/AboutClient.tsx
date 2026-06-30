@@ -214,7 +214,7 @@ export default function AboutPage() {
         'B.Arch - Prestigious Architecture College',
         'M.Des - Institute of Design Studies'
     ];
-    const founderImage = data?.media?.otherImages?.[0] || 'https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=2000&q=80';
+    const founderImage = data?.media?.otherImages?.[0] || '/images/stock/bbb7f0e7.webp';
 
     const teamTitle = data?.about?.team?.title || 'Expert Designers';
     const teamDesc = data?.about?.team?.description || 'A multidisciplinary team of designers dedicated to complex projects, ensuring every client receives expert design tailored to their unique needs.';
@@ -225,8 +225,8 @@ export default function AboutPage() {
         'Color palettes, material selection, furniture curation.'
     ];
     const teamImages = [
-        data?.media?.otherImages?.[1] || 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=2000&q=80',
-        data?.media?.otherImages?.[2] || 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=2000&q=80'
+        data?.media?.otherImages?.[1] || '/images/stock/a2cc7706.webp',
+        data?.media?.otherImages?.[2] || '/images/stock/7743f238.webp'
     ];
 
     const specialists = teamNames.map((name: string, index: number) => ({

@@ -77,7 +77,7 @@
       },
       "appointment": {
         "title": "Live with Elegance",
-        "image": "https://images.unsplash.com/photo-1593696140826-c58b021acf8b?auto=format&fit=crop&w=800&q=80",
+        "image": "/images/stock/3a01f8b7.webp",
         "cta": {
           "label": "Book Consultation",
           "href": "/contact"
@@ -90,37 +90,37 @@
       "number": "1500+",
       "label": "Happy Clients",
       "variant": "highlight",
-      "image": "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=800&q=80"
+      "image": "/images/stock/8f61297a.webp"
     },
     {
       "number": "1250+",
       "label": "Rooms Styled",
       "variant": "default",
-      "image": "https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?auto=format&fit=crop&w=800&q=80"
+      "image": "/images/stock/c87d10e5.webp"
     },
     {
       "number": "750+",
       "label": "Custom Furniture",
       "variant": "accent",
-      "image": "https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&w=800&q=80"
+      "image": "/images/stock/b448e5cb.webp"
     },
     {
       "number": "500+",
       "label": "Homes Renovated",
       "variant": "default",
-      "image": "https://images.unsplash.com/photo-1556910103-1c02745a872f?auto=format&fit=crop&w=800&q=80"
+      "image": "/images/stock/967cb7c8.webp"
     },
     {
       "number": "250+",
       "label": "Commercial Spaces",
       "variant": "default",
-      "image": "https://images.unsplash.com/photo-1518455027359-f3f8164ba6bd?auto=format&fit=crop&w=800&q=80"
+      "image": "/images/stock/df95fb87.webp"
     },
     {
       "number": "5000+",
       "label": "Projects Completed",
       "variant": "default",
-      "image": "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=800&q=80"
+      "image": "/images/stock/7d1751fd.webp"
     }
   ],
   "contact": {
@@ -155,7 +155,7 @@
         {
           "title": "Space Planning",
           "description": "Maximize your living space with our expert layout configurations.",
-          "image": "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=800&q=80",
+          "image": "/images/stock/8f61297a.webp",
           "features": [
             "Floor Plans",
             "Furniture Layouts",
@@ -165,7 +165,7 @@
         {
           "title": "Color Consultation",
           "description": "Find the perfect palette to match your style and set the right mood.",
-          "image": "https://images.unsplash.com/photo-1593696140826-c58b021acf8b?auto=format&fit=crop&w=800&q=80",
+          "image": "/images/stock/3a01f8b7.webp",
           "features": [
             "Paint Selection",
             "Material Palettes",
@@ -175,7 +175,7 @@
         {
           "title": "Furnishing",
           "description": "Curated furniture selections to complement your space and lifestyle.",
-          "image": "https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&w=800&q=80",
+          "image": "/images/stock/b448e5cb.webp",
           "features": [
             "Custom Furniture",
             "Upholstery",
@@ -192,15 +192,15 @@
         "description": "Complete overhauls of your living spaces. We manage everything from demolition to final styling.",
         "gallery": [
           {
-            "src": "https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?auto=format&fit=crop&w=800&q=80",
+            "src": "/images/stock/c87d10e5.webp",
             "alt": "Living Room"
           },
           {
-            "src": "https://images.unsplash.com/photo-1556910103-1c02745a872f?auto=format&fit=crop&w=800&q=80",
+            "src": "/images/stock/967cb7c8.webp",
             "alt": "Kitchen"
           },
           {
-            "src": "https://images.unsplash.com/photo-1505693314120-0d443867891c?auto=format&fit=crop&w=800&q=80",
+            "src": "/images/stock/89479b90.webp",
             "alt": "Bedroom"
           }
         ],
@@ -213,7 +213,7 @@
       "implants": {
         "title": "Kitchen & Bath",
         "description": "Specialized designs for the most important rooms in your house, blending functionality with luxury.",
-        "image": "https://images.unsplash.com/photo-1556910103-1c02745a872f?auto=format&fit=crop&w=800&q=80",
+        "image": "/images/stock/967cb7c8.webp",
         "features": [
           "Custom Cabinetry",
           "High-end Fixtures",
@@ -223,7 +223,7 @@
       "cosmetic": {
         "title": "Commercial Spaces",
         "description": "Inspiring workspaces, retail environments, and hospitality venues designed for success.",
-        "image": "https://images.unsplash.com/photo-1518455027359-f3f8164ba6bd?auto=format&fit=crop&w=800&q=80",
+        "image": "/images/stock/df95fb87.webp",
         "features": [
           "Office Design",
           "Retail Layouts",
@@ -238,7 +238,7 @@
         {
           "title": "Smart Home Integration",
           "description": "Seamlessly incorporate the latest technology into your interior design.",
-          "image": "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=800&q=80",
+          "image": "/images/stock/7d1751fd.webp",
           "features": [
             "Automated Lighting",
             "Climate Control",
@@ -248,7 +248,7 @@
         {
           "title": "Sustainable Design",
           "description": "Eco-friendly materials and energy-efficient solutions for a greener home.",
-          "image": "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=800&q=80",
+          "image": "/images/stock/e4c85f7e.webp",
           "features": [
             "Green Materials",
             "Energy Efficiency",

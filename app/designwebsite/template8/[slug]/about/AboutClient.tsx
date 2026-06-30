@@ -13,7 +13,7 @@ export default function AboutClient() {
   const { clinic, business, media, reviews } = data || {};
   const aboutData = data?.about?.sections?.[0] || {};
 
-  const heroImage = data?.media?.aboutHero?.[0] || aboutData.image_sources?.[0] || media?.heroImage || 'https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&q=80&w=2560';
+  const heroImage = data?.media?.aboutHero?.[0] || aboutData.image_sources?.[0] || media?.heroImage || '/images/stock/6dcb103c.webp';
 
   const heroHeading = aboutData.headings?.[0] || 'About Us';
   const heroText = aboutData.text?.[0] || business?.tagline || 'Crafting spaces that inspire and elevate everyday living.';

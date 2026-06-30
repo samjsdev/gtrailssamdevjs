@@ -12,7 +12,7 @@ export default function ServicesClient() {
   const { clinic } = data || {};
   
   const svcData = data?.services?.sections?.[0] || {};
-  const heroImage = data?.media?.servicesHero?.[0] || svcData.image_sources?.[0] || 'https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&q=80&w=2560';
+  const heroImage = data?.media?.servicesHero?.[0] || svcData.image_sources?.[0] || '/images/stock/4a368613.webp';
 
   const heroSub = svcData.text?.[0] || 'Expertise';
   const heroHeading = svcData.headings?.[0] || 'Our Services';

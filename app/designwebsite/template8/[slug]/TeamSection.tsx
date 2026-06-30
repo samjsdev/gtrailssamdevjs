@@ -13,10 +13,10 @@ export default function TeamSection({ doctor, media }: { doctor?: any; media?: a
   const mainText = highlightData.text?.[0] || 'Explore our most stunning interior design projects, showcasing our versatility and attention to detail across various styles.';
 
   const defaultImages = [
-    'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=2000&q=80',
-    'https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=2000&q=80',
-    'https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&w=2000&q=80',
-    'https://images.unsplash.com/photo-1542889601-399c4f3a8402?auto=format&fit=crop&w=2000&q=80'
+    '/images/stock/f40680bb.webp',
+    '/images/stock/8d41033e.webp',
+    '/images/stock/d73648f1.webp',
+    '/images/stock/7ac5dbb8.webp'
   ];
 
   const getImg = (i: number) => data?.media?.highlightDesigns?.[i] || highlightData.image_sources?.[i] || defaultImages[i];
@@ -30,7 +30,7 @@ export default function TeamSection({ doctor, media }: { doctor?: any; media?: a
 
   return (
     <section className="px-4 md:px-8 py-20 max-w-7xl mx-auto">
-      <div className="flex flex-col md:flex-row justify-between items-end mb-12">
+      <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 md:gap-0 mb-12">
         <div className="max-w-md">
           <h2 data-gsap="reveal" className="text-4xl md:text-5xl font-bold text-[#1A1D27] leading-tight mb-4 whitespace-pre-line">
             {mainHeading}

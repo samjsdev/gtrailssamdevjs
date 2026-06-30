@@ -30,11 +30,11 @@ export default function TreatmentShowcase({ data }: { data?: any }) {
   const dataImages = data?.media?.otherImages?.filter(Boolean) || [];
   
   const images = dataImages.length > 1 ? dataImages.slice(1, 6) : [
-    'https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?auto=format&fit=crop&w=2000&q=80',
-    'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?auto=format&fit=crop&w=2000&q=80',
-    'https://images.unsplash.com/photo-1505693314120-0d443867891c?auto=format&fit=crop&w=2000&q=80',
-    'https://images.unsplash.com/photo-1518455027359-f3f8164ba6bd?auto=format&fit=crop&w=2000&q=80',
-    'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=2000&q=80'
+    '/images/stock/7617327a.webp',
+    '/images/stock/bf333360.webp',
+    '/images/stock/84fea9c5.webp',
+    '/images/stock/284d6d29.webp',
+    '/images/stock/13246fc0.webp'
   ];
 
   const treatments = services.slice(0, 5).map((srv: string, i: number) => ({

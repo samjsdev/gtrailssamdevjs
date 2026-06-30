@@ -21,7 +21,7 @@ export default function ContactClient() {
   const rawEmail = data?.clinic?.contact?.email || contactData.text?.[3];
   const email = (rawEmail && rawEmail.includes('@')) ? rawEmail : 'hello@yourcompany.com';
 
-  const contactImage = data?.media?.clinicImages?.[0] || contactData.image_sources?.[0] || 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=2560';
+  const contactImage = data?.media?.clinicImages?.[0] || contactData.image_sources?.[0] || '/images/stock/1c7b75e9.webp';
 
   const formHeading = formData.headings?.[0] || 'Send a Message';
   const formDesc = formData.text?.[0] || "We'll get back to you within 24 hours.";

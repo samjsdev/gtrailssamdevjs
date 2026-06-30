@@ -174,7 +174,7 @@ export default function ServicesClient() {
             const rSub = data?.services?.renovations?.subtitle || '02 — Transformations';
             const rDesc = data?.services?.renovations?.description || 'Complete overhauls of your living spaces. We manage everything from demolition to final styling.';
             const rBullets = data?.services?.renovations?.bullets || ['Structural Changes', 'Project Management', 'Turnkey Solutions'];
-            const rImg = data?.media?.clinicImages?.[9] || 'https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?auto=format&fit=crop&w=800&q=80';
+            const rImg = data?.media?.clinicImages?.[9] || '/images/stock/c87d10e5.webp';
 
             return (
                 <section className="treatment-section py-32 px-6 bg-slate-50 border-t border-slate-200/50">
@@ -236,7 +236,7 @@ export default function ServicesClient() {
             const kbSub = data?.services?.kitchenBath?.subtitle || '03 — Restoration';
             const kbDesc = data?.services?.kitchenBath?.description || 'Specialized designs for the most important rooms in your house, blending functionality with luxury.';
             const kbBullets = data?.services?.kitchenBath?.bullets || ['Custom Cabinetry', 'High-end Fixtures', 'Smart Storage'];
-            const kbImg = data?.media?.clinicImages?.[10] || 'https://images.unsplash.com/photo-1556910103-1c02745a872f?auto=format&fit=crop&w=800&q=80';
+            const kbImg = data?.media?.clinicImages?.[10] || '/images/stock/967cb7c8.webp';
 
             return (
                 <section className="treatment-section py-32 px-6 bg-slate-900 text-white relative overflow-hidden">
@@ -291,7 +291,7 @@ export default function ServicesClient() {
                 'Tailored specifically to your vision and functional needs.',
                 'Expertly curated lighting and decor for immediate, brilliant results.'
             ];
-            const comImg = data?.media?.clinicImages?.[11] || 'https://images.unsplash.com/photo-1518455027359-f3f8164ba6bd?auto=format&fit=crop&w=800&q=80';
+            const comImg = data?.media?.clinicImages?.[11] || '/images/stock/df95fb87.webp';
 
             return (
                 <section className="treatment-section py-32 px-6 bg-white relative">
@@ -346,8 +346,8 @@ export default function ServicesClient() {
                 'Automated Lighting', 'Climate Control', 'Security Systems',
                 'Green Materials', 'Energy Efficiency', 'Indoor Air Quality'
             ];
-            const advImg1 = data?.media?.clinicImages?.[12] || 'https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=800&q=80';
-            const advImg2 = data?.media?.clinicImages?.[13] || 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=800&q=80';
+            const advImg1 = data?.media?.clinicImages?.[12] || '/images/stock/7d1751fd.webp';
+            const advImg2 = data?.media?.clinicImages?.[13] || '/images/stock/e4c85f7e.webp';
             
             const features1 = advSubs.slice(0, 3);
             const features2 = advSubs.slice(3, 6);

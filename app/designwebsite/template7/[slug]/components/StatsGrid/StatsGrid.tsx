@@ -15,10 +15,10 @@ export default function StatsGrid({ data }: { data?: any }) {
   const description = data?.comprehensive?.description || 'From conceptual sketches to full renovations, we provide the highest standard of interior design in a seamless, enjoyable process.';
   
   const images = [
-    data?.media?.clinicImages?.[5] || "https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=2000&q=80",
-    data?.media?.clinicImages?.[6] || "https://images.unsplash.com/photo-1593696140826-c58b021acf8b?auto=format&fit=crop&w=2000&q=80",
-    data?.media?.clinicImages?.[7] || "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=2000&q=80",
-    data?.media?.clinicImages?.[8] || "https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&w=2000&q=80"
+    data?.media?.clinicImages?.[5] || "/images/stock/4a89522a.webp",
+    data?.media?.clinicImages?.[6] || "/images/stock/74d75fd4.webp",
+    data?.media?.clinicImages?.[7] || "/images/stock/d8c80cf3.webp",
+    data?.media?.clinicImages?.[8] || "/images/stock/a8311f2b.webp"
   ];
 
   useGSAP(() => {

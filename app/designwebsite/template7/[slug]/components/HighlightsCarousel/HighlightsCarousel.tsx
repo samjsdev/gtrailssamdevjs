@@ -19,13 +19,13 @@ export default function HighlightsCarousel({ data }: { data?: any }) {
       const defaultTitles = ["Modern Living.", "Gourmet Kitchens.", "Minimalist Bedrooms.", "Home Offices.", "Luxury Bathrooms.", "Dining Rooms.", "Outdoor Living."];
       const defaultSubtitles = ["Spaces designed for comfort and style.", "Functional elegance for culinary creativity.", "Serene retreats for restful nights.", "Inspiring environments for focused work.", "Spa-inspired retreats at home.", "Where memories are made around the table.", "Seamless indoor-outdoor experiences."];
       const defaultImages = [
-        'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=2000&q=80',
-        'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?auto=format&fit=crop&w=2000&q=80',
-        'https://images.unsplash.com/photo-1505693314120-0d443867891c?auto=format&fit=crop&w=2000&q=80',
-        'https://images.unsplash.com/photo-1518455027359-f3f8164ba6bd?auto=format&fit=crop&w=2000&q=80',
-        'https://images.unsplash.com/photo-1620626011761-996317b8d101?auto=format&fit=crop&w=2000&q=80',
-        'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=2000&q=80',
-        'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=2000&q=80'
+        '/images/stock/a151a9e5.webp',
+        '/images/stock/bf333360.webp',
+        '/images/stock/84fea9c5.webp',
+        '/images/stock/284d6d29.webp',
+        '/images/stock/36e83915.webp',
+        '/images/stock/90879216.webp',
+        '/images/stock/34bba44b.webp'
       ];
 
       const titles = data?.business?.highlights?.length ? data.business.highlights : defaultTitles;

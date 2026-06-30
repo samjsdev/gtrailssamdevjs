@@ -22,12 +22,12 @@ export default function ServicesSection() {
   const btnText = svcData.text?.[7] || 'Explore Portfolio';
 
   const defaultImages = [
-    'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&q=80&w=800',
-    'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=800',
-    'https://images.unsplash.com/photo-1503602642458-232111445657?auto=format&fit=crop&q=80&w=800',
-    'https://images.unsplash.com/photo-1555041469-a586c61ea9bc?auto=format&fit=crop&q=80&w=800',
-    'https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&q=80&w=800',
-    'https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&q=80&w=800'
+    '/images/stock/cf0f5b64.webp',
+    '/images/stock/881afddc.webp',
+    '/images/stock/ae3de7db.webp',
+    '/images/stock/4e96f2e2.webp',
+    '/images/stock/bfeb918f.webp',
+    '/images/stock/caf3a8ac.webp'
   ];
 
   const getImg = (i: number) => data?.media?.coreServices?.[i] || svcData.image_sources?.[i] || defaultImages[i];

@@ -14,49 +14,49 @@ type Category = 'All' | 'Living Room' | 'Kitchen' | 'Bedroom' | 'Office' | 'Bath
 // Enhanced gallery data with categories
 const galleryItems = [
   {
-    src: "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=2000&q=80",
+    src: "/images/stock/a151a9e5.webp",
     alt: "Modern living room with natural light",
     title: "Modern Living",
     category: "Living Room",
     description: "Elegant open-plan living space with natural materials"
   },
   {
-    src: "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?auto=format&fit=crop&w=2000&q=80",
+    src: "/images/stock/bf333360.webp",
     alt: "Contemporary kitchen design",
     title: "Gourmet Kitchen",
     category: "Kitchen",
     description: "Sleek contemporary kitchen with premium finishes"
   },
   {
-    src: "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&w=2000&q=80",
+    src: "/images/stock/af2da1d1.webp",
     alt: "Luxury bedroom interior",
     title: "Master Suite",
     category: "Bedroom",
     description: "Tranquil master bedroom retreat"
   },
   {
-    src: "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=2000&q=80",
+    src: "/images/stock/d8c80cf3.webp",
     alt: "Modern office workspace",
     title: "Creative Office",
     category: "Office",
     description: "Inspiring workspace designed for productivity"
   },
   {
-    src: "https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?auto=format&fit=crop&w=2000&q=80",
+    src: "/images/stock/5ab4e561.webp",
     alt: "Luxury bathroom design",
     title: "Spa Bathroom",
     category: "Bathroom",
     description: "Resort-inspired bathroom with stone accents"
   },
   {
-    src: "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=2000&q=80",
+    src: "/images/stock/704fc1ee.webp",
     alt: "Outdoor living area",
     title: "Outdoor Lounge",
     category: "Outdoor",
     description: "Seamless indoor-outdoor living experience"
   },
   {
-    src: "https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?auto=format&fit=crop&w=2000&q=80",
+    src: "/images/stock/7617327a.webp",
     alt: "Cozy reading nook",
     title: "Reading Nook",
     category: "Living Room",

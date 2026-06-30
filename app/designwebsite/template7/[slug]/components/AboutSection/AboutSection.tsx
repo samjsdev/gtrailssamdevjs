@@ -33,7 +33,7 @@ export default function AboutSection({ data }: { data?: any }) {
   const leaderExp = doctor.experience || '5+';
   const leaderQuote = leader.quote || '"Design is not just about aesthetics; it\'s about creating an environment that elevates your everyday life."';
   const leaderBio = doctor.bio || 'With a visionary approach to modern architecture and a deep understanding of spatial psychology, we have led our studio to become a recognized design firm. Our philosophy centers on transparency, compassionate client care, and uncompromising elegance.';
-  const leaderImg = data?.media?.otherImages?.[0] || 'https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=2000&q=80';
+  const leaderImg = data?.media?.otherImages?.[0] || '/images/stock/bbb7f0e7.webp';
 
   const servicesList = (business.services?.length ? business.services : [
     'Residential Design', 'Commercial Spaces', 'Full Renovations', 'Custom Furnishing'

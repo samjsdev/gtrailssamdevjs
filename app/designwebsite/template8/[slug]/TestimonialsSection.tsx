@@ -13,9 +13,9 @@ export default function TestimonialsSection({ sourcePage = 'home', sectionIndex 
   const roleText = testData.text?.[2] || 'Happy Client';
 
   const defaultImages = [
-    'https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=150&q=80',
-    'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=150&q=80',
-    'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&w=150&q=80'
+    '/images/stock/5862d7f2.webp',
+    '/images/stock/b7119856.webp',
+    '/images/stock/9de99616.webp'
   ];
   
   const getImg = (i: number) => data?.media?.testimonials?.[i] || testData.image_sources?.[i] || defaultImages[i];

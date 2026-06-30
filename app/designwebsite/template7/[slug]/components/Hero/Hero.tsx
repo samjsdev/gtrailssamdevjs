@@ -9,11 +9,11 @@ import { useLoading } from '../../context/LoadingContext';
 import { useTemplateData } from '../../context/TemplateContext';
 
 const INITIAL_IMAGES = [
-  "https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&w=800&q=80",
-  "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=800&q=80",
-  "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1200&q=80",
-  "https://images.unsplash.com/photo-1615876234886-fd9a39fda97f?auto=format&fit=crop&w=800&q=80",
-  "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=800&q=80"
+  "/images/stock/68b39046.webp",
+  "/images/stock/a0e0726f.webp",
+  "/images/stock/dc1759ad.webp",
+  "/images/stock/f23e9dc6.webp",
+  "/images/stock/615f9d34.webp"
 ];
 
 const CARD_CONFIGS = [

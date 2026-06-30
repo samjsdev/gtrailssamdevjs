@@ -12,10 +12,10 @@ export default function PropertiesSection() {
   const mainText = projData.text?.[0] || 'Browse through our curated portfolio of residential and commercial interiors. Each project is a testament to our commitment to quality and style.';
 
   const defaultImages = [
-    'https://images.unsplash.com/photo-1600210491892-03d54c0aaf87?auto=format&fit=crop&q=80&w=2000',
-    'https://images.unsplash.com/photo-1556910103-1c02745aae4d?auto=format&fit=crop&q=80&w=2000',
-    'https://images.unsplash.com/photo-1616594039964-ae9021a400a0?auto=format&fit=crop&q=80&w=2000',
-    'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=2000'
+    '/images/stock/b6986c5a.webp',
+    '/images/stock/a7b4cc83.webp',
+    '/images/stock/0d97766b.webp',
+    '/images/stock/507b5184.webp'
   ];
 
   const getImg = (i: number) => data?.media?.recentProjects?.[i] || projData.image_sources?.[i] || defaultImages[i];
@@ -57,7 +57,7 @@ export default function PropertiesSection() {
 
   return (
     <section className="px-4 md:px-8 py-16 max-w-7xl mx-auto">
-      <div className="flex flex-col md:flex-row justify-between items-end mb-12">
+      <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 md:gap-0 mb-12">
         <div className="max-w-md">
           <h2 data-gsap="reveal" className="text-4xl md:text-5xl font-bold text-[#1A1D27] leading-tight mb-4 whitespace-pre-line">
             {mainHeading}

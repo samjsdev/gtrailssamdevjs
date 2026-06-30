@@ -9,12 +9,12 @@ export default function WorkCycleSection({ sourcePage = 'about', sectionIndex = 
   const mainHeading = cycleData.headings?.[0] || 'The Work Cycle';
 
   const defaultImages = [
-    'https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&w=800&q=80',
-    'https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=800&q=80',
-    'https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&w=800&q=80',
-    'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=800&q=80',
-    'https://images.unsplash.com/photo-1581094794329-c8112a89af12?auto=format&fit=crop&w=800&q=80',
-    'https://images.unsplash.com/photo-1618219908412-a29a1bb7b86e?auto=format&fit=crop&w=800&q=80'
+    '/images/stock/c093e1b3.webp',
+    '/images/stock/d2cd7311.webp',
+    '/images/stock/68b39046.webp',
+    '/images/stock/ddc829e8.webp',
+    '/images/stock/75c40d2b.webp',
+    '/images/stock/463ea892.webp'
   ];
 
   const getImg = (i: number) => data?.media?.workCycle?.[i] || cycleData.image_sources?.[i] || defaultImages[i];

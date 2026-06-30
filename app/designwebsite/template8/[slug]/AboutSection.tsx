@@ -8,7 +8,7 @@ export default function AboutSection({ sourcePage = 'home', business, media }: {
   const { data } = useTemplateData();
   const aboutData = data?.[sourcePage]?.sections?.[1] || {};
 
-  const defaultImage = 'https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&q=80&w=2000';
+  const defaultImage = '/images/stock/a9daeddb.webp';
   const customImage = data?.media?.aboutStats?.[0] || aboutData.image_sources?.[0] || defaultImage;
 
   const mainHeading = aboutData.headings?.[0] || "Your Trusted Interior Design Partners";
