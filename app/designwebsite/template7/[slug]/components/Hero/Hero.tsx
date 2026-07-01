@@ -168,20 +168,15 @@ export default function Hero() {
                const config = CARD_CONFIGS[posIndex];
                
                return (
-                   <div key={index} 
-                        className={`hero-moving-card ${config.wrapper}`}
-                        style={isReady ? (posIndex === 0 ? { transition: 'none' } : { transition: 'all 1000ms ease-in-out, z-index 0ms' }) : {}}
-                   >
-                       <div className={`hero-img-inner ${config.inner} group cursor-pointer`}
-                            style={isReady ? (posIndex === 0 ? { transition: 'none' } : { transition: 'all 1000ms ease-in-out' }) : {}}
-                       >
+                   <div key={index} className={`hero-moving-card ${config.wrapper} ${isReady ? 'transition-all duration-1000 ease-in-out' : ''}`}>
+                       <div className={`hero-img-inner ${config.inner} ${isReady ? 'transition-all duration-1000 ease-in-out' : ''} group cursor-pointer`}>
                            <div className="absolute inset-0 bg-black/10 group-hover:bg-black/0 transition-colors z-10 duration-500"></div>
                            <Image 
                                src={src} 
                                alt={`Interior Design ${index}`} 
                                fill 
                                className="object-cover transition-transform duration-700 group-hover:scale-110"
-                               priority={true}
+                               priority={index === 2}
                            />
                        </div>
                    </div>

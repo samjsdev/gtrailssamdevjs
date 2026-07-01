@@ -161,7 +161,7 @@ export default async function DesignStudioHome({ params }: PageProps) {
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-20">
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-light text-stone-900 mb-6">Our Expertise</h2>
-            <p className="text-stone-500 font-light max-w-2xl mx-auto">Comprehensive interior solutions tailored to elevate your environment.</p>
+            <p className="text-stone-500 font-light max-w-4xl mx-auto">At Waring Interiors, we design interiors that nurture wellness and longevity by creating calm, restorative spaces that support the way you live every day. Through thoughtful space planning, natural materials, biophilic design and carefully considered lighting, we create homes that reduce stress, encourage relaxation and strengthen your connection to nature. Every design decision is made with your comfort, health and daily rituals in mind, resulting in timeless interiors that not only look beautiful but help you feel your best.</p>
           </div>
           
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10" data-gsap="stagger-container">
