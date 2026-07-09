@@ -47,7 +47,7 @@ export default async function SiteLayout({ children, params }: LayoutProps) {
                 Ready To Start<br />Your Project?
               </h2>
               <p className="max-w-md text-base md:text-lg font-medium leading-relaxed text-white/60">
-                {cleanDesc || 'Architecture, civil construction, exterior elevations, Vastu planning, and turnkey interiors from one accountable Chennai team.'}
+                {cleanDesc || 'Architecture,  construction, exterior elevations, Vastu planning, and turnkey interiors from one accountable Chennai team.'}
               </p>
               
               <div className="mt-12 flex flex-wrap gap-4">

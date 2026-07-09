@@ -26,13 +26,13 @@ export default function ClientHeader({ clinicName, basePath, phone }: ClientHead
 
   return (
     <header className="sticky top-0 z-50 border-b border-[var(--line)] bg-[rgba(244,240,231,0.92)] backdrop-blur-xl">
-      <div className="site-grid grid min-h-[72px] grid-cols-[1fr_auto] items-center gap-4 py-3 lg:grid-cols-[1fr_auto_auto]">
-        <Link href={basePath || '/'} onClick={() => setOpen(false)} className="flex items-center min-w-0 gap-3">
+      <div className="site-grid grid min-h-[72px] grid-cols-[1fr_auto] items-center gap-2 py-3 lg:grid-cols-[1fr_auto_auto]">
+        <Link href={basePath || '/'} onClick={() => setOpen(false)} className="flex items-center min-w-0 gap-2">
           <Image src="/dreamslogo.webp" alt={clinicName} width={56} height={56} className="h-14 w-auto object-contain" unoptimized />
           <div className="block min-w-0">
             <span className="block truncate text-xs font-black uppercase tracking-[0.15em] sm:text-sm sm:tracking-[0.18em] md:text-base">Dreamsmine Designers</span>
             <span className="block truncate text-[0.55rem] font-black uppercase tracking-[0.15em] text-[var(--steel)] sm:text-[0.62rem] sm:tracking-[0.22em]">
-              Architecture / Civil / Interiors
+              Architecture / Builders / Interiors
             </span>
           </div>
         </Link>

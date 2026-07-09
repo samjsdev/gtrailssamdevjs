@@ -38,8 +38,6 @@ export const villaShowcase = [
 export const elevationImages = [
   "/images/all/exterior-elevations/elevation-06.webp",
   "/images/all/exterior-elevations/elevation-10.webp",
-  "/images/all/exterior-elevations/elevation-15.webp",
-  "/images/all/exterior-elevations/elevation-20.webp",
   "/images/all/exterior-elevations/elevation-30.webp",
   "/images/all/exterior-elevations/elevation-41.webp",
 ];
@@ -77,7 +75,7 @@ export const walkthroughVideos = [
 export const servicePillars = [
   {
     title: "Residential Construction",
-    eyebrow: "Civil execution",
+    eyebrow: "Turnkey execution",
     summary:
       "End-to-end individual homes and duplex villas with structural supervision, premium materials, and site accountability.",
     image: "/images/all/premium-villas/villa-09.webp",
@@ -130,7 +128,7 @@ export const processSteps = [
   },
   {
     step: "03",
-    title: "Civil and MEP coordination",
+    title: "Construction and MEP coordination",
     text: "Structural work, waterproofing, electrical, plumbing, and site quality checks run from a single delivery plan.",
   },
   {

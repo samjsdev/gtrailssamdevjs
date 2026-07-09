@@ -102,12 +102,7 @@ export const SHOWCASE_PROJECTS = [
     category: "Residential",
     location: "Kundrathur",
   },
-  {
-    image: "/images/all/exterior-elevations/elevation-15.webp",
-    title: "Double Floor House",
-    category: "Residential",
-    location: "Chennai",
-  },
+
   {
     image: "/images/all/premium-villas/villa-05.webp",
     title: "Premium Elevation Design",

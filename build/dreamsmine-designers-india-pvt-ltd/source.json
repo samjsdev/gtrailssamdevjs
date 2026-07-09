@@ -17,8 +17,8 @@
       "phone": "09176600046",
       "phone2": "09176600047",
       "landline": "044-35699281",
-      "email": "info@dreamsminedesigners.com",
-      "email2": "dreamsminedesigners2021@gmail.com",
+      "email": "dreamsminedesigners2021@gmail.com",
+      "email2": "",
       "website": "www.dreamsminedesigners.com"
     },
     "social": {
@@ -106,9 +106,7 @@
     ],
     "treatmentImages": [
       "/images/all/exterior-elevations/elevation-06.webp",
-      "/images/all/exterior-elevations/elevation-10.webp",
-      "/images/all/exterior-elevations/elevation-15.webp",
-      "/images/all/exterior-elevations/elevation-20.webp"
+      "/images/all/exterior-elevations/elevation-10.webp"
     ],
     "otherImages": [
       "/images/all/interior-promos/promo-01.webp",

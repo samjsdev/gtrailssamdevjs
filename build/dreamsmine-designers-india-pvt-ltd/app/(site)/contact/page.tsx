@@ -20,8 +20,8 @@ export default async function ContactPage({ params }: PageProps) {
   const phone2 = clinic.contact?.phone2 || '+91 766 00047';
   const landline = clinic.contact?.landline || '044-3569 9281';
   
-  const email1 = clinic.contact?.email || 'info@dreamsminedesigners.com';
-  const email2 = clinic.contact?.email2 || 'dreamsminedesigners2021@gmail.com';
+  const email1 = clinic.contact?.email || 'dreamsminedesigners2021@gmail.com';
+  const email2 = clinic.contact?.email2 || '';
   
   const waPhone = phone1.replace(/\D/g, '') || '9176600046';
   const waLink = `https://wa.me/${waPhone}?text=${encodeURIComponent(`Hi ${cleanName}, I want to discuss a home design and construction project.`)}`;
@@ -75,7 +75,9 @@ export default async function ContactPage({ params }: PageProps) {
                     <p className="text-[0.65rem] font-black uppercase tracking-[0.15em] text-[var(--oxide)] mb-2">EMAIL BRIEF</p>
                     <div className="flex flex-col gap-1">
                       <a href={`mailto:${email1}`} className="text-base font-bold text-black/80 hover:text-[var(--oxide)] transition-colors">{email1}</a>
-                      <a href={`mailto:${email2}`} className="text-base font-bold text-black/80 hover:text-[var(--oxide)] transition-colors">{email2}</a>
+                      {email2 && (
+                        <a href={`mailto:${email2}`} className="text-base font-bold text-black/80 hover:text-[var(--oxide)] transition-colors">{email2}</a>
+                      )}
                     </div>
                   </div>
                 </div>
@@ -133,7 +135,7 @@ export default async function ContactPage({ params }: PageProps) {
               </p>
             </div>
             <div className="flex flex-col sm:flex-row gap-4 shrink-0 w-full md:w-auto">
-              <a href={waLink} target="_blank" rel="noreferrer" className="bg-[var(--white)] text-[var(--oxide)] hover:bg-[var(--paper)] transition-colors px-8 py-4 rounded-xl font-bold text-center flex items-center justify-center gap-2">
+              <a href={waLink} target="_blank" rel="noreferrer" className="hover:opacity-90 transition-opacity px-8 py-4 rounded-xl font-bold text-center flex items-center justify-center gap-2" style={{ backgroundColor: 'var(--white)', color: 'var(--oxide)' }}>
                 <MessageSquare className="h-5 w-5" />
                 WhatsApp Details
               </a>

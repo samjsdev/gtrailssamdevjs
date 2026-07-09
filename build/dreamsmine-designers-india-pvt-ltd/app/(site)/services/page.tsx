@@ -14,7 +14,7 @@ type PageProps = {
 const serviceHeroSlides = [
   { src: heroImages[0], title: 'Turnkey duplex construction', label: 'Premium villa' },
   { src: heroImages[1], title: 'Facade-led family homes', label: 'Exterior design' },
-  { src: heroImages[2], title: 'Built with site discipline', label: 'Civil execution' },
+  { src: heroImages[2], title: 'Built with site discipline', label: 'Construction work' },
 ];
 
 export default async function ServicesPage({ params }: PageProps) {
@@ -38,7 +38,7 @@ export default async function ServicesPage({ params }: PageProps) {
                   One scope from drawing to delivery.
                 </h1>
                 <p className="mt-6 max-w-2xl text-base font-medium leading-7 text-black/68 md:text-lg">
-                  Architecture, civil construction, elevation and interiors move together. This is structured for clients who need clarity before construction starts and accountability until maintenance begins.
+                  Architecture, construction work, elevation and interiors move together. This is structured for clients who need clarity before construction starts and accountability until maintenance begins.
                 </p>
               </div>
               <div className="mt-10 flex flex-col gap-3 sm:flex-row">
@@ -74,9 +74,9 @@ export default async function ServicesPage({ params }: PageProps) {
             <div className="relative p-1 bg-[var(--paper)] border border-[var(--line-strong)] flex flex-col group rounded-3xl">
                <div className="bg-[var(--white)] p-8 md:p-12 h-full flex flex-col rounded-3xl">
                   <DraftingCompass className="h-10 w-10 text-[var(--oxide)] mb-6" />
-                  <h3 className="text-3xl font-black uppercase tracking-[-0.04em] mb-2">Basic Package</h3>
+                  <h3 className="text-3xl font-black uppercase tracking-[-0.04em] mb-2">Standard Package</h3>
                   <div className="flex items-end gap-2 mb-6 border-b border-[var(--line)] pb-6">
-                    <p className="text-5xl font-black text-[var(--ink)]">₹2200</p>
+                    <p className="text-5xl font-black text-[var(--ink)]">₹2400</p>
                     <span className="text-sm font-bold text-black/50 tracking-normal pb-2">/ sq.ft</span>
                   </div>
                   <p className="text-base text-black/60 font-medium mb-8 flex-grow leading-relaxed">
@@ -102,7 +102,7 @@ export default async function ServicesPage({ params }: PageProps) {
                   <Home className="h-10 w-10 text-[var(--safety)] mb-6" />
                   <h3 className="text-3xl font-black uppercase tracking-[-0.04em] mb-2 text-white">Premium Package</h3>
                   <div className="flex items-end gap-2 mb-6 border-b border-white/10 pb-6">
-                    <p className="text-5xl font-black text-white">₹2400</p>
+                    <p className="text-5xl font-black text-white">₹2700</p>
                     <span className="text-sm font-bold text-white/50 tracking-normal pb-2">/ sq.ft</span>
                   </div>
                   <p className="text-base text-white/60 font-medium mb-8 flex-grow leading-relaxed">
@@ -219,7 +219,7 @@ export default async function ServicesPage({ params }: PageProps) {
         </div>
       </section>
 
-      {/* Exterior & Civil Proof */}
+      {/* Exterior & construction work Proof */}
       <section className="bg-[var(--paper)] py-16 md:py-24 border-b border-[var(--line)]">
         <div className="site-grid">
           <div className="grid gap-12 lg:grid-cols-[1fr_1fr] items-start">

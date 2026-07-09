@@ -26,7 +26,7 @@ type PageProps = {
 const heroSlides = [
   { src: heroImages[0], title: 'Turnkey duplex construction', label: 'Premium villa' },
   { src: heroImages[1], title: 'Facade-led family homes', label: 'Exterior design' },
-  { src: heroImages[2], title: 'Built with site discipline', label: 'Civil execution' },
+  { src: heroImages[2], title: 'Built with site discipline', label: 'Building execution' },
   { src: heroImages[3], title: 'Vastu planned residences', label: 'Planning' },
 ];
 
@@ -50,7 +50,7 @@ export default async function HomePage({ params }: PageProps) {
                   Infra Developers<br />And Interior Designers
                 </h1>
                 <h2 className="mt-5 text-xl font-black uppercase tracking-[-0.03em] text-[var(--oxide)] sm:text-2xl">
-                  Architecture, civil work and interiors
+                  Architecture, construction work and interiors
                 </h2>
                 <p className="mt-5 max-w-2xl text-base font-medium leading-7 text-black/68 md:text-lg md:leading-8">
                   We are a Chennai-based design-build company for homeowners who want all key services managed by one accountable team.
@@ -123,7 +123,7 @@ export default async function HomePage({ params }: PageProps) {
               <div className="mt-8 flex flex-wrap gap-4 items-end">
                 <div className="bg-[var(--ink)] text-white p-6 md:p-8">
                   <p className="text-[0.62rem] font-black uppercase tracking-[0.18em] text-white/60">Our Price / Just</p>
-                  <p className="mt-1 text-5xl sm:text-6xl font-black uppercase tracking-[-0.04em]">Rs.2200<span className="text-xl">/sqft</span></p>
+                  <p className="mt-1 text-5xl sm:text-6xl font-black uppercase tracking-[-0.04em]">Rs.2400<span className="text-xl">/sqft</span></p>
                 </div>
                 <div className="flex flex-col gap-3 p-5 md:p-6 border border-[var(--line-strong)]">
                    <p className="text-2xl font-black uppercase tracking-[-0.02em]">Build With Us</p>
@@ -214,7 +214,7 @@ export default async function HomePage({ params }: PageProps) {
               <h2 className="mt-4 text-4xl sm:text-5xl font-black uppercase tracking-[-0.04em] leading-[0.9]">Everything needed to make a perfect home at one place</h2>
               <h3 className="mt-6 text-xl font-black uppercase tracking-[-0.03em] text-[var(--oxide)]">Plan, visualize, build and delivery</h3>
               <p className="section-subheading mt-4">
-                Four compact service pillars cover the complete journey from Vastu planning to exterior elevation, civil execution and interior fit-out.
+                Four compact service pillars cover the complete journey from Vastu planning to exterior elevation, Constructions and interior fit-out.
               </p>
             </div>
 
@@ -317,7 +317,7 @@ export default async function HomePage({ params }: PageProps) {
                 </div>
                 <div>
                   <h3 className="text-xl font-black uppercase tracking-[-0.02em] text-[var(--oxide)]">02 / Get Estimate</h3>
-                  <p className="mt-2 text-sm text-black/60 font-medium">Receive a transparent quotation covering civil work to interiors.</p>
+                  <p className="mt-2 text-sm text-black/60 font-medium">Receive a transparent quotation covering Construction works to interiors.</p>
                 </div>
               </div>
             </div>

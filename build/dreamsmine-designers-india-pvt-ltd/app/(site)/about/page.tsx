@@ -84,7 +84,7 @@ export default async function AboutPage({ params }: PageProps) {
                   Under his leadership, Dreamsmine Designers India Pvt Ltd has grown into a trusted name in Chennai's construction landscape. Our mission is to bridge the gap between structural integrity and luxurious interiors without compromising on honest pricing.
                 </p>
                 <p className="text-base font-medium leading-relaxed text-black/70">
-                  By managing both civil execution and turnkey interiors, we eliminate contractor ambiguity and deliver a seamless handover experience.
+                  By managing both Construction and turnkey interiors, we eliminate contractor ambiguity and deliver a seamless handover experience.
                 </p>
               </div>
               
@@ -172,7 +172,7 @@ export default async function AboutPage({ params }: PageProps) {
           <div className="grid gap-6 md:grid-cols-3">
             <div className="panel p-8 lg:p-10 hover:border-[var(--ink)] transition-colors flex flex-col">
               <HardHat className="h-10 w-10 text-[var(--oxide)] mb-6" />
-              <h3 className="text-2xl font-black uppercase tracking-[-0.04em] mb-4">Civil Construction</h3>
+              <h3 className="text-2xl font-black uppercase tracking-[-0.04em] mb-4">Constructions work</h3>
               <p className="text-sm font-medium leading-relaxed text-black/62 flex-grow mb-6">
                 We execute budget-friendly to luxury homes, duplex villas, and commercial complexes like schools and colleges. Fully supervised execution.
               </p>
