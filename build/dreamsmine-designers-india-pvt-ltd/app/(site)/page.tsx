@@ -284,7 +284,7 @@ export default async function HomePage({ params }: PageProps) {
             {[1, 2, 3, 4].map((num) => (
               <div key={num} className="relative aspect-square md:aspect-[4/3] rounded-2xl overflow-hidden border border-[var(--line)] bg-[var(--paper)] shadow-sm group">
                 <Image 
-                  src={`/images/all/warehouse/warehouse${num}.jpeg`} 
+                  src={`/images/all/warehouse/warehouse${num}.webp`} 
                   alt={`Warehouse Construction ${num}`} 
                   fill 
                   className="object-cover transition duration-700 group-hover:scale-110" 

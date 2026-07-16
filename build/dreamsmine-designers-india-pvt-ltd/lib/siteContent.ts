@@ -118,7 +118,7 @@ export const servicePillars = [
     eyebrow: "Industrial spaces",
     summary:
       "Durable, large-span warehouse and industrial constructions designed for operational efficiency, heavy loads, and structural integrity.",
-    image: "/images/all/warehouse/warehouse1.jpeg",
+    image: "/images/all/warehouse/warehouse1.webp",
     proof: ["Clear span structure", "Heavy-duty flooring", "Quick execution"],
   },
 ];
@@ -176,24 +176,7 @@ export const homePackageInclusions = [
   "Staircase Granite"
 ];
 
-export const auditInsights = {
-  services:
-    "Residential construction, exterior elevation design, Vastu planning, 2D/3D visualization, turnkey interiors, modular kitchens, renovation, and maintenance-backed handover.",
-  projectCategories:
-    "Premium villas and duplex homes, modern facade renders, Vastu floor plans, modular kitchens, bedrooms, living-room interiors, and construction walkthroughs.",
-  targetCustomers:
-    "Chennai landowners, families building first or upgraded homes, clients comparing construction cost per square foot, and homeowners wanting one team for design plus execution.",
-  positioning:
-    "Dreamsmine is strongest as a design-led construction partner: a studio that can make the home look premium while also owning structural quality, brand materials, warranties, and post-handover care.",
-  associatedBrands:
-    "ARS 550D, KAG Tiles, Asian Paints, Orbit, Finolex, and Parryware appear as material trust signals.",
-  visualPatterns:
-    "Warm-lit modern villas, white and stone facades, balcony frames, vertical fins, compact urban plots, promotional black-yellow interior creatives, floor plans, and site-progress videos.",
-  palette:
-    "Existing assets lean dark green, yellow-gold, orange, white, and black. The redesign refines that into ink, limestone, muted olive, clay, and restrained brass.",
-  embeddedText:
-    "Several promo and brand assets include embedded offers: Rs.2200/sqft, 100% Vastu Plan, 1 year maintenance, 10 year material warranty, flat 25-40% offers, easy EMI, modular kitchen, and contact numbers.",
-};
+
 
 export function classifyAsset(path: string): Asset {
   const fileName = path.split("/").pop() || path;
