@@ -30,10 +30,11 @@ export default async function GalleryPage({ params }: PageProps) {
   const data = await readSourceConfig(resolvedParams.slug, 'template1');
   if (!data) return notFound();
 
-  const [villas, elevations, interiors] = await Promise.all([
+  const [villas, elevations, interiors, warehouses] = await Promise.all([
     listImages('premium-villas'),
     listImages('exterior-elevations'),
     listImages('interior-promos'),
+    listImages('warehouse'),
   ]);
 
   const items: GalleryItem[] = [
@@ -55,6 +56,12 @@ export default async function GalleryPage({ params }: PageProps) {
     ...interiors.map((img, index) => ({
       cat: 'Interiors',
       title: `Interior Offer Creative ${String(index + 1).padStart(2, '0')}`,
+      desc: classifyAsset(img).recommendedUse,
+      img,
+    })),
+    ...warehouses.map((img, index) => ({
+      cat: 'Warehouse',
+      title: `Warehouse Project ${String(index + 1).padStart(2, '0')}`,
       desc: classifyAsset(img).recommendedUse,
       img,
     })),

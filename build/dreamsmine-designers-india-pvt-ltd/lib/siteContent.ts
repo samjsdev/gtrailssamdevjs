@@ -113,6 +113,14 @@ export const servicePillars = [
     image: "/images/all/exterior-elevations/elevation-17.webp",
     proof: ["Scope audit", "Budget phasing", "Fast handover"],
   },
+  {
+    title: "Warehouse Construction",
+    eyebrow: "Industrial spaces",
+    summary:
+      "Durable, large-span warehouse and industrial constructions designed for operational efficiency, heavy loads, and structural integrity.",
+    image: "/images/all/warehouse/warehouse1.jpeg",
+    proof: ["Clear span structure", "Heavy-duty flooring", "Quick execution"],
+  },
 ];
 
 export const processSteps = [
@@ -241,6 +249,15 @@ export function classifyAsset(path: string): Asset {
       category: "Interior and modular kitchen promo",
       quality: "medium",
       recommendedUse: "Offer strip, interior services proof, not primary editorial hero due embedded text.",
+    };
+  }
+
+  if (folder === "warehouse") {
+    return {
+      path,
+      category: "Warehouse Construction",
+      quality: "high",
+      recommendedUse: "Industrial and commercial construction proof.",
     };
   }
 

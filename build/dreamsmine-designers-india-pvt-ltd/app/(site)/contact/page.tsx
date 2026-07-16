@@ -20,7 +20,7 @@ export default async function ContactPage({ params }: PageProps) {
   const phone2 = clinic.contact?.phone2 || '+91 766 00047';
   const landline = clinic.contact?.landline || '044-3569 9281';
   
-  const email1 = clinic.contact?.email || 'dreamsminedesigners2021@gmail.com';
+  const email1 = clinic.contact?.email || 'dreamsminedesigners@gmail.com';
   const email2 = clinic.contact?.email2 || '';
   
   const waPhone = phone1.replace(/\D/g, '') || '9176600046';

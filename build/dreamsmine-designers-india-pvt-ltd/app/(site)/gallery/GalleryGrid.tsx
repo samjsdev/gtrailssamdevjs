@@ -15,7 +15,7 @@ type GalleryGridProps = {
   items: GalleryItem[];
 };
 
-const filters = ['All', 'Villas', 'Elevations', 'Plans', 'Interiors'];
+const filters = ['All', 'Villas', 'Elevations', 'Plans', 'Interiors', 'Warehouse'];
 
 export default function GalleryGrid({ items }: GalleryGridProps) {
   const [active, setActive] = useState('All');

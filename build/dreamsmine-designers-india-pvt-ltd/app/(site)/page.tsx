@@ -237,6 +237,65 @@ export default async function HomePage({ params }: PageProps) {
         </div>
       </section>
 
+      <section className="bg-[var(--white)] py-16 md:py-24 border-t border-[var(--line)]">
+        <div className="site-grid">
+          <div className="grid lg:grid-cols-[1.3fr_1fr] gap-8 lg:gap-16 items-center mb-16">
+            
+            <div className="max-w-2xl">
+              <h2 className="text-[2.25rem] sm:text-5xl md:text-[4rem] lg:text-[4rem] xl:text-[4.5rem] font-black uppercase tracking-[-0.02em] leading-[0.9] text-[var(--ink)]">
+                Warehouse<br/>Constructions
+              </h2>
+              <div className="mt-8 flex flex-col gap-1">
+                <p className="text-lg sm:text-2xl font-black uppercase tracking-widest text-black/40">
+                  Starting at just
+                </p>
+                <div className="flex items-end text-[var(--oxide)] mt-1">
+                  <div className="flex items-start">
+                    <span className="text-6xl sm:text-[6rem] md:text-[7.5rem] font-extrabold font-sans tracking-tight leading-none">1800</span>
+                    <span className="text-xl sm:text-3xl font-black ml-1 pt-1 sm:pt-3">*</span>
+                  </div>
+                  <span className="text-lg sm:text-2xl md:text-3xl font-black uppercase tracking-widest ml-2 pb-1 sm:pb-3">/Sqft</span>
+                </div>
+              </div>
+              
+              <div className="mt-10 flex flex-col sm:flex-row gap-4">
+                <Link href={`${basePath}/contact`} className="btn-solid text-center whitespace-nowrap">
+                  Get a Quote
+                </Link>
+                <Link href={`${basePath}/gallery`} className="btn-line text-center whitespace-nowrap">
+                  View Projects
+                </Link>
+              </div>
+            </div>
+            
+            <div className="w-full relative aspect-video lg:aspect-[4/3] rounded-3xl overflow-hidden border border-[var(--line-strong)] bg-[var(--paper)] shadow-xl group">
+              <video 
+                src="/images/all/warehouse/warehouse.mp4" 
+                autoPlay 
+                muted 
+                loop 
+                playsInline 
+                className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+              />
+            </div>
+          </div>
+
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6">
+            {[1, 2, 3, 4].map((num) => (
+              <div key={num} className="relative aspect-square md:aspect-[4/3] rounded-2xl overflow-hidden border border-[var(--line)] bg-[var(--paper)] shadow-sm group">
+                <Image 
+                  src={`/images/all/warehouse/warehouse${num}.jpeg`} 
+                  alt={`Warehouse Construction ${num}`} 
+                  fill 
+                  className="object-cover transition duration-700 group-hover:scale-110" 
+                  unoptimized 
+                />
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       <section className="bg-[var(--concrete)] py-20 md:py-32">
         <div className="site-grid">
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-10">
