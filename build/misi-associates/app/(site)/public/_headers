@@ -1,0 +1,9 @@
+/*
+  Access-Control-Allow-Origin: *
+  X-Content-Type-Options: nosniff
+  Permissions-Policy: camera=(), microphone=(), geolocation=()
+  Referrer-Policy: strict-origin-when-cross-origin
+  Content-Signal: search=yes,ai-train=no
+
+/private/*
+  X-Robots-Tag: noindex, nofollow, noarchive, nosnippet

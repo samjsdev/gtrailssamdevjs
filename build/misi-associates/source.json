@@ -1,0 +1,466 @@
+{
+  "clinic": {
+    "name": "Misi Associates",
+    "slug": "misi-associates",
+    "tagline": "Comprehensive Architectural, Construction, Interior Design & Project Management Solutions",
+    "description": "Misi Associates is a leading provider of comprehensive solutions in the architecture and construction industry, offering a seamless integration of architecture, project management, interior design, and turnkey services. We specialize in delivering exceptional spaces by managing every phase of the project—from concept and design to execution and completion.",
+    "address": {
+      "full": "S3 Second Floor, Subam 9/5, College Road, Nungambakkam, Chennai, Tamil Nadu 600006",
+      "area": "Nungambakkam",
+      "city": "Chennai",
+      "state": "Tamil Nadu",
+      "country": "India"
+    },
+    "branches": [
+      {
+        "city": "Chennai",
+        "name": "Chennai Office",
+        "address": "S3 Second Floor, Subam 9/5, College Road, Nungambakkam, Chennai",
+        "phone": "+91 82200 27117"
+      },
+      {
+        "city": "Madurai",
+        "name": "Madurai Branch",
+        "address": "31, Melur Main Road, First Floor, Above ICICI Bank, K.K. Nagar, Madurai",
+        "phone": "+91 82200 27117"
+      },
+      {
+        "city": "Ramanathapuram",
+        "name": "Ramanathapuram Branch",
+        "address": "19/27, First Floor, Thasin Complex, R.R. Sethupathy Nagar, Ramanathapuram",
+        "phone": "+91 82200 27117"
+      }
+    ],
+    "contact": {
+      "phone": "+91 82200 27117",
+      "email": "contact@misiassociates.com",
+      "website": "www.misiassociates.com"
+    },
+    "mapEmbedUrl": "https://maps.google.com/maps?q=Misi%20Associates%20Building%2C%209%2C%20No.S2%2C%20Second%20Floor%2C%20SUBAM%2C%205%2C%20College%20Rd%2C%20Thousand%20Lights%20West%2C%20Nungambakkam%2C%20Chennai%2C%20Tamil%20Nadu%20600006&output=embed"
+  },
+  "business": {
+    "rating": "5.0",
+    "reviewCount": "450+",
+    "timings": [
+      "Monday - Saturday: 9:00 AM - 7:30 PM",
+      "Sunday: By Appointment"
+    ],
+    "services": [
+      "Construction",
+      "Architecture",
+      "Interior Designs",
+      "Project Management",
+      "Turnkey Execution"
+    ],
+    "serviceDescriptions": [
+      "Civil construction delivered with coordinated supervision, dependable workmanship, material control, and clear site milestones.",
+      "Context-aware planning, elevations, technical drawings, and design development shaped for buildability and everyday use.",
+      "Space planning, materials, lighting, custom details, and execution brought together as one cohesive interior solution.",
+      "Budgets, schedules, vendors, documentation, and site progress coordinated through one accountable project plan.",
+      "Design, procurement, construction, interiors, and final handover managed as a complete end-to-end service."
+    ],
+    "highlights": [
+      "Comprehensive solutions provider from execution to completion",
+      "450+ successful projects with repeat clients",
+      "100% quality assurance & on-time delivery",
+      "Regional design hubs in Chennai, Madurai, and Ramanathapuram"
+    ]
+  },
+  "doctor": {
+    "name": "Misi Design & Architectural Team",
+    "images": [
+      "/asset/portfolio/pdf-gallery-9.png"
+    ],
+    "experience": "26",
+    "specialization": "Architecture, Construction & Interior Management",
+    "degrees": "Architecture • Engineering • Interiors • Project Management",
+    "profileLabel": "Integrated Expertise",
+    "quote": "One accountable team from the first drawing to final handover.",
+    "bio": "Misi Associates brings architectural planning, civil construction, interior design, and project management into one coordinated delivery team. This integrated approach keeps design intent, site quality, budget, and schedule aligned from concept through completion.",
+    "specializations": [
+      "Architectural Design",
+      "Civil Construction",
+      "Interior Design",
+      "Project Management",
+      "Turnkey Execution",
+      "Residential Projects",
+      "Commercial Projects",
+      "Quality Coordination"
+    ],
+    "capabilitiesLabel": "Core Capabilities",
+    "capabilities": [
+      "Concept, planning, and statutory drawings",
+      "Civil execution and site coordination",
+      "Interior detailing and turnkey handover"
+    ],
+    "philosophy": "Clear communication, coordinated execution, and uncompromising quality at every stage."
+  },
+  "about": {
+    "subtitle": "Who We Are",
+    "title": "Comprehensive Architecture, Construction & Interior Design Solutions.",
+    "description": "Misi Associates is a leading provider of comprehensive solutions in the architecture and construction industry, offering a seamless integration of architecture, project management, interior design, and turnkey services. We specialize in delivering exceptional spaces by managing every phase of the project—from concept and design to execution and completion.",
+    "hero": {
+      "subtitle": "ABOUT US",
+      "title": "About Misi Associates",
+      "description": "For 26 years, we have delivered coordinated architecture, construction, interior design, and project management solutions across Tamil Nadu."
+    },
+    "journey": {
+      "title": "26 years of experience,\none integrated team.",
+      "years": [
+        "1998",
+        "2010",
+        "2020",
+        "TODAY"
+      ],
+      "milestoneTitles": [
+        "A Strong Foundation",
+        "Expanded Expertise",
+        "Regional Reach",
+        "450+ Projects Delivered"
+      ],
+      "descriptions": [
+        "Misi Associates began with a commitment to practical design, sound engineering, and dependable project execution.",
+        "Architecture, construction, interior design, and project management were brought together as one coordinated service.",
+        "Our presence expanded across Chennai, Madurai, and Ramanathapuram to serve residential, commercial, and community projects.",
+        "Today, our integrated team delivers projects from first concept to turnkey completion with 100% quality assurance."
+      ]
+    },
+    "philosophy": {
+      "title": "Designed together.\nDelivered responsibly.",
+      "description": "We believe the strongest projects come from one clear process: understand the brief, coordinate every discipline, communicate openly, and protect quality through handover.",
+      "points": [
+        "Clarity",
+        "Coordination",
+        "Quality",
+        "Accountability"
+      ],
+      "pointDescriptions": [
+        "Scope, priorities, budget, and timelines are discussed clearly before execution begins.",
+        "Architecture, engineering, interiors, and site teams work from one coordinated project plan.",
+        "Materials, workmanship, and detailing are checked throughout the build—not only at handover.",
+        "One integrated team remains responsible from concept development through final completion."
+      ]
+    },
+    "team": {
+      "title": "Disciplines Working as One",
+      "description": "Our architectural and delivery teams combine creative planning with practical construction knowledge so every decision can be executed with confidence.",
+      "names": [
+        "Architecture & Engineering",
+        "Interiors & Turnkey Delivery"
+      ],
+      "roles": [
+        "PLANNING & DESIGN",
+        "DETAILING & EXECUTION"
+      ],
+      "bios": [
+        "Concept development, spatial planning, elevations, technical drawings, and build-ready coordination.",
+        "Interior detailing, material selection, vendor coordination, site execution, and final handover."
+      ],
+      "images": [
+        "/asset/portfolio/project-3.jpeg",
+        "/asset/portfolio/pdf-gallery-3.png"
+      ]
+    }
+  },
+  "hero": {
+    "ctaText": "Enquire Now"
+  },
+  "leader": {
+    "title": "Integrated Project Team",
+    "image": "/asset/portfolio/pdf-gallery-9.png",
+    "quote": "One accountable team from the first drawing to final handover.",
+    "badgeLabel": "Years of Excellence",
+    "signatureName": "Misi Associates",
+    "signatureLabel": "Architecture • Engineering • Interiors",
+    "ctaLabel": "Start a Project"
+  },
+  "comprehensive": {
+    "title": "Comprehensive Design & Execution.\n450+ Projects Delivered.",
+    "description": "Managing every phase of the project—from concept and architectural design to construction execution and turnkey interior completion.",
+    "cards": [
+      {
+        "tag": "PLANNING",
+        "title": "Architectural Design",
+        "description": "Concept planning, elevations, technical drawings, and coordinated design development."
+      },
+      {
+        "tag": "EXECUTION",
+        "title": "Civil Construction",
+        "description": "Structured site execution with material, workmanship, safety, and schedule checks."
+      },
+      {
+        "tag": "COORDINATION",
+        "title": "Project Management",
+        "description": "Clear milestones, vendor coordination, progress tracking, and accountable communication."
+      },
+      {
+        "tag": "HANDOVER",
+        "title": "Turnkey Interiors",
+        "description": "Interior detailing, fabrication, installation, styling, and final quality review."
+      }
+    ]
+  },
+  "philosophy": {
+    "subtitle": "Why Misi Associates",
+    "title": "Why Clients Trust",
+    "description": "We combine architectural expertise, civil precision, and creative interior design to deliver 100% quality assurance and on-time project execution.",
+    "featureTitles": [
+      "Integrated Expertise",
+      "26 Years of Excellence",
+      "450+ Projects",
+      "Quality Assurance",
+      "On-Time Delivery",
+      "End-to-End Service"
+    ],
+    "featureDescriptions": [
+      "Architecture, engineering, interiors, and project management work together under one coordinated plan.",
+      "A long-standing practice shaped by practical experience across varied project types and scales.",
+      "A proven body of residential, commercial, interior, and community projects across Tamil Nadu.",
+      "Materials, workmanship, and details are reviewed throughout execution for consistent results.",
+      "Clear milestones and active site coordination keep teams aligned to the agreed schedule.",
+      "From concept development and approvals to execution, interiors, and final handover."
+    ]
+  },
+  "services": {
+    "hero": {
+      "title": "From Concept to Completion",
+      "subtitle": "Integrated Design & Delivery",
+      "description": "Architecture, construction, interior design, and project management delivered through one coordinated team.",
+      "highlights": [
+        "Architecture",
+        "Construction",
+        "Interior Design",
+        "Project Management"
+      ]
+    },
+    "essential": {
+      "title": "Integrated Planning",
+      "steps": [
+        "Architectural Design",
+        "Civil Construction",
+        "Project Management"
+      ],
+      "stepDescriptions": [
+        "A coordinated foundation that aligns design intent, buildability, budget, and schedule.",
+        "Quality-led execution with structured site supervision and material coordination.",
+        "Milestones, vendors, documentation, and communication managed from start to finish."
+      ],
+      "subItems": [
+        "Concept Planning",
+        "Elevations & Drawings",
+        "Design Development",
+        "Civil Execution",
+        "Site Supervision",
+        "Quality Checks",
+        "Budget Coordination",
+        "Progress Tracking",
+        "Vendor Management"
+      ]
+    },
+    "renovations": {
+      "title": "Turnkey Execution",
+      "subtitle": "02 — Build & Deliver",
+      "description": "One accountable team coordinates design, procurement, civil work, interiors, and final handover.",
+      "bullets": [
+        "Single-Point Coordination",
+        "Quality-Controlled Execution",
+        "Ready-to-Use Handover"
+      ],
+      "image": "/asset/portfolio/pdf-gallery-1.png"
+    },
+    "kitchenBath": {
+      "title": "Interior Design",
+      "subtitle": "03 — Spaces & Details",
+      "description": "Functional interiors shaped through thoughtful space planning, custom detailing, material selection, and precise execution.",
+      "bullets": [
+        "Residential Interiors",
+        "Custom Joinery",
+        "Kitchens & Furniture"
+      ],
+      "image": "/asset/portfolio/pdf-gallery-6.png"
+    },
+    "commercial": {
+      "title": "Specialized Architecture",
+      "subtitle": "04 — Residential & Commercial",
+      "pointTitles": [
+        "Context-Led Design",
+        "Buildable Details",
+        "Purposeful Spaces"
+      ],
+      "pointDescriptions": [
+        "Residential, commercial, and community buildings designed around their users, site, and long-term purpose.",
+        "Drawings and specifications developed for efficient coordination and dependable execution.",
+        "Plans, circulation, structure, materials, and identity resolved as one coherent project."
+      ],
+      "image": "/asset/portfolio/pdf-gallery-15.png"
+    },
+    "advanced": {
+      "title": "Delivery Capabilities",
+      "serviceTitles": [
+        "Design Development",
+        "Quality & Coordination"
+      ],
+      "serviceDescriptions": [
+        "Detailed drawings, material palettes, and execution information prepared before site decisions become costly.",
+        "Regular reviews keep drawings, vendors, workmanship, schedule, and approved scope aligned."
+      ],
+      "subItems": [
+        "Technical Drawings",
+        "Material Selection",
+        "3D Visualization",
+        "Site Reviews",
+        "Vendor Coordination",
+        "Snag & Handover"
+      ],
+      "images": [
+        "/asset/portfolio/pdf-gallery-9.png",
+        "/asset/portfolio/pdf-gallery-11.png"
+      ]
+    }
+  },
+  "projects": {
+    "title": "Built across Tamil Nadu.\nDesigned for every brief.",
+    "subtitle": "FEATURED PROJECTS",
+    "titles": [
+      "Residential Architecture",
+      "Apartment Development",
+      "Dining Interior",
+      "Bedroom Interior",
+      "Community Architecture",
+      "Modular Kitchen",
+      "Turnkey Residence"
+    ],
+    "descriptions": [
+      "Contemporary homes planned for climate, context, and everyday living.",
+      "Multi-unit architecture balancing identity, efficiency, and buildability.",
+      "Layered ceilings, custom details, and coordinated lighting.",
+      "Calm, functional bedrooms with integrated storage and finishes.",
+      "Purpose-built civic and community spaces at a larger scale.",
+      "Workflow-led cabinetry, durable materials, and practical storage.",
+      "Coordinated design and execution through final handover."
+    ]
+  },
+  "gallery": {
+    "exploreTitle": "Explore Our Portfolio"
+  },
+  "cta": {
+    "eyebrow": "Next Step",
+    "title": "Ready to start your project?",
+    "description": "Speak with our team about your site, scope, budget, and timeline. We will help you define the right path from design through completion.",
+    "buttonText": "Start a Consultation",
+    "promiseTitle": "What to Expect",
+    "promiseItems": [
+      "A clear discussion of your project goals, scope, and priorities.",
+      "Practical guidance on design, execution, budget, and timeline.",
+      "One coordinated team for architecture, construction, interiors, and handover."
+    ]
+  },
+  "reviews": [
+    {
+      "author": "R. Vignesh",
+      "rating": 5,
+      "text": "Misi Associates handled our residential project from architectural design to final turnkey interior execution in Chennai. Outstanding craftsmanship and strictly delivered on time!"
+    },
+    {
+      "author": "K. Meenakshi",
+      "rating": 5,
+      "text": "Their team in Madurai executed our commercial interior space flawlessly. The 3D planning and material quality were top notch."
+    },
+    {
+      "author": "S. Mohamed Ibrahim",
+      "rating": 5,
+      "text": "Extremely professional project management and transparent pricing for our project in Ramanathapuram. Highly recommended for complete construction and design."
+    }
+  ],
+  "media": {
+    "clinicImages": [
+      "/asset/portfolio/project-2.jpeg",
+      "/asset/portfolio/project-3.jpeg",
+      "/asset/portfolio/project-4.jpeg",
+      "/asset/portfolio/project-9.jpeg",
+      "/asset/portfolio/project-12.jpeg",
+      "/asset/portfolio/project-7.jpeg",
+      "/asset/portfolio/project-8.jpeg",
+      "/asset/portfolio/project-10.jpeg",
+      "/asset/portfolio/project-11.jpeg",
+      "/asset/portfolio/pdf-gallery-1.png",
+      "/asset/portfolio/pdf-gallery-6.png",
+      "/asset/portfolio/project-5.jpeg",
+      "/asset/portfolio/pdf-gallery-9.png",
+      "/asset/portfolio/pdf-gallery-11.png"
+    ],
+    "treatmentImages": [
+      "/asset/portfolio/pdf-gallery-8.png",
+      "/asset/portfolio/pdf-gallery-1.png",
+      "/asset/portfolio/pdf-gallery-3.png",
+      "/asset/portfolio/pdf-gallery-9.png",
+      "/asset/portfolio/pdf-gallery-6.png",
+      "/asset/portfolio/pdf-gallery-15.png",
+      "/asset/portfolio/project-12.jpeg"
+    ],
+    "otherImages": [
+      "/asset/portfolio/pdf-gallery-9.png",
+      "/asset/portfolio/project-3.jpeg",
+      "/asset/portfolio/pdf-gallery-3.png",
+      "/asset/portfolio/project-4.jpeg",
+      "/asset/portfolio/pdf-gallery-6.png",
+      "/asset/portfolio/project-5.jpeg",
+      "/asset/portfolio/project-7.jpeg",
+      "/asset/portfolio/project-8.jpeg",
+      "/asset/portfolio/project-9.jpeg",
+      "/asset/portfolio/project-10.jpeg",
+      "/asset/portfolio/project-11.jpeg",
+      "/asset/portfolio/project-12.jpeg",
+      "/asset/portfolio/project-13.jpeg",
+      "/asset/portfolio/project-14.jpeg",
+      "/asset/portfolio/project-15.jpeg",
+      "/asset/portfolio/project-16.jpeg",
+      "/asset/portfolio/pdf-gallery-1.png",
+      "/asset/portfolio/pdf-gallery-2.png",
+      "/asset/portfolio/pdf-gallery-3.png",
+      "/asset/portfolio/pdf-gallery-4.png",
+      "/asset/portfolio/pdf-gallery-5.png",
+      "/asset/portfolio/pdf-gallery-6.png"
+    ]
+  },
+  "navbar": {
+    "logo": {
+      "text": "MISI ASSOCIATES",
+      "image": "/asset/logo-navbar.png"
+    },
+    "links": [
+      { "label": "Home", "href": "/" },
+      { "label": "About Us", "href": "/about" },
+      { "label": "Services", "href": "/services" },
+      { "label": "Gallery", "href": "/gallery" },
+      { "label": "Contact", "href": "/contact" }
+    ],
+    "cta": {
+      "label": "Call +91 82200 27117",
+      "href": "/contact"
+    }
+  },
+  "contact": {
+    "phone": "+91 82200 27117",
+    "email": "contact@misiassociates.com",
+    "address": "Chennai, Madurai & Ramanathapuram",
+    "website": "www.misiassociates.com",
+    "map": {
+      "embedUrl": "https://maps.google.com/maps?q=Misi%20Associates%20Building%2C%209%2C%20No.S2%2C%20Second%20Floor%2C%20SUBAM%2C%205%2C%20College%20Rd%2C%20Thousand%20Lights%20West%2C%20Nungambakkam%2C%20Chennai%2C%20Tamil%20Nadu%20600006&output=embed"
+    },
+    "whatsapp": {
+      "phone": "+91 82200 27117",
+      "message": "Hello Misi Associates, I would like to discuss a project."
+    }
+  },
+  "overrides": {
+    "doctorName": "",
+    "doctorImages": [],
+    "extraImages": []
+  },
+  "meta": {
+    "generatedAt": "2026-07-23T13:35:00.000Z",
+    "source": "pdf_portfolio"
+  },
+  "selected_template": "template7"
+}
