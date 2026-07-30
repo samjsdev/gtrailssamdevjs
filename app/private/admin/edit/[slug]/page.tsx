@@ -838,7 +838,7 @@ export default function EditPage({ params }: { params: Promise<{ slug: string }>
   
   if (!data) return null;
 
-  const canvasSchema = canvasScope === 'base' ? { pages: SHARED_PAGES } : TEMPLATE_SCHEMAS[canvasScope];
+  const canvasSchema = canvasScope === 'base' ? { pages: SHARED_PAGES } : (TEMPLATE_SCHEMAS[canvasScope] || { pages: SHARED_PAGES });
   const canvasPage = canvasSchema.pages.find(page => page.id === canvasPageId) || canvasSchema.pages[0];
   const selectedCanvasSection = canvasPage.sections[canvasSelection.sectionIndex] || canvasPage.sections[0];
   const selectedCanvasElement = selectedCanvasSection?.elements[canvasSelection.elementIndex] || selectedCanvasSection?.elements[0];

@@ -274,14 +274,14 @@ export const TEMPLATE_SCHEMAS: Record<string, TemplateSchema> = {
             label: "Hero Section",
             elements: [
               {
-                type: 'text',
-                label: "Studio Name",
-                path: ['clinic', 'name']
+                type: 'list',
+                label: "Highlights List (1 per line)",
+                path: ['business', 'highlights']
               },
               {
-                type: 'text',
-                label: "Hero Tagline",
-                path: ['clinic', 'tagline']
+                type: 'textarea',
+                label: "Principal Bio",
+                path: ['doctor', 'bio']
               },
               {
                 type: 'textarea',
@@ -289,14 +289,24 @@ export const TEMPLATE_SCHEMAS: Record<string, TemplateSchema> = {
                 path: ['clinic', 'description']
               },
               {
-                type: 'image',
-                label: "Hero Main Banner Image",
-                imageConfig: { arrayKey: 'clinicImages', index: 0 }
+                type: 'text',
+                label: "Studio Name",
+                path: ['clinic', 'name']
+              },
+            ]
+          },
+          {
+            label: "Designing Beyond The Surface.",
+            elements: [
+              {
+                type: 'text',
+                label: "Title",
+                path: ['philosophy', 'title']
               },
               {
-                type: 'list',
-                label: "Highlights List (1 per line)",
-                path: ['business', 'highlights']
+                type: 'text',
+                label: "Specialization",
+                path: ['doctor', 'specialization']
               },
             ]
           },
@@ -305,33 +315,18 @@ export const TEMPLATE_SCHEMAS: Record<string, TemplateSchema> = {
             elements: [
               {
                 type: 'text',
-                label: "Principal Designer Name",
+                label: "Name",
                 path: ['doctor', 'name']
               },
               {
-                type: 'text',
-                label: "Designer Experience Details",
+                type: 'textarea',
+                label: "Experience",
                 path: ['doctor', 'experience']
               },
-              {
-                type: 'image',
-                label: "Principal Portrait Image",
-                imageConfig: { arrayKey: 'otherImages', index: 0 }
-              },
             ]
           },
           {
-            label: "Services Section",
-            elements: [
-              {
-                type: 'list',
-                label: "Services List (1 per line)",
-                path: ['business', 'services']
-              },
-            ]
-          },
-          {
-            label: "Contact Section",
+            label: "Journey Timeline",
             elements: [
               {
                 type: 'text',
@@ -339,9 +334,19 @@ export const TEMPLATE_SCHEMAS: Record<string, TemplateSchema> = {
                 path: ['clinic', 'contact', 'phone']
               },
               {
-                type: 'text',
+                type: 'textarea',
                 label: "Full Address location",
                 path: ['clinic', 'address', 'full']
+              },
+              {
+                type: 'textarea',
+                label: "City",
+                path: ['clinic', 'address', 'city']
+              },
+              {
+                type: 'textarea',
+                label: "State",
+                path: ['clinic', 'address', 'state']
               },
             ]
           },
@@ -352,37 +357,72 @@ export const TEMPLATE_SCHEMAS: Record<string, TemplateSchema> = {
         label: "About Page",
         sections: [
           {
-            label: "About Us Section",
+            label: "Hero Section",
             elements: [
               {
+                type: 'textarea',
+                label: "Vision",
+                path: ['about', 'vision']
+              },
+            ]
+          },
+          {
+            label: "Meet Our Design Leaders",
+            elements: [
+              {
+                type: 'textarea',
+                label: "Principal Bio",
+                path: ['doctor', 'bio']
+              },
+              {
                 type: 'text',
+                label: "Name",
+                path: ['doctor', 'name']
+              },
+              {
+                type: 'textarea',
+                label: "Principal Credentials",
+                path: ['doctor', 'credentials']
+              },
+              {
+                type: 'textarea',
                 label: "Studio Name",
                 path: ['clinic', 'name']
               },
               {
                 type: 'textarea',
-                label: "Studio Description",
-                path: ['clinic', 'description']
+                label: "Principal Specialization",
+                path: ['doctor', 'specialization']
               },
               {
-                type: 'image',
-                label: "Clinic / Studio Gallery Image 2",
-                imageConfig: { arrayKey: 'clinicImages', index: 1 }
+                type: 'textarea',
+                label: "Quote",
+                path: ['doctor', 'quote']
               },
-            ]
-          },
-          {
-            label: "Creative Leadership - Lead",
-            elements: [
+              {
+                type: 'textarea',
+                label: "Role",
+                path: ['doctor2', 'role']
+              },
               {
                 type: 'text',
-                label: "Principal Designer Name",
-                path: ['doctor', 'name']
+                label: "Name",
+                path: ['doctor2', 'name']
               },
               {
-                type: 'image',
-                label: "Principal Portrait Image",
-                imageConfig: { arrayKey: 'otherImages', index: 0 }
+                type: 'textarea',
+                label: "Credentials",
+                path: ['doctor2', 'credentials']
+              },
+              {
+                type: 'textarea',
+                label: "Bio",
+                path: ['doctor2', 'bio']
+              },
+              {
+                type: 'textarea',
+                label: "Quote",
+                path: ['doctor2', 'quote']
               },
             ]
           },
@@ -393,12 +433,42 @@ export const TEMPLATE_SCHEMAS: Record<string, TemplateSchema> = {
         label: "Services Page",
         sections: [
           {
-            label: "Services Section",
+            label: "Hero Section",
             elements: [
               {
                 type: 'list',
                 label: "Services List (1 per line)",
                 path: ['business', 'services']
+              },
+            ]
+          },
+          {
+            label: "Transformations & Styling",
+            elements: [
+              {
+                type: 'textarea',
+                label: "Vision Quote",
+                path: ['about', 'vision']
+              },
+            ]
+          },
+          {
+            label: "The Navaneeth Interiors Studio Differenc...",
+            elements: [
+              {
+                type: 'textarea',
+                label: "Principal Bio",
+                path: ['doctor', 'bio']
+              },
+              {
+                type: 'textarea',
+                label: "Studio Description",
+                path: ['clinic', 'description']
+              },
+              {
+                type: 'text',
+                label: "Studio Name",
+                path: ['clinic', 'name']
               },
             ]
           },
@@ -409,12 +479,27 @@ export const TEMPLATE_SCHEMAS: Record<string, TemplateSchema> = {
         label: "Gallery Page",
         sections: [
           {
-            label: "Portfolio Gallery Section",
+            label: "Hero Section",
             elements: [
               {
-                type: 'list',
-                label: "Highlights List (1 per line)",
-                path: ['business', 'highlights']
+                type: 'textarea',
+                label: "Principal Bio",
+                path: ['doctor', 'bio']
+              },
+              {
+                type: 'textarea',
+                label: "Studio Description",
+                path: ['clinic', 'description']
+              },
+              {
+                type: 'text',
+                label: "Studio Name",
+                path: ['clinic', 'name']
+              },
+              {
+                type: 'text',
+                label: "Experience",
+                path: ['doctor', 'experience']
               },
             ]
           },
@@ -425,17 +510,27 @@ export const TEMPLATE_SCHEMAS: Record<string, TemplateSchema> = {
         label: "Contact Page",
         sections: [
           {
-            label: "Contact Section",
+            label: "Let's Shape Your Dream Space.",
             elements: [
+              {
+                type: 'textarea',
+                label: "Full Address location",
+                path: ['clinic', 'address', 'full']
+              },
+              {
+                type: 'textarea',
+                label: "City",
+                path: ['clinic', 'address', 'city']
+              },
+              {
+                type: 'textarea',
+                label: "State",
+                path: ['clinic', 'address', 'state']
+              },
               {
                 type: 'text',
                 label: "Contact Phone Number",
                 path: ['clinic', 'contact', 'phone']
-              },
-              {
-                type: 'text',
-                label: "Full Address location",
-                path: ['clinic', 'address', 'full']
               },
             ]
           },
@@ -453,14 +548,9 @@ export const TEMPLATE_SCHEMAS: Record<string, TemplateSchema> = {
             label: "Hero Section",
             elements: [
               {
-                type: 'text',
-                label: "Studio Name",
-                path: ['clinic', 'name']
-              },
-              {
-                type: 'text',
-                label: "Hero Tagline",
-                path: ['clinic', 'tagline']
+                type: 'textarea',
+                label: "Principal Bio",
+                path: ['doctor', 'bio']
               },
               {
                 type: 'textarea',
@@ -468,34 +558,19 @@ export const TEMPLATE_SCHEMAS: Record<string, TemplateSchema> = {
                 path: ['clinic', 'description']
               },
               {
-                type: 'image',
-                label: "Hero Main Banner Image",
-                imageConfig: { arrayKey: 'clinicImages', index: 0 }
-              },
-              {
-                type: 'list',
-                label: "Highlights List (1 per line)",
-                path: ['business', 'highlights']
-              },
-            ]
-          },
-          {
-            label: "About Us Section",
-            elements: [
-              {
                 type: 'text',
-                label: "Principal Designer Name",
-                path: ['doctor', 'name']
+                label: "Studio Name",
+                path: ['clinic', 'name']
               },
               {
                 type: 'text',
-                label: "Designer Experience Details",
-                path: ['doctor', 'experience']
+                label: "State",
+                path: ['clinic', 'address', 'state']
               },
               {
-                type: 'image',
-                label: "Principal Portrait Image",
-                imageConfig: { arrayKey: 'otherImages', index: 0 }
+                type: 'text',
+                label: "Hero Tagline",
+                path: ['clinic', 'tagline']
               },
             ]
           },
@@ -510,17 +585,22 @@ export const TEMPLATE_SCHEMAS: Record<string, TemplateSchema> = {
             ]
           },
           {
-            label: "Contact Section",
+            label: "Portfolio Gallery Section",
             elements: [
               {
                 type: 'text',
-                label: "Contact Phone Number",
-                path: ['clinic', 'contact', 'phone']
+                label: "City",
+                path: ['clinic', 'address', 'city']
               },
+            ]
+          },
+          {
+            label: "Why Choose Us",
+            elements: [
               {
-                type: 'text',
-                label: "Full Address location",
-                path: ['clinic', 'address', 'full']
+                type: 'textarea',
+                label: "Country",
+                path: ['clinic', 'address', 'country']
               },
             ]
           },
@@ -531,37 +611,62 @@ export const TEMPLATE_SCHEMAS: Record<string, TemplateSchema> = {
         label: "About Page",
         sections: [
           {
-            label: "About Us Section",
+            label: "Hero Section",
             elements: [
               {
                 type: 'text',
-                label: "Studio Name",
-                path: ['clinic', 'name']
-              },
-              {
-                type: 'textarea',
-                label: "Studio Description",
-                path: ['clinic', 'description']
-              },
-              {
-                type: 'image',
-                label: "Clinic / Studio Gallery Image 2",
-                imageConfig: { arrayKey: 'clinicImages', index: 1 }
+                label: "State",
+                path: ['clinic', 'address', 'state']
               },
             ]
           },
           {
-            label: "Creative Leadership - Lead",
+            label: "Journey Timeline",
             elements: [
               {
+                type: 'textarea',
+                label: "Studio Name",
+                path: ['clinic', 'name']
+              },
+            ]
+          },
+          {
+            label: "The Creative Designers",
+            elements: [
+              {
+                type: 'textarea',
+                label: "Principal Bio",
+                path: ['doctor', 'bio']
+              },
+              {
                 type: 'text',
-                label: "Principal Designer Name",
+                label: "Name",
                 path: ['doctor', 'name']
               },
               {
-                type: 'image',
-                label: "Principal Portrait Image",
-                imageConfig: { arrayKey: 'otherImages', index: 0 }
+                type: 'text',
+                label: "Partner Role",
+                path: ['doctor2', 'role']
+              },
+              {
+                type: 'text',
+                label: "Name",
+                path: ['doctor2', 'name']
+              },
+              {
+                type: 'textarea',
+                label: "Bio",
+                path: ['doctor2', 'bio']
+              },
+            ]
+          },
+          {
+            label: "Turnkey Transparency & Execution Trust",
+            elements: [
+              {
+                type: 'textarea',
+                label: "Vision",
+                path: ['about', 'vision']
               },
             ]
           },
@@ -572,12 +677,37 @@ export const TEMPLATE_SCHEMAS: Record<string, TemplateSchema> = {
         label: "Services Page",
         sections: [
           {
-            label: "Services Section",
+            label: "Hero Section",
+            elements: [
+              {
+                type: 'textarea',
+                label: "State",
+                path: ['clinic', 'address', 'state']
+              },
+            ]
+          },
+          {
+            label: "Core Design & Fabrication Specialties",
             elements: [
               {
                 type: 'list',
                 label: "Services List (1 per line)",
                 path: ['business', 'services']
+              },
+            ]
+          },
+          {
+            label: "The Chennai Curation Library",
+            elements: [
+              {
+                type: 'textarea',
+                label: "Partner Bio",
+                path: ['doctor2', 'bio']
+              },
+              {
+                type: 'textarea',
+                label: "Vision",
+                path: ['about', 'vision']
               },
             ]
           },
@@ -588,12 +718,22 @@ export const TEMPLATE_SCHEMAS: Record<string, TemplateSchema> = {
         label: "Gallery Page",
         sections: [
           {
-            label: "Portfolio Gallery Section",
+            label: "Hero Section",
             elements: [
               {
-                type: 'list',
-                label: "Highlights List (1 per line)",
-                path: ['business', 'highlights']
+                type: 'textarea',
+                label: "Principal Bio",
+                path: ['doctor', 'bio']
+              },
+              {
+                type: 'textarea',
+                label: "Studio Description",
+                path: ['clinic', 'description']
+              },
+              {
+                type: 'text',
+                label: "Studio Name",
+                path: ['clinic', 'name']
               },
             ]
           },
@@ -604,17 +744,27 @@ export const TEMPLATE_SCHEMAS: Record<string, TemplateSchema> = {
         label: "Contact Page",
         sections: [
           {
-            label: "Contact Section",
+            label: "Let's Collaborate On Your Dream Space",
             elements: [
+              {
+                type: 'textarea',
+                label: "Full Address location",
+                path: ['clinic', 'address', 'full']
+              },
+              {
+                type: 'textarea',
+                label: "City",
+                path: ['clinic', 'address', 'city']
+              },
+              {
+                type: 'textarea',
+                label: "State",
+                path: ['clinic', 'address', 'state']
+              },
               {
                 type: 'text',
                 label: "Contact Phone Number",
                 path: ['clinic', 'contact', 'phone']
-              },
-              {
-                type: 'text',
-                label: "Full Address location",
-                path: ['clinic', 'address', 'full']
               },
             ]
           },
@@ -632,6 +782,16 @@ export const TEMPLATE_SCHEMAS: Record<string, TemplateSchema> = {
             label: "Hero Section",
             elements: [
               {
+                type: 'textarea',
+                label: "Principal Bio",
+                path: ['doctor', 'bio']
+              },
+              {
+                type: 'textarea',
+                label: "Studio Description",
+                path: ['clinic', 'description']
+              },
+              {
                 type: 'text',
                 label: "Studio Name",
                 path: ['clinic', 'name']
@@ -642,39 +802,9 @@ export const TEMPLATE_SCHEMAS: Record<string, TemplateSchema> = {
                 path: ['clinic', 'tagline']
               },
               {
-                type: 'textarea',
-                label: "Studio Description",
-                path: ['clinic', 'description']
-              },
-              {
-                type: 'image',
-                label: "Hero Main Banner Image",
-                imageConfig: { arrayKey: 'clinicImages', index: 0 }
-              },
-              {
-                type: 'list',
-                label: "Highlights List (1 per line)",
-                path: ['business', 'highlights']
-              },
-            ]
-          },
-          {
-            label: "About Us Section",
-            elements: [
-              {
                 type: 'text',
-                label: "Principal Designer Name",
-                path: ['doctor', 'name']
-              },
-              {
-                type: 'text',
-                label: "Designer Experience Details",
+                label: "Experience",
                 path: ['doctor', 'experience']
-              },
-              {
-                type: 'image',
-                label: "Principal Portrait Image",
-                imageConfig: { arrayKey: 'otherImages', index: 0 }
               },
             ]
           },
@@ -689,17 +819,42 @@ export const TEMPLATE_SCHEMAS: Record<string, TemplateSchema> = {
             ]
           },
           {
-            label: "Contact Section",
+            label: "Portfolio Gallery Section",
+            elements: [
+              {
+                type: 'text',
+                label: "City",
+                path: ['clinic', 'address', 'city']
+              },
+            ]
+          },
+          {
+            label: "About Us Section",
+            elements: [
+              {
+                type: 'text',
+                label: "Name",
+                path: ['doctor', 'name']
+              },
+              {
+                type: 'textarea',
+                label: "Specialization",
+                path: ['doctor', 'specialization']
+              },
+              {
+                type: 'textarea',
+                label: "Principal Credentials",
+                path: ['doctor', 'credentials']
+              },
+            ]
+          },
+          {
+            label: "Frequently Asked Questions",
             elements: [
               {
                 type: 'text',
                 label: "Contact Phone Number",
                 path: ['clinic', 'contact', 'phone']
-              },
-              {
-                type: 'text',
-                label: "Full Address location",
-                path: ['clinic', 'address', 'full']
               },
             ]
           },
@@ -710,12 +865,42 @@ export const TEMPLATE_SCHEMAS: Record<string, TemplateSchema> = {
         label: "About Page",
         sections: [
           {
+            label: "Hero Section",
+            elements: [
+              {
+                type: 'textarea',
+                label: "Vision Quote",
+                path: ['about', 'vision']
+              },
+            ]
+          },
+          {
             label: "About Us Section",
             elements: [
               {
-                type: 'text',
+                type: 'textarea',
                 label: "Studio Name",
                 path: ['clinic', 'name']
+              },
+            ]
+          },
+          {
+            label: "Meet The Design Leaders",
+            elements: [
+              {
+                type: 'textarea',
+                label: "Principal Bio",
+                path: ['doctor', 'bio']
+              },
+              {
+                type: 'text',
+                label: "Name",
+                path: ['doctor', 'name']
+              },
+              {
+                type: 'textarea',
+                label: "Principal Credentials",
+                path: ['doctor', 'credentials']
               },
               {
                 type: 'textarea',
@@ -723,24 +908,39 @@ export const TEMPLATE_SCHEMAS: Record<string, TemplateSchema> = {
                 path: ['clinic', 'description']
               },
               {
-                type: 'image',
-                label: "Clinic / Studio Gallery Image 2",
-                imageConfig: { arrayKey: 'clinicImages', index: 1 }
+                type: 'textarea',
+                label: "Principal Specialization",
+                path: ['doctor', 'specialization']
               },
-            ]
-          },
-          {
-            label: "Creative Leadership - Lead",
-            elements: [
+              {
+                type: 'textarea',
+                label: "Quote",
+                path: ['doctor', 'quote']
+              },
+              {
+                type: 'textarea',
+                label: "Partner Role",
+                path: ['doctor2', 'role']
+              },
               {
                 type: 'text',
-                label: "Principal Designer Name",
-                path: ['doctor', 'name']
+                label: "Name",
+                path: ['doctor2', 'name']
               },
               {
-                type: 'image',
-                label: "Principal Portrait Image",
-                imageConfig: { arrayKey: 'otherImages', index: 0 }
+                type: 'textarea',
+                label: "Credentials",
+                path: ['doctor2', 'credentials']
+              },
+              {
+                type: 'textarea',
+                label: "Bio",
+                path: ['doctor2', 'bio']
+              },
+              {
+                type: 'textarea',
+                label: "Partner Quote",
+                path: ['doctor2', 'quote']
               },
             ]
           },
@@ -767,12 +967,22 @@ export const TEMPLATE_SCHEMAS: Record<string, TemplateSchema> = {
         label: "Gallery Page",
         sections: [
           {
-            label: "Portfolio Gallery Section",
+            label: "Hero Section",
             elements: [
               {
-                type: 'list',
-                label: "Highlights List (1 per line)",
-                path: ['business', 'highlights']
+                type: 'textarea',
+                label: "Principal Bio",
+                path: ['doctor', 'bio']
+              },
+              {
+                type: 'textarea',
+                label: "Studio Description",
+                path: ['clinic', 'description']
+              },
+              {
+                type: 'text',
+                label: "Studio Name",
+                path: ['clinic', 'name']
               },
             ]
           },
@@ -817,7 +1027,17 @@ export const TEMPLATE_SCHEMAS: Record<string, TemplateSchema> = {
             label: "Hero Section",
             elements: [
               {
-                type: 'text',
+                type: 'textarea',
+                label: "Principal Bio",
+                path: ['doctor', 'bio']
+              },
+              {
+                type: 'textarea',
+                label: "Studio Description",
+                path: ['clinic', 'description']
+              },
+              {
+                type: 'textarea',
                 label: "Studio Name",
                 path: ['clinic', 'name']
               },
@@ -826,21 +1046,6 @@ export const TEMPLATE_SCHEMAS: Record<string, TemplateSchema> = {
                 label: "Hero Tagline",
                 path: ['clinic', 'tagline']
               },
-              {
-                type: 'textarea',
-                label: "Studio Description",
-                path: ['clinic', 'description']
-              },
-              {
-                type: 'image',
-                label: "Hero Main Banner Image",
-                imageConfig: { arrayKey: 'clinicImages', index: 0 }
-              },
-              {
-                type: 'list',
-                label: "Highlights List (1 per line)",
-                path: ['business', 'highlights']
-              },
             ]
           },
           {
@@ -848,18 +1053,23 @@ export const TEMPLATE_SCHEMAS: Record<string, TemplateSchema> = {
             elements: [
               {
                 type: 'text',
-                label: "Principal Designer Name",
+                label: "Name",
                 path: ['doctor', 'name']
               },
               {
-                type: 'text',
-                label: "Designer Experience Details",
-                path: ['doctor', 'experience']
+                type: 'textarea',
+                label: "Specialization",
+                path: ['doctor', 'specialization']
               },
+            ]
+          },
+          {
+            label: "Precision In Every Detail",
+            elements: [
               {
-                type: 'image',
-                label: "Principal Portrait Image",
-                imageConfig: { arrayKey: 'otherImages', index: 0 }
+                type: 'list',
+                label: "Highlights List (1 per line)",
+                path: ['business', 'highlights']
               },
             ]
           },
@@ -873,21 +1083,6 @@ export const TEMPLATE_SCHEMAS: Record<string, TemplateSchema> = {
               },
             ]
           },
-          {
-            label: "Contact Section",
-            elements: [
-              {
-                type: 'text',
-                label: "Contact Phone Number",
-                path: ['clinic', 'contact', 'phone']
-              },
-              {
-                type: 'text',
-                label: "Full Address location",
-                path: ['clinic', 'address', 'full']
-              },
-            ]
-          },
         ]
       },
       {
@@ -895,37 +1090,72 @@ export const TEMPLATE_SCHEMAS: Record<string, TemplateSchema> = {
         label: "About Page",
         sections: [
           {
-            label: "About Us Section",
+            label: "Hero Section",
             elements: [
               {
-                type: 'text',
-                label: "Studio Name",
-                path: ['clinic', 'name']
-              },
-              {
                 type: 'textarea',
-                label: "Studio Description",
-                path: ['clinic', 'description']
-              },
-              {
-                type: 'image',
-                label: "Clinic / Studio Gallery Image 2",
-                imageConfig: { arrayKey: 'clinicImages', index: 1 }
+                label: "Vision Quote",
+                path: ['about', 'vision']
               },
             ]
           },
           {
-            label: "Creative Leadership - Lead",
+            label: "Journey Timeline",
             elements: [
               {
+                type: 'textarea',
+                label: "Studio Name",
+                path: ['clinic', 'name']
+              },
+            ]
+          },
+          {
+            label: "About Us Section",
+            elements: [
+              {
+                type: 'textarea',
+                label: "Principal Bio",
+                path: ['doctor', 'bio']
+              },
+              {
                 type: 'text',
-                label: "Principal Designer Name",
+                label: "Name",
                 path: ['doctor', 'name']
               },
               {
-                type: 'image',
-                label: "Principal Portrait Image",
-                imageConfig: { arrayKey: 'otherImages', index: 0 }
+                type: 'textarea',
+                label: "Credentials",
+                path: ['doctor', 'credentials']
+              },
+              {
+                type: 'textarea',
+                label: "Quote",
+                path: ['doctor', 'quote']
+              },
+              {
+                type: 'textarea',
+                label: "Partner Role",
+                path: ['doctor2', 'role']
+              },
+              {
+                type: 'text',
+                label: "Name",
+                path: ['doctor2', 'name']
+              },
+              {
+                type: 'textarea',
+                label: "Credentials",
+                path: ['doctor2', 'credentials']
+              },
+              {
+                type: 'textarea',
+                label: "Partner Bio",
+                path: ['doctor2', 'bio']
+              },
+              {
+                type: 'textarea',
+                label: "Partner Quote",
+                path: ['doctor2', 'quote']
               },
             ]
           },
@@ -952,12 +1182,22 @@ export const TEMPLATE_SCHEMAS: Record<string, TemplateSchema> = {
         label: "Gallery Page",
         sections: [
           {
-            label: "Portfolio Gallery Section",
+            label: "Hero Section",
             elements: [
               {
-                type: 'list',
-                label: "Highlights List (1 per line)",
-                path: ['business', 'highlights']
+                type: 'textarea',
+                label: "Principal Bio",
+                path: ['doctor', 'bio']
+              },
+              {
+                type: 'textarea',
+                label: "Studio Description",
+                path: ['clinic', 'description']
+              },
+              {
+                type: 'text',
+                label: "Studio Name",
+                path: ['clinic', 'name']
               },
             ]
           },
@@ -996,56 +1236,6 @@ export const TEMPLATE_SCHEMAS: Record<string, TemplateSchema> = {
             label: "Hero Section",
             elements: [
               {
-                type: 'text',
-                label: "Studio Name",
-                path: ['clinic', 'name']
-              },
-              {
-                type: 'text',
-                label: "Hero Tagline",
-                path: ['clinic', 'tagline']
-              },
-              {
-                type: 'textarea',
-                label: "Studio Description",
-                path: ['clinic', 'description']
-              },
-              {
-                type: 'image',
-                label: "Hero Main Banner Image",
-                imageConfig: { arrayKey: 'clinicImages', index: 0 }
-              },
-              {
-                type: 'list',
-                label: "Highlights List (1 per line)",
-                path: ['business', 'highlights']
-              },
-            ]
-          },
-          {
-            label: "About Us Section",
-            elements: [
-              {
-                type: 'text',
-                label: "Principal Designer Name",
-                path: ['doctor', 'name']
-              },
-              {
-                type: 'text',
-                label: "Designer Experience Details",
-                path: ['doctor', 'experience']
-              },
-              {
-                type: 'image',
-                label: "Principal Portrait Image",
-                imageConfig: { arrayKey: 'otherImages', index: 0 }
-              },
-            ]
-          },
-          {
-            label: "Services Section",
-            elements: [
-              {
                 type: 'list',
                 label: "Services List (1 per line)",
                 path: ['business', 'services']
@@ -1053,17 +1243,37 @@ export const TEMPLATE_SCHEMAS: Record<string, TemplateSchema> = {
             ]
           },
           {
-            label: "Contact Section",
+            label: "About Us Section",
+            elements: [
+              {
+                type: 'textarea',
+                label: "Principal Bio",
+                path: ['doctor', 'bio']
+              },
+              {
+                type: 'text',
+                label: "Name",
+                path: ['doctor', 'name']
+              },
+              {
+                type: 'textarea',
+                label: "Principal Credentials",
+                path: ['doctor', 'credentials']
+              },
+              {
+                type: 'textarea',
+                label: "Quote",
+                path: ['doctor', 'quote']
+              },
+            ]
+          },
+          {
+            label: "Frequently Asked Questions",
             elements: [
               {
                 type: 'text',
                 label: "Contact Phone Number",
                 path: ['clinic', 'contact', 'phone']
-              },
-              {
-                type: 'text',
-                label: "Full Address location",
-                path: ['clinic', 'address', 'full']
               },
             ]
           },
@@ -1131,12 +1341,22 @@ export const TEMPLATE_SCHEMAS: Record<string, TemplateSchema> = {
         label: "Gallery Page",
         sections: [
           {
-            label: "Portfolio Gallery Section",
+            label: "Hero Section",
             elements: [
               {
-                type: 'list',
-                label: "Highlights List (1 per line)",
-                path: ['business', 'highlights']
+                type: 'textarea',
+                label: "Principal Bio",
+                path: ['doctor', 'bio']
+              },
+              {
+                type: 'textarea',
+                label: "Studio Description",
+                path: ['clinic', 'description']
+              },
+              {
+                type: 'text',
+                label: "Studio Name",
+                path: ['clinic', 'name']
               },
             ]
           },
@@ -1175,14 +1395,9 @@ export const TEMPLATE_SCHEMAS: Record<string, TemplateSchema> = {
             label: "Hero Section",
             elements: [
               {
-                type: 'text',
-                label: "Studio Name",
-                path: ['clinic', 'name']
-              },
-              {
-                type: 'text',
-                label: "Hero Tagline",
-                path: ['clinic', 'tagline']
+                type: 'textarea',
+                label: "Principal Bio",
+                path: ['doctor', 'bio']
               },
               {
                 type: 'textarea',
@@ -1190,59 +1405,44 @@ export const TEMPLATE_SCHEMAS: Record<string, TemplateSchema> = {
                 path: ['clinic', 'description']
               },
               {
-                type: 'image',
-                label: "Hero Main Banner Image",
-                imageConfig: { arrayKey: 'clinicImages', index: 0 }
-              },
-              {
-                type: 'list',
-                label: "Highlights List (1 per line)",
-                path: ['business', 'highlights']
+                type: 'text',
+                label: "Studio Name",
+                path: ['clinic', 'name']
               },
             ]
           },
           {
-            label: "About Us Section",
-            elements: [
-              {
-                type: 'text',
-                label: "Principal Designer Name",
-                path: ['doctor', 'name']
-              },
-              {
-                type: 'text',
-                label: "Designer Experience Details",
-                path: ['doctor', 'experience']
-              },
-              {
-                type: 'image',
-                label: "Principal Portrait Image",
-                imageConfig: { arrayKey: 'otherImages', index: 0 }
-              },
-            ]
-          },
-          {
-            label: "Services Section",
+            label: "Crafting Timeless Spaces With Purpose An...",
             elements: [
               {
                 type: 'list',
                 label: "Services List (1 per line)",
                 path: ['business', 'services']
               },
+              {
+                type: 'text',
+                label: "Experience",
+                path: ['doctor', 'experience']
+              },
+              {
+                type: 'text',
+                label: "Name",
+                path: ['doctor', 'name']
+              },
+              {
+                type: 'textarea',
+                label: "Specialization",
+                path: ['doctor', 'specialization']
+              },
             ]
           },
           {
-            label: "Contact Section",
+            label: "Ready To Take The Next Step?",
             elements: [
               {
                 type: 'text',
                 label: "Contact Phone Number",
                 path: ['clinic', 'contact', 'phone']
-              },
-              {
-                type: 'text',
-                label: "Full Address location",
-                path: ['clinic', 'address', 'full']
               },
             ]
           },
@@ -1256,34 +1456,44 @@ export const TEMPLATE_SCHEMAS: Record<string, TemplateSchema> = {
             label: "About Us Section",
             elements: [
               {
-                type: 'text',
-                label: "Studio Name",
-                path: ['clinic', 'name']
+                type: 'list',
+                label: "Services List (1 per line)",
+                path: ['business', 'services']
               },
+              {
+                type: 'textarea',
+                label: "Principal Bio",
+                path: ['doctor', 'bio']
+              },
+              {
+                type: 'text',
+                label: "Name",
+                path: ['doctor', 'name']
+              },
+            ]
+          },
+          {
+            label: "Why Choose Us",
+            elements: [
               {
                 type: 'textarea',
                 label: "Studio Description",
                 path: ['clinic', 'description']
               },
               {
-                type: 'image',
-                label: "Clinic / Studio Gallery Image 2",
-                imageConfig: { arrayKey: 'clinicImages', index: 1 }
+                type: 'text',
+                label: "Studio Name",
+                path: ['clinic', 'name']
               },
             ]
           },
           {
-            label: "Creative Leadership - Lead",
+            label: "Ready To Take The Next Step?",
             elements: [
               {
                 type: 'text',
-                label: "Principal Designer Name",
-                path: ['doctor', 'name']
-              },
-              {
-                type: 'image',
-                label: "Principal Portrait Image",
-                imageConfig: { arrayKey: 'otherImages', index: 0 }
+                label: "Contact Phone Number",
+                path: ['clinic', 'contact', 'phone']
               },
             ]
           },
@@ -1294,12 +1504,42 @@ export const TEMPLATE_SCHEMAS: Record<string, TemplateSchema> = {
         label: "Services Page",
         sections: [
           {
-            label: "Services Section",
+            label: "Essential Styling",
             elements: [
               {
                 type: 'list',
                 label: "Services List (1 per line)",
                 path: ['business', 'services']
+              },
+            ]
+          },
+          {
+            label: "Why Choose Us",
+            elements: [
+              {
+                type: 'textarea',
+                label: "Principal Bio",
+                path: ['doctor', 'bio']
+              },
+              {
+                type: 'textarea',
+                label: "Studio Description",
+                path: ['clinic', 'description']
+              },
+              {
+                type: 'text',
+                label: "Studio Name",
+                path: ['clinic', 'name']
+              },
+            ]
+          },
+          {
+            label: "Ready For Yournew Space?",
+            elements: [
+              {
+                type: 'text',
+                label: "Contact Phone Number",
+                path: ['clinic', 'contact', 'phone']
               },
             ]
           },
@@ -1358,12 +1598,241 @@ export const TEMPLATE_SCHEMAS: Record<string, TemplateSchema> = {
         id: 'team',
         label: "Team Page",
         sections: [
+          {
+            label: "Hero Section",
+            elements: [
+              {
+                type: 'list',
+                label: "Highlights List (1 per line)",
+                path: ['business', 'highlights']
+              },
+              {
+                type: 'list',
+                label: "Services List (1 per line)",
+                path: ['business', 'services']
+              },
+              {
+                type: 'textarea',
+                label: "Principal Bio",
+                path: ['doctor', 'bio']
+              },
+              {
+                type: 'textarea',
+                label: "Studio Description",
+                path: ['clinic', 'description']
+              },
+              {
+                type: 'text',
+                label: "Studio Name",
+                path: ['clinic', 'name']
+              },
+              {
+                type: 'textarea',
+                label: "Full Address location",
+                path: ['clinic', 'address', 'full']
+              },
+              {
+                type: 'text',
+                label: "Hero Tagline",
+                path: ['clinic', 'tagline']
+              },
+              {
+                type: 'text',
+                label: "Name",
+                path: ['doctor', 'name']
+              },
+              {
+                type: 'text',
+                label: "City",
+                path: ['clinic', 'address', 'city']
+              },
+              {
+                type: 'text',
+                label: "Contact Phone Number",
+                path: ['clinic', 'contact', 'phone']
+              },
+              {
+                type: 'text',
+                label: "Experience",
+                path: ['doctor', 'experience']
+              },
+              {
+                type: 'text',
+                label: "State",
+                path: ['clinic', 'address', 'state']
+              },
+              {
+                type: 'text',
+                label: "Country",
+                path: ['clinic', 'address', 'country']
+              },
+            ]
+          },
         ]
       },
       {
         id: 'terms',
         label: "Terms Page",
         sections: [
+          {
+            label: "7. Governing Law",
+            elements: [
+              {
+                type: 'textarea',
+                label: "State",
+                path: ['clinic', 'address', 'state']
+              },
+              {
+                type: 'textarea',
+                label: "Country",
+                path: ['clinic', 'address', 'country']
+              },
+            ]
+          },
+        ]
+      },
+    ]
+  },
+  template8: {
+    pages: [
+      {
+        id: 'home',
+        label: "Home Page",
+        sections: [
+          {
+            label: "Hero Section",
+            elements: [
+              {
+                type: 'textarea',
+                label: "Principal Bio",
+                path: ['doctor', 'bio']
+              },
+              {
+                type: 'textarea',
+                label: "Studio Description",
+                path: ['clinic', 'description']
+              },
+              {
+                type: 'textarea',
+                label: "Studio Name",
+                path: ['clinic', 'name']
+              },
+            ]
+          },
+          {
+            label: "Your Trusted Interior Design Partners",
+            elements: [
+              {
+                type: 'textarea',
+                label: "Bio",
+                path: ['doctor2', 'bio']
+              },
+            ]
+          },
+          {
+            label: "Services Section",
+            elements: [
+              {
+                type: 'list',
+                label: "Services List (1 per line)",
+                path: ['business', 'services']
+              },
+            ]
+          },
+        ]
+      },
+      {
+        id: 'about',
+        label: "About Page",
+        sections: [
+          {
+            label: "About Us Section",
+            elements: [
+              {
+                type: 'text',
+                label: "Studio Name",
+                path: ['clinic', 'name']
+              },
+              {
+                type: 'textarea',
+                label: "Studio Description",
+                path: ['clinic', 'description']
+              },
+              {
+                type: 'image',
+                label: "Clinic / Studio Gallery Image 2",
+                imageConfig: { arrayKey: 'clinicImages', index: 1 }
+              },
+            ]
+          },
+          {
+            label: "Creative Leadership - Lead",
+            elements: [
+              {
+                type: 'text',
+                label: "Principal Designer Name",
+                path: ['doctor', 'name']
+              },
+              {
+                type: 'image',
+                label: "Principal Portrait Image",
+                imageConfig: { arrayKey: 'otherImages', index: 0 }
+              },
+            ]
+          },
+        ]
+      },
+      {
+        id: 'services',
+        label: "Services Page",
+        sections: [
+          {
+            label: "Services Section",
+            elements: [
+              {
+                type: 'list',
+                label: "Services List (1 per line)",
+                path: ['business', 'services']
+              },
+            ]
+          },
+        ]
+      },
+      {
+        id: 'gallery',
+        label: "Gallery Page",
+        sections: [
+          {
+            label: "Portfolio Gallery Section",
+            elements: [
+              {
+                type: 'list',
+                label: "Highlights List (1 per line)",
+                path: ['business', 'highlights']
+              },
+            ]
+          },
+        ]
+      },
+      {
+        id: 'contact',
+        label: "Contact Page",
+        sections: [
+          {
+            label: "Contact Section",
+            elements: [
+              {
+                type: 'text',
+                label: "Contact Phone Number",
+                path: ['clinic', 'contact', 'phone']
+              },
+              {
+                type: 'text',
+                label: "Full Address location",
+                path: ['clinic', 'address', 'full']
+              },
+            ]
+          },
         ]
       },
     ]
@@ -1497,12 +1966,42 @@ export const TEMPLATE_SCHEMAS: Record<string, TemplateSchema> = {
         label: "Services Page",
         sections: [
           {
-            label: "Services Section",
+            label: "Hero Section",
             elements: [
               {
-                type: 'list',
-                label: "Services List (1 per line)",
-                path: ['business', 'services']
+                type: 'textarea',
+                label: "Principal Bio",
+                path: ['doctor', 'bio']
+              },
+              {
+                type: 'textarea',
+                label: "Studio Description",
+                path: ['clinic', 'description']
+              },
+              {
+                type: 'text',
+                label: "Studio Name",
+                path: ['clinic', 'name']
+              },
+              {
+                type: 'text',
+                label: "Hero Tagline",
+                path: ['clinic', 'tagline']
+              },
+            ]
+          },
+          {
+            label: "Transformations",
+            elements: [
+              {
+                type: 'text',
+                label: "Specialization",
+                path: ['doctor', 'specialization']
+              },
+              {
+                type: 'textarea',
+                label: "Vision Quote",
+                path: ['about', 'vision']
               },
             ]
           },
@@ -1513,12 +2012,22 @@ export const TEMPLATE_SCHEMAS: Record<string, TemplateSchema> = {
         label: "Gallery Page",
         sections: [
           {
-            label: "Portfolio Gallery Section",
+            label: "Hero Section",
             elements: [
               {
-                type: 'list',
-                label: "Highlights List (1 per line)",
-                path: ['business', 'highlights']
+                type: 'textarea',
+                label: "Principal Bio",
+                path: ['doctor', 'bio']
+              },
+              {
+                type: 'textarea',
+                label: "Studio Description",
+                path: ['clinic', 'description']
+              },
+              {
+                type: 'text',
+                label: "Studio Name",
+                path: ['clinic', 'name']
               },
             ]
           },
