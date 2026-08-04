@@ -1,5 +1,6 @@
 import fs from 'fs/promises';
 import path from 'path';
+import { cache } from 'react';
 import {
   DEFAULT_INTERIOR_HIGHLIGHTS,
   DEFAULT_INTERIOR_SERVICES,
@@ -27,10 +28,111 @@ export function getDocId(slug: string): string {
   return /^[a-f0-9]{32}$/i.test(slug) ? slug : crypto.createHash('md5').update(slug).digest('hex');
 }
 
+/** Reject path traversal / unsafe folder names before touching the filesystem. */
+export function assertSafeSlug(slug: string): string {
+  const cleaned = (slug || '').trim();
+  if (!cleaned || cleaned.length > 180) {
+    throw new Error('Invalid slug');
+  }
+  if (cleaned.includes('..') || cleaned.includes('/') || cleaned.includes('\\') || cleaned.includes('\0')) {
+    throw new Error('Invalid slug');
+  }
+  // Human kebab slugs or 32-char Appwrite/md5 ids.
+  if (!/^[a-z0-9]+(?:-[a-z0-9]+)*$/i.test(cleaned) && !/^[a-f0-9]{32}$/i.test(cleaned)) {
+    throw new Error('Invalid slug');
+  }
+  return cleaned;
+}
+
+function sourcePathFor(slug: string) {
+  const safe = assertSafeSlug(slug);
+  return path.join(process.cwd(), 'data', safe, 'source.json');
+}
+
+/** Persist client data to local JSON (essential leads + newly added only). */
+export async function writeSourceConfig(slug: string, data: GeneratedData): Promise<void> {
+  const safe = assertSafeSlug(slug);
+  const dir = path.join(process.cwd(), 'data', safe);
+  await fs.mkdir(dir, { recursive: true });
+  const payload: GeneratedData = {
+    ...data,
+    meta: {
+      ...(data.meta || {}),
+      updatedAt: new Date().toISOString(),
+      generatedAt: data.meta?.generatedAt || new Date().toISOString(),
+      source: data.meta?.source || 'local',
+    },
+  };
+  await fs.writeFile(sourcePathFor(safe), JSON.stringify(payload, null, 2), 'utf-8');
+}
+
+async function readLocalSourceConfig(slug: string): Promise<GeneratedData | null> {
+  try {
+    const content = await fs.readFile(sourcePathFor(slug), 'utf-8');
+    return JSON.parse(content) as GeneratedData;
+  } catch {
+    return null;
+  }
+}
+
+async function readAppwriteSourceConfig(slug: string): Promise<GeneratedData | null> {
+  try {
+    const docId = getDocId(slug);
+    const doc = await databases.getDocument('gtrails', 'scraped_data', docId);
+    if (doc?.source_data) {
+      return JSON.parse(doc.source_data) as GeneratedData;
+    }
+  } catch (err: any) {
+    console.error('Error reading from Appwrite:', err.message || err);
+  }
+  return null;
+}
+
+/** Best-effort sync of local JSON up to Appwrite (optional). */
+export async function syncSourceConfigToAppwrite(slug: string, data: GeneratedData): Promise<void> {
+  const documentData = {
+    name: data.clinic?.name || slug,
+    rating: String(data.business?.rating || ''),
+    review_count: String(data.business?.reviewCount || ''),
+    address: data.clinic?.address?.full || '',
+    phone: data.clinic?.contact?.phone || '',
+    image_urls: [
+      ...(data.media?.clinicImages || []),
+      ...(data.media?.treatmentImages || []),
+      ...(data.media?.otherImages || []),
+    ],
+    reviews: JSON.stringify(data.reviews || []),
+    media: JSON.stringify(data.media || {}),
+    map_embed_url: data.clinic?.mapEmbedUrl || '',
+    source_data: JSON.stringify(data),
+  };
+
+  try {
+    const docId = getDocId(slug);
+    await databases.createDocument('gtrails', 'scraped_data', docId, documentData);
+  } catch (err: any) {
+    if (err.code === 409 || err.message?.includes('already exists')) {
+      const docId = getDocId(slug);
+      await databases.updateDocument('gtrails', 'scraped_data', docId, documentData);
+    } else {
+      throw err;
+    }
+  }
+}
+
+/**
+ * Pull a client from Appwrite and save to data/{slug}/source.json.
+ * Use for the select clients you want fast local previews for.
+ */
+export async function fetchAndSaveSourceConfig(slug: string): Promise<GeneratedData | null> {
+  const data = await readAppwriteSourceConfig(slug);
+  if (!data) return null;
+  const hrSlug = assertSafeSlug(data.clinic?.slug || slug);
+  await writeSourceConfig(hrSlug, data);
+  return data;
+}
 
 export async function createSourceConfig(slug: string, data: any): Promise<GeneratedData> {
-  const sourcePath = path.join(process.cwd(), 'data', slug, 'source.json');
-
   const dataShape: GeneratedData = {
     clinic: {
       name: data.name || '',
@@ -89,40 +191,13 @@ export async function createSourceConfig(slug: string, data: any): Promise<Gener
     }
   }
 
-  await fs.writeFile(sourcePath, JSON.stringify(dataShape, null, 2), 'utf-8');
+  // Primary: local JSON
+  await writeSourceConfig(slug, dataShape);
 
-  // Sync to Appwrite scraped_data collection
+  // Optional: keep Appwrite in sync
   try {
-    const documentData = {
-      name: dataShape.clinic.name,
-      rating: String(dataShape.business.rating || ''),
-      review_count: String(dataShape.business.reviewCount || ''),
-      address: dataShape.clinic.address.full,
-      phone: dataShape.clinic.contact.phone,
-      image_urls: data.media ? [
-        ...(data.media.clinicImages || []),
-        ...(data.media.treatmentImages || []),
-        ...(data.media.otherImages || [])
-      ] : [],
-      reviews: JSON.stringify(dataShape.reviews),
-      media: JSON.stringify(dataShape.media),
-      map_embed_url: dataShape.clinic.mapEmbedUrl,
-      source_data: JSON.stringify(dataShape)
-    };
-
-    try {
-      const docId = getDocId(dataShape.clinic.slug);
-      await databases.createDocument('gtrails', 'scraped_data', docId, documentData);
-      console.log(`Successfully created scraped data for "${slug}" in Appwrite!`);
-    } catch (err: any) {
-      if (err.code === 409 || err.message?.includes('already exists')) {
-        const docId = getDocId(dataShape.clinic.slug);
-        await databases.updateDocument('gtrails', 'scraped_data', docId, documentData);
-        console.log(`Successfully updated scraped data for "${slug}" in Appwrite!`);
-      } else {
-        throw err;
-      }
-    }
+    await syncSourceConfigToAppwrite(slug, dataShape);
+    console.log(`Successfully synced scraped data for "${slug}" to Appwrite!`);
   } catch (appwriteError: any) {
     console.error('Error syncing scraped data to Appwrite:', appwriteError.message || appwriteError);
   }
@@ -143,31 +218,20 @@ function deepMerge(target: any, source: any): any {
   return output;
 }
 
-export async function readSourceConfig(slug: string, template?: string): Promise<GeneratedData | null> {
-  let baseData: GeneratedData | null = null;
+async function readSourceConfigUncached(slug: string, template?: string): Promise<GeneratedData | null> {
+  // Essential leads live in data/{slug}/source.json — that is the working set.
+  let baseData = await readLocalSourceConfig(slug);
 
-  try {
-    const docId = getDocId(slug);
-    const doc = await databases.getDocument('gtrails', 'scraped_data', docId);
-    if (doc?.source_data) {
-      baseData = JSON.parse(doc.source_data) as GeneratedData;
-    }
-  } catch (sbEx: any) {
-    console.error('Error reading from Appwrite:', sbEx.message || sbEx);
-  }
-
+  // Appwrite is a one-off fallback for missing slugs. It is NOT auto-cached locally.
+  // To add a client to the essential set: scrape (createSourceConfig), save in admin, or
+  // run `npm run sync:clients -- <slug>` / GET /api/data?slug=...&refresh=1
   if (!baseData) {
-    // Fallback to local file for development or transition
-    const sourcePath = path.join(process.cwd(), 'data', slug, 'source.json');
-    try {
-      const content = await fs.readFile(sourcePath, 'utf-8');
-      baseData = JSON.parse(content);
-    } catch (error) {
-      return null;
-    }
+    baseData = await readAppwriteSourceConfig(slug);
   }
 
-  if (baseData && template) {
+  if (!baseData) return null;
+
+  if (template) {
     const overrides = (baseData as any).templateOverrides?.[template];
     if (overrides) {
       return deepMerge(baseData, overrides) as GeneratedData;
@@ -177,38 +241,64 @@ export async function readSourceConfig(slug: string, template?: string): Promise
   return baseData;
 }
 
-export async function getAllSlugs(): Promise<string[]> {
-  try {
-    const { Query } = require('appwrite');
-    const response = await databases.listDocuments('gtrails', 'scraped_data', [
-      Query.limit(5000)
-    ]);
-    if (response?.documents) {
-      return response.documents.map(item => {
-        const json = item.source_data ? JSON.parse(item.source_data) : {};
-        return json.clinic?.slug || item.$id;
-      });
-    }
-  } catch (sbEx: any) {
-    console.error('Error fetching slugs from Appwrite:', sbEx.message || sbEx);
-  }
+/** Request-deduped reader — layout + page share one load. */
+export const readSourceConfig = cache(readSourceConfigUncached);
 
-  // Fallback to local directories
+/** Local essential-lead slugs only (data/{slug}/source.json). */
+export async function getLocalSlugs(): Promise<string[]> {
   const dataPath = path.join(process.cwd(), 'data');
   try {
     const entries = await fs.readdir(dataPath, { withFileTypes: true });
     const slugs: string[] = [];
     for (const entry of entries) {
       if (entry.isDirectory()) {
-        const sourcePath = path.join(dataPath, entry.name, 'source.json');
         try {
-          await fs.access(sourcePath);
+          await fs.access(sourcePathFor(entry.name));
           slugs.push(entry.name);
         } catch {}
       }
     }
-    return slugs;
-  } catch (error) {
+    return slugs.sort();
+  } catch {
     return [];
   }
+}
+
+export type LocalSiteSummary = {
+  slug: string;
+  name: string;
+  rating: string;
+  reviews: string;
+  image: string;
+  date: string;
+  timestamp: number;
+};
+
+/** Dashboard/preview list — only essential leads saved locally (+ newly added). */
+export async function listLocalSites(): Promise<LocalSiteSummary[]> {
+  const slugs = await getLocalSlugs();
+  const sites: LocalSiteSummary[] = [];
+
+  for (const slug of slugs) {
+    const data = await readLocalSourceConfig(slug);
+    if (!data) continue;
+    const generatedAt = data.meta?.generatedAt || data.meta?.updatedAt || null;
+    const timestamp = generatedAt ? new Date(generatedAt).getTime() : 0;
+    sites.push({
+      slug: data.clinic?.slug || slug,
+      name: data.clinic?.name || slug,
+      rating: String(data.business?.rating || 'N/A'),
+      reviews: String(data.business?.reviewCount || '0'),
+      image: data.media?.clinicImages?.[0] || 'https://via.placeholder.com/400x300?text=No+Image',
+      date: timestamp ? new Date(timestamp).toLocaleDateString() : '—',
+      timestamp,
+    });
+  }
+
+  return sites;
+}
+
+/** Static params / previews — essential local clients only. */
+export async function getAllSlugs(): Promise<string[]> {
+  return getLocalSlugs();
 }

@@ -1,268 +1,198 @@
 import { readSourceConfig } from '@/lib/dataBuilder';
 import { notFound } from 'next/navigation';
-import { Cormorant_Garamond } from 'next/font/google';
-import { 
-  Smile, Layers, Compass, Scale, Monitor, Leaf, Calendar, Home, ArrowUpRight, ChevronRight, Award, Shield
-} from 'lucide-react';
+import Link from 'next/link';
+import { Check, Users, Target, HeartHandshake, Sparkles } from 'lucide-react';
+import { cleanClinicName, cleanClinicDescription } from '@/lib/copyCleaner';
+import { DEFAULT_INTERIOR_HIGHLIGHTS, DEFAULT_INTERIOR_SERVICES } from '@/lib/interiorContent';
+import Reveal from '../Reveal';
 
-const cormorant = Cormorant_Garamond({
-  subsets: ['latin'],
-  weight: ['400', '500', '600', '700'],
-  style: ['normal', 'italic'],
-  variable: '--font-cormorant',
-});
+type PageProps = { params: Promise<{ slug: string }> };
 
-export default async function AboutPage({ params }: { params: Promise<{ slug: string }> }) {
-  const resolvedParams = await params;
-  const { slug } = resolvedParams;
+export default async function Template2About({ params }: PageProps) {
+  const { slug } = await params;
+  const basePath = `/designwebsite/template2/${slug}`;
+
   const data = await readSourceConfig(slug, 'template2');
   if (!data) return notFound();
 
-  const clinicName = data?.clinic?.name || 'SKETCHLAB';
-  const doctorName = data?.doctor?.name || 'Arjun Mehta';
+  const { clinic, doctor, business, media } = data;
+  const cleanName = cleanClinicName(clinic.name);
+  const cleanDesc = cleanClinicDescription(clinic.description, clinic.name);
+  const city = clinic.address?.city || 'Chennai';
+  const rating = business.rating || '4.8';
+  const experienceYears = doctor?.experience?.replace(/\D/g, '') || '5';
+  const servicesCount = business.services?.length || DEFAULT_INTERIOR_SERVICES.length;
+  const highlights: string[] = business.highlights?.length ? business.highlights : DEFAULT_INTERIOR_HIGHLIGHTS;
 
-  const getValidImage = (url: string | undefined, fallback: string) => {
-    if (!url || url.includes('/api/media')) return fallback;
-    return url;
-  };
+  const storyImage =
+    media.clinicImages?.[1] ||
+    '/images/stock/68b39046.webp';
+  const teamImage =
+    media.otherImages?.[0] ||
+    '/images/stock/a0e0726f.webp';
 
-  const doctorImage = getValidImage(
-    data?.media?.otherImages?.[0],
-    'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=2000&q=80'
-  );
-  const secondaryImage = getValidImage(
-    data?.media?.otherImages?.[1],
-    'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=2000&q=80'
-  );
-
-  const partnerName = data?.doctor2?.name || 'Kavitha Rajan';
-  const partnerRole = data?.doctor2?.role || 'LEAD STYLIST & CO-DIRECTOR';
-  const partnerCredentials = data?.doctor2?.credentials || 'B.Des — NID | Certified Organic Consultant';
-  const partnerBio = data?.doctor2?.bio || 'Kavitha leads the spatial styling and organic layouts, coordinating ambient details and biophilic textures for Chennai residential builds.';
-  const partnerQuote = data?.doctor2?.quote || 'Space feels luxurious when natural textures and soft woven details gain unique character over time.';
-
-  const collageImage = getValidImage(
-    data?.media?.clinicImages?.[1],
-    getValidImage(
-      data?.media?.otherImages?.[1],
-      "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=2000"
-    )
-  );
+  const PILLARS = [
+    { icon: Target, title: 'Design-first thinking', desc: 'Every project starts with your routines and floor plan — never a copy-paste catalogue look.' },
+    { icon: HeartHandshake, title: 'One accountable team', desc: 'A single point of contact owns your project from the first sketch to the final handover.' },
+    { icon: Sparkles, title: 'Honest materials', desc: 'Branded hardware and finishes we would put in our own homes, itemised in every quote.' },
+    { icon: Users, title: 'Family-friendly process', desc: 'Clear timelines, regular photo updates, and decisions explained in plain language.' },
+  ];
 
   return (
-    <div className="font-sans text-[#2A2421] bg-[#F7F4EF] min-h-screen pb-24">
-      {/* Editorial Hero Section */}
-      <section className="relative pt-20 pb-8 text-center space-y-6 max-w-4xl mx-auto">
-        <div className="flex items-center justify-center gap-2 text-[#8E7056] text-[10px] font-bold uppercase tracking-[0.2em]">
-          <span className="w-1.5 h-1.5 rounded-full bg-[#8E7056]" />
-          ESTABLISHED 2015
-        </div>
-        
-        <h1 className={`${cormorant.className} text-5xl sm:text-6xl lg:text-7xl font-light tracking-wide leading-tight text-[#2A2421]`}>
-          Refined Chennai Heritage &amp; <span className="text-[#8E7056] italic">Turnkey Craft</span>
-        </h1>
-        
-        <p className="text-sm sm:text-base text-[#2A2421]/90 font-light leading-relaxed max-w-2xl mx-auto">
-          Delivering premium all-inclusive furnishing contracts for modular kitchens, modern residences, and premium commercial workspaces across Chennai.
-        </p>
-      </section>
-
-      {/* PORTRAIT PROFILE IMAGE COLLAGE */}
-      <section className="max-w-5xl mx-auto px-4 mt-4 md:mt-8">
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
-          <div className="md:col-span-8 aspect-[4/3] sm:aspect-[16/10] md:aspect-[21/9] rounded-[2.5rem] overflow-hidden border border-[#EAE3D8]/60 shadow-xs relative bg-white">
-            <img
-              src={collageImage}
-              alt="SKETCHLAB Chennai coordinate studio layout"
-              className="w-full h-full object-cover"
-            />
-          </div>
-          <div className="md:col-span-4 bg-[#8E7056] text-white p-8 rounded-[2rem] shadow-xs flex flex-col justify-between aspect-square">
-            <span className="text-[9px] font-mono tracking-widest text-[#FAF8F5]/85 uppercase">OUR CHENNAI OFFICE</span>
-            <blockquote className={`${cormorant.className} text-2xl font-light leading-snug text-white/95 mt-4`}>
-              &ldquo;We take full operational control of sourcing, modular fabrication, and structural carpentry details.&rdquo;
-            </blockquote>
-          </div>
+    <div>
+      {/* PAGE HERO */}
+      <section id="about-hero" className="bg-[#faf7f1] px-6 py-[clamp(60px,7vw,96px)]">
+        <div className="max-w-[1240px] mx-auto">
+          <Reveal>
+            <span className="inline-flex items-center gap-2.5 bg-white border border-[#1b1b1b]/10 rounded-full px-4.5 py-2 text-[12px] font-bold tracking-[0.14em] uppercase text-[#0e5a43] mb-6 before:content-[''] before:w-2 before:h-2 before:rounded-full before:bg-[#f2a007]">
+              About the studio
+            </span>
+            <h1 className="font-[family-name:var(--font-bricolage)] font-bold text-[clamp(34px,4.6vw,58px)] leading-[1.06] tracking-[-0.02em] max-w-[760px]">
+              Meet <mark className="bg-[linear-gradient(transparent_62%,#fdeecb_62%)] text-[#0e5a43] px-0.5">{cleanName || 'the studio'}</mark> — {city}&rsquo;s friendly interiors team
+            </h1>
+            <p className="mt-5 max-w-[560px] text-[#6b6660] text-[16.5px] leading-[1.7] font-medium">{cleanDesc}</p>
+          </Reveal>
         </div>
       </section>
 
-      {/* CHENNAI HISTORY TIMELINE GRID */}
-      <section className="bg-white rounded-[3rem] border border-[#EAE3D8]/50 p-8 md:p-16 relative overflow-hidden shadow-sm text-left mt-24 md:mt-28">
-        <div className="absolute top-0 right-0 w-96 h-96 bg-[#8E7056]/5 rounded-bl-full blur-3xl pointer-events-none" />
-        
-        <div className="relative z-10 max-w-5xl mx-auto space-y-12">
-          <div className="space-y-3">
-            <div className="flex items-center gap-2 text-[#8E7056] text-[10px] font-bold uppercase tracking-[0.2em]">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#8E7056]" />
-              TIMELINE MILESTONES
+      {/* STORY + STATS */}
+      <section id="story" className="px-6 py-[clamp(72px,8vw,110px)] bg-white">
+        <div className="max-w-[1240px] mx-auto grid lg:grid-cols-2 gap-[clamp(40px,5vw,72px)] items-center">
+          <Reveal className="relative">
+            <div className="rounded-[26px] overflow-hidden aspect-[4/3.6] shadow-[0_24px_60px_rgba(27,27,27,0.12)]">
+              <img src={storyImage} alt={`${cleanName || 'Studio'} project`} loading="lazy" className="w-full h-full object-cover" />
             </div>
-            <h2 className={`${cormorant.className} text-3xl sm:text-4xl md:text-5xl font-light tracking-wide text-[#2A2421]`}>
-              Our Chennai <span className="text-[#8E7056] italic">Sourcing &amp; Design Journey</span>
+            <div className="absolute left-5 bottom-5 bg-white rounded-2xl px-5.5 py-4 shadow-[0_24px_60px_rgba(27,27,27,0.12)]">
+              <b className="font-[family-name:var(--font-bricolage)] text-[24px] block leading-none">{experienceYears}+ yrs</b>
+              <span className="text-[11px] font-extrabold tracking-[0.12em] uppercase text-[#6b6660]">of happy homes</span>
+            </div>
+          </Reveal>
+
+          <Reveal delay={120}>
+            <span className="inline-flex items-center gap-2.5 text-[12px] font-extrabold tracking-[0.28em] uppercase text-[#0e5a43] mb-3.5 before:content-[''] before:w-7 before:h-[2.5px] before:rounded-full before:bg-[#f2a007]">
+              Our story
+            </span>
+            <h2 className="font-[family-name:var(--font-bricolage)] font-bold text-[clamp(28px,3.6vw,46px)] leading-[1.08] tracking-[-0.02em] mb-4.5">
+              {clinic.tagline || 'Thoughtful interiors for everyday living'}
             </h2>
-          </div>
+            <p className="text-[#6b6660] font-medium leading-[1.75] text-[15.5px] mb-4">
+              We started with a simple frustration: home interiors in {city} were either beautiful or reliable — rarely both. So we built a studio where design taste and site discipline live under one roof.
+            </p>
+            <p className="text-[#6b6660] font-medium leading-[1.75] text-[15.5px] mb-7">
+              Led by {doctor?.name || 'our design team'} ({doctor?.specialization || 'Interior Design & Turnkey Execution'}), every project gets a designer who listens and a team that shows up.
+            </p>
 
-          {/* Clean 4-Column Grid Timeline instead of vertical matching checklist */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 pt-6">
-            {[
-              { year: "2015", title: "Inception in Chennai", desc: `${clinicName} was structured in Chennai to design premium residential layouts using high-quality sustainable materials.` },
-              { year: "2018", title: "Modular Manufacturing", desc: "Expanding operations with our state-of-the-art modular kitchen and woodworking facility in Chennai, perfecting customized carpentry." },
-              { year: "2021", title: "Statewide Logistics", desc: "Structuring robust logistics across Tamil Nadu, ensuring timely material transit, strict cargo coordinates, and site staging." },
-              { year: "TODAY", title: "Turnkey Leadership", desc: "Managing end-to-end interior design and turnkey execution across Chennai, combining functional planning with premium aesthetics." }
-            ].map((milestone, idx) => (
-              <div key={idx} className="space-y-4 p-6 bg-[#FAF8F5]/60 rounded-2xl border border-[#EAE3D8]/60 hover:bg-white transition-colors duration-300">
-                <span className={`${cormorant.className} text-[#8E7056] text-3xl font-light block border-b border-[#EAE3D8]/60 pb-3`}>
-                  {milestone.year}
-                </span>
-                <h4 className="text-[13.5px] font-bold text-[#2A2421]">{milestone.title}</h4>
-                <p className="text-xs text-[#2A2421]/90 leading-relaxed font-light">{milestone.desc}</p>
-              </div>
-            ))}
+            <div className="grid grid-cols-3 gap-4">
+              {[
+                { value: `${rating}★`, label: 'Google rating' },
+                { value: `${experienceYears}+`, label: 'Years experience' },
+                { value: `${servicesCount}+`, label: 'Services offered' },
+              ].map((stat) => (
+                <div key={stat.label} className="bg-[#faf7f1] border border-[#1b1b1b]/10 rounded-2xl px-4 py-5 text-center">
+                  <b className="font-[family-name:var(--font-bricolage)] font-bold text-[clamp(20px,2.4vw,28px)] block">{stat.value}</b>
+                  <span className="text-[11px] font-extrabold tracking-[0.1em] uppercase text-[#6b6660]">{stat.label}</span>
+                </div>
+              ))}
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* PILLARS */}
+      <section id="pillars" className="px-6 py-[clamp(72px,8vw,110px)] bg-[#faf7f1]">
+        <div className="max-w-[1240px] mx-auto">
+          <Reveal className="text-center mb-[clamp(38px,4.5vw,60px)]">
+            <span className="inline-flex items-center justify-center gap-2.5 text-[12px] font-extrabold tracking-[0.28em] uppercase text-[#0e5a43] mb-3.5">
+              How we work
+            </span>
+            <h2 className="font-[family-name:var(--font-bricolage)] font-bold text-[clamp(30px,3.8vw,50px)] leading-[1.08] tracking-[-0.02em]">
+              Built on <mark className="bg-[linear-gradient(transparent_62%,#fdeecb_62%)] text-[#0e5a43] px-0.5">four promises</mark>
+            </h2>
+          </Reveal>
+
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+            {PILLARS.map((pillar, idx) => {
+              const Icon = pillar.icon;
+              return (
+                <Reveal key={pillar.title} delay={idx * 60}>
+                  <div className="bg-white border border-[#1b1b1b]/10 rounded-[22px] px-6.5 py-7 h-full transition-all duration-300 hover:-translate-y-1.5 hover:shadow-[0_24px_60px_rgba(27,27,27,0.12)]">
+                    <span className="w-[46px] h-[46px] rounded-[13px] bg-[#fdeecb] grid place-items-center mb-4.5">
+                      <Icon className="w-[21px] h-[21px] text-[#f2a007]" strokeWidth={2} />
+                    </span>
+                    <h3 className="font-[family-name:var(--font-bricolage)] font-bold text-[17.5px] mb-2">{pillar.title}</h3>
+                    <p className="text-[13.5px] text-[#6b6660] font-medium leading-[1.6]">{pillar.desc}</p>
+                  </div>
+                </Reveal>
+              );
+            })}
           </div>
         </div>
       </section>
 
-      {/* DESIGN LEADERS SIDE-BY-SIDE PROFILES */}
-      <section className="space-y-16 mt-24 md:mt-28">
-        <div className="text-center space-y-3">
-          <div className="flex items-center justify-center gap-2 text-[#8E7056] text-[10px] font-bold uppercase tracking-[0.2em]">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#8E7056]" />
-            STUDIO LEADERSHIP
-          </div>
-          <h2 className={`${cormorant.className} text-3xl sm:text-4xl md:text-5xl font-light tracking-wide text-[#2A2421]`}>
-            The Creative <span className="text-[#8E7056] italic">Designers</span>
+      {/* TEAM */}
+      <section id="team" className="px-6 py-[clamp(72px,8vw,110px)] bg-white">
+        <div className="max-w-[1240px] mx-auto grid lg:grid-cols-[0.9fr_1.1fr] gap-[clamp(40px,5vw,72px)] items-center">
+          <Reveal>
+            <div className="rounded-[26px] overflow-hidden aspect-[4/3.9] shadow-[0_24px_60px_rgba(27,27,27,0.12)]">
+              <img src={teamImage} alt={doctor?.name || 'Design team'} loading="lazy" className="w-full h-full object-cover" />
+            </div>
+          </Reveal>
+
+          <Reveal delay={120}>
+            <span className="inline-flex items-center gap-2.5 text-[12px] font-extrabold tracking-[0.28em] uppercase text-[#0e5a43] mb-3.5 before:content-[''] before:w-7 before:h-[2.5px] before:rounded-full before:bg-[#f2a007]">
+              The people behind the work
+            </span>
+            <h2 className="font-[family-name:var(--font-bricolage)] font-bold text-[clamp(28px,3.6vw,46px)] leading-[1.08] tracking-[-0.02em] mb-2.5">
+              {doctor?.name || 'Our Design Team'}
+            </h2>
+            <p className="text-[14px] font-extrabold text-[#0e5a43] mb-5">
+              {doctor?.specialization || 'Interior Design & Turnkey Execution'} · {doctor?.experience || '5+ years'}
+            </p>
+            <p className="text-[#6b6660] font-medium leading-[1.75] text-[15.5px] mb-6.5">
+              &ldquo;Every family has a rhythm. Our job is to make the home dance to it.&rdquo; Every project is personally reviewed before handover — one signature, one standard.
+            </p>
+            <div className="grid gap-3 mb-8">
+              {highlights.slice(0, 4).map((h) => (
+                <div key={h} className="flex gap-3 items-center font-semibold text-[14.5px]">
+                  <Check className="w-5 h-5 text-[#0e5a43] shrink-0" strokeWidth={2.2} />
+                  {h}
+                </div>
+              ))}
+            </div>
+            <Link
+              href={`${basePath}/contact`}
+              className="inline-flex items-center justify-center gap-2 bg-[#0e5a43] text-white font-bold text-[14px] px-6.5 py-3.5 rounded-xl hover:bg-[#0a4232] hover:-translate-y-0.5 hover:shadow-[0_14px_28px_rgba(14,90,67,0.28)] transition-all duration-300"
+            >
+              Meet Us — Book a Free Session
+            </Link>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* CTA */}
+      <section id="about-cta" className="px-6 py-[clamp(64px,7vw,96px)] bg-[#0e5a43] text-white">
+        <Reveal className="max-w-[760px] mx-auto text-center">
+          <h2 className="font-[family-name:var(--font-bricolage)] font-bold text-[clamp(28px,3.8vw,48px)] leading-[1.08] tracking-[-0.02em] mb-4">
+            Let&rsquo;s design your home <mark className="bg-transparent text-[#f2a007]">together</mark>
           </h2>
-        </div>
-
-        {/* Side-by-side asymmetric profiles */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-6xl mx-auto text-left">
-          {/* Leader 1 - Arjun Mehta */}
-          <div className="bg-white rounded-[2.5rem] border border-[#EAE3D8]/60 p-8 sm:p-10 flex flex-col justify-between gap-8 hover:border-[#8E7056]/30 transition-colors duration-300">
-            <div className="space-y-6">
-              <div className="flex flex-col sm:flex-row items-center gap-6">
-                <div className="w-36 h-36 rounded-full overflow-hidden border-4 border-[#FAF8F5] shadow-xs shrink-0 aspect-square">
-                  <img src={doctorImage} alt={doctorName} className="w-full h-full object-cover grayscale opacity-95 hover:grayscale-0 transition-all duration-[600ms]" />
-                </div>
-                <div className="space-y-1">
-                  <span className="text-[9px] font-bold tracking-widest text-[#8E7056] uppercase">FOUNDER &amp; DESIGN DIRECTOR</span>
-                  <h3 className={`${cormorant.className} text-2.5xl font-light text-[#2A2421]`}>{doctorName}</h3>
-                  <p className="text-[11px] text-[#2A2421]/75 font-light">M.Des — NID | B.Arch — Sir J.J. College</p>
-                </div>
-              </div>
-
-              <p className="text-xs sm:text-[13px] text-[#2A2421]/90 leading-relaxed font-light">
-                Arjun oversees the custom cabinetry modular layouts, structural stone curations, and logistics schedules for all residential and commercial contracts in Chennai.
-              </p>
-            </div>
-
-            <div className="pt-6 border-t border-[#EAE3D8]/60 space-y-4">
-              <blockquote className="italic text-[#2A2421]/90 text-[14px] font-serif leading-relaxed">
-                &ldquo;Simplifying furnishing contracts requires tight manufacturing controls and deep respect for premium materials.&rdquo;
-              </blockquote>
-              <div className="flex gap-2">
-                <span className="px-3 py-1 bg-[#FAF8F5] text-[9px] font-bold text-[#8E7056] uppercase tracking-wider rounded-full border border-[#EAE3D8]/60">SPATIAL MAPPING</span>
-                <span className="px-3 py-1 bg-[#FAF8F5] text-[9px] font-bold text-[#8E7056] uppercase tracking-wider rounded-full border border-[#EAE3D8]/60">TIMBER CURATION</span>
-              </div>
-            </div>
+          <p className="text-white/80 font-medium text-[16px] leading-[1.7] mb-8">
+            See our work, then sit with a designer — free, friendly and genuinely useful.
+          </p>
+          <div className="flex flex-wrap gap-3.5 justify-center">
+            <Link
+              href={`${basePath}/gallery`}
+              className="inline-flex items-center justify-center gap-2 bg-transparent border-[1.5px] border-white/55 text-white font-bold text-[14px] px-7 py-4 rounded-[14px] hover:bg-white/10 transition-all duration-300"
+            >
+              Browse Designs
+            </Link>
+            <Link
+              href={`${basePath}/contact`}
+              className="inline-flex items-center justify-center gap-2 bg-[#f2a007] text-[#1b1b1b] font-bold text-[14px] px-7 py-4 rounded-[14px] hover:bg-[#e09500] hover:-translate-y-0.5 hover:shadow-[0_14px_28px_rgba(242,160,7,0.35)] transition-all duration-300"
+            >
+              Book Free Session
+            </Link>
           </div>
-
-          {/* Leader 2 - Kavitha Rajan */}
-          <div className="bg-white rounded-[2.5rem] border border-[#EAE3D8]/60 p-8 sm:p-10 flex flex-col justify-between gap-8 hover:border-[#8E7056]/30 transition-colors duration-300">
-            <div className="space-y-6">
-              <div className="flex flex-col sm:flex-row items-center gap-6">
-                <div className="w-36 h-36 rounded-full overflow-hidden border-4 border-[#FAF8F5] shadow-xs shrink-0 aspect-square">
-                  <img src={secondaryImage} alt={partnerName} className="w-full h-full object-cover grayscale opacity-95 hover:grayscale-0 transition-all duration-[600ms]" />
-                </div>
-                <div className="space-y-1">
-                  <span className="text-[9px] font-bold tracking-widest text-[#8E7056] uppercase">{partnerRole}</span>
-                  <h3 className={`${cormorant.className} text-2.5xl font-light text-[#2A2421]`}>{partnerName}</h3>
-                  <p className="text-[11px] text-[#2A2421]/75 font-light">{partnerCredentials}</p>
-                </div>
-              </div>
-
-              <p className="text-xs sm:text-[13px] text-[#2A2421]/90 leading-relaxed font-light">
-                {partnerBio}
-              </p>
-            </div>
-
-            <div className="pt-6 border-t border-[#EAE3D8]/60 space-y-4">
-              <blockquote className="italic text-[#2A2421]/90 text-[14px] font-serif leading-relaxed">
-                &ldquo;{partnerQuote}&rdquo;
-              </blockquote>
-              <div className="flex gap-2">
-                <span className="px-3 py-1 bg-[#FAF8F5] text-[9px] font-bold text-[#8E7056] uppercase tracking-wider rounded-full border border-[#EAE3D8]/60">BIOPHILIC TEXTILES</span>
-                <span className="px-3 py-1 bg-[#FAF8F5] text-[9px] font-bold text-[#8E7056] uppercase tracking-wider rounded-full border border-[#EAE3D8]/60">COLOR COMPOSITION</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* METRICS & STUDIO PARADIGMS */}
-      <section className="bg-white rounded-[3rem] border border-[#EAE3D8]/50 p-8 md:p-16 relative overflow-hidden shadow-sm text-left mt-24 md:mt-28">
-        <div className="flex flex-col lg:flex-row gap-16 relative z-10">
-          <div className="lg:w-1/3 space-y-6 lg:sticky lg:top-36 self-start">
-             <div className="flex items-center gap-2 text-[#8E7056] text-[10px] font-bold uppercase tracking-[0.2em]">
-               <span className="w-1.5 h-1.5 rounded-full bg-[#8E7056]" />
-               STUDIO STANDARDS
-             </div>
-             <h2 className={`${cormorant.className} text-3xl sm:text-4xl md:text-5xl font-light tracking-wide leading-tight text-[#2A2421]`}>
-               Tactile Planning &amp; <span className="text-[#8E7056] italic">Precision Modular Tech</span>
-             </h2>
-             <p className="text-xs sm:text-sm text-[#2A2421]/90 font-light leading-relaxed">
-               We leverage state-of-the-art fabrication and planning tools to ensure project deadlines are met flawlessly.
-             </p>
-          </div>
-          
-          <div className="lg:w-2/3 grid sm:grid-cols-2 gap-6 relative z-10">
-             {[
-               { title: "High-Fidelity 3D Mapping", desc: "Experience precise spatial plans and lifelike 3D renders prior to starting fabrication.", icon: Monitor },
-               { title: "Material Library Audits", desc: "We curate premium laminates, high-grade acrylics, solid hardwoods, and eco-friendly finishes for your space.", icon: Leaf },
-               { title: "Real-Time Project Tracking", desc: "Inspect production progress, modular fabrication stages, and delivery timelines transparently.", icon: Calendar },
-               { title: "Functional Coordination", desc: "Integrating functional layouts, electrical plumbing routes, and acoustics early in our space layout.", icon: Home }
-             ].map((std, i) => (
-               <div key={i} className="bg-[#FAF8F5]/60 p-6 sm:p-8 rounded-[2rem] border border-[#EAE3D8]/50 hover:border-[#8E7056]/30 transition-all duration-300 group">
-                 <div className="w-10 h-10 bg-white rounded-xl flex items-center justify-center text-[#8E7056] mb-6 border border-[#EAE3D8]/50 group-hover:bg-[#8E7056] group-hover:text-white transition-colors duration-300">
-                   <std.icon className="w-4.5 h-4.5" />
-                 </div>
-                 <h3 className="text-[14px] font-bold mb-2 text-[#2A2421]">{std.title}</h3>
-                 <p className="text-xs text-[#2A2421]/80 font-light leading-relaxed">{std.desc}</p>
-               </div>
-             ))}
-          </div>
-        </div>
-      </section>
-
-      {/* WHY TRUST US SECTION */}
-      <section className="text-center pt-8 space-y-12 mt-24 md:mt-28">
-        <div className="space-y-3 max-w-2xl mx-auto">
-           <div className="flex items-center justify-center gap-2 text-[#8E7056] text-[10px] font-bold uppercase tracking-[0.2em]">
-             <span className="w-1.5 h-1.5 rounded-full bg-[#8E7056]" />
-             OPERATIONAL INTEGRITY
-           </div>
-           <h2 className={`${cormorant.className} text-3xl sm:text-4xl md:text-5xl font-light tracking-wide text-[#2A2421]`}>
-             Turnkey Transparency &amp; <span className="text-[#8E7056] italic">Execution Trust</span>
-           </h2>
-        </div>
-
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-12 mt-8 text-left">
-           {[
-             { num: "01", title: "Chennai Workshops", desc: "Bespoke modular kitchens and carpentry are executed directly in our Chennai facility under strict quality controls." },
-             { num: "02", title: "Turnkey Pricing Logs", desc: "We deliver upfront line-by-line pricing logs with zero unexpected custom markups or hidden fees." },
-             { num: "03", title: "Seamless Transit Care", desc: "Supervising safe transport and site logistics across Chennai and neighboring districts directly." },
-             { num: "04", title: "Curated Vendor Network", desc: "Ongoing partnerships with premium material brands and hardware suppliers (Hettich, Blum, Hafele)." },
-             { num: "05", title: "Detailed Care Handovers", desc: "Providing material references, surface care guidelines, paint codes, and warranty documents at project close." },
-             { num: "06", title: "Flawless Assembly Handovers", desc: "Managing site assembly, custom structural installations, and detailed spatial handovers by certified technicians." }
-           ].map((feature, i) => (
-             <div key={i} className="group cursor-default space-y-4">
-                <div className="flex items-center gap-4">
-                  <span className="text-[#8E7056] font-semibold text-xs tracking-wider opacity-60 group-hover:opacity-100 transition-opacity">{feature.num}</span>
-                  <h3 className="font-bold text-[#2A2421] text-[15px] group-hover:text-[#8E7056] transition-colors">{feature.title}</h3>
-                </div>
-                <div className="w-full h-px bg-[#EAE3D8] group-hover:bg-[#8E7056]/30 transition-colors" />
-                <p className="text-xs text-[#2A2421]/85 font-light leading-relaxed pr-4">{feature.desc}</p>
-             </div>
-           ))}
-        </div>
+        </Reveal>
       </section>
     </div>
   );

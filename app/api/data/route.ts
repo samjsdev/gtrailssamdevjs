@@ -1,15 +1,33 @@
 import { NextResponse } from 'next/server';
-import { readSourceConfig, getDocId } from '@/lib/dataBuilder';
+import {
+  readSourceConfig,
+  writeSourceConfig,
+  syncSourceConfigToAppwrite,
+  fetchAndSaveSourceConfig,
+  getDocId,
+  assertSafeSlug,
+  type GeneratedData,
+} from '@/lib/dataBuilder';
+import { requireAdmin } from '@/lib/adminAuth';
 import path from 'path';
 import fs from 'fs/promises';
-import crypto from 'crypto';
 import { databases } from '@/lib/appwrite';
 
 export async function GET(req: Request) {
   const { searchParams } = new URL(req.url);
   const slug = searchParams.get('slug');
+  const refresh = searchParams.get('refresh') === '1';
 
   if (!slug) return NextResponse.json({ error: 'Missing slug' }, { status: 400 });
+
+  // ?refresh=1 explicitly adds/updates this slug in the essential local set.
+  if (refresh) {
+    const denied = await requireAdmin(req);
+    if (denied) return denied;
+    const fresh = await fetchAndSaveSourceConfig(slug);
+    if (!fresh) return NextResponse.json({ error: 'Config not found in Appwrite' }, { status: 404 });
+    return NextResponse.json(fresh);
+  }
 
   const data = await readSourceConfig(slug);
   if (!data) return NextResponse.json({ error: 'Config not found' }, { status: 404 });
@@ -19,33 +37,25 @@ export async function GET(req: Request) {
 
 export async function PUT(req: Request) {
   try {
+    const denied = await requireAdmin(req);
+    if (denied) return denied;
+
     const { slug, sourceData } = await req.json();
 
     if (!slug || !sourceData) {
       return NextResponse.json({ error: 'Missing slug or source data' }, { status: 400 });
     }
 
-    // 1. Save to Appwrite
-    const documentData = {
-      name: sourceData.clinic?.name || slug,
-      rating: String(sourceData.business?.rating || ''),
-      review_count: String(sourceData.business?.reviewCount || ''),
-      address: sourceData.clinic?.address?.full,
-      phone: sourceData.clinic?.contact?.phone,
-      source_data: JSON.stringify(sourceData)
-    };
+    const data = sourceData as GeneratedData;
 
+    // Primary: save to local JSON for fast previews.
+    await writeSourceConfig(slug, data);
+
+    // Optional: keep Appwrite in sync (best effort).
     try {
-      const docId = getDocId(slug);
-      await databases.createDocument('gtrails', 'scraped_data', docId, documentData);
+      await syncSourceConfigToAppwrite(slug, data);
     } catch (err: any) {
-      if (err.code === 409 || err.message?.includes('already exists')) {
-        const docId = getDocId(slug);
-        await databases.updateDocument('gtrails', 'scraped_data', docId, documentData);
-      } else {
-        console.error('Appwrite save error:', err);
-        // We'll still save locally as fallback
-      }
+      console.error('Appwrite save error:', err.message || err);
     }
 
     return NextResponse.json({ success: true, message: 'Saved successfully' });
@@ -56,21 +66,25 @@ export async function PUT(req: Request) {
 }
 
 export async function DELETE(req: Request) {
+  const denied = await requireAdmin(req);
+  if (denied) return denied;
+
   const { searchParams } = new URL(req.url);
   const slug = searchParams.get('slug');
 
   if (!slug) return NextResponse.json({ error: 'Missing slug' }, { status: 400 });
 
   try {
-    const docId = getDocId(slug);
+    const safeSlug = assertSafeSlug(slug);
+    const docId = getDocId(safeSlug);
 
-    let hrSlug = slug;
+    let hrSlug = safeSlug;
     try {
       const doc = await databases.getDocument('gtrails', 'scraped_data', docId);
       if (doc?.source_data) {
         const json = JSON.parse(doc.source_data);
         if (json.clinic?.slug) {
-          hrSlug = json.clinic.slug;
+          hrSlug = assertSafeSlug(json.clinic.slug);
         }
       }
     } catch (fetchErr) {
@@ -83,16 +97,16 @@ export async function DELETE(req: Request) {
     } catch (err) {
       console.error('Appwrite delete error:', err);
     }
-    
+
     // 2. Delete local files (both human-readable and MD5 directories if they exist)
     const dataDir = path.join(process.cwd(), 'data', hrSlug);
     await fs.rm(dataDir, { recursive: true, force: true });
 
-    if (hrSlug !== slug) {
-      const md5Dir = path.join(process.cwd(), 'data', slug);
+    if (hrSlug !== safeSlug) {
+      const md5Dir = path.join(process.cwd(), 'data', safeSlug);
       await fs.rm(md5Dir, { recursive: true, force: true });
     }
-    
+
     return NextResponse.json({ success: true, message: 'Deleted successfully' });
   } catch (error) {
     console.error('Delete error:', error);

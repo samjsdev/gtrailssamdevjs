@@ -2,93 +2,96 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
-import { Menu, X, Phone } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
+import { Marcellus } from 'next/font/google';
+
+const marcellus = Marcellus({ subsets: ['latin'], weight: '400' });
 
 interface ClientHeaderProps {
   clinicName: string;
   basePath: string;
-  phone: string;
 }
 
-export default function ClientHeader({ clinicName, basePath, phone }: ClientHeaderProps) {
-  const [isOpen, setIsOpen] = useState(false);
-  const pathname = usePathname();
+const NAV_ITEMS = [
+  { label: 'Home', href: '' },
+  { label: 'Studio', href: '/about' },
+  { label: 'Services', href: '/services' },
+  { label: 'Portfolio', href: '/gallery' },
+  { label: 'Contact', href: '/contact' },
+];
 
-  const toggleMenu = () => setIsOpen(!isOpen);
-  const closeMenu = () => setIsOpen(false);
+export default function ClientHeader({ clinicName, basePath }: ClientHeaderProps) {
+  const [open, setOpen] = useState(false);
+  const initial = (clinicName || 'S').charAt(0).toUpperCase();
 
   return (
-    <>
-      <header className="sticky top-0 z-40 bg-[#FCFAF6]/95 backdrop-blur-md border-b border-[#0A0A0A]/5 transition-all duration-300">
-        <div className="max-w-7xl mx-auto px-8 h-24 flex justify-between items-center relative">
-          <Link href={basePath} className="leading-none group z-50">
-            <h1 className="text-xl font-extrabold tracking-widest text-[#0A0A0A] uppercase transition-all group-hover:text-[#0A0A0A]/70 flex items-center gap-2">
-              <span>{clinicName || 'Studio Name'}</span>
-              <span className="w-1.5 h-1.5 rounded-full bg-[#C1FF72] animate-pulse"></span>
-            </h1>
+    <header className="sticky top-0 z-50 bg-[#fdfbf6]/95 backdrop-blur-md border-b border-[#211a13]/10">
+      <div className="max-w-7xl mx-auto px-6 lg:px-7 h-[78px] flex items-center justify-between">
+        {/* Brand */}
+        <Link href={basePath} className="flex items-center gap-3 group min-w-0 mr-3" onClick={() => setOpen(false)}>
+          <span className={`${marcellus.className} w-[42px] h-[42px] shrink-0 border-[1.5px] border-[#a58150] grid place-items-center text-[22px] text-[#a58150] group-hover:bg-[#a58150] group-hover:text-white transition-colors duration-300`}>
+            {initial}
+          </span>
+          <span className="leading-none min-w-0">
+            <span className={`${marcellus.className} block text-[17px] sm:text-[22px] tracking-[0.06em] text-[#211a13] truncate max-w-[48vw] sm:max-w-none`}>
+              {clinicName || 'Design Studio'}
+            </span>
+            <span className="block mt-1 text-[9px] tracking-[0.42em] uppercase text-[#7d7264] font-medium">
+              Interiors
+            </span>
+          </span>
+        </Link>
+
+        {/* Desktop nav */}
+        <nav className="hidden lg:flex items-center gap-8">
+          {NAV_ITEMS.map((item) => (
+            <Link
+              key={item.label}
+              href={`${basePath}${item.href}`}
+              className="relative text-[13px] tracking-[0.18em] uppercase text-[#211a13] py-1.5 after:absolute after:left-0 after:bottom-0 after:h-[1.5px] after:w-0 after:bg-[#a58150] after:transition-all after:duration-300 hover:after:w-full"
+            >
+              {item.label}
+            </Link>
+          ))}
+        </nav>
+
+        {/* Right */}
+        <div className="flex items-center gap-4">
+          <Link
+            href={`${basePath}/contact`}
+            className="hidden sm:inline-flex items-center gap-3 bg-[#211a13] text-white px-6 py-3.5 text-[12px] tracking-[0.2em] uppercase font-medium border border-[#211a13] hover:bg-[#a58150] hover:border-[#a58150] transition-colors duration-300"
+          >
+            Free Consultation
           </Link>
-          
-          {/* Desktop Nav Links */}
-          <nav className="hidden lg:flex items-center gap-10 font-bold text-[11px] uppercase tracking-[0.25em]">
-            <Link href={basePath} className={`${pathname === basePath ? 'text-[#0A0A0A] after:w-4' : 'text-[#0A0A0A]/70'} hover:text-[#0A0A0A] transition-colors relative py-2 after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2 after:w-0 after:h-[1.5px] hover:after:w-4 after:bg-[#C1FF72] after:transition-all`}>Home</Link>
-            <Link href={`${basePath}/services`} className={`${pathname === `${basePath}/services` ? 'text-[#0A0A0A] after:w-4' : 'text-[#0A0A0A]/70'} hover:text-[#0A0A0A] transition-colors relative py-2 after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2 after:w-0 after:h-[1.5px] hover:after:w-4 after:bg-[#C1FF72] after:transition-all`}>Services</Link>
-            <Link href={`${basePath}/about`} className={`${pathname === `${basePath}/about` ? 'text-[#0A0A0A] after:w-4' : 'text-[#0A0A0A]/70'} hover:text-[#0A0A0A] transition-colors relative py-2 after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2 after:w-0 after:h-[1.5px] hover:after:w-4 after:bg-[#C1FF72] after:transition-all`}>About Us</Link>
-            <Link href={`${basePath}/gallery`} className={`${pathname === `${basePath}/gallery` ? 'text-[#0A0A0A] after:w-4' : 'text-[#0A0A0A]/70'} hover:text-[#0A0A0A] transition-colors relative py-2 after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2 after:w-0 after:h-[1.5px] hover:after:w-4 after:bg-[#C1FF72] after:transition-all`}>Gallery</Link>
-            <Link href={`${basePath}/contact`} className={`${pathname === `${basePath}/contact` ? 'text-[#0A0A0A] after:w-4' : 'text-[#0A0A0A]/70'} hover:text-[#0A0A0A] transition-colors relative py-2 after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2 after:w-0 after:h-[1.5px] hover:after:w-4 after:bg-[#C1FF72] after:transition-all`}>Contact</Link>
-          </nav>
-
-          <div className="flex items-center gap-4">
-            {/* Desktop CTA Button */}
-            <Link href={`${basePath}/contact`} className="hidden md:flex items-center gap-2 bg-[#0A0A0A] text-[#FCFAF6] px-8 py-3.5 rounded-full font-bold text-[11px] tracking-[0.2em] uppercase hover:bg-transparent hover:text-[#0A0A0A] transition-all duration-500 shadow-sm border border-[#0A0A0A]">
-              Book Consultation
-            </Link>
-
-            {/* Mobile Hamburger toggle */}
-            <button
-              onClick={toggleMenu}
-              aria-label="Toggle Navigation Menu"
-              className="lg:hidden w-11 h-11 rounded-full bg-[#0A0A0A] text-[#FCFAF6] flex items-center justify-center hover:bg-[#C1FF72] hover:text-[#0A0A0A] transition-all duration-300 active:scale-95 focus:outline-none z-50 border border-[#0A0A0A]"
-            >
-              {isOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
-            </button>
-          </div>
+          <button
+            onClick={() => setOpen(!open)}
+            aria-label="Toggle navigation menu"
+            className="lg:hidden w-10 h-10 grid place-items-center border border-[#211a13]/15 text-[#211a13] hover:border-[#a58150] hover:text-[#a58150] transition-colors"
+          >
+            {open ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+          </button>
         </div>
+      </div>
 
-        {/* Mobile Navigation Panel */}
-        <div 
-          className={`lg:hidden absolute top-24 left-0 right-0 bg-[#FCFAF6]/98 backdrop-blur-md border-b border-[#0A0A0A]/5 px-8 py-8 shadow-2xl transition-all duration-500 ease-in-out origin-top z-40 overflow-hidden ${
-            isOpen ? 'opacity-100 scale-100 pointer-events-auto' : 'opacity-0 scale-95 pointer-events-none'
-          }`}
-        >
-          <nav className="flex flex-col gap-6 text-left font-bold text-xs uppercase tracking-[0.2em] py-4">
-            <Link href={basePath} onClick={closeMenu} className={`py-2 hover:text-[#C1FF72] hover:translate-x-1 transition-all border-b border-[#0A0A0A]/5 ${pathname === basePath ? 'text-[#C1FF72]' : 'text-[#0A0A0A]'}`}>Home</Link>
-            <Link href={`${basePath}/services`} onClick={closeMenu} className={`py-2 hover:text-[#C1FF72] hover:translate-x-1 transition-all border-b border-[#0A0A0A]/5 ${pathname === `${basePath}/services` ? 'text-[#C1FF72]' : 'text-[#0A0A0A]'}`}>Our Services</Link>
-            <Link href={`${basePath}/about`} onClick={closeMenu} className={`py-2 hover:text-[#C1FF72] hover:translate-x-1 transition-all border-b border-[#0A0A0A]/5 ${pathname === `${basePath}/about` ? 'text-[#C1FF72]' : 'text-[#0A0A0A]'}`}>About Us</Link>
-            <Link href={`${basePath}/gallery`} onClick={closeMenu} className={`py-2 hover:text-[#C1FF72] hover:translate-x-1 transition-all border-b border-[#0A0A0A]/5 ${pathname === `${basePath}/gallery` ? 'text-[#C1FF72]' : 'text-[#0A0A0A]'}`}>Portfolio Gallery</Link>
-            <Link href={`${basePath}/contact`} onClick={closeMenu} className={`py-2 hover:text-[#C1FF72] hover:translate-x-1 transition-all border-b border-[#0A0A0A]/5 ${pathname === `${basePath}/contact` ? 'text-[#C1FF72]' : 'text-[#0A0A0A]'}`}>Contact Us</Link>
-          </nav>
-
-          <div className="flex flex-col gap-4 mt-6 pt-6 border-t border-[#0A0A0A]/5">
-            {phone && (
-              <a 
-                href={`tel:${phone}`} 
-                onClick={closeMenu} 
-                className="flex items-center justify-center gap-2 text-xs font-bold uppercase tracking-wider py-3 rounded-full bg-[#0A0A0A]/5 border border-[#0A0A0A]/10 hover:bg-[#C1FF72] hover:text-[#0A0A0A] hover:border-[#C1FF72] transition-all duration-300 text-[#0A0A0A]"
-              >
-                <Phone className="w-3.5 h-3.5" /> Call Studio
-              </a>
-            )}
-            <Link 
-              href={`${basePath}/contact`} 
-              onClick={closeMenu} 
-              className="flex items-center justify-center gap-2 bg-[#0A0A0A] text-[#FCFAF6] py-3.5 rounded-full font-bold uppercase tracking-widest text-[10px] hover:bg-[#C1FF72] hover:text-[#0A0A0A] border border-[#0A0A0A] transition-all duration-300 shadow-sm"
+      {/* Mobile drawer */}
+      <div
+        className={`lg:hidden overflow-hidden transition-all duration-500 border-t border-[#211a13]/10 bg-[#fdfbf6] ${
+          open ? 'max-h-[420px] opacity-100' : 'max-h-0 opacity-0'
+        }`}
+      >
+        <nav className="flex flex-col px-6 py-6 gap-1">
+          {NAV_ITEMS.map((item) => (
+            <Link
+              key={item.label}
+              href={`${basePath}${item.href}`}
+              onClick={() => setOpen(false)}
+              className="py-3 text-[13px] tracking-[0.18em] uppercase text-[#211a13] border-b border-[#211a13]/5 hover:text-[#a58150] transition-colors"
             >
-              Book Consultation
+              {item.label}
             </Link>
-          </div>
-        </div>
-      </header>
-    </>
+          ))}
+        </nav>
+      </div>
+    </header>
   );
 }

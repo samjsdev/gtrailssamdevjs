@@ -1,137 +1,131 @@
 import { readSourceConfig } from '@/lib/dataBuilder';
 import { notFound } from 'next/navigation';
-import { Cormorant_Garamond } from 'next/font/google';
-import { 
-  Sparkles, Phone, Send
-} from 'lucide-react';
+import { MapPin, Phone, Clock, MessageCircle } from 'lucide-react';
+import { cleanClinicName } from '@/lib/copyCleaner';
+import { INTERIOR_FAQS } from '@/lib/interiorContent';
+import Reveal from '../Reveal';
+import LeadForm from '../LeadForm';
 
-const cormorant = Cormorant_Garamond({
-  subsets: ['latin'],
-  weight: ['400', '500', '600', '700'],
-  style: ['normal', 'italic'],
-  variable: '--font-cormorant',
-});
+type PageProps = { params: Promise<{ slug: string }> };
 
-export default async function ContactPage({ params }: { params: Promise<{ slug: string }> }) {
-  const resolvedParams = await params;
-  const { slug } = resolvedParams;
+export default async function Template2Contact({ params }: PageProps) {
+  const { slug } = await params;
+
   const data = await readSourceConfig(slug, 'template2');
   if (!data) return notFound();
 
   const { clinic } = data;
+  const cleanName = cleanClinicName(clinic.name);
+  const city = clinic.address?.city || 'Chennai';
+  const phone = clinic.contact?.phone || '';
+  const address = clinic.address?.full || '';
+  const waPhone = phone.replace(/\D/g, '') || '919751396117';
+  const waLink = `https://wa.me/${waPhone}?text=${encodeURIComponent(
+    `Hi, I'm interested in a free design session with ${cleanName || 'your studio'}!`
+  )}`;
+
+  const mapUrl =
+    clinic.mapEmbedUrl ||
+    `https://maps.google.com/maps?q=${encodeURIComponent((cleanName || '') + ' ' + address)}&output=embed`;
+
+  const cards = [
+    { icon: MapPin, title: 'Visit the Studio', body: address || `${city}, Tamil Nadu`, href: null },
+    ...(phone ? [{ icon: Phone, title: 'Call Us', body: phone, href: `tel:${phone}` }] : []),
+    { icon: MessageCircle, title: 'WhatsApp', body: 'Usually replies in minutes', href: waLink },
+    { icon: Clock, title: 'Open Hours', body: 'Mon – Sat, 10 AM – 7 PM', href: null },
+  ];
 
   return (
-    <div className="font-sans text-[#2A2421] bg-[#F7F4EF] min-h-screen pb-24 space-y-16">
-      {/* Editorial Hero Section */}
-      <section className="relative pt-20 pb-8 text-center space-y-6 max-w-4xl mx-auto">
-        <div className="flex items-center justify-center gap-2 text-[#8E7056] text-[10px] font-bold uppercase tracking-[0.2em]">
-          <span className="w-1.5 h-1.5 rounded-full bg-[#8E7056]" />
-          CONNECT WITH US
-        </div>
-        
-        <h1 className={`${cormorant.className} text-5xl sm:text-6xl lg:text-7xl font-light tracking-wide leading-tight text-[#2A2421]`}>
-          Start Your <span className="text-[#8E7056] italic">Design Journey</span>
-        </h1>
-        
-        <p className="text-sm sm:text-base text-[#2A2421]/90 font-light leading-relaxed max-w-xl mx-auto">
-          Visit our Pallikaranai studio or drop us a message below. Let our design coordination team bring your custom interior vision to life.
-        </p>
-      </section>
+    <div>
+      {/* PAGE HERO + FORM */}
+      <section id="contact-hero" className="bg-[#faf7f1] px-6 py-[clamp(60px,7vw,96px)]">
+        <div className="max-w-[1240px] mx-auto grid lg:grid-cols-[1.05fr_0.95fr] gap-[clamp(36px,5vw,64px)] items-start">
+          <Reveal>
+            <span className="inline-flex items-center gap-2.5 bg-white border border-[#1b1b1b]/10 rounded-full px-4.5 py-2 text-[12px] font-bold tracking-[0.14em] uppercase text-[#0e5a43] mb-6 before:content-[''] before:w-2 before:h-2 before:rounded-full before:bg-[#f2a007]">
+              Free design session
+            </span>
+            <h1 className="font-[family-name:var(--font-bricolage)] font-bold text-[clamp(34px,4.6vw,58px)] leading-[1.06] tracking-[-0.02em]">
+              Your dream home is <mark className="bg-[linear-gradient(transparent_62%,#fdeecb_62%)] text-[#0e5a43] px-0.5">one session away</mark>
+            </h1>
+            <p className="mt-5 max-w-[520px] text-[#6b6660] text-[16.5px] leading-[1.7] font-medium mb-8">
+              Designs, 3D views and an exact quote for your floor plan — free, with zero obligation. A designer (not a call centre) will reach out.
+            </p>
 
-      {/* Premium Split Contact Section with Form */}
-      <section className="bg-white rounded-[3rem] px-8 sm:px-12 lg:px-16 py-16 border border-[#EAE3D8]/50 shadow-sm">
-        <div className="max-w-7xl mx-auto w-full">
-          <div className="grid lg:grid-cols-12 gap-12 lg:gap-16 items-start">
-            {/* Left Column: Client Contact Information & Details */}
-            <div className="lg:col-span-5 space-y-8 text-left">
-              <div className="space-y-4">
-                 <div className="flex items-center gap-2 text-[#8E7056] text-[10px] font-bold uppercase tracking-[0.2em]">
-                   <span className="w-1.5 h-1.5 rounded-full bg-[#8E7056]" />
-                   GET IN TOUCH
-                 </div>
-                 <h2 className={`${cormorant.className} text-4xl sm:text-5xl font-light tracking-wide text-[#2A2421] leading-tight`}>
-                   Let's Collaborate <br />on Your <span className="text-[#8E7056] italic">Dream Space</span>
-                 </h2>
-                 <p className="text-[#2A2421]/90 font-light text-sm leading-relaxed">
-                   Have a design project in mind? Sourcing modular kitchen ideas? Fill out our structural query sheet, or reach out directly to coordinate your consultation.
-                 </p>
-              </div>
-
-              <div className="space-y-6 pt-4 border-t border-[#EAE3D8]">
-                <div className="flex items-start gap-4">
-                  <div className="w-10 h-10 rounded-xl bg-[#8E7056]/10 flex items-center justify-center text-[#8E7056] shrink-0 border border-[#8E7056]/20">
-                    <Sparkles className="w-4.5 h-4.5" />
-                  </div>
-                  <div>
-                    <h4 className="text-[10px] font-bold uppercase tracking-wider text-[#8E7056]">Showroom Location</h4>
-                    <p className="text-xs text-[#2A2421]/90 leading-relaxed font-medium mt-1">
-                      {clinic.address?.full || '1/20, Anna Street, Velachery - Tambaram Main Rd, Pallikaranai, Chennai, Tamil Nadu 600100'}
-                    </p>
-                  </div>
-                </div>
-
-                <div className="flex items-start gap-4">
-                  <div className="w-10 h-10 rounded-xl bg-[#8E7056]/10 flex items-center justify-center text-[#8E7056] shrink-0 border border-[#8E7056]/20">
-                    <Phone className="w-4.5 h-4.5" />
-                  </div>
-                  <div>
-                    <h4 className="text-[10px] font-bold uppercase tracking-wider text-[#8E7056]">Direct Coordination</h4>
-                    <p className="text-xs text-[#2A2421]/90 leading-relaxed font-semibold mt-1">
-                      <a href={`tel:${clinic.contact?.phone || ''}`} className="hover:text-[#8E7056] transition-colors">
-                        {clinic.contact?.phone || 'Contact Number'}
-                      </a>
-                    </p>
-                    <p className="text-[10px] text-[#2A2421]/70 font-light mt-0.5">Mon-Sat · 9:00 AM - 6:00 PM</p>
-                  </div>
-                </div>
-              </div>
-
-              {(() => {
-                const waPhone = clinic.contact?.phone?.replace(/\D/g, '') || '919751396117';
-                const waText = `Hi, I'm interested in booking an interior design consultation at ${clinic.name || 'your studio'}!`;
-                const waLink = `https://wa.me/${waPhone}?text=${encodeURIComponent(waText)}`;
-                return (
-                  <div className="pt-6 flex flex-wrap gap-4">
-                    <a 
-                      href={`tel:${clinic.contact?.phone || ''}`}
-                      className="inline-flex items-center gap-2 px-6 py-3 bg-[#2A2421] hover:bg-[#8E7056] text-white text-[10px] font-bold uppercase tracking-widest rounded-full transition-colors duration-300 shadow-sm"
-                    >
-                      Call Directly
-                    </a>
-                    <a 
-                      href={waLink}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 px-6 py-3 bg-[#25D366] hover:bg-[#1db954] text-white text-[10px] font-bold uppercase tracking-widest rounded-full transition-colors duration-300 shadow-sm"
-                    >
-                      WhatsApp Us
-                    </a>
+            <div className="grid sm:grid-cols-2 gap-4">
+              {cards.map((card) => {
+                const Icon = card.icon;
+                const inner = (
+                  <div className="flex gap-4 items-start bg-white border border-[#1b1b1b]/10 rounded-[18px] px-5 py-4.5 h-full transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_24px_60px_rgba(27,27,27,0.10)]">
+                    <span className="w-11 h-11 shrink-0 rounded-[13px] bg-[#fdeecb] grid place-items-center">
+                      <Icon className="w-5 h-5 text-[#f2a007]" strokeWidth={2} />
+                    </span>
+                    <span>
+                      <b className="font-[family-name:var(--font-bricolage)] font-bold text-[16px] block mb-0.5">{card.title}</b>
+                      <span className="text-[13px] text-[#6b6660] font-semibold leading-snug">{card.body}</span>
+                    </span>
                   </div>
                 );
-              })()}
+                return card.href ? (
+                  <a key={card.title} href={card.href} target={card.href.startsWith('http') ? '_blank' : undefined} rel="noopener noreferrer">
+                    {inner}
+                  </a>
+                ) : (
+                  <div key={card.title}>{inner}</div>
+                );
+              })}
             </div>
+          </Reveal>
 
-            {/* Right Column: Dynamic Form */}
-            <div className="lg:col-span-7 w-full">
-              <form className="bg-[#F7F4EF]/50 rounded-3xl border border-[#EAE3D8]/80 p-8 sm:p-10 text-left space-y-6 shadow-xs">
-                <div className="space-y-2">
-                  <label htmlFor="fullName" className="block text-[10px] font-bold uppercase tracking-wider text-[#2A2421]/80">Full Name</label>
-                  <input type="text" id="fullName" placeholder="Your name" className="w-full text-[#2A2421] px-5 py-3.5 rounded-2xl border border-[#EAE3D8] focus:outline-none focus:ring-2 focus:ring-[#8E7056] focus:border-transparent transition-all bg-white font-sans placeholder-[#2A2421]/50 text-sm" />
-                </div>
-                <div className="space-y-2">
-                  <label htmlFor="email" className="block text-[10px] font-bold uppercase tracking-wider text-[#2A2421]/80">Email Address</label>
-                  <input type="email" id="email" placeholder="you@company.com" className="w-full text-[#2A2421] px-5 py-3.5 rounded-2xl border border-[#EAE3D8] focus:outline-none focus:ring-2 focus:ring-[#8E7056] focus:border-transparent transition-all bg-white font-sans placeholder-[#2A2421]/50 text-sm" />
-                </div>
-                <div className="space-y-2">
-                  <label htmlFor="message" className="block text-[10px] font-bold uppercase tracking-wider text-[#2A2421]/80">Project Details</label>
-                  <textarea id="message" rows={4} placeholder="Describe your dream space, specific challenges, or modular kitchen ideas..." className="w-full text-[#2A2421] px-5 py-3.5 rounded-2xl border border-[#EAE3D8] focus:outline-none focus:ring-2 focus:ring-[#8E7056] focus:border-transparent transition-all resize-none bg-white font-sans placeholder-[#2A2421]/50 text-sm"></textarea>
-                </div>
-                <button type="button" className="w-full py-4 mt-2 bg-[#2A2421] hover:bg-[#8E7056] text-[#FAF8F5] font-bold uppercase tracking-widest text-[10px] rounded-2xl transition-all duration-300 shadow-md shadow-[#2A2421]/10 flex items-center justify-center gap-2 hover:scale-[1.01] active:scale-[0.99]">
-                  Request a Proposal <Send className="w-3.5 h-3.5" />
-                </button>
-              </form>
+          <Reveal delay={120} className="lg:sticky lg:top-28">
+            <LeadForm studioName={cleanName || 'the studio'} waPhone={waPhone} />
+          </Reveal>
+        </div>
+      </section>
+
+      {/* MAP */}
+      <section id="map" className="px-6 py-[clamp(56px,6vw,88px)] bg-white">
+        <div className="max-w-[1240px] mx-auto">
+          <Reveal>
+            <div className="rounded-[26px] overflow-hidden border border-[#1b1b1b]/10 shadow-[0_24px_60px_rgba(27,27,27,0.08)]">
+              <iframe
+                src={mapUrl}
+                width="100%"
+                height="420"
+                style={{ border: 0 }}
+                allowFullScreen
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                title={`Location of ${cleanName || 'our studio'}`}
+                className="w-full block"
+              />
             </div>
-          </div>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* FAQ */}
+      <section id="faq" className="px-6 py-[clamp(64px,7vw,96px)] bg-[#faf7f1]">
+        <div className="max-w-[820px] mx-auto">
+          <Reveal>
+            <h2 className="font-[family-name:var(--font-bricolage)] font-bold text-[clamp(28px,3.6vw,46px)] tracking-[-0.02em] text-center mb-10">
+              Before you ask
+            </h2>
+          </Reveal>
+          <Reveal>
+            {INTERIOR_FAQS.map((faq, idx) => (
+              <details
+                key={idx}
+                open={idx === 0}
+                className="group bg-white border border-[#1b1b1b]/10 rounded-2xl mb-3 overflow-hidden open:border-[#0e5a43] transition-colors duration-300"
+              >
+                <summary className="cursor-pointer list-none px-6.5 py-5.5 font-bold text-[15.5px] flex justify-between items-center gap-4 [&::-webkit-details-marker]:hidden">
+                  {faq.q}
+                  <span className="font-[family-name:var(--font-bricolage)] text-[24px] font-semibold text-[#0e5a43] transition-transform duration-300 group-open:rotate-45 shrink-0">+</span>
+                </summary>
+                <p className="px-6.5 pb-6 text-[#6b6660] text-[14.5px] font-medium leading-[1.75]">{faq.a}</p>
+              </details>
+            ))}
+          </Reveal>
         </div>
       </section>
     </div>

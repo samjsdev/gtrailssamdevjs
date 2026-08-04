@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import { readSourceConfig, getDocId } from '@/lib/dataBuilder';
 import { exportStandaloneProject } from '@/lib/websiteBuild';
+import { requireAdmin } from '@/lib/adminAuth';
 import path from 'path';
 import fs from 'fs/promises';
 import crypto from 'crypto';
@@ -8,6 +9,9 @@ import { databases } from '@/lib/appwrite';
 
 export async function POST(req: Request) {
   try {
+    const denied = await requireAdmin(req);
+    if (denied) return denied;
+
     const { slug, templateId } = await req.json();
 
     if (!slug || !templateId) {

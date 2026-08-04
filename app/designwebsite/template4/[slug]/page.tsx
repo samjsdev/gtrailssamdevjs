@@ -1,283 +1,405 @@
-import { readSourceConfig } from "@/lib/dataBuilder";
-import {
-  DEFAULT_INTERIOR_HIGHLIGHTS,
-  DEFAULT_INTERIOR_REVIEWS,
-  DEFAULT_INTERIOR_SERVICES,
-  INTERIOR_HERO_IMAGES,
-  getInteriorServiceSummary,
-  getInteriorServiceData,
-  getServiceImage,
-  INTERIOR_FAQS,
-} from "@/lib/interiorContent";
-import { notFound } from "next/navigation";
-import Link from "next/link";
-import Image from "next/image";
+import { readSourceConfig } from '@/lib/dataBuilder';
+import { notFound } from 'next/navigation';
+import Link from 'next/link';
+import { Clock, Users, Heart, ShieldCheck, ArrowRight, Check } from 'lucide-react';
+import { cleanClinicName, cleanClinicDescription } from '@/lib/copyCleaner';
+import { DEFAULT_INTERIOR_REVIEWS } from '@/lib/interiorContent';
+import Reveal from './Reveal';
+import SeriesScroll, { SeriesTheme } from './SeriesScroll';
+import TestimonialRotator, { Testimonial } from './TestimonialRotator';
+import VisitForm from './VisitForm';
 
-type PageProps = {
-  params: Promise<{ slug: string }>;
-};
+type PageProps = { params: Promise<{ slug: string }> };
 
-export default async function DesignStudioHome({ params }: PageProps) {
-  const resolvedParams = await params;
-  const { slug } = resolvedParams;
+const THEME_IMAGES = [
+  '/images/stock/68b39046.webp',
+  '/images/stock/a0e0726f.webp',
+  '/images/stock/dc1759ad.webp',
+  '/images/stock/f23e9dc6.webp',
+  '/images/stock/615f9d34.webp',
+];
+
+const THEMES = [
+  { name: 'Lyrical Luxury', desc: 'Warm cove light, velvet & brass — quiet opulence' },
+  { name: 'Modern Zen', desc: 'Bare essentials, breathing room, morning light' },
+  { name: 'European Reverie', desc: 'Panelled walls, antique mirrors, Parisian restraint' },
+  { name: 'Chettinad Contemporary', desc: 'Heritage wood & athangudi soul, modern lines' },
+  { name: 'Coastal Calm', desc: 'Rattan, indigo & sea-breeze ease for coastal homes' },
+];
+
+export default async function Template4Home({ params }: PageProps) {
+  const { slug } = await params;
   const basePath = `/designwebsite/template4/${slug}`;
 
   const data = await readSourceConfig(slug, 'template4');
   if (!data) return notFound();
 
-  const { clinic, business, doctor, media, reviews } = data;
+  const { clinic, business, doctor, media } = data;
+  const cleanName = cleanClinicName(clinic.name);
+  const cleanDesc = cleanClinicDescription(clinic.description, clinic.name);
+  const city = clinic.address?.city || 'Chennai';
+  const phone = clinic.contact?.phone || '';
+  const rating = business.rating || '4.9';
+  const reviewCount = business.reviewCount || '';
+  const experienceYears = doctor?.experience?.replace(/\D/g, '') || '5';
+  const waPhone = phone.replace(/\D/g, '') || '919751396117';
+
   const heroImage =
-    media?.clinicImages?.[0] ||
-    media?.treatmentImages?.[0] ||
-    media?.otherImages?.[0] ||
-    INTERIOR_HERO_IMAGES.home;
-  
-  const doctorImage =
-    doctor?.images?.[0] ||
-    media?.otherImages?.[0] ||
-    INTERIOR_HERO_IMAGES.designer;
+    media.clinicImages?.[0] ||
+    '/images/stock/6dcb103c.webp';
 
-  const services = business?.services?.length
-    ? business.services
-    : DEFAULT_INTERIOR_SERVICES;
+  const themes: SeriesTheme[] = THEMES.map((theme, idx) => ({
+    ...theme,
+    img: media.treatmentImages?.[idx] || THEME_IMAGES[idx],
+  }));
 
-  const highlights = business?.highlights?.length
-    ? business.highlights.slice(0, 4)
-    : DEFAULT_INTERIOR_HIGHLIGHTS;
+  const reviewsSource = data.reviews?.length ? data.reviews : DEFAULT_INTERIOR_REVIEWS;
+  const testimonials: Testimonial[] = reviewsSource.slice(0, 3).map((review: any) => ({
+    text: review.text || review.review || '',
+    author: review.author || review.name || 'A happy homeowner',
+    detail: `Home interiors · ${city}`,
+  }));
 
-  const waphone = clinic.contact?.phone?.replace(/\D/g, "") || "919751396117";
-  const watext = `Hi, I'm interested in booking a design consultation at ${clinic.name || "your studio"}!`;
-  const walink = `https://wa.me/${waphone}?text=${encodeURIComponent(watext)}`;
+  const philosophy = [
+    {
+      icon: Clock,
+      title: 'Daily Rhythms',
+      desc: 'Morning light in the pooja corner, evening calm in the reading nook — spaces tuned to the hours of your day.',
+    },
+    {
+      icon: Users,
+      title: 'Family-First',
+      desc: 'Proportions, seating heights and gathering spaces shaped around how your family actually comes together.',
+    },
+    {
+      icon: Heart,
+      title: 'Pet-Friendly',
+      desc: 'Scratch-proof finishes, washable fabrics and window perches — beautiful rooms that survive paws and play.',
+    },
+    {
+      icon: ShieldCheck,
+      title: 'Senior-Safe',
+      desc: 'Step-free thresholds, grab-rail-ready baths and clear sightlines — dignity and ease for parents and grandparents.',
+    },
+  ];
+
+  const transformations = [
+    {
+      quote: '"It finally feels like us."',
+      title: 'A Family Apartment, Reimagined',
+      desc: 'A bare builder-finish apartment became a layered, light-filled family home — pooja niche at sunrise, a homework counter that seats three, and storage that swallowed a decade of clutter.',
+      specs: [
+        { b: '3BHK', s: 'Configuration' },
+        { b: '9 weeks', s: 'Timeline' },
+        { b: 'Modern Zen', s: 'Theme' },
+        { b: city, s: 'Location' },
+      ],
+      img: media.treatmentImages?.[0] || '/images/stock/a151a9e5.webp',
+      tag: 'Completed · 9 weeks',
+    },
+    {
+      quote: '"Guests never want to leave the kitchen."',
+      title: 'A Villa Around Its Kitchen',
+      desc: 'A 20-year-old villa, reimagined around a showpiece kitchen — handmade tiles, a generous island and a herb wall that gets the morning sun. Heritage bones, contemporary heart.',
+      specs: [
+        { b: '4BHK Villa', s: 'Configuration' },
+        { b: '14 weeks', s: 'Timeline' },
+        { b: 'Chettinad', s: 'Theme' },
+        { b: city, s: 'Location' },
+      ],
+      img: media.treatmentImages?.[1] || '/images/stock/bf333360.webp',
+      tag: 'Completed · 14 weeks',
+    },
+  ];
+
+  const journey = [
+    { title: 'Say Hello', desc: 'A quiet conversation over coffee — about you, your rituals, your home.' },
+    { title: 'Dream Together', desc: 'Mood boards and theme explorations tailored to your taste and budget.' },
+    { title: 'See It Alive', desc: 'Layouts, materials and cinematic 3D walkthroughs of every room.' },
+    { title: 'Trust the Craft', desc: 'Master carpenters, weekly photo diaries and a dedicated project manager.' },
+    { title: 'Move In, Smiling', desc: 'A styled, deep-cleaned, ready home — and a care plan for years.' },
+  ];
 
   return (
-    <>
-      {/* HERO SECTION */}
-      <section className="relative h-screen min-h-[600px] w-full flex items-center justify-center overflow-hidden">
-        {/* Background Image with Overlay */}
-        <div className="absolute inset-0 z-0" data-gsap="hero-bg">
+    <div>
+      {/* HERO */}
+      <section className="relative min-h-[94vh] flex items-end text-white overflow-hidden">
+        <div className="absolute inset-0">
           <img
             src={heroImage}
-            alt={clinic.name || "Interior design studio"}
-            className="w-full h-full object-cover object-center"
+            alt={`Elegant interiors designed by ${cleanName || 'our studio'}`}
+            className="w-full h-full object-cover animate-[t4zoom_22s_ease-in-out_infinite_alternate]"
           />
-          <div className="absolute inset-0 bg-black/40"></div>
+          <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(23,19,15,0.35)_0%,rgba(23,19,15,0.15)_45%,rgba(23,19,15,0.88)_100%)]" />
         </div>
-
-        {/* Content */}
-        <div className="relative z-10 text-center px-6 max-w-4xl mx-auto flex flex-col items-center pt-20">
-          <p className="text-white/80 uppercase tracking-[0.3em] text-xs md:text-sm font-semibold mb-6" data-gsap="hero-sub">
-            {clinic.name || "INTERIOR STUDIO"}
-          </p>
-          <h1 className="text-4xl md:text-6xl lg:text-7xl font-light text-white leading-tight mb-8" data-gsap="hero-title">
-            {clinic.tagline || "Elevating spaces. Inspiring lives."}
+        <div className="relative w-full max-w-[1240px] mx-auto px-[30px] pt-[120px] pb-16">
+          <div className="flex items-center gap-3 text-[11.5px] font-semibold tracking-[0.3em] uppercase text-[#d9c49a] before:content-[''] before:w-8 before:h-px before:bg-[#d9c49a]">
+            Bespoke interiors · {city}
+          </div>
+          <h1 className="font-[family-name:var(--font-cormorant)] text-[clamp(42px,6vw,76px)] font-semibold leading-[1.12] max-w-[720px] mt-[22px] mb-5">
+            Homes that feel
+            <br />
+            like <em className="italic text-[#d9c49a]">you.</em>
           </h1>
-          <a
-            href={walink}
-            target="_blank"
-            rel="noreferrer"
-            className="px-8 py-4 bg-white text-stone-900 border border-white uppercase tracking-widest text-sm hover:bg-transparent hover:text-white transition-all duration-300"
-            data-gsap="hero-btn"
-          >
-            Start Your Project
-          </a>
-        </div>
-      </section>
-
-      {/* ABOUT SECTION */}
-      <section id="about" className="py-24 md:py-32 px-6 bg-white">
-        <div className="max-w-6xl mx-auto flex flex-col lg:flex-row items-center gap-16">
-          <div className="w-full lg:w-1/2" data-gsap="reveal">
-            <div className="relative aspect-[3/4] w-full max-w-md mx-auto lg:ml-0 overflow-hidden" data-gsap="parallax-container">
-              <img 
-                src={doctorImage} 
-                alt="Lead designer" 
-                className="w-full h-full object-cover"
-                data-gsap="parallax-img"
-              />
-            </div>
+          <p className="text-[17px] font-light text-white/85 max-w-[520px] mb-9">
+            {cleanDesc ||
+              'Design that begins with how you live — your mornings, your rituals, your people — translated into rooms of rare beauty and rare comfort.'}
+          </p>
+          <div className="flex gap-4 flex-wrap mb-14">
+            <Link
+              href={`${basePath}/contact`}
+              className="inline-flex items-center justify-center gap-2.5 px-8 py-4 text-[13px] font-semibold tracking-[0.14em] uppercase bg-[#b08d4f] text-[#17130f] hover:bg-[#c5a266] hover:-translate-y-0.5 hover:shadow-[0_14px_28px_rgba(176,141,79,0.3)] transition-all duration-300"
+            >
+              Book a Private Consultation
+            </Link>
+            <Link
+              href={`${basePath}/services`}
+              className="inline-flex items-center justify-center gap-2.5 px-8 py-4 text-[13px] font-semibold tracking-[0.14em] uppercase border border-white/50 text-white hover:bg-white/12 transition-all duration-300"
+            >
+              Explore Our Work
+            </Link>
           </div>
-          <div className="w-full lg:w-1/2 space-y-8" data-gsap="reveal">
-            <p className="uppercase tracking-[0.2em] text-sm text-stone-500 font-semibold">— Our Philosophy</p>
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-light text-stone-900 leading-tight">
-              {doctor?.name || "The Design Vision"}
-            </h2>
-            <p className="text-lg text-stone-600 font-light leading-relaxed">
-              {clinic.description ||
-                "We believe in the power of spaces to transform how we live and work. By blending meticulous planning with curated materials, we craft environments that feel both timeless and deeply personal."}
-            </p>
-            <p className="text-stone-500 font-light">
-               {doctor?.specialization || "Residential & Commercial Interior Planning"}
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* HIGHLIGHTS SECTION */}
-      <section className="py-24 px-6 bg-stone-100">
-        <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-16">
-            <p className="uppercase tracking-[0.2em] text-sm text-stone-500 font-semibold mb-4">— Why Us</p>
-            <h2 className="text-3xl md:text-4xl font-light text-stone-900">Precision in Every Detail</h2>
-          </div>
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-12" data-gsap="stagger-container">
-            {highlights.map((highlight: string, index: number) => (
-              <div key={index} className="flex flex-col text-center" data-gsap="stagger-item">
-                <span className="text-stone-300 text-5xl font-light mb-4">0{index + 1}</span>
-                <p className="text-stone-800 font-medium tracking-wide uppercase text-sm">{highlight}</p>
+          <div className="border-t border-white/25 pt-[26px] flex flex-wrap">
+            {[
+              { b: `${rating}★`, s: 'Google rating' },
+              { b: `${experienceYears}+ yrs`, s: 'Of quiet craft' },
+              { b: reviewCount ? `${reviewCount}+` : '100%', s: reviewCount ? 'Happy reviews' : 'Itemised quotes' },
+              { b: '1', s: 'Standard of craft' },
+            ].map((stat) => (
+              <div key={stat.s} className="flex-1 min-w-[150px] pr-7">
+                <b className="font-[family-name:var(--font-cormorant)] text-[34px] font-semibold text-[#d9c49a] block leading-[1.1]">
+                  {stat.b}
+                </b>
+                <span className="text-[11.5px] tracking-[0.16em] uppercase text-white/65">{stat.s}</span>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* SERVICES SECTION */}
-      <section id="services" className="py-24 md:py-32 px-6 bg-white">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-20">
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-light text-stone-900 mb-6">Our Expertise</h2>
-            <p className="text-stone-500 font-light max-w-2xl mx-auto">Comprehensive interior solutions tailored to elevate your environment.</p>
-          </div>
-          
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10" data-gsap="stagger-container">
-            {services.map((svc: string, index: number) => {
-              const svcData = getInteriorServiceData(svc);
-              const svcImage = getServiceImage(svc, media) || svcData?.image || INTERIOR_HERO_IMAGES.services;
+      {/* PHILOSOPHY */}
+      <section className="py-24 bg-[#fbf8f1]" id="philosophy">
+        <div className="max-w-[1240px] mx-auto px-[30px]">
+          <Reveal className="text-center mb-[52px]">
+            <div className="inline-flex items-center gap-3 text-[11.5px] font-semibold tracking-[0.3em] uppercase text-[#a4532f] before:content-[''] before:w-8 before:h-px before:bg-[#a4532f]">
+              The LifeDesign philosophy
+            </div>
+            <h2 className="font-[family-name:var(--font-cormorant)] text-[clamp(30px,4vw,46px)] font-semibold leading-[1.12] mt-4 mb-3.5">
+              We design around <em className="italic text-[#a4532f]">your life</em>, not just your walls
+            </h2>
+            <p className="text-[#7a6f60] text-[16px] max-w-[620px] mx-auto font-light">
+              Every home begins with a long conversation about routines, relationships and rituals — then the drawings begin.
+            </p>
+          </Reveal>
+
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-[22px]">
+            {philosophy.map((item, idx) => {
+              const Icon = item.icon;
               return (
-                <div key={index} className="group cursor-pointer" data-gsap="stagger-item">
-                  <div className="aspect-[4/5] overflow-hidden mb-6 relative">
-                    <img 
-                      src={svcImage} 
-                      alt={svc} 
-                      className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700"
-                    />
+                <Reveal key={item.title} delay={idx * 70}>
+                  <div className="group bg-[#fbf8f1] border border-[#221c14]/14 p-9 h-full transition-all duration-[350ms] hover:bg-[#17130f] hover:text-white hover:-translate-y-1.5">
+                    <span className="w-[50px] h-[50px] rounded-full bg-[#f5f1e8] grid place-items-center mb-5 text-[#a4532f] transition-all duration-[350ms] group-hover:bg-[#b08d4f] group-hover:text-[#17130f]">
+                      <Icon className="w-[22px] h-[22px]" strokeWidth={1.8} />
+                    </span>
+                    <h3 className="font-[family-name:var(--font-cormorant)] text-[23px] font-semibold mb-2.5">{item.title}</h3>
+                    <p className="text-[14px] text-[#7a6f60] font-light leading-[1.65] transition-colors duration-[350ms] group-hover:text-white/70">
+                      {item.desc}
+                    </p>
                   </div>
-                  <h3 className="text-xl font-medium text-stone-900 mb-3 tracking-wide">{svc}</h3>
-                  <p className="text-stone-600 font-light leading-relaxed text-sm">
-                    {svcData?.description || getInteriorServiceSummary(svc)}
-                  </p>
-                </div>
+                </Reveal>
               );
             })}
           </div>
         </div>
       </section>
 
-      {/* TRUST STRIP / PARTNERS */}
-      <section className="py-16 bg-stone-900 text-stone-400 border-t border-b border-stone-850">
-        <div className="max-w-6xl mx-auto px-6">
-          <p className="text-[10px] font-bold uppercase tracking-[0.3em] text-center text-stone-500 mb-8">
-            TRUSTED BY DESIGN ENTHUSIASTS WORLDWIDE
-          </p>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 items-center text-center font-semibold text-[10px] md:text-xs tracking-[0.25em] text-stone-400 uppercase">
-            <span className="hover:text-stone-100 transition-colors cursor-default">ARCHITECTURAL ARCHIVE</span>
-            <span className="hover:text-stone-100 transition-colors cursor-default">FINE MATERIAL CO.</span>
-            <span className="hover:text-stone-100 transition-colors cursor-default">LUXE INTERIOR LAB</span>
-            <span className="hover:text-stone-100 transition-colors cursor-default">TIMBER & MASON</span>
-          </div>
+      {/* ATELIER SERIES */}
+      <section className="py-24" id="series">
+        <div className="max-w-[1240px] mx-auto px-[30px]">
+          <Reveal>
+            <div className="flex items-center gap-3 text-[11.5px] font-semibold tracking-[0.3em] uppercase text-[#a4532f] before:content-[''] before:w-8 before:h-px before:bg-[#a4532f]">
+              The Signature Series
+            </div>
+            <h2 className="font-[family-name:var(--font-cormorant)] text-[clamp(30px,4vw,46px)] font-semibold leading-[1.12] mt-4 mb-8">
+              Five worlds, <em className="italic text-[#a4532f]">curated for you</em>
+            </h2>
+            <SeriesScroll themes={themes} collection="The Signature Series" />
+          </Reveal>
         </div>
       </section>
 
-      {/* TESTIMONIALS SECTION */}
-      <section className="py-24 md:py-32 px-6 bg-stone-100">
-        <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-20">
-            <p className="uppercase tracking-[0.2em] text-xs text-stone-500 font-semibold mb-4">— Client Stories</p>
-            <h2 className="text-3xl md:text-5xl font-light text-stone-900 leading-tight">What Our Clients Say</h2>
-          </div>
+      {/* TRANSFORMATIONS */}
+      <section className="py-24 bg-[#fbf8f1]" id="homes">
+        <div className="max-w-[1240px] mx-auto px-[30px]">
+          <Reveal className="text-center mb-[52px]">
+            <div className="inline-flex items-center gap-3 text-[11.5px] font-semibold tracking-[0.3em] uppercase text-[#a4532f] before:content-[''] before:w-8 before:h-px before:bg-[#a4532f]">
+              Transformations that tell a story
+            </div>
+            <h2 className="font-[family-name:var(--font-cormorant)] text-[clamp(30px,4vw,46px)] font-semibold leading-[1.12] mt-4">
+              Real homes. Real families. <em className="italic text-[#a4532f]">Real magic.</em>
+            </h2>
+          </Reveal>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8" data-gsap="stagger-container">
-            {(reviews?.length ? reviews : DEFAULT_INTERIOR_REVIEWS).slice(0, 3).map((review: any, index: number) => (
-              <div key={index} className="bg-white p-8 border border-stone-200/60 shadow-xs flex flex-col justify-between" data-gsap="stagger-item">
-                <div className="space-y-6">
-                  <div className="flex gap-1 text-amber-500">
-                    {[...Array(5)].map((_, i) => (
-                      <svg key={i} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4">
-                        <path fillRule="evenodd" d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.007 5.404.433c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.433 2.082-5.006z" clipRule="evenodd" />
-                      </svg>
-                    ))}
+          <div className="flex flex-col gap-[90px]">
+            {transformations.map((item, idx) => (
+              <Reveal key={item.title}>
+                <div className="grid lg:grid-cols-2 gap-[52px] lg:gap-[70px] items-center">
+                  <div className={`relative ${idx % 2 === 1 ? 'lg:order-2' : ''}`}>
+                    <div
+                      className={`absolute border border-[#b08d4f] ${
+                        idx % 2 === 1 ? '-top-4 -right-4 bottom-4 left-4' : '-top-4 right-4 bottom-4 -left-4'
+                      }`}
+                    />
+                    <img src={item.img} alt={item.title} loading="lazy" className="relative z-[1] w-full aspect-[4/3.1] object-cover" />
+                    <div className="absolute z-[2] -bottom-[18px] left-8 bg-[#17130f] text-white px-6 py-3.5 text-[11px] tracking-[0.18em] uppercase">
+                      {item.tag.split('·')[0]}· <b className="text-[#d9c49a]">{item.tag.split('·')[1]}</b>
+                    </div>
                   </div>
-                  <p className="text-stone-600 font-light leading-relaxed italic text-sm">
-                    &ldquo;{review.text}&rdquo;
-                  </p>
+                  <div className={idx % 2 === 1 ? 'lg:order-1' : ''}>
+                    <span className="font-[family-name:var(--font-cormorant)] italic text-[20px] text-[#a4532f]">{item.quote}</span>
+                    <h3 className="font-[family-name:var(--font-cormorant)] text-[clamp(28px,3.4vw,40px)] font-semibold leading-[1.12] mt-2.5 mb-3.5">
+                      {item.title}
+                    </h3>
+                    <p className="text-[#7a6f60] text-[15.5px] font-light mb-6">{item.desc}</p>
+                    <div className="flex flex-col sm:flex-row border-y border-[#221c14]/14 mb-7">
+                      {item.specs.map((spec, sIdx) => (
+                        <div
+                          key={spec.s}
+                          className={`flex-1 py-4 sm:px-4.5 ${sIdx === 0 ? 'sm:pl-0' : 'border-t sm:border-t-0 sm:border-l border-[#221c14]/14'}`}
+                        >
+                          <b className="font-[family-name:var(--font-cormorant)] text-[22px] font-semibold block">{spec.b}</b>
+                          <span className="text-[11px] tracking-[0.14em] uppercase text-[#7a6f60]">{spec.s}</span>
+                        </div>
+                      ))}
+                    </div>
+                    <Link
+                      href={`${basePath}/gallery`}
+                      className="group inline-flex items-center gap-2.5 text-[12.5px] font-semibold tracking-[0.18em] uppercase text-[#a4532f]"
+                    >
+                      View more homes
+                      <ArrowRight className="w-4 h-4 transition-transform duration-250 group-hover:translate-x-1.5" strokeWidth={2.2} />
+                    </Link>
+                  </div>
                 </div>
-                <div className="pt-6 mt-8 border-t border-stone-100 flex items-center gap-3">
-                  <div className="w-8 h-8 rounded-full bg-stone-900 text-stone-100 flex items-center justify-center font-bold text-xs uppercase">
-                    {review.author?.charAt(0) || "C"}
-                  </div>
-                  <div>
-                    <h4 className="text-xs font-semibold text-stone-900 uppercase tracking-wider">{review.author || "Client"}</h4>
-                    <p className="text-[10px] text-stone-400 uppercase tracking-widest">{review.role || "Homeowner"}</p>
-                  </div>
-                </div>
-              </div>
+              </Reveal>
             ))}
           </div>
         </div>
       </section>
 
-      {/* FAQ SECTION */}
-      <section className="py-24 md:py-32 px-6 bg-white border-t border-stone-200/80" data-gsap="reveal">
-        <div className="max-w-4xl mx-auto">
-          <div className="text-center mb-20">
-            <p className="uppercase tracking-[0.2em] text-xs text-stone-500 font-semibold mb-4">— Client Queries</p>
-            <h2 className="text-3xl md:text-5xl font-light text-stone-900 leading-tight">Frequently Asked Questions</h2>
-          </div>
+      {/* NUMBERS */}
+      <div className="bg-[#17130f] text-white py-[76px]">
+        <div className="max-w-[1240px] mx-auto px-[30px] grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-10 text-center">
+          {[
+            { b: `${rating}★`, s: 'Google rating' },
+            { b: reviewCount ? `${reviewCount}+` : '100+', s: 'Happy families' },
+            { b: `${experienceYears}`, s: 'Years of practice' },
+            { b: '45', s: 'Day guarantee' },
+            { b: '10 yr', s: 'Warranty' },
+          ].map((num, idx) => (
+            <Reveal key={num.s} delay={idx * 60}>
+              <b className="font-[family-name:var(--font-cormorant)] text-[clamp(36px,4.4vw,52px)] font-semibold text-[#d9c49a] block leading-[1.05]">
+                {num.b}
+              </b>
+              <span className="text-[11px] tracking-[0.2em] uppercase text-white/60">{num.s}</span>
+            </Reveal>
+          ))}
+        </div>
+      </div>
 
-          <div className="space-y-4">
-            {INTERIOR_FAQS.map((faq, i) => (
-              <details key={i} className="group border border-stone-200 bg-stone-50 overflow-hidden transition-all duration-300" open={i === 0}>
-                <summary className="flex justify-between items-center font-semibold text-stone-850 text-sm md:text-base cursor-pointer list-none p-6 hover:text-stone-600 transition-colors uppercase tracking-wider">
-                  {faq.q}
-                  <span className="transition-transform duration-300 group-open:rotate-180 text-stone-400">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-5 h-5">
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
-                    </svg>
+      {/* JOURNEY */}
+      <section className="py-24">
+        <div className="max-w-[1240px] mx-auto px-[30px]">
+          <Reveal className="text-center mb-[52px]">
+            <div className="inline-flex items-center gap-3 text-[11.5px] font-semibold tracking-[0.3em] uppercase text-[#a4532f] before:content-[''] before:w-8 before:h-px before:bg-[#a4532f]">
+              How your home comes together
+            </div>
+            <h2 className="font-[family-name:var(--font-cormorant)] text-[clamp(30px,4vw,46px)] font-semibold leading-[1.12] mt-4">
+              A guided journey, <em className="italic text-[#a4532f]">never a process</em>
+            </h2>
+          </Reveal>
+
+          <div className="grid sm:grid-cols-2 lg:grid-cols-5">
+            {journey.map((step, idx) => (
+              <Reveal key={step.title} delay={idx * 60}>
+                <div className={`p-8 h-full transition-colors duration-300 hover:bg-[#fbf8f1] ${idx > 0 ? 'lg:border-l lg:border-[#221c14]/14' : ''}`}>
+                  <span className="font-[family-name:var(--font-cormorant)] italic text-[46px] text-[#d9c49a] block leading-none mb-4.5">
+                    {String(idx + 1).padStart(2, '0')}
                   </span>
-                </summary>
-                <div className="text-stone-600 font-light text-sm leading-relaxed border-t border-stone-200/60 p-6 bg-white">
-                  {faq.a}
+                  <h3 className="font-[family-name:var(--font-cormorant)] text-[22px] font-semibold mb-2.5">{step.title}</h3>
+                  <p className="text-[13.5px] text-[#7a6f60] font-light leading-[1.6]">{step.desc}</p>
                 </div>
-              </details>
+              </Reveal>
             ))}
           </div>
         </div>
       </section>
 
-      {/* COLLABORATION / CONTACT CALLOUT SECTION */}
-      <section className="py-24 px-6 bg-stone-900 text-white text-center space-y-8">
-        <div className="max-w-4xl mx-auto space-y-6">
-          <p className="uppercase tracking-[0.3em] text-xs text-stone-400 font-semibold">— Let's Collaborate</p>
-          <h2 className="text-3xl md:text-5xl font-light leading-tight max-w-2xl mx-auto tracking-wide">
-            Ready to design your private sanctuary?
-          </h2>
-          <p className="text-stone-400 max-w-md mx-auto font-light text-sm leading-relaxed">
-            Schedule a showroom visit, view physical materials, or speak with our architects.
-          </p>
-          <div className="pt-4">
-            <Link
-              href={`${basePath}/contact`}
-              className="px-8 py-4 bg-white text-stone-900 border border-white uppercase tracking-widest text-sm hover:bg-transparent hover:text-white transition-all duration-300 inline-block font-semibold"
-            >
-              Get In Touch
-            </Link>
-          </div>
+      {/* TESTIMONIALS */}
+      <section className="py-24 bg-[#fbf8f1]">
+        <div className="max-w-[1240px] mx-auto px-[30px]">
+          <Reveal className="text-center mb-8">
+            <div className="inline-flex items-center gap-3 text-[11.5px] font-semibold tracking-[0.3em] uppercase text-[#a4532f] before:content-[''] before:w-8 before:h-px before:bg-[#a4532f]">
+              Stories from our homeowners
+            </div>
+            <h2 className="font-[family-name:var(--font-cormorant)] text-[clamp(30px,4vw,46px)] font-semibold leading-[1.12] mt-4">
+              In their <em className="italic text-[#a4532f]">own words</em>
+            </h2>
+          </Reveal>
+          <Reveal>
+            <TestimonialRotator items={testimonials} />
+          </Reveal>
         </div>
       </section>
 
-
-      {/* WhatsApp Floating Bubble */}
-      <a
-        href={walink}
-        target="_blank"
-        rel="noreferrer"
-        aria-label="Chat on WhatsApp"
-        className="fixed bottom-8 right-8 z-50 w-14 h-14 bg-[#25D366] hover:bg-[#1db954] rounded-full flex items-center justify-center shadow-lg transition-all hover:scale-110 active:scale-95 duration-300"
-        style={{ boxShadow: '0 8px 32px rgba(37,211,102,0.3)' }}
-      >
-        <svg xmlns="http://www.w3.org/2050/svg" viewBox="0 0 24 24" fill="white" className="w-7 h-7">
-          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
-        </svg>
-      </a>
-    </>
+      {/* VISIT / CTA */}
+      <section className="py-24" id="visit">
+        <div className="max-w-[1240px] mx-auto px-[30px]">
+          <Reveal>
+            <div className="grid lg:grid-cols-[1.1fr_0.9fr] bg-[#17130f] text-white overflow-hidden">
+              <div className="min-h-[300px] lg:min-h-[480px]">
+                <img
+                  src={
+                    media.clinicImages?.[1] ||
+                    media.otherImages?.[0] ||
+                    '/images/stock/84fea9c5.webp'
+                  }
+                  alt={`Inside the ${cleanName || 'design'} studio`}
+                  loading="lazy"
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <div className="px-8 py-12 lg:px-[58px] lg:py-16 flex flex-col justify-center">
+                <div className="flex items-center gap-3 text-[11.5px] font-semibold tracking-[0.3em] uppercase text-[#d9c49a] before:content-[''] before:w-8 before:h-px before:bg-[#d9c49a]">
+                  Step into the studio
+                </div>
+                <h2 className="font-[family-name:var(--font-cormorant)] text-[clamp(30px,3.6vw,44px)] font-semibold leading-[1.12] my-4">
+                  Feel the materials.
+                  <br />
+                  <em className="italic text-[#d9c49a]">Meet your designer.</em>
+                </h2>
+                <p className="text-white/75 text-[15px] font-light mb-7 max-w-[460px]">
+                  Walk through real material samples and sit with a designer for an unhurried hour. By appointment — never a queue.
+                </p>
+                <ul className="flex flex-col gap-3 mb-9">
+                  {[
+                    'Full-scale kitchen & wardrobe references',
+                    'Material library with hundreds of finishes',
+                    '3D walkthroughs of your own floor plan',
+                    'Transparent, itemised quotes on the spot',
+                  ].map((li) => (
+                    <li key={li} className="flex gap-3 text-[14px] text-white/88 font-light">
+                      <Check className="w-[17px] h-[17px] text-[#b08d4f] shrink-0 mt-[3px]" strokeWidth={2.2} />
+                      {li}
+                    </li>
+                  ))}
+                </ul>
+                <VisitForm studioName={cleanName || 'the studio'} waPhone={waPhone} />
+              </div>
+            </div>
+          </Reveal>
+        </div>
+      </section>
+    </div>
   );
 }

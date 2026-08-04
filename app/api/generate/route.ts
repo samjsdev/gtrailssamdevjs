@@ -1,20 +1,19 @@
 import { NextResponse } from 'next/server';
-import { promises as fs } from 'fs';
-import path from 'path';
-// Build trigger imports removed
+import { writeSourceConfig, type GeneratedData } from '@/lib/dataBuilder';
+import { requireAdmin } from '@/lib/adminAuth';
 
 export async function POST(req: Request) {
   try {
+    const denied = await requireAdmin(req);
+    if (denied) return denied;
+
     const { slug, sourceData } = await req.json();
 
     if (!slug || !sourceData) {
       return NextResponse.json({ error: 'Missing slug or source data' }, { status: 400 });
     }
 
-    const sourcePath = path.join(process.cwd(), 'data', slug, 'source.json');
-
-    // Overwrite the existing source.json with the user's edits
-    await fs.writeFile(sourcePath, JSON.stringify(sourceData, null, 2), 'utf-8');
+    await writeSourceConfig(slug, sourceData as GeneratedData);
 
     return NextResponse.json({ success: true, slug, websiteGenerated: false });
   } catch (error: any) {

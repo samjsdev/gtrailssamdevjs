@@ -38,8 +38,8 @@ export default function DashboardClient({ initialSites }: { initialSites: Site[]
         <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-blue-50 mb-4">
           <ExternalLink className="w-8 h-8 text-blue-500" />
         </div>
-        <h3 className="text-xl font-bold text-gray-800 mb-2">No Studios Generated Yet</h3>
-        <p className="text-gray-500 mb-6">Paste a Google Maps link to generate your first interior design website payload.</p>
+        <h3 className="text-xl font-bold text-gray-800 mb-2">No Essential Leads Yet</h3>
+        <p className="text-gray-500 mb-6">Paste a Google Maps link to add a lead — it will be saved locally for fast previews.</p>
         <Link href="/private/admin" className="bg-blue-600 text-white px-6 py-3 rounded-lg font-medium shadow-sm hover:bg-blue-700 transition">
           Create New Site
         </Link>

@@ -1,149 +1,132 @@
 import { readSourceConfig } from '@/lib/dataBuilder';
 import { notFound } from 'next/navigation';
-import { Fustat } from 'next/font/google';
-import GalleryGrid from './GalleryGrid';
-import { cleanClinicName } from '@/lib/copyCleaner';
+import Link from 'next/link';
+import { Check } from 'lucide-react';
+import { cleanClinicName, cleanClinicDescription } from '@/lib/copyCleaner';
+import Reveal from '../Reveal';
+import BeforeAfter from '../BeforeAfter';
+import GalleryGrid, { GalleryItem } from './GalleryGrid';
 
-const fustat = Fustat({
-  subsets: ['latin'],
-  weight: ['400', '500', '600', '700'],
-  style: ['normal'],
-  display: 'swap',
-});
+type PageProps = { params: Promise<{ slug: string }> };
 
-export default async function GalleryPage({ params }: { params: Promise<{ slug: string }> }) {
-  const resolvedParams = await params;
-  const { slug } = resolvedParams;
+const GALLERY_FALLBACK = [
+  '/images/stock/68b39046.webp',
+  '/images/stock/a0e0726f.webp',
+  '/images/stock/dc1759ad.webp',
+  '/images/stock/f23e9dc6.webp',
+  '/images/stock/615f9d34.webp',
+  '/images/stock/6dcb103c.webp',
+  '/images/stock/a151a9e5.webp',
+  '/images/stock/bf333360.webp',
+  '/images/stock/84fea9c5.webp',
+];
+
+export default async function Template3Gallery({ params }: PageProps) {
+  const { slug } = await params;
+  const basePath = `/designwebsite/template3/${slug}`;
+
   const data = await readSourceConfig(slug, 'template3');
   if (!data) return notFound();
 
   const { clinic, media } = data;
   const cleanName = cleanClinicName(clinic.name);
+  const cleanDesc = cleanClinicDescription(clinic.description, clinic.name);
+  const city = clinic.address?.city || 'Chennai';
 
-  const defaultGalleryStock = [
-    "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=2000&q=80",
-    "https://images.unsplash.com/photo-1616594039964-ae9021a400a0?auto=format&fit=crop&w=2000&q=80",
-    "https://images.unsplash.com/photo-1556910103-1c02745aae4d?auto=format&fit=crop&w=2000&q=80",
-    "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=2000&q=80",
-    "https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=2000&q=80",
-    "https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?auto=format&fit=crop&w=2000&q=80",
-    "https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=2000&q=80",
-    "https://images.unsplash.com/photo-1538688525198-9b88f6f53126?auto=format&fit=crop&w=2000&q=80",
-    "https://images.unsplash.com/photo-1581579438747-1dc8d1e0ca96?auto=format&fit=crop&w=2000&q=80",
-    "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=2000&q=80",
-    "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=2000&q=80",
-    "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=2000&q=80",
-    "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=2000&q=80",
-    "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=2000&q=80",
-    "https://images.unsplash.com/photo-1600210492493-0946911123ea?auto=format&fit=crop&w=2000&q=80",
-    "https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&w=2000&q=80",
-    "https://images.unsplash.com/photo-1600121848594-d8644e57abab?auto=format&fit=crop&w=2000&q=80",
-    "https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&w=2000&q=80",
-    "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=2000&q=80",
-    "https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=2000&q=80",
-    "https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=2000&q=80"
-  ];
+  const uniqueImages = Array.from(
+    new Set(
+      [
+        ...(media.clinicImages || []),
+        ...(media.treatmentImages || []),
+        ...(media.otherImages || []),
+      ].filter(Boolean)
+    )
+  ) as string[];
 
-  const uniqueUserImages = Array.from(new Set([
-    ...(media.clinicImages || []),
-    ...(media.treatmentImages || []),
-    ...(media.otherImages || [])
-  ].filter(Boolean)));
+  const sourceImages = uniqueImages.length > 0 ? uniqueImages : GALLERY_FALLBACK;
+  const cats = ['Living Spaces', 'Kitchens', 'Bedrooms & More'];
+  const items: GalleryItem[] = sourceImages.slice(0, 24).map((img, idx) => ({
+    img,
+    title: `Project ${String(idx + 1).padStart(2, '0')}`,
+    cat: cats[idx % cats.length],
+    sub: `${city} · Designed by ${cleanName || 'our studio'}`,
+  }));
 
-  const PORTFOLIO = [];
-  const totalToRender = 50;
-
-  for (let i = 0; i < totalToRender; i++) {
-    let imgUrl = "";
-    let isUserImg = false;
-
-    if (uniqueUserImages.length > 0) {
-      imgUrl = uniqueUserImages[i % uniqueUserImages.length];
-      isUserImg = true;
-    } else {
-      imgUrl = defaultGalleryStock[i % defaultGalleryStock.length];
-    }
-
-    const cats = ['Residential', 'Commercial', 'Studio & Process'];
-    const cat = cats[i % cats.length];
-    const span = i % 3 === 0 ? ('wide' as const) : i % 5 === 0 ? ('tall' as const) : ('normal' as const);
-
-    PORTFOLIO.push({
-      cat,
-      title: isUserImg ? `Client Project Space #${i + 1}` : `Curated Design Space #${i + 1}`,
-      desc: isUserImg 
-        ? `Custom interior feature designed and coordinated for ${cleanName || 'our studio'}.`
-        : `Bespoke room configuration showcasing fine materials and detailing.`,
-      img: imgUrl,
-      span
-    });
-  }
+  const baImage =
+    media.treatmentImages?.[0] ||
+    media.clinicImages?.[0] ||
+    '/images/stock/284d6d29.webp';
 
   return (
-    <div className={`text-slate-900 min-h-screen pb-32 relative overflow-hidden bg-[#FAFAF9] ${fustat.className}`}>
-
-      {/* Ambient background elements */}
-      <div className="absolute inset-0 pointer-events-none z-0">
-        <div className="absolute top-0 right-1/4 w-[40rem] h-[40rem] bg-[#B48A66]/5 rounded-full blur-[140px]" />
-        <div className="absolute top-[40%] left-1/4 w-[30rem] h-[30rem] bg-amber-500/3 rounded-full blur-[120px]" />
-        <div className="absolute bottom-0 right-10 w-[35rem] h-[35rem] bg-slate-200/50 rounded-full blur-[100px]" />
-        {/* Blueprint grid overlay */}
-        <div className="absolute inset-0 bg-[radial-gradient(#e2e8f0_1px,transparent_1px)] [background-size:32px_32px] opacity-35" />
-        {/* Architectural lines */}
-        <div className="absolute top-0 left-1/3 w-px h-full bg-slate-200/25 -rotate-12 origin-top" />
-        <div className="absolute top-0 right-1/3 w-px h-full bg-slate-200/20 rotate-6 origin-top" />
-      </div>
-
-      <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10 pt-20 space-y-20">
-
-        {/* Hero */}
-        <section className="text-center space-y-8 max-w-3xl mx-auto pt-16">
-          <div className="flex items-center justify-center gap-2 text-slate-400 text-xs font-semibold uppercase tracking-widest">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#B48A66]" />
-            OUR PORTFOLIO
-          </div>
-
-          <h1 className="text-6xl sm:text-7xl lg:text-8xl font-bold tracking-tight text-slate-900 leading-[1.05]">
-            {clinic.name || "Our Work"} &amp;{' '}
-            <span className="text-[#B48A66] italic font-normal">Portfolio</span>
-          </h1>
-
-          <p className="text-xl md:text-2xl text-slate-500 font-light leading-relaxed max-w-2xl mx-auto">
-            {clinic.description || "Explore the spaces we have transformed and the creative environment where our designs come to life."}
-          </p>
-
-          {/* Stats strip */}
-          <div className="flex flex-wrap justify-center gap-x-10 gap-y-4 pt-4">
-            {[
-              { num: '200+', label: 'Projects Delivered' },
-              { num: '11', label: 'Portfolio Showcases' },
-              { num: '15+', label: 'Years of Excellence' },
-            ].map((stat, i) => (
-              <div key={i} className="flex flex-col items-center">
-                <span className="text-3xl font-bold text-slate-900">{stat.num}</span>
-                <span className="text-xs font-semibold text-slate-400 uppercase tracking-widest mt-1">
-                  {stat.label}
-                </span>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        {/* Divider */}
-        <div className="flex items-center gap-6 max-w-5xl mx-auto">
-          <div className="h-px flex-1 bg-slate-200" />
-          <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-slate-400">
-            Browse Collection
-          </span>
-          <div className="h-px flex-1 bg-slate-200" />
+    <div>
+      {/* HERO */}
+      <section id="gallery-hero" className="px-7 py-[clamp(56px,7vw,88px)]">
+        <div className="max-w-[1220px] mx-auto">
+          <Reveal>
+            <div className="flex items-center gap-2.5 text-[12px] font-extrabold tracking-[0.22em] uppercase text-[#d8442c] before:content-[''] before:w-6 before:h-[2.5px] before:rounded before:bg-[#d8442c]">
+              Real homes, real {city}
+            </div>
+            <h1 className="text-[clamp(32px,4.6vw,54px)] font-extrabold mt-3.5 tracking-[-0.02em] max-w-[780px] leading-[1.12]">
+              Projects by{' '}
+              <span className="font-[family-name:var(--font-newsreader)] italic font-medium text-[#d8442c]">
+                {cleanName || 'our studio'}
+              </span>
+            </h1>
+            <p className="mt-4.5 max-w-[640px] text-[#6d6259] text-[16px]">
+              {cleanDesc || 'Browse our delivered projects — every photograph is a real home.'}
+            </p>
+          </Reveal>
         </div>
+      </section>
 
-        {/* Interactive gallery grid */}
-        <section id="gallery-grid">
-          <GalleryGrid items={PORTFOLIO} />
-        </section>
+      {/* GRID */}
+      <section id="gallery-grid" className="px-7 py-[clamp(40px,5vw,64px)] bg-white">
+        <div className="max-w-[1220px] mx-auto">
+          <Reveal>
+            <GalleryGrid items={items} />
+          </Reveal>
+        </div>
+      </section>
 
-      </div>
+      {/* BEFORE / AFTER */}
+      <section id="transformations" className="px-7 py-[clamp(56px,7vw,88px)]">
+        <div className="max-w-[1220px] mx-auto grid lg:grid-cols-2 gap-11 lg:gap-14 items-center">
+          <Reveal>
+            <BeforeAfter image={baImage} caption="Drag to compare — see how finishing transforms a space" />
+          </Reveal>
+          <Reveal delay={120}>
+            <div className="flex items-center gap-2.5 text-[12px] font-extrabold tracking-[0.22em] uppercase text-[#d8442c] before:content-[''] before:w-6 before:h-[2.5px] before:rounded before:bg-[#d8442c]">
+              Transformations that tell a story
+            </div>
+            <h2 className="text-[clamp(26px,3.6vw,42px)] font-extrabold mt-3.5 mb-3 tracking-[-0.02em]">
+              Same walls.{' '}
+              <span className="font-[family-name:var(--font-newsreader)] italic font-medium text-[#d8442c]">New life.</span>
+            </h2>
+            <p className="text-[#6d6259] text-[15.5px] mb-6 max-w-[560px]">
+              Our renovation work covers everything — repair, electrical, surfaces and fresh interiors — while you carry on with life.
+            </p>
+            <ul className="list-none grid gap-4 mb-7">
+              {[
+                'Site repair and prep included in scope, not extra',
+                'Dust-controlled work with daily clean-up',
+                'Phased room-by-room option so you can stay put',
+                'Clear weekly progress updates with photos',
+              ].map((li) => (
+                <li key={li} className="flex gap-3.5 text-[15px] font-semibold">
+                  <Check className="w-5 h-5 text-[#d8442c] shrink-0 mt-0.5" strokeWidth={2.4} />
+                  {li}
+                </li>
+              ))}
+            </ul>
+            <Link
+              href={`${basePath}/contact`}
+              className="inline-flex items-center justify-center bg-[#d8442c] text-white font-extrabold text-[15px] px-7 py-3.5 rounded-xl hover:bg-[#b93320] hover:-translate-y-0.5 hover:shadow-[0_12px_26px_rgba(216,68,44,0.3)] transition-all duration-250"
+            >
+              Get My Renovation Plan
+            </Link>
+          </Reveal>
+        </div>
+      </section>
     </div>
   );
 }

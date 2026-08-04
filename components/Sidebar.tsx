@@ -1,17 +1,23 @@
 'use client';
 
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
-import { LayoutDashboard, LayoutTemplate, PlusCircle, Settings, Globe } from 'lucide-react';
+import { usePathname, useRouter } from 'next/navigation';
+import { LayoutDashboard, PlusCircle, LogOut, Globe } from 'lucide-react';
 
 export function Sidebar() {
   const pathname = usePathname();
+  const router = useRouter();
 
   const links = [
     { href: '/private/admin', label: 'Create New Site', icon: PlusCircle },
     { href: '/private/admin/dashboard', label: 'My Studio Sites', icon: LayoutDashboard },
-    { href: '/private/admin/template-editor', label: 'Template Editor', icon: LayoutTemplate },
   ];
+
+  const handleLogout = async () => {
+    await fetch('/api/admin/logout', { method: 'POST' });
+    router.replace('/private/login');
+    router.refresh();
+  };
 
   return (
     <aside className="w-64 bg-gray-900 border-r border-gray-800 text-gray-300 shrink-0 hidden md:flex flex-col h-full sticky top-0">
@@ -42,9 +48,13 @@ export function Sidebar() {
       </nav>
 
       <div className="p-4 border-t border-gray-800">
-        <button className="flex w-full items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium hover:bg-gray-800 transition-colors text-gray-400 hover:text-white">
-          <Settings className="w-5 h-5" />
-          Settings
+        <button
+          type="button"
+          onClick={handleLogout}
+          className="flex w-full items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium hover:bg-gray-800 transition-colors text-gray-400 hover:text-white"
+        >
+          <LogOut className="w-5 h-5" />
+          Log out
         </button>
       </div>
     </aside>

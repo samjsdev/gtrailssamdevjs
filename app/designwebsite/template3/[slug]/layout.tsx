@@ -1,154 +1,151 @@
 import { readSourceConfig, getAllSlugs } from '@/lib/dataBuilder';
 import { notFound } from 'next/navigation';
-import { 
-  ArrowUpRight, Palette, Phone, MapPin
-} from 'lucide-react';
 import Link from 'next/link';
-import Image from 'next/image';
 import { ReactNode } from 'react';
-import { Fustat, Inter } from 'next/font/google';
-import { INTERIOR_HERO_IMAGES } from '@/lib/interiorContent';
+import { Star, MapPin, Phone } from 'lucide-react';
+import { cleanClinicName, cleanClinicDescription } from '@/lib/copyCleaner';
+import { Manrope, Newsreader } from 'next/font/google';
 import ClientHeader from './ClientHeader';
+
+const manrope = Manrope({ subsets: ['latin'], weight: ['400', '500', '600', '700', '800'], variable: '--font-manrope' });
+const newsreader = Newsreader({
+  subsets: ['latin'],
+  weight: ['400', '500'],
+  style: ['italic'],
+  variable: '--font-newsreader',
+});
 
 export async function generateStaticParams() {
   const slugs = await getAllSlugs();
-  return slugs.map((slug) => ({
-    slug: slug,
-  }));
+  return slugs.map((slug) => ({ slug }));
 }
-
-const fustat = Fustat({
-  subsets: ['latin'],
-  weight: ['400', '500', '600', '700'],
-  variable: '--font-fustat',
-});
-
-const inter = Inter({
-  subsets: ['latin'],
-  weight: ['300', '400', '500', '600', '700'],
-  variable: '--font-inter',
-});
 
 type LayoutProps = {
   children: ReactNode;
   params: Promise<{ slug: string }>;
 };
 
-export default async function DesignStudioLayout({ children, params }: LayoutProps) {
-  const resolvedParams = await params;
-  const { slug } = resolvedParams;
+export default async function Template3Layout({ children, params }: LayoutProps) {
+  const { slug } = await params;
 
   const data = await readSourceConfig(slug, 'template3');
   if (!data) return notFound();
 
-  const { clinic } = data;
+  const { clinic, business } = data;
   const basePath = `/designwebsite/template3/${slug}`;
 
+  const cleanName = cleanClinicName(clinic.name);
+  const cleanDesc = cleanClinicDescription(clinic.description, clinic.name);
+  const phone = clinic.contact?.phone || '';
+  const address = clinic.address?.full || '';
+  const city = clinic.address?.city || 'Chennai';
+  const rating = business.rating || '4.9';
+  const servicesList: string[] = business.services?.length ? business.services : [];
+  const initial = (cleanName || 'S').charAt(0).toUpperCase();
+  const words = (cleanName || 'Design Studio').split(' ');
+
+  const waPhone = phone.replace(/\D/g, '') || '919751396117';
+  const waText = `Hi, I'm interested in a free design session with ${cleanName || 'your studio'}!`;
+  const waLink = `https://wa.me/${waPhone}?text=${encodeURIComponent(waText)}`;
+
   return (
-    <div
-      className={`${inter.variable} ${fustat.variable} font-sans min-h-screen bg-[#FDFDFD] text-slate-900 selection:bg-[#0084FF] selection:text-white scroll-smooth flex flex-col`}
-      style={{ WebkitFontSmoothing: 'antialiased' }}
-    >
-      {/* Blueprint background pattern */}
-      <div className="fixed inset-0 pointer-events-none bg-[radial-gradient(#e2e8f0_1px,transparent_1px)] [background-size:24px_24px] opacity-40 z-0" />
+    <div className={`${manrope.className} ${manrope.variable} ${newsreader.variable} min-h-screen flex flex-col bg-[#fbf7f2] text-[#241f1a] leading-[1.6] selection:bg-[#f4b942] selection:text-[#241f1a] scroll-smooth antialiased`}>
+      {/* Topbar */}
+      <div className="bg-[#1d1713] text-white/90 text-[13px] py-2.5 px-7">
+        <div className="max-w-[1220px] mx-auto flex justify-between items-center gap-4.5 font-semibold">
+          <span className="flex items-center gap-2 min-w-0">
+            <Star className="w-[13px] h-[13px] text-[#d8442c] shrink-0" fill="currentColor" />
+            <span className="truncate">
+              {city}&rsquo;s trusted interiors studio — <b className="text-[#f4b942]">{rating}★ on Google</b>
+            </span>
+          </span>
+          {address && (
+            <span className="hidden lg:flex items-center gap-2 min-w-0">
+              <MapPin className="w-[13px] h-[13px] text-[#d8442c] shrink-0" />
+              <span className="truncate">{address}</span>
+            </span>
+          )}
+          {phone && (
+            <a href={`tel:${phone}`} className="flex items-center gap-2 shrink-0 hover:text-[#f4b942] transition-colors">
+              <Phone className="w-[13px] h-[13px] text-[#d8442c]" />
+              {phone}
+            </a>
+          )}
+        </div>
+      </div>
 
-      {/* Floating Capsule Header */}
-      <ClientHeader clinic={clinic} basePath={basePath} />
+      {/* Header */}
+      <ClientHeader clinicName={cleanName} basePath={basePath} />
 
-      {/* Main Content */}
-      <main className="grow relative z-10">
-        {children}
-      </main>
+      <main className="grow">{children}</main>
 
-      <footer id="contact" className="bg-[#111317] border-t border-slate-800 text-slate-400 pt-24 pb-12 px-8 mt-auto relative z-10">
-        <div className="max-w-7xl mx-auto">
-          {/* Map Embed */}
-          {(() => {
-            const mapUrl = clinic.mapEmbedUrl || 
-              `https://maps.google.com/maps?q=${encodeURIComponent((clinic.name || '') + ' ' + (clinic.address?.full || ''))}&output=embed`;
-            return (
-              <div className="mb-16 rounded-3xl overflow-hidden shadow-sm aspect-video sm:aspect-[21/9] border border-black/10">
-                <iframe
-                  src={mapUrl}
-                  width="100%"
-                  height="100%"
-                  style={{ border: 0 }}
-                  allowFullScreen
-                  loading="lazy"
-                  referrerPolicy="no-referrer-when-downgrade"
-                  title={`Location of ${clinic.name || 'our studio'}`}
-                  className="w-full h-full block"
-                ></iframe>
-              </div>
-            );
-          })()}
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8 mb-16">
-            <div className="lg:col-span-2 space-y-6">
-              <Link href={basePath} className="flex items-center gap-4">
-                <div className="w-11 h-11 bg-slate-800 rounded-xl flex items-center justify-center text-[#0084FF] border border-slate-700">
-                  <Palette className="w-5 h-5" />
-                </div>
-                <h4 className="font-fustat text-xl font-bold tracking-tight text-white">{clinic.name || 'Design Studio'}</h4>
+      {/* Footer */}
+      <footer className="bg-[#1d1713] text-white px-7 pt-16">
+        <div className="max-w-[1220px] mx-auto">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-[1.6fr_1fr_1fr_1.3fr] gap-10 pb-12">
+            <div>
+              <Link href={basePath} className="flex items-center gap-2.5 text-[23px] font-extrabold tracking-[-0.02em] text-white">
+                <span className="w-[34px] h-[34px] rounded-[11px] bg-[#d8442c] text-white grid place-items-center text-[16px]">
+                  {initial}
+                </span>
+                <span>
+                  {words[0]}
+                  {words.length > 1 && <span className="text-[#f4b942]"> {words.slice(1).join(' ')}</span>}
+                </span>
               </Link>
-              <p className="text-slate-400 font-light leading-relaxed max-w-sm text-[15px]">{clinic.description || 'Creating refined interiors with thoughtful planning, curated materials, and client-first project coordination.'}</p>
+              <p className="text-[13.5px] text-white/70 leading-[2.05] max-w-[280px] mt-3.5">
+                {cleanDesc || `${city}'s trusted interiors studio. Your home, on time, on budget.`}
+              </p>
             </div>
 
             <div>
-              <h5 className="text-slate-500 font-bold mb-8 tracking-[0.15em] uppercase text-xs">Contact Info</h5>
-              <ul className="space-y-6">
-                <li className="flex items-start gap-4">
-                  <span className="text-[14px] font-light leading-relaxed">{clinic.address?.full || 'Studio Location'}</span>
-                </li>
-                <li className="flex items-start gap-4">
-                  <span className="text-[14px] font-light">{clinic.contact?.phone || 'Phone Number'}</span>
-                </li>
-              </ul>
+              <h4 className="text-[11.5px] font-extrabold tracking-[0.2em] uppercase text-[#f4b942] mb-4.5">Offerings</h4>
+              {(servicesList.length ? servicesList.slice(0, 5) : ['Full Home Interiors', 'Modular Kitchens', 'Renovations']).map((svc) => (
+                <Link key={svc} href={`${basePath}/services`} className="block text-[13.5px] text-white/70 leading-[2.05] hover:text-white transition-colors">
+                  {svc}
+                </Link>
+              ))}
             </div>
 
             <div>
-              <h5 className="text-slate-500 font-bold mb-8 tracking-[0.15em] uppercase text-xs">Quick Links</h5>
-              <ul className="space-y-4 font-light">
-                <li><Link href={`${basePath}`} className="hover:text-white transition-colors inline-block w-full text-[14px]">Home</Link></li>
-                <li><Link href={`${basePath}/about`} className="hover:text-white transition-colors inline-block w-full text-[14px]">About</Link></li>
-                <li><Link href={`${basePath}/services`} className="hover:text-white transition-colors inline-block w-full text-[14px]">Services</Link></li>
-                <li><Link href={`${basePath}/gallery`} className="hover:text-white transition-colors inline-block w-full text-[14px]">Gallery</Link></li>
-                <li><Link href={`${basePath}/contact`} className="hover:text-white transition-colors inline-block w-full text-[14px]">Contact</Link></li>
+              <h4 className="text-[11.5px] font-extrabold tracking-[0.2em] uppercase text-[#f4b942] mb-4.5">Explore</h4>
+              <Link href={`${basePath}/gallery`} className="block text-[13.5px] text-white/70 leading-[2.05] hover:text-white transition-colors">Projects</Link>
+              <Link href={`${basePath}/services`} className="block text-[13.5px] text-white/70 leading-[2.05] hover:text-white transition-colors">Services</Link>
+              <Link href={`${basePath}/about`} className="block text-[13.5px] text-white/70 leading-[2.05] hover:text-white transition-colors">About Us</Link>
+              <Link href={`${basePath}/contact`} className="block text-[13.5px] text-white/70 leading-[2.05] hover:text-white transition-colors">Free Design Session</Link>
+            </div>
 
-              </ul>
+            <div>
+              <h4 className="text-[11.5px] font-extrabold tracking-[0.2em] uppercase text-[#f4b942] mb-4.5">Visit / Call</h4>
+              <p className="text-[13.5px] text-white/70 leading-[2.05]">{address || `${city}, Tamil Nadu`}</p>
+              {phone && (
+                <a href={`tel:${phone}`} className="block text-[13.5px] text-white/70 leading-[2.05] hover:text-white transition-colors">
+                  {phone}
+                </a>
+              )}
+              <p className="text-[13.5px] text-white/70 leading-[2.05]">Open 10am – 7pm, Mon–Sat</p>
             </div>
           </div>
 
-          <div className="pt-8 border-t border-slate-800 flex flex-col md:flex-row justify-between items-center gap-6 text-sm font-light text-slate-500">
-            <p>&copy; {new Date().getFullYear()} {clinic.name || 'Studio'}. All rights reserved.</p>
-            <div className="flex gap-8">
-              <a href="#" className="hover:text-white transition-colors">Privacy Policy</a>
-              <a href="#" className="hover:text-white transition-colors">Terms of Service</a>
-            </div>
+          <div className="border-t border-white/10 py-5 flex flex-wrap justify-between gap-3.5 text-[12px] text-white/45">
+            <span>© {new Date().getFullYear()} {cleanName || 'Studio'}. All rights reserved.</span>
+            <span>Homes delivered across {city}</span>
           </div>
         </div>
       </footer>
 
-      {/* WhatsApp Floating Bubble */}
-      {(() => {
-        const waPhone = clinic.contact?.phone?.replace(/\D/g, '') || '919751396117';
-        const waText = `Hi, I'm interested in booking a design consultation at ${clinic.name || 'your studio'}!`;
-        const waLink = `https://wa.me/${waPhone}?text=${encodeURIComponent(waText)}`;
-        return (
-          <a
-            href={waLink}
-            target="_blank"
-            rel="noreferrer"
-            aria-label="Chat on WhatsApp"
-            className="fixed bottom-6 right-6 z-50 w-16 h-16 bg-[#25D366] hover:bg-[#1db954] rounded-full flex items-center justify-center shadow-2xl transition-all hover:scale-110 active:scale-95"
-            style={{ boxShadow: '0 8px 32px rgba(37,211,102,0.4)' }}
-          >
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" className="w-8 h-8">
-              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
-            </svg>
-          </a>
-        );
-      })()}
+      {/* WhatsApp float */}
+      <a
+        href={waLink}
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Chat on WhatsApp"
+        className="fixed bottom-6 right-6 z-[300] w-14 h-14 rounded-full bg-[#25d366] grid place-items-center shadow-[0_12px_30px_rgba(37,211,102,0.4)] hover:scale-110 transition-transform duration-250"
+      >
+        <svg viewBox="0 0 32 32" className="w-7 h-7 fill-white">
+          <path d="M16 3C9.4 3 4 8.4 4 15c0 2.4.7 4.6 2 6.5L4 29l7.7-1.9c1.8 1 3.9 1.5 6 1.5h.3c6.6 0 12-5.4 12-12S22.6 3 16 3zm6.1 16.9c-.3.8-1.6 1.5-2.3 1.6-.6.1-1.4.2-4.4-.9-3.7-1.5-6.1-5.3-6.3-5.5-.2-.2-1.5-2-1.5-3.9s.9-2.7 1.3-3.1c.3-.4.7-.5 1-.5h.7c.2 0 .5-.1.8.6.3.8 1.1 2.7 1.2 2.9.1.2.2.4 0 .7-.1.3-.2.4-.4.7l-.6.7c-.2.2-.4.4-.2.8.2.4 1 1.6 2.1 2.6 1.4 1.3 2.6 1.7 3 1.8.4.2.6.1.8-.1.2-.2 1-1.1 1.2-1.5.3-.4.5-.3.9-.2.4.1 2.1 1 2.5 1.2.4.2.6.3.7.5.1.1.1.9-.2 1.7z" />
+        </svg>
+      </a>
     </div>
   );
 }

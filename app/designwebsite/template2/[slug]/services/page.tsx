@@ -1,293 +1,137 @@
 import { readSourceConfig } from '@/lib/dataBuilder';
 import { notFound } from 'next/navigation';
-import { Cormorant_Garamond } from 'next/font/google';
-import { 
-  Sparkles, CheckCircle2, ChevronRight, Compass, Box, Award, Shield, Users, Layers, ArrowUpRight
-} from 'lucide-react';
+import Link from 'next/link';
+import { Check, ArrowRight } from 'lucide-react';
+import { cleanClinicName } from '@/lib/copyCleaner';
+import {
+  DEFAULT_INTERIOR_SERVICES,
+  getInteriorServiceData,
+  getInteriorServiceSummary,
+  getServiceImage,
+} from '@/lib/interiorContent';
+import Reveal from '../Reveal';
 
-const cormorant = Cormorant_Garamond({
-  subsets: ['latin'],
-  weight: ['400', '500', '600', '700'],
-  style: ['normal', 'italic'],
-  variable: '--font-cormorant',
-});
+type PageProps = { params: Promise<{ slug: string }> };
 
-export default async function ServicesPage({ params }: { params: Promise<{ slug: string }> }) {
-  const resolvedParams = await params;
-  const { slug } = resolvedParams;
+const SERVICE_FALLBACK_IMAGES = [
+  '/images/stock/68b39046.webp',
+  '/images/stock/a0e0726f.webp',
+  '/images/stock/dc1759ad.webp',
+  '/images/stock/f23e9dc6.webp',
+  '/images/stock/615f9d34.webp',
+  '/images/stock/6dcb103c.webp',
+];
+
+export default async function Template2Services({ params }: PageProps) {
+  const { slug } = await params;
+  const basePath = `/designwebsite/template2/${slug}`;
+
   const data = await readSourceConfig(slug, 'template2');
   if (!data) return notFound();
-  const { media } = data;
+
+  const { clinic, business, media } = data;
+  const cleanName = cleanClinicName(clinic.name);
+  const city = clinic.address?.city || 'Chennai';
+  const servicesList: string[] = business.services?.length ? business.services : DEFAULT_INTERIOR_SERVICES;
+
+  const services = servicesList.map((svc: string, idx: number) => {
+    const detail = getInteriorServiceData(svc);
+    return {
+      title: svc,
+      tagline: detail?.tagline || 'Personalised to your floor plan and budget.',
+      desc: detail?.description || getInteriorServiceSummary(svc),
+      benefits: detail?.benefits?.slice(0, 4) || [
+        'Personalized design direction',
+        'Curated material selections',
+        'Clear budgets and timelines',
+        'Coordinated execution and styling',
+      ],
+      steps: detail?.process?.slice(0, 4) || [],
+      img:
+        getServiceImage(svc, media) ||
+        media.treatmentImages?.[idx] ||
+        SERVICE_FALLBACK_IMAGES[idx % SERVICE_FALLBACK_IMAGES.length],
+    };
+  });
 
   return (
-    <div className="font-sans text-[#2A2421] bg-[#F7F4EF] min-h-screen pb-24 space-y-28">
-      
-      {/* Editorial Hero Section */}
-      <section className="text-center space-y-6 max-w-4xl mx-auto pt-20 pb-8">
-        <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-[#8E7056]/10 border border-[#8E7056]/20 text-[10px] font-bold uppercase tracking-widest text-[#8E7056]">
-          <Sparkles className="w-3.5 h-3.5" />
-          WHAT WE DELIVER
+    <div>
+      {/* PAGE HERO */}
+      <section id="services-hero" className="bg-[#faf7f1] px-6 py-[clamp(60px,7vw,96px)]">
+        <div className="max-w-[1240px] mx-auto">
+          <Reveal>
+            <span className="inline-flex items-center gap-2.5 bg-white border border-[#1b1b1b]/10 rounded-full px-4.5 py-2 text-[12px] font-bold tracking-[0.14em] uppercase text-[#0e5a43] mb-6 before:content-[''] before:w-2 before:h-2 before:rounded-full before:bg-[#f2a007]">
+              Our services
+            </span>
+            <h1 className="font-[family-name:var(--font-bricolage)] font-bold text-[clamp(34px,4.6vw,58px)] leading-[1.06] tracking-[-0.02em] max-w-[760px]">
+              Everything your home needs, <mark className="bg-[linear-gradient(transparent_62%,#fdeecb_62%)] text-[#0e5a43] px-0.5">under one roof</mark>
+            </h1>
+            <p className="mt-5 max-w-[560px] text-[#6b6660] text-[16.5px] leading-[1.7] font-medium">
+              From a single room refresh to full-home interiors — {cleanName || 'our studio'} handles design, materials and execution across {city}.
+            </p>
+          </Reveal>
         </div>
-        
-        <h1 className={`${cormorant.className} text-5xl sm:text-6xl lg:text-7xl font-light tracking-wide leading-tight`}>
-          Premium Modular Kitchens &amp; <span className="text-[#8E7056] italic">Turnkey Solutions</span>
-        </h1>
-        
-        <p className="text-sm sm:text-base text-[#2A2421]/90 font-light max-w-xl mx-auto leading-relaxed">
-          Streamlining spatial planning, modular kitchen fabrication, and end-to-end styling for premium homes and offices across Chennai.
-        </p>
       </section>
 
-      {/* CORE EXPERTISES: LUXURIOUS ROW-BASED LIST LAYOUT */}
-      <section className="space-y-12 text-left">
-        <div className="space-y-3 px-4 sm:px-6">
-          <div className="flex items-center gap-2 text-[#8E7056] text-[10px] font-bold uppercase tracking-[0.2em]">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#8E7056]" />
-            OUR SPECIALTIES
-          </div>
-          <h2 className={`${cormorant.className} text-3xl sm:text-4xl md:text-5xl font-light tracking-wide text-[#2A2421]`}>
-            Core Design &amp; <span className="text-[#8E7056] italic">Fabrication Specialties</span>
-          </h2>
-        </div>
-
-        {/* Unique Row-based Editorial Layout instead of Card Grids */}
-        <div className="divide-y divide-[#EAE3D8] border-t border-b border-[#EAE3D8] mt-8">
-          {[
-            {
-              num: "01",
-              title: "Space Planning & Layout Strategy",
-              desc: "Optimizing traffic flows, lighting directions, and custom furniture footprints. We deliver high-fidelity spatial planning coordinates that lock in pricing parameters before manufacturing starts.",
-              image: media?.otherImages?.[6] || "https://images.unsplash.com/photo-1542889601-399c4f3a8402?auto=format&fit=crop&w=400&q=80",
-              tags: ["Floor Plan Mapping", "Traffic Flow Curation", "3D Virtual Modeling"]
-            },
-            {
-              num: "02",
-              title: "Modular Kitchen & Wardrobe Engineering",
-              desc: "Manufacturing precision modular kitchens, wardrobes, and customized storage layouts directly in our Chennai woodworking facility. Every single coordinate is inspected under strict quality controls.",
-              image: media?.otherImages?.[13] || "https://images.unsplash.com/photo-1538688525198-9b88f6f53126?auto=format&fit=crop&w=2000&q=80",
-              tags: ["BWP Marine Plywood", "Acrylic & Laminate Finishes", "Custom Storage Solutions"]
-            },
-            {
-              num: "03",
-              title: "Material Library & Styling Curation",
-              desc: "Developing tactile material briefs with selected natural limestones, real quartz counters, organic textile layerings, and low-VOC details that give rooms lasting character.",
-              image: media?.otherImages?.[11] || "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=2000&q=80",
-              tags: ["Natural Stones", "Durable Surfaces", "Low-VOC Curation"]
-            },
-            {
-              num: "04",
-              title: "Commercial & Office Interiors",
-              desc: "Optimizing workspace layouts, conference rooms, ergonomic workstations, and collaborative spaces customized entirely for Chennai's modern corporate environments.",
-              image: media?.otherImages?.[10] || "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=400&q=80",
-              tags: ["Ergonomic Workstations", "Collaborative Hubs", "Executive Suite Styling"]
-            }
-          ].map((item, idx) => (
-            <div 
-              key={idx} 
-              className="py-10 flex flex-col items-start gap-6 group hover:bg-[#EAE3D8]/10 transition-colors duration-300 px-4 sm:px-6"
-            >
-              {/* Top part: Number, Title, Description side-by-side on desktop */}
-              <div className="w-full flex flex-col lg:flex-row items-start justify-between gap-8">
-                {/* Column 1: Serif Number */}
-                <div className={`${cormorant.className} text-4xl sm:text-5xl font-light text-[#8E7056] lg:w-1/12 lg:pt-1`}>
-                  {item.num}
+      {/* SERVICES */}
+      <section id="services-list" className="px-6 py-[clamp(64px,7vw,100px)] bg-white">
+        <div className="max-w-[1240px] mx-auto grid gap-7">
+          {services.map((svc, idx) => (
+            <Reveal key={svc.title}>
+              <div className="grid lg:grid-cols-[0.85fr_1.15fr] border border-[#1b1b1b]/10 rounded-[26px] overflow-hidden bg-white transition-all duration-300 hover:shadow-[0_24px_60px_rgba(27,27,27,0.12)]">
+                <div className="relative min-h-[260px] lg:min-h-full overflow-hidden">
+                  <span className="absolute top-4 left-4 z-10 bg-white/95 rounded-full px-3.5 py-1.5 text-[11px] font-extrabold tracking-[0.1em] uppercase text-[#0e5a43]">
+                    Service {String(idx + 1).padStart(2, '0')}
+                  </span>
+                  <img src={svc.img} alt={svc.title} loading="lazy" className="absolute inset-0 w-full h-full object-cover" />
                 </div>
 
-                {/* Column 2: Title & Micro-Pills */}
-                <div className="space-y-3 lg:w-4/12 lg:pt-1">
-                  <h3 className="text-base sm:text-lg font-bold text-[#2A2421] tracking-wide">
-                    {item.title}
-                  </h3>
-                  <div className="flex flex-wrap gap-1.5">
-                    {item.tags.map((tag, tIdx) => (
-                      <span key={tIdx} className="px-2 py-0.5 bg-[#FAF8F5] border border-[#EAE3D8] text-[9px] text-[#2A2421]/80 rounded-full font-light">
-                        {tag}
-                      </span>
+                <div className="px-7 sm:px-9 py-8">
+                  <h2 className="font-[family-name:var(--font-bricolage)] font-bold text-[clamp(22px,2.6vw,30px)] tracking-[-0.01em] mb-1.5">
+                    {svc.title}
+                  </h2>
+                  <p className="text-[14px] font-extrabold text-[#0e5a43] mb-4">{svc.tagline}</p>
+                  <p className="text-[#6b6660] font-medium leading-[1.7] text-[14.5px] mb-6">{svc.desc}</p>
+
+                  <div className="grid sm:grid-cols-2 gap-3 mb-7">
+                    {svc.benefits.map((b: string) => (
+                      <div key={b} className="flex gap-2.5 items-start bg-[#faf7f1] border border-[#1b1b1b]/8 rounded-xl px-3.5 py-3">
+                        <Check className="w-[18px] h-[18px] text-[#0e5a43] shrink-0 mt-px" strokeWidth={2.2} />
+                        <span className="text-[13px] font-semibold leading-snug">{b}</span>
+                      </div>
                     ))}
                   </div>
-                </div>
 
-                {/* Column 3: Description */}
-                <div className="lg:w-7/12 text-xs sm:text-[13px] text-[#2A2421]/90 leading-relaxed font-light lg:pt-1">
-                  {item.desc}
+                  <Link
+                    href={`${basePath}/contact`}
+                    className="inline-flex items-center gap-2 font-extrabold text-[14px] text-[#0e5a43] border-b-[2.5px] border-[#f2a007] pb-1 hover:gap-3.5 transition-all"
+                  >
+                    Get a quote for this <ArrowRight className="w-4 h-4" strokeWidth={2.4} />
+                  </Link>
                 </div>
               </div>
-
-              {/* Bottom part: Image below the text columns */}
-              <div className="w-full mt-4">
-                <div className="w-full aspect-[16/9] md:aspect-[21/9] rounded-[2rem] overflow-hidden border border-[#EAE3D8] shadow-sm relative">
-                  <img 
-                    src={item.image} 
-                    alt={item.title} 
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" 
-                  />
-                  <div className="absolute inset-0 bg-[#8E7056]/5 group-hover:opacity-0 transition-opacity" />
-                </div>
-              </div>
-            </div>
+            </Reveal>
           ))}
         </div>
       </section>
 
-      {/* HOSPITALITY CONTRACT SHOWCASE: ALL-INCLUSIVE CONTRACT SOLUTIONS */}
-      <section className="bg-white rounded-[3rem] p-8 md:p-16 lg:p-20 border border-[#EAE3D8]/60 shadow-sm relative overflow-hidden text-left">
-        <div className="absolute top-0 right-0 w-96 h-96 bg-[#8E7056]/5 rounded-bl-full blur-3xl pointer-events-none" />
-        
-        <div className="grid lg:grid-cols-12 gap-12 lg:gap-16 items-center relative z-10">
-          <div className="lg:col-span-7 space-y-6">
-            <div className="flex items-center gap-2 text-[#8E7056] text-[10px] font-bold uppercase tracking-[0.2em]">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#8E7056]" />
-              TURNKEY HOME &amp; OFFICE CONTRACTS
-            </div>
-            <h2 className={`${cormorant.className} text-4xl sm:text-5xl font-light tracking-wide text-[#2A2421] leading-tight`}>
-              Turnkey Modular Kitchens &amp; <span className="text-[#8E7056] italic">Home Interiors in Chennai</span>
-            </h2>
-            <p className="text-xs sm:text-sm text-[#2A2421]/90 leading-relaxed font-light">
-              SKETCHLAB takes full ownership of premium modular kitchen fabrication and turnkey home transformations. We organize custom woodworking in our Chennai facility and coordinate seamless on-site installations across Velachery, Pallikaranai, and Tamil Nadu.
-            </p>
-            
-            <div className="grid sm:grid-cols-2 gap-6 pt-4 border-t border-[#EAE3D8] text-xs">
-              <div className="space-y-2">
-                <h4 className="font-bold text-[#2A2421]">Turnkey Sourcing Contracts</h4>
-                <p className="text-[#2A2421]/80 font-light leading-relaxed">Direct custom sourcing lists covering cabinetry, countertops, modular accessories, and built-in appliances.</p>
-              </div>
-              <div className="space-y-2">
-                <h4 className="font-bold text-[#2A2421]">Logistical Supervision</h4>
-                <p className="text-[#2A2421]/80 font-light leading-relaxed">Managing safe cargo transport, modular assembly, site installation, and final cleanup handovers.</p>
-              </div>
-            </div>
-          </div>
-
-          <div className="lg:col-span-5 flex justify-center w-full">
-            <div className="w-full aspect-[4/5] rounded-[2.5rem] overflow-hidden shadow-sm border border-[#EAE3D8]/50">
-              <img 
-                src={media?.treatmentImages?.[0] || media?.clinicImages?.[0] || "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=2000&q=80"} 
-                alt="Bespoke modular kitchen layout" 
-                className="w-full h-full object-cover"
-              />
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* MATERIAL LIBRARY GRID */}
-      <section className="space-y-12 text-left">
-        <div className="text-center max-w-2xl mx-auto space-y-3">
-          <div className="flex items-center justify-center gap-2 text-[#8E7056] text-[10px] font-bold uppercase tracking-[0.2em]">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#8E7056]" />
-            MATERIAL CURATION
-          </div>
-          <h2 className={`${cormorant.className} text-3xl sm:text-4xl md:text-5xl font-light tracking-wide text-[#2A2421]`}>
-            The Chennai <span className="text-[#8E7056] italic">Curation Library</span>
+      {/* CTA */}
+      <section id="services-cta" className="px-6 py-[clamp(64px,7vw,96px)] bg-[#0e5a43] text-white">
+        <Reveal className="max-w-[760px] mx-auto text-center">
+          <h2 className="font-[family-name:var(--font-bricolage)] font-bold text-[clamp(28px,3.8vw,48px)] leading-[1.08] tracking-[-0.02em] mb-4">
+            Not sure what your home needs? <mark className="bg-transparent text-[#f2a007]">Ask a designer.</mark>
           </h2>
-          <p className="text-xs sm:text-sm text-[#2A2421]/80 font-light leading-relaxed max-w-lg mx-auto">
-            We focus exclusively on durable, premium materials that suit Chennai's tropical climate, ensuring beauty and longevity.
+          <p className="text-white/80 font-medium text-[16px] leading-[1.7] mb-8">
+            Tell us about your rooms and budget — we&rsquo;ll map the right scope in one free session.
           </p>
-        </div>
-
-        {/* Premium 4-Column Grid of Compact Cards */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 lg:gap-6 mt-10">
-          {[
-            {
-              title: "Premium BWP Marine Plywood",
-              desc: "Sustainably sourced boiling-water-proof plywood, ideal for modular kitchens and wet areas to ensure zero swelling or moisture damage.",
-              img: media?.otherImages?.[13] || "https://images.unsplash.com/photo-1538688525198-9b88f6f53126?auto=format&fit=crop&w=400&q=80",
-              tag: "Waterproof Structure"
-            },
-            {
-              title: "Quartz & Granite Counters",
-              desc: "Hard-wearing, scratch-resistant countertops selected for heavy-duty kitchen layouts and elegant premium dining tops.",
-              img: media?.otherImages?.[7] || "https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?auto=format&fit=crop&w=400&q=80",
-              tag: "Durable Surfaces"
-            },
-            {
-              title: "Eco-Friendly & Anti-Fungal Finishes",
-              desc: "Low-VOC acrylics, anti-fingerprint laminates, and anti-fungal materials perfect for Chennai's humid coastal environment.",
-              img: media?.otherImages?.[9] || "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=2000&q=80",
-              tag: "Climate Coatings"
-            },
-            {
-              title: "Upholstery & Soft Furnishings",
-              desc: "Woven custom curtains, premium fabrics, and acoustic panels that add luxury, warmth, and comfortable ventilation to Chennai homes.",
-              img: media?.otherImages?.[11] || "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=2000&q=80",
-              tag: "Organic Textures"
-            }
-          ].map((mat, mIdx) => (
-            <div 
-              key={mIdx} 
-              className="bg-white rounded-[2rem] p-5 border border-[#EAE3D8]/60 hover:border-[#8E7056]/35 hover:-translate-y-1 hover:shadow-xs transition-all duration-500 group flex flex-col justify-between"
-            >
-              <div className="space-y-4">
-                {/* Compact Editorial Image */}
-                <div className="w-full aspect-[4/3] rounded-[1.25rem] overflow-hidden border border-[#EAE3D8]/40 shadow-xs relative">
-                  <img 
-                    src={mat.img} 
-                    alt={mat.title} 
-                    className="w-full h-full object-cover group-hover:scale-103 transition-transform duration-700" 
-                  />
-                  <div className="absolute inset-0 bg-[#8E7056]/5 group-hover:opacity-0 transition-opacity duration-350" />
-                </div>
-
-                {/* Text Metadata Section */}
-                <div className="space-y-2">
-                  <div className="flex items-center gap-2.5">
-                    <span className={`${cormorant.className} text-2xl font-light italic text-[#8E7056] shrink-0`}>
-                      0{mIdx + 1}
-                    </span>
-                    <h3 className="text-[14px] sm:text-[15px] font-bold text-[#2A2421] tracking-wide leading-tight">
-                      {mat.title}
-                    </h3>
-                  </div>
-                  <p className="text-[11.5px] sm:text-[12.5px] text-[#2A2421]/90 font-light leading-relaxed">
-                    {mat.desc}
-                  </p>
-                </div>
-              </div>
-
-              {/* Bottom Luxury Tag */}
-              <div className="pt-4 mt-3 border-t border-[#EAE3D8]/40">
-                <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 bg-[#FAF8F5] border border-[#EAE3D8] text-[8.5px] sm:text-[9px] font-bold text-[#8E7056] uppercase tracking-wider rounded-full">
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#8E7056]" />
-                  {mat.tag}
-                </span>
-              </div>
-            </div>
-          ))}
-        </div>
+          <Link
+            href={`${basePath}/contact`}
+            className="inline-flex items-center justify-center gap-2 bg-[#f2a007] text-[#1b1b1b] font-bold text-[15px] px-9 py-4.5 rounded-[14px] hover:bg-[#e09500] hover:-translate-y-0.5 hover:shadow-[0_14px_28px_rgba(242,160,7,0.35)] transition-all duration-300"
+          >
+            Book My Free Session
+          </Link>
+        </Reveal>
       </section>
-
-      {/* DELIVERABLE PROCESS METRICS */}
-      <section className="bg-[#2A2421] text-white rounded-[2.5rem] py-20 px-8 border border-white/5 relative overflow-hidden text-center">
-        <div className="absolute top-0 left-0 w-96 h-96 bg-[#8E7056]/15 rounded-bl-full blur-[100px] pointer-events-none" />
-        
-        <div className="relative z-10 max-w-6xl mx-auto space-y-16">
-          <div className="space-y-3 max-w-xl mx-auto">
-            <span className="text-[9px] font-bold uppercase tracking-widest text-[#8E7056]">TURNKEY STANDARDS</span>
-            <h2 className={`${cormorant.className} text-4xl font-light text-white`}>Operational Standards</h2>
-            <p className="text-xs text-white/80 font-light leading-relaxed">Our workflow utilizes transparent project management to ensure client satisfaction across Chennai.</p>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 text-left">
-            {[
-              { title: "Virtual Spatial Models", desc: "Lock in modular profiles, sizing parameters, and cabinetry layout digitally.", icon: Layers },
-              { title: "Itemized Costing Logs", desc: "Access explicit materials logs, pricing sheets, and custom hardware logs transparently.", icon: Box },
-              { title: "Quality Inspections", desc: "Ensuring structural cabinetry and hardware checks are conducted prior to site delivery.", icon: Shield },
-              { title: "Handover Guides", desc: "Detailed manuals explaining modular kitchen care, laminate cleaning, and warranty guidelines.", icon: Compass }
-            ].map((p, i) => (
-              <div key={i} className="p-6 bg-white/5 backdrop-blur-sm rounded-[2rem] border border-white/10 hover:bg-white/10 transition-colors duration-300 flex flex-col justify-between h-full group">
-                <div>
-                  <div className="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-[#8E7056] mb-6 group-hover:scale-105 transition-transform">
-                    <p.icon className="w-4.5 h-4.5" />
-                  </div>
-                  <h4 className="font-bold text-white text-[14px] leading-tight mb-2">{p.title}</h4>
-                </div>
-                <p className="text-xs text-white/60 font-light leading-relaxed mt-4 pt-4 border-t border-white/5">{p.desc}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
     </div>
   );
 }

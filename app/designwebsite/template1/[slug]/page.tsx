@@ -1,338 +1,469 @@
 import { readSourceConfig } from '@/lib/dataBuilder';
 import { notFound } from 'next/navigation';
-import { 
-  Star, ArrowRight, Quote, Plus, Minus, Phone, MapPin, Sparkles, HelpCircle 
-} from 'lucide-react';
 import Link from 'next/link';
-import ClientHero from './ClientHero';
-import BrandsMarquee from './BrandsMarquee';
-import ServicesSlider from './ServicesSlider';
-import ProjectsSlider from './ProjectsSlider';
-import WhyChooseUs from './WhyChooseUs';
-import HomeAbout from './HomeAbout';
-import ReviewsSlider from '@/components/ReviewsSlider';
+import { ShieldCheck, FileText, Clock, BadgeCheck } from 'lucide-react';
 import { cleanClinicName, cleanClinicDescription } from '@/lib/copyCleaner';
 import {
   DEFAULT_INTERIOR_REVIEWS,
   DEFAULT_INTERIOR_SERVICES,
-  INTERIOR_FAQS,
-  INTERIOR_GALLERY_PREVIEW,
-  INTERIOR_HERO_IMAGES,
+  DEFAULT_INTERIOR_HIGHLIGHTS,
   getInteriorServiceSummary,
-  getInteriorServiceData,
   getServiceImage,
 } from '@/lib/interiorContent';
+import Reveal from './Reveal';
+import LeadForm from './LeadForm';
 
 type PageProps = {
   params: Promise<{ slug: string }>;
 };
 
-export default async function DesignStudioHome({ params }: PageProps) {
-  const resolvedParams = await params;
-  const { slug } = resolvedParams;
+const SERVICE_FALLBACK_IMAGES = [
+  '/images/stock/68b39046.webp',
+  '/images/stock/a0e0726f.webp',
+  '/images/stock/dc1759ad.webp',
+  '/images/stock/f23e9dc6.webp',
+];
+
+const PORTFOLIO_FALLBACK_IMAGES = [
+  '/images/stock/615f9d34.webp',
+  '/images/stock/6dcb103c.webp',
+  '/images/stock/a151a9e5.webp',
+  '/images/stock/bf333360.webp',
+  '/images/stock/84fea9c5.webp',
+  '/images/stock/284d6d29.webp',
+];
+
+const PROCESS_STEPS = [
+  {
+    title: 'Design Consultation',
+    desc: 'Meet a principal designer at the studio or your home. We listen first — lifestyle, rituals, budget.',
+  },
+  {
+    title: '3D Design & Quote',
+    desc: 'Photorealistic 3D views of every room with a clear, itemised estimate. Iterate until it feels unmistakably yours.',
+  },
+  {
+    title: 'Craft & Execution',
+    desc: 'Precision production and site work proceed in parallel, tracked milestone by milestone.',
+  },
+  {
+    title: 'Install & Style',
+    desc: 'Installation in days, not weeks — then deep-clean, styling and a walkthrough before handover.',
+  },
+];
+
+export default async function Template1Home({ params }: PageProps) {
+  const { slug } = await params;
   const basePath = `/designwebsite/template1/${slug}`;
 
   const data = await readSourceConfig(slug, 'template1');
   if (!data) return notFound();
 
   const { clinic, doctor, business, media } = data;
-  
-  // Apply copy cleaner to raw clinic variables
+
   const cleanName = cleanClinicName(clinic.name);
   const cleanDesc = cleanClinicDescription(clinic.description, clinic.name);
-  
-  const cleanedClinic = {
-    ...clinic,
-    name: cleanName,
-    description: cleanDesc
-  };
+  const city = clinic.address?.city || 'Chennai';
+  const phone = clinic.contact?.phone || '';
+  const waPhone = phone.replace(/\D/g, '') || '919751396117';
 
-  const heroImage = media.clinicImages?.[0] || INTERIOR_HERO_IMAGES.home;
-  const doctorImage = media.otherImages?.[0] || INTERIOR_HERO_IMAGES.designer;
+  const heroImage =
+    media.clinicImages?.[0] ||
+    '/images/stock/36e83915.webp';
+  const aboutImage =
+    media.clinicImages?.[1] ||
+    '/images/stock/90879216.webp';
+  const whyImage =
+    media.otherImages?.[2] ||
+    '/images/stock/34bba44b.webp';
+  const ctaImage =
+    media.otherImages?.[3] ||
+    '/images/stock/7617327a.webp';
 
-  const displayReviews = data.reviews && data.reviews.length > 0 ? data.reviews : DEFAULT_INTERIOR_REVIEWS;
-  const faqs = INTERIOR_FAQS;
+  const servicesList: string[] = business.services?.length ? business.services : DEFAULT_INTERIOR_SERVICES;
+  const highlights: string[] = business.highlights?.length ? business.highlights : DEFAULT_INTERIOR_HIGHLIGHTS;
+  const reviews = data.reviews?.length ? data.reviews : DEFAULT_INTERIOR_REVIEWS;
+  const rating = business.rating || '4.9';
+  const experienceYears = doctor?.experience?.replace(/\D/g, '') || '5';
 
-  const servicesList = business.services?.length
-    ? business.services
-    : DEFAULT_INTERIOR_SERVICES;
-
-  const allGalleryImages = [
+  const portfolioImages = [
     ...(media.treatmentImages || []),
-    ...(media.otherImages || []),
-    ...(media.clinicImages || [])
+    ...(media.clinicImages || []).slice(2),
+    ...(media.otherImages || []).slice(6),
   ].filter(Boolean);
+  const gallery = portfolioImages.length >= 6 ? portfolioImages.slice(0, 6) : PORTFOLIO_FALLBACK_IMAGES;
 
-  const previewServices = servicesList.slice(0, 3).map((svc: string, idx: number) => {
-    const svcData = getInteriorServiceData(svc);
-    const num = `0${idx + 1}`;
-    const img = getServiceImage(svc, media) || svcData?.image || "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&q=80&w=2000";
-    const desc = svcData?.description || getInteriorServiceSummary(svc);
-    const highlights = svcData?.benefits?.slice(0, 3) || [
-      "Tactile custom finishes",
-      "Ergonomic space mapping",
-      "Line-item budget logging"
-    ];
+  const previewServices = servicesList.slice(0, 4).map((svc: string, idx: number) => ({
+    title: svc,
+    desc: getInteriorServiceSummary(svc).split('. ')[0] + '.',
+    img:
+      getServiceImage(svc, media) ||
+      media.treatmentImages?.[idx] ||
+      SERVICE_FALLBACK_IMAGES[idx % SERVICE_FALLBACK_IMAGES.length],
+  }));
 
-    return { num, title: svc, desc, img, highlights };
-  });
-  
-  const previewGallery = allGalleryImages.slice(0, 3);
-
-  const waPhone = clinic.contact?.phone?.replace(/\D/g, '') || '919751396117';
-  const waText = `Hi, I'm interested in booking a design consultation at ${cleanName || 'your studio'}!`;
-  const waLink = `https://wa.me/${waPhone}?text=${encodeURIComponent(waText)}`;
+  const whyChecks = [
+    { icon: ShieldCheck, title: highlights[0] || 'Personalized design concepts', desc: 'Every project starts from your lifestyle — never a catalogue.' },
+    { icon: FileText, title: highlights[1] || 'Material and finish guidance', desc: 'Curated palettes and honest advice on what lasts.' },
+    { icon: Clock, title: highlights[2] || 'Transparent project planning', desc: 'Itemised estimates and a schedule you can hold us to.' },
+    { icon: BadgeCheck, title: highlights[3] || 'End-to-end execution support', desc: 'One accountable team from first sketch to handover.' },
+  ];
 
   return (
-    <div className="font-sans text-[#0A0A0A] bg-[#FCFAF6] min-h-screen selection:bg-[#C1FF72] selection:text-[#0A0A0A] scroll-smooth">
-      {/* HERO SECTION */}
-      <ClientHero clinic={cleanedClinic} business={business} basePath={basePath} data={data} />
+    <div>
+      {/* HERO */}
+      <section id="hero" className="relative min-h-[calc(100vh-116px)] flex flex-col justify-end text-white !p-0">
+        <div className="absolute inset-0">
+          <img src={heroImage} alt={`${cleanName || 'Studio'} signature interior`} className="w-full h-full object-cover" fetchPriority="high" />
+          <div className="absolute inset-0 bg-[linear-gradient(78deg,rgba(24,18,12,0.86)_0%,rgba(24,18,12,0.55)_42%,rgba(24,18,12,0.12)_72%),linear-gradient(0deg,rgba(24,18,12,0.65)_0%,transparent_30%)]" />
+        </div>
 
-      {/* BRANDS MARQUEE */}
-      <BrandsMarquee />
-
-      {/* SERVICES SLIDER */}
-      <ServicesSlider />
-
-      {/* PROJECTS SLIDER */}
-      <ProjectsSlider />
-
-      {/* WHY CHOOSE US */}
-      <WhyChooseUs basePath={basePath} data={data} />
-
-      {/* ABOUT US SECTION */}
-      <HomeAbout
-        basePath={basePath}
-        clinic={cleanedClinic}
-        doctor={doctor}
-        doctorImage={doctorImage}
-        homeAbout={data.homeAbout}
-      />
-
-      {/* PORTFOLIO GALLERY SECTION */}
-      <section id="gallery" className="py-28 lg:py-36 bg-[#FCFAF6] overflow-hidden relative border-t border-[#0A0A0A]/5">
-        {/* Subtle grid line */}
-        <div className="absolute left-[8%] top-0 w-px h-full bg-[#0A0A0A]/5 pointer-events-none"></div>
-        
-        <div className="max-w-[90rem] mx-auto px-8 w-full relative z-10">
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-10 mb-24">
-            <div className="space-y-6 max-w-2xl text-left">
-              <div className="inline-flex items-center gap-3">
-                <div className="w-8 h-px bg-[#0A0A0A]"></div>
-                <span className="text-[11px] font-bold tracking-[0.25em] uppercase text-[#0A0A0A]/70">Portfolio Preview</span>
-              </div>
-              <h2 className="font-serif text-5xl lg:text-7xl font-light tracking-tight leading-[1.05] text-[#0A0A0A]">
-                Spaces with <br />
-                <span className="italic font-normal text-[#0A0A0A]/60">Character</span> <span className="text-[#C1FF72]">.</span>
-              </h2>
-            </div>
-            
+        <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-7 pt-28 w-full">
+          <span className="inline-flex items-center gap-3.5 text-[12.5px] tracking-[0.38em] uppercase text-[#c9ab7c] mb-6 before:content-[''] before:w-[52px] before:h-px before:bg-[#c9ab7c]">
+            Interior Design Studio — {city}
+          </span>
+          <h1 className="font-[family-name:var(--font-marcellus)] text-[clamp(42px,5.8vw,82px)] leading-[1.06] max-w-[760px]">
+            {clinic.tagline || 'Timeless interiors for homes that deserve the extraordinary'}
+          </h1>
+          <p className="mt-6 mb-9 max-w-[560px] text-[17px] font-light leading-[1.75] text-white/80">
+            {cleanDesc}
+          </p>
+          <div className="flex flex-wrap gap-4 mb-16">
+            <Link
+              href={`${basePath}/contact`}
+              className="inline-flex items-center gap-3 bg-[#a58150] text-white px-7 py-4 text-[12.5px] tracking-[0.2em] uppercase font-medium border border-[#a58150] hover:bg-[#211a13] hover:border-[#211a13] transition-colors duration-300"
+            >
+              Book Free Consultation
+            </Link>
             <Link
               href={`${basePath}/gallery`}
-              className="group inline-flex items-center gap-4 text-[#0A0A0A] font-bold tracking-[0.15em] uppercase text-[11px] hover:text-[#0A0A0A]/70 transition-colors shrink-0"
+              className="inline-flex items-center gap-3 bg-transparent text-white px-7 py-4 text-[12.5px] tracking-[0.2em] uppercase font-medium border border-white/50 hover:border-white hover:bg-white/10 transition-colors duration-300"
             >
-              <span className="border-b border-[#0A0A0A]/20 hover:border-[#0A0A0A] pb-1 transition-colors">View Complete Archive</span>
-              <span className="w-9 h-9 rounded-full border border-[#0A0A0A] group-hover:bg-[#C1FF72] group-hover:border-[#C1FF72] flex items-center justify-center transition-all duration-300">
-                <ArrowRight className="w-3.5 h-3.5 text-[#0A0A0A] -rotate-45" />
-              </span>
+              View Portfolio
             </Link>
           </div>
-
-          <div className="flex flex-wrap md:flex-nowrap gap-8 h-auto md:h-[65vh]">
-            {previewGallery.length > 0 ? (
-              previewGallery.map((img: string, idx: number) => {
-                const widths = ['w-full md:w-[35%]', 'w-full md:w-[45%]', 'w-full md:w-[20%]'];
-                const projectNames = ['Residential Living', 'Culinary Kitchen Space', 'Bedroom Sanctuary'];
-                const projectSub = ['Bespoke Craft', 'Modular Layout', 'Biophilic Details'];
-                
-                return (
-                  <div key={idx} className={`group cursor-pointer relative overflow-hidden rounded-[2rem] md:rounded-[2.5rem] ${widths[idx % 3]} h-64 sm:h-80 md:h-full border border-[#0A0A0A]/5 shadow-sm`}>
-                    <img 
-                      src={img} 
-                      alt={`Portfolio ${idx + 1}`} 
-                      className="w-full h-full object-cover grayscale-[30%] group-hover:scale-105 group-hover:grayscale-0 transition-all duration-[1200ms]" 
-                      loading="lazy" 
-                    />
-                    <div className="absolute inset-0 bg-[#0A0A0A]/35 group-hover:bg-[#0A0A0A]/10 transition-colors duration-700"></div>
-                    
-                    <div className="absolute inset-0 flex flex-col justify-end p-8 opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-y-3 group-hover:translate-y-0">
-                      <p className="text-[#C1FF72] text-[11px] font-bold uppercase tracking-[0.2em] mb-2">
-                        {projectSub[idx % 3]}
-                      </p>
-                      <h4 className="text-white text-2xl font-serif font-normal tracking-wide">
-                        {projectNames[idx % 3]}
-                      </h4>
-                    </div>
-                  </div>
-                )
-              })
-            ) : (
-              INTERIOR_GALLERY_PREVIEW.map((item, idx) => (
-                <div key={idx} className="group cursor-pointer relative overflow-hidden rounded-[2rem] md:rounded-[2.5rem] w-full md:w-1/3 h-64 sm:h-80 md:h-full bg-white border border-[#0A0A0A]/5 shadow-sm p-8 md:p-10 flex flex-col justify-end text-left">
-                  <div className="absolute top-8 right-8 w-8 h-8 rounded-full border border-[#0A0A0A]/10 flex items-center justify-center text-[#0A0A0A]/40 group-hover:bg-[#C1FF72] group-hover:text-[#0A0A0A] transition-all duration-300">
-                    <ArrowRight className="w-4 h-4 -rotate-45" />
-                  </div>
-                  <div>
-                    <p className="text-[#0A0A0A]/60 text-[11px] font-bold tracking-[0.25em] uppercase mb-2">{item.sub}</p>
-                    <h4 className="text-[#0A0A0A] text-xl font-serif font-normal tracking-wide">{item.title}</h4>
-                  </div>
-                </div>
-              ))
-            )}
-          </div>
         </div>
-      </section>
 
-      {/* REVIEWS SECTION */}
-      <section className="py-28 lg:py-36 bg-[#0A0A0A] text-white relative overflow-hidden">
-        {/* Subtle glowing sphere background */}
-        <div className="absolute bottom-[-20%] left-[-10%] w-[50vw] h-[50vw] rounded-full bg-[#C1FF72]/5 blur-[120px] pointer-events-none z-0"></div>
-        
-        <div className="max-w-[90rem] mx-auto px-8 w-full relative z-10">
-          <div className="flex flex-col items-center text-center space-y-6 mb-24">
-            <div className="inline-flex items-center gap-3">
-              <div className="w-8 h-px bg-[#C1FF72]/30"></div>
-              <span className="text-[11px] font-bold tracking-[0.25em] uppercase text-[#C1FF72]">Client Stories</span>
-              <div className="w-8 h-px bg-[#C1FF72]/30"></div>
-            </div>
-            <h2 className="font-serif text-5xl lg:text-7xl font-light tracking-tight leading-[1.05]">
-              Living in our <br />
-              <span className="italic font-normal text-[#FCFAF6]/60">Designs</span>.
-            </h2>
-          </div>
-
-          {displayReviews.length > 5 ? (
-            <div className="invert grayscale">
-              <ReviewsSlider reviews={displayReviews} theme="template1" />
-            </div>
-          ) : (
-            <div className="grid md:grid-cols-3 gap-8 text-left">
-              {displayReviews.map((review: any, i: number) => (
-                <div key={i} className="flex flex-col p-10 rounded-[2.5rem] border border-white/10 hover:border-[#C1FF72]/20 transition-all duration-500 bg-white/[0.02] shadow-xl hover:translate-y-[-4px] group">
-                  <div className="text-[#C1FF72] mb-10">
-                    <Quote className="w-8 h-8 opacity-40 group-hover:opacity-100 transition-opacity duration-300" />
-                  </div>
-                  <p className="text-white/80 font-serif text-base md:text-lg leading-relaxed font-normal mb-10 grow italic">&ldquo;{review.text}&rdquo;</p>
-                  <div className="flex items-center gap-4 border-t border-white/5 pt-6 mt-auto">
-                    <div className="w-10 h-10 bg-white/5 rounded-full flex items-center justify-center font-bold text-xs text-[#C1FF72] border border-white/10 group-hover:bg-[#C1FF72] group-hover:text-[#0A0A0A] transition-colors duration-300">
-                      {review.author ? review.author.charAt(0) : 'U'}
-                    </div>
-                    <div>
-                      <h4 className="font-bold text-white uppercase tracking-[0.2em] text-[11px] mb-1">{review.author || 'Client'}</h4>
-                      <div className="flex gap-0.5">
-                        {[...Array(5)].map((_, j) => (
-                          <Star key={j} className={`w-3.5 h-3.5 ${j < parseInt(review.rating) ? 'fill-[#C1FF72] text-[#C1FF72]' : 'fill-[#FCFAF6]/10 text-transparent'}`} />
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          )}
-        </div>
-      </section>
-
-      {/* FAQ SECTION */}
-      <section className="py-28 lg:py-36 bg-[#FCFAF6] border-b border-[#0A0A0A]/5 relative overflow-hidden">
-        <div className="absolute right-[5%] top-0 w-px h-full bg-[#0A0A0A]/5 pointer-events-none"></div>
-
-        <div className="max-w-4xl mx-auto px-8 w-full relative z-10">
-          <div className="mb-24 space-y-6 text-center flex flex-col items-center">
-            <div className="inline-flex items-center gap-3">
-              <span className="text-[11px] font-bold text-[#0A0A0A]/70 tracking-[0.25em] uppercase">Common Queries</span>
-            </div>
-            <div className="flex flex-col items-center">
-              <h2 className="font-serif text-5xl md:text-6xl lg:text-7xl font-light text-[#0A0A0A] leading-[1.05] tracking-tight">Frequently Asked</h2>
-              <h2 className="font-serif text-5xl md:text-6xl lg:text-7xl font-light text-[#0A0A0A] leading-[1.05] tracking-tight mt-1">Questions<span className="text-[#C1FF72]">.</span></h2>
-            </div>
-          </div>
-
-          <div className="space-y-6 text-left">
-            {faqs.map((faq, idx) => (
-              <details key={idx} className="group border border-[#0A0A0A]/5 rounded-[2rem] bg-white px-8 open:bg-white open:border-[#0A0A0A]/10 hover:border-[#0A0A0A]/10 transition-all duration-300 shadow-sm">
-                <summary className="flex items-center justify-between py-6 cursor-pointer list-none font-serif font-normal text-lg md:text-xl text-[#0A0A0A] focus:outline-none">
-                  <span className="pr-8">{faq.q}</span>
-                  <span className="flex shrink-0 w-8 h-8 items-center justify-center rounded-full bg-[#FCFAF6] group-open:bg-[#C1FF72] group-open:text-[#0A0A0A] transition-colors border border-[#0A0A0A]/5">
-                    <Plus className="w-3.5 h-3.5 group-open:hidden text-[#0A0A0A]/60" />
-                    <Minus className="w-3.5 h-3.5 hidden group-open:block text-[#0A0A0A]" />
-                  </span>
-                </summary>
-                <p className="text-[#0A0A0A]/70 font-normal leading-relaxed pb-8 text-[15px] border-t border-[#0A0A0A]/5 pt-4 mt-1">
-                  {faq.a}
-                </p>
-              </details>
+        <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-7 w-full">
+          <div className="grid grid-cols-2 md:grid-cols-4 border-t border-[#f6f1e8]/15">
+            {[
+              { value: rating, suffix: '★', label: 'Google Rating' },
+              { value: experienceYears, suffix: '+ yrs', label: 'Of Craftsmanship' },
+              { value: String(servicesList.length), suffix: '+', label: 'Design Services' },
+              { value: business.reviewCount || '100', suffix: '+', label: 'Happy Clients' },
+            ].map((stat, i) => (
+              <div key={i} className={`py-7 px-6 border-l border-[#f6f1e8]/15 ${i === 0 ? 'md:border-l-0 md:pl-0' : ''} ${i % 2 === 0 ? 'max-md:border-l-0 max-md:pl-0' : ''}`}>
+                <b className="font-[family-name:var(--font-marcellus)] font-normal text-[clamp(30px,3vw,44px)] block text-white">
+                  {stat.value}
+                  <i className="not-italic text-[#c9ab7c]">{stat.suffix}</i>
+                </b>
+                <span className="text-[11.5px] tracking-[0.26em] uppercase text-white/60">{stat.label}</span>
+              </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* FINAL CTA SECTION */}
-      <section className="py-28 lg:py-36 bg-[#0A0A0A] text-white selection:bg-[#C1FF72] selection:text-[#0A0A0A] relative overflow-hidden">
-        <div className="absolute right-[-10%] bottom-[-10%] w-[55vw] h-[55vw] rounded-full border border-white/[0.03] pointer-events-none"></div>
-
-        <div className="max-w-[90rem] mx-auto px-8 w-full relative z-10">
-          <div className="flex flex-col lg:flex-row gap-16 lg:gap-24 items-center justify-between">
-            <div className="flex-1 text-left space-y-8">
-              <div className="space-y-4">
-                <h2 className="font-serif text-5xl md:text-6xl font-light text-white leading-[1.05] tracking-tight">Your Design Journey</h2>
-                <h2 className="font-serif text-5xl md:text-6xl font-light text-[#C1FF72] leading-[1.05] tracking-tight">Starts Here<span className="text-white">.</span></h2>
+      {/* ABOUT */}
+      <section id="about" className="py-[clamp(84px,9vw,130px)] px-6 lg:px-7">
+        <div className="max-w-7xl mx-auto grid lg:grid-cols-[1.05fr_0.95fr] gap-[clamp(44px,6vw,90px)] items-center">
+          <Reveal>
+            <div className="relative before:content-[''] before:absolute before:-left-4 before:-top-4 before:right-14 before:bottom-14 before:border before:border-[#a58150]">
+              <div className="overflow-hidden aspect-[4/4.7] group">
+                <img
+                  src={aboutImage}
+                  alt={`Inside the ${cleanName || 'design'} studio`}
+                  loading="lazy"
+                  className="w-full h-full object-cover transition-transform duration-[1200ms] ease-[cubic-bezier(.19,1,.22,1)] group-hover:scale-[1.04]"
+                />
               </div>
-              <p className="text-sm md:text-base text-white/60 font-normal max-w-lg leading-relaxed">
-                Bring your space closer to the way you want to live. Connect with us to shape a clear design path forward.
-              </p>
-              <div className="space-y-6 pt-6 border-t border-white/5 max-w-md">
-                <div className="flex items-center gap-4">
-                  <div className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-[#C1FF72]">
-                    <Phone className="w-4 h-4" />
-                  </div>
-                  <div>
-                    <h4 className="text-[11px] text-[#FCFAF6]/60 uppercase tracking-[0.2em] font-bold">Call Us Directly</h4>
-                    <p className="text-base font-bold text-white mt-1 hover:text-[#C1FF72] transition-colors">
-                      <a href={`tel:${clinic.contact?.phone || ''}`}>{clinic.contact?.phone || 'Contact Number'}</a>
-                    </p>
-                  </div>
-                </div>
-                <div className="flex items-center gap-4">
-                  <div className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-[#C1FF72]">
-                    <MapPin className="w-4 h-4" />
-                  </div>
-                  <div>
-                    <h4 className="text-[11px] text-[#FCFAF6]/60 uppercase tracking-[0.2em] font-bold">Studio Location</h4>
-                    <p className="text-sm font-semibold text-white mt-1 leading-relaxed">{clinic.address?.full || 'Address'}</p>
-                  </div>
-                </div>
+              <div className="absolute -right-2 sm:-right-4 bottom-11 bg-[#211a13] text-white px-8 py-7 shadow-[0_30px_60px_rgba(33,26,19,0.3)]">
+                <b className="font-[family-name:var(--font-marcellus)] font-normal text-[44px] text-[#c9ab7c] block leading-none">
+                  {experienceYears}+
+                </b>
+                <span className="text-[11px] tracking-[0.3em] uppercase text-white/65">Years in {city}</span>
               </div>
             </div>
+          </Reveal>
 
-            {/* Premium WhatsApp Engagement Box */}
-            <div className="bg-[#FCFAF6]/5 border border-white/10 rounded-[2.5rem] p-10 lg:p-12 flex flex-col items-center text-center gap-6 min-w-[320px] max-w-md shadow-2xl relative z-10 backdrop-blur-sm group">
-              <div className="w-20 h-20 rounded-full bg-[#25D366] flex items-center justify-center shadow-2xl relative group-hover:scale-105 transition-transform duration-500">
-                <div className="absolute inset-0 bg-[#25D366] rounded-full animate-ping opacity-25"></div>
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" className="w-10 h-10 relative z-10">
-                  <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
-                </svg>
-              </div>
-              <div className="space-y-2">
-                <h3 className="font-serif text-xl md:text-2xl font-normal text-white tracking-wide">Chat On WhatsApp</h3>
-                <p className="text-white/60 font-normal text-[13px] max-w-xs">
-                  Get instant answers, share project references, and book your consultation in minutes.
-                </p>
-              </div>
-              <a
-                href={waLink}
-                target="_blank"
-                rel="noreferrer"
-                className="w-full bg-[#25D366] hover:bg-[#1db954] text-white font-bold py-4 rounded-xl transition-all hover:scale-[1.02] active:scale-[0.98] flex items-center justify-center gap-3 text-[11px] tracking-widest uppercase shadow-lg"
-              >
-                Start Conversation
-              </a>
-              <p className="text-[#FCFAF6]/40 text-[11px] font-bold uppercase tracking-widest">Usually replies in minutes</p>
+          <Reveal delay={120}>
+            <span className="flex items-center gap-3.5 text-[12px] tracking-[0.38em] uppercase text-[#a58150] mb-4 before:content-[''] before:w-10 before:h-px before:bg-[#a58150]">
+              The studio
+            </span>
+            <h2 className="font-[family-name:var(--font-marcellus)] text-[clamp(32px,3.8vw,52px)] leading-[1.12] mb-6">
+              A design house rooted in{' '}
+              <em className="not-italic font-light italic text-[#a58150]">the way you live</em>
+            </h2>
+            <p className="text-[#7d7264] leading-[1.85] font-light mb-4.5 text-[15.5px]">{cleanDesc}</p>
+            <p className="text-[#7d7264] leading-[1.85] font-light text-[15.5px]">
+              Led by {doctor?.name || 'our design team'} — {doctor?.specialization || 'Interior Design & Turnkey Execution'} — we design
+              homes around real routines: kitchens built for serious cooking, storage that disappears, and living rooms made for long family evenings.
+            </p>
+            <div className="grid sm:grid-cols-2 gap-x-8 gap-y-5 my-8">
+              {highlights.slice(0, 4).map((h) => (
+                <div key={h} className="border-t border-[#211a13]/10 pt-4">
+                  <b className="font-[family-name:var(--font-marcellus)] font-normal text-[17px] block mb-1.5">{h}</b>
+                </div>
+              ))}
             </div>
+            <Link
+              href={`${basePath}/about`}
+              className="inline-flex items-center gap-3 bg-transparent text-[#211a13] px-7 py-4 text-[12.5px] tracking-[0.2em] uppercase font-medium border border-[#211a13] hover:bg-[#211a13] hover:text-white transition-colors duration-300"
+            >
+              More About Us
+            </Link>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* SERVICES */}
+      <section id="services" className="py-[clamp(84px,9vw,130px)] px-6 lg:px-7 bg-[#fdfbf6] border-y border-[#211a13]/10">
+        <div className="max-w-7xl mx-auto">
+          <Reveal className="flex flex-wrap justify-between items-end gap-10 mb-[clamp(44px,5vw,68px)]">
+            <div>
+              <span className="flex items-center gap-3.5 text-[12px] tracking-[0.38em] uppercase text-[#a58150] mb-4 before:content-[''] before:w-10 before:h-px before:bg-[#a58150]">
+                What we do
+              </span>
+              <h2 className="font-[family-name:var(--font-marcellus)] text-[clamp(34px,4.2vw,58px)] leading-[1.1]">
+                End-to-end <em className="not-italic italic font-light text-[#a58150]">interior services</em>
+              </h2>
+            </div>
+            <p className="max-w-[430px] text-[#7d7264] leading-[1.8] text-[15.5px] font-light">
+              One team from concept to keys — design, production, execution and styling under a single roof.
+            </p>
+          </Reveal>
+
+          <Reveal className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {previewServices.map((svc, idx) => (
+              <Link key={svc.title} href={`${basePath}/services`} className="group relative overflow-hidden aspect-[3/4] flex items-end text-white">
+                <img
+                  src={svc.img}
+                  alt={svc.title}
+                  loading="lazy"
+                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 ease-[cubic-bezier(.19,1,.22,1)] group-hover:scale-[1.07]"
+                />
+                <div className="absolute inset-0 bg-[linear-gradient(0deg,rgba(24,18,12,0.88)_0%,rgba(24,18,12,0.28)_45%,rgba(24,18,12,0.06)_70%)]" />
+                <div className="relative z-10 p-6">
+                  <small className="text-[10.5px] tracking-[0.3em] uppercase text-[#c9ab7c] block mb-2.5">
+                    0{idx + 1} — Service
+                  </small>
+                  <h3 className="font-[family-name:var(--font-marcellus)] font-normal text-[22px] mb-2.5">{svc.title}</h3>
+                  <p className="text-[13px] font-light text-white/80 leading-[1.6] max-h-0 opacity-0 overflow-hidden transition-all duration-500 group-hover:max-h-[120px] group-hover:opacity-100 group-hover:mb-1">
+                    {svc.desc}
+                  </p>
+                </div>
+              </Link>
+            ))}
+          </Reveal>
+
+          <Reveal className="text-center mt-12">
+            <Link
+              href={`${basePath}/services`}
+              className="inline-flex items-center gap-3 text-[12.5px] tracking-[0.2em] uppercase font-medium text-[#211a13] border-b border-[#a58150] pb-1.5 hover:text-[#a58150] transition-colors"
+            >
+              Explore All Services →
+            </Link>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* PORTFOLIO */}
+      <section id="work" className="py-[clamp(84px,9vw,130px)] px-6 lg:px-7">
+        <div className="max-w-7xl mx-auto">
+          <Reveal className="flex flex-wrap justify-between items-end gap-10 mb-[clamp(44px,5vw,68px)]">
+            <div>
+              <span className="flex items-center gap-3.5 text-[12px] tracking-[0.38em] uppercase text-[#a58150] mb-4 before:content-[''] before:w-10 before:h-px before:bg-[#a58150]">
+                Selected work
+              </span>
+              <h2 className="font-[family-name:var(--font-marcellus)] text-[clamp(34px,4.2vw,58px)] leading-[1.1]">
+                Recent projects across <em className="not-italic italic font-light text-[#a58150]">{city}</em>
+              </h2>
+            </div>
+            <p className="max-w-[430px] text-[#7d7264] leading-[1.8] text-[15.5px] font-light">
+              A selection from the homes and spaces we&rsquo;ve designed and built. Every photograph is a real project.
+            </p>
+          </Reveal>
+
+          <div className="grid grid-cols-12 gap-5">
+            {gallery.map((img, idx) => {
+              const spans = ['col-span-12 md:col-span-7 aspect-[16/10.5]', 'col-span-12 md:col-span-5 aspect-[4/3.36]', 'col-span-12 md:col-span-5 aspect-[4/3.36]', 'col-span-12 md:col-span-7 aspect-[16/10.5]', 'col-span-12 md:col-span-6 aspect-[16/10]', 'col-span-12 md:col-span-6 aspect-[16/10]'];
+              return (
+                <Reveal key={idx} className={spans[idx % 6]} delay={(idx % 3) * 80}>
+                  <Link href={`${basePath}/gallery`} className="group relative overflow-hidden flex items-end text-white w-full h-full">
+                    <img
+                      src={img}
+                      alt={`${cleanName || 'Studio'} project ${idx + 1}`}
+                      loading="lazy"
+                      className="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 ease-[cubic-bezier(.19,1,.22,1)] group-hover:scale-[1.06]"
+                    />
+                    <div className="absolute inset-0 bg-[linear-gradient(0deg,rgba(24,18,12,0.82)_0%,transparent_46%)]" />
+                    <div className="relative z-10 flex justify-between items-end w-full px-6 py-6">
+                      <div>
+                        <span className="text-[11px] tracking-[0.24em] uppercase text-[#c9ab7c]">{city}</span>
+                        <b className="font-[family-name:var(--font-marcellus)] font-normal text-[20px] block">Project Space</b>
+                      </div>
+                      <span className="font-[family-name:var(--font-marcellus)] text-[15px] text-white/55">/ 0{idx + 1}</span>
+                    </div>
+                  </Link>
+                </Reveal>
+              );
+            })}
           </div>
+        </div>
+      </section>
+
+      {/* PROCESS */}
+      <section id="process" className="py-[clamp(84px,9vw,130px)] px-6 lg:px-7 bg-[#211a13] text-white">
+        <div className="max-w-7xl mx-auto">
+          <Reveal className="flex flex-wrap justify-between items-end gap-10 mb-[clamp(44px,5vw,68px)]">
+            <div>
+              <span className="flex items-center gap-3.5 text-[12px] tracking-[0.38em] uppercase text-[#c9ab7c] mb-4 before:content-[''] before:w-10 before:h-px before:bg-[#c9ab7c]">
+                The journey
+              </span>
+              <h2 className="font-[family-name:var(--font-marcellus)] text-[clamp(34px,4.2vw,58px)] leading-[1.1]">
+                From first sketch to <em className="not-italic italic font-light text-[#c9ab7c]">housewarming</em>
+              </h2>
+            </div>
+            <p className="max-w-[430px] text-white/60 leading-[1.8] text-[15.5px] font-light">
+              A structured, milestone-driven process — you always know what happens next.
+            </p>
+          </Reveal>
+
+          <Reveal className="grid sm:grid-cols-2 lg:grid-cols-4 gap-px bg-[#f6f1e8]/15 border border-[#f6f1e8]/15">
+            {PROCESS_STEPS.map((step, idx) => (
+              <div key={step.title} className="bg-[#211a13] hover:bg-[#2c231a] transition-colors duration-400 px-7 py-9">
+                <span
+                  className="font-[family-name:var(--font-marcellus)] text-[52px] block mb-5 text-transparent"
+                  style={{ WebkitTextStroke: '1px #a58150' }}
+                >
+                  0{idx + 1}
+                </span>
+                <h3 className="font-[family-name:var(--font-marcellus)] font-normal text-[21px] mb-3">{step.title}</h3>
+                <p className="text-[13.5px] font-light text-white/60 leading-[1.7]">{step.desc}</p>
+              </div>
+            ))}
+          </Reveal>
+        </div>
+      </section>
+
+      {/* WHY US */}
+      <section id="why" className="py-[clamp(84px,9vw,130px)] px-6 lg:px-7">
+        <div className="max-w-7xl mx-auto grid lg:grid-cols-[0.95fr_1.05fr] gap-[clamp(44px,6vw,90px)] items-center">
+          <Reveal className="relative overflow-hidden aspect-[4/4.4]">
+            <img src={whyImage} alt="Design and material planning" loading="lazy" className="w-full h-full object-cover" />
+          </Reveal>
+
+          <Reveal delay={120}>
+            <span className="flex items-center gap-3.5 text-[12px] tracking-[0.38em] uppercase text-[#a58150] mb-4 before:content-[''] before:w-10 before:h-px before:bg-[#a58150]">
+              Why {cleanName || 'us'}
+            </span>
+            <h2 className="font-[family-name:var(--font-marcellus)] text-[clamp(32px,3.8vw,52px)] leading-[1.12] mb-6">
+              The reassurance of a <em className="not-italic italic font-light text-[#a58150]">serious design house</em>
+            </h2>
+            <p className="text-[#7d7264] leading-[1.85] font-light text-[15.5px] mb-7">
+              Interior projects go wrong in the gaps — between designer and carpenter, quote and invoice, promise and delivery. We removed the gaps by owning every step ourselves.
+            </p>
+            <div>
+              {whyChecks.map((check, idx) => {
+                const Icon = check.icon;
+                return (
+                  <div key={idx} className={`flex gap-5 py-5 border-b border-[#211a13]/10 items-start ${idx === 0 ? 'border-t' : ''}`}>
+                    <span className="w-10 h-10 shrink-0 border border-[#a58150] grid place-items-center">
+                      <Icon className="w-[18px] h-[18px] text-[#a58150]" strokeWidth={1.8} />
+                    </span>
+                    <div>
+                      <b className="font-[family-name:var(--font-marcellus)] font-normal text-[17px] block mb-1">{check.title}</b>
+                      <span className="text-[13.5px] text-[#7d7264] font-light leading-[1.6]">{check.desc}</span>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* TESTIMONIALS */}
+      <section id="reviews" className="py-[clamp(84px,9vw,130px)] px-6 lg:px-7 bg-[#fdfbf6] border-y border-[#211a13]/10">
+        <div className="max-w-7xl mx-auto">
+          <Reveal className="flex flex-wrap justify-between items-end gap-10 mb-[clamp(44px,5vw,68px)]">
+            <div>
+              <span className="flex items-center gap-3.5 text-[12px] tracking-[0.38em] uppercase text-[#a58150] mb-4 before:content-[''] before:w-10 before:h-px before:bg-[#a58150]">
+                Client stories
+              </span>
+              <h2 className="font-[family-name:var(--font-marcellus)] text-[clamp(34px,4.2vw,58px)] leading-[1.1]">
+                Loved by clients <em className="not-italic italic font-light text-[#a58150]">across the city</em>
+              </h2>
+            </div>
+            <p className="max-w-[430px] text-[#7d7264] leading-[1.8] text-[15.5px] font-light">
+              {rating} average on Google — the rating we guard most carefully.
+            </p>
+          </Reveal>
+
+          <Reveal className="grid md:grid-cols-3 gap-6">
+            {reviews.slice(0, 3).map((review: any, i: number) => (
+              <div
+                key={i}
+                className="bg-[#f6f1e8] border border-[#211a13]/10 px-8 py-9 flex flex-col gap-5 transition-all duration-300 hover:border-[#a58150] hover:-translate-y-1.5"
+              >
+                <span className="text-[#a58150] tracking-[5px] text-[14px]">
+                  {'★'.repeat(Math.max(1, Math.min(5, parseInt(String(review.rating)) || 5)))}
+                </span>
+                <blockquote className="font-[family-name:var(--font-marcellus)] text-[17.5px] leading-[1.65] flex-1">
+                  &ldquo;{review.text}&rdquo;
+                </blockquote>
+                <div className="flex items-center gap-3.5 border-t border-[#211a13]/10 pt-5">
+                  <span className="w-[46px] h-[46px] rounded-full bg-[#211a13] text-[#c9ab7c] grid place-items-center font-[family-name:var(--font-marcellus)] text-[18px]">
+                    {(review.author || 'C').charAt(0)}
+                  </span>
+                  <div>
+                    <b className="block text-[14.5px] font-medium">{review.author || 'Happy Client'}</b>
+                    <span className="text-[12px] text-[#7d7264] tracking-[0.08em]">Verified Google Review</span>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </Reveal>
+        </div>
+      </section>
+
+      {/* CTA / LEAD FORM */}
+      <section id="consult" className="relative py-[clamp(84px,9vw,130px)] px-6 lg:px-7 text-white overflow-hidden">
+        <div className="absolute inset-0">
+          <img src={ctaImage} alt="" loading="lazy" className="w-full h-full object-cover" />
+          <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(24,18,12,0.93)_0%,rgba(24,18,12,0.78)_55%,rgba(24,18,12,0.45)_100%)]" />
+        </div>
+
+        <div className="relative z-10 max-w-7xl mx-auto grid lg:grid-cols-[1.1fr_0.9fr] gap-[clamp(44px,6vw,90px)] items-center">
+          <Reveal>
+            <span className="flex items-center gap-3.5 text-[12px] tracking-[0.38em] uppercase text-[#c9ab7c] mb-4 before:content-[''] before:w-10 before:h-px before:bg-[#c9ab7c]">
+              Begin your home
+            </span>
+            <h2 className="font-[family-name:var(--font-marcellus)] text-[clamp(34px,4.4vw,58px)] leading-[1.1] mb-5">
+              Book a free design <em className="not-italic italic font-light text-[#c9ab7c]">consultation</em>
+            </h2>
+            <p className="text-white/75 font-light leading-[1.8] max-w-[460px] mb-7">
+              A 45-minute session with our design team — space plan, style direction and a ballpark estimate for your home. Free, and genuinely useful even if you don&rsquo;t choose us.
+            </p>
+            <div className="flex flex-wrap gap-8">
+              {[
+                { value: '45 min', label: 'With a designer' },
+                { value: '₹0', label: 'No fee, no obligation' },
+                { value: '24 hrs', label: 'Response time' },
+              ].map((item) => (
+                <div key={item.label}>
+                  <b className="font-[family-name:var(--font-marcellus)] font-normal text-[26px] block text-[#c9ab7c]">{item.value}</b>
+                  <span className="text-[11px] tracking-[0.24em] uppercase text-white/60">{item.label}</span>
+                </div>
+              ))}
+            </div>
+          </Reveal>
+
+          <Reveal delay={120}>
+            <LeadForm studioName={cleanName || 'the studio'} waPhone={waPhone} phoneDisplay={phone} />
+          </Reveal>
         </div>
       </section>
     </div>
   );
 }
-

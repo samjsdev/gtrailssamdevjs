@@ -8,7 +8,8 @@
     "generate:schemas": "node scripts/generate_template_schemas.js",
     "build:deploy": "node scripts/generate_template_schemas.js && next build && node scripts/deploy_build.js",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "sync:clients": "node scripts/sync_clients_to_json.js"
   },
   "dependencies": {
     "@gsap/react": "^2.1.2",

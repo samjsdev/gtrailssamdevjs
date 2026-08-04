@@ -19,14 +19,93 @@ export type InteriorGuide = {
   tips: string[];
 };
 
+/** Local full-room interior stock (no sofa/bed product close-ups). */
+export const INTERIOR_STOCK = {
+  heroes: [
+    '/images/stock/68b39046.webp',
+    '/images/stock/a0e0726f.webp',
+    '/images/stock/dc1759ad.webp',
+    '/images/stock/f23e9dc6.webp',
+    '/images/stock/615f9d34.webp',
+    '/images/stock/6dcb103c.webp',
+  ],
+  gallery: [
+    '/images/stock/a151a9e5.webp',
+    '/images/stock/bf333360.webp',
+    '/images/stock/84fea9c5.webp',
+    '/images/stock/284d6d29.webp',
+    '/images/stock/36e83915.webp',
+    '/images/stock/90879216.webp',
+    '/images/stock/34bba44b.webp',
+    '/images/stock/7617327a.webp',
+    '/images/stock/8f61297a.webp',
+    '/images/stock/ca97efb9.webp',
+    '/images/stock/49bce86b.webp',
+    '/images/stock/a8927807.webp',
+  ],
+  services: [
+    '/images/stock/cf0f5b64.webp',
+    '/images/stock/881afddc.webp',
+    '/images/stock/ae3de7db.webp',
+    '/images/stock/4e96f2e2.webp',
+    '/images/stock/bfeb918f.webp',
+    '/images/stock/caf3a8ac.webp',
+  ],
+  kitchens: [
+    '/images/stock/c87d10e5.webp',
+    '/images/stock/9e00b08a.webp',
+    '/images/stock/d2a373a2.webp',
+  ],
+  living: [
+    '/images/stock/a151a9e5.webp',
+    '/images/stock/bf333360.webp',
+    '/images/stock/d8c80cf3.webp',
+  ],
+  bedrooms: [
+    '/images/stock/af2da1d1.webp',
+    '/images/stock/5ab4e561.webp',
+    '/images/stock/704fc1ee.webp',
+  ],
+  themes: [
+    '/images/stock/c093e1b3.webp',
+    '/images/stock/d2cd7311.webp',
+    '/images/stock/68b39046.webp',
+    '/images/stock/ddc829e8.webp',
+    '/images/stock/75c40d2b.webp',
+  ],
+  about: [
+    '/images/stock/a9daeddb.webp',
+    '/images/stock/6dcb103c.webp',
+    '/images/stock/4a368613.webp',
+  ],
+  studio: [
+    '/images/stock/1c7b75e9.webp',
+    '/images/stock/a9daeddb.webp',
+    '/images/stock/463ea892.webp',
+  ],
+  people: [
+    '/images/stock/bbb7f0e7.webp',
+    '/images/stock/5862d7f2.webp',
+    '/images/stock/b7119856.webp',
+  ],
+} as const;
+
+export function stockImage(
+  kind: keyof typeof INTERIOR_STOCK,
+  index = 0
+): string {
+  const list = INTERIOR_STOCK[kind];
+  return list[index % list.length];
+}
+
 export const INTERIOR_HERO_IMAGES = {
-  home: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&q=80&w=2000",
-  services: "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&q=80&w=2000",
-  gallery: "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&q=80&w=2000",
-  guides: "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&q=80&w=2000",
-  about: "https://images.unsplash.com/photo-1600210492493-0946911123ea?auto=format&fit=crop&q=80&w=2000",
-  contact: "https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&q=80&w=2000",
-  designer: "https://images.unsplash.com/photo-1600121848594-d8644e57abab?auto=format&fit=crop&q=80&w=1200",
+  home: INTERIOR_STOCK.heroes[0],
+  services: INTERIOR_STOCK.services[0],
+  gallery: INTERIOR_STOCK.gallery[0],
+  guides: INTERIOR_STOCK.heroes[2],
+  about: INTERIOR_STOCK.about[0],
+  contact: INTERIOR_STOCK.studio[0],
+  designer: INTERIOR_STOCK.people[0],
 };
 
 const INTERIOR_SERVICE_IMAGES: Record<string, string> = {

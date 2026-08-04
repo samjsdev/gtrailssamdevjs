@@ -1,236 +1,185 @@
-import { readSourceConfig } from "@/lib/dataBuilder";
-import { notFound } from "next/navigation";
-import { INTERIOR_HERO_IMAGES } from "@/lib/interiorContent";
+import { readSourceConfig } from '@/lib/dataBuilder';
+import { notFound } from 'next/navigation';
+import Link from 'next/link';
+import { Check, ArrowRight } from 'lucide-react';
+import { cleanClinicName } from '@/lib/copyCleaner';
+import {
+  DEFAULT_INTERIOR_SERVICES,
+  getInteriorServiceData,
+  getInteriorServiceSummary,
+  getServiceImage,
+} from '@/lib/interiorContent';
+import Reveal from '../Reveal';
+import SeriesScroll, { SeriesTheme } from '../SeriesScroll';
 
-type PageProps = {
-  params: Promise<{ slug: string }>;
-};
+type PageProps = { params: Promise<{ slug: string }> };
 
-export default async function ServicesPage({ params }: PageProps) {
-  const resolvedParams = await params;
-  const { slug } = resolvedParams;
+const SERVICE_FALLBACK_IMAGES = [
+  '/images/stock/68b39046.webp',
+  '/images/stock/a0e0726f.webp',
+  '/images/stock/dc1759ad.webp',
+  '/images/stock/f23e9dc6.webp',
+  '/images/stock/615f9d34.webp',
+  '/images/stock/6dcb103c.webp',
+];
+
+const THEME_IMAGES = [
+  '/images/stock/a151a9e5.webp',
+  '/images/stock/bf333360.webp',
+  '/images/stock/84fea9c5.webp',
+  '/images/stock/284d6d29.webp',
+  '/images/stock/36e83915.webp',
+];
+
+const THEMES = [
+  { name: 'Lyrical Luxury', desc: 'Warm cove light, velvet & brass — quiet opulence' },
+  { name: 'Modern Zen', desc: 'Bare essentials, breathing room, morning light' },
+  { name: 'European Reverie', desc: 'Panelled walls, antique mirrors, Parisian restraint' },
+  { name: 'Chettinad Contemporary', desc: 'Heritage wood & athangudi soul, modern lines' },
+  { name: 'Coastal Calm', desc: 'Rattan, indigo & sea-breeze ease for coastal homes' },
+];
+
+export default async function Template4Services({ params }: PageProps) {
+  const { slug } = await params;
+  const basePath = `/designwebsite/template4/${slug}`;
 
   const data = await readSourceConfig(slug, 'template4');
   if (!data) return notFound();
 
+  const { clinic, business, media } = data;
+  const cleanName = cleanClinicName(clinic.name);
+  const city = clinic.address?.city || 'Chennai';
+  const servicesList: string[] = business.services?.length ? business.services : DEFAULT_INTERIOR_SERVICES;
+
+  const services = servicesList.map((svc: string, idx: number) => {
+    const detail = getInteriorServiceData(svc);
+    return {
+      title: svc,
+      tagline: detail?.tagline || 'Designed and built around your home.',
+      desc: detail?.description || getInteriorServiceSummary(svc),
+      benefits: detail?.benefits?.slice(0, 4) || [
+        'Personalized design direction',
+        'Curated material selections',
+        'Clear budgets and timelines',
+        'Coordinated execution and styling',
+      ],
+      img:
+        getServiceImage(svc, media) ||
+        media.treatmentImages?.[idx] ||
+        SERVICE_FALLBACK_IMAGES[idx % SERVICE_FALLBACK_IMAGES.length],
+    };
+  });
+
+  const themes: SeriesTheme[] = THEMES.map((theme, idx) => ({
+    ...theme,
+    img: media.treatmentImages?.[idx] || THEME_IMAGES[idx],
+  }));
+
   return (
-    <div className="text-stone-900 bg-stone-50 min-h-screen pb-32 selection:bg-stone-200">
-      
-      {/* HEADER HERO */}
-      <section className="relative pt-36 pb-20 px-6 max-w-6xl mx-auto text-center z-10">
-        <div className="space-y-6 max-w-4xl mx-auto">
-          <p className="text-[10px] font-bold uppercase tracking-[0.3em] text-stone-500">— DESIGN CAPABILITIES</p>
-          <h1 className="text-4xl md:text-6xl lg:text-7xl font-light text-stone-900 leading-tight">
-            Our Services
-          </h1>
-          <p className="text-base md:text-lg text-stone-600 font-light max-w-2xl mx-auto leading-relaxed">
-            From spatial analysis to artisanal turnarounds, we implement tailored spatial structures with absolute precision, material sincerity, and transparent budgets.
-          </p>
+    <div>
+      {/* HERO */}
+      <section className="py-[clamp(64px,7vw,96px)]">
+        <div className="max-w-[1240px] mx-auto px-[30px]">
+          <Reveal>
+            <div className="flex items-center gap-3 text-[11.5px] font-semibold tracking-[0.3em] uppercase text-[#a4532f] before:content-[''] before:w-8 before:h-px before:bg-[#a4532f]">
+              Our services
+            </div>
+            <h1 className="font-[family-name:var(--font-cormorant)] text-[clamp(34px,4.6vw,56px)] font-semibold leading-[1.12] mt-4 mb-3.5 max-w-[760px]">
+              Every craft your home deserves, <em className="italic text-[#a4532f]">under one signature</em>
+            </h1>
+            <p className="text-[#7a6f60] text-[16px] font-light max-w-[620px]">
+              From single rooms to complete turnkey residences — {cleanName || 'our studio'} designs, builds and styles
+              across {city}.
+            </p>
+          </Reveal>
         </div>
       </section>
 
-      {/* CORE WRAPPER */}
-      <div className="max-w-6xl mx-auto px-6 space-y-32">
-        
-        {/* 01 - FOUNDATIONAL SERVICES */}
-        <section className="space-y-12">
-          <div className="border-b border-stone-250 pb-8 relative">
-            <span className="text-8xl font-black text-stone-200/40 select-none absolute -z-10 -top-12 -left-6">01</span>
-            <p className="text-[10px] font-bold uppercase tracking-[0.25em] text-stone-500 relative z-10">THE PROTOCOLS</p>
-            <h2 className="text-3xl md:text-4xl font-light text-stone-900 leading-tight relative z-10">
-              Foundational Services
-            </h2>
-          </div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {[
-              { 
-                title: "Space Planning & Circulations", 
-                desc: "We analyze daylight paths, entry thresholds, and family movements to shape practical layouts that maximize light.",
-                img: INTERIOR_HERO_IMAGES.guides,
-                features: ["Flow Optimization", "Circulation Audits", "Ergonomic Layouts"]
-              },
-              { 
-                title: "Material & Finish Curation", 
-                desc: "Selecting timber veneers, raw stoneworks, and non-toxic clay plasters that develop graceful age-worn character.",
-                img: INTERIOR_HERO_IMAGES.about,
-                features: ["Solid Timber Selection", "Healthy Coatings", "Curated Palette Mapping"]
-              },
-              { 
-                title: "Architectural Lighting Layouts", 
-                desc: "Layering ceiling pathways, task points, and accent highlight lines to create quiet evening moods.",
-                img: INTERIOR_HERO_IMAGES.services,
-                features: ["Circadian Pathways", "Task-Focused Points", "Sconce & Highlight Curation"]
-              }
-            ].map((srv, idx) => (
-              <div key={idx} className="bg-white border border-stone-200 p-6 flex flex-col justify-between hover:border-stone-900 transition-colors duration-500 group">
-                <div className="space-y-6">
-                  <div className="aspect-[4/3] w-full overflow-hidden border border-stone-150">
-                    <img 
-                      src={srv.img} 
-                      alt={srv.title} 
-                      className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700"
-                    />
-                  </div>
-                  <h3 className="text-lg font-medium text-stone-900">{srv.title}</h3>
-                  <p className="text-stone-500 font-light text-xs leading-relaxed">{srv.desc}</p>
-                </div>
-                <div className="pt-6 mt-6 border-t border-stone-100 flex flex-wrap gap-2">
-                  {srv.features.map((feat, fidx) => (
-                    <span key={fidx} className="text-[9px] font-bold uppercase tracking-wider bg-stone-100 text-stone-600 px-2 py-1">
-                      {feat}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        {/* 02 - ALTERNATING TRANSFORMATIONS */}
-        <section className="space-y-24">
-          <div className="border-b border-stone-250 pb-8 relative">
-            <span className="text-8xl font-black text-stone-200/40 select-none absolute -z-10 -top-12 -left-6">02</span>
-            <p className="text-[10px] font-bold uppercase tracking-[0.25em] text-stone-500 relative z-10">THE OUTCOMES</p>
-            <h2 className="text-3xl md:text-4xl font-light text-stone-900 leading-tight relative z-10">
-              Transformations
-            </h2>
-          </div>
-
-          <div className="space-y-32">
-            {[
-              { 
-                num: "02.1",
-                title: "Residential Interior Curation", 
-                desc: "We shape complete customized residential environments—from spatial layouts through materials sourcing, biophilic layerings, custom cupboards, and final decor. Our focus is a quiet luxury made for everyday life.", 
-                img: INTERIOR_HERO_IMAGES.home,
-                points: ["Custom Bedroom Retractions", "Modular Kitchen Worktriangles", "Tactile Living Salons"]
-              },
-              { 
-                num: "02.2",
-                title: "Commercial & Business Salons", 
-                desc: "Sleek, tactile offices, showrooms, retail lounges, and cafes that reinforce brand principles while supporting workers and customers ergonomically.", 
-                img: INTERIOR_HERO_IMAGES.designer,
-                points: ["Circulation-Friendly Offices", "Quiet Acoustic Lounges", "Highly Durable Sourcing"]
-              },
-              { 
-                num: "02.3",
-                title: "Artisanal Styling & Accessories", 
-                desc: "Curating raw textures, organic canvases, handwoven soft linens, and bespoke lighting coordinates that bring space together and complete the tactile design vision.", 
-                img: INTERIOR_HERO_IMAGES.gallery,
-                points: ["Custom Textile Layering", "Art Curation & Mounting", "Restrained Display Styling"]
-              }
-            ].map((srv, idx) => (
-              <div key={idx} className={`flex flex-col lg:flex-row items-center gap-12 lg:gap-16 ${idx % 2 === 1 ? 'lg:flex-row-reverse' : ''}`}>
-                <div className="w-full lg:w-1/2 aspect-[4/3] border border-stone-250 overflow-hidden relative group">
-                  <img 
-                    src={srv.img} 
-                    alt={srv.title} 
-                    className="w-full h-full object-cover transform group-hover:scale-103 transition-transform duration-[1500ms]"
+      {/* SERVICES */}
+      <section className="py-[clamp(48px,6vw,80px)] bg-[#fbf8f1]">
+        <div className="max-w-[1240px] mx-auto px-[30px] flex flex-col gap-[clamp(64px,7vw,96px)]">
+          {services.map((svc, idx) => (
+            <Reveal key={svc.title}>
+              <div className="grid lg:grid-cols-2 gap-[52px] lg:gap-[70px] items-center">
+                <div className={`relative ${idx % 2 === 1 ? 'lg:order-2' : ''}`}>
+                  <div
+                    className={`absolute border border-[#b08d4f] ${
+                      idx % 2 === 1 ? '-top-4 -right-4 bottom-4 left-4' : '-top-4 right-4 bottom-4 -left-4'
+                    }`}
                   />
-                </div>
-                <div className="w-full lg:w-1/2 space-y-6">
-                  <div className="flex items-center gap-3">
-                    <span className="text-[10px] font-bold text-stone-500 font-mono uppercase tracking-wider">{srv.num}</span>
-                    <span className="h-px w-6 bg-stone-300" />
-                    <span className="text-[10px] text-stone-400 font-bold uppercase tracking-widest">Outcome Curation</span>
+                  <img src={svc.img} alt={svc.title} loading="lazy" className="relative z-[1] w-full aspect-[4/3.1] object-cover" />
+                  <div className="absolute z-[2] -bottom-[18px] left-8 bg-[#17130f] text-white px-6 py-3.5 text-[11px] tracking-[0.18em] uppercase">
+                    Service · <b className="text-[#d9c49a]">{String(idx + 1).padStart(2, '0')}</b>
                   </div>
-                  <h3 className="text-2xl md:text-3xl font-light text-stone-900 leading-snug">{srv.title}</h3>
-                  <p className="text-stone-500 font-light text-sm leading-relaxed">{srv.desc}</p>
-                  <div className="grid sm:grid-cols-3 gap-3 pt-2">
-                    {srv.points.map((pt, pidx) => (
-                      <div key={pidx} className="border border-stone-200 p-4 bg-white space-y-2">
-                        <div className="w-1.5 h-1.5 rounded-full bg-stone-900" />
-                        <p className="text-[10px] font-bold text-stone-850 uppercase tracking-wider leading-tight">{pt}</p>
-                      </div>
+                </div>
+
+                <div className={idx % 2 === 1 ? 'lg:order-1' : ''}>
+                  <span className="font-[family-name:var(--font-cormorant)] italic text-[20px] text-[#a4532f]">{svc.tagline}</span>
+                  <h2 className="font-[family-name:var(--font-cormorant)] text-[clamp(28px,3.4vw,40px)] font-semibold leading-[1.12] mt-2.5 mb-3.5">
+                    {svc.title}
+                  </h2>
+                  <p className="text-[#7a6f60] text-[15.5px] font-light mb-6">{svc.desc}</p>
+
+                  <ul className="grid sm:grid-cols-2 gap-3 mb-7">
+                    {svc.benefits.map((b: string) => (
+                      <li key={b} className="flex gap-2.5 items-start text-[13.5px] font-normal">
+                        <Check className="w-[17px] h-[17px] text-[#b08d4f] shrink-0 mt-0.5" strokeWidth={2.2} />
+                        {b}
+                      </li>
                     ))}
-                  </div>
+                  </ul>
+
+                  <Link
+                    href={`${basePath}/contact`}
+                    className="group inline-flex items-center gap-2.5 text-[12.5px] font-semibold tracking-[0.18em] uppercase text-[#a4532f]"
+                  >
+                    Discuss this service
+                    <ArrowRight className="w-4 h-4 transition-transform duration-250 group-hover:translate-x-1.5" strokeWidth={2.2} />
+                  </Link>
                 </div>
               </div>
-            ))}
-          </div>
-        </section>
+            </Reveal>
+          ))}
+        </div>
+      </section>
 
-        {/* 03 - SPECIALIZED TECHNICAL WORKS */}
-        <section className="space-y-12">
-          <div className="border-b border-stone-250 pb-8 relative">
-            <span className="text-8xl font-black text-stone-200/40 select-none absolute -z-10 -top-12 -left-6">03</span>
-            <p className="text-[10px] font-bold uppercase tracking-[0.25em] text-stone-500 relative z-10">THE CRAFTS</p>
-            <h2 className="text-3xl md:text-4xl font-light text-stone-900 leading-tight relative z-10">
-              Specialized Services
+      {/* SIGNATURE SERIES */}
+      <section className="py-24">
+        <div className="max-w-[1240px] mx-auto px-[30px]">
+          <Reveal>
+            <div className="flex items-center gap-3 text-[11.5px] font-semibold tracking-[0.3em] uppercase text-[#a4532f] before:content-[''] before:w-8 before:h-px before:bg-[#a4532f]">
+              The Signature Series
+            </div>
+            <h2 className="font-[family-name:var(--font-cormorant)] text-[clamp(30px,4vw,46px)] font-semibold leading-[1.12] mt-4 mb-8">
+              Pick a world, <em className="italic text-[#a4532f]">make it yours</em>
             </h2>
-          </div>
+            <SeriesScroll themes={themes} collection="The Signature Series" />
+          </Reveal>
+        </div>
+      </section>
 
-          <div className="grid lg:grid-cols-2 gap-12">
-            {[
-              { 
-                title: "Complete Home Snagging & Turnkey Renovation", 
-                desc: "We lead residential makeovers from demolition layouts, framing permissions, electrical coordinates, and plaster installations through ultimate styling handover.", 
-                img: INTERIOR_HERO_IMAGES.home,
-                features: ["Masonry & Structural Framing", "Comprehensive Snag Checks", "Plumbing & Sockets Layout"]
-              },
-              { 
-                title: "Artisanal Wardrobes & Custom Carpentry", 
-                desc: "We map out, model, and craft bespoke wall-to-wall cabinetry, dining sideboards, TV units, and study layouts utilizing sustainable solid timber matrices.", 
-                img: INTERIOR_HERO_IMAGES.contact,
-                features: ["Integrated Slat Wardrobes", "Custom Slat Details", "Modular Vanity Cabs"]
-              }
-            ].map((srv, idx) => (
-              <div key={idx} className="group flex flex-col justify-between border border-stone-200 bg-white p-6 hover:border-stone-900 transition-all duration-300">
-                <div className="space-y-6">
-                  <div className="aspect-[16/10] w-full overflow-hidden border border-stone-150">
-                    <img 
-                      src={srv.img} 
-                      alt={srv.title} 
-                      className="w-full h-full object-cover transform group-hover:scale-[1.02] transition-transform duration-1000"
-                    />
-                  </div>
-                  <h3 className="text-xl font-medium text-stone-900">{srv.title}</h3>
-                  <p className="text-stone-500 font-light text-xs leading-relaxed">{srv.desc}</p>
-                </div>
-                <div className="pt-6 mt-6 border-t border-stone-100 flex flex-wrap gap-2">
-                  {srv.features.map((feat, fidx) => (
-                    <span key={fidx} className="text-[9px] font-bold uppercase tracking-wider bg-stone-50 text-stone-600 border border-stone-150 px-2 py-1">
-                      {feat}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        {/* THE STUDIO METRICS */}
-        <section className="bg-stone-900 text-stone-100 p-8 md:p-16 lg:p-20 border border-stone-850 relative overflow-hidden">
-          <div className="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-bl-full pointer-events-none" />
-          <div className="relative z-10 max-w-5xl mx-auto space-y-16">
-            <div className="text-center max-w-2xl mx-auto space-y-4">
-              <p className="text-[10px] font-bold uppercase tracking-[0.25em] text-stone-500">— WHY CHOOSE US</p>
-              <h2 className="text-3xl md:text-5xl font-light text-stone-100 leading-tight">The Design Difference</h2>
-              <p className="text-stone-400 font-light text-sm">
-                We bridge the gap between creative visual architecture and practical, on-site carpentry parameters.
+      {/* CTA */}
+      <section className="pb-24">
+        <div className="max-w-[1240px] mx-auto px-[30px]">
+          <Reveal>
+            <div className="bg-[#17130f] text-white px-8 py-14 sm:px-14 text-center">
+              <h2 className="font-[family-name:var(--font-cormorant)] text-[clamp(28px,3.6vw,44px)] font-semibold leading-[1.12] mb-4">
+                Not sure where to <em className="italic text-[#d9c49a]">begin?</em>
+              </h2>
+              <p className="text-white/75 text-[15px] font-light mb-8 max-w-[520px] mx-auto">
+                Start with a free consultation. We&apos;ll walk your floor plan together and map what your home needs — no
+                commitment.
               </p>
+              <Link
+                href={`${basePath}/contact`}
+                className="inline-flex items-center justify-center gap-2.5 px-8 py-4 text-[13px] font-semibold tracking-[0.14em] uppercase bg-[#b08d4f] text-[#17130f] hover:bg-[#c5a266] hover:-translate-y-0.5 hover:shadow-[0_14px_28px_rgba(176,141,79,0.3)] transition-all duration-300"
+              >
+                Book a Private Consultation
+              </Link>
             </div>
-
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {[
-                { title: "Team Synergy", desc: "Our architects, joinery technicians, and biophilic stylists work under a unified client brief." },
-                { title: "Healthy Timbers", desc: "We source certified timber and non-toxic coatings, protecting both the environment and indoor air quality." },
-                { title: "Ergonomics", desc: "Every layout is custom scaled around real daily movements and anatomical clearances." },
-                { title: "Clear cost reports", desc: "We establish upfront materials spreadsheets with no hidden markups or sudden cost hikes." },
-                { title: "Artisanal Execution", desc: "We coordinate with highly qualified regional master carpenters and trusted installers." },
-                { title: "Handover folder", desc: "We provide maintenance directories, color references, hardware keys, and appliances contracts." }
-              ].map((diff, idx) => (
-                <div key={idx} className="border border-stone-800 p-6 space-y-4 hover:border-stone-500 transition-colors bg-stone-950">
-                  <h3 className="text-sm font-semibold uppercase tracking-wider text-stone-200">{diff.title}</h3>
-                  <p className="text-xs text-stone-400 font-light leading-relaxed">{diff.desc}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-      </div>
+          </Reveal>
+        </div>
+      </section>
     </div>
   );
 }

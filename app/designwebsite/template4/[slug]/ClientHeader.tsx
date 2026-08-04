@@ -5,81 +5,84 @@ import Link from 'next/link';
 import { Menu, X } from 'lucide-react';
 
 interface ClientHeaderProps {
-  clinic: any;
+  studioName: string;
   basePath: string;
+  city: string;
 }
 
-export default function ClientHeader({ clinic, basePath }: ClientHeaderProps) {
-  const [isOpen, setIsOpen] = useState(false);
+export default function ClientHeader({ studioName, basePath, city }: ClientHeaderProps) {
+  const [open, setOpen] = useState(false);
 
-  const waphone = clinic.contact?.phone?.replace(/\D/g, "") || "919751396117";
-  const watext = `Hi, I'm interested in booking a design consultation at ${clinic.name || "your studio"}!`;
-  const walink = `https://wa.me/${waphone}?text=${encodeURIComponent(watext)}`;
+  const words = (studioName || 'Design Studio').split(' ');
+  const first = words.slice(0, -1).join(' ') || words[0];
+  const last = words.length > 1 ? words[words.length - 1] : '';
+
+  const links = [
+    { href: basePath, label: 'Home' },
+    { href: `${basePath}/about`, label: 'The Atelier' },
+    { href: `${basePath}/services`, label: 'Services' },
+    { href: `${basePath}/gallery`, label: 'Homes' },
+    { href: `${basePath}/contact`, label: 'Visit' },
+  ];
 
   return (
-    <header className="fixed top-6 left-0 right-0 z-50 flex justify-center px-4 w-full">
-      <div className="w-full max-w-5xl transition-all duration-300">
-        <div className={`flex flex-col bg-white/80 backdrop-blur-md border border-stone-200/50 shadow-[0_8px_30px_rgb(0,0,0,0.04)] text-stone-900 transition-all duration-300 overflow-hidden ${
-          isOpen ? 'rounded-[24px]' : 'rounded-full'
-        }`}>
-          <div className="flex items-center justify-between px-6 py-3.5 w-full">
-            <Link href={basePath} className="text-lg md:text-xl font-semibold tracking-widest uppercase text-stone-900 hover:opacity-85 transition-opacity shrink-0">
-              {clinic.name || "Studio"}
+    <header className="sticky top-0 z-[200] bg-[#f5f1e8]/95 backdrop-blur-[14px] border-b border-[#221c14]/14">
+      <div className="max-w-[1240px] mx-auto px-[30px] flex items-center justify-between py-[17px]">
+        <Link href={basePath} className="flex flex-col leading-[1.05] min-w-0 mr-3" onClick={() => setOpen(false)}>
+          <b className="font-[family-name:var(--font-cormorant)] text-[20px] sm:text-[28px] font-semibold tracking-[0.06em] truncate max-w-[62vw] sm:max-w-none">
+            {first} {last && <span className="text-[#a4532f] italic">{last}</span>}
+          </b>
+          <small className="text-[9.5px] tracking-[0.48em] uppercase text-[#7a6f60]">
+            Curated Home Interiors
+          </small>
+        </Link>
+
+        <nav className="hidden lg:flex gap-8 text-[13.5px] font-medium tracking-[0.08em] uppercase">
+          {links.map((link) => (
+            <Link key={link.label} href={link.href} className="text-[#7a6f60] hover:text-[#a4532f] transition-colors duration-200">
+              {link.label}
             </Link>
+          ))}
+        </nav>
 
-            {/* Desktop Nav */}
-            <nav className="hidden md:flex gap-8 text-[11px] uppercase tracking-[0.25em] font-medium text-stone-500">
-              <Link href={`${basePath}`} className="hover:text-stone-900 transition-colors">Home</Link>
-              <Link href={`${basePath}/about`} className="hover:text-stone-900 transition-colors">About</Link>
-              <Link href={`${basePath}/services`} className="hover:text-stone-900 transition-colors">Services</Link>
-              <Link href={`${basePath}/gallery`} className="hover:text-stone-900 transition-colors">Portfolio</Link>
-              <Link href={`${basePath}/contact`} className="hover:text-stone-900 transition-colors">Contact</Link>
-            </nav>
-
-            {/* Desktop Action & Mobile Toggle */}
-            <div className="flex items-center gap-4">
-              <a 
-                href={walink} 
-                target="_blank" 
-                rel="noreferrer"
-                className="hidden sm:inline-flex items-center border border-stone-900 px-5 py-2 text-[10px] uppercase tracking-widest font-bold bg-stone-900 text-white hover:bg-transparent hover:text-stone-900 transition-colors rounded-full shrink-0"
-              >
-                Consult
-              </a>
-              
-              <button
-                onClick={() => setIsOpen(!isOpen)}
-                className="md:hidden text-stone-900 hover:opacity-75 transition-opacity p-1 focus:outline-none"
-                aria-label="Toggle menu"
-              >
-                {isOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
-              </button>
-            </div>
-          </div>
-
-          {/* Mobile Nav Drawer */}
-          <div className={`md:hidden transition-all duration-300 ease-in-out overflow-hidden ${
-            isOpen ? 'max-h-64 border-t border-stone-100 opacity-100' : 'max-h-0 opacity-0 pointer-events-none'
-          }`}>
-            <nav className="flex flex-col gap-4 px-6 py-5 text-[11px] uppercase tracking-[0.25em] font-medium text-stone-500">
-              <Link href={`${basePath}`} onClick={() => setIsOpen(false)} className="hover:text-stone-900 transition-colors">Home</Link>
-              <Link href={`${basePath}/about`} onClick={() => setIsOpen(false)} className="hover:text-stone-900 transition-colors">About</Link>
-              <Link href={`${basePath}/services`} onClick={() => setIsOpen(false)} className="hover:text-stone-900 transition-colors">Services</Link>
-              <Link href={`${basePath}/gallery`} onClick={() => setIsOpen(false)} className="hover:text-stone-900 transition-colors">Portfolio</Link>
-              <Link href={`${basePath}/contact`} onClick={() => setIsOpen(false)} className="hover:text-stone-900 transition-colors">Contact</Link>
-              <a 
-                href={walink} 
-                target="_blank" 
-                rel="noreferrer"
-                onClick={() => setIsOpen(false)}
-                className="sm:hidden inline-flex items-center justify-center border border-stone-900 px-5 py-2 text-[10px] uppercase tracking-widest font-bold bg-stone-900 text-white rounded-full mt-2"
-              >
-                Consult
-              </a>
-            </nav>
-          </div>
+        <div className="flex items-center gap-4">
+          <Link
+            href={`${basePath}/contact`}
+            className="hidden sm:inline-flex items-center justify-center bg-[#17130f] text-white px-[26px] py-[13px] text-[11.5px] font-semibold tracking-[0.14em] uppercase hover:bg-black hover:-translate-y-0.5 transition-all duration-300"
+          >
+            Book a Private Consultation
+          </Link>
+          <button
+            className="lg:hidden text-[#221c14]"
+            aria-label={open ? 'Close menu' : 'Open menu'}
+            onClick={() => setOpen((v) => !v)}
+          >
+            {open ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+          </button>
         </div>
       </div>
+
+      {open && (
+        <nav className="lg:hidden absolute top-full left-0 right-0 bg-[#fbf8f1] border-b border-[#221c14]/14 flex flex-col px-[30px] py-6 gap-4 text-[13.5px] font-medium tracking-[0.08em] uppercase">
+          {links.map((link) => (
+            <Link
+              key={link.label}
+              href={link.href}
+              onClick={() => setOpen(false)}
+              className="text-[#7a6f60] hover:text-[#a4532f] transition-colors"
+            >
+              {link.label}
+            </Link>
+          ))}
+          <Link
+            href={`${basePath}/contact`}
+            onClick={() => setOpen(false)}
+            className="inline-flex items-center justify-center bg-[#17130f] text-white px-[26px] py-[13px] text-[11.5px] font-semibold tracking-[0.14em] uppercase mt-2"
+          >
+            Book a Private Consultation
+          </Link>
+        </nav>
+      )}
     </header>
   );
 }

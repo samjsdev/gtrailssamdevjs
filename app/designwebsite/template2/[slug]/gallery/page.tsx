@@ -1,130 +1,98 @@
 import { readSourceConfig } from '@/lib/dataBuilder';
 import { notFound } from 'next/navigation';
-import { Cormorant_Garamond } from 'next/font/google';
-import GalleryGrid from './GalleryGrid';
-import { cleanClinicName } from '@/lib/copyCleaner';
+import Link from 'next/link';
+import { cleanClinicName, cleanClinicDescription } from '@/lib/copyCleaner';
+import Reveal from '../Reveal';
+import GalleryGrid, { GalleryItem } from './GalleryGrid';
 
-const cormorant = Cormorant_Garamond({
-  subsets: ['latin'],
-  weight: ['400', '500', '600', '700'],
-  style: ['normal', 'italic'],
-  variable: '--font-cormorant',
-});
+type PageProps = { params: Promise<{ slug: string }> };
 
-export default async function GalleryPage({ params }: { params: Promise<{ slug: string }> }) {
-  const resolvedParams = await params;
-  const { slug } = resolvedParams;
+const GALLERY_FALLBACK = [
+  '/images/stock/68b39046.webp',
+  '/images/stock/a0e0726f.webp',
+  '/images/stock/dc1759ad.webp',
+  '/images/stock/f23e9dc6.webp',
+  '/images/stock/615f9d34.webp',
+  '/images/stock/6dcb103c.webp',
+  '/images/stock/a151a9e5.webp',
+  '/images/stock/bf333360.webp',
+  '/images/stock/84fea9c5.webp',
+];
+
+export default async function Template2Gallery({ params }: PageProps) {
+  const { slug } = await params;
+  const basePath = `/designwebsite/template2/${slug}`;
+
   const data = await readSourceConfig(slug, 'template2');
   if (!data) return notFound();
 
-  const { clinic, media, doctor } = data;
+  const { clinic, media } = data;
   const cleanName = cleanClinicName(clinic.name);
+  const cleanDesc = cleanClinicDescription(clinic.description, clinic.name);
+  const city = clinic.address?.city || 'Chennai';
 
-  const defaultGalleryStock = [
-    "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=2000&q=80",
-    "https://images.unsplash.com/photo-1616594039964-ae9021a400a0?auto=format&fit=crop&w=2000&q=80",
-    "https://images.unsplash.com/photo-1556910103-1c02745aae4d?auto=format&fit=crop&w=2000&q=80",
-    "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=2000&q=80",
-    "https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=2000&q=80",
-    "https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?auto=format&fit=crop&w=2000&q=80",
-    "https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=2000&q=80",
-    "https://images.unsplash.com/photo-1538688525198-9b88f6f53126?auto=format&fit=crop&w=2000&q=80",
-    "https://images.unsplash.com/photo-1581579438747-1dc8d1e0ca96?auto=format&fit=crop&w=2000&q=80",
-    "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=2000&q=80",
-    "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=2000&q=80",
-    "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=2000&q=80",
-    "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=2000&q=80",
-    "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=2000&q=80",
-    "https://images.unsplash.com/photo-1600210492493-0946911123ea?auto=format&fit=crop&w=2000&q=80",
-    "https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&w=2000&q=80",
-    "https://images.unsplash.com/photo-1600121848594-d8644e57abab?auto=format&fit=crop&w=2000&q=80",
-    "https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&w=2000&q=80",
-    "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=2000&q=80",
-    "https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=2000&q=80",
-    "https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=2000&q=80"
-  ];
+  const uniqueImages = Array.from(
+    new Set(
+      [
+        ...(media.clinicImages || []),
+        ...(media.treatmentImages || []),
+        ...(media.otherImages || []),
+      ].filter(Boolean)
+    )
+  ) as string[];
 
-  const uniqueUserImages = Array.from(new Set([
-    ...(media.clinicImages || []),
-    ...(media.treatmentImages || []),
-    ...(media.otherImages || [])
-  ].filter(Boolean)));
-
-  const PORTFOLIO = [];
-  const totalToRender = uniqueUserImages.length > 0 ? Math.min(12, uniqueUserImages.length * 2) : 12;
-
-  for (let i = 0; i < totalToRender; i++) {
-    let imgUrl = "";
-    let isUserImg = false;
-
-    if (uniqueUserImages.length > 0) {
-      imgUrl = uniqueUserImages[i % uniqueUserImages.length];
-      isUserImg = true;
-    } else {
-      imgUrl = defaultGalleryStock[i % defaultGalleryStock.length];
-    }
-
-    const cats = ['Residential', 'Commercial', 'Studio & Process'];
-    const cat = cats[i % cats.length];
-    const span = i % 3 === 0 ? ('wide' as const) : i % 5 === 0 ? ('tall' as const) : ('normal' as const);
-
-    PORTFOLIO.push({
-      cat,
-      title: isUserImg ? `Client Project Space #${i + 1}` : `Curated Design Space #${i + 1}`,
-      desc: isUserImg 
-        ? `Custom interior feature designed and coordinated for ${cleanName || 'our studio'}.`
-        : `Bespoke room configuration showcasing fine materials and detailing.`,
-      img: imgUrl,
-      span
-    });
-  }
+  const sourceImages = uniqueImages.length > 0 ? uniqueImages : GALLERY_FALLBACK;
+  const cats = ['Living Spaces', 'Kitchens & Storage', 'Bedrooms & More'];
+  const items: GalleryItem[] = sourceImages.slice(0, 24).map((img, idx) => ({
+    img,
+    title: `Design ${String(idx + 1).padStart(2, '0')}`,
+    cat: cats[idx % cats.length],
+  }));
 
   return (
-    <div className="font-sans text-[#2A2421] bg-[#F7F4EF] min-h-screen pb-24 space-y-16">
-      {/* Hero Header */}
-      <section className="text-center space-y-6 max-w-3xl mx-auto pt-20 pb-12">
-        <div className="flex items-center justify-center gap-2 text-[#8E7056] text-[10px] font-bold uppercase tracking-[0.2em]">
-          <span className="w-1.5 h-1.5 rounded-full bg-[#8E7056]" />
-          PORTFOLIO SHOWCASE
-        </div>
-
-        <h1 className={`${cormorant.className} text-5xl sm:text-6xl lg:text-7xl font-light tracking-wide leading-tight`}>
-          {clinic.name || "Refined Projects"} &amp; <span className="text-[#8E7056] italic">Curated Spaces</span>
-        </h1>
-
-        <p className="text-sm sm:text-base text-[#2A2421]/90 font-light leading-relaxed max-w-xl mx-auto">
-          {clinic.description || "Explore our completed premium interior design and turnkey fabrication projects across Chennai."}
-        </p>
-
-        {/* Stats strip */}
-        <div className="flex flex-wrap justify-center gap-x-12 gap-y-4 pt-6 max-w-xl mx-auto">
-          {[
-            { num: '250+', label: 'Completed Projects' },
-            { num: '12+', label: 'Service Offerings' },
-            { num: doctor?.experience ? doctor.experience.replace(/\D/g, '') + '+' : '8+', label: 'Years Experience' },
-          ].map((stat, i) => (
-            <div key={i} className="flex flex-col items-center">
-              <span className={`${cormorant.className} text-3xl font-bold text-[#2A2421]`}>{stat.num}</span>
-              <span className="text-[9px] font-bold text-[#2A2421]/75 uppercase tracking-widest mt-1">
-                {stat.label}
-              </span>
-            </div>
-          ))}
+    <div>
+      {/* PAGE HERO */}
+      <section id="gallery-hero" className="bg-[#faf7f1] px-6 py-[clamp(60px,7vw,96px)]">
+        <div className="max-w-[1240px] mx-auto text-center">
+          <Reveal>
+            <span className="inline-flex items-center gap-2.5 bg-white border border-[#1b1b1b]/10 rounded-full px-4.5 py-2 text-[12px] font-bold tracking-[0.14em] uppercase text-[#0e5a43] mb-6 before:content-[''] before:w-2 before:h-2 before:rounded-full before:bg-[#f2a007]">
+              Design gallery
+            </span>
+            <h1 className="font-[family-name:var(--font-bricolage)] font-bold text-[clamp(34px,4.6vw,58px)] leading-[1.06] tracking-[-0.02em] max-w-[760px] mx-auto">
+              Real designs from <mark className="bg-[linear-gradient(transparent_62%,#fdeecb_62%)] text-[#0e5a43] px-0.5">{cleanName || 'our studio'}</mark>
+            </h1>
+            <p className="mt-5 max-w-[560px] mx-auto text-[#6b6660] text-[16.5px] leading-[1.7] font-medium">
+              {cleanDesc || `Browse spaces we've designed across ${city} — then imagine yours.`}
+            </p>
+          </Reveal>
         </div>
       </section>
 
-      {/* Decorative Divider */}
-      <div className="flex items-center gap-6 max-w-5xl mx-auto px-4">
-        <div className="h-px flex-1 bg-[#EAE3D8]" />
-        <span className="text-[9px] font-bold uppercase tracking-[0.2em] text-[#2A2421]/75">
-          Bespoke Chennai Collection
-        </span>
-        <div className="h-px flex-1 bg-[#EAE3D8]" />
-      </div>
+      {/* GRID */}
+      <section id="gallery-grid" className="px-6 py-[clamp(56px,6vw,88px)] bg-white">
+        <div className="max-w-[1240px] mx-auto">
+          <Reveal>
+            <GalleryGrid items={items} />
+          </Reveal>
+        </div>
+      </section>
 
-      {/* Interactive gallery grid */}
-      <section id="gallery-grid" className="max-w-7xl mx-auto px-4">
-        <GalleryGrid items={PORTFOLIO} />
+      {/* CTA */}
+      <section id="gallery-cta" className="px-6 py-[clamp(64px,7vw,96px)] bg-[#0e5a43] text-white">
+        <Reveal className="max-w-[760px] mx-auto text-center">
+          <h2 className="font-[family-name:var(--font-bricolage)] font-bold text-[clamp(28px,3.8vw,48px)] leading-[1.08] tracking-[-0.02em] mb-4">
+            Want this for your home? <mark className="bg-transparent text-[#f2a007]">It starts free.</mark>
+          </h2>
+          <p className="text-white/80 font-medium text-[16px] leading-[1.7] mb-8">
+            Every project in this gallery began with one free design session.
+          </p>
+          <Link
+            href={`${basePath}/contact`}
+            className="inline-flex items-center justify-center gap-2 bg-[#f2a007] text-[#1b1b1b] font-bold text-[15px] px-9 py-4.5 rounded-[14px] hover:bg-[#e09500] hover:-translate-y-0.5 hover:shadow-[0_14px_28px_rgba(242,160,7,0.35)] transition-all duration-300"
+          >
+            Book My Free Session
+          </Link>
+        </Reveal>
       </section>
     </div>
   );

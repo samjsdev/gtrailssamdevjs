@@ -1,146 +1,175 @@
 import { readSourceConfig } from '@/lib/dataBuilder';
 import { notFound } from 'next/navigation';
-import { 
-  Phone, MapPin, Send, Mail, Clock, Sparkles
-} from 'lucide-react';
+import { MapPin, Phone, Clock, MessageCircle } from 'lucide-react';
 import { cleanClinicName } from '@/lib/copyCleaner';
+import { INTERIOR_FAQS } from '@/lib/interiorContent';
+import Reveal from '../Reveal';
+import LeadForm from '../LeadForm';
 
-type PageProps = {
-  params: Promise<{ slug: string }>;
-};
+type PageProps = { params: Promise<{ slug: string }> };
 
-export default async function ContactPage({ params }: PageProps) {
-  const resolvedParams = await params;
-  const { slug } = resolvedParams;
+export default async function Template1Contact({ params }: PageProps) {
+  const { slug } = await params;
+
   const data = await readSourceConfig(slug, 'template1');
   if (!data) return notFound();
 
   const { clinic } = data;
-
   const cleanName = cleanClinicName(clinic.name);
+  const city = clinic.address?.city || 'Chennai';
+  const phone = clinic.contact?.phone || '';
+  const address = clinic.address?.full || '';
+  const waPhone = phone.replace(/\D/g, '') || '919751396117';
+  const waLink = `https://wa.me/${waPhone}?text=${encodeURIComponent(
+    `Hi, I'm interested in booking a design consultation at ${cleanName || 'your studio'}!`
+  )}`;
 
-  const waPhone = clinic.contact?.phone?.replace(/\D/g, '') || '919751396117';
-  const waText = `Hi, I'm interested in booking a design consultation at ${cleanName || 'your studio'}!`;
-  const waLink = `https://wa.me/${waPhone}?text=${encodeURIComponent(waText)}`;
+  const mapUrl =
+    clinic.mapEmbedUrl ||
+    `https://maps.google.com/maps?q=${encodeURIComponent((cleanName || '') + ' ' + address)}&output=embed`;
 
   return (
-    <div className="font-sans text-[#0A0A0A] bg-[#FCFAF6] min-h-screen selection:bg-[#C1FF72] selection:text-[#0A0A0A] scroll-smooth pb-28 space-y-16 text-left relative z-10">
-      
-      {/* Editorial Hero Section */}
-      <section className="relative pt-28 pb-8 text-center space-y-6 max-w-4xl mx-auto px-8 relative z-20">
-        <div className="inline-flex items-center gap-2">
-          <span className="w-1.5 h-1.5 rounded-full bg-[#C1FF72] animate-pulse"></span>
-          <span className="text-[10px] font-bold text-[#0A0A0A]/60 tracking-[0.25em] uppercase">Connect With Us</span>
-        </div>
-        
-        <h1 className="font-serif text-5xl sm:text-6xl lg:text-[4.5rem] font-light tracking-tight leading-[1.05] text-[#0A0A0A]">
-          Start Your <span className="italic font-normal text-[#0A0A0A]/60 inline-block relative">Design Journey.<span className="absolute bottom-2 left-0 w-full h-[1.5px] bg-[#C1FF72]"></span></span>
-        </h1>
-        
-        <p className="text-base sm:text-lg text-gray-500 font-normal leading-relaxed max-w-2xl mx-auto">
-          Visit our studio showroom location or leave a detailed inquiry below. Our principal design team will follow up for a private layout consultation.
-        </p>
-      </section>
-
-      {/* Split Contact Section */}
-      <section className="max-w-[90rem] mx-auto px-8 w-full relative z-20">
-        <div className="grid lg:grid-cols-12 gap-16 lg:gap-24 items-start">
-          
-          {/* Left Column: Direct Info & Booking Channels */}
-          <div className="lg:col-span-5 space-y-8">
-            <div className="space-y-4">
-              <div className="inline-flex items-center gap-3">
-                <div className="w-8 h-px bg-[#0A0A0A]"></div>
-                <span className="text-[10px] font-bold tracking-[0.25em] uppercase text-[#0A0A0A]/60">Get in Touch</span>
-              </div>
-              <h2 className="font-serif text-4xl font-normal text-[#0A0A0A] tracking-wide leading-snug">
-                Let's Shape Your <span className="text-gray-400 italic">Dream Space</span>.
-              </h2>
-              <p className="text-xs md:text-sm text-gray-500 font-normal leading-relaxed">
-                Have a design brief in mind? Need a modular kitchen or full turnkey villa renovation scoping? Share your details or connect instantly.
-              </p>
-            </div>
-
-            <div className="space-y-6 pt-8 border-t border-[#0A0A0A]/5">
-              <div className="flex items-start gap-4">
-                <div className="w-11 h-11 rounded-2xl bg-white border border-[#0A0A0A]/5 flex items-center justify-center text-[#0A0A0A] shrink-0 shadow-sm">
-                  <MapPin className="w-4.5 h-4.5 text-[#0A0A0A]" />
-                </div>
-                <div>
-                  <h4 className="text-[9px] text-gray-400 uppercase tracking-[0.2em] font-bold">Studio Showroom</h4>
-                  <p className="text-xs md:text-sm text-[#0A0A0A] leading-relaxed font-semibold mt-1">
-                    {clinic.address?.full || 'Studio Location Address'}
-                  </p>
-                </div>
-              </div>
-
-              <div className="flex items-start gap-4">
-                <div className="w-11 h-11 rounded-2xl bg-white border border-[#0A0A0A]/5 flex items-center justify-center text-[#0A0A0A] shrink-0 shadow-sm">
-                  <Phone className="w-4.5 h-4.5 text-[#0A0A0A]" />
-                </div>
-                <div>
-                  <h4 className="text-[9px] text-gray-400 uppercase tracking-[0.2em] font-bold">Direct Inquiry Line</h4>
-                  <p className="text-xs md:text-sm text-[#0A0A0A] font-bold mt-1">
-                    <a href={`tel:${clinic.contact?.phone || ''}`} className="hover:text-[#C1FF72] transition-colors">
-                      {clinic.contact?.phone || 'Contact Number'}
-                    </a>
-                  </p>
-                  <p className="text-[9px] text-gray-400 font-semibold mt-0.5">Mon-Sat · 10:00 AM - 7:00 PM</p>
-                </div>
-              </div>
-            </div>
-
-            {/* Direct Instant Action Channels */}
-            <div className="pt-8 flex flex-wrap gap-4 border-t border-[#0A0A0A]/5">
-              <a 
-                href={`tel:${clinic.contact?.phone || ''}`}
-                className="px-8 py-4 rounded-full text-[#FCFAF6] bg-[#0A0A0A] hover:bg-transparent hover:text-[#0A0A0A] font-bold transition-all duration-500 text-[10px] tracking-widest uppercase shadow-sm border border-[#0A0A0A]"
-              >
-                Call Directly
-              </a>
-              <a 
-                href={waLink}
-                target="_blank"
-                rel="noreferrer"
-                className="px-8 py-4 rounded-full text-white bg-[#25D366] hover:bg-[#1db954] font-bold transition-all duration-300 text-[10px] tracking-widest uppercase shadow-lg flex items-center gap-2"
-              >
-                WhatsApp Chat
-              </a>
-            </div>
-          </div>
-
-          {/* Right Column: Premium Form Mockup */}
-          <div className="lg:col-span-7 w-full bg-white rounded-[2.5rem] border border-[#0A0A0A]/5 p-8 sm:p-12 space-y-6 shadow-xl relative">
-            <h3 className="font-serif text-2xl font-normal text-[#0A0A0A] tracking-wide">Request a Design Consultation</h3>
-            <p className="text-xs text-gray-500 font-normal leading-relaxed">
-              Submit your room requirements below and our principal designers will coordinate a private review.
+    <div>
+      {/* PAGE HERO */}
+      <section id="contact-hero" className="bg-[#211a13] text-white px-6 lg:px-7 py-[clamp(70px,8vw,110px)]">
+        <div className="max-w-7xl mx-auto">
+          <Reveal>
+            <span className="flex items-center gap-3.5 text-[12px] tracking-[0.38em] uppercase text-[#c9ab7c] mb-5 before:content-[''] before:w-10 before:h-px before:bg-[#c9ab7c]">
+              Begin your home
+            </span>
+            <h1 className="font-[family-name:var(--font-marcellus)] text-[clamp(38px,5vw,68px)] leading-[1.08] max-w-[760px]">
+              Book a free design <em className="not-italic italic font-light text-[#c9ab7c]">consultation</em>
+            </h1>
+            <p className="mt-6 max-w-[560px] text-[16.5px] font-light leading-[1.75] text-white/75">
+              A 45-minute session with our design team — space plan, style direction and a ballpark estimate for your home. Free, with zero obligation.
             </p>
-            
-            <form className="space-y-6 pt-4 border-t border-[#0A0A0A]/5">
-              <div className="space-y-2">
-                <label htmlFor="fullName" className="block text-[9px] font-bold uppercase tracking-[0.25em] text-[#0A0A0A]/60">Full Name</label>
-                <input type="text" id="fullName" placeholder="Enter your full name" className="w-full text-gray-900 px-5 py-4 rounded-xl border border-gray-200 focus:outline-none focus:ring-1 focus:ring-[#C1FF72] focus:border-transparent transition-all bg-[#FCFAF6] font-normal text-xs md:text-sm shadow-inner" />
-              </div>
-              
-              <div className="space-y-2">
-                <label htmlFor="email" className="block text-[9px] font-bold uppercase tracking-[0.25em] text-[#0A0A0A]/60">Email Address</label>
-                <input type="email" id="email" placeholder="you@example.com" className="w-full text-gray-900 px-5 py-4 rounded-xl border border-gray-200 focus:outline-none focus:ring-1 focus:ring-[#C1FF72] focus:border-transparent transition-all bg-[#FCFAF6] font-normal text-xs md:text-sm shadow-inner" />
-              </div>
-              
-              <div className="space-y-2">
-                <label htmlFor="message" className="block text-[9px] font-bold uppercase tracking-[0.25em] text-[#0A0A0A]/60">Project Description</label>
-                <textarea id="message" rows={4} placeholder="Tell us about your kitchen, bedroom, or full home design brief..." className="w-full text-gray-900 px-5 py-4 rounded-xl border border-gray-200 focus:outline-none focus:ring-1 focus:ring-[#C1FF72] focus:border-transparent transition-all resize-none bg-[#FCFAF6] font-normal text-xs md:text-sm shadow-inner"></textarea>
-              </div>
-              
-              <button type="button" className="w-full py-4 mt-4 bg-[#0A0A0A] hover:bg-transparent text-white hover:text-[#0A0A0A] border border-[#0A0A0A] font-bold rounded-xl transition-all duration-500 shadow-lg flex items-center justify-center gap-2 hover:scale-[1.01] active:scale-[0.99] uppercase tracking-widest text-[10px]">
-                Submit Project Brief <Send className="w-3.5 h-3.5" />
-              </button>
-            </form>
-          </div>
-
+          </Reveal>
         </div>
       </section>
 
+      {/* CONTACT + FORM */}
+      <section id="contact-details" className="py-[clamp(70px,8vw,110px)] px-6 lg:px-7">
+        <div className="max-w-7xl mx-auto grid lg:grid-cols-[1fr_0.9fr] gap-[clamp(44px,6vw,90px)] items-start">
+          <Reveal>
+            <span className="flex items-center gap-3.5 text-[12px] tracking-[0.38em] uppercase text-[#a58150] mb-4 before:content-[''] before:w-10 before:h-px before:bg-[#a58150]">
+              Reach the studio
+            </span>
+            <h2 className="font-[family-name:var(--font-marcellus)] text-[clamp(28px,3.4vw,46px)] leading-[1.12] mb-9">
+              Visit, call or write — <em className="not-italic italic font-light text-[#a58150]">we respond within a day</em>
+            </h2>
+
+            <div className="grid gap-0">
+              <div className="flex gap-5 py-6 border-t border-b border-[#211a13]/10 items-start">
+                <span className="w-11 h-11 shrink-0 border border-[#a58150] grid place-items-center">
+                  <MapPin className="w-[18px] h-[18px] text-[#a58150]" strokeWidth={1.8} />
+                </span>
+                <div>
+                  <b className="font-[family-name:var(--font-marcellus)] font-normal text-[18px] block mb-1.5">The Studio</b>
+                  <span className="text-[14.5px] text-[#7d7264] font-light leading-[1.7]">{address || `${city}, Tamil Nadu`}</span>
+                </div>
+              </div>
+
+              {phone && (
+                <div className="flex gap-5 py-6 border-b border-[#211a13]/10 items-start">
+                  <span className="w-11 h-11 shrink-0 border border-[#a58150] grid place-items-center">
+                    <Phone className="w-[18px] h-[18px] text-[#a58150]" strokeWidth={1.8} />
+                  </span>
+                  <div>
+                    <b className="font-[family-name:var(--font-marcellus)] font-normal text-[18px] block mb-1.5">Call Us</b>
+                    <a href={`tel:${phone}`} className="text-[14.5px] text-[#211a13] font-medium hover:text-[#a58150] transition-colors">
+                      {phone}
+                    </a>
+                  </div>
+                </div>
+              )}
+
+              <div className="flex gap-5 py-6 border-b border-[#211a13]/10 items-start">
+                <span className="w-11 h-11 shrink-0 border border-[#a58150] grid place-items-center">
+                  <Clock className="w-[18px] h-[18px] text-[#a58150]" strokeWidth={1.8} />
+                </span>
+                <div>
+                  <b className="font-[family-name:var(--font-marcellus)] font-normal text-[18px] block mb-1.5">Studio Hours</b>
+                  <span className="text-[14.5px] text-[#7d7264] font-light">Mon – Sat, 10 AM – 7 PM</span>
+                </div>
+              </div>
+
+              <div className="flex gap-5 py-6 border-b border-[#211a13]/10 items-start">
+                <span className="w-11 h-11 shrink-0 border border-[#a58150] grid place-items-center">
+                  <MessageCircle className="w-[18px] h-[18px] text-[#a58150]" strokeWidth={1.8} />
+                </span>
+                <div>
+                  <b className="font-[family-name:var(--font-marcellus)] font-normal text-[18px] block mb-1.5">WhatsApp</b>
+                  <a
+                    href={waLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-[14.5px] text-[#211a13] font-medium hover:text-[#a58150] transition-colors"
+                  >
+                    Message us — usually replies in minutes
+                  </a>
+                </div>
+              </div>
+            </div>
+          </Reveal>
+
+          <Reveal delay={120}>
+            <div className="lg:sticky lg:top-28 border border-[#211a13]/10">
+              <LeadForm studioName={cleanName || 'the studio'} waPhone={waPhone} phoneDisplay={phone} />
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* MAP */}
+      <section id="map" className="px-6 lg:px-7 pb-[clamp(70px,8vw,110px)]">
+        <div className="max-w-7xl mx-auto">
+          <Reveal>
+            <div className="border border-[#211a13]/10 overflow-hidden">
+              <iframe
+                src={mapUrl}
+                width="100%"
+                height="420"
+                style={{ border: 0 }}
+                allowFullScreen
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                title={`Location of ${cleanName || 'our studio'}`}
+                className="w-full block grayscale-[35%] contrast-[1.05]"
+              />
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* FAQ */}
+      <section id="faq" className="bg-[#fdfbf6] border-t border-[#211a13]/10 px-6 lg:px-7 py-[clamp(70px,8vw,110px)]">
+        <div className="max-w-3xl mx-auto">
+          <Reveal className="text-center mb-12">
+            <span className="inline-flex items-center gap-3.5 text-[12px] tracking-[0.38em] uppercase text-[#a58150] mb-4">
+              Good questions
+            </span>
+            <h2 className="font-[family-name:var(--font-marcellus)] text-[clamp(30px,3.8vw,50px)] leading-[1.12]">
+              Before you <em className="not-italic italic font-light text-[#a58150]">ask</em>
+            </h2>
+          </Reveal>
+
+          <Reveal>
+            {INTERIOR_FAQS.map((faq, idx) => (
+              <details
+                key={idx}
+                className="group border-b border-[#211a13]/10 py-5 first:border-t"
+                open={idx === 0}
+              >
+                <summary className="cursor-pointer list-none flex justify-between items-center gap-4 font-[family-name:var(--font-marcellus)] text-[19px] text-[#211a13] [&::-webkit-details-marker]:hidden">
+                  {faq.q}
+                  <span className="text-[24px] text-[#a58150] font-light transition-transform duration-300 group-open:rotate-45 shrink-0">+</span>
+                </summary>
+                <p className="text-[#7d7264] text-[14.5px] font-light leading-[1.75] pt-3.5">{faq.a}</p>
+              </details>
+            ))}
+          </Reveal>
+        </div>
+      </section>
     </div>
   );
 }

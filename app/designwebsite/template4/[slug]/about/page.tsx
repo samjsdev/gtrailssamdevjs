@@ -1,252 +1,229 @@
-import { readSourceConfig } from "@/lib/dataBuilder";
-import { notFound } from "next/navigation";
-import { INTERIOR_HERO_IMAGES } from "@/lib/interiorContent";
+import { readSourceConfig } from '@/lib/dataBuilder';
+import { notFound } from 'next/navigation';
+import Link from 'next/link';
+import { Clock, Users, Heart, ShieldCheck, ArrowRight } from 'lucide-react';
+import { cleanClinicName, cleanClinicDescription } from '@/lib/copyCleaner';
+import { DEFAULT_INTERIOR_HIGHLIGHTS } from '@/lib/interiorContent';
+import Reveal from '../Reveal';
 
-type PageProps = {
-  params: Promise<{ slug: string }>;
-};
+type PageProps = { params: Promise<{ slug: string }> };
 
-export default async function AboutPage({ params }: PageProps) {
-  const resolvedParams = await params;
-  const { slug } = resolvedParams;
+export default async function Template4About({ params }: PageProps) {
+  const { slug } = await params;
+  const basePath = `/designwebsite/template4/${slug}`;
 
   const data = await readSourceConfig(slug, 'template4');
   if (!data) return notFound();
 
-  const { clinic, doctor, media } = data;
-  const principalImage = doctor?.images?.[0] || media?.otherImages?.[0] || INTERIOR_HERO_IMAGES.designer;
-  const secondaryImage = media?.clinicImages?.[1] || media?.treatmentImages?.[1] || media?.otherImages?.[1] || INTERIOR_HERO_IMAGES.about;
+  const { clinic, business, doctor, media } = data;
+  const cleanName = cleanClinicName(clinic.name);
+  const cleanDesc = cleanClinicDescription(clinic.description, clinic.name);
+  const city = clinic.address?.city || 'Chennai';
+  const rating = business.rating || '4.9';
+  const reviewCount = business.reviewCount || '';
+  const experienceYears = doctor?.experience?.replace(/\D/g, '') || '5';
+  const highlights: string[] = business.highlights?.length ? business.highlights : DEFAULT_INTERIOR_HIGHLIGHTS;
 
-  // Dynamic overrides from data config
-  const visionQuote = data.about?.vision || 'We curate luxury residential spaces and commercial interiors with high-fidelity spatial planning, sustainable organic timber sourcing, and transparent billing operations.';
-  const aboutHeroImage = data.about?.heroImage || media?.clinicImages?.[2] || media?.clinicImages?.[0] || INTERIOR_HERO_IMAGES.home;
+  const founderName = data.overrides?.doctorName || doctor?.name || `${cleanName} Design Team`;
+  const founderImage =
+    data.overrides?.doctorImages?.[0] ||
+    doctor?.images?.[0] ||
+    '/images/stock/68b39046.webp';
 
-  const founderName = doctor?.name || 'Arjun Mehta';
-  const founderRole = doctor?.role || 'FOUNDER & ARCHITECTURAL LEAD';
-  const founderCredentials = doctor?.credentials || 'M.Des, Interior Architecture | B.Arch, Sir J.J. College';
-  const founderBio = doctor?.bio || 'With over a decade of hands-on experience, he oversees the master structural scoping, custom joinery modules, and carpentry execution protocols for our residential projects. He believes a home should highlight the innate warmth of stone and timber.';
-  const founderQuote = doctor?.quote || 'A successful home should function cleanly while highlighting the natural warmth of timber and stone.';
+  const storyImage =
+    media.clinicImages?.[0] ||
+    '/images/stock/a0e0726f.webp';
 
-  const partnerName = data.doctor2?.name || 'Kavitha Rajan';
-  const partnerRole = data.doctor2?.role || 'CO-FOUNDER & STYLING LEAD';
-  const partnerCredentials = data.doctor2?.credentials || 'B.Des, Interior Styling — NID | Certified Organic Material Consultant';
-  const partnerBio = data.doctor2?.bio || 'Specializing in biophilic texture layerings, material curation, and warm minimalist aesthetics, Kavitha sources sustainable furnishings, eco-responsible fabrics, and curated styling items that make our spaces feel comfortable and organic.';
-  const partnerQuote = data.doctor2?.quote || 'Organic textures tell physical stories. Our focus is to make those stories warm and enduring.';
+  const values = [
+    {
+      icon: Clock,
+      title: 'Daily Rhythms',
+      desc: 'Morning light in the pooja corner, evening calm in the reading nook — spaces tuned to the hours of your day.',
+    },
+    {
+      icon: Users,
+      title: 'Family-First',
+      desc: 'Proportions, seating heights and gathering spaces shaped around how your family actually comes together.',
+    },
+    {
+      icon: Heart,
+      title: 'Pet-Friendly',
+      desc: 'Scratch-proof finishes, washable fabrics and window perches — beautiful rooms that survive paws and play.',
+    },
+    {
+      icon: ShieldCheck,
+      title: 'Senior-Safe',
+      desc: 'Step-free thresholds, grab-rail-ready baths and clear sightlines — dignity and ease for parents and grandparents.',
+    },
+  ];
 
   return (
-    <div className="text-stone-900 bg-stone-50 min-h-screen pb-32 selection:bg-stone-200">
-      
-      {/* HEADER HERO */}
-      <section className="relative pt-36 pb-20 px-6 max-w-6xl mx-auto text-center z-10">
-        <div className="space-y-6 max-w-4xl mx-auto">
-          <p className="text-[10px] font-bold uppercase tracking-[0.3em] text-stone-500">— ESTABLISHED 2015</p>
-          <h1 className="text-4xl md:text-6xl lg:text-7xl font-light text-stone-900 leading-tight">
-            Our Studio &amp; Vision
-          </h1>
-          <p className="text-base md:text-lg text-stone-600 font-light max-w-2xl mx-auto leading-relaxed">
-            {visionQuote}
-          </p>
-        </div>
-
-        {/* Panoramic Editorial Space Photo */}
-        <div className="relative w-full max-w-5xl mx-auto mt-16 overflow-hidden border border-stone-250 aspect-[21/9]">
-          <img
-            src={aboutHeroImage}
-            alt="Minimal modern architectural design studio workspace"
-            className="w-full h-full object-cover object-center transform hover:scale-[1.01] transition-transform duration-[2000ms]"
-          />
+    <div>
+      {/* HERO / STORY */}
+      <section className="py-24">
+        <div className="max-w-[1240px] mx-auto px-[30px] grid lg:grid-cols-2 gap-[52px] lg:gap-[70px] items-center">
+          <Reveal>
+            <div className="flex items-center gap-3 text-[11.5px] font-semibold tracking-[0.3em] uppercase text-[#a4532f] before:content-[''] before:w-8 before:h-px before:bg-[#a4532f]">
+              The studio
+            </div>
+            <h1 className="font-[family-name:var(--font-cormorant)] text-[clamp(34px,4.6vw,56px)] font-semibold leading-[1.12] mt-4 mb-4">
+              A quiet obsession with <em className="italic text-[#a4532f]">homes done right</em>
+            </h1>
+            <p className="text-[#7a6f60] text-[16px] font-light mb-4 max-w-[540px]">
+              {cleanDesc ||
+                `${cleanName || 'Our studio'} is a boutique interior practice in ${city}. We believe great design is not imported taste — it is deep listening, translated into space.`}
+            </p>
+            <p className="text-[#7a6f60] text-[16px] font-light mb-8 max-w-[540px]">
+              Every home we deliver is personally reviewed before handover — one signature, one standard. That is why most of
+              our new clients arrive through an old client&apos;s dinner table.
+            </p>
+            <div className="flex flex-col sm:flex-row border-y border-[#221c14]/14">
+              {[
+                { b: `${rating}★`, s: 'Google rating' },
+                { b: `${experienceYears}+ yrs`, s: 'Of practice' },
+                { b: reviewCount ? `${reviewCount}+` : '100%', s: reviewCount ? 'Reviews' : 'Itemised quotes' },
+              ].map((stat, idx) => (
+                <div
+                  key={stat.s}
+                  className={`flex-1 py-4 sm:px-4.5 ${idx === 0 ? 'sm:pl-0' : 'border-t sm:border-t-0 sm:border-l border-[#221c14]/14'}`}
+                >
+                  <b className="font-[family-name:var(--font-cormorant)] text-[26px] font-semibold block">{stat.b}</b>
+                  <span className="text-[11px] tracking-[0.14em] uppercase text-[#7a6f60]">{stat.s}</span>
+                </div>
+              ))}
+            </div>
+          </Reveal>
+          <Reveal delay={130}>
+            <div className="relative">
+              <div className="absolute -top-4 right-4 bottom-4 -left-4 border border-[#b08d4f]" />
+              <img
+                src={storyImage}
+                alt={`Interiors by ${cleanName || 'our studio'}`}
+                className="relative z-[1] w-full aspect-[4/4.4] object-cover"
+              />
+              <div className="absolute z-[2] -bottom-[18px] left-8 bg-[#17130f] text-white px-7 py-5">
+                <b className="font-[family-name:var(--font-cormorant)] text-[34px] text-[#d9c49a] block leading-none">
+                  {experienceYears}+
+                </b>
+                <span className="text-[10.5px] tracking-[0.2em] uppercase text-white/65">Years of craft</span>
+              </div>
+            </div>
+          </Reveal>
         </div>
       </section>
 
-      {/* CORE WRAPPER */}
-      <div className="max-w-6xl mx-auto px-6 space-y-32 mt-16">
-        
-        {/* THE JOURNEY TIMELINE */}
-        <section className="bg-white border border-stone-200/80 p-8 md:p-16 lg:p-20 relative overflow-hidden" data-gsap="timeline-track">
-          <div className="flex flex-col lg:flex-row gap-16 lg:gap-24 relative z-10">
-            {/* Sticky info block */}
-            <div className="lg:w-1/3 space-y-6 lg:sticky lg:top-36 self-start">
-              <p className="text-[10px] font-bold uppercase tracking-[0.25em] text-stone-500">— OUR CHRONICLE</p>
-              <h2 className="text-3xl md:text-4xl font-light text-stone-900 leading-tight">
-                The Journey
-              </h2>
-              <p className="text-sm text-stone-500 font-light leading-relaxed">
-                From a small boutique laboratory of carpenters to an award-winning turnkey architecture agency, our commitment to natural materials remains constant.
-              </p>
+      {/* VALUES */}
+      <section className="py-24 bg-[#fbf8f1]">
+        <div className="max-w-[1240px] mx-auto px-[30px]">
+          <Reveal className="text-center mb-[52px]">
+            <div className="inline-flex items-center gap-3 text-[11.5px] font-semibold tracking-[0.3em] uppercase text-[#a4532f] before:content-[''] before:w-8 before:h-px before:bg-[#a4532f]">
+              What we design for
             </div>
-            
-            {/* Timeline track */}
-            <div className="lg:w-2/3 relative border-l border-stone-200 pl-8 space-y-16">
-              <div className="absolute left-[-1px] top-0 w-[2px] h-full bg-stone-900 origin-top" data-gsap="timeline-progress" style={{ transform: 'scaleY(0)' }}></div>
-              {[
-                { year: "2015", title: "Inception & Ethos", desc: `${clinic.name || "Our Studio"} was founded to provide premium architectural interiors that leverage biophilic principles and showcase high-end solid woods.` },
-                { year: "2018", title: "Sourcing & Joinery", desc: "Formed a proprietary material sourcing network, ensuring clean access to sustainable veneers and high-end carpenters." },
-                { year: "2021", title: "Biophilic Sourcing", desc: "Committed to absolute biophilic integrity, implementing non-toxic coatings, certified organic linen layers, and natural clay plasters." },
-                { year: "PRESENT", title: "Sought-After Residential Leader", desc: "Crafting customized high-end living spaces and boutique business environments nationwide, known for quiet warmth and tactile luxury." }
-              ].map((milestone, idx) => (
-                <div key={idx} className="relative group space-y-2" data-gsap="timeline-node">
-                  {/* Timeline bullet node */}
-                  <div className="absolute w-3 h-3 bg-stone-50 border border-stone-900 rounded-full -left-[38px] top-1.5 group-hover:bg-stone-900 group-hover:scale-125 transition-all duration-300 timeline-bullet" />
-                  <div className="timeline-content space-y-2">
-                    <span className="text-stone-400 font-bold text-sm tracking-widest">{milestone.year}</span>
-                    <h3 className="text-xl font-medium text-stone-900">{milestone.title}</h3>
-                    <p className="text-sm text-stone-500 font-light leading-relaxed max-w-lg">{milestone.desc}</p>
+            <h2 className="font-[family-name:var(--font-cormorant)] text-[clamp(30px,4vw,46px)] font-semibold leading-[1.12] mt-4">
+              Life first, <em className="italic text-[#a4532f]">then walls</em>
+            </h2>
+          </Reveal>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-[22px]">
+            {values.map((item, idx) => {
+              const Icon = item.icon;
+              return (
+                <Reveal key={item.title} delay={idx * 70}>
+                  <div className="group bg-[#fbf8f1] border border-[#221c14]/14 p-9 h-full transition-all duration-[350ms] hover:bg-[#17130f] hover:text-white hover:-translate-y-1.5">
+                    <span className="w-[50px] h-[50px] rounded-full bg-[#f5f1e8] grid place-items-center mb-5 text-[#a4532f] transition-all duration-[350ms] group-hover:bg-[#b08d4f] group-hover:text-[#17130f]">
+                      <Icon className="w-[22px] h-[22px]" strokeWidth={1.8} />
+                    </span>
+                    <h3 className="font-[family-name:var(--font-cormorant)] text-[23px] font-semibold mb-2.5">{item.title}</h3>
+                    <p className="text-[14px] text-[#7a6f60] font-light leading-[1.65] transition-colors duration-[350ms] group-hover:text-white/70">
+                      {item.desc}
+                    </p>
                   </div>
-                </div>
-              ))}
-            </div>
+                </Reveal>
+              );
+            })}
           </div>
-        </section>
+        </div>
+      </section>
 
-        {/* CORE PHILOSOPHY */}
-        <section className="space-y-12">
-          <div className="flex flex-col md:flex-row gap-6 md:gap-16 items-center md:items-end border-b border-stone-250 pb-8 text-center md:text-left">
-            <div className="flex-1 space-y-4">
-              <p className="text-[10px] font-bold uppercase tracking-[0.25em] text-stone-500">— THE WAY WE THINK</p>
-              <h2 className="text-3xl md:text-5xl font-light text-stone-900 leading-tight">Design Principles</h2>
+      {/* FOUNDER */}
+      <section className="py-24">
+        <div className="max-w-[1240px] mx-auto px-[30px] grid lg:grid-cols-[0.9fr_1.1fr] gap-[52px] lg:gap-[70px] items-center">
+          <Reveal>
+            <div className="relative">
+              <img
+                src={founderImage}
+                alt={`${founderName}, leading the studio`}
+                className="w-full aspect-[4/4.6] object-cover object-top"
+              />
+              <div className="absolute bottom-7 -left-3 sm:-left-7 bg-[#17130f] text-white px-[30px] py-[22px]">
+                <b className="font-[family-name:var(--font-cormorant)] text-[34px] text-[#d9c49a] block leading-none">
+                  {reviewCount ? `${reviewCount}+` : `${experienceYears}+`}
+                </b>
+                <span className="text-[10.5px] tracking-[0.2em] uppercase text-white/65">
+                  {reviewCount ? 'Happy families' : 'Years & counting'}
+                </span>
+              </div>
             </div>
-            <p className="text-stone-500 max-w-md font-light text-sm leading-relaxed">
-              We approach spaces with clinical precision and artistic sensitivity, ensuring every corner balances spatial flow, light, and natural textures.
+          </Reveal>
+          <Reveal delay={130}>
+            <div className="flex items-center gap-3 text-[11.5px] font-semibold tracking-[0.3em] uppercase text-[#a4532f] before:content-[''] before:w-8 before:h-px before:bg-[#a4532f]">
+              The people behind it
+            </div>
+            <blockquote className="font-[family-name:var(--font-cormorant)] italic text-[clamp(24px,2.8vw,32px)] leading-[1.4] my-6">
+              &ldquo;A home should hold your life the way a well-tailored garment holds the body — invisibly, perfectly,
+              yours.&rdquo;
+            </blockquote>
+            <p className="text-[#7a6f60] text-[15.5px] font-light mb-4.5 max-w-[540px]">
+              {doctor?.specialization
+                ? `Specialising in ${doctor.specialization.toLowerCase()}, our team leads every project from first sketch to final styling.`
+                : 'Our team leads every project from first sketch to final styling — design, execution and handover under one accountable roof.'}
             </p>
-          </div>
+            <p className="text-[#7a6f60] text-[15.5px] font-light mb-6 max-w-[540px]">
+              Every home is still personally reviewed before handover — one signature, one standard.
+            </p>
+            <div className="font-[family-name:var(--font-cormorant)] italic text-[26px] text-[#a4532f]">
+              {founderName}
+              <small className="block not-italic font-[family-name:var(--font-outfit)] text-[11.5px] tracking-[0.18em] uppercase text-[#7a6f60] mt-1.5">
+                {doctor?.specialization || 'Design & Execution Lead'}
+              </small>
+            </div>
+          </Reveal>
+        </div>
+      </section>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6" data-gsap="stagger-container">
-            {[
-              { num: "01", title: "Spatial Flow", desc: "We map the exact daily routines of your family to optimize layout circulation and maximize daylight paths." },
-              { num: "02", title: "Tactility", desc: "We select real solid timbers, raw sandstones, and organic linens that develop elegant character over time." },
-              { num: "03", title: "Precision Models", desc: "We build premium 3D virtual blueprints, allowing you to walk through every space and finalize cost sheets before building." },
-              { num: "04", title: "Honest Curation", desc: "We protect your timeline with direct carpenter scheduling, line-by-line item reports, and transparent communication." }
-            ].map((principle, idx) => (
-              <div key={idx} className="bg-white border border-stone-200 p-8 space-y-6 flex flex-col justify-between hover:border-stone-900 transition-colors duration-500 group relative overflow-hidden" data-gsap="stagger-item">
-                <span className="absolute -top-4 -right-4 text-6xl font-black text-stone-100 select-none pointer-events-none group-hover:text-stone-200/50 transition-colors">{principle.num}</span>
-                <div className="space-y-4 relative z-10">
-                  <h3 className="text-lg font-medium text-stone-900">{principle.title}</h3>
-                  <p className="text-stone-500 font-light text-xs leading-relaxed">{principle.desc}</p>
+      {/* HIGHLIGHTS */}
+      <section className="py-24 bg-[#17130f] text-white">
+        <div className="max-w-[1240px] mx-auto px-[30px]">
+          <Reveal className="text-center mb-[52px]">
+            <div className="inline-flex items-center gap-3 text-[11.5px] font-semibold tracking-[0.3em] uppercase text-[#d9c49a] before:content-[''] before:w-8 before:h-px before:bg-[#d9c49a]">
+              Why families choose us
+            </div>
+            <h2 className="font-[family-name:var(--font-cormorant)] text-[clamp(30px,4vw,46px)] font-semibold leading-[1.12] mt-4 text-white">
+              The promises we <em className="italic text-[#d9c49a]">keep</em>
+            </h2>
+          </Reveal>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-[22px]">
+            {highlights.slice(0, 6).map((highlight, idx) => (
+              <Reveal key={highlight} delay={idx * 60}>
+                <div className="border border-white/15 p-8 h-full hover:border-[#b08d4f] transition-colors duration-300">
+                  <span className="font-[family-name:var(--font-cormorant)] italic text-[40px] text-[#d9c49a] block leading-none mb-4">
+                    {String(idx + 1).padStart(2, '0')}
+                  </span>
+                  <p className="text-[15px] font-light text-white/85">{highlight}</p>
                 </div>
-              </div>
+              </Reveal>
             ))}
           </div>
-        </section>
-
-        {/* DESIGN LEADERS */}
-        <section className="space-y-16 py-8">
-          <div className="text-center max-w-2xl mx-auto space-y-4">
-            <p className="text-[10px] font-bold uppercase tracking-[0.25em] text-stone-500">— CREATIVE CONTEXT</p>
-            <h2 className="text-3xl md:text-5xl font-light text-stone-900 leading-tight">Meet The Founders</h2>
-          </div>
-
-          <div className="space-y-32">
-            {/* Principal Designer (Arjun Mehta) */}
-            <div className="grid lg:grid-cols-12 gap-12 lg:gap-16 items-center">
-              <div className="lg:col-span-5 relative aspect-[3/4] overflow-hidden border border-stone-250" data-gsap="parallax-container">
-                <img
-                  src={principalImage}
-                  alt={founderName}
-                  className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700"
-                  data-gsap="parallax-img"
-                />
-              </div>
-              <div className="lg:col-span-7 space-y-6">
-                <div className="space-y-2">
-                  <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-stone-400">{founderRole}</p>
-                  <h3 className="text-3xl font-light text-stone-900">{founderName}</h3>
-                  <p className="text-stone-500 text-xs font-light">{founderCredentials}</p>
-                </div>
-                <p className="text-stone-600 font-light leading-relaxed text-sm">
-                  {founderBio}
-                </p>
-                <div className="border-l border-stone-900 pl-6 italic text-stone-500 text-base font-light">
-                  &ldquo;{founderQuote}&rdquo;
-                </div>
-              </div>
-            </div>
-
-            {/* Associate Stylist (Kavitha Rajan) */}
-            <div className="grid lg:grid-cols-12 gap-12 lg:gap-16 items-center">
-              <div className="lg:col-span-5 lg:order-2 relative aspect-[3/4] overflow-hidden border border-stone-250" data-gsap="parallax-container">
-                <img
-                  src={secondaryImage}
-                  alt={partnerName}
-                  className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700"
-                  data-gsap="parallax-img"
-                />
-              </div>
-              <div className="lg:col-span-7 lg:order-1 space-y-6">
-                <div className="space-y-2">
-                  <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-stone-400">{partnerRole}</p>
-                  <h3 className="text-3xl font-light text-stone-900">{partnerName}</h3>
-                  <p className="text-stone-500 text-xs font-light">{partnerCredentials}</p>
-                </div>
-                <p className="text-stone-600 font-light leading-relaxed text-sm">
-                  {partnerBio}
-                </p>
-                <div className="border-l border-stone-900 pl-6 italic text-stone-500 text-base font-light">
-                  &ldquo;{partnerQuote}&rdquo;
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* PROCESS & TECHNOLOGY */}
-        <section className="bg-stone-900 text-stone-100 p-8 md:p-16 lg:p-20 border border-stone-850 relative overflow-hidden">
-          <div className="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-bl-full pointer-events-none" />
-          <div className="relative z-10 max-w-5xl mx-auto flex flex-col lg:flex-row gap-16">
-            <div className="lg:w-1/3 space-y-6 lg:sticky lg:top-36 self-start">
-              <p className="text-[10px] font-bold uppercase tracking-[0.25em] text-stone-500">— PROCESS PROTOCOLS</p>
-              <h2 className="text-3xl md:text-4xl font-light text-stone-100 leading-tight">
-                Technology &amp; Standards
-              </h2>
-              <p className="text-stone-400 font-light text-xs leading-relaxed">
-                We use high-fidelity digital coordination maps to make sure our cabinetry parameters, sourcing checklists, and layout alignments are executed cleanly.
-              </p>
-            </div>
-            
-            <div className="lg:w-2/3 grid sm:grid-cols-2 gap-6 relative z-10" data-gsap="stagger-container">
-              {[
-                { title: "Virtual 3D Walkthroughs", desc: "Test out circulation clearings, furniture dimensions, and solid wood textures in photo-realistic spatial blocks." },
-                { title: "Material Standards", desc: "We restrict our curations to certified timber boards, organic textiles, and natural, VOC-free plasters." },
-                { title: "Dashboard Coordination", desc: "Review real-time budget updates, item delivery timelines, and cabinetry schedules directly in your project tracker." },
-                { title: "Smart Integration", desc: "We layout sockets, audio pipelines, climate pathways, and specialized task lighting plans early in our structural blueprints." }
-              ].map((std, idx) => (
-                <div key={idx} className="bg-stone-950 p-8 border border-stone-800 hover:border-stone-500 transition-colors space-y-4" data-gsap="stagger-item">
-                  <h3 className="text-sm font-semibold uppercase tracking-wider text-stone-200">{std.title}</h3>
-                  <p className="text-xs text-stone-400 font-light leading-relaxed">{std.desc}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* WHY TRUST US */}
-        <section className="py-8">
-          <div className="text-center mb-20 max-w-2xl mx-auto space-y-4">
-            <p className="text-[10px] font-bold uppercase tracking-[0.25em] text-stone-500">— TRUST CERTIFICATION</p>
-            <h2 className="text-3xl md:text-5xl font-light text-stone-900 leading-tight">Why Clients Trust Our Team</h2>
-          </div>
-
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-16 text-left" data-gsap="stagger-container">
-            {[
-              { num: "01", title: "Integrated Synergy", desc: "Architectural designers, custom joinery technicians, and biophilic stylists coordinate on a single master layout." },
-              { num: "02", title: "Absolute Turnkey", desc: "We handle material acquisitions, electrical mappings, cabinetry fittings, and snag clearances from discovery to final staging." },
-              { num: "03", title: "Tailored Audits", desc: "We design furniture frames and cabinet depths customized around your anatomical clearances and storage routines." },
-              { num: "04", title: "Honest Billing", desc: "We outline honest billing spreadsheets, listing real timber costs, hardware fees, and carpenter hours. No hidden markups." },
-              { num: "05", title: "Certified Craftsmen", desc: "We work with regional master carpenters, trusted mason blocks, and certified installers to ensure reliable execution." },
-              { num: "06", title: "Detailed Handover Folders", desc: "We deliver physical material codes, paint references, hardware keys, appliance contracts, and clean upkeep manuals." }
-            ].map((feature, idx) => (
-              <div key={idx} className="group space-y-4" data-gsap="stagger-item">
-                <div className="flex items-center gap-4">
-                  <span className="text-stone-400 font-bold text-xs tracking-widest">{feature.num}</span>
-                  <h3 className="text-lg font-medium text-stone-900 group-hover:text-stone-700 transition-colors">{feature.title}</h3>
-                </div>
-                <div className="w-full h-px bg-stone-200" />
-                <p className="text-xs text-stone-500 font-light leading-relaxed">{feature.desc}</p>
-              </div>
-            ))}
-          </div>
-        </section>
-
-      </div>
+          <Reveal className="text-center mt-12">
+            <Link
+              href={`${basePath}/contact`}
+              className="inline-flex items-center justify-center gap-2.5 px-8 py-4 text-[13px] font-semibold tracking-[0.14em] uppercase bg-[#b08d4f] text-[#17130f] hover:bg-[#c5a266] hover:-translate-y-0.5 hover:shadow-[0_14px_28px_rgba(176,141,79,0.3)] transition-all duration-300"
+            >
+              Book a Private Consultation
+              <ArrowRight className="w-4 h-4" strokeWidth={2.2} />
+            </Link>
+          </Reveal>
+        </div>
+      </section>
     </div>
   );
 }

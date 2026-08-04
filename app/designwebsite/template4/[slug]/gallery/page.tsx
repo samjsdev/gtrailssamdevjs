@@ -1,124 +1,114 @@
-import { readSourceConfig } from "@/lib/dataBuilder";
-import { notFound } from "next/navigation";
-import GalleryGrid from "./GalleryGrid";
-import { INTERIOR_HERO_IMAGES } from "@/lib/interiorContent";
-import { cleanClinicName } from "@/lib/copyCleaner";
+import { readSourceConfig } from '@/lib/dataBuilder';
+import { notFound } from 'next/navigation';
+import Link from 'next/link';
+import { cleanClinicName, cleanClinicDescription } from '@/lib/copyCleaner';
+import Reveal from '../Reveal';
+import GalleryGrid, { GalleryItem } from './GalleryGrid';
 
-export default async function GalleryPage({ params }: { params: Promise<{ slug: string }> }) {
-  const resolvedParams = await params;
-  const { slug } = resolvedParams;
+type PageProps = { params: Promise<{ slug: string }> };
+
+const GALLERY_FALLBACK = [
+  '/images/stock/68b39046.webp',
+  '/images/stock/a0e0726f.webp',
+  '/images/stock/dc1759ad.webp',
+  '/images/stock/f23e9dc6.webp',
+  '/images/stock/615f9d34.webp',
+  '/images/stock/6dcb103c.webp',
+  '/images/stock/a151a9e5.webp',
+  '/images/stock/bf333360.webp',
+  '/images/stock/84fea9c5.webp',
+];
+
+const ROOM_NAMES = [
+  'Layered Living Room',
+  'Modular Kitchen',
+  'Bedroom Retreat',
+  'Dining & Crockery',
+  'Study Corner',
+  'Wardrobe Suite',
+  'Foyer & Entry',
+  'Kids Room',
+  'Balcony Nook',
+];
+
+export default async function Template4Gallery({ params }: PageProps) {
+  const { slug } = await params;
+  const basePath = `/designwebsite/template4/${slug}`;
 
   const data = await readSourceConfig(slug, 'template4');
   if (!data) return notFound();
 
   const { clinic, media } = data;
   const cleanName = cleanClinicName(clinic.name);
+  const cleanDesc = cleanClinicDescription(clinic.description, clinic.name);
+  const city = clinic.address?.city || 'Chennai';
 
-  const defaultGalleryStock = [
-    "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=2000&q=80",
-    "https://images.unsplash.com/photo-1616594039964-ae9021a400a0?auto=format&fit=crop&w=2000&q=80",
-    "https://images.unsplash.com/photo-1556910103-1c02745aae4d?auto=format&fit=crop&w=2000&q=80",
-    "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=2000&q=80",
-    "https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=2000&q=80",
-    "https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?auto=format&fit=crop&w=2000&q=80",
-    "https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=2000&q=80",
-    "https://images.unsplash.com/photo-1538688525198-9b88f6f53126?auto=format&fit=crop&w=2000&q=80",
-    "https://images.unsplash.com/photo-1581579438747-1dc8d1e0ca96?auto=format&fit=crop&w=2000&q=80",
-    "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=2000&q=80",
-    "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=2000&q=80",
-    "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=2000&q=80",
-    "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=2000&q=80",
-    "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=2000&q=80",
-    "https://images.unsplash.com/photo-1600210492493-0946911123ea?auto=format&fit=crop&w=2000&q=80",
-    "https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&w=2000&q=80",
-    "https://images.unsplash.com/photo-1600121848594-d8644e57abab?auto=format&fit=crop&w=2000&q=80",
-    "https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&w=2000&q=80",
-    "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=2000&q=80",
-    "https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=2000&q=80",
-    "https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=2000&q=80"
-  ];
+  const uniqueImages = Array.from(
+    new Set(
+      [
+        ...(media.clinicImages || []),
+        ...(media.treatmentImages || []),
+        ...(media.otherImages || []),
+      ].filter(Boolean)
+    )
+  ) as string[];
 
-  const uniqueUserImages = Array.from(new Set([
-    ...(media.clinicImages || []),
-    ...(media.treatmentImages || []),
-    ...(media.otherImages || [])
-  ].filter(Boolean)));
-
-  const PORTFOLIO = [];
-  const totalToRender = 50;
-
-  for (let i = 0; i < totalToRender; i++) {
-    let imgUrl = "";
-    let isUserImg = false;
-
-    if (uniqueUserImages.length > 0) {
-      imgUrl = uniqueUserImages[i % uniqueUserImages.length];
-      isUserImg = true;
-    } else {
-      imgUrl = defaultGalleryStock[i % defaultGalleryStock.length];
-    }
-
-    const cats = ['Residential', 'Commercial', 'Studio & Process'];
-    const cat = cats[i % cats.length];
-    const span = i % 3 === 0 ? ('wide' as const) : i % 5 === 0 ? ('tall' as const) : undefined;
-
-    PORTFOLIO.push({
-      cat,
-      title: isUserImg ? `Client Project Space #${i + 1}` : `Curated Design Space #${i + 1}`,
-      desc: isUserImg 
-        ? `Custom interior feature designed and coordinated for ${cleanName || 'our studio'}.`
-        : `Bespoke room configuration showcasing fine materials and detailing.`,
-      img: imgUrl,
-      span
-    });
-  }
+  const sourceImages = uniqueImages.length > 0 ? uniqueImages : GALLERY_FALLBACK;
+  const items: GalleryItem[] = sourceImages.slice(0, 24).map((img, idx) => ({
+    img,
+    title: ROOM_NAMES[idx % ROOM_NAMES.length],
+    sub: `${city} · By ${cleanName || 'our studio'}`,
+  }));
 
   return (
-    <div className="text-stone-900 bg-stone-50 min-h-screen pb-32 selection:bg-stone-200">
-      
-      {/* HEADER HERO */}
-      <section className="relative pt-36 pb-16 px-6 max-w-6xl mx-auto text-center z-10 space-y-16">
-        <div className="space-y-6 max-w-4xl mx-auto">
-          <p className="text-[10px] font-bold uppercase tracking-[0.3em] text-stone-500">— EDITORIAL PORTFOLIO</p>
-          <h1 className="text-4xl md:text-6xl lg:text-7xl font-light text-stone-900 leading-tight">
-            {clinic.name || "Our Work & Space"}
-          </h1>
-          <p className="text-base md:text-lg text-stone-600 font-light max-w-2xl mx-auto leading-relaxed">
-            {clinic.description || "Explore the spatial designs we have developed and the clean physical library where our projects begin."}
-          </p>
-
-          {/* Minimal Stats Bar */}
-          <div className="flex flex-wrap justify-center gap-x-12 gap-y-6 pt-8 max-w-2xl mx-auto">
-            {[
-              { val: "200+", tag: "STUDIOS DELIVERED" },
-              { val: "12", tag: "SHOWCASE GALLERIES" },
-              { val: "10+", tag: "YEARS ARCHITECTURE" }
-            ].map((stat, idx) => (
-              <div key={idx} className="flex flex-col items-center">
-                <span className="text-2xl md:text-3xl font-light text-stone-900">{stat.val}</span>
-                <span className="text-[9px] font-bold text-stone-400 uppercase tracking-widest mt-1">
-                  {stat.tag}
-                </span>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Fine Horizontal Divider Line */}
-        <div className="flex items-center gap-6 max-w-5xl mx-auto opacity-80">
-          <div className="h-px flex-1 bg-stone-200" />
-          <span className="text-[9px] font-bold uppercase tracking-[0.25em] text-stone-400">
-            FINE PRINT EXHIBITION
-          </span>
-          <div className="h-px flex-1 bg-stone-200" />
+    <div>
+      {/* HERO */}
+      <section className="py-[clamp(64px,7vw,96px)]">
+        <div className="max-w-[1240px] mx-auto px-[30px]">
+          <Reveal>
+            <div className="flex items-center gap-3 text-[11.5px] font-semibold tracking-[0.3em] uppercase text-[#a4532f] before:content-[''] before:w-8 before:h-px before:bg-[#a4532f]">
+              Real homes, real families
+            </div>
+            <h1 className="font-[family-name:var(--font-cormorant)] text-[clamp(34px,4.6vw,56px)] font-semibold leading-[1.12] mt-4 mb-3.5 max-w-[760px]">
+              Homes by <em className="italic text-[#a4532f]">{cleanName || 'our studio'}</em>
+            </h1>
+            <p className="text-[#7a6f60] text-[16px] font-light max-w-[620px]">
+              {cleanDesc || 'Every photograph is a real, delivered home — browse rooms we have designed, built and styled.'}
+            </p>
+          </Reveal>
         </div>
       </section>
 
-      {/* Interactive Gallery */}
-      <section id="gallery-grid" className="max-w-5xl mx-auto text-left px-6">
-        <GalleryGrid items={PORTFOLIO} />
+      {/* GRID */}
+      <section className="pb-[clamp(48px,6vw,80px)]">
+        <div className="max-w-[1240px] mx-auto px-[30px]">
+          <Reveal>
+            <GalleryGrid items={items} />
+          </Reveal>
+        </div>
       </section>
 
+      {/* CTA */}
+      <section className="pb-24">
+        <div className="max-w-[1240px] mx-auto px-[30px]">
+          <Reveal>
+            <div className="bg-[#17130f] text-white px-8 py-14 sm:px-14 text-center">
+              <h2 className="font-[family-name:var(--font-cormorant)] text-[clamp(28px,3.6vw,44px)] font-semibold leading-[1.12] mb-4">
+                Your home could be <em className="italic text-[#d9c49a]">next</em>
+              </h2>
+              <p className="text-white/75 text-[15px] font-light mb-8 max-w-[520px] mx-auto">
+                A free consultation is all it takes to see your floor plan transformed in 3D — before a single nail goes in.
+              </p>
+              <Link
+                href={`${basePath}/contact`}
+                className="inline-flex items-center justify-center gap-2.5 px-8 py-4 text-[13px] font-semibold tracking-[0.14em] uppercase bg-[#b08d4f] text-[#17130f] hover:bg-[#c5a266] hover:-translate-y-0.5 hover:shadow-[0_14px_28px_rgba(176,141,79,0.3)] transition-all duration-300"
+              >
+                Book a Private Consultation
+              </Link>
+            </div>
+          </Reveal>
+        </div>
+      </section>
     </div>
   );
 }

@@ -2,12 +2,16 @@ import { NextResponse } from 'next/server';
 import { scrapeGoogleBusinessProfile } from '@/lib/scraper';
 import { processAndSaveImage } from '@/lib/imageProcessor';
 import { createSourceConfig } from '@/lib/dataBuilder';
+import { requireAdmin } from '@/lib/adminAuth';
 // Build trigger imports removed to speed up intake
 import path from 'path';
 import fs from 'fs/promises';
 
 export async function POST(req: Request) {
   try {
+    const denied = await requireAdmin(req);
+    if (denied) return denied;
+
     const body = await req.json();
     const rawUrl = body.gbpUrl || body.url || '';
     const gbpUrl = typeof rawUrl === 'string' ? rawUrl.trim() : '';
