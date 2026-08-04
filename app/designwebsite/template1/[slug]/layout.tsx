@@ -9,6 +9,9 @@ import ClientHeader from './ClientHeader';
 const marcellus = Marcellus({ subsets: ['latin'], weight: '400', variable: '--font-marcellus' });
 const jost = Jost({ subsets: ['latin'], weight: ['300', '400', '500', '600'], variable: '--font-jost' });
 
+// Pre-render from local JSON at build time for fast template previews on Vercel.
+export const dynamic = 'force-static';
+
 export async function generateStaticParams() {
   const slugs = await getAllSlugs();
   return slugs.map((slug) => ({ slug }));

@@ -1,10 +1,10 @@
 /**
- * Opt-in: pull specific clients from Appwrite into the essential local set
- * (data/{slug}/source.json). Does not run automatically on preview.
+ * Restore clients from Appwrite backup → data/{slug}/source.json.
+ * Normal reads never hit Appwrite — JSON is the source of truth.
  *
  * Usage:
- *   node scripts/sync_clients_to_json.js navaneeth-interiors another-slug
- *   node scripts/sync_clients_to_json.js --all   # only if you really want every Appwrite doc locally
+ *   node scripts/sync_clients_to_json.js client-slug [more-slugs...]
+ *   node scripts/sync_clients_to_json.js --all   # rare: restore every Appwrite doc
  */
 
 const fs = require('fs/promises');

@@ -1,8 +1,7 @@
 import { NextResponse } from 'next/server';
 import {
   readSourceConfig,
-  writeSourceConfig,
-  syncSourceConfigToAppwrite,
+  persistSourceConfig,
   fetchAndSaveSourceConfig,
   getDocId,
   assertSafeSlug,
@@ -20,12 +19,12 @@ export async function GET(req: Request) {
 
   if (!slug) return NextResponse.json({ error: 'Missing slug' }, { status: 400 });
 
-  // ?refresh=1 explicitly adds/updates this slug in the essential local set.
+  // ?refresh=1 restores this client from Appwrite backup → local JSON.
   if (refresh) {
     const denied = await requireAdmin(req);
     if (denied) return denied;
     const fresh = await fetchAndSaveSourceConfig(slug);
-    if (!fresh) return NextResponse.json({ error: 'Config not found in Appwrite' }, { status: 404 });
+    if (!fresh) return NextResponse.json({ error: 'Not found in Appwrite backup' }, { status: 404 });
     return NextResponse.json(fresh);
   }
 
@@ -46,19 +45,10 @@ export async function PUT(req: Request) {
       return NextResponse.json({ error: 'Missing slug or source data' }, { status: 400 });
     }
 
-    const data = sourceData as GeneratedData;
+    // Store in JSON + Appwrite (both required).
+    await persistSourceConfig(slug, sourceData as GeneratedData);
 
-    // Primary: save to local JSON for fast previews.
-    await writeSourceConfig(slug, data);
-
-    // Optional: keep Appwrite in sync (best effort).
-    try {
-      await syncSourceConfigToAppwrite(slug, data);
-    } catch (err: any) {
-      console.error('Appwrite save error:', err.message || err);
-    }
-
-    return NextResponse.json({ success: true, message: 'Saved successfully' });
+    return NextResponse.json({ success: true, message: 'Saved to JSON and Appwrite' });
   } catch (error) {
     console.error('Save error:', error);
     return NextResponse.json({ error: 'Failed to save data' }, { status: 500 });

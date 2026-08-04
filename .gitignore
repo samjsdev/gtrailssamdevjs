@@ -41,5 +41,8 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-# local cache and packaged sites
-/data/
+# Client data: keep source.json in git for fast local + Vercel reads.
+# Ignore bulky downloaded images / caches under data/.
+/data/**
+!/data/**/
+!/data/**/source.json

@@ -14,6 +14,10 @@ const nextConfig: NextConfig = {
       },
     ],
   },
+  // Ensure data/*/source.json is bundled for serverless reads on Vercel.
+  outputFileTracingIncludes: {
+    '/*': ['./data/**/*'],
+  },
 };
 
 export default nextConfig;

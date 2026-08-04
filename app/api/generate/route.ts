@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { writeSourceConfig, type GeneratedData } from '@/lib/dataBuilder';
+import { persistSourceConfig, type GeneratedData } from '@/lib/dataBuilder';
 import { requireAdmin } from '@/lib/adminAuth';
 
 export async function POST(req: Request) {
@@ -13,7 +13,7 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: 'Missing slug or source data' }, { status: 400 });
     }
 
-    await writeSourceConfig(slug, sourceData as GeneratedData);
+    await persistSourceConfig(slug, sourceData as GeneratedData);
 
     return NextResponse.json({ success: true, slug, websiteGenerated: false });
   } catch (error: any) {

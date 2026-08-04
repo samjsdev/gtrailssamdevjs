@@ -4,8 +4,7 @@ import DashboardClient from './DashboardClient';
 export const dynamic = 'force-dynamic';
 
 export default async function Dashboard() {
-  // Essential lead sites only — whatever is saved under data/{slug}/source.json
-  // (existing local clients + anything newly scraped/saved).
+  // Few essential clients — all served from data/{slug}/source.json
   const sites = await listLocalSites();
 
   return (
@@ -13,7 +12,7 @@ export default async function Dashboard() {
       <div>
         <h1 className="text-3xl font-extrabold text-gray-900 tracking-tight">Essential Lead Sites</h1>
         <p className="text-gray-500 mt-2 text-lg">
-          {sites.length} local client{sites.length === 1 ? '' : 's'} ready for preview. New scrapes are saved here automatically.
+          {sites.length} client{sites.length === 1 ? '' : 's'} from local JSON
         </p>
       </div>
 

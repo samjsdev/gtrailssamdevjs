@@ -1,0 +1,67 @@
+{
+  "clinic": {
+    "name": "KIKI Design Space",
+    "slug": "kiki-design-space",
+    "tagline": "Thoughtful Interiors for Everyday Living",
+    "description": "Welcome to KIKI Design Space. We create refined, functional interiors tailored to your lifestyle, budget, and space.",
+    "address": {
+      "full": "Address not found",
+      "area": "",
+      "city": "",
+      "state": "Tamil Nadu",
+      "country": "India"
+    },
+    "contact": {
+      "phone": "06374580078",
+      "website": ""
+    },
+    "mapEmbedUrl": "https://maps.google.com/maps?q=KIKI%20Design%20Space&output=embed"
+  },
+  "business": {
+    "rating": "",
+    "reviewCount": "",
+    "timings": [],
+    "services": [
+      "Residential Interior Design",
+      "Modular Kitchen Design",
+      "Living Room Styling",
+      "Bedroom Makeovers",
+      "Space Planning",
+      "Custom Furniture"
+    ],
+    "highlights": [
+      "Personalized design concepts",
+      "Material and finish guidance",
+      "Transparent project planning",
+      "End-to-end execution support"
+    ]
+  },
+  "doctor": {
+    "name": "KIKI Studio Team",
+    "images": [],
+    "experience": "5+ years",
+    "specialization": "Interior Design & Turnkey Execution"
+  },
+  "reviews": [],
+  "media": {
+    "clinicImages": [
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/b8d705beab0e7ac3d2d4325f9f0b2b0b/view?project=6a1cf32a002c668912cc",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/a65966c5bf979ba613fb96b6a913ae40/view?project=6a1cf32a002c668912cc",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/4ad6ab03d2d0214c741dc70d188da197/view?project=6a1cf32a002c668912cc",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/31d284fcd5e180bb7ff47d6895623248/view?project=6a1cf32a002c668912cc"
+    ],
+    "treatmentImages": [
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/0d7babb4bb0fd082c580891965a6cbe1/view?project=6a1cf32a002c668912cc"
+    ],
+    "otherImages": []
+  },
+  "overrides": {
+    "doctorName": "",
+    "doctorImages": [],
+    "extraImages": []
+  },
+  "meta": {
+    "generatedAt": "2026-06-24T06:24:24.480Z",
+    "source": "google_maps"
+  }
+}

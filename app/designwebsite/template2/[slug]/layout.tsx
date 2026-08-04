@@ -18,6 +18,9 @@ const jakarta = Plus_Jakarta_Sans({
   variable: '--font-jakarta',
 });
 
+// Pre-render from local JSON at build time for fast template previews on Vercel.
+export const dynamic = 'force-static';
+
 export async function generateStaticParams() {
   const slugs = await getAllSlugs();
   return slugs.map((slug) => ({ slug }));

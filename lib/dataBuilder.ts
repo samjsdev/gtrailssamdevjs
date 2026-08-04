@@ -6,7 +6,12 @@ import {
   DEFAULT_INTERIOR_SERVICES,
 } from '@/lib/interiorContent';
 import crypto from 'crypto';
-import { databases } from './appwrite';
+
+/** Lazy Appwrite import — template previews that hit local JSON never load the DB client. */
+async function getDatabases() {
+  const { databases } = await import('./appwrite');
+  return databases;
+}
 
 export interface GeneratedData {
   clinic: any;
@@ -49,21 +54,77 @@ function sourcePathFor(slug: string) {
   return path.join(process.cwd(), 'data', safe, 'source.json');
 }
 
-/** Persist client data to local JSON (essential leads + newly added only). */
-export async function writeSourceConfig(slug: string, data: GeneratedData): Promise<void> {
-  const safe = assertSafeSlug(slug);
-  const dir = path.join(process.cwd(), 'data', safe);
-  await fs.mkdir(dir, { recursive: true });
-  const payload: GeneratedData = {
+function withUpdatedMeta(data: GeneratedData, source = 'local'): GeneratedData {
+  return {
     ...data,
     meta: {
       ...(data.meta || {}),
       updatedAt: new Date().toISOString(),
       generatedAt: data.meta?.generatedAt || new Date().toISOString(),
-      source: data.meta?.source || 'local',
+      source: data.meta?.source || source,
     },
   };
-  await fs.writeFile(sourcePathFor(safe), JSON.stringify(payload, null, 2), 'utf-8');
+}
+
+/** Write client data to local data/{slug}/source.json (fast path for local + Vercel). */
+export async function writeSourceConfig(slug: string, data: GeneratedData): Promise<void> {
+  const safe = assertSafeSlug(slug);
+  const dir = path.join(process.cwd(), 'data', safe);
+  await fs.mkdir(dir, { recursive: true });
+  await fs.writeFile(sourcePathFor(safe), JSON.stringify(withUpdatedMeta(data), null, 2), 'utf-8');
+}
+
+/**
+ * Store client data in BOTH places:
+ * 1. local data/{slug}/source.json (reads / previews)
+ * 2. Appwrite scraped_data (backup)
+ * Fails if either write fails.
+ */
+export async function persistSourceConfig(slug: string, data: GeneratedData): Promise<GeneratedData> {
+  const safe = assertSafeSlug(data.clinic?.slug || slug);
+  const payload = withUpdatedMeta(data);
+  const errors: string[] = [];
+
+  try {
+    await writeSourceConfig(safe, payload);
+  } catch (err: any) {
+    errors.push(`JSON: ${err.message || err}`);
+  }
+
+  try {
+    await syncSourceConfigToAppwrite(safe, payload);
+  } catch (err: any) {
+    errors.push(`Appwrite: ${err.message || err}`);
+  }
+
+  if (errors.length) {
+    throw new Error(`Failed to store client in both places — ${errors.join(' | ')}`);
+  }
+
+  return payload;
+}
+
+/** Push every local JSON client up to Appwrite backup. */
+export async function syncAllLocalClientsToAppwrite(): Promise<{ ok: string[]; failed: { slug: string; error: string }[] }> {
+  const slugs = await getLocalSlugs();
+  const ok: string[] = [];
+  const failed: { slug: string; error: string }[] = [];
+
+  for (const slug of slugs) {
+    const data = await readLocalSourceConfig(slug);
+    if (!data) {
+      failed.push({ slug, error: 'Missing or invalid source.json' });
+      continue;
+    }
+    try {
+      await syncSourceConfigToAppwrite(slug, data);
+      ok.push(slug);
+    } catch (err: any) {
+      failed.push({ slug, error: err.message || String(err) });
+    }
+  }
+
+  return { ok, failed };
 }
 
 async function readLocalSourceConfig(slug: string): Promise<GeneratedData | null> {
@@ -77,6 +138,7 @@ async function readLocalSourceConfig(slug: string): Promise<GeneratedData | null
 
 async function readAppwriteSourceConfig(slug: string): Promise<GeneratedData | null> {
   try {
+    const databases = await getDatabases();
     const docId = getDocId(slug);
     const doc = await databases.getDocument('gtrails', 'scraped_data', docId);
     if (doc?.source_data) {
@@ -88,8 +150,9 @@ async function readAppwriteSourceConfig(slug: string): Promise<GeneratedData | n
   return null;
 }
 
-/** Best-effort sync of local JSON up to Appwrite (optional). */
+/** Sync one client JSON payload up to Appwrite backup. */
 export async function syncSourceConfigToAppwrite(slug: string, data: GeneratedData): Promise<void> {
+  const databases = await getDatabases();
   const documentData = {
     name: data.clinic?.name || slug,
     rating: String(data.business?.rating || ''),
@@ -121,8 +184,8 @@ export async function syncSourceConfigToAppwrite(slug: string, data: GeneratedDa
 }
 
 /**
- * Pull a client from Appwrite and save to data/{slug}/source.json.
- * Use for the select clients you want fast local previews for.
+ * Restore one client from Appwrite backup → local JSON.
+ * Opt-in only (admin refresh / sync:clients) — not used on normal reads.
  */
 export async function fetchAndSaveSourceConfig(slug: string): Promise<GeneratedData | null> {
   const data = await readAppwriteSourceConfig(slug);
@@ -191,15 +254,12 @@ export async function createSourceConfig(slug: string, data: any): Promise<Gener
     }
   }
 
-  // Primary: local JSON
-  await writeSourceConfig(slug, dataShape);
-
-  // Optional: keep Appwrite in sync
+  // Primary JSON + Appwrite backup
   try {
-    await syncSourceConfigToAppwrite(slug, dataShape);
-    console.log(`Successfully synced scraped data for "${slug}" to Appwrite!`);
-  } catch (appwriteError: any) {
-    console.error('Error syncing scraped data to Appwrite:', appwriteError.message || appwriteError);
+    await persistSourceConfig(slug, dataShape);
+    console.log(`Successfully saved scraped data for "${slug}" (JSON + Appwrite backup)`);
+  } catch (err: any) {
+    console.error('Error saving scraped data:', err.message || err);
   }
 
   return dataShape;
@@ -219,16 +279,8 @@ function deepMerge(target: any, source: any): any {
 }
 
 async function readSourceConfigUncached(slug: string, template?: string): Promise<GeneratedData | null> {
-  // Essential leads live in data/{slug}/source.json — that is the working set.
-  let baseData = await readLocalSourceConfig(slug);
-
-  // Appwrite is a one-off fallback for missing slugs. It is NOT auto-cached locally.
-  // To add a client to the essential set: scrape (createSourceConfig), save in admin, or
-  // run `npm run sync:clients -- <slug>` / GET /api/data?slug=...&refresh=1
-  if (!baseData) {
-    baseData = await readAppwriteSourceConfig(slug);
-  }
-
+  // JSON only — Appwrite is backup storage, never used for normal reads.
+  const baseData = await readLocalSourceConfig(slug);
   if (!baseData) return null;
 
   if (template) {
@@ -244,7 +296,7 @@ async function readSourceConfigUncached(slug: string, template?: string): Promis
 /** Request-deduped reader — layout + page share one load. */
 export const readSourceConfig = cache(readSourceConfigUncached);
 
-/** Local essential-lead slugs only (data/{slug}/source.json). */
+/** Slugs that have data/{slug}/source.json (the few clients we handle). */
 export async function getLocalSlugs(): Promise<string[]> {
   const dataPath = path.join(process.cwd(), 'data');
   try {
@@ -274,7 +326,7 @@ export type LocalSiteSummary = {
   timestamp: number;
 };
 
-/** Dashboard/preview list — only essential leads saved locally (+ newly added). */
+/** Dashboard / lists — JSON only. */
 export async function listLocalSites(): Promise<LocalSiteSummary[]> {
   const slugs = await getLocalSlugs();
   const sites: LocalSiteSummary[] = [];
@@ -295,10 +347,15 @@ export async function listLocalSites(): Promise<LocalSiteSummary[]> {
     });
   }
 
-  return sites;
+  return sites.sort((a, b) => (b.timestamp || 0) - (a.timestamp || 0));
 }
 
-/** Static params / previews — essential local clients only. */
+/** @deprecated Use listLocalSites — kept as alias. */
+export async function listDashboardSites(): Promise<LocalSiteSummary[]> {
+  return listLocalSites();
+}
+
+/** Static params for template previews — JSON clients only. */
 export async function getAllSlugs(): Promise<string[]> {
   return getLocalSlugs();
 }

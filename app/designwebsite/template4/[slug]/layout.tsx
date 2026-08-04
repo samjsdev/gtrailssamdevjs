@@ -15,6 +15,9 @@ const cormorant = Cormorant_Garamond({
 });
 const outfit = Outfit({ subsets: ['latin'], weight: ['300', '400', '500', '600', '700'], variable: '--font-outfit' });
 
+// Pre-render from local JSON at build time for fast template previews on Vercel.
+export const dynamic = 'force-static';
+
 export async function generateStaticParams() {
   const slugs = await getAllSlugs();
   return slugs.map((slug) => ({ slug }));

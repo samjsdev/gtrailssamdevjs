@@ -1,0 +1,62 @@
+{
+  "clinic": {
+    "name": "WOOD & BRICKS",
+    "slug": "wood-bricks-home-decor",
+    "tagline": "Thoughtful Interiors for Everyday Living",
+    "description": "Welcome to WOOD & BRICKS HOME DECOR. We create refined, functional interiors tailored to your lifestyle, budget, and space.",
+    "address": {
+      "full": "4, Karanai Main Rd, thangaraj nagar, Sithalapakkam, Karanai, Arasankalani, Tamil Nadu 600130",
+      "area": "",
+      "city": "Karanai",
+      "state": "Arasankalani",
+      "country": "India"
+    },
+    "contact": {
+      "phone": "07397350737",
+      "website": ""
+    },
+    "mapEmbedUrl": "https://maps.google.com/maps?q=WOOD%20%26%20BRICKS%20HOME%20DECOR%204%2C%20Karanai%20Main%20Rd%2C%20thangaraj%20nagar%2C%20Sithalapakkam%2C%20Karanai%2C%20Arasankalani%2C%20Tamil%20Nadu%20600130&output=embed"
+  },
+  "business": {
+    "rating": "",
+    "reviewCount": "",
+    "timings": [],
+    "services": [
+      "Residential Interior Design",
+      "Modular Kitchen Design",
+      "Living Room Styling",
+      "Bedroom Makeovers",
+      "Space Planning",
+      "Custom Furniture"
+    ],
+    "highlights": [
+      "Personalized design concepts",
+      "Material and finish guidance",
+      "Transparent project planning",
+      "End-to-end execution support"
+    ]
+  },
+  "doctor": {
+    "name": "WOOD Studio Team",
+    "images": [],
+    "experience": "5+ years",
+    "specialization": "Interior Design & Turnkey Execution"
+  },
+  "reviews": [],
+  "media": {
+    "clinicImages": [],
+    "treatmentImages": [],
+    "otherImages": []
+  },
+  "overrides": {
+    "doctorName": "",
+    "doctorImages": [],
+    "extraImages": []
+  },
+  "meta": {
+    "generatedAt": "2026-07-30T10:19:22.572Z",
+    "source": "google_maps",
+    "updatedAt": "2026-08-04T11:21:22.097Z"
+  },
+  "templateOverrides": {}
+}
