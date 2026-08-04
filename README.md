@@ -15,11 +15,11 @@ The scraping logic is internalized within the repository using **Playwright** vi
 *   **Intelligent Image Resolution & Lazy Evaluation:** The scraper features a remarkably sophisticated sub-system for images. It triggers page scrolls, manipulates DOM container `scrollTop` positions to bypass Google's lazy load, and reads `src`, `srcset`, and `style` props. It includes intelligent regex-driven link cleaning (`decodeRepeated`, `extractEmbeddedGooglePhotoUrl`) that intentionally *promotes* small thumbnail resolutions (`w24-h24`) into high-resolution native Google photo images (`=w2048-h1536`) to guarantee sharp layouts across templates.
 *   **Handling State:** When scraped, images are passed to a local `ProcessAndSaveImage` mechanism which partitions images categorically (`clinicImages`, `treatmentImages`, `otherImages`) bounding up to 150 entries to safeguard upload limits.
 
-### 2. The Data Store Layer (Appwrite)
-The data store has transitioned deeply from Supabase (now deprecated/disabled) to **Appwrite** mapping to the `scraped_data` collection within the `gtrails` project.
-*   **Central Truth Source:** All JSON permutations, client contacts, ratings, review lists, and dynamic overrides rest in the `scraped_data` Appwrite collection. Appwrite serves as the single source of truth for the entire application.
-*   **Idempotent Writes:** Handled intensely inside `lib/dataBuilder.ts`, scraping formats the payload securely into Appwrite. It hashes the client slug (`MD5` or raw text) for deterministic Appwrite Document IDs. If a document collision (`409` conflict) occurs, it automatically patches via `updateDocument`. 
-*   **Ephemeral Runtime Cache:** While the repository itself contains no `data/` folder, the Next.js runtime dynamically generates a local, git-ignored `data/[slug]/source.json` cache on the server disk during execution. This provides temporary fallback stability to prevent build-time crashes if Appwrite experiences network faults, though the primary synchronization always mandates `databases.updateDocument`.
+### 2. The Data Store Layer (JSON + Appwrite backup)
+We only handle a small set of essential lead clients. Data is stored in **both** places on every save:
+*   **Primary (reads / previews):** committed `data/{slug}/source.json` — template previews and the admin dashboard read JSON only (fast, no DB on the hot path).
+*   **Backup:** Appwrite `scraped_data` — written on save via `persistSourceConfig` in `lib/dataBuilder.ts`. Used to restore with `npm run sync:clients` or `npm run sync:backup` (JSON → Appwrite).
+*   **Idempotent Appwrite writes:** Document IDs are derived from the client slug (`MD5`). Create-or-update handles `409` conflicts.
 
 ### 3. The Editing Layer (Administrative Modifications)
 A gigantic administrative surface handles data sanitization and granular adjustments located at `/app/private/admin/edit/[slug]/page.tsx`.
@@ -55,5 +55,11 @@ Instead of utilizing standard Node.js server architectures, the system produces 
 ## 🚀 Available Scripts
 
 *   `npm run dev`: Bootstraps the local admin portal on `localhost:3000`.
-*   `npm run build:deploy`: Full workspace compilation mapping directly to the `deploy_build.js` standalone export protocols. 
- #
+*   `npm run build`: Refresh local JSON from Appwrite backup (existing clients only), then `next build`.
+*   `npm run sync:clients`: Restore selected slugs from Appwrite → `data/*/source.json`.
+*   `npm run sync:backup`: Push all local JSON clients → Appwrite backup.
+*   `npm run build:deploy`: Full workspace compilation mapping directly to the `deploy_build.js` standalone export protocols.
+
+## 🔐 Admin
+
+Admin UI (`/private/admin`) is password-gated. Set `PASSWORD` in `.env` / Vercel env, then sign in at `/private/login`.
