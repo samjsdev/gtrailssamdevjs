@@ -3,7 +3,9 @@ import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { Clock, Users, Heart, ShieldCheck, ArrowRight } from 'lucide-react';
 import { cleanClinicName, cleanClinicDescription } from '@/lib/copyCleaner';
-import { DEFAULT_INTERIOR_HIGHLIGHTS } from '@/lib/interiorContent';
+import { DEFAULT_INTERIOR_HIGHLIGHTS,
+  previewMedia,
+} from '@/lib/interiorContent';
 import Reveal from '../Reveal';
 
 type PageProps = { params: Promise<{ slug: string }> };
@@ -15,7 +17,9 @@ export default async function Template4About({ params }: PageProps) {
   const data = await readSourceConfig(slug, 'template4');
   if (!data) return notFound();
 
-  const { clinic, business, doctor, media } = data;
+  const { clinic, business, doctor } = data;
+
+  const media = previewMedia(data.media);
   const cleanName = cleanClinicName(clinic.name);
   const cleanDesc = cleanClinicDescription(clinic.description, clinic.name);
   const city = clinic.address?.city || 'Chennai';

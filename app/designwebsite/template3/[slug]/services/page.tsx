@@ -8,6 +8,7 @@ import {
   getInteriorServiceData,
   getInteriorServiceSummary,
   getServiceImage,
+  previewMedia,
 } from '@/lib/interiorContent';
 import Reveal from '../Reveal';
 import Estimator from '../Estimator';
@@ -30,7 +31,9 @@ export default async function Template3Services({ params }: PageProps) {
   const data = await readSourceConfig(slug, 'template3');
   if (!data) return notFound();
 
-  const { clinic, business, media } = data;
+  const { clinic, business } = data;
+
+  const media = previewMedia(data.media);
   const cleanName = cleanClinicName(clinic.name);
   const city = clinic.address?.city || 'Chennai';
   const servicesList: string[] = business.services?.length ? business.services : DEFAULT_INTERIOR_SERVICES;
@@ -121,7 +124,7 @@ export default async function Template3Services({ params }: PageProps) {
                     href={`${basePath}/contact`}
                     className="inline-flex items-center gap-2.5 text-[12.5px] font-extrabold tracking-[0.18em] uppercase text-[#d8442c] group"
                   >
-                    Get my free quote
+                    Get my quote
                     <ArrowRight className="w-4 h-4 transition-transform duration-250 group-hover:translate-x-1.5" strokeWidth={2.4} />
                   </Link>
                 </div>

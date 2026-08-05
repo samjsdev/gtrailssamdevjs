@@ -1,7 +1,7 @@
 import { readSourceConfig } from '@/lib/dataBuilder';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
-import { Check, ArrowRight, Factory, ClipboardCheck, ShieldCheck, CreditCard } from 'lucide-react';
+import { ArrowRight, Factory, ClipboardCheck, ShieldCheck, CreditCard, MessageCircle, Phone } from 'lucide-react';
 import { cleanClinicName, cleanClinicDescription } from '@/lib/copyCleaner';
 import {
   DEFAULT_INTERIOR_REVIEWS,
@@ -9,6 +9,7 @@ import {
   DEFAULT_INTERIOR_HIGHLIGHTS,
   INTERIOR_FAQS,
   getInteriorServiceData,
+  previewMedia,
 } from '@/lib/interiorContent';
 import Reveal from './Reveal';
 import LeadForm from './LeadForm';
@@ -34,7 +35,7 @@ const PROJECT_FALLBACK_IMAGES = [
 ];
 
 const PROCESS = [
-  { num: 1, title: 'Say hello', desc: 'Book a free session — at the studio, your home, or online.' },
+  { num: 1, title: 'Say hello', desc: 'Book a consultation — at the studio, your home, or online.' },
   { num: 2, title: 'Dream together', desc: 'Your designer maps your lifestyle, taste and budget over chai.' },
   { num: 3, title: 'See it in 3D', desc: 'Photorealistic designs + itemised quote, revised till you smile.' },
   { num: 4, title: 'Build begins', desc: 'Precision production while site prep runs in parallel.' },
@@ -49,7 +50,9 @@ export default async function Template3Home({ params }: PageProps) {
   const data = await readSourceConfig(slug, 'template3');
   if (!data) return notFound();
 
-  const { clinic, doctor, business, media } = data;
+  const { clinic, doctor, business } = data;
+
+  const media = previewMedia(data.media);
 
   const cleanName = cleanClinicName(clinic.name);
   const cleanDesc = cleanClinicDescription(clinic.description, clinic.name);
@@ -101,52 +104,91 @@ export default async function Template3Home({ params }: PageProps) {
   return (
     <div>
       {/* HERO */}
-      <section id="hero" className="relative min-h-[92vh] flex items-center text-white">
-        <div className="absolute inset-0 overflow-hidden">
-          <img src={heroImage} alt={`Living room designed by ${cleanName || 'our studio'}`} className="w-full h-full object-cover" fetchPriority="high" />
-          <div className="absolute inset-0 bg-[linear-gradient(95deg,rgba(20,14,10,0.9)_22%,rgba(20,14,10,0.45)_60%,rgba(20,14,10,0.35))]" />
+      <section id="hero" className="relative min-h-[92vh] flex items-end text-white overflow-hidden">
+        <div className="absolute inset-0">
+          <img src={heroImage} alt={`${cleanName || 'Studio'} interior`} className="w-full h-full object-cover" fetchPriority="high" />
+          <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(20,14,10,0.35)_0%,rgba(20,14,10,0.55)_45%,rgba(20,14,10,0.92)_100%)]" />
         </div>
 
-        <div className="relative max-w-[1220px] mx-auto px-7 w-full grid lg:grid-cols-[1.1fr_0.9fr] gap-12 lg:gap-14 items-center py-[70px] lg:py-[90px]">
-          <Reveal>
-            <div className="flex items-center gap-2.5 text-[12px] font-extrabold tracking-[0.22em] uppercase text-[#f4b942] before:content-[''] before:w-6 before:h-[2.5px] before:rounded before:bg-[#f4b942]">
-              Full home interiors · {city}
-            </div>
-            <h1 className="text-[clamp(38px,5.4vw,62px)] font-extrabold leading-[1.15] tracking-[-0.02em] my-4.5">
-              {clinic.tagline ? (
-                clinic.tagline
-              ) : (
-                <>
-                  Homes that feel
-                  <br />
-                  like <span className="font-[family-name:var(--font-newsreader)] italic font-medium text-[#f4b942]">you.</span>
-                </>
-              )}
-            </h1>
-            <p className="text-[17px] text-white/85 max-w-[520px] mb-7">{cleanDesc}</p>
-            <div className="flex gap-3 flex-wrap mb-8">
-              {highlights.slice(0, 4).map((chip) => (
-                <span
-                  key={chip}
-                  className="flex items-center gap-2 bg-white/10 border border-white/20 backdrop-blur-md rounded-full px-4 py-2 text-[13px] font-bold"
+        <div className="relative max-w-[1220px] mx-auto px-7 w-full pt-[120px] pb-[70px] lg:pb-[90px]">
+          <div className="grid lg:grid-cols-[1.15fr_0.85fr] gap-12 lg:gap-16 items-end">
+            <Reveal>
+              <p className="font-[family-name:var(--font-newsreader)] italic text-[clamp(28px,3.5vw,40px)] text-[#f4b942] leading-none mb-4">
+                {cleanName || 'Design Studio'}
+              </p>
+              <h1 className="text-[clamp(40px,5.6vw,68px)] font-extrabold leading-[1.08] tracking-[-0.02em] max-w-[640px]">
+                {clinic.tagline ? (
+                  clinic.tagline
+                ) : (
+                  <>
+                    Homes that feel like{' '}
+                    <span className="font-[family-name:var(--font-newsreader)] italic font-medium text-[#f4b942]">you.</span>
+                  </>
+                )}
+              </h1>
+              <p className="mt-5 text-[17px] text-white/85 max-w-[480px] leading-relaxed">
+                {cleanDesc || `Full home interiors designed and built in ${city} — on time, on budget.`}
+              </p>
+              <div className="mt-8 flex flex-wrap gap-3.5">
+                <Link
+                  href={`${basePath}/contact`}
+                  className="inline-flex items-center gap-2 bg-[#d8442c] text-white font-extrabold text-[15px] px-7 py-3.5 rounded-xl hover:bg-[#b93320] hover:-translate-y-0.5 transition-all duration-250"
                 >
-                  <Check className="w-3.5 h-3.5 text-[#f4b942]" strokeWidth={2.4} />
-                  {chip}
-                </span>
-              ))}
-            </div>
-            <div className="flex items-center gap-3.5 text-[13.5px] font-semibold text-white/85">
-              <span className="text-[#f4b942] tracking-[2px]">★★★★★</span>
-              <span>
-                Rated <b className="text-white">{rating}/5</b>
-                {reviewCount ? ` by ${reviewCount}+ homeowners` : ' by homeowners'} in {city}
-              </span>
-            </div>
-          </Reveal>
+                  Book consultation
+                  <ArrowRight className="w-4 h-4" />
+                </Link>
+                <Link
+                  href={`${basePath}/gallery`}
+                  className="inline-flex items-center gap-2 border border-white/35 text-white font-extrabold text-[15px] px-7 py-3.5 rounded-xl hover:bg-white/10 transition-all duration-250"
+                >
+                  View our work
+                </Link>
+              </div>
+            </Reveal>
 
-          <Reveal delay={140} className="lg:justify-self-end w-full max-w-[440px]">
-            <LeadForm studioName={cleanName || 'the studio'} waPhone={waPhone} city={city} />
-          </Reveal>
+            <Reveal delay={120}>
+              <div className="border-t border-white/25 pt-7 lg:border-t-0 lg:border-l lg:border-white/25 lg:pt-0 lg:pl-10">
+                <p className="text-[12px] font-extrabold tracking-[0.22em] uppercase text-[#f4b942] mb-5">
+                  What to expect
+                </p>
+                <ul className="space-y-4 mb-8">
+                  {[
+                    'Home visit or studio walkthrough',
+                    '3D design direction for your floor plan',
+                    'Itemised quote with clear milestones',
+                  ].map((item) => (
+                    <li key={item} className="flex gap-3 text-[15px] text-white/90 font-semibold leading-snug">
+                      <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-[#f4b942] shrink-0" />
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+                <div className="flex flex-col sm:flex-row lg:flex-col gap-3">
+                  <a
+                    href={`https://wa.me/${waPhone}?text=${encodeURIComponent(`Hi ${cleanName || 'there'}, I'd like to book a design consultation.`)}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center justify-center gap-2 bg-[#25D366] text-[#0b1f14] font-extrabold text-[14px] px-5 py-3.5 rounded-xl hover:brightness-105 transition-all"
+                  >
+                    <MessageCircle className="w-4 h-4" />
+                    WhatsApp us
+                  </a>
+                  {phone && (
+                    <a
+                      href={`tel:${phone}`}
+                      className="inline-flex items-center justify-center gap-2 border border-white/35 text-white font-extrabold text-[14px] px-5 py-3.5 rounded-xl hover:bg-white/10 transition-all"
+                    >
+                      <Phone className="w-4 h-4" />
+                      {phone}
+                    </a>
+                  )}
+                </div>
+                <p className="mt-5 text-[13px] text-white/65 font-semibold">
+                  Rated {rating}/5{reviewCount ? ` · ${reviewCount}+ reviews` : ''} in {city}
+                </p>
+              </div>
+            </Reveal>
+          </div>
         </div>
       </section>
 
@@ -382,23 +424,7 @@ export default async function Template3Home({ params }: PageProps) {
           </Reveal>
 
           <Reveal delay={120} className="lg:sticky lg:top-[120px]">
-            <div className="bg-[linear-gradient(150deg,#d8442c,#b93320)] text-white rounded-3xl px-9 py-11">
-              <h3 className="text-[27px] font-extrabold mb-3 leading-tight">Your dream home is one session away</h3>
-              <p className="text-[14.5px] opacity-90 mb-6.5">
-                Book a free design session this week — 3D designs + itemised quote for your floor plan, free.
-              </p>
-              <Link
-                href={`${basePath}/contact`}
-                className="block w-full text-center bg-white text-[#d8442c] font-extrabold text-[15px] px-7 py-3.5 rounded-xl mb-3 hover:-translate-y-0.5 hover:shadow-[0_12px_26px_rgba(0,0,0,0.2)] transition-all duration-250"
-              >
-                Book Free Design Session
-              </Link>
-              {phone && (
-                <a href={`tel:${phone}`} className="block text-center font-extrabold text-[14.5px] hover:underline">
-                  or call {phone} →
-                </a>
-              )}
-            </div>
+            <LeadForm studioName={cleanName || 'the studio'} waPhone={waPhone} city={city} />
           </Reveal>
         </div>
       </section>

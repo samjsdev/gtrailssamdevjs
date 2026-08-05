@@ -1,6 +1,6 @@
 {
   "clinic": {
-    "name": "Update Interior,Location : Chennai-Serving Residental and Commercial clients across tamilnadu.",
+    "name": "Update Interior",
     "slug": "update-interior-location-chennai-serving-residental-and-commercial-clients-across-tamilnadu",
     "tagline": "Thoughtful Interiors for Everyday Living",
     "description": "Welcome to Update Interior,Location : Chennai-Serving Residental and Commercial clients across tamilnadu.. We create refined, functional interiors tailored to your lifestyle, budget, and space.",
@@ -208,6 +208,8 @@
   },
   "meta": {
     "generatedAt": "2026-06-23T09:52:25.931Z",
-    "source": "google_maps"
-  }
+    "source": "google_maps",
+    "updatedAt": "2026-08-05T09:46:26.326Z"
+  },
+  "templateOverrides": {}
 }

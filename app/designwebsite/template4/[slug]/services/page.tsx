@@ -8,6 +8,7 @@ import {
   getInteriorServiceData,
   getInteriorServiceSummary,
   getServiceImage,
+  previewMedia,
 } from '@/lib/interiorContent';
 import Reveal from '../Reveal';
 import SeriesScroll, { SeriesTheme } from '../SeriesScroll';
@@ -46,7 +47,9 @@ export default async function Template4Services({ params }: PageProps) {
   const data = await readSourceConfig(slug, 'template4');
   if (!data) return notFound();
 
-  const { clinic, business, media } = data;
+  const { clinic, business } = data;
+
+  const media = previewMedia(data.media);
   const cleanName = cleanClinicName(clinic.name);
   const city = clinic.address?.city || 'Chennai';
   const servicesList: string[] = business.services?.length ? business.services : DEFAULT_INTERIOR_SERVICES;

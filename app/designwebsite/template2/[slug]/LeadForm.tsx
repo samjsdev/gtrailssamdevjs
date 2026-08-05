@@ -19,7 +19,7 @@ export default function LeadForm({ studioName, waPhone }: LeadFormProps) {
     const name = (form.elements.namedItem('name') as HTMLInputElement)?.value || '';
     const mobile = (form.elements.namedItem('mobile') as HTMLInputElement)?.value || '';
     const home = (form.elements.namedItem('home') as HTMLSelectElement)?.value || '';
-    const text = `Hi ${studioName}, I'd like to book a free design session.\nName: ${name}\nMobile: ${mobile}\nHome: ${home}`;
+    const text = `Hi ${studioName}, I'd like to book a design consultation.\nName: ${name}\nMobile: ${mobile}\nHome: ${home}`;
     window.open(`https://wa.me/${waPhone}?text=${encodeURIComponent(text)}`, '_blank');
     setSent(true);
   };
@@ -30,7 +30,7 @@ export default function LeadForm({ studioName, waPhone }: LeadFormProps) {
       className="bg-white rounded-[20px] p-6 sm:p-7 shadow-[0_24px_60px_rgba(27,27,27,0.12)] border border-[#1b1b1b]/10"
     >
       <h3 className={`${bricolage.className} text-[20px] font-bold text-[#1b1b1b] mb-1`}>
-        Book a FREE design session
+        Book a design consultation
       </h3>
       <p className="text-[12.5px] text-[#6b6660] font-semibold mb-4">
         3D designs + itemised quote for your floor plan
@@ -69,10 +69,10 @@ export default function LeadForm({ studioName, waPhone }: LeadFormProps) {
         type="submit"
         className="w-full mt-1 inline-flex items-center justify-center gap-2 bg-[#f2a007] text-[#1b1b1b] font-bold text-[14px] px-6 py-3.5 rounded-xl hover:bg-[#e09500] hover:-translate-y-0.5 hover:shadow-[0_14px_28px_rgba(242,160,7,0.35)] transition-all duration-300"
       >
-        {sent ? "We'll Call You Shortly" : 'Book My Free Session'}
+        {sent ? "We'll Call You Shortly" : 'Book Consultation'}
       </button>
       <small className="block text-center mt-3 text-[11px] text-[#6b6660] font-semibold">
-        No spam. One call, one great design session.
+        No spam. A designer will call you back.
       </small>
     </form>
   );

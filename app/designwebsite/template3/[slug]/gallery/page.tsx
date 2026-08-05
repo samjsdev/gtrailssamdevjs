@@ -1,4 +1,5 @@
 import { readSourceConfig } from '@/lib/dataBuilder';
+import { previewMedia } from '@/lib/interiorContent';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { Check } from 'lucide-react';
@@ -28,7 +29,9 @@ export default async function Template3Gallery({ params }: PageProps) {
   const data = await readSourceConfig(slug, 'template3');
   if (!data) return notFound();
 
-  const { clinic, media } = data;
+  const { clinic } = data;
+
+  const media = previewMedia(data.media);
   const cleanName = cleanClinicName(clinic.name);
   const cleanDesc = cleanClinicDescription(clinic.description, clinic.name);
   const city = clinic.address?.city || 'Chennai';

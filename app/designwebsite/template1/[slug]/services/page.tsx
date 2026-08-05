@@ -8,6 +8,7 @@ import {
   getInteriorServiceData,
   getInteriorServiceSummary,
   getServiceImage,
+  previewMedia,
 } from '@/lib/interiorContent';
 import Reveal from '../Reveal';
 
@@ -29,7 +30,9 @@ export default async function Template1Services({ params }: PageProps) {
   const data = await readSourceConfig(slug, 'template1');
   if (!data) return notFound();
 
-  const { clinic, business, media } = data;
+  const { clinic, business } = data;
+
+  const media = previewMedia(data.media);
   const cleanName = cleanClinicName(clinic.name);
   const city = clinic.address?.city || 'Chennai';
 

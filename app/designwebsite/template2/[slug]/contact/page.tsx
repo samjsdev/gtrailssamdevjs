@@ -21,7 +21,7 @@ export default async function Template2Contact({ params }: PageProps) {
   const address = clinic.address?.full || '';
   const waPhone = phone.replace(/\D/g, '') || '919751396117';
   const waLink = `https://wa.me/${waPhone}?text=${encodeURIComponent(
-    `Hi, I'm interested in a free design session with ${cleanName || 'your studio'}!`
+    `Hi, I'm interested in a design consultation with ${cleanName || 'your studio'}!`
   )}`;
 
   const mapUrl =
@@ -42,13 +42,13 @@ export default async function Template2Contact({ params }: PageProps) {
         <div className="max-w-[1240px] mx-auto grid lg:grid-cols-[1.05fr_0.95fr] gap-[clamp(36px,5vw,64px)] items-start">
           <Reveal>
             <span className="inline-flex items-center gap-2.5 bg-white border border-[#1b1b1b]/10 rounded-full px-4.5 py-2 text-[12px] font-bold tracking-[0.14em] uppercase text-[#0e5a43] mb-6 before:content-[''] before:w-2 before:h-2 before:rounded-full before:bg-[#f2a007]">
-              Free design session
+              Design consultation
             </span>
             <h1 className="font-[family-name:var(--font-bricolage)] font-bold text-[clamp(34px,4.6vw,58px)] leading-[1.06] tracking-[-0.02em]">
-              Your dream home is <mark className="bg-[linear-gradient(transparent_62%,#fdeecb_62%)] text-[#0e5a43] px-0.5">one session away</mark>
+              Your dream home is <mark className="bg-[linear-gradient(transparent_62%,#fdeecb_62%)] text-[#0e5a43] px-0.5">one conversation away</mark>
             </h1>
             <p className="mt-5 max-w-[520px] text-[#6b6660] text-[16.5px] leading-[1.7] font-medium mb-8">
-              Designs, 3D views and an exact quote for your floor plan — free, with zero obligation. A designer (not a call centre) will reach out.
+              Designs, 3D views and an exact quote for your floor plan. A designer (not a call centre) will reach out.
             </p>
 
             <div className="grid sm:grid-cols-2 gap-4">

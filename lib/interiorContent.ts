@@ -98,6 +98,28 @@ export function stockImage(
   return list[index % list.length];
 }
 
+/**
+ * Designwebsite template previews use curated stock by default.
+ * Set false to prefer client GBP / Appwrite media again.
+ */
+export const PREVIEW_STOCK_DEFAULT = true;
+
+/** Blank client media arrays so templates fall through to local stock images. */
+export function previewMedia(media: any): {
+  clinicImages: string[];
+  treatmentImages: string[];
+  otherImages: string[];
+} {
+  if (!PREVIEW_STOCK_DEFAULT) {
+    return {
+      clinicImages: media?.clinicImages || [],
+      treatmentImages: media?.treatmentImages || [],
+      otherImages: media?.otherImages || [],
+    };
+  }
+  return { clinicImages: [], treatmentImages: [], otherImages: [] };
+}
+
 export const INTERIOR_HERO_IMAGES = {
   home: INTERIOR_STOCK.heroes[0],
   services: INTERIOR_STOCK.services[0],

@@ -86,10 +86,10 @@ export default function Estimator({ contactPath }: { contactPath: string }) {
           href={contactPath}
           className="block w-full bg-[#d8442c] text-white font-extrabold text-[15px] px-7 py-3.5 rounded-xl hover:bg-[#b93320] transition-colors duration-250"
         >
-          Get Exact Quote Free
+          Get Exact Quote
         </Link>
         <p className="text-[12px] text-[#6d6259] mt-3.5 leading-[1.5]">
-          Indicative market range only. Your exact itemised quote is free — after a home measurement.
+          Indicative market range only. Your exact itemised quote follows a home measurement.
         </p>
       </div>
     </div>

@@ -3,7 +3,9 @@ import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { Check, Users, Target, HeartHandshake, Sparkles } from 'lucide-react';
 import { cleanClinicName, cleanClinicDescription } from '@/lib/copyCleaner';
-import { DEFAULT_INTERIOR_HIGHLIGHTS, DEFAULT_INTERIOR_SERVICES } from '@/lib/interiorContent';
+import { DEFAULT_INTERIOR_HIGHLIGHTS, DEFAULT_INTERIOR_SERVICES,
+  previewMedia,
+} from '@/lib/interiorContent';
 import Reveal from '../Reveal';
 
 type PageProps = { params: Promise<{ slug: string }> };
@@ -15,7 +17,9 @@ export default async function Template2About({ params }: PageProps) {
   const data = await readSourceConfig(slug, 'template2');
   if (!data) return notFound();
 
-  const { clinic, doctor, business, media } = data;
+  const { clinic, doctor, business } = data;
+
+  const media = previewMedia(data.media);
   const cleanName = cleanClinicName(clinic.name);
   const cleanDesc = cleanClinicDescription(clinic.description, clinic.name);
   const city = clinic.address?.city || 'Chennai';
@@ -163,7 +167,7 @@ export default async function Template2About({ params }: PageProps) {
               href={`${basePath}/contact`}
               className="inline-flex items-center justify-center gap-2 bg-[#0e5a43] text-white font-bold text-[14px] px-6.5 py-3.5 rounded-xl hover:bg-[#0a4232] hover:-translate-y-0.5 hover:shadow-[0_14px_28px_rgba(14,90,67,0.28)] transition-all duration-300"
             >
-              Meet Us — Book a Free Session
+              Meet Us — Book a Consultation
             </Link>
           </Reveal>
         </div>
@@ -176,7 +180,7 @@ export default async function Template2About({ params }: PageProps) {
             Let&rsquo;s design your home <mark className="bg-transparent text-[#f2a007]">together</mark>
           </h2>
           <p className="text-white/80 font-medium text-[16px] leading-[1.7] mb-8">
-            See our work, then sit with a designer — free, friendly and genuinely useful.
+            See our work, then sit with a designer — friendly and genuinely useful.
           </p>
           <div className="flex flex-wrap gap-3.5 justify-center">
             <Link
@@ -189,7 +193,7 @@ export default async function Template2About({ params }: PageProps) {
               href={`${basePath}/contact`}
               className="inline-flex items-center justify-center gap-2 bg-[#f2a007] text-[#1b1b1b] font-bold text-[14px] px-7 py-4 rounded-[14px] hover:bg-[#e09500] hover:-translate-y-0.5 hover:shadow-[0_14px_28px_rgba(242,160,7,0.35)] transition-all duration-300"
             >
-              Book Free Session
+              Book Consultation
             </Link>
           </div>
         </Reveal>

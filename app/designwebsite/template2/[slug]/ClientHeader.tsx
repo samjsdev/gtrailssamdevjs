@@ -60,7 +60,7 @@ export default function ClientHeader({ clinicName, basePath }: ClientHeaderProps
             href={`${basePath}/contact`}
             className="hidden sm:inline-flex items-center justify-center gap-2 bg-[#f2a007] text-[#1b1b1b] font-bold text-[14px] px-6 py-3.5 rounded-xl hover:bg-[#e09500] hover:-translate-y-0.5 hover:shadow-[0_14px_28px_rgba(242,160,7,0.35)] transition-all duration-300"
           >
-            Free Design Session
+            Book Consultation
           </Link>
           <button
             onClick={() => setOpen(!open)}

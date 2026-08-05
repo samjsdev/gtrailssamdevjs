@@ -48,16 +48,16 @@ export default async function Template2Layout({ children, params }: LayoutProps)
   const servicesList: string[] = business.services?.length ? business.services : [];
 
   const waPhone = phone.replace(/\D/g, '') || '919751396117';
-  const waText = `Hi, I'm interested in a free design session with ${cleanName || 'your studio'}!`;
+  const waText = `Hi, I'm interested in a design consultation with ${cleanName || 'your studio'}!`;
   const waLink = `https://wa.me/${waPhone}?text=${encodeURIComponent(waText)}`;
 
   return (
     <div className={`${jakarta.className} ${jakarta.variable} ${bricolage.variable} min-h-screen flex flex-col bg-white text-[#1b1b1b] selection:bg-[#f2a007] selection:text-[#1b1b1b] scroll-smooth antialiased`}>
       {/* Offer strip */}
       <div className="bg-[#0e5a43] text-white text-center text-[13px] font-semibold px-4 py-2.5 tracking-[0.02em]">
-        <b className="text-[#f2a007]">Free design session</b> — 3D views + itemised quote for your floor plan.{' '}
+        <b className="text-[#f2a007]">Design consultation</b> — 3D views + itemised quote for your floor plan.{' '}
         <Link href={`${basePath}/contact`} className="underline underline-offset-[3px] font-bold hover:text-[#f2a007] transition-colors">
-          Claim now →
+          Book now →
         </Link>
       </div>
 

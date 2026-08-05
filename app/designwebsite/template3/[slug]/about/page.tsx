@@ -3,7 +3,9 @@ import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { Check, Factory, ClipboardCheck, ShieldCheck, HeartHandshake } from 'lucide-react';
 import { cleanClinicName, cleanClinicDescription } from '@/lib/copyCleaner';
-import { DEFAULT_INTERIOR_HIGHLIGHTS, DEFAULT_INTERIOR_SERVICES } from '@/lib/interiorContent';
+import { DEFAULT_INTERIOR_HIGHLIGHTS, DEFAULT_INTERIOR_SERVICES,
+  previewMedia,
+} from '@/lib/interiorContent';
 import Reveal from '../Reveal';
 
 type PageProps = { params: Promise<{ slug: string }> };
@@ -15,7 +17,9 @@ export default async function Template3About({ params }: PageProps) {
   const data = await readSourceConfig(slug, 'template3');
   if (!data) return notFound();
 
-  const { clinic, doctor, business, media } = data;
+  const { clinic, doctor, business } = data;
+
+  const media = previewMedia(data.media);
   const cleanName = cleanClinicName(clinic.name);
   const cleanDesc = cleanClinicDescription(clinic.description, clinic.name);
   const city = clinic.address?.city || 'Chennai';
@@ -163,7 +167,7 @@ export default async function Template3About({ params }: PageProps) {
               href={`${basePath}/contact`}
               className="inline-flex items-center justify-center bg-[#d8442c] text-white font-extrabold text-[15px] px-7 py-3.5 rounded-xl hover:bg-[#b93320] hover:-translate-y-0.5 hover:shadow-[0_12px_26px_rgba(216,68,44,0.3)] transition-all duration-250"
             >
-              Book Free Design Session
+              Book Consultation
             </Link>
           </Reveal>
         </div>

@@ -56,12 +56,12 @@ export default async function Template3Contact({ params }: PageProps) {
             <h1 className="text-[clamp(32px,4.6vw,54px)] font-extrabold mt-3.5 tracking-[-0.02em] leading-[1.12]">
               Start with a{' '}
               <span className="font-[family-name:var(--font-newsreader)] italic font-medium text-[#d8442c]">
-                free design consultation
+                design consultation
               </span>
             </h1>
             <p className="mt-4.5 max-w-[560px] text-[#6d6259] text-[16px]">
               Tell us about your home and budget. A designer from {cleanName || 'our studio'} will call you back within a
-              few working hours — no charges, no pressure.
+              few working hours.
             </p>
 
             <div className="mt-7 inline-flex items-center gap-3 bg-white border border-[#241f1a]/10 rounded-2xl px-5 py-3.5 shadow-[0_14px_30px_-16px_rgba(29,23,19,0.25)]">

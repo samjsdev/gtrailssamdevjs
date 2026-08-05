@@ -3,7 +3,9 @@ import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { Clock, Users, Heart, ShieldCheck, ArrowRight, Check } from 'lucide-react';
 import { cleanClinicName, cleanClinicDescription } from '@/lib/copyCleaner';
-import { DEFAULT_INTERIOR_REVIEWS } from '@/lib/interiorContent';
+import { DEFAULT_INTERIOR_REVIEWS,
+  previewMedia,
+} from '@/lib/interiorContent';
 import Reveal from './Reveal';
 import SeriesScroll, { SeriesTheme } from './SeriesScroll';
 import TestimonialRotator, { Testimonial } from './TestimonialRotator';
@@ -34,7 +36,9 @@ export default async function Template4Home({ params }: PageProps) {
   const data = await readSourceConfig(slug, 'template4');
   if (!data) return notFound();
 
-  const { clinic, business, doctor, media } = data;
+  const { clinic, business, doctor } = data;
+
+  const media = previewMedia(data.media);
   const cleanName = cleanClinicName(clinic.name);
   const cleanDesc = cleanClinicDescription(clinic.description, clinic.name);
   const city = clinic.address?.city || 'Chennai';

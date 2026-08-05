@@ -1,7 +1,7 @@
 import { readSourceConfig } from '@/lib/dataBuilder';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
-import { Check, Clock, ShieldCheck, CreditCard, BadgeCheck, ArrowRight, Home } from 'lucide-react';
+import { Check, Clock, ShieldCheck, CreditCard, BadgeCheck, ArrowRight, Home, MessageCircle, Phone } from 'lucide-react';
 import { cleanClinicName, cleanClinicDescription } from '@/lib/copyCleaner';
 import {
   DEFAULT_INTERIOR_REVIEWS,
@@ -9,6 +9,7 @@ import {
   DEFAULT_INTERIOR_HIGHLIGHTS,
   INTERIOR_FAQS,
   getInteriorServiceData,
+  previewMedia,
 } from '@/lib/interiorContent';
 import Reveal from './Reveal';
 import LeadForm from './LeadForm';
@@ -25,7 +26,7 @@ const ROOM_FALLBACK_IMAGES = [
 ];
 
 const STEPS = [
-  { pct: 'Step 1', title: 'Meet Your Designer', desc: 'A free session at the studio, your home or online. Walk out with a design direction and a ballpark for your floor plan.' },
+  { pct: 'Step 1', title: 'Meet Your Designer', desc: 'A consultation at the studio, your home or online. Walk out with a design direction and a ballpark for your floor plan.' },
   { pct: 'Step 2', title: 'Lock Your Design', desc: 'Happy with the plan? Approve the 3D designs and itemised quote — your price and timeline are frozen at booking.' },
   { pct: 'Step 3', title: 'We Build & Track', desc: 'Production and site work run in parallel while you get regular photo updates. No chasing, no surprises.' },
   { pct: 'Step 4', title: 'Install & Move In', desc: 'Installation, quality checks, deep-clean and a walkthrough — then the keys are yours, as promised.' },
@@ -38,7 +39,9 @@ export default async function Template2Home({ params }: PageProps) {
   const data = await readSourceConfig(slug, 'template2');
   if (!data) return notFound();
 
-  const { clinic, doctor, business, media } = data;
+  const { clinic, doctor, business } = data;
+
+  const media = previewMedia(data.media);
 
   const cleanName = cleanClinicName(clinic.name);
   const cleanDesc = cleanClinicDescription(clinic.description, clinic.name);
@@ -80,31 +83,23 @@ export default async function Template2Home({ params }: PageProps) {
       <section id="hero" className="bg-[#faf7f1] overflow-hidden">
         <div className="max-w-[1240px] mx-auto px-6 py-[clamp(44px,6vw,80px)] grid lg:grid-cols-[1.02fr_0.98fr] gap-[clamp(34px,5vw,64px)] items-center">
           <div>
-            <span className="inline-flex items-center gap-2.5 bg-white border border-[#1b1b1b]/10 rounded-full px-4.5 py-2 text-[12px] font-bold tracking-[0.14em] uppercase text-[#0e5a43] mb-6 before:content-[''] before:w-2 before:h-2 before:rounded-full before:bg-[#f2a007]">
-              End-to-End Home Interiors
-            </span>
+            <p className="font-[family-name:var(--font-bricolage)] font-bold text-[clamp(22px,2.4vw,28px)] text-[#0e5a43] mb-4">
+              {cleanName || 'Design Studio'}
+            </p>
             <h1 className="font-[family-name:var(--font-bricolage)] font-bold text-[clamp(38px,4.8vw,62px)] leading-[1.05] tracking-[-0.02em]">
               {clinic.tagline || (
                 <>Beautiful home interiors in {city}, on time &amp; on budget</>
               )}
             </h1>
-            <p className="mt-5 mb-7 max-w-[500px] text-[#6b6660] text-[16.5px] leading-[1.7] font-medium">
-              {cleanDesc}
+            <p className="mt-5 mb-8 max-w-[500px] text-[#6b6660] text-[16.5px] leading-[1.7] font-medium">
+              {cleanDesc || `End-to-end home interiors designed and built in ${city}.`}
             </p>
-            <div className="grid gap-3 mb-8">
-              {highlights.slice(0, 3).map((point) => (
-                <div key={point} className="flex gap-3 items-center font-semibold text-[14.5px]">
-                  <Check className="w-5 h-5 text-[#0e5a43] shrink-0" strokeWidth={2.2} />
-                  {point}
-                </div>
-              ))}
-            </div>
             <div className="flex flex-wrap gap-3.5 items-center">
               <Link
                 href={`${basePath}/contact`}
                 className="inline-flex items-center justify-center gap-2 bg-[#0e5a43] text-white font-bold text-[14px] px-6.5 py-3.5 rounded-xl hover:bg-[#0a4232] hover:-translate-y-0.5 hover:shadow-[0_14px_28px_rgba(14,90,67,0.28)] transition-all duration-300"
               >
-                Get Free Estimate
+                Get an Estimate
               </Link>
               <Link
                 href={`${basePath}/gallery`}
@@ -130,10 +125,44 @@ export default async function Template2Home({ params }: PageProps) {
               </span>
             </div>
             <div className="rounded-[26px] overflow-hidden aspect-[4/3.5] shadow-[0_24px_60px_rgba(27,27,27,0.12)]">
-              <img src={heroImage} alt={`Interior designed by ${cleanName || 'our studio'}`} className="w-full h-full object-cover" fetchPriority="high" />
+              <img src={heroImage} alt={`${cleanName || 'Studio'} interior`} className="w-full h-full object-cover" fetchPriority="high" />
             </div>
-            <div className="lg:absolute lg:-left-8 lg:-bottom-7 lg:w-[min(360px,88%)] mt-5 lg:mt-0">
-              <LeadForm studioName={cleanName || 'the studio'} waPhone={waPhone} />
+            <div className="mt-5 border-t border-[#1b1b1b]/12 pt-5">
+              <p className="text-[11px] font-extrabold tracking-[0.2em] uppercase text-[#0e5a43] mb-3.5">
+                What to expect
+              </p>
+              <ul className="grid gap-2.5 mb-5">
+                {[
+                  'Home visit or studio walkthrough',
+                  '3D design direction for your floor plan',
+                  'Itemised quote with clear milestones',
+                ].map((item) => (
+                  <li key={item} className="flex gap-2.5 items-center text-[13.5px] font-semibold text-[#1b1b1b]">
+                    <Check className="w-4 h-4 text-[#0e5a43] shrink-0" strokeWidth={2.4} />
+                    {item}
+                  </li>
+                ))}
+              </ul>
+              <div className="flex flex-wrap gap-2.5">
+                <a
+                  href={`https://wa.me/${waPhone}?text=${encodeURIComponent(`Hi ${cleanName || 'there'}, I'd like to book a design consultation.`)}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center gap-2 bg-[#25D366] text-[#0b1f14] font-bold text-[13px] px-4.5 py-3 rounded-xl hover:brightness-105 transition-all"
+                >
+                  <MessageCircle className="w-4 h-4" />
+                  WhatsApp us
+                </a>
+                {phone && (
+                  <a
+                    href={`tel:${phone}`}
+                    className="inline-flex items-center justify-center gap-2 border border-[#1b1b1b]/20 text-[#1b1b1b] font-bold text-[13px] px-4.5 py-3 rounded-xl hover:bg-[#1b1b1b] hover:text-white transition-all"
+                  >
+                    <Phone className="w-4 h-4" />
+                    {phone}
+                  </a>
+                )}
+              </div>
             </div>
           </div>
         </div>
@@ -288,7 +317,7 @@ export default async function Template2Home({ params }: PageProps) {
               href={`${basePath}/contact`}
               className="inline-flex items-center justify-center gap-2 bg-[#0e5a43] text-white font-bold text-[14px] px-6.5 py-3.5 rounded-xl hover:bg-[#0a4232] hover:-translate-y-0.5 hover:shadow-[0_14px_28px_rgba(14,90,67,0.28)] transition-all duration-300"
             >
-              Talk to a Designer — Free
+              Talk to a Designer
             </Link>
           </Reveal>
         </div>
@@ -343,26 +372,31 @@ export default async function Template2Home({ params }: PageProps) {
 
       {/* FAQ */}
       <section id="faq" className="px-6 py-[clamp(72px,8vw,110px)] bg-[#faf7f1]">
-        <div className="max-w-[820px] mx-auto">
-          <Reveal>
-            <h2 className="font-[family-name:var(--font-bricolage)] font-bold text-[clamp(30px,3.6vw,46px)] tracking-[-0.02em] text-center mb-10">
-              Questions? Answered.
-            </h2>
-          </Reveal>
-          <Reveal>
-            {INTERIOR_FAQS.map((faq, idx) => (
-              <details
-                key={idx}
-                open={idx === 0}
-                className="group bg-white border border-[#1b1b1b]/10 rounded-2xl mb-3 overflow-hidden open:border-[#0e5a43] transition-colors duration-300"
-              >
-                <summary className="cursor-pointer list-none px-6.5 py-5.5 font-bold text-[15.5px] flex justify-between items-center gap-4 [&::-webkit-details-marker]:hidden">
-                  {faq.q}
-                  <span className="font-[family-name:var(--font-bricolage)] text-[24px] font-semibold text-[#0e5a43] transition-transform duration-300 group-open:rotate-45 shrink-0">+</span>
-                </summary>
-                <p className="px-6.5 pb-6 text-[#6b6660] text-[14.5px] font-medium leading-[1.75]">{faq.a}</p>
-              </details>
-            ))}
+        <div className="max-w-[1240px] mx-auto grid lg:grid-cols-[1.1fr_0.9fr] gap-10 lg:gap-14 items-start">
+          <div>
+            <Reveal>
+              <h2 className="font-[family-name:var(--font-bricolage)] font-bold text-[clamp(30px,3.6vw,46px)] tracking-[-0.02em] mb-10">
+                Questions? Answered.
+              </h2>
+            </Reveal>
+            <Reveal>
+              {INTERIOR_FAQS.map((faq, idx) => (
+                <details
+                  key={idx}
+                  open={idx === 0}
+                  className="group bg-white border border-[#1b1b1b]/10 rounded-2xl mb-3 overflow-hidden open:border-[#0e5a43] transition-colors duration-300"
+                >
+                  <summary className="cursor-pointer list-none px-6.5 py-5.5 font-bold text-[15.5px] flex justify-between items-center gap-4 [&::-webkit-details-marker]:hidden">
+                    {faq.q}
+                    <span className="font-[family-name:var(--font-bricolage)] text-[24px] font-semibold text-[#0e5a43] transition-transform duration-300 group-open:rotate-45 shrink-0">+</span>
+                  </summary>
+                  <p className="px-6.5 pb-6 text-[#6b6660] text-[14.5px] font-medium leading-[1.75]">{faq.a}</p>
+                </details>
+              ))}
+            </Reveal>
+          </div>
+          <Reveal delay={100} className="lg:sticky lg:top-[120px]">
+            <LeadForm studioName={cleanName || 'the studio'} waPhone={waPhone} />
           </Reveal>
         </div>
       </section>
@@ -376,17 +410,17 @@ export default async function Template2Home({ params }: PageProps) {
             Limited slots this month
           </span>
           <h2 className="font-[family-name:var(--font-bricolage)] font-bold text-[clamp(32px,4.4vw,56px)] leading-[1.08] tracking-[-0.02em] mb-4.5">
-            Your dream home is <mark className="bg-transparent text-[#f2a007]">one free session away</mark>
+            Your dream home is <mark className="bg-transparent text-[#f2a007]">one conversation away</mark>
           </h2>
           <p className="text-white/80 font-medium text-[16px] leading-[1.7] max-w-[540px] mx-auto mb-8">
-            Designs, 3D views and an exact quote for your floor plan — free, with zero obligation.
+            Designs, 3D views and an exact quote for your floor plan — start with a design consultation.
           </p>
           <div className="flex flex-wrap gap-3.5 justify-center">
             <Link
               href={`${basePath}/contact`}
               className="inline-flex items-center justify-center gap-2 bg-[#f2a007] text-[#1b1b1b] font-bold text-[15px] px-9 py-4.5 rounded-[14px] hover:bg-[#e09500] hover:-translate-y-0.5 hover:shadow-[0_14px_28px_rgba(242,160,7,0.35)] transition-all duration-300"
             >
-              Book My Free Session
+              Book Consultation
             </Link>
             {phone && (
               <a

@@ -9,6 +9,7 @@ import {
   DEFAULT_INTERIOR_HIGHLIGHTS,
   getInteriorServiceSummary,
   getServiceImage,
+  previewMedia,
 } from '@/lib/interiorContent';
 import Reveal from './Reveal';
 import LeadForm from './LeadForm';
@@ -59,7 +60,9 @@ export default async function Template1Home({ params }: PageProps) {
   const data = await readSourceConfig(slug, 'template1');
   if (!data) return notFound();
 
-  const { clinic, doctor, business, media } = data;
+  const { clinic, doctor, business } = data;
+
+  const media = previewMedia(data.media);
 
   const cleanName = cleanClinicName(clinic.name);
   const cleanDesc = cleanClinicDescription(clinic.description, clinic.name);

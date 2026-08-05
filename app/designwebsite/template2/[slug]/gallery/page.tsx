@@ -1,4 +1,5 @@
 import { readSourceConfig } from '@/lib/dataBuilder';
+import { previewMedia } from '@/lib/interiorContent';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { cleanClinicName, cleanClinicDescription } from '@/lib/copyCleaner';
@@ -26,7 +27,9 @@ export default async function Template2Gallery({ params }: PageProps) {
   const data = await readSourceConfig(slug, 'template2');
   if (!data) return notFound();
 
-  const { clinic, media } = data;
+  const { clinic } = data;
+
+  const media = previewMedia(data.media);
   const cleanName = cleanClinicName(clinic.name);
   const cleanDesc = cleanClinicDescription(clinic.description, clinic.name);
   const city = clinic.address?.city || 'Chennai';
@@ -81,16 +84,16 @@ export default async function Template2Gallery({ params }: PageProps) {
       <section id="gallery-cta" className="px-6 py-[clamp(64px,7vw,96px)] bg-[#0e5a43] text-white">
         <Reveal className="max-w-[760px] mx-auto text-center">
           <h2 className="font-[family-name:var(--font-bricolage)] font-bold text-[clamp(28px,3.8vw,48px)] leading-[1.08] tracking-[-0.02em] mb-4">
-            Want this for your home? <mark className="bg-transparent text-[#f2a007]">It starts free.</mark>
+            Want this for your home? <mark className="bg-transparent text-[#f2a007]">Let&rsquo;s talk.</mark>
           </h2>
           <p className="text-white/80 font-medium text-[16px] leading-[1.7] mb-8">
-            Every project in this gallery began with one free design session.
+            Every project in this gallery began with a design consultation.
           </p>
           <Link
             href={`${basePath}/contact`}
             className="inline-flex items-center justify-center gap-2 bg-[#f2a007] text-[#1b1b1b] font-bold text-[15px] px-9 py-4.5 rounded-[14px] hover:bg-[#e09500] hover:-translate-y-0.5 hover:shadow-[0_14px_28px_rgba(242,160,7,0.35)] transition-all duration-300"
           >
-            Book My Free Session
+            Book Consultation
           </Link>
         </Reveal>
       </section>

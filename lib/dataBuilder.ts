@@ -4,6 +4,7 @@ import { cache } from 'react';
 import {
   DEFAULT_INTERIOR_HIGHLIGHTS,
   DEFAULT_INTERIOR_SERVICES,
+  previewMedia,
 } from '@/lib/interiorContent';
 import crypto from 'crypto';
 
@@ -283,14 +284,21 @@ async function readSourceConfigUncached(slug: string, template?: string): Promis
   const baseData = await readLocalSourceConfig(slug);
   if (!baseData) return null;
 
+  let result: GeneratedData = baseData;
+
   if (template) {
     const overrides = (baseData as any).templateOverrides?.[template];
     if (overrides) {
-      return deepMerge(baseData, overrides) as GeneratedData;
+      result = deepMerge(baseData, overrides) as GeneratedData;
     }
+    // All designwebsite template previews: stock images by default.
+    result = {
+      ...result,
+      media: previewMedia(result.media),
+    };
   }
 
-  return baseData;
+  return result;
 }
 
 /** Request-deduped reader — layout + page share one load. */

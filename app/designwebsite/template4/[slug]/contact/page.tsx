@@ -2,7 +2,9 @@ import { readSourceConfig } from '@/lib/dataBuilder';
 import { notFound } from 'next/navigation';
 import { MapPin, Phone, Clock, Check } from 'lucide-react';
 import { cleanClinicName } from '@/lib/copyCleaner';
-import { INTERIOR_FAQS } from '@/lib/interiorContent';
+import { INTERIOR_FAQS,
+  previewMedia,
+} from '@/lib/interiorContent';
 import Reveal from '../Reveal';
 import VisitForm from '../VisitForm';
 
@@ -14,7 +16,9 @@ export default async function Template4Contact({ params }: PageProps) {
   const data = await readSourceConfig(slug, 'template4');
   if (!data) return notFound();
 
-  const { clinic, media } = data;
+  const { clinic } = data;
+
+  const media = previewMedia(data.media);
   const cleanName = cleanClinicName(clinic.name);
   const city = clinic.address?.city || 'Chennai';
   const phone = clinic.contact?.phone || '';

@@ -8,6 +8,7 @@ import {
   getInteriorServiceData,
   getInteriorServiceSummary,
   getServiceImage,
+  previewMedia,
 } from '@/lib/interiorContent';
 import Reveal from '../Reveal';
 
@@ -29,7 +30,9 @@ export default async function Template2Services({ params }: PageProps) {
   const data = await readSourceConfig(slug, 'template2');
   if (!data) return notFound();
 
-  const { clinic, business, media } = data;
+  const { clinic, business } = data;
+
+  const media = previewMedia(data.media);
   const cleanName = cleanClinicName(clinic.name);
   const city = clinic.address?.city || 'Chennai';
   const servicesList: string[] = business.services?.length ? business.services : DEFAULT_INTERIOR_SERVICES;
@@ -122,13 +125,13 @@ export default async function Template2Services({ params }: PageProps) {
             Not sure what your home needs? <mark className="bg-transparent text-[#f2a007]">Ask a designer.</mark>
           </h2>
           <p className="text-white/80 font-medium text-[16px] leading-[1.7] mb-8">
-            Tell us about your rooms and budget — we&rsquo;ll map the right scope in one free session.
+            Tell us about your rooms and budget — we&rsquo;ll map the right scope in one consultation.
           </p>
           <Link
             href={`${basePath}/contact`}
             className="inline-flex items-center justify-center gap-2 bg-[#f2a007] text-[#1b1b1b] font-bold text-[15px] px-9 py-4.5 rounded-[14px] hover:bg-[#e09500] hover:-translate-y-0.5 hover:shadow-[0_14px_28px_rgba(242,160,7,0.35)] transition-all duration-300"
           >
-            Book My Free Session
+            Book Consultation
           </Link>
         </Reveal>
       </section>

@@ -18,7 +18,7 @@ export default function LeadForm({ studioName, waPhone, city }: LeadFormProps) {
     const mobile = (form.elements.namedItem('mobile') as HTMLInputElement)?.value || '';
     const home = (form.elements.namedItem('home') as HTMLSelectElement)?.value || '';
     const locality = (form.elements.namedItem('locality') as HTMLInputElement)?.value || '';
-    const text = `Hi ${studioName}, I'd like a free design session.\nName: ${name}\nMobile: ${mobile}\nHome: ${home}\nLocality: ${locality}`;
+    const text = `Hi ${studioName}, I'd like to book a design consultation.\nName: ${name}\nMobile: ${mobile}\nHome: ${home}\nLocality: ${locality}`;
     window.open(`https://wa.me/${waPhone}?text=${encodeURIComponent(text)}`, '_blank');
     setSent(true);
   };
@@ -28,9 +28,9 @@ export default function LeadForm({ studioName, waPhone, city }: LeadFormProps) {
       <span className="inline-block bg-[#fdeae5] text-[#d8442c] text-[11.5px] font-extrabold tracking-[0.1em] uppercase px-3.5 py-1.5 rounded-full mb-3.5">
         Limited slots this month
       </span>
-      <h3 className="text-[23px] font-extrabold mb-1.5 leading-tight">Book your FREE design session</h3>
+      <h3 className="text-[23px] font-extrabold mb-1.5 leading-tight">Book a design consultation</h3>
       <p className="text-[13.5px] text-[#6d6259] mb-5">
-        Includes home visit, 3D designs &amp; itemised quote. Zero obligation.
+        Includes home visit, 3D designs &amp; itemised quote.
       </p>
 
       <form onSubmit={handleSubmit}>
@@ -77,7 +77,7 @@ export default function LeadForm({ studioName, waPhone, city }: LeadFormProps) {
           type="submit"
           className="w-full inline-flex items-center justify-center gap-2 bg-[#d8442c] text-white font-extrabold text-[15px] px-7 py-3.5 rounded-xl hover:bg-[#b93320] hover:-translate-y-0.5 hover:shadow-[0_12px_26px_rgba(216,68,44,0.3)] transition-all duration-250"
         >
-          {sent ? "Booked! We'll call you soon ✓" : 'Get My Free 3D Design →'}
+          {sent ? "Booked! We'll call you soon ✓" : 'Request a Callback →'}
         </button>
       </form>
       <p className="text-[11.5px] text-[#6d6259] text-center mt-3">

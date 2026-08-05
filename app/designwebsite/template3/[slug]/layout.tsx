@@ -48,7 +48,7 @@ export default async function Template3Layout({ children, params }: LayoutProps)
   const words = (cleanName || 'Design Studio').split(' ');
 
   const waPhone = phone.replace(/\D/g, '') || '919751396117';
-  const waText = `Hi, I'm interested in a free design session with ${cleanName || 'your studio'}!`;
+  const waText = `Hi, I'm interested in a design consultation with ${cleanName || 'your studio'}!`;
   const waLink = `https://wa.me/${waPhone}?text=${encodeURIComponent(waText)}`;
 
   return (
@@ -115,7 +115,7 @@ export default async function Template3Layout({ children, params }: LayoutProps)
               <Link href={`${basePath}/gallery`} className="block text-[13.5px] text-white/70 leading-[2.05] hover:text-white transition-colors">Projects</Link>
               <Link href={`${basePath}/services`} className="block text-[13.5px] text-white/70 leading-[2.05] hover:text-white transition-colors">Services</Link>
               <Link href={`${basePath}/about`} className="block text-[13.5px] text-white/70 leading-[2.05] hover:text-white transition-colors">About Us</Link>
-              <Link href={`${basePath}/contact`} className="block text-[13.5px] text-white/70 leading-[2.05] hover:text-white transition-colors">Free Design Session</Link>
+              <Link href={`${basePath}/contact`} className="block text-[13.5px] text-white/70 leading-[2.05] hover:text-white transition-colors">Book Consultation</Link>
             </div>
 
             <div>
