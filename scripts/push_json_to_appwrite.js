@@ -1,5 +1,5 @@
 /**
- * Push all local data/*/source.json clients → Appwrite backup.
+ * Push all local data/{slug}/source.json clients to Appwrite backup.
  * Ensures every essential client exists in both stores.
  *
  * Usage: node scripts/push_json_to_appwrite.js

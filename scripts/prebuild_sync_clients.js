@@ -1,8 +1,8 @@
 /**
- * Before `next build`: refresh existing local clients from Appwrite backup.
+ * Before next build: refresh existing local clients from Appwrite backup.
  *
- * We only handle the few clients already in data/*/source.json.
- * Appwrite is backup — this does NOT pull the entire DB.
+ * We only handle the few clients already in data/{slug}/source.json.
+ * Appwrite is backup - this does NOT pull the entire DB.
  *
  * Skips when APPWgtrailskey is missing (uses committed JSON as-is).
  */
@@ -44,19 +44,19 @@ loadEnv();
 
 const slugs = listLocalSlugs();
 if (slugs.length === 0) {
-  console.log('[prebuild] No local data/*/source.json clients — nothing to refresh.');
+  console.log('[prebuild] No local data/{slug}/source.json clients - nothing to refresh.');
   process.exit(0);
 }
 
 if (!process.env.APPWgtrailskey) {
   console.log(
-    `[prebuild] APPWgtrailskey not set — using committed JSON for ${slugs.length} client(s).`
+    `[prebuild] APPWgtrailskey not set - using committed JSON for ${slugs.length} client(s).`
   );
   process.exit(0);
 }
 
 console.log(
-  `[prebuild] Refreshing ${slugs.length} local client(s) from Appwrite backup → data/*/source.json…`
+  `[prebuild] Refreshing ${slugs.length} local client(s) from Appwrite backup to data/{slug}/source.json...`
 );
 const result = spawnSync(
   process.execPath,
@@ -65,7 +65,8 @@ const result = spawnSync(
 );
 
 if (result.status !== 0) {
-  console.warn('[prebuild] Backup refresh failed — continuing with committed JSON.');
+  console.warn('[prebuild] Backup refresh failed - continuing with committed JSON.');
 }
 
 process.exit(0);
+
