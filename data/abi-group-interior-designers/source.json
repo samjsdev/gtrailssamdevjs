@@ -1,0 +1,95 @@
+{
+  "clinic": {
+    "name": "ABI GROUP INTERIORS",
+    "slug": "abi-group-interior-designers",
+    "tagline": "Thoughtful Interiors for Everyday Living",
+    "description": "Welcome to ABI GROUP (Interior & Designers). We create refined, functional interiors tailored to your lifestyle, budget, and space.",
+    "address": {
+      "full": "",
+      "area": "",
+      "city": "",
+      "state": "Tamil Nadu",
+      "country": "India"
+    },
+    "contact": {
+      "phone": "08667652826",
+      "website": ""
+    },
+    "mapEmbedUrl": "https://maps.google.com/maps?q=ABI%20GROUP%20(Interior%20%26%20Designers)&output=embed"
+  },
+  "business": {
+    "rating": "",
+    "reviewCount": "",
+    "timings": [],
+    "services": [
+      "Residential Interior Design",
+      "Modular Kitchen Design",
+      "Living Room Styling",
+      "Bedroom Makeovers",
+      "Space Planning",
+      "Custom Furniture"
+    ],
+    "highlights": [
+      "Personalized design concepts",
+      "Material and finish guidance",
+      "Transparent project planning",
+      "End-to-end execution support"
+    ]
+  },
+  "doctor": {
+    "name": "ABI Studio Team",
+    "images": [],
+    "experience": "5+ years",
+    "specialization": "Interior Design & Turnkey Execution"
+  },
+  "reviews": [],
+  "media": {
+    "clinicImages": [
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/c70c156ec2e8f47b7a946a9e0fd5f944/view?project=6a1cf32a002c668912cc",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/d4357e495a283da80395397e84b424b8/view?project=6a1cf32a002c668912cc",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/e875088451da8cdf00abfd501805d540/view?project=6a1cf32a002c668912cc",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/4b107341f223152ee0c475c5b285f908/view?project=6a1cf32a002c668912cc"
+    ],
+    "treatmentImages": [
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/89f9611066330bc2a2c83aa0c16a653e/view?project=6a1cf32a002c668912cc",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/58484de40f897a49ec02ede0767dc522/view?project=6a1cf32a002c668912cc",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/cb72865cd6729897886cca38578348ce/view?project=6a1cf32a002c668912cc",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/318c4db56b569946d8bae1443419307c/view?project=6a1cf32a002c668912cc"
+    ],
+    "otherImages": [
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/fb984e58f21039d4b5f06da643d75ac8/view?project=6a1cf32a002c668912cc",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/ec97ba8ec4485e012cfbc72726723584/view?project=6a1cf32a002c668912cc",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/bf76e15047312c36a711ed185ffad533/view?project=6a1cf32a002c668912cc",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/7e6c2aa9df5f2dcd97e727d5e14e7eca/view?project=6a1cf32a002c668912cc",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/07aa6bd43fefca6401d7f7daab2e58c9/view?project=6a1cf32a002c668912cc",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/dc0ee4d98acd943811d2fc771a87e76e/view?project=6a1cf32a002c668912cc",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/293be892a3e16cd93d9a94d2de68ae04/view?project=6a1cf32a002c668912cc",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/6d624087e999b097b2be0f9f63ff1080/view?project=6a1cf32a002c668912cc",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/584be627e03a0c1c1b163c5447fc4feb/view?project=6a1cf32a002c668912cc",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/3708475bb2a75dce6c9ba839e7851b2c/view?project=6a1cf32a002c668912cc",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/eed4aafecd292e97b180cecfc09301ee/view?project=6a1cf32a002c668912cc",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/ea872bd3a81e67ff964ae4e5911ea908/view?project=6a1cf32a002c668912cc",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/57758fa61c4b727f692a53515ac0deb7/view?project=6a1cf32a002c668912cc",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/80370649c60b5e45271328adf5188c80/view?project=6a1cf32a002c668912cc",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/ce131bd77b2ed8304ef90104176e6ed0/view?project=6a1cf32a002c668912cc",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/1a61f47f33b3034b999c33e4c9b62d10/view?project=6a1cf32a002c668912cc",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/639d0f812c200472a2fda873e143068e/view?project=6a1cf32a002c668912cc",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/9258d548aa075fe5088cbd868b57f2f5/view?project=6a1cf32a002c668912cc",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/1d821fefb305b13e908140d071029800/view?project=6a1cf32a002c668912cc",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/4b9ebac41bfef610475bffcd32a6af54/view?project=6a1cf32a002c668912cc",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/666a1d755d689b67e9a81647acb70865/view?project=6a1cf32a002c668912cc",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/caf78ff8f86cc74565b1a719bdfe5561/view?project=6a1cf32a002c668912cc"
+    ]
+  },
+  "overrides": {
+    "doctorName": "",
+    "doctorImages": [],
+    "extraImages": []
+  },
+  "meta": {
+    "generatedAt": "2026-08-05T11:54:03.208Z",
+    "source": "google_maps",
+    "updatedAt": "2026-08-05T12:55:11.418Z"
+  },
+  "templateOverrides": {}
+}
