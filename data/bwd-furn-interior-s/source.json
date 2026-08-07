@@ -1,0 +1,119 @@
+{
+  "clinic": {
+    "name": "BWD FURN & INTERIOR'S",
+    "slug": "bwd-furn-interior-s",
+    "tagline": "Thoughtful Interiors for Everyday Living",
+    "description": "Welcome to BWD FURN & INTERIOR'S. We create refined, functional interiors tailored to your lifestyle, budget, and space.",
+    "address": {
+      "full": "Shop No 43, M1 police station, Grand Northern Trunk Rd, Kanakan Chatram, Madhavaram, Chennai, Greater Chennai, Tamil Nadu 600110",
+      "area": "",
+      "city": "Chennai",
+      "state": "Greater Chennai",
+      "country": "India"
+    },
+    "contact": {
+      "phone": "08850536505",
+      "website": ""
+    },
+    "mapEmbedUrl": "https://maps.google.com/maps?q=BWD%20FURN%20%26%20INTERIOR'S%20Shop%20No%2043%2C%20M1%20police%20station%2C%20Grand%20Northern%20Trunk%20Rd%2C%20Kanakan%20Chatram%2C%20Madhavaram%2C%20Chennai%2C%20Greater%20Chennai%2C%20Tamil%20Nadu%20600110&output=embed"
+  },
+  "business": {
+    "rating": "5.0",
+    "reviewCount": "",
+    "timings": [],
+    "services": [
+      "Residential Interior Design",
+      "Modular Kitchen Design",
+      "Living Room Styling",
+      "Bedroom Makeovers",
+      "Space Planning",
+      "Custom Furniture"
+    ],
+    "highlights": [
+      "Personalized design concepts",
+      "Material and finish guidance",
+      "Transparent project planning",
+      "End-to-end execution support"
+    ]
+  },
+  "doctor": {
+    "name": "BWD Studio Team",
+    "images": [],
+    "experience": "5+ years",
+    "specialization": "Interior Design & Turnkey Execution"
+  },
+  "reviews": [],
+  "media": {
+    "clinicImages": [
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/645a56e37ec0f0f35e97a1f603851a24/view?project=6a1cf32a002c668912cc",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/3a9aeb9ae47ab18bfb5d23b497b3f3cf/view?project=6a1cf32a002c668912cc",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/b1d1c7aba884ebd2d03c9ba477d3bf61/view?project=6a1cf32a002c668912cc",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/f40df171015388725221f1e3bff9db89/view?project=6a1cf32a002c668912cc"
+    ],
+    "treatmentImages": [
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/34606fd825dd4a8428867d7b3a92a015/view?project=6a1cf32a002c668912cc",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/24dc0be6ea45bdd5aeec2b8095aa0430/view?project=6a1cf32a002c668912cc",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/772deda59e9f6e24893bcdc51cbadaa4/view?project=6a1cf32a002c668912cc",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/576939b9c8a24744fd2f1b471ec58920/view?project=6a1cf32a002c668912cc"
+    ],
+    "otherImages": [
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/bf5283d6dfc3326ef8566f4c16a22548/view?project=6a1cf32a002c668912cc",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/49cf7ecea05a08fc74cbbaa86894dc5b/view?project=6a1cf32a002c668912cc",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/944582767b6fee91f908bd5c94fd2d25/view?project=6a1cf32a002c668912cc",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/b6063e86abfe6dc3fcd5e989e590e13f/view?project=6a1cf32a002c668912cc",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/94dc539d780d5f01bbade8b578ce7222/view?project=6a1cf32a002c668912cc",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/a36a7c6f268e1ef49aa4b71b4eed186c/view?project=6a1cf32a002c668912cc",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/d5478bd5be97a1d5eb440cb2ce72bb25/view?project=6a1cf32a002c668912cc",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/f5a09ef0e6fccd916e55048bb42ef26f/view?project=6a1cf32a002c668912cc",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/9f858d8788f1937f105f80d15666e66d/view?project=6a1cf32a002c668912cc",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/78892e0fb1dd42681eef9429de99cdc0/view?project=6a1cf32a002c668912cc",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/bce15cac8e9a95b6a347eea04f4b0a24/view?project=6a1cf32a002c668912cc",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/09705761e6061d5feba52854a868fd5c/view?project=6a1cf32a002c668912cc",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/55255bbf01084683ad21126021823562/view?project=6a1cf32a002c668912cc",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/10933a5523eeeeb5081ca838d45ac779/view?project=6a1cf32a002c668912cc",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/df5b156bd109102dff802d6c9431ef6d/view?project=6a1cf32a002c668912cc",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/87a81d55008c0d65494a19bdc7b75087/view?project=6a1cf32a002c668912cc",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/b9d8c907c88ccd987a90d4c4b52d74ef/view?project=6a1cf32a002c668912cc",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/2aedd072cafa48c60419e2b8bf5d89e0/view?project=6a1cf32a002c668912cc",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/7c4af832e7f4d52847b1735cb8620d58/view?project=6a1cf32a002c668912cc",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/6b101c15a90b436617a0dd3d40baf8bf/view?project=6a1cf32a002c668912cc",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/01998fb8d5e689ee5aeb31f7cb2faa23/view?project=6a1cf32a002c668912cc",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/0e91aa569d08d754adc179e9e5e71c3b/view?project=6a1cf32a002c668912cc",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/8d45b99735019681d9fa69ac9fba73b0/view?project=6a1cf32a002c668912cc",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/20b5b6095627813c251212bd3a573a93/view?project=6a1cf32a002c668912cc",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/117a3887ddc808f168e58419e4a5ef9c/view?project=6a1cf32a002c668912cc",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/a5f8f30bf74d05598f628d3b04a6568e/view?project=6a1cf32a002c668912cc",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/c1f44644522f3f91eddde61612c57353/view?project=6a1cf32a002c668912cc",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/170f10ee8f6f1a004a37eea7a4a910ef/view?project=6a1cf32a002c668912cc",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/37146cf28a3e10b665343f0c8afd0b14/view?project=6a1cf32a002c668912cc",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/656a882edf218e159310d48d5507fb6f/view?project=6a1cf32a002c668912cc",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/94b975064e5cf80a645773f0079f5a30/view?project=6a1cf32a002c668912cc",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/b58d42c73a10f6f2127e54b1b2ab466e/view?project=6a1cf32a002c668912cc",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/bfe6346aebca49a7e18a0d54ad26ec9e/view?project=6a1cf32a002c668912cc",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/0fca922209fbd3d14ddff1113ba3ac9a/view?project=6a1cf32a002c668912cc",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/68f821d878720b51cb8673629b76e0f6/view?project=6a1cf32a002c668912cc",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/583c973787737ca92032d59f7f9d478b/view?project=6a1cf32a002c668912cc",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/ebed2bcc4c7e680be9b04ed124c1f614/view?project=6a1cf32a002c668912cc",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/24817cffa9095422989df0b43a62f96e/view?project=6a1cf32a002c668912cc",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/de9a846b568e9ec416ca11a782a98e27/view?project=6a1cf32a002c668912cc",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/8fdcdb29b97e2148501e229d0b98c630/view?project=6a1cf32a002c668912cc",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/f0ed1cafcf1ec82f159eb86f7cbcc283/view?project=6a1cf32a002c668912cc",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/de1c0e55b8aa4a81be0c989e647bb17e/view?project=6a1cf32a002c668912cc",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/14261983d0412f027ce451dd28b7e7f6/view?project=6a1cf32a002c668912cc",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/ac0b0327511e22e4355e8ac3d0c37db5/view?project=6a1cf32a002c668912cc",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/2a3ef692a77ad913c6ddea9f4217f79b/view?project=6a1cf32a002c668912cc",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/b66f7ad0321420b8fc9e5856041dc3d2/view?project=6a1cf32a002c668912cc",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/7d20a02583e6df14cbac6fc79c91513f/view?project=6a1cf32a002c668912cc"
+    ]
+  },
+  "overrides": {
+    "doctorName": "",
+    "doctorImages": [],
+    "extraImages": []
+  },
+  "meta": {
+    "generatedAt": "2026-08-07T11:30:26.786Z",
+    "source": "google_maps",
+    "updatedAt": "2026-08-07T11:30:26.793Z"
+  }
+}

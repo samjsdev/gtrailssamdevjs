@@ -1,0 +1,69 @@
+{
+  "clinic": {
+    "name": "murali patharala associates",
+    "slug": "murali-patharala-associates-mpa",
+    "tagline": "Thoughtful Interiors for Everyday Living",
+    "description": "Welcome to murali patharala & associates ( mpa). We create refined, functional interiors tailored to your lifestyle, budget, and space.",
+    "address": {
+      "full": "murali patharala & associates(mpa W115A, 3rd Ave, Annanagar East, Chennai, Tamil Nadu 600040",
+      "area": "",
+      "city": "Annanagar East",
+      "state": "Chennai",
+      "country": "India"
+    },
+    "contact": {
+      "phone": "09841098490",
+      "website": ""
+    },
+    "mapEmbedUrl": "https://maps.google.com/maps?q=murali%20patharala%20%26%20associates%20(%20mpa)%20murali%20patharala%20%26%20associates(mpa%20W115A%2C%203rd%20Ave%2C%20Annanagar%20East%2C%20Chennai%2C%20Tamil%20Nadu%20600040&output=embed"
+  },
+  "business": {
+    "rating": "4.8",
+    "reviewCount": "",
+    "timings": [],
+    "services": [
+      "Residential Interior Design",
+      "Modular Kitchen Design",
+      "Living Room Styling",
+      "Bedroom Makeovers",
+      "Space Planning",
+      "Custom Furniture"
+    ],
+    "highlights": [
+      "Personalized design concepts",
+      "Material and finish guidance",
+      "Transparent project planning",
+      "End-to-end execution support"
+    ]
+  },
+  "doctor": {
+    "name": "murali Studio Team",
+    "images": [],
+    "experience": "5+ years",
+    "specialization": "Interior Design & Turnkey Execution"
+  },
+  "reviews": [],
+  "media": {
+    "clinicImages": [
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/8e21197a2203d82c32825677704fdc4e/view?project=6a1cf32a002c668912cc",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/48e4704b81ed5ef5e7b8310e25c6fa2a/view?project=6a1cf32a002c668912cc",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/7e589e3a5184c23804229ea0a19eebeb/view?project=6a1cf32a002c668912cc",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/caed933a821755caa3fd8f105e669333/view?project=6a1cf32a002c668912cc"
+    ],
+    "treatmentImages": [
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/1b392ee2625988e8cff3f82de6eef06a/view?project=6a1cf32a002c668912cc"
+    ],
+    "otherImages": []
+  },
+  "overrides": {
+    "doctorName": "",
+    "doctorImages": [],
+    "extraImages": []
+  },
+  "meta": {
+    "generatedAt": "2026-08-07T11:24:51.254Z",
+    "source": "google_maps",
+    "updatedAt": "2026-08-07T11:26:05.820Z"
+  },
+  "templateOverrides": {}
+}
