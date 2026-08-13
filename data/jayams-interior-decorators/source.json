@@ -1,0 +1,70 @@
+{
+  "clinic": {
+    "name": "Jayams Interior",
+    "slug": "jayams-interior-decorators",
+    "tagline": "Thoughtful Interiors for Everyday Living",
+    "description": "Welcome to Jayams Interior Decorators. We create refined, functional interiors tailored to your lifestyle, budget, and space.",
+    "address": {
+      "full": "VGS Complex, 4/236, Mudichur Rd, Parvathi Nagar, Shanthi Nagar, Old Perungalathur, Chennai, Tamil Nadu 600063",
+      "area": "",
+      "city": "Old Perungalathur",
+      "state": "Chennai",
+      "country": "India"
+    },
+    "contact": {
+      "phone": "09444109988",
+      "website": ""
+    },
+    "mapEmbedUrl": "https://maps.google.com/maps?q=Jayams%20Interior%20Decorators%20VGS%20Complex%2C%204%2F236%2C%20Mudichur%20Rd%2C%20Parvathi%20Nagar%2C%20Shanthi%20Nagar%2C%20Old%20Perungalathur%2C%20Chennai%2C%20Tamil%20Nadu%20600063&output=embed"
+  },
+  "business": {
+    "rating": "3.0",
+    "reviewCount": "",
+    "timings": [],
+    "services": [
+      "Residential Interior Design",
+      "Modular Kitchen Design",
+      "Living Room Styling",
+      "Bedroom Makeovers",
+      "Space Planning",
+      "Custom Furniture"
+    ],
+    "highlights": [
+      "Personalized design concepts",
+      "Material and finish guidance",
+      "Transparent project planning",
+      "End-to-end execution support"
+    ]
+  },
+  "doctor": {
+    "name": "Jayams Studio Team",
+    "images": [],
+    "experience": "5+ years",
+    "specialization": "Interior Design & Turnkey Execution"
+  },
+  "reviews": [],
+  "media": {
+    "clinicImages": [
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/9c0bbc9f84053982e7c783a970edb147/view?project=6a1cf32a002c668912cc",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/908a1062c7df9c7c0475a4c2810c1293/view?project=6a1cf32a002c668912cc",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/7baa3254a35b23e4cec7177afeb45055/view?project=6a1cf32a002c668912cc",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/5655cd8c0b5bb8f45d914e1efbd447fd/view?project=6a1cf32a002c668912cc"
+    ],
+    "treatmentImages": [
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/aa04256d383e7edc5334674e7c95a837/view?project=6a1cf32a002c668912cc",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/51598287026223a28e53c9ac2f7b5db6/view?project=6a1cf32a002c668912cc"
+    ],
+    "otherImages": []
+  },
+  "overrides": {
+    "doctorName": "",
+    "doctorImages": [],
+    "extraImages": []
+  },
+  "meta": {
+    "generatedAt": "2026-08-13T11:21:18.388Z",
+    "source": "google_maps",
+    "updatedAt": "2026-08-13T11:34:10.606Z"
+  },
+  "templateOverrides": {}
+}

@@ -1,0 +1,80 @@
+{
+  "clinic": {
+    "name": "Sivasakthi Interior ",
+    "slug": "sivasakthi-interior-work",
+    "tagline": "Thoughtful Interiors for Everyday Living",
+    "description": "Welcome to Sivasakthi Interior Work. We create refined, functional interiors tailored to your lifestyle, budget, and space.",
+    "address": {
+      "full": "1346, TNHB Colony Road, Sithalapakkam, Chennai, Tambaram, Tamil Nadu 600126",
+      "area": "",
+      "city": "Chennai",
+      "state": "Tambaram",
+      "country": "India"
+    },
+    "contact": {
+      "phone": "06380678598",
+      "website": ""
+    },
+    "mapEmbedUrl": "https://maps.google.com/maps?q=Sivasakthi%20Interior%20Work%201346%2C%20TNHB%20Colony%20Road%2C%20Sithalapakkam%2C%20Chennai%2C%20Tambaram%2C%20Tamil%20Nadu%20600126&output=embed"
+  },
+  "business": {
+    "rating": "5.0",
+    "reviewCount": "",
+    "timings": [],
+    "services": [
+      "Residential Interior Design",
+      "Modular Kitchen Design",
+      "Living Room Styling",
+      "Bedroom Makeovers",
+      "Space Planning",
+      "Custom Furniture"
+    ],
+    "highlights": [
+      "Personalized design concepts",
+      "Material and finish guidance",
+      "Transparent project planning",
+      "End-to-end execution support"
+    ]
+  },
+  "doctor": {
+    "name": "Sivasakthi Studio Team",
+    "images": [],
+    "experience": "5+ years",
+    "specialization": "Interior Design & Turnkey Execution"
+  },
+  "reviews": [],
+  "media": {
+    "clinicImages": [
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/c497326117a1613f96ed34f96debee3e/view?project=6a1cf32a002c668912cc",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/93d1b67b8a3bf8a2d91f9ca6414d58e2/view?project=6a1cf32a002c668912cc",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/2aeb79effb6de83b39fcaa920f713f25/view?project=6a1cf32a002c668912cc",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/642588d8974fa57536ebbd3423830a94/view?project=6a1cf32a002c668912cc"
+    ],
+    "treatmentImages": [
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/bff3721d897295aba9a07bcce9d9fe47/view?project=6a1cf32a002c668912cc",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/fe3f493f84ece76dfc6eec1ce93d8757/view?project=6a1cf32a002c668912cc",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/3ea1c710767328110962560a1c35c611/view?project=6a1cf32a002c668912cc",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/14db66368f3dbeab0188045b5b2bd2f6/view?project=6a1cf32a002c668912cc"
+    ],
+    "otherImages": [
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/dbe354a7a6b40c9498c3e5eded584c0d/view?project=6a1cf32a002c668912cc",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/a7d55a96c2d0d317342eb1078457b313/view?project=6a1cf32a002c668912cc",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/9835b50044395b8d8509136f4603d072/view?project=6a1cf32a002c668912cc",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/d929c80143b8924b2aa2defa53e44ad6/view?project=6a1cf32a002c668912cc",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/c2bcdf69b85c22ec71a8e9f72cc3f122/view?project=6a1cf32a002c668912cc",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/ae22461516da43e3e413187150799cf7/view?project=6a1cf32a002c668912cc",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/493b31a3d91c1f48888a489bcd9d2930/view?project=6a1cf32a002c668912cc"
+    ]
+  },
+  "overrides": {
+    "doctorName": "",
+    "doctorImages": [],
+    "extraImages": []
+  },
+  "meta": {
+    "generatedAt": "2026-08-13T10:34:56.164Z",
+    "source": "google_maps",
+    "updatedAt": "2026-08-13T11:35:12.788Z"
+  },
+  "templateOverrides": {}
+}

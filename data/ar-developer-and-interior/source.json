@@ -1,0 +1,62 @@
+{
+  "clinic": {
+    "name": "AR Developer & Interior",
+    "slug": "ar-developer-and-interior",
+    "tagline": "Thoughtful Interiors for Everyday Living",
+    "description": "Welcome to AR Developer And Interior. We create refined, functional interiors tailored to your lifestyle, budget, and space.",
+    "address": {
+      "full": "1st Floor, 1, Kundrathur Main Rd, Astha Lakshmi Nagar, Kumananchavadi, Chennai, Kattuppakkam, Tamil Nadu 600122",
+      "area": "",
+      "city": "Chennai",
+      "state": "Kattuppakkam",
+      "country": "India"
+    },
+    "contact": {
+      "phone": "09840106769",
+      "website": ""
+    },
+    "mapEmbedUrl": "https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d3000!2d80.1140392!3d13.040652!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sin!4v1"
+  },
+  "business": {
+    "rating": "5.0",
+    "reviewCount": "",
+    "timings": [],
+    "services": [
+      "Residential Interior Design",
+      "Modular Kitchen Design",
+      "Living Room Styling",
+      "Bedroom Makeovers",
+      "Space Planning",
+      "Custom Furniture"
+    ],
+    "highlights": [
+      "Personalized design concepts",
+      "Material and finish guidance",
+      "Transparent project planning",
+      "End-to-end execution support"
+    ]
+  },
+  "doctor": {
+    "name": "AR Studio Team",
+    "images": [],
+    "experience": "5+ years",
+    "specialization": "Interior Design & Turnkey Execution"
+  },
+  "reviews": [],
+  "media": {
+    "clinicImages": [],
+    "treatmentImages": [],
+    "otherImages": []
+  },
+  "overrides": {
+    "doctorName": "",
+    "doctorImages": [],
+    "extraImages": []
+  },
+  "meta": {
+    "generatedAt": "2026-08-13T10:57:02.210Z",
+    "source": "google_maps",
+    "updatedAt": "2026-08-13T11:35:00.085Z"
+  },
+  "templateOverrides": {}
+}
