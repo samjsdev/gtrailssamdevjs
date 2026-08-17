@@ -228,6 +228,14 @@ export default function EditPage({ params }: { params: Promise<{ slug: string }>
     label: string;
   } | null>(null);
 
+  // Scrape Images State
+  const [scrapeModalOpen, setScrapeModalOpen] = useState(false);
+  const [isScrapingImages, setIsScrapingImages] = useState(false);
+  const [scrapeGbpUrl, setScrapeGbpUrl] = useState('');
+  const [scrapePhotosUrl, setScrapePhotosUrl] = useState('');
+  const [scrapeError, setScrapeError] = useState('');
+  const [scrapeSuccess, setScrapeSuccess] = useState('');
+
   const [modalTab, setModalTab] = useState<'favorites' | 'business' | 'template' | 'curated' | 'upload'>('business');
   const [previewImage, setPreviewImage] = useState<string | null>(null);
 
@@ -313,6 +321,59 @@ export default function EditPage({ params }: { params: Promise<{ slug: string }>
       setError(err.message);
     } finally {
       setSaving(false);
+    }
+  };
+
+  const handleScrapeImages = async (e?: React.FormEvent) => {
+    if (e) e.preventDefault();
+    setIsScrapingImages(true);
+    setScrapeError('');
+    setScrapeSuccess('');
+
+    try {
+      const targetGbp = scrapeGbpUrl.trim() || data?.meta?.gbpUrl || data?.clinic?.contact?.googleMapsUrl || '';
+      const targetPhotos = scrapePhotosUrl.trim();
+
+      if (!targetGbp && !targetPhotos) {
+        throw new Error('Please provide a Google Maps URL or Photos URL to scrape images.');
+      }
+
+      const res = await fetch('/api/intake/images', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          slug,
+          gbpUrl: targetGbp,
+          photosUrl: targetPhotos,
+        }),
+      });
+
+      const result = await res.json();
+      if (!res.ok || !result.success) {
+        throw new Error(result.message || result.error || 'Failed to scrape images');
+      }
+
+      if (result.media) {
+        setData((prev: any) => ({
+          ...prev,
+          media: result.media,
+          meta: {
+            ...(prev.meta || {}),
+            gbpUrl: targetGbp || prev.meta?.gbpUrl,
+            imagesScrapedAt: new Date().toISOString(),
+          }
+        }));
+      }
+
+      setScrapeSuccess(`Successfully scraped and saved ${result.count || 0} images!`);
+      setSaveMessage(`Scraped ${result.count || 0} images and updated media pool.`);
+      setTimeout(() => {
+        setScrapeModalOpen(false);
+      }, 1200);
+    } catch (err: any) {
+      setScrapeError(err.message || 'Image scraping failed');
+    } finally {
+      setIsScrapingImages(false);
     }
   };
 
@@ -859,7 +920,27 @@ export default function EditPage({ params }: { params: Promise<{ slug: string }>
               Refine global studio information, manage stock media, and customize individual theme overrides.
             </p>
           </div>
-          <div className="w-full md:w-auto flex gap-3 shrink-0">
+          <div className="w-full md:w-auto flex flex-wrap gap-2.5 shrink-0">
+            <button
+              onClick={() => {
+                setScrapeGbpUrl(data?.meta?.gbpUrl || data?.clinic?.contact?.googleMapsUrl || '');
+                setScrapePhotosUrl('');
+                setScrapeError('');
+                setScrapeSuccess('');
+                setScrapeModalOpen(true);
+              }}
+              disabled={isScrapingImages || saving}
+              className="flex-1 md:flex-initial flex items-center justify-center py-2.5 px-4 rounded-xl text-sm font-bold text-amber-900 bg-amber-50 hover:bg-amber-100 border border-amber-200 active:bg-amber-200 disabled:opacity-50 transition-all shadow-xs gap-2"
+              title="Scrape business images from Google Maps"
+            >
+              {isScrapingImages ? (
+                <Loader2 className="animate-spin h-4 w-4 text-amber-600" />
+              ) : (
+                <Sparkles className="w-4 h-4 text-amber-600" />
+              )}
+              <span>{isScrapingImages ? 'Scraping Images...' : 'Scrape Images'}</span>
+            </button>
+
             <a
               href={`/preview/${slug}`}
               target="_blank"
@@ -1580,18 +1661,63 @@ export default function EditPage({ params }: { params: Promise<{ slug: string }>
               <div className="space-y-8">
                 {/* Scraped Asset Pool */}
                 <div className="space-y-4">
-                  <div className="flex justify-between items-center pb-3 border-b border-slate-100">
+                  <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-3 pb-3 border-b border-slate-100">
                     <div>
                       <h3 className="text-sm font-bold text-slate-800">Scraped Asset Pool</h3>
                       <p className="text-slate-400 text-xs mt-0.5">Manage default image assets scraped or added manually.</p>
                     </div>
-                    <button 
-                      onClick={addImageUrl} 
-                      className="flex items-center gap-1.5 text-xs bg-slate-100 hover:bg-slate-200 active:bg-slate-205 text-slate-700 px-4 py-2.5 rounded-xl font-bold transition-all shadow-xs"
-                    >
-                      <Plus className="w-3.5 h-3.5" /> Add Image URL
-                    </button>
+                    <div className="flex items-center gap-2 flex-wrap">
+                      <button
+                        onClick={() => {
+                          setScrapeGbpUrl(data?.meta?.gbpUrl || data?.clinic?.contact?.googleMapsUrl || '');
+                          setScrapePhotosUrl('');
+                          setScrapeError('');
+                          setScrapeSuccess('');
+                          setScrapeModalOpen(true);
+                        }}
+                        disabled={isScrapingImages}
+                        className="flex items-center gap-1.5 text-xs bg-amber-50 hover:bg-amber-100 border border-amber-200 text-amber-900 px-4 py-2.5 rounded-xl font-bold transition-all shadow-xs"
+                      >
+                        {isScrapingImages ? (
+                          <Loader2 className="w-3.5 h-3.5 animate-spin text-amber-600" />
+                        ) : (
+                          <Sparkles className="w-3.5 h-3.5 text-amber-600" />
+                        )}
+                        Scrape Images from Maps
+                      </button>
+                      <button 
+                        onClick={addImageUrl} 
+                        className="flex items-center gap-1.5 text-xs bg-slate-100 hover:bg-slate-200 active:bg-slate-205 text-slate-700 px-4 py-2.5 rounded-xl font-bold transition-all shadow-xs"
+                      >
+                        <Plus className="w-3.5 h-3.5" /> Add Image URL
+                      </button>
+                    </div>
                   </div>
+
+                  {(!data.media?.clinicImages?.length && !data.media?.treatmentImages?.length && !data.media?.otherImages?.length) && (
+                    <div className="p-6 rounded-2xl bg-amber-50/70 border border-amber-200/80 flex flex-col sm:flex-row items-center justify-between gap-4">
+                      <div className="space-y-1 text-center sm:text-left">
+                        <h4 className="text-sm font-bold text-amber-950 flex items-center justify-center sm:justify-start gap-2">
+                          <ImageIcon className="w-4 h-4 text-amber-600" /> No business images scraped yet
+                        </h4>
+                        <p className="text-xs text-amber-800/80">
+                          During initial creation, business details were scraped first. You can now extract all gallery images from Google Maps.
+                        </p>
+                      </div>
+                      <button
+                        onClick={() => {
+                          setScrapeGbpUrl(data?.meta?.gbpUrl || data?.clinic?.contact?.googleMapsUrl || '');
+                          setScrapePhotosUrl('');
+                          setScrapeError('');
+                          setScrapeSuccess('');
+                          setScrapeModalOpen(true);
+                        }}
+                        className="shrink-0 flex items-center gap-2 bg-amber-600 hover:bg-amber-700 active:bg-amber-800 text-white text-xs font-bold px-5 py-2.5 rounded-xl shadow-xs transition-all"
+                      >
+                        <Sparkles className="w-3.5 h-3.5" /> Scrape Images Now
+                      </button>
+                    </div>
+                  )}
 
                   {/* Hero Banner Images */}
                   <div className="bg-indigo-50/40 p-5 rounded-2xl border border-indigo-100/50">
@@ -2200,6 +2326,126 @@ export default function EditPage({ params }: { params: Promise<{ slug: string }>
                 Close
               </button>
             </div>
+          </div>
+        </div>
+      )}
+
+      {/* ========================================================
+          SCRAPE IMAGES MODAL (PHASE 2)
+         ======================================================== */}
+      {scrapeModalOpen && (
+        <div className="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4 overflow-y-auto animate-in fade-in duration-200">
+          <div className="bg-white rounded-3xl shadow-2xl border border-slate-100 max-w-lg w-full overflow-hidden animate-in zoom-in-95 duration-200">
+            {/* Modal Header */}
+            <div className="p-6 border-b border-slate-100 flex items-center justify-between bg-slate-900 text-white">
+              <div className="flex items-center gap-2.5">
+                <div className="w-9 h-9 rounded-xl bg-amber-500/20 border border-amber-500/30 flex items-center justify-center text-amber-300">
+                  <Sparkles className="w-5 h-5" />
+                </div>
+                <div>
+                  <h3 className="text-base font-bold">Scrape Business Images</h3>
+                  <p className="text-xs text-slate-400">Phase 2: Extract photo gallery from Google Maps</p>
+                </div>
+              </div>
+              <button
+                type="button"
+                onClick={() => !isScrapingImages && setScrapeModalOpen(false)}
+                disabled={isScrapingImages}
+                className="text-slate-400 hover:text-white disabled:opacity-30 p-1.5 rounded-lg transition-colors"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+
+            {/* Modal Body */}
+            <form onSubmit={handleScrapeImages} className="p-6 space-y-5">
+              <p className="text-xs text-slate-600 leading-relaxed">
+                We will launch a browser session to harvest high-resolution portfolio photos from this business profile and process them for your website.
+              </p>
+
+              <div className="space-y-1.5">
+                <label className="text-xs font-extrabold uppercase tracking-wider text-slate-700 block">
+                  Google Maps URL
+                </label>
+                <input
+                  type="url"
+                  required
+                  placeholder="https://www.google.com/maps/place/..."
+                  value={scrapeGbpUrl}
+                  onChange={(e) => setScrapeGbpUrl(e.target.value)}
+                  disabled={isScrapingImages}
+                  className="w-full text-slate-900 border border-slate-300 rounded-xl p-3 text-xs focus:ring-2 focus:ring-amber-500 focus:border-amber-500 focus:outline-none transition-all shadow-xs disabled:bg-slate-100"
+                />
+              </div>
+
+              <div className="space-y-1.5">
+                <label className="text-xs font-extrabold uppercase tracking-wider text-slate-700 block">
+                  Direct Photos URL <span className="text-slate-400 normal-case font-normal">(Optional)</span>
+                </label>
+                <input
+                  type="url"
+                  placeholder="https://www.google.com/maps/place/.../photos"
+                  value={scrapePhotosUrl}
+                  onChange={(e) => setScrapePhotosUrl(e.target.value)}
+                  disabled={isScrapingImages}
+                  className="w-full text-slate-900 border border-slate-300 rounded-xl p-3 text-xs focus:ring-2 focus:ring-amber-500 focus:border-amber-500 focus:outline-none transition-all shadow-xs disabled:bg-slate-100"
+                />
+              </div>
+
+              {/* Scraping Progress Indicator */}
+              {isScrapingImages && (
+                <div className="p-4 rounded-2xl bg-amber-50 border border-amber-200/80 flex items-center gap-3">
+                  <Loader2 className="w-5 h-5 text-amber-600 animate-spin shrink-0" />
+                  <div className="text-xs text-amber-900">
+                    <p className="font-bold">Scraping & Processing Images...</p>
+                    <p className="text-[11px] text-amber-700/90 mt-0.5">
+                      Scrolling gallery and uploading high-res images. This takes ~30–60 seconds.
+                    </p>
+                  </div>
+                </div>
+              )}
+
+              {scrapeError && (
+                <div className="p-3 bg-rose-50 border border-rose-100 text-rose-700 rounded-xl text-xs flex items-center gap-2">
+                  <span className="w-2 h-2 rounded-full bg-rose-500 shrink-0" />
+                  <span>{scrapeError}</span>
+                </div>
+              )}
+
+              {scrapeSuccess && (
+                <div className="p-3 bg-emerald-50 border border-emerald-100 text-emerald-800 rounded-xl text-xs flex items-center gap-2">
+                  <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
+                  <span>{scrapeSuccess}</span>
+                </div>
+              )}
+
+              {/* Modal Footer */}
+              <div className="pt-3 border-t border-slate-100 flex justify-end gap-3">
+                <button
+                  type="button"
+                  onClick={() => setScrapeModalOpen(false)}
+                  disabled={isScrapingImages}
+                  className="py-2.5 px-5 rounded-xl text-xs font-bold text-slate-700 bg-white border border-slate-200 hover:bg-slate-50 active:bg-slate-100 disabled:opacity-50 transition-all"
+                >
+                  Cancel
+                </button>
+                <button
+                  type="submit"
+                  disabled={isScrapingImages}
+                  className="py-2.5 px-6 rounded-xl text-xs font-bold text-white bg-amber-600 hover:bg-amber-700 active:bg-amber-800 disabled:opacity-50 transition-all shadow-md shadow-amber-600/15 flex items-center gap-2"
+                >
+                  {isScrapingImages ? (
+                    <>
+                      <Loader2 className="w-4 h-4 animate-spin" /> Scraping...
+                    </>
+                  ) : (
+                    <>
+                      <Sparkles className="w-4 h-4" /> Start Image Scraping
+                    </>
+                  )}
+                </button>
+              </div>
+            </form>
           </div>
         </div>
       )}

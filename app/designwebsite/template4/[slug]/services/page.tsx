@@ -1,7 +1,7 @@
 import { readSourceConfig } from '@/lib/dataBuilder';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
-import { Check, ArrowRight } from 'lucide-react';
+import { Check, ArrowRight, Sparkles, ShieldCheck, Clock, Layers } from 'lucide-react';
 import { cleanClinicName } from '@/lib/copyCleaner';
 import {
   DEFAULT_INTERIOR_SERVICES,
@@ -11,7 +11,9 @@ import {
   previewMedia,
 } from '@/lib/interiorContent';
 import Reveal from '../Reveal';
+import PageNarrative from '../PageNarrative';
 import SeriesScroll, { SeriesTheme } from '../SeriesScroll';
+import FAQAccordion, { FAQItem } from '../FAQAccordion';
 
 type PageProps = { params: Promise<{ slug: string }> };
 
@@ -40,6 +42,45 @@ const THEMES = [
   { name: 'Coastal Calm', desc: 'Rattan, indigo & sea-breeze ease for coastal homes' },
 ];
 
+const SCOPE_TIERS = [
+  {
+    name: 'Atelier Concept & Styling',
+    tag: 'Design Only',
+    desc: 'Complete architectural layout planning, photoreal 3D renders, material moodboards, and MEP drawing packages.',
+    inclusions: [
+      'Spatial layout optimization & 2D floor plans',
+      'Photorealistic 3D room renders',
+      'Lighting, electrical & plumbing schematics',
+      'Curated material & finish schedule',
+    ],
+  },
+  {
+    name: 'Turnkey Residential Atelier',
+    tag: 'Signature Scope',
+    desc: 'End-to-end design, factory joinery production, civil modifications, and white-glove site execution.',
+    inclusions: [
+      'Everything in Atelier Concept',
+      'Custom modular kitchen & wardrobes',
+      'BWP marine ply with Blum soft-close fittings',
+      'False ceiling, profile lighting & painting',
+      '10-Year Structural Woodwork Warranty',
+      'Guaranteed 45 to 60-day handover',
+    ],
+  },
+  {
+    name: 'Haute Bespoke Estate',
+    tag: 'Grand Residences',
+    desc: 'Full architectural redesign with custom solid wood joinery, Italian marble inlays, and home automation.',
+    inclusions: [
+      'Everything in Turnkey Residential',
+      'Smoked oak / walnut natural wood veneers',
+      'Italian marble floor & feature wall cladding',
+      'Custom furniture commissions & art curation',
+      'Dedicated lead architect on site',
+    ],
+  },
+];
+
 export default async function Template4Services({ params }: PageProps) {
   const { slug } = await params;
   const basePath = `/designwebsite/template4/${slug}`;
@@ -61,10 +102,10 @@ export default async function Template4Services({ params }: PageProps) {
       tagline: detail?.tagline || 'Designed and built around your home.',
       desc: detail?.description || getInteriorServiceSummary(svc),
       benefits: detail?.benefits?.slice(0, 4) || [
-        'Personalized design direction',
-        'Curated material selections',
-        'Clear budgets and timelines',
-        'Coordinated execution and styling',
+        'Personalized 3D architectural renders',
+        'BWP marine plywood construction',
+        'Curated material moodboards & samples',
+        'Direct site supervision & styling',
       ],
       img:
         getServiceImage(svc, media) ||
@@ -78,6 +119,24 @@ export default async function Template4Services({ params }: PageProps) {
     img: media.treatmentImages?.[idx] || THEME_IMAGES[idx],
   }));
 
+  const servicesFaqs: FAQItem[] = [
+    {
+      q: 'How does your turnkey execution work?',
+      a: 'We manage every aspect from architectural design and lighting drawings to factory fabrication, civil work, installation, and deep cleaning under a single dedicated contract.',
+      tag: 'Turnkey Scope',
+    },
+    {
+      q: 'Can we select custom marble and veneer finishes?',
+      a: 'Yes. We maintain a private materials library in our studio featuring over 200+ veneers, anti-fingerprint acrylics, and imported marble slabs for tactile touch-and-feel.',
+      tag: 'Materials',
+    },
+    {
+      q: 'What is the 10-year craft warranty?',
+      a: 'We provide an unconditional 10-year structural warranty on all calibrated BWP marine plywood woodwork, accompanied by post-handover care inspections at 6 and 12 months.',
+      tag: 'Warranty',
+    },
+  ];
+
   return (
     <div>
       {/* HERO */}
@@ -85,21 +144,83 @@ export default async function Template4Services({ params }: PageProps) {
         <div className="max-w-[1240px] mx-auto px-[30px]">
           <Reveal>
             <div className="flex items-center gap-3 text-[11.5px] font-semibold tracking-[0.3em] uppercase text-[#a4532f] before:content-[''] before:w-8 before:h-px before:bg-[#a4532f]">
-              Our services
+              Our Disciplines
             </div>
-            <h1 className="font-[family-name:var(--font-cormorant)] text-[clamp(34px,4.6vw,56px)] font-semibold leading-[1.12] mt-4 mb-3.5 max-w-[760px]">
-              Every craft your home deserves, <em className="italic text-[#a4532f]">under one signature</em>
+            <h1 className="font-[family-name:var(--font-cormorant)] text-[clamp(36px,4.8vw,60px)] font-light leading-[1.08] mt-4 mb-3.5 max-w-[780px]">
+              Every craft your residence deserves, <em className="italic text-[#a4532f]">under one signature</em>
             </h1>
-            <p className="text-[#7a6f60] text-[16px] font-light max-w-[620px]">
-              From single rooms to complete turnkey residences — {cleanName || 'our studio'} designs, builds and styles
-              across {city}.
+            <p className="text-[#7a6f60] text-[16px] font-light max-w-[640px]">
+              From bespoke room transformations to full turnkey architectural residences — {cleanName || 'our studio'} designs, builds, and styles across {city}.
             </p>
           </Reveal>
         </div>
       </section>
 
+      {/* SCOPE TIERS */}
+      <section className="py-20 bg-[#fbf8f1] border-y border-[#221c14]/12">
+        <div className="max-w-[1240px] mx-auto px-[30px]">
+          <Reveal className="text-center max-w-xl mx-auto mb-14">
+            <div className="inline-flex items-center gap-3 text-[11.5px] font-semibold tracking-[0.3em] uppercase text-[#a4532f] before:content-[''] before:w-8 before:h-px before:bg-[#a4532f] after:content-[''] after:w-8 after:h-px after:bg-[#a4532f]">
+              Scope Framework
+            </div>
+            <h2 className="font-[family-name:var(--font-cormorant)] text-[clamp(30px,4vw,48px)] font-semibold leading-[1.08] mt-3">
+              Curated engagement tiers
+            </h2>
+          </Reveal>
+
+          <div className="grid lg:grid-cols-3 gap-8">
+            {SCOPE_TIERS.map((tier, idx) => (
+              <Reveal key={tier.name} delay={idx * 80}>
+                <div className={`p-8 sm:p-9 h-full flex flex-col justify-between border transition-all ${
+                  idx === 1
+                    ? 'bg-[#17130f] text-white border-[#b08d4f] shadow-xl relative'
+                    : 'bg-white text-[#17130f] border-[#221c14]/12 hover:border-[#a4532f]'
+                }`}>
+                  {idx === 1 && (
+                    <span className="absolute -top-3 right-6 bg-[#a4532f] text-white text-[10px] tracking-widest uppercase px-3 py-1 font-semibold">
+                      {tier.tag}
+                    </span>
+                  )}
+                  <div>
+                    <span className={`text-[11px] tracking-widest uppercase block mb-2 font-semibold ${idx === 1 ? 'text-[#d9c49a]' : 'text-[#a4532f]'}`}>
+                      {tier.tag}
+                    </span>
+                    <h3 className="font-[family-name:var(--font-cormorant)] text-[24px] font-semibold mb-3">
+                      {tier.name}
+                    </h3>
+                    <p className={`text-[13.5px] font-light leading-relaxed mb-6 pb-5 border-b ${idx === 1 ? 'text-white/75 border-white/15' : 'text-[#7a6f60] border-[#221c14]/10'}`}>
+                      {tier.desc}
+                    </p>
+
+                    <ul className="grid gap-2.5 mb-8">
+                      {tier.inclusions.map((inc) => (
+                        <li key={inc} className="flex items-start gap-2.5 text-[13px] font-light">
+                          <Check className={`w-4 h-4 shrink-0 mt-0.5 ${idx === 1 ? 'text-[#d9c49a]' : 'text-[#a4532f]'}`} />
+                          <span>{inc}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+
+                  <Link
+                    href={`${basePath}/contact`}
+                    className={`inline-flex items-center justify-center gap-2 py-3.5 px-6 text-[12px] tracking-widest uppercase font-semibold transition-colors text-center ${
+                      idx === 1
+                        ? 'bg-[#a4532f] text-white hover:bg-[#854021]'
+                        : 'bg-transparent text-[#17130f] border border-[#17130f] hover:bg-[#17130f] hover:text-white'
+                    }`}
+                  >
+                    Discuss This Tier <ArrowRight className="w-3.5 h-3.5" />
+                  </Link>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* SERVICES */}
-      <section className="py-[clamp(48px,6vw,80px)] bg-[#fbf8f1]">
+      <section className="py-[clamp(64px,7vw,96px)] bg-white">
         <div className="max-w-[1240px] mx-auto px-[30px] flex flex-col gap-[clamp(64px,7vw,96px)]">
           {services.map((svc, idx) => (
             <Reveal key={svc.title}>
@@ -146,41 +267,58 @@ export default async function Template4Services({ params }: PageProps) {
         </div>
       </section>
 
-      {/* SIGNATURE SERIES */}
-      <section className="py-24">
+      {/* SERIES THEMES */}
+      <section className="py-24 bg-[#fbf8f1] border-t border-[#221c14]/12">
         <div className="max-w-[1240px] mx-auto px-[30px]">
-          <Reveal>
+          <Reveal className="mb-12">
             <div className="flex items-center gap-3 text-[11.5px] font-semibold tracking-[0.3em] uppercase text-[#a4532f] before:content-[''] before:w-8 before:h-px before:bg-[#a4532f]">
-              The Signature Series
+              Signature Series
             </div>
-            <h2 className="font-[family-name:var(--font-cormorant)] text-[clamp(30px,4vw,46px)] font-semibold leading-[1.12] mt-4 mb-8">
-              Pick a world, <em className="italic text-[#a4532f]">make it yours</em>
+            <h2 className="font-[family-name:var(--font-cormorant)] text-[clamp(30px,4vw,46px)] font-semibold leading-[1.1] mt-3">
+              Living themes tailored for you
             </h2>
-            <SeriesScroll themes={themes} collection="The Signature Series" />
+          </Reveal>
+          <Reveal>
+            <SeriesScroll themes={themes} collection={basePath} />
+          </Reveal>
+        </div>
+      </section>
+
+      <PageNarrative page="services" studioName={cleanName} city={city} />
+
+      {/* FAQ */}
+      <section className="py-24 bg-white border-t border-[#221c14]/12">
+        <div className="max-w-[860px] mx-auto px-[30px]">
+          <Reveal className="text-center mb-12">
+            <div className="inline-flex items-center gap-3 text-[11.5px] font-semibold tracking-[0.3em] uppercase text-[#a4532f] before:content-[''] before:w-8 before:h-px before:bg-[#a4532f] after:content-[''] after:w-8 after:h-px after:bg-[#a4532f]">
+              Service FAQ
+            </div>
+            <h2 className="font-[family-name:var(--font-cormorant)] text-[clamp(30px,4vw,48px)] font-semibold leading-[1.08] mt-3">
+              Questions on scope &amp; craftsmanship
+            </h2>
+          </Reveal>
+
+          <Reveal>
+            <FAQAccordion items={servicesFaqs} />
           </Reveal>
         </div>
       </section>
 
       {/* CTA */}
-      <section className="pb-24">
-        <div className="max-w-[1240px] mx-auto px-[30px]">
-          <Reveal>
-            <div className="bg-[#17130f] text-white px-8 py-14 sm:px-14 text-center">
-              <h2 className="font-[family-name:var(--font-cormorant)] text-[clamp(28px,3.6vw,44px)] font-semibold leading-[1.12] mb-4">
-                Not sure where to <em className="italic text-[#d9c49a]">begin?</em>
-              </h2>
-              <p className="text-white/75 text-[15px] font-light mb-8 max-w-[520px] mx-auto">
-                Start with a free consultation. We&apos;ll walk your floor plan together and map what your home needs — no
-                commitment.
-              </p>
-              <Link
-                href={`${basePath}/contact`}
-                className="inline-flex items-center justify-center gap-2.5 px-8 py-4 text-[13px] font-semibold tracking-[0.14em] uppercase bg-[#b08d4f] text-[#17130f] hover:bg-[#c5a266] hover:-translate-y-0.5 hover:shadow-[0_14px_28px_rgba(176,141,79,0.3)] transition-all duration-300"
-              >
-                Book a Private Consultation
-              </Link>
-            </div>
-          </Reveal>
+      <section className="py-24 bg-[#17130f] text-white text-center">
+        <div className="max-w-[720px] mx-auto px-[30px]">
+          <h2 className="font-[family-name:var(--font-cormorant)] text-[clamp(30px,4vw,48px)] font-light mb-4">
+            Not sure where to begin?
+          </h2>
+          <p className="text-white/75 text-[16px] font-light mb-8">
+            Tell us about your residence — we&rsquo;ll map the right architectural scope in one free session.
+          </p>
+          <Link
+            href={`${basePath}/contact`}
+            className="inline-flex items-center gap-2.5 bg-[#a4532f] text-white text-[12.5px] font-semibold tracking-[0.18em] uppercase px-8 py-4 hover:bg-[#854021] transition-colors"
+          >
+            Request Free Consultation
+          </Link>
         </div>
       </section>
     </div>

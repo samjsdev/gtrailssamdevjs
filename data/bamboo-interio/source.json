@@ -1,0 +1,63 @@
+{
+  "clinic": {
+    "name": "Bamboo Interio",
+    "slug": "bamboo-interio",
+    "tagline": "Thoughtful Interiors for Everyday Living",
+    "description": "Welcome to Bamboo Interio. We create refined, functional interiors tailored to your lifestyle, budget, and space.",
+    "address": {
+      "full": "Plaza Pristine Acres Phase 2, Acres II, Nesamani Nagar, Perumbakkam, Chennai, Perumbakkam, Tamil Nadu 600100",
+      "area": "",
+      "city": "Chennai",
+      "state": "Perumbakkam",
+      "country": "India"
+    },
+    "contact": {
+      "phone": "09566155447",
+      "website": "http://www.bamboointerio.com/",
+      "googleMapsUrl": "https://www.google.com/maps/place/Bamboo+Interio/data=!4m7!3m6!1s0x3a525bcb0289fc2f:0x767d3d8255413d49!8m2!3d12.8966196!4d80.1953524!16s%2Fg%2F11vpwg1rk5!19sChIJL_yJAstbUjoRST1BVYI9fXY?authuser=0&hl=en&rclk=1"
+    },
+    "mapEmbedUrl": "https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d3000!2d80.1953524!3d12.8966196!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sin!4v1"
+  },
+  "business": {
+    "rating": "",
+    "reviewCount": "",
+    "timings": [],
+    "services": [
+      "Residential Interior Design",
+      "Modular Kitchen Design",
+      "Living Room Styling",
+      "Bedroom Makeovers",
+      "Space Planning",
+      "Custom Furniture"
+    ],
+    "highlights": [
+      "Personalized design concepts",
+      "Material and finish guidance",
+      "Transparent project planning",
+      "End-to-end execution support"
+    ]
+  },
+  "doctor": {
+    "name": "Bamboo Studio Team",
+    "images": [],
+    "experience": "5+ years",
+    "specialization": "Interior Design & Turnkey Execution"
+  },
+  "reviews": [],
+  "media": {
+    "clinicImages": [],
+    "treatmentImages": [],
+    "otherImages": []
+  },
+  "overrides": {
+    "doctorName": "",
+    "doctorImages": [],
+    "extraImages": []
+  },
+  "meta": {
+    "generatedAt": "2026-08-17T11:32:00.867Z",
+    "source": "google_maps",
+    "gbpUrl": "https://www.google.com/maps/place/Bamboo+Interio/data=!4m7!3m6!1s0x3a525bcb0289fc2f:0x767d3d8255413d49!8m2!3d12.8966196!4d80.1953524!16s%2Fg%2F11vpwg1rk5!19sChIJL_yJAstbUjoRST1BVYI9fXY?authuser=0&hl=en&rclk=1",
+    "updatedAt": "2026-08-17T11:32:00.870Z"
+  }
+}

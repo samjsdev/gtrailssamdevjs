@@ -1,6 +1,6 @@
 'use client';
 
-import { ReactNode, useEffect, useRef, useState } from 'react';
+import { ReactNode, useEffect, useRef } from 'react';
 
 interface RevealProps {
   children: ReactNode;
@@ -10,15 +10,19 @@ interface RevealProps {
 
 export default function Reveal({ children, delay = 0, className = '' }: RevealProps) {
   const ref = useRef<HTMLDivElement>(null);
-  const [visible, setVisible] = useState(false);
 
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
 
+    const reveal = () => {
+      el.style.opacity = '1';
+      el.style.transform = 'none';
+    };
+
     const rect = el.getBoundingClientRect();
     if (rect.top < window.innerHeight * 0.92 && rect.bottom > 0) {
-      setVisible(true);
+      reveal();
       return;
     }
 
@@ -26,7 +30,7 @@ export default function Reveal({ children, delay = 0, className = '' }: RevealPr
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            setVisible(true);
+            reveal();
             io.unobserve(entry.target);
           }
         });
@@ -42,8 +46,8 @@ export default function Reveal({ children, delay = 0, className = '' }: RevealPr
       ref={ref}
       className={className}
       style={{
-        opacity: visible ? 1 : 0,
-        transform: visible ? 'none' : 'translateY(30px)',
+        opacity: 0,
+        transform: 'translateY(30px)',
         transition: `opacity .85s ease ${delay}ms, transform .85s ease ${delay}ms`,
       }}
     >

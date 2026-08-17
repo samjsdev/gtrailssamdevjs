@@ -1,9 +1,7 @@
 import { NextResponse } from 'next/server';
-import { scrapeGoogleBusinessProfile } from '@/lib/scraper';
-import { processAndSaveImage } from '@/lib/imageProcessor';
+import { scrapeBusinessDetails } from '@/lib/scraper';
 import { createSourceConfig } from '@/lib/dataBuilder';
 import { requireAdmin } from '@/lib/adminAuth';
-// Build trigger imports removed to speed up intake
 import path from 'path';
 import fs from 'fs/promises';
 
@@ -15,7 +13,6 @@ export async function POST(req: Request) {
     const body = await req.json();
     const rawUrl = body.gbpUrl || body.url || '';
     const gbpUrl = typeof rawUrl === 'string' ? rawUrl.trim() : '';
-    const photosUrl = typeof body.photosUrl === 'string' ? body.photosUrl.trim() : '';
     const forceRefresh = Boolean(body.forceRefresh);
 
     if (!gbpUrl || !/(google\.[^/]+\/maps|maps\.app\.goo\.gl|g\.page|maps\.google\.|g\.co|google\.[^/]+\/search|goo\.gl)/i.test(gbpUrl)) {
@@ -23,54 +20,21 @@ export async function POST(req: Request) {
     }
 
     // 1. Extract a simple slug from the URL or query params
-    // Ex: https://www.google.com/maps/place/Example+Design+Studio/...
     const match = gbpUrl.match(/\/place\/([^\/]+)/);
     const rawName = match ? decodeURIComponent(match[1]).replace(/\+/g, ' ') : 'interior-design-website';
     let slug = rawName.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
 
     const dataPath = path.join(process.cwd(), 'data', slug);
 
-    const MIN_CACHED_FIVE_STAR_REVIEWS = 5;
-    const MIN_CACHED_IMAGES = 8;
-
-    // Reuse cache only when this is not an explicit photo-refresh request.
-    const shouldUseCache = !forceRefresh && !photosUrl;
+    // Reuse cache only when this is not an explicit refresh request.
+    const shouldUseCache = !forceRefresh;
     if (shouldUseCache) {
       try {
         const sourcePath = path.join(dataPath, 'source.json');
         const stats = await fs.stat(sourcePath);
         if (stats.isFile()) {
           const existing = JSON.parse(await fs.readFile(sourcePath, 'utf-8'));
-          const existingReviews = Array.isArray(existing?.reviews)
-            ? existing.reviews.filter((review: unknown) => {
-                if (!review || typeof review !== 'object') return false;
-                const item = review as { text?: unknown; rating?: unknown };
-                const text = typeof item.text === 'string' ? item.text.trim() : '';
-                const numericRating = Number(item.rating);
-                return text.length > 0 && Number.isFinite(numericRating) && numericRating >= 5;
-              })
-            : [];
-
-          const existingMedia = existing?.media && typeof existing.media === 'object'
-            ? existing.media as {
-                clinicImages?: unknown;
-                treatmentImages?: unknown;
-                otherImages?: unknown;
-              }
-            : {};
-
-          const existingImageCount = [
-            existingMedia.clinicImages,
-            existingMedia.treatmentImages,
-            existingMedia.otherImages,
-          ].reduce<number>((total, value) => {
-            return total + (Array.isArray(value) ? value.length : 0);
-          }, 0);
-
-          if (
-            existingReviews.length >= MIN_CACHED_FIVE_STAR_REVIEWS &&
-            existingImageCount >= MIN_CACHED_IMAGES
-          ) {
+          if (existing?.clinic?.name) {
             return NextResponse.json({ slug, cached: true, websiteGenerated: false });
           }
         }
@@ -82,8 +46,8 @@ export async function POST(req: Request) {
     await fs.mkdir(dataPath, { recursive: true });
     await fs.mkdir(path.join(dataPath, 'images'), { recursive: true });
 
-    // 2. Scrape data
-    const scrapedData = await scrapeGoogleBusinessProfile(gbpUrl, photosUrl || undefined);
+    // 2. Scrape details (Phase 1: name, address, phone, website, 5-star reviews, embed map)
+    const scrapedData = await scrapeBusinessDetails(gbpUrl);
 
     // Better slug from actual name
     if (scrapedData.name) {
@@ -94,48 +58,21 @@ export async function POST(req: Request) {
       }
     }
 
-    const activeDataPath = path.join(process.cwd(), 'data', slug);
-    const activeImagesPath = path.join(activeDataPath, 'images');
-    await fs.rm(activeImagesPath, { recursive: true, force: true });
-    await fs.mkdir(activeImagesPath, { recursive: true });
-
-    // 3. Process images in parallel (up to 12)
-    type MediaCategory = 'clinicImages' | 'treatmentImages' | 'otherImages';
-    const mediaObj: Record<MediaCategory, string[]> = {
-      clinicImages: [] as string[],
-      treatmentImages: [] as string[],
-      otherImages: [] as string[],
-    };
-
-    // Limit to around 150 images to avoid Supabase storage upload gateway timeouts
-    const imageUrlsParam = scrapedData.imageUrls.slice(0, 150);
-
-    for (let i = 0; i < imageUrlsParam.length; i++) {
-        const url = imageUrlsParam[i];
-      let category: MediaCategory = 'otherImages';
-        
-        // Naive classification for the prompt
-        if (i < 4) category = 'clinicImages';
-        else if (i < 8) category = 'treatmentImages';
-        
-        try {
-            const localUri = await processAndSaveImage(url, slug, category, i);
-            if (localUri) {
-             mediaObj[category].push(localUri);
-            }
-        } catch (imgError) {
-            console.error('Image upload skip error', imgError);
-        }
-    }
-
-    // 4. Generate source.json
+    // 3. Generate source.json with business details (Images are scraped separately in Phase 2)
     await createSourceConfig(slug, { 
       name: scrapedData.name, 
       rating: scrapedData.rating, 
       reviewCount: scrapedData.reviewCount, 
       address: scrapedData.address, 
       phone: scrapedData.phone,
-      media: mediaObj,
+      website: scrapedData.website,
+      googleMapsUrl: gbpUrl,
+      gbpUrl: gbpUrl,
+      media: {
+        clinicImages: [],
+        treatmentImages: [],
+        otherImages: [],
+      },
       reviews: scrapedData.reviews,
       mapEmbedUrl: scrapedData.mapEmbedUrl,
     });
@@ -148,3 +85,4 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: message }, { status: 500 });
   }
 }
+

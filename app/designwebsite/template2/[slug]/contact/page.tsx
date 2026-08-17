@@ -1,12 +1,37 @@
 import { readSourceConfig } from '@/lib/dataBuilder';
 import { notFound } from 'next/navigation';
-import { MapPin, Phone, Clock, MessageCircle } from 'lucide-react';
+import { MapPin, Phone, Clock, MessageCircle, Sparkles, CheckCircle2, ShieldCheck } from 'lucide-react';
 import { cleanClinicName } from '@/lib/copyCleaner';
 import { INTERIOR_FAQS } from '@/lib/interiorContent';
 import Reveal from '../Reveal';
+import PageNarrative from '../PageNarrative';
 import LeadForm from '../LeadForm';
+import FAQAccordion, { FAQItem } from '../FAQAccordion';
 
 type PageProps = { params: Promise<{ slug: string }> };
+
+const CONSULTATION_BLUEPRINT = [
+  {
+    step: '1',
+    title: 'Instant Discovery Call',
+    desc: 'Our interior consultant reaches out within 2 working hours to discuss your floor plan and timeline.',
+  },
+  {
+    step: '2',
+    title: '45-Min Studio Walkthrough',
+    desc: 'Meet your interior designer, feel physical material samples, and explore 3D layout options.',
+  },
+  {
+    step: '3',
+    title: 'Itemised BOQ & 3D Review',
+    desc: 'Receive exact room-by-room quotations with zero hidden surprises or price escalation clauses.',
+  },
+  {
+    step: '4',
+    title: '45-Day Punctual Delivery',
+    desc: 'Factory-manufactured modular installation backed by weekly WhatsApp photo updates and 10-year warranty.',
+  },
+];
 
 export default async function Template2Contact({ params }: PageProps) {
   const { slug } = await params;
@@ -30,9 +55,23 @@ export default async function Template2Contact({ params }: PageProps) {
 
   const cards = [
     { icon: MapPin, title: 'Visit the Studio', body: address || `${city}, Tamil Nadu`, href: null },
-    ...(phone ? [{ icon: Phone, title: 'Call Us', body: phone, href: `tel:${phone}` }] : []),
-    { icon: MessageCircle, title: 'WhatsApp', body: 'Usually replies in minutes', href: waLink },
-    { icon: Clock, title: 'Open Hours', body: 'Mon – Sat, 10 AM – 7 PM', href: null },
+    ...(phone ? [{ icon: Phone, title: 'Direct Helpline', body: phone, href: `tel:${phone}` }] : []),
+    { icon: MessageCircle, title: 'WhatsApp Chat', body: 'Chat directly with a designer', href: waLink },
+    { icon: Clock, title: 'Studio Hours', body: 'Mon – Sat: 10 AM – 7:30 PM', href: null },
+  ];
+
+  const contactFaqs: FAQItem[] = INTERIOR_FAQS.slice(0, 6).map((faq) => ({
+    q: faq.q,
+    a: faq.a,
+    tag: 'FAQ',
+  }));
+
+  const neighborhoods = [
+    `North ${city}`,
+    `South ${city}`,
+    `Central ${city}`,
+    `Suburban Residential Townships`,
+    `Premium Gated Communities`,
   ];
 
   return (
@@ -42,16 +81,16 @@ export default async function Template2Contact({ params }: PageProps) {
         <div className="max-w-[1240px] mx-auto grid lg:grid-cols-[1.05fr_0.95fr] gap-[clamp(36px,5vw,64px)] items-start">
           <Reveal>
             <span className="inline-flex items-center gap-2.5 bg-white border border-[#1b1b1b]/10 rounded-full px-4.5 py-2 text-[12px] font-bold tracking-[0.14em] uppercase text-[#0e5a43] mb-6 before:content-[''] before:w-2 before:h-2 before:rounded-full before:bg-[#f2a007]">
-              Design consultation
+              Design Consultation
             </span>
             <h1 className="font-[family-name:var(--font-bricolage)] font-bold text-[clamp(34px,4.6vw,58px)] leading-[1.06] tracking-[-0.02em]">
               Your dream home is <mark className="bg-[linear-gradient(transparent_62%,#fdeecb_62%)] text-[#0e5a43] px-0.5">one conversation away</mark>
             </h1>
             <p className="mt-5 max-w-[520px] text-[#6b6660] text-[16.5px] leading-[1.7] font-medium mb-8">
-              Designs, 3D views and an exact quote for your floor plan. A designer (not a call centre) will reach out.
+              Floor plan review, 3D design direction, and an exact itemised quote for your home in {city}. A designer (never a call center) will assist you.
             </p>
 
-            <div className="grid sm:grid-cols-2 gap-4">
+            <div className="grid sm:grid-cols-2 gap-4 mb-8">
               {cards.map((card) => {
                 const Icon = card.icon;
                 const inner = (
@@ -60,7 +99,7 @@ export default async function Template2Contact({ params }: PageProps) {
                       <Icon className="w-5 h-5 text-[#f2a007]" strokeWidth={2} />
                     </span>
                     <span>
-                      <b className="font-[family-name:var(--font-bricolage)] font-bold text-[16px] block mb-0.5">{card.title}</b>
+                      <b className="font-[family-name:var(--font-bricolage)] font-bold text-[16px] block mb-0.5 text-[#1b1b1b]">{card.title}</b>
                       <span className="text-[13px] text-[#6b6660] font-semibold leading-snug">{card.body}</span>
                     </span>
                   </div>
@@ -74,6 +113,20 @@ export default async function Template2Contact({ params }: PageProps) {
                 );
               })}
             </div>
+
+            {/* Coverage badge */}
+            <div className="bg-white border border-[#1b1b1b]/10 rounded-2xl p-5">
+              <b className="font-[family-name:var(--font-bricolage)] text-[15px] text-[#1b1b1b] block mb-2">
+                We provide free site visits across {city}:
+              </b>
+              <div className="flex flex-wrap gap-2">
+                {neighborhoods.map((n) => (
+                  <span key={n} className="text-[11.5px] font-bold bg-[#faf7f1] text-[#0e5a43] px-3 py-1 rounded-full border border-[#0e5a43]/15">
+                    {n}
+                  </span>
+                ))}
+              </div>
+            </div>
           </Reveal>
 
           <Reveal delay={120} className="lg:sticky lg:top-28">
@@ -82,8 +135,42 @@ export default async function Template2Contact({ params }: PageProps) {
         </div>
       </section>
 
+      {/* ROADMAP */}
+      <section className="px-6 py-[clamp(64px,7vw,96px)] bg-white border-y border-[#1b1b1b]/10">
+        <div className="max-w-[1240px] mx-auto">
+          <Reveal className="text-center max-w-xl mx-auto mb-12">
+            <span className="inline-flex items-center gap-2.5 text-[12px] font-extrabold tracking-[0.28em] uppercase text-[#0e5a43] mb-3 before:content-[''] before:w-7 before:h-[2.5px] before:rounded-full before:bg-[#f2a007] after:content-[''] after:w-7 after:h-[2.5px] after:rounded-full after:bg-[#f2a007]">
+              What to Expect
+            </span>
+            <h2 className="font-[family-name:var(--font-bricolage)] font-bold text-[clamp(28px,3.8vw,46px)] leading-[1.08] tracking-[-0.02em]">
+              The consultation blueprint
+            </h2>
+          </Reveal>
+
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {CONSULTATION_BLUEPRINT.map((b) => (
+              <Reveal key={b.step}>
+                <div className="bg-[#faf7f1] border border-[#1b1b1b]/10 rounded-[20px] p-6 h-full flex flex-col justify-between">
+                  <div>
+                    <span className="w-9 h-9 rounded-xl bg-[#0e5a43] text-white font-bold text-[14px] grid place-items-center mb-4">
+                      {b.step}
+                    </span>
+                    <h3 className="font-[family-name:var(--font-bricolage)] font-bold text-[18px] text-[#1b1b1b] mb-2">
+                      {b.title}
+                    </h3>
+                    <p className="text-[13px] text-[#6b6660] font-medium leading-[1.65]">
+                      {b.desc}
+                    </p>
+                  </div>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* MAP */}
-      <section id="map" className="px-6 py-[clamp(56px,6vw,88px)] bg-white">
+      <section id="map" className="px-6 py-[clamp(56px,6vw,88px)] bg-[#faf7f1]">
         <div className="max-w-[1240px] mx-auto">
           <Reveal>
             <div className="rounded-[26px] overflow-hidden border border-[#1b1b1b]/10 shadow-[0_24px_60px_rgba(27,27,27,0.08)]">
@@ -103,28 +190,22 @@ export default async function Template2Contact({ params }: PageProps) {
         </div>
       </section>
 
+      <PageNarrative page="contact" studioName={cleanName} city={city} />
+
       {/* FAQ */}
-      <section id="faq" className="px-6 py-[clamp(64px,7vw,96px)] bg-[#faf7f1]">
-        <div className="max-w-[820px] mx-auto">
-          <Reveal>
-            <h2 className="font-[family-name:var(--font-bricolage)] font-bold text-[clamp(28px,3.6vw,46px)] tracking-[-0.02em] text-center mb-10">
-              Before you ask
+      <section id="faq" className="px-6 py-[clamp(64px,7vw,96px)] bg-white border-t border-[#1b1b1b]/10">
+        <div className="max-w-[900px] mx-auto">
+          <Reveal className="text-center mb-12">
+            <span className="inline-flex items-center gap-2.5 text-[12px] font-extrabold tracking-[0.28em] uppercase text-[#0e5a43] mb-3 before:content-[''] before:w-7 before:h-[2.5px] before:rounded-full before:bg-[#f2a007] after:content-[''] after:w-7 after:h-[2.5px] after:rounded-full after:bg-[#f2a007]">
+              Got Questions?
+            </span>
+            <h2 className="font-[family-name:var(--font-bricolage)] font-bold text-[clamp(28px,3.8vw,46px)] leading-[1.08] tracking-[-0.02em] mb-3">
+              Common consultation questions
             </h2>
           </Reveal>
+
           <Reveal>
-            {INTERIOR_FAQS.map((faq, idx) => (
-              <details
-                key={idx}
-                open={idx === 0}
-                className="group bg-white border border-[#1b1b1b]/10 rounded-2xl mb-3 overflow-hidden open:border-[#0e5a43] transition-colors duration-300"
-              >
-                <summary className="cursor-pointer list-none px-6.5 py-5.5 font-bold text-[15.5px] flex justify-between items-center gap-4 [&::-webkit-details-marker]:hidden">
-                  {faq.q}
-                  <span className="font-[family-name:var(--font-bricolage)] text-[24px] font-semibold text-[#0e5a43] transition-transform duration-300 group-open:rotate-45 shrink-0">+</span>
-                </summary>
-                <p className="px-6.5 pb-6 text-[#6b6660] text-[14.5px] font-medium leading-[1.75]">{faq.a}</p>
-              </details>
-            ))}
+            <FAQAccordion items={contactFaqs} />
           </Reveal>
         </div>
       </section>

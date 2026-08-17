@@ -1,19 +1,18 @@
 import { readSourceConfig } from '@/lib/dataBuilder';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
-import { ArrowRight, Factory, ClipboardCheck, ShieldCheck, CreditCard, MessageCircle, Phone } from 'lucide-react';
+import { ArrowRight, ClipboardCheck, ShieldCheck, Check, X, Clock, Sparkles, Layers } from 'lucide-react';
 import { cleanClinicName, cleanClinicDescription } from '@/lib/copyCleaner';
 import {
   DEFAULT_INTERIOR_REVIEWS,
   DEFAULT_INTERIOR_SERVICES,
-  DEFAULT_INTERIOR_HIGHLIGHTS,
-  INTERIOR_FAQS,
   getInteriorServiceData,
   previewMedia,
 } from '@/lib/interiorContent';
 import Reveal from './Reveal';
 import LeadForm from './LeadForm';
-import Estimator from './Estimator';
+import BeforeAfter from './BeforeAfter';
+import FAQAccordion, { FAQItem } from './FAQAccordion';
 
 type PageProps = { params: Promise<{ slug: string }> };
 
@@ -35,12 +34,41 @@ const PROJECT_FALLBACK_IMAGES = [
 ];
 
 const PROCESS = [
-  { num: 1, title: 'Say hello', desc: 'Book a consultation — at the studio, your home, or online.' },
-  { num: 2, title: 'Dream together', desc: 'Your designer maps your lifestyle, taste and budget over chai.' },
-  { num: 3, title: 'See it in 3D', desc: 'Photorealistic designs + itemised quote, revised till you smile.' },
-  { num: 4, title: 'Build begins', desc: 'Precision production while site prep runs in parallel.' },
-  { num: 5, title: 'Install & checks', desc: 'Careful installation, detailed inspection, deep clean.' },
-  { num: 6, title: 'Move in, smile', desc: 'Keys, warranty support and a care team on call after handover.' },
+  { num: 1, title: 'Say Hello', desc: 'Book a free consultation — at our design studio, your residence, or online.' },
+  { num: 2, title: 'Spatial Mapping', desc: 'Your interior designer maps your daily routines, storage needs, and budget over tea.' },
+  { num: 3, title: '3D Views & BOQ', desc: 'Photorealistic 3D designs and an itemised quote, revised until you are 100% satisfied.' },
+  { num: 4, title: 'Factory Production', desc: 'Precision CNC automated woodworking while on-site civil prep runs in parallel.' },
+  { num: 5, title: 'White-Glove Install', desc: 'Dust-free modular installation, 140-point quality audit, and deep-clean styling.' },
+  { num: 6, title: 'Handover & Warranty', desc: 'Key handover with a 10-year structural warranty certificate and dedicated post-care support.' },
+];
+
+const COMPARISON_POINTS = [
+  { feature: 'Quotation Pricing', studio: '100% Itemised BOQ with 0% Cost Overrun Lock', contractor: 'Vague estimates with frequent mid-project cost spikes' },
+  { feature: 'Delivery Timeline', studio: 'Guaranteed 45-Day Handover with penalty clause', contractor: 'Unpredictable delays extending 3 to 6 months' },
+  { feature: 'Woodwork Quality', studio: 'Calibrated BWP Marine Ply with CNC factory edging', contractor: 'Manual on-site cuts with jagged edges and glue fumes' },
+  { feature: 'Hardware & Fittings', studio: 'Certified Blum & Häfele with up to lifetime warranty', contractor: 'Unbranded local fittings that loosen in 12 months' },
+  { feature: 'Design Support', studio: 'Photoreal 3D walkthroughs & dedicated architect', contractor: 'Basic sketches on paper with zero visual clarity' },
+];
+
+const CONSULTATION_OUTPUTS = [
+  {
+    icon: ClipboardCheck,
+    number: '01',
+    title: 'A sharper brief',
+    desc: 'We turn loose ideas into practical priorities: who uses each room, what needs to be stored, and where the budget should work hardest.',
+  },
+  {
+    icon: Layers,
+    number: '02',
+    title: 'A clearer layout direction',
+    desc: 'You can see the opportunities in your floor plan before committing to cabinetry, electrical points, or expensive civil changes.',
+  },
+  {
+    icon: Sparkles,
+    number: '03',
+    title: 'A finish language that feels like you',
+    desc: 'We align colours, textures, lighting mood, and reference images into one consistent point of view for your future home.',
+  },
 ];
 
 export default async function Template3Home({ params }: PageProps) {
@@ -50,7 +78,7 @@ export default async function Template3Home({ params }: PageProps) {
   const data = await readSourceConfig(slug, 'template3');
   if (!data) return notFound();
 
-  const { clinic, doctor, business } = data;
+  const { clinic, business } = data;
 
   const media = previewMedia(data.media);
 
@@ -60,15 +88,17 @@ export default async function Template3Home({ params }: PageProps) {
   const phone = clinic.contact?.phone || '';
   const waPhone = phone.replace(/\D/g, '') || '919751396117';
   const rating = business.rating || '4.9';
-  const reviewCount = business.reviewCount || '';
-  const experienceYears = doctor?.experience?.replace(/\D/g, '') || '5';
+  const reviewCount = business.reviewCount || '50';
 
   const heroImage =
     media.clinicImages?.[0] ||
     '/images/stock/90879216.webp';
+  const baImage =
+    media.treatmentImages?.[0] ||
+    media.clinicImages?.[1] ||
+    '/images/stock/284d6d29.webp';
 
   const servicesList: string[] = business.services?.length ? business.services : DEFAULT_INTERIOR_SERVICES;
-  const highlights: string[] = business.highlights?.length ? business.highlights : DEFAULT_INTERIOR_HIGHLIGHTS;
   const reviews = data.reviews?.length ? data.reviews : DEFAULT_INTERIOR_REVIEWS;
 
   const offerings = servicesList.slice(0, 5).map((svc: string, idx: number) => {
@@ -89,16 +119,32 @@ export default async function Template3Home({ params }: PageProps) {
     (img: string, idx: number) => ({
       img,
       tag: ['Contemporary', 'Scandinavian', 'Minimal', 'Modern', 'Luxe', 'Classic'][idx % 6],
-      title: `Project ${String(idx + 1).padStart(2, '0')}`,
-      sub: `${city} · Full home interiors`,
+      title: `Project Residence ${String(idx + 1).padStart(2, '0')}`,
+      sub: `${city} · Turnkey interiors by ${cleanName || 'our studio'}`,
     })
   );
 
-  const WHY_CARDS = [
-    { icon: Factory, title: highlights[0] || 'Personalized design concepts', desc: 'Concepts built from your routines and floor plan — never a template look.' },
-    { icon: ClipboardCheck, title: highlights[1] || 'Material and finish guidance', desc: 'Honest advice on ply, laminates, hardware and what actually lasts.' },
-    { icon: ShieldCheck, title: highlights[2] || 'Transparent project planning', desc: 'Itemised quotes and week-by-week schedules, shared before work starts.' },
-    { icon: CreditCard, title: highlights[3] || 'End-to-end execution support', desc: 'One accountable team from the first sketch to the final quality check.' },
+  const homeFaqs: FAQItem[] = [
+    {
+      q: `How does ${cleanName || 'your studio'} ensure on-time delivery?`,
+      a: 'We manufacture modular components using automated factory machinery while site prep takes place. This parallel workflow enables us to guarantee 45-day handovers with zero contractor delays.',
+      tag: 'Turnkey Delivery',
+    },
+    {
+      q: 'Can we visit your design studio and touch material samples?',
+      a: `Yes! Our design studio in ${city} features complete material libraries including acrylics, natural veneers, quartz slabs, acoustic fluted panels, and German hardware mechanisms.`,
+      tag: 'Studio Visit',
+    },
+    {
+      q: 'What is included in your 10-year warranty?',
+      a: 'Our 10-year structural warranty covers termite damage, delamination, and bending on all calibrated BWP marine plywood woodwork. Hardware mechanisms carry their respective manufacturer warranties.',
+      tag: 'Warranty',
+    },
+    {
+      q: 'How does the free design consultation work?',
+      a: 'You meet with a senior designer for 45 minutes to review your floor plan, explore style moodboards, and receive an instant transparent cost estimate.',
+      tag: 'Consultation',
+    },
   ];
 
   return (
@@ -107,234 +153,143 @@ export default async function Template3Home({ params }: PageProps) {
       <section id="hero" className="relative min-h-[92vh] flex items-end text-white overflow-hidden">
         <div className="absolute inset-0">
           <img src={heroImage} alt={`${cleanName || 'Studio'} interior`} className="w-full h-full object-cover" fetchPriority="high" />
-          <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(20,14,10,0.35)_0%,rgba(20,14,10,0.55)_45%,rgba(20,14,10,0.92)_100%)]" />
+          <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(20,14,10,0.38)_0%,rgba(20,14,10,0.6)_45%,rgba(20,14,10,0.94)_100%)]" />
         </div>
 
         <div className="relative max-w-[1220px] mx-auto px-7 w-full pt-[120px] pb-[70px] lg:pb-[90px]">
           <div className="grid lg:grid-cols-[1.15fr_0.85fr] gap-12 lg:gap-16 items-end">
             <Reveal>
               <p className="font-[family-name:var(--font-newsreader)] italic text-[clamp(28px,3.5vw,40px)] text-[#f4b942] leading-none mb-4">
-                {cleanName || 'Design Studio'}
+                {cleanName || 'Design Studio'} · {city}
               </p>
-              <h1 className="text-[clamp(40px,5.6vw,68px)] font-extrabold leading-[1.08] tracking-[-0.02em] max-w-[640px]">
+              <h1 className="text-[clamp(40px,5.6vw,68px)] font-extrabold leading-[1.08] tracking-[-0.02em] max-w-[660px]">
                 {clinic.tagline ? (
                   clinic.tagline
                 ) : (
                   <>
-                    Homes that feel like{' '}
-                    <span className="font-[family-name:var(--font-newsreader)] italic font-medium text-[#f4b942]">you.</span>
+                    Uncompromising Quality{' '}
+                    <span className="font-[family-name:var(--font-newsreader)] italic font-medium text-[#f4b942]">In Every Detail.</span>
                   </>
                 )}
               </h1>
-              <p className="mt-5 text-[17px] text-white/85 max-w-[480px] leading-relaxed">
-                {cleanDesc || `Full home interiors designed and built in ${city} — on time, on budget.`}
+              <p className="mt-5 text-[17px] text-white/85 max-w-[500px] leading-relaxed">
+                {cleanDesc || `We exclusively use ISI-certified, premium materials to ensure generational durability. From 3D space planning to factory-precision modular joinery and flawless handover in ${city}.`}
               </p>
               <div className="mt-8 flex flex-wrap gap-3.5">
                 <Link
                   href={`${basePath}/contact`}
-                  className="inline-flex items-center gap-2 bg-[#d8442c] text-white font-extrabold text-[15px] px-7 py-3.5 rounded-xl hover:bg-[#b93320] hover:-translate-y-0.5 transition-all duration-250"
+                  className="inline-flex items-center gap-2 bg-[#d8442c] text-white font-extrabold text-[15px] px-7 py-3.5 rounded-xl hover:bg-[#b93320] hover:-translate-y-0.5 transition-all duration-250 shadow-lg"
                 >
-                  Book consultation
+                  Book Free Consultation
                   <ArrowRight className="w-4 h-4" />
                 </Link>
                 <Link
                   href={`${basePath}/gallery`}
-                  className="inline-flex items-center gap-2 border border-white/35 text-white font-extrabold text-[15px] px-7 py-3.5 rounded-xl hover:bg-white/10 transition-all duration-250"
+                  className="inline-flex items-center gap-2 bg-white/10 text-white font-extrabold text-[15px] px-7 py-3.5 rounded-xl border border-white/20 hover:bg-white/20 transition-all duration-250"
                 >
-                  View our work
+                  View Delivered Homes
                 </Link>
               </div>
             </Reveal>
 
             <Reveal delay={120}>
-              <div className="border-t border-white/25 pt-7 lg:border-t-0 lg:border-l lg:border-white/25 lg:pt-0 lg:pl-10">
-                <p className="text-[12px] font-extrabold tracking-[0.22em] uppercase text-[#f4b942] mb-5">
-                  What to expect
-                </p>
-                <ul className="space-y-4 mb-8">
-                  {[
-                    'Home visit or studio walkthrough',
-                    '3D design direction for your floor plan',
-                    'Itemised quote with clear milestones',
-                  ].map((item) => (
-                    <li key={item} className="flex gap-3 text-[15px] text-white/90 font-semibold leading-snug">
-                      <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-[#f4b942] shrink-0" />
-                      {item}
-                    </li>
-                  ))}
-                </ul>
-                <div className="flex flex-col sm:flex-row lg:flex-col gap-3">
-                  <a
-                    href={`https://wa.me/${waPhone}?text=${encodeURIComponent(`Hi ${cleanName || 'there'}, I'd like to book a design consultation.`)}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center justify-center gap-2 bg-[#25D366] text-[#0b1f14] font-extrabold text-[14px] px-5 py-3.5 rounded-xl hover:brightness-105 transition-all"
-                  >
-                    <MessageCircle className="w-4 h-4" />
-                    WhatsApp us
-                  </a>
-                  {phone && (
-                    <a
-                      href={`tel:${phone}`}
-                      className="inline-flex items-center justify-center gap-2 border border-white/35 text-white font-extrabold text-[14px] px-5 py-3.5 rounded-xl hover:bg-white/10 transition-all"
-                    >
-                      <Phone className="w-4 h-4" />
-                      {phone}
-                    </a>
-                  )}
+              <div className="bg-white/10 backdrop-blur-md border border-white/15 rounded-2xl p-6 sm:p-7">
+                <div className="flex items-center gap-3 mb-4">
+                  <span className="w-10 h-10 rounded-full bg-[#f4b942] text-[#1d1713] font-extrabold grid place-items-center text-[16px]">
+                    ★
+                  </span>
+                  <div>
+                    <b className="text-[17px] font-extrabold block text-white">{rating} Google Rating</b>
+                    <span className="text-[12px] text-white/70">{reviewCount}+ happy homeowners in {city}</span>
+                  </div>
                 </div>
-                <p className="mt-5 text-[13px] text-white/65 font-semibold">
-                  Rated {rating}/5{reviewCount ? ` · ${reviewCount}+ reviews` : ''} in {city}
-                </p>
+                <div className="grid grid-cols-2 gap-4 border-t border-white/15 pt-4 text-[13px] text-white/85">
+                  <div className="flex items-center gap-2">
+                    <Clock className="w-4 h-4 text-[#f4b942]" /> 45-Day Handover
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <ShieldCheck className="w-4 h-4 text-[#f4b942]" /> 10-Year Warranty
+                  </div>
+                </div>
               </div>
             </Reveal>
           </div>
         </div>
       </section>
 
-      {/* STATS BAR */}
-      <section id="stats" className="bg-[#1d1713] text-white py-7 px-7 !border-0">
-        <div className="max-w-[1220px] mx-auto grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-5 text-center">
-          {[
-            { b: `${rating}★`, s: 'Google rating' },
-            { b: `${experienceYears}+ yrs`, s: `In ${city}` },
-            { b: `${servicesList.length}+`, s: 'Services offered' },
-            { b: '3D', s: 'Design previews' },
-            { b: '1', s: 'Accountable team' },
-            { b: '100%', s: 'Itemised quotes' },
-          ].map((stat) => (
-            <div key={stat.s}>
-              <b className="text-[clamp(20px,2.4vw,27px)] font-extrabold text-[#f4b942] block">{stat.b}</b>
-              <span className="text-[11.5px] opacity-75 font-semibold tracking-[0.05em] uppercase">{stat.s}</span>
+      {/* BEFORE & AFTER SHOWCASE */}
+      <section className="py-[clamp(64px,7vw,96px)] px-7 bg-[#fbf7f2]">
+        <div className="max-w-[1220px] mx-auto grid lg:grid-cols-2 gap-11 lg:gap-14 items-center">
+          <Reveal>
+            <div className="flex items-center gap-2.5 text-[12px] font-extrabold tracking-[0.22em] uppercase text-[#d8442c] before:content-[''] before:w-6 before:h-[2.5px] before:rounded before:bg-[#d8442c]">
+              Real Transformation
             </div>
-          ))}
-        </div>
-      </section>
-
-      {/* OFFERINGS */}
-      <section id="offerings" className="py-[clamp(64px,7vw,88px)] px-7">
-        <div className="max-w-[1220px] mx-auto">
-          <Reveal className="flex flex-wrap justify-between items-end gap-7 mb-11">
-            <div>
-              <div className="flex items-center gap-2.5 text-[12px] font-extrabold tracking-[0.22em] uppercase text-[#d8442c] before:content-[''] before:w-6 before:h-[2.5px] before:rounded before:bg-[#d8442c]">
-                One-stop shop
+            <h2 className="text-[clamp(28px,3.6vw,44px)] font-extrabold mt-3.5 mb-4 tracking-[-0.02em]">
+              From raw builder flat to a <span className="font-[family-name:var(--font-newsreader)] italic font-medium text-[#d8442c]">finished sanctuary</span>
+            </h2>
+            <p className="text-[#6d6259] text-[15.5px] leading-relaxed mb-6">
+              See how our spatial planning, acoustic wood panelling, and integrated false ceiling transform an empty concrete box into a warm, luminous home.
+            </p>
+            <div className="grid grid-cols-2 gap-4 mb-7">
+              <div className="bg-white border border-[#241f1a]/8 rounded-xl p-4">
+                <b className="text-[18px] font-extrabold text-[#d8442c] block">45 Days</b>
+                <span className="text-[12px] text-[#6d6259] font-semibold">Total Turnaround</span>
               </div>
-              <h2 className="text-[clamp(28px,3.8vw,44px)] font-extrabold mt-3.5 tracking-[-0.02em]">
-                Everything your home needs, under one roof
-              </h2>
+              <div className="bg-white border border-[#241f1a]/8 rounded-xl p-4">
+                <b className="text-[18px] font-extrabold text-[#d8442c] block">100%</b>
+                <span className="text-[12px] text-[#6d6259] font-semibold">BWP Marine Ply</span>
+              </div>
             </div>
             <Link
               href={`${basePath}/contact`}
-              className="inline-flex items-center justify-center bg-[#1d1713] text-white font-extrabold text-[15px] px-7 py-3.5 rounded-xl hover:bg-black hover:-translate-y-0.5 transition-all duration-250"
+              className="inline-flex items-center gap-2 text-[13px] font-extrabold tracking-wider uppercase text-[#d8442c] border-b-2 border-[#d8442c] pb-1 hover:gap-3 transition-all"
             >
-              Start My Project
+              Get a transformation quote for your flat <ArrowRight className="w-4 h-4" />
             </Link>
           </Reveal>
 
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
-            {offerings.map((offer, idx) => (
-              <Reveal key={offer.title} delay={idx * 50} className={idx > 2 ? 'max-md:hidden' : ''}>
-                <Link href={`${basePath}/services`} className="group relative block rounded-2xl overflow-hidden aspect-[3/4.1]">
-                  <img
-                    src={offer.img}
-                    alt={offer.title}
-                    loading="lazy"
-                    className="absolute inset-0 w-full h-full object-cover transition-transform duration-600 group-hover:scale-[1.08]"
-                  />
-                  <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(29,23,19,0.05)_40%,rgba(29,23,19,0.9))]" />
-                  <div className="absolute bottom-0 left-0 right-0 p-5 z-[2] text-white">
-                    <h3 className="text-[17px] font-extrabold mb-1">{offer.title}</h3>
-                    <p className="text-[12px] text-white/80 leading-[1.45]">{offer.sub}</p>
-                    <span className="mt-3 inline-flex items-center gap-1.5 text-[11.5px] font-extrabold tracking-[0.12em] uppercase text-[#f4b942]">
-                      Explore
-                      <ArrowRight className="w-3.5 h-3.5 transition-transform duration-250 group-hover:translate-x-1.5" strokeWidth={2.4} />
-                    </span>
-                  </div>
-                </Link>
-              </Reveal>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ESTIMATOR */}
-      <section id="estimator" className="py-[clamp(64px,7vw,88px)] px-7 bg-white">
-        <div className="max-w-[1220px] mx-auto">
-          <Reveal>
-            <Estimator contactPath={`${basePath}/contact`} />
+          <Reveal delay={120}>
+            <BeforeAfter image={baImage} caption="Drag slider to compare raw vs styled interior" />
           </Reveal>
         </div>
       </section>
 
-      {/* PROJECTS */}
-      <section id="projects" className="py-[clamp(64px,7vw,88px)] px-7">
-        <div className="max-w-[1220px] mx-auto">
-          <Reveal className="flex flex-wrap justify-between items-end gap-7 mb-11">
-            <div>
-              <div className="flex items-center gap-2.5 text-[12px] font-extrabold tracking-[0.22em] uppercase text-[#d8442c] before:content-[''] before:w-6 before:h-[2.5px] before:rounded before:bg-[#d8442c]">
-                Real homes, real {city}
-              </div>
-              <h2 className="text-[clamp(28px,3.8vw,44px)] font-extrabold mt-3.5 tracking-[-0.02em]">
-                Dream homes, delivered
-              </h2>
-            </div>
-            <Link
-              href={`${basePath}/gallery`}
-              className="inline-flex items-center justify-center bg-[#1d1713] text-white font-extrabold text-[15px] px-7 py-3.5 rounded-xl hover:bg-black hover:-translate-y-0.5 transition-all duration-250"
-            >
-              Yours Could Be Next
-            </Link>
-          </Reveal>
-
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5.5">
-            {projects.map((proj, idx) => (
-              <Reveal key={idx} delay={(idx % 3) * 60}>
-                <Link href={`${basePath}/gallery`} className="group relative block rounded-[18px] overflow-hidden aspect-[4/3.3]">
-                  <img
-                    src={proj.img}
-                    alt={proj.title}
-                    loading="lazy"
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.07]"
-                  />
-                  <div className="absolute inset-0 bg-[linear-gradient(180deg,transparent_40%,rgba(29,23,19,0.9))]" />
-                  <span className="absolute top-3.5 left-3.5 z-[2] bg-white text-[#241f1a] text-[11px] font-extrabold px-3.5 py-1.5 rounded-full">
-                    {proj.tag}
-                  </span>
-                  <div className="absolute bottom-0 left-0 right-0 p-5 z-[2] text-white">
-                    <b className="text-[17px] block tracking-[-0.01em]">{proj.title}</b>
-                    <span className="text-[12.5px] text-white/80">{proj.sub}</span>
-                  </div>
-                </Link>
-              </Reveal>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* WHY */}
-      <section id="why" className="py-[clamp(64px,7vw,88px)] px-7 bg-white">
-        <div className="max-w-[1220px] mx-auto">
-          <Reveal className="mb-11">
+      {/* CONSULTATION OUTPUTS */}
+      <section className="px-7 py-[clamp(64px,7vw,96px)] bg-white border-y border-[#241f1a]/10">
+        <div className="max-w-[1220px] mx-auto grid lg:grid-cols-[0.78fr_1.22fr] gap-10 lg:gap-16 items-start">
+          <Reveal className="lg:sticky lg:top-28">
             <div className="flex items-center gap-2.5 text-[12px] font-extrabold tracking-[0.22em] uppercase text-[#d8442c] before:content-[''] before:w-6 before:h-[2.5px] before:rounded before:bg-[#d8442c]">
-              Why {cleanName || 'us'}
+              Before the First Drawing
             </div>
-            <h2 className="text-[clamp(28px,3.8vw,44px)] font-extrabold mt-3.5 tracking-[-0.02em]">
-              Built like a brand, priced like a local
+            <h2 className="text-[clamp(28px,3.8vw,46px)] font-extrabold mt-3.5 mb-4 tracking-[-0.02em] leading-[1.08]">
+              Bring the floor plan. Leave with <span className="font-[family-name:var(--font-newsreader)] italic font-medium text-[#d8442c]">real direction.</span>
             </h2>
+            <p className="text-[#6d6259] text-[15.5px] leading-relaxed max-w-[430px] mb-7">
+              A good consultation is more than a style conversation. It gives your decisions an order, so you can move forward with less guesswork and fewer costly revisions.
+            </p>
+            <Link
+              href={`${basePath}/contact`}
+              className="inline-flex items-center gap-2 text-[13px] font-extrabold tracking-wider uppercase text-[#d8442c] border-b-2 border-[#d8442c] pb-1 hover:gap-3 transition-all"
+            >
+              Book Your Planning Session <ArrowRight className="w-4 h-4" />
+            </Link>
           </Reveal>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
-            {WHY_CARDS.map((card, idx) => {
-              const Icon = card.icon;
+          <div className="grid gap-4">
+            {CONSULTATION_OUTPUTS.map((item, idx) => {
+              const Icon = item.icon;
               return (
-                <Reveal key={idx} delay={idx * 60}>
-                  <div className="bg-white border border-[#241f1a]/10 rounded-[18px] px-6 py-7 h-full transition-all duration-300 hover:-translate-y-1.5 hover:shadow-[0_22px_44px_-18px_rgba(29,23,19,0.18)]">
-                    <span className="w-[46px] h-[46px] rounded-[13px] bg-[#fdeae5] text-[#d8442c] grid place-items-center mb-4">
-                      <Icon className="w-[21px] h-[21px]" strokeWidth={2} />
+                <Reveal key={item.number} delay={idx * 90}>
+                  <article className="grid sm:grid-cols-[66px_1fr] gap-5 bg-[#fbf7f2] border border-[#241f1a]/10 rounded-2xl p-6 sm:p-7 transition-all duration-300 hover:border-[#d8442c]/35 hover:shadow-[0_16px_38px_rgba(36,31,26,0.07)]">
+                    <span className="w-14 h-14 bg-white border border-[#d8442c]/25 rounded-xl grid place-items-center text-[#d8442c]">
+                      <Icon className="w-5 h-5" strokeWidth={2} />
                     </span>
-                    <h3 className="text-[16.5px] font-extrabold mb-2 leading-snug">{card.title}</h3>
-                    <p className="text-[13.5px] text-[#6d6259] leading-[1.6]">{card.desc}</p>
-                  </div>
+                    <div>
+                      <span className="text-[10.5px] font-extrabold tracking-[0.2em] uppercase text-[#d8442c]">Consultation output {item.number}</span>
+                      <h3 className="text-[21px] font-extrabold text-[#1d1713] mt-1.5 mb-2">{item.title}</h3>
+                      <p className="text-[13.5px] text-[#6d6259] font-medium leading-[1.7]">{item.desc}</p>
+                    </div>
+                  </article>
                 </Reveal>
               );
             })}
@@ -342,25 +297,203 @@ export default async function Template3Home({ params }: PageProps) {
         </div>
       </section>
 
-      {/* PROCESS */}
-      <section id="process" className="py-[clamp(64px,7vw,88px)] px-7">
+      {/* OFFERINGS */}
+      <section id="services" className="px-7 py-[clamp(64px,7vw,96px)] bg-white border-y border-[#241f1a]/10">
         <div className="max-w-[1220px] mx-auto">
-          <Reveal className="mb-11">
-            <div className="flex items-center gap-2.5 text-[12px] font-extrabold tracking-[0.22em] uppercase text-[#d8442c] before:content-[''] before:w-6 before:h-[2.5px] before:rounded before:bg-[#d8442c]">
-              From hello to move-in
+          <Reveal className="flex flex-wrap justify-between items-end gap-6 mb-12">
+            <div>
+              <div className="flex items-center gap-2.5 text-[12px] font-extrabold tracking-[0.22em] uppercase text-[#d8442c] before:content-[''] before:w-6 before:h-[2.5px] before:rounded before:bg-[#d8442c]">
+                Turnkey Disciplines
+              </div>
+              <h2 className="text-[clamp(28px,3.8vw,46px)] font-extrabold mt-3.5 tracking-[-0.02em]">
+                What we build for you
+              </h2>
             </div>
-            <h2 className="text-[clamp(28px,3.8vw,44px)] font-extrabold mt-3.5 tracking-[-0.02em]">Six simple steps</h2>
+            <Link
+              href={`${basePath}/services`}
+              className="text-[13px] font-extrabold tracking-[0.16em] uppercase text-[#d8442c] hover:underline"
+            >
+              Explore all offerings &rarr;
+            </Link>
           </Reveal>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6">
-            {PROCESS.map((step, idx) => (
-              <Reveal key={step.num} delay={idx * 50}>
-                <div className={`px-4.5 py-6 h-full ${idx > 0 ? 'xl:border-l xl:border-[#241f1a]/10' : ''}`}>
-                  <span className="w-[38px] h-[38px] rounded-full bg-[#d8442c] text-white grid place-items-center font-extrabold text-[14px] mb-4">
-                    {step.num}
-                  </span>
-                  <h3 className="text-[15.5px] font-extrabold mb-2">{step.title}</h3>
-                  <p className="text-[12.5px] text-[#6d6259] leading-[1.55]">{step.desc}</p>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {offerings.map((off, idx) => (
+              <Reveal key={off.title} delay={idx * 70}>
+                <Link
+                  href={`${basePath}/services`}
+                  className="group block bg-[#fbf7f2] border border-[#241f1a]/10 rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-1.5 hover:shadow-[0_20px_40px_rgba(29,23,19,0.1)]"
+                >
+                  <div className="aspect-[4/3] overflow-hidden">
+                    <img
+                      src={off.img}
+                      alt={off.title}
+                      loading="lazy"
+                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                    />
+                  </div>
+                  <div className="p-6">
+                    <h3 className="text-[20px] font-extrabold text-[#1d1713] mb-1 group-hover:text-[#d8442c] transition-colors">
+                      {off.title}
+                    </h3>
+                    <p className="text-[13.5px] text-[#6d6259] font-medium leading-relaxed">{off.sub}</p>
+                  </div>
+                </Link>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* TURNKEY STUDIO VS LOCAL CONTRACTOR COMPARISON */}
+      <section className="px-7 py-[clamp(64px,7vw,96px)] bg-[#fbf7f2]">
+        <div className="max-w-[1220px] mx-auto">
+          <Reveal className="text-center max-w-2xl mx-auto mb-12">
+            <div className="inline-flex items-center gap-2.5 text-[12px] font-extrabold tracking-[0.22em] uppercase text-[#d8442c] mb-3 before:content-[''] before:w-6 before:h-[2.5px] before:rounded before:bg-[#d8442c] after:content-[''] after:w-6 after:h-[2.5px] after:rounded after:bg-[#d8442c]">
+              Why Choose an Organized Studio
+            </div>
+            <h2 className="text-[clamp(28px,3.8vw,46px)] font-extrabold tracking-[-0.02em]">
+              {cleanName || 'Our Studio'} vs. Local Contractors
+            </h2>
+            <p className="text-[#6d6259] text-[15px] mt-2 font-medium">
+              See why homeowners switch to our factory-precision delivery model.
+            </p>
+          </Reveal>
+
+          <Reveal>
+            <div className="bg-white border border-[#241f1a]/10 rounded-2xl overflow-hidden shadow-sm">
+              <div className="grid grid-cols-12 bg-[#1d1713] text-white p-4.5 sm:p-5 text-[13px] font-extrabold tracking-wider uppercase">
+                <div className="col-span-4 sm:col-span-3">Feature</div>
+                <div className="col-span-4 sm:col-span-5 text-[#f4b942]">{cleanName || 'Our Studio'}</div>
+                <div className="col-span-4 sm:col-span-4 text-white/60">Local Carpenter</div>
+              </div>
+              <div className="divide-y divide-[#241f1a]/8">
+                {COMPARISON_POINTS.map((pt) => (
+                  <div key={pt.feature} className="grid grid-cols-12 p-4.5 sm:p-5 items-center text-[13.5px]">
+                    <div className="col-span-4 sm:col-span-3 font-extrabold text-[#1d1713]">{pt.feature}</div>
+                    <div className="col-span-4 sm:col-span-5 font-bold text-[#d8442c] flex items-center gap-2">
+                      <Check className="w-4 h-4 shrink-0 text-[#d8442c]" strokeWidth={2.4} />
+                      <span>{pt.studio}</span>
+                    </div>
+                    <div className="col-span-4 sm:col-span-4 text-[#6d6259] flex items-center gap-2">
+                      <X className="w-4 h-4 shrink-0 text-red-400" strokeWidth={2.4} />
+                      <span>{pt.contractor}</span>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* PREMIUM MATERIALS */}
+      <section className="bg-[#1d1713] py-[clamp(64px,7vw,96px)] px-7 text-white border-y border-[#241f1a]/10">
+        <div className="max-w-[1220px] mx-auto">
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-10">
+            <Reveal className="max-w-3xl">
+              <div className="inline-flex items-center gap-2.5 text-[12px] font-extrabold tracking-[0.22em] uppercase text-[#f4b942] mb-3 before:content-[''] before:w-6 before:h-[2.5px] before:rounded before:bg-[#f4b942] after:content-[''] after:w-6 after:h-[2.5px] after:rounded after:bg-[#f4b942]">
+                Premium Materials
+              </div>
+              <h2 className="text-[clamp(32px,4vw,56px)] font-extrabold tracking-[-0.02em] leading-[1.05]">
+                Uncompromising Quality <br className="hidden md:block"/> In Every Detail
+              </h2>
+            </Reveal>
+            <Reveal delay={0.1} className="max-w-sm flex flex-col items-start gap-6">
+              <p className="text-[16px] font-medium leading-[1.7] text-white/70 border-l-[3px] border-[#f4b942] pl-5">
+                For all the spaces we design and execute, we exclusively use premium, certified materials and hardware to ensure generational durability and timeless elegance.
+              </p>
+            </Reveal>
+          </div>
+          <Reveal delay={0.2} className="mt-14 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 border-l border-t border-white/10">
+            {[
+              { name: "CenturyPly" },
+              { name: "Asian Paints" },
+              { name: "Hettich" },
+              { name: "Hafele" },
+              { name: "Saint-Gobain" },
+              { name: "Legrand" },
+              { name: "Godrej Locks" },
+              { name: "Kohler" },
+              { name: "Kajaria" },
+              { name: "Premium Assured" }
+            ].map((brand) => (
+              <div key={brand.name} className="flex flex-col items-center justify-center p-6 border-r border-b border-white/10 min-h-[160px] h-full transition-all duration-300 hover:bg-[#2a221b] group">
+                <ShieldCheck className="h-7 w-7 text-[#f4b942] mb-3 opacity-90 group-hover:scale-110 transition-transform duration-300" />
+                <p className="text-[11.5px] font-extrabold uppercase tracking-[0.1em] text-white/90 group-hover:text-white transition-colors duration-300 text-center">
+                  {brand.name}
+                </p>
+              </div>
+            ))}
+          </Reveal>
+        </div>
+      </section>
+
+      {/* ESTIMATOR */}
+      <section id="estimator" className="px-7 py-[clamp(64px,7vw,96px)] bg-white border-b border-[#241f1a]/10">
+        <div className="max-w-[1220px] mx-auto">
+          <div className="grid lg:grid-cols-[1fr_1fr] gap-12 lg:gap-20 items-center">
+            <Reveal className="max-w-2xl">
+              <div className="inline-flex items-center gap-2.5 text-[12px] font-extrabold tracking-[0.22em] uppercase text-[#d8442c] mb-3 before:content-[''] before:w-6 before:h-[2.5px] before:rounded before:bg-[#d8442c] after:content-[''] after:w-6 after:h-[2.5px] after:rounded after:bg-[#d8442c]">
+                PROJECT ESTIMATE
+              </div>
+              <h2 className="text-[clamp(28px,3.8vw,46px)] font-extrabold tracking-[-0.02em] leading-[1.08] mb-4">
+                Transparent Pricing,<br/>No Hidden Costs
+              </h2>
+              <p className="text-[#59524a] text-[16px] leading-[1.7] font-medium mb-8">
+                Fill out the brief form to receive a detailed, line-item quotation for your dream home. Our design-build experts will get back to you with a clear cost breakdown based on your floor plan and requirements.
+              </p>
+              <div className="grid sm:grid-cols-2 gap-6 pt-8 border-t border-[#241f1a]/10">
+                <div>
+                  <h3 className="text-[17px] font-bold text-[#1d1713] mb-1.5">01 / Share Details</h3>
+                  <p className="text-[15px] text-[#59524a] font-medium leading-[1.6]">Tell us about your floor plan, location, and lifestyle requirements.</p>
+                </div>
+                <div>
+                  <h3 className="text-[17px] font-bold text-[#1d1713] mb-1.5">02 / Get Estimate</h3>
+                  <p className="text-[15px] text-[#59524a] font-medium leading-[1.6]">Receive a transparent quotation covering turnkey execution and interiors.</p>
+                </div>
+              </div>
+            </Reveal>
+
+            <Reveal delay={0.2} className="w-full flex justify-center border border-[#241f1a]/10 bg-[#fbf7f2] p-3 md:p-6 rounded-3xl relative">
+              <div className="w-full max-w-[640px] bg-white rounded-xl shadow-sm border border-gray-100 p-8 flex flex-col justify-center">
+                <h3 className="text-2xl font-bold mb-6 text-[#1d1713]">Request Estimate</h3>
+                <form className="space-y-4" >
+                  <input type="text" placeholder="Name" required className="w-full p-3 border border-gray-200 rounded-md outline-none focus:border-[#d8442c] transition-colors" />
+                  <input type="email" placeholder="Email" required className="w-full p-3 border border-gray-200 rounded-md outline-none focus:border-[#d8442c] transition-colors" />
+                  <input type="tel" placeholder="Phone" required className="w-full p-3 border border-gray-200 rounded-md outline-none focus:border-[#d8442c] transition-colors" />
+                  <textarea placeholder="Tell us about your requirements" required className="w-full p-3 border border-gray-200 rounded-md outline-none focus:border-[#d8442c] h-32 transition-colors"></textarea>
+                  <button type="submit" className="w-full bg-[#d8442c] text-white py-3 rounded-md uppercase tracking-wide text-sm font-semibold hover:bg-[#b93a25] transition-colors">Submit Request</button>
+                </form>
+              </div>
+            </Reveal>
+          </div>
+        </div>
+      </section>
+
+      {/* 6-STEP PROCESS */}
+      <section id="process" className="px-7 py-[clamp(64px,7vw,96px)] bg-[#fbf7f2]">
+        <div className="max-w-[1220px] mx-auto">
+          <Reveal className="text-center max-w-2xl mx-auto mb-14">
+            <div className="inline-flex items-center gap-2.5 text-[12px] font-extrabold tracking-[0.22em] uppercase text-[#d8442c] mb-3 before:content-[''] before:w-6 before:h-[2.5px] before:rounded before:bg-[#d8442c] after:content-[''] after:w-6 after:h-[2.5px] after:rounded after:bg-[#d8442c]">
+              6-Step Blueprint
+            </div>
+            <h2 className="text-[clamp(28px,3.8vw,46px)] font-extrabold tracking-[-0.02em]">
+              From first sketch to happy housewarming
+            </h2>
+          </Reveal>
+
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {PROCESS.map((p) => (
+              <Reveal key={p.num} delay={p.num * 60}>
+                <div className="bg-white border border-[#241f1a]/10 rounded-2xl p-7 h-full flex flex-col justify-between shadow-[0_10px_24px_rgba(29,23,19,0.04)]">
+                  <div>
+                    <span className="w-10 h-10 rounded-xl bg-[#d8442c] text-white font-extrabold text-[16px] grid place-items-center mb-4">
+                      {p.num}
+                    </span>
+                    <h3 className="text-[19px] font-extrabold text-[#1d1713] mb-2">{p.title}</h3>
+                    <p className="text-[13.5px] text-[#6d6259] font-medium leading-[1.65]">{p.desc}</p>
+                  </div>
                 </div>
               </Reveal>
             ))}
@@ -368,33 +501,76 @@ export default async function Template3Home({ params }: PageProps) {
         </div>
       </section>
 
-      {/* TESTIMONIALS */}
-      <section id="reviews" className="py-[clamp(64px,7vw,88px)] px-7 bg-white">
+      {/* DELIVERED HOMES GALLERY */}
+      <section id="projects" className="px-7 py-[clamp(64px,7vw,96px)] bg-white border-y border-[#241f1a]/10">
         <div className="max-w-[1220px] mx-auto">
-          <Reveal className="text-center mb-11">
-            <div className="flex items-center justify-center gap-2.5 text-[12px] font-extrabold tracking-[0.22em] uppercase text-[#d8442c]">
-              Homeowner stories
+          <Reveal className="flex flex-wrap justify-between items-end gap-6 mb-12">
+            <div>
+              <div className="flex items-center gap-2.5 text-[12px] font-extrabold tracking-[0.22em] uppercase text-[#d8442c] before:content-[''] before:w-6 before:h-[2.5px] before:rounded before:bg-[#d8442c]">
+                Delivered Projects
+              </div>
+              <h2 className="text-[clamp(28px,3.8vw,46px)] font-extrabold mt-3.5 tracking-[-0.02em]">
+                Homes delivered across {city}
+              </h2>
             </div>
-            <h2 className="text-[clamp(28px,3.8vw,44px)] font-extrabold mt-3.5 tracking-[-0.02em]">
-              Why {city} keeps recommending us
+            <Link href={`${basePath}/gallery`} className="text-[13px] font-extrabold tracking-[0.16em] uppercase text-[#d8442c] hover:underline">
+              View full gallery &rarr;
+            </Link>
+          </Reveal>
+
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {projects.map((proj, idx) => (
+              <Reveal key={proj.title} delay={idx * 70}>
+                <Link
+                  href={`${basePath}/gallery`}
+                  className="group block bg-[#fbf7f2] border border-[#241f1a]/10 rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-1.5 hover:shadow-[0_20px_40px_rgba(29,23,19,0.1)]"
+                >
+                  <div className="aspect-[4/3] overflow-hidden">
+                    <img src={proj.img} alt={proj.title} loading="lazy" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+                  </div>
+                  <div className="p-6">
+                    <span className="text-[11px] font-extrabold uppercase tracking-wider text-[#d8442c] block mb-1">
+                      {proj.tag}
+                    </span>
+                    <h3 className="text-[19px] font-extrabold text-[#1d1713] mb-1">{proj.title}</h3>
+                    <p className="text-[13px] text-[#6d6259] font-medium">{proj.sub}</p>
+                  </div>
+                </Link>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* REVIEWS */}
+      <section id="reviews" className="px-7 py-[clamp(64px,7vw,96px)] bg-[#fbf7f2]">
+        <div className="max-w-[1220px] mx-auto">
+          <Reveal className="text-center max-w-2xl mx-auto mb-12">
+            <div className="inline-flex items-center gap-2.5 text-[12px] font-extrabold tracking-[0.22em] uppercase text-[#d8442c] mb-3 before:content-[''] before:w-6 before:h-[2.5px] before:rounded before:bg-[#d8442c] after:content-[''] after:w-6 after:h-[2.5px] after:rounded after:bg-[#d8442c]">
+              Homeowner Stories
+            </div>
+            <h2 className="text-[clamp(28px,3.8vw,46px)] font-extrabold tracking-[-0.02em]">
+              Rated {rating}★ on Google in {city}
             </h2>
           </Reveal>
 
-          <div className="grid md:grid-cols-3 gap-5.5">
-            {reviews.slice(0, 3).map((review: any, i: number) => (
-              <Reveal key={i} delay={i * 60}>
-                <div className="bg-white border border-[#241f1a]/10 rounded-[18px] px-6.5 py-7 flex flex-col gap-4 h-full transition-all duration-300 hover:-translate-y-1.5 hover:shadow-[0_22px_44px_-18px_rgba(29,23,19,0.18)]">
-                  <div className="text-[#f4b942] tracking-[2px] text-[14px]">
-                    {'★'.repeat(Math.max(1, Math.min(5, parseInt(String(review.rating)) || 5)))}
+          <div className="grid md:grid-cols-3 gap-6">
+            {reviews.slice(0, 3).map((r: any, idx: number) => (
+              <Reveal key={idx} delay={idx * 80}>
+                <div className="bg-white border border-[#241f1a]/10 rounded-2xl p-7 h-full flex flex-col justify-between shadow-[0_10px_24px_rgba(29,23,19,0.04)]">
+                  <div>
+                    <div className="flex gap-1 text-[#f4b942] mb-3 text-[14px]">★★★★★</div>
+                    <blockquote className="text-[#1d1713] text-[15px] font-medium leading-[1.65] mb-6">
+                      &ldquo;{r.text}&rdquo;
+                    </blockquote>
                   </div>
-                  <p className="text-[14.5px] leading-[1.7] flex-1">&ldquo;{review.text}&rdquo;</p>
-                  <div className="flex items-center gap-3 border-t border-[#241f1a]/10 pt-4">
-                    <span className="w-11 h-11 rounded-full bg-[#1d1713] text-[#f4b942] grid place-items-center font-extrabold text-[15px]">
-                      {(review.author || 'C').charAt(0)}
+                  <div className="border-t border-[#241f1a]/10 pt-4 flex items-center gap-3">
+                    <span className="w-10 h-10 rounded-full bg-[#1d1713] text-[#f4b942] font-extrabold grid place-items-center">
+                      {(r.author || 'C').charAt(0)}
                     </span>
                     <div>
-                      <b className="text-[14px] block">{review.author || 'Happy Client'}</b>
-                      <span className="text-[12px] text-[#6d6259]">Verified Google review</span>
+                      <b className="text-[14.5px] font-extrabold text-[#1d1713] block">{r.author || 'Homeowner'}</b>
+                      <span className="text-[11.5px] text-[#6d6259] font-semibold">{city} Residence</span>
                     </div>
                   </div>
                 </div>
@@ -404,26 +580,52 @@ export default async function Template3Home({ params }: PageProps) {
         </div>
       </section>
 
-      {/* FAQ + CTA */}
-      <section id="faq" className="py-[clamp(64px,7vw,88px)] px-7">
-        <div className="max-w-[1220px] mx-auto grid lg:grid-cols-2 gap-11 lg:gap-14 items-start">
-          <Reveal>
-            <div className="flex items-center gap-2.5 text-[12px] font-extrabold tracking-[0.22em] uppercase text-[#d8442c] before:content-[''] before:w-6 before:h-[2.5px] before:rounded before:bg-[#d8442c]">
-              Good questions
+      {/* FAQ ACCORDION */}
+      <section id="faq" className="px-7 py-[clamp(64px,7vw,96px)] bg-white border-t border-[#241f1a]/10">
+        <div className="max-w-[900px] mx-auto">
+          <Reveal className="text-center mb-12">
+            <div className="inline-flex items-center gap-2.5 text-[12px] font-extrabold tracking-[0.22em] uppercase text-[#d8442c] mb-3 before:content-[''] before:w-6 before:h-[2.5px] before:rounded before:bg-[#d8442c] after:content-[''] after:w-6 after:h-[2.5px] after:rounded after:bg-[#d8442c]">
+              Questions Answered
             </div>
-            <h2 className="text-[clamp(28px,3.8vw,44px)] font-extrabold mt-3.5 mb-6 tracking-[-0.02em]">Before you ask</h2>
-            {INTERIOR_FAQS.map((faq, idx) => (
-              <details key={idx} open={idx === 0} className={`group border-b border-[#241f1a]/10 px-1 py-4.5 ${idx === 0 ? 'border-t' : ''}`}>
-                <summary className="text-[16px] font-extrabold cursor-pointer list-none flex justify-between items-center gap-4 tracking-[-0.01em] [&::-webkit-details-marker]:hidden">
-                  {faq.q}
-                  <span className="text-[24px] text-[#d8442c] font-normal transition-transform duration-250 group-open:rotate-45 shrink-0">+</span>
-                </summary>
-                <p className="text-[#6d6259] text-[14.5px] pt-3 leading-[1.7]">{faq.a}</p>
-              </details>
-            ))}
+            <h2 className="text-[clamp(28px,3.8vw,46px)] font-extrabold tracking-[-0.02em]">
+              Frequently asked questions
+            </h2>
           </Reveal>
 
-          <Reveal delay={120} className="lg:sticky lg:top-[120px]">
+          <Reveal>
+            <FAQAccordion items={homeFaqs} />
+          </Reveal>
+        </div>
+      </section>
+
+      {/* CTA / LEAD FORM */}
+      <section id="consult" className="px-7 py-[clamp(72px,8vw,110px)] bg-[#1d1713] text-white">
+        <div className="max-w-[1220px] mx-auto grid lg:grid-cols-[1.1fr_0.9fr] gap-12 lg:gap-16 items-center">
+          <Reveal>
+            <div className="flex items-center gap-2.5 text-[12px] font-extrabold tracking-[0.22em] uppercase text-[#f4b942] before:content-[''] before:w-6 before:h-[2.5px] before:rounded before:bg-[#f4b942]">
+              Free Consultation
+            </div>
+            <h2 className="text-[clamp(32px,4.4vw,56px)] font-extrabold mt-3.5 mb-4 leading-[1.08]">
+              Ready to build your <span className="font-[family-name:var(--font-newsreader)] italic font-medium text-[#f4b942]">dream home?</span>
+            </h2>
+            <p className="text-white/80 text-[16px] leading-relaxed max-w-[500px] mb-8">
+              Sit down with our interior architects. We&rsquo;ll review your floor plan, give 3D direction, and quote an exact itemised estimate for your {city} property.
+            </p>
+            <div className="grid grid-cols-3 gap-3 max-w-[460px]">
+              {[
+                { v: '45 Days', l: 'Handover Guarantee' },
+                { v: '10 Yrs', l: 'Structural Warranty' },
+                { v: '₹0', l: 'Consultation Fee' },
+              ].map((b) => (
+                <div key={b.l} className="bg-white/10 rounded-xl p-3.5 text-center">
+                  <b className="text-[20px] font-extrabold text-[#f4b942] block">{b.v}</b>
+                  <span className="text-[10.5px] uppercase tracking-wider text-white/70 font-bold">{b.l}</span>
+                </div>
+              ))}
+            </div>
+          </Reveal>
+
+          <Reveal delay={120} className="bg-white text-[#1d1713] rounded-2xl p-7 sm:p-9 shadow-2xl">
             <LeadForm studioName={cleanName || 'the studio'} waPhone={waPhone} city={city} />
           </Reveal>
         </div>

@@ -1,12 +1,16 @@
 import { readSourceConfig } from '@/lib/dataBuilder';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
-import { Check, Factory, ClipboardCheck, ShieldCheck, HeartHandshake } from 'lucide-react';
+import {
+  Check, Factory, ClipboardCheck, ShieldCheck, HeartHandshake,
+  Clock, Award, Sparkles, CheckCircle2, ArrowRight
+} from 'lucide-react';
 import { cleanClinicName, cleanClinicDescription } from '@/lib/copyCleaner';
 import { DEFAULT_INTERIOR_HIGHLIGHTS, DEFAULT_INTERIOR_SERVICES,
   previewMedia,
 } from '@/lib/interiorContent';
 import Reveal from '../Reveal';
+import PageNarrative from '../PageNarrative';
 
 type PageProps = { params: Promise<{ slug: string }> };
 
@@ -39,26 +43,35 @@ export default async function Template3About({ params }: PageProps) {
     '/images/stock/dc1759ad.webp';
 
   const VALUES = [
-    { icon: Factory, title: highlights[0] || 'Personalized design concepts', desc: 'Concepts start from how your family actually lives, not a template.' },
-    { icon: ClipboardCheck, title: highlights[1] || 'Material and finish guidance', desc: 'We tell you honestly what lasts — and what to skip.' },
-    { icon: ShieldCheck, title: highlights[2] || 'Transparent project planning', desc: 'Itemised quotes, frozen at booking. Never a surprise invoice.' },
-    { icon: HeartHandshake, title: highlights[3] || 'End-to-end execution support', desc: 'A single accountable team from sketch to handover — and after.' },
+    { icon: Factory, title: highlights[0] || 'Personalized design concepts', desc: 'Every layout is tailored to how your family actually lives and moves — never a template.' },
+    { icon: ClipboardCheck, title: highlights[1] || 'Material and finish guidance', desc: '100% Calibrated BWP Marine Plywood, certified Blum/Häfele hardware, and honest advice on what endures.' },
+    { icon: ShieldCheck, title: highlights[2] || 'Transparent project planning', desc: 'Itemised BOQ quotes frozen at booking. Never an unexpected mid-project bill.' },
+    { icon: HeartHandshake, title: highlights[3] || 'End-to-end execution support', desc: 'A dedicated project engineer on site from initial civil modifications to final deep-clean handover.' },
+  ];
+
+  const MILESTONES = [
+    { period: 'Founding Year', title: 'Studio Inception', desc: `Founded in ${city} with a commitment to bring architectural precision and fixed pricing to residential interiors.` },
+    { period: 'Automation', title: 'CNC Factory Facility', desc: 'Established our automated precision woodworking facility with zero-gap edge banding machinery.' },
+    { period: 'Turnkey', title: 'Full Architecture & MEP', desc: 'Integrated civil works, false ceiling, luxury lighting, and bespoke joinery under a single contract.' },
+    { period: 'Milestone', title: '100+ Turnkey Homes Handed Over', desc: `Delivered over 100+ residential homes with a ${rating}★ Google rating and strict 45-day handovers.` },
   ];
 
   return (
     <div>
       {/* HERO */}
-      <section id="about-hero" className="px-7 py-[clamp(56px,7vw,88px)]">
+      <section id="about-hero" className="px-7 py-[clamp(56px,7vw,88px)] bg-[#fbf7f2]">
         <div className="max-w-[1220px] mx-auto">
           <Reveal>
             <div className="flex items-center gap-2.5 text-[12px] font-extrabold tracking-[0.22em] uppercase text-[#d8442c] before:content-[''] before:w-6 before:h-[2.5px] before:rounded before:bg-[#d8442c]">
-              About us
+              About {cleanName || 'Our Studio'}
             </div>
             <h1 className="text-[clamp(32px,4.6vw,54px)] font-extrabold mt-3.5 tracking-[-0.02em] max-w-[780px] leading-[1.12]">
               {cleanName || 'A studio'} — {city}&rsquo;s home-grown{' '}
-              <span className="font-[family-name:var(--font-newsreader)] italic font-medium text-[#d8442c]">interiors studio</span>
+              <span className="font-[family-name:var(--font-newsreader)] italic font-medium text-[#d8442c]">turnkey interiors house</span>
             </h1>
-            <p className="mt-4.5 max-w-[640px] text-[#6d6259] text-[16px]">{cleanDesc}</p>
+            <p className="mt-4.5 max-w-[640px] text-[#6d6259] text-[16px]">
+              {cleanDesc || `A dedicated team of interior architects, project managers, and master joiners designing and delivering homes across ${city}.`}
+            </p>
           </Reveal>
         </div>
       </section>
@@ -74,23 +87,23 @@ export default async function Template3About({ params }: PageProps) {
 
           <Reveal delay={120}>
             <div className="flex items-center gap-2.5 text-[12px] font-extrabold tracking-[0.22em] uppercase text-[#d8442c] before:content-[''] before:w-6 before:h-[2.5px] before:rounded before:bg-[#d8442c]">
-              Our story
+              Our Story &amp; Vision
             </div>
             <h2 className="text-[clamp(26px,3.4vw,40px)] font-extrabold mt-3.5 mb-4 tracking-[-0.02em]">
               {clinic.tagline || 'Thoughtful interiors for everyday living'}
             </h2>
             <p className="text-[#6d6259] text-[15.5px] mb-4">
-              We built this studio around one belief: a home should be designed for the people in it. That means listening before drawing, planning before quoting, and checking before handing over.
+              We built this studio around one core belief: a home should be designed around the daily rituals of the people who live in it. That means listening before drawing, planning before quoting, and inspecting before handing over.
             </p>
             <p className="text-[#6d6259] text-[15.5px] mb-7">
-              Today, led by {doctor?.name || 'our design team'} ({doctor?.specialization || 'Interior Design & Turnkey Execution'}), we handle projects across {city} — from single-room refreshes to full turnkey homes.
+              Led by {doctor?.name || 'our design team'} ({doctor?.specialization || 'Interior Design & Turnkey Execution'}), we execute projects across {city} — from compact apartment refurbishments to sprawling turnkey villas.
             </p>
 
             <div className="grid grid-cols-3 gap-4">
               {[
                 { b: `${rating}★`, s: 'Google rating' },
                 { b: `${experienceYears}+ yrs`, s: 'Experience' },
-                { b: `${servicesCount}+`, s: 'Services' },
+                { b: `${servicesCount}+`, s: 'Disciplines' },
               ].map((stat) => (
                 <div key={stat.s} className="bg-[#fbf7f2] border border-[#241f1a]/10 rounded-2xl px-4 py-5 text-center">
                   <b className="text-[clamp(20px,2.4vw,27px)] font-extrabold text-[#d8442c] block">{stat.b}</b>
@@ -102,12 +115,45 @@ export default async function Template3About({ params }: PageProps) {
         </div>
       </section>
 
-      {/* VALUES */}
-      <section id="values" className="px-7 py-[clamp(56px,7vw,88px)]">
+      {/* TIMELINE */}
+      <section className="px-7 py-[clamp(56px,7vw,88px)] bg-[#fbf7f2] border-y border-[#241f1a]/10">
         <div className="max-w-[1220px] mx-auto">
           <Reveal className="mb-11">
             <div className="flex items-center gap-2.5 text-[12px] font-extrabold tracking-[0.22em] uppercase text-[#d8442c] before:content-[''] before:w-6 before:h-[2.5px] before:rounded before:bg-[#d8442c]">
-              What we promise
+              Studio Evolution
+            </div>
+            <h2 className="text-[clamp(26px,3.6vw,42px)] font-extrabold mt-3.5 tracking-[-0.02em]">
+              Milestones of craft &amp; delivery
+            </h2>
+          </Reveal>
+
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+            {MILESTONES.map((m, idx) => (
+              <Reveal key={m.title} delay={idx * 80}>
+                <div className="bg-white border border-[#241f1a]/10 rounded-2xl p-6.5 h-full flex flex-col justify-between shadow-sm">
+                  <div>
+                    <span className="text-[11px] font-extrabold tracking-wider uppercase text-[#d8442c] bg-[#d8442c]/10 px-3 py-1 rounded-full inline-block mb-3">
+                      {m.period}
+                    </span>
+                    <h3 className="text-[18px] font-extrabold text-[#1d1713] mb-2">{m.title}</h3>
+                    <p className="text-[13px] text-[#6d6259] font-medium leading-relaxed">{m.desc}</p>
+                  </div>
+                  <span className="text-[12px] font-extrabold text-[#d8442c] mt-4 block">
+                    0{idx + 1}
+                  </span>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* VALUES */}
+      <section id="values" className="px-7 py-[clamp(56px,7vw,88px)] bg-white">
+        <div className="max-w-[1220px] mx-auto">
+          <Reveal className="mb-11">
+            <div className="flex items-center gap-2.5 text-[12px] font-extrabold tracking-[0.22em] uppercase text-[#d8442c] before:content-[''] before:w-6 before:h-[2.5px] before:rounded before:bg-[#d8442c]">
+              What We Promise
             </div>
             <h2 className="text-[clamp(26px,3.6vw,42px)] font-extrabold mt-3.5 tracking-[-0.02em]">
               Built like a brand, priced like a local
@@ -118,13 +164,15 @@ export default async function Template3About({ params }: PageProps) {
             {VALUES.map((v, idx) => {
               const Icon = v.icon;
               return (
-                <Reveal key={idx} delay={idx * 60}>
-                  <div className="bg-white border border-[#241f1a]/10 rounded-[18px] px-6 py-7 h-full transition-all duration-300 hover:-translate-y-1.5 hover:shadow-[0_22px_44px_-18px_rgba(29,23,19,0.18)]">
-                    <span className="w-[46px] h-[46px] rounded-[13px] bg-[#fdeae5] text-[#d8442c] grid place-items-center mb-4">
-                      <Icon className="w-[21px] h-[21px]" strokeWidth={2} />
-                    </span>
-                    <h3 className="text-[16.5px] font-extrabold mb-2 leading-snug">{v.title}</h3>
-                    <p className="text-[13.5px] text-[#6d6259] leading-[1.6]">{v.desc}</p>
+                <Reveal key={v.title} delay={idx * 70}>
+                  <div className="bg-[#fbf7f2] border border-[#241f1a]/10 rounded-2xl p-6.5 h-full flex flex-col justify-between">
+                    <div>
+                      <span className="w-11 h-11 rounded-xl bg-[#d8442c]/10 text-[#d8442c] grid place-items-center mb-4.5">
+                        <Icon className="w-5 h-5" strokeWidth={2.2} />
+                      </span>
+                      <h3 className="text-[18px] font-extrabold text-[#1d1713] mb-2">{v.title}</h3>
+                      <p className="text-[13.5px] text-[#6d6259] font-medium leading-relaxed">{v.desc}</p>
+                    </div>
                   </div>
                 </Reveal>
               );
@@ -133,80 +181,66 @@ export default async function Template3About({ params }: PageProps) {
         </div>
       </section>
 
-      {/* TEAM */}
-      <section id="team" className="px-7 py-[clamp(56px,7vw,88px)] bg-white">
-        <div className="max-w-[1220px] mx-auto grid lg:grid-cols-[0.9fr_1.1fr] gap-11 lg:gap-14 items-center">
+      {/* LEADERSHIP */}
+      <section id="team" className="px-7 py-[clamp(56px,7vw,88px)] bg-[#fbf7f2] border-t border-[#241f1a]/10">
+        <div className="max-w-[1220px] mx-auto grid lg:grid-cols-2 gap-11 lg:gap-14 items-center">
           <Reveal>
-            <div className="rounded-[18px] overflow-hidden aspect-[4/3.6] border border-[#241f1a]/10">
-              <img src={teamImage} alt={doctor?.name || 'Design team'} loading="lazy" className="w-full h-full object-cover" />
+            <div className="rounded-[20px] overflow-hidden aspect-[4/3.3] shadow-[0_30px_60px_-24px_rgba(29,23,19,0.4)]">
+              <img src={teamImage} alt={doctor?.name || 'Principal Designer'} loading="lazy" className="w-full h-full object-cover" />
             </div>
           </Reveal>
 
           <Reveal delay={120}>
             <div className="flex items-center gap-2.5 text-[12px] font-extrabold tracking-[0.22em] uppercase text-[#d8442c] before:content-[''] before:w-6 before:h-[2.5px] before:rounded before:bg-[#d8442c]">
-              Meet your designers
+              Studio Leadership
             </div>
             <h2 className="text-[clamp(26px,3.4vw,40px)] font-extrabold mt-3.5 mb-1.5 tracking-[-0.02em]">
-              {doctor?.name || 'Our Design Team'}
+              {doctor?.name || 'Principal Designer'}
             </h2>
-            <span className="text-[14px] text-[#d8442c] font-bold block mb-4">
-              {doctor?.specialization || 'Interior Design & Turnkey Execution'} · {doctor?.experience || '5+ years'}
-            </span>
-            <p className="text-[#6d6259] text-[15.5px] mb-6">
-              &ldquo;Storage is love. We design homes that survive a decade of real life — heavy cooking, growing kids, visiting grandparents — and still look beautiful doing it.&rdquo;
+            <p className="font-[family-name:var(--font-newsreader)] italic text-[#d8442c] text-[18px] mb-5">
+              {doctor?.credentials || 'Principal Architect & Turnkey Lead'}
             </p>
-            <div className="grid gap-3 mb-8">
-              {highlights.slice(0, 4).map((h) => (
-                <div key={h} className="flex gap-3 items-center font-bold text-[14.5px]">
-                  <Check className="w-5 h-5 text-[#d8442c] shrink-0" strokeWidth={2.4} />
-                  {h}
-                </div>
-              ))}
+            <p className="text-[#6d6259] text-[15px] leading-relaxed mb-6">
+              {doctor?.bio || `With over ${experienceYears}+ years of hands-on architectural and turnkey execution experience across ${city}, overseeing design, procurement, and site quality control for every project.`}
+            </p>
+            <div className="grid grid-cols-2 gap-4 border-t border-[#241f1a]/10 pt-5 mb-7">
+              <div>
+                <b className="text-[24px] font-extrabold text-[#d8442c] block">{experienceYears}+ Yrs</b>
+                <span className="text-[12px] text-[#6d6259] font-semibold">Experience</span>
+              </div>
+              <div>
+                <b className="text-[24px] font-extrabold text-[#d8442c] block">10-Year</b>
+                <span className="text-[12px] text-[#6d6259] font-semibold">Warranty</span>
+              </div>
             </div>
             <Link
               href={`${basePath}/contact`}
-              className="inline-flex items-center justify-center bg-[#d8442c] text-white font-extrabold text-[15px] px-7 py-3.5 rounded-xl hover:bg-[#b93320] hover:-translate-y-0.5 hover:shadow-[0_12px_26px_rgba(216,68,44,0.3)] transition-all duration-250"
+              className="inline-flex items-center gap-2 bg-[#d8442c] text-white font-extrabold text-[14px] px-7 py-3.5 rounded-xl hover:bg-[#b93320] transition-colors"
             >
-              Book Consultation
+              Book Studio Consultation <ArrowRight className="w-4 h-4" />
             </Link>
           </Reveal>
         </div>
       </section>
 
-      {/* STUDIO VISIT */}
-      <section id="studio" className="px-7 py-[clamp(56px,7vw,88px)]">
-        <div className="max-w-[1220px] mx-auto">
-          <Reveal>
-            <div className="bg-[linear-gradient(120deg,#1d1713,#2a211b)] text-white rounded-[26px] overflow-hidden grid lg:grid-cols-2">
-              <div className="min-h-[280px] lg:min-h-[420px]">
-                <img src={studioImage} alt={`Inside the ${cleanName || 'design'} studio`} loading="lazy" className="w-full h-full object-cover" />
-              </div>
-              <div className="px-8 sm:px-12 py-12 flex flex-col justify-center">
-                <div className="flex items-center gap-2.5 text-[12px] font-extrabold tracking-[0.22em] uppercase text-[#f4b942] before:content-[''] before:w-6 before:h-[2.5px] before:rounded before:bg-[#f4b942]">
-                  Visit us
-                </div>
-                <h2 className="text-[clamp(26px,3vw,36px)] font-extrabold my-3.5">Walk through your future home</h2>
-                <p className="text-white/80 text-[15px] mb-6">
-                  Feel the finishes, open the drawers, test the hardware — and sit with a designer over filter coffee. Home visits available across {city}.
-                </p>
-                <ul className="grid sm:grid-cols-2 gap-3 mb-7 list-none">
-                  {['Material & finish library', '3D design previews', 'Real project photos', 'Itemised sample quotes'].map((li) => (
-                    <li key={li} className="flex gap-2.5 text-[13.5px] font-semibold text-white/90">
-                      <Check className="w-4 h-4 text-[#f4b942] shrink-0 mt-0.5" strokeWidth={2.4} />
-                      {li}
-                    </li>
-                  ))}
-                </ul>
-                <Link
-                  href={`${basePath}/contact`}
-                  className="self-start inline-flex items-center justify-center bg-[#d8442c] text-white font-extrabold text-[15px] px-7 py-3.5 rounded-xl hover:bg-[#b93320] hover:-translate-y-0.5 transition-all duration-250"
-                >
-                  Plan My Visit
-                </Link>
-              </div>
-            </div>
-          </Reveal>
-        </div>
+      <PageNarrative page="about" studioName={cleanName} city={city} />
+
+      {/* CTA */}
+      <section className="px-7 py-[clamp(56px,7vw,88px)] bg-[#1d1713] text-white text-center">
+        <Reveal className="max-w-[720px] mx-auto">
+          <h2 className="text-[clamp(28px,3.8vw,44px)] font-extrabold mb-4">
+            Let&rsquo;s talk about your space
+          </h2>
+          <p className="text-white/80 text-[16px] mb-8">
+            Tell us about your home floor plan — we&rsquo;ll map the right design direction in one free session.
+          </p>
+          <Link
+            href={`${basePath}/contact`}
+            className="inline-flex items-center gap-2 bg-[#d8442c] text-white font-extrabold text-[15px] px-8 py-4 rounded-xl hover:bg-[#b93320] transition-colors"
+          >
+            Book Free Consultation
+          </Link>
+        </Reveal>
       </section>
     </div>
   );

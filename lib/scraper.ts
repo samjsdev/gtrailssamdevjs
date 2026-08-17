@@ -755,49 +755,56 @@ async function scrollReviewPanelStep(page: Page): Promise<{ moved: boolean; atEn
     }, { reviewSelector: REVIEW_CARD_SELECTOR, containerSelector: REVIEW_SCROLL_CONTAINER_SELECTOR });
 }
 
-export async function scrapeGoogleBusinessProfile(url: string, photosUrl?: string): Promise<ScrapedData> {
+export interface ScrapedDetails {
+  name: string;
+  rating: string;
+  reviewCount: string;
+  address: string;
+  phone: string;
+  website?: string;
+  reviews: ReviewData[];
+  mapEmbedUrl: string;
+}
+
+export async function scrapeBusinessDetails(url: string): Promise<ScrapedDetails> {
   const storageStatePath = process.env.GOOGLE_MAPS_STORAGE_STATE_PATH?.trim();
   const storageState = storageStatePath && fs.existsSync(storageStatePath)
       ? storageStatePath
       : undefined;
   const browser = await chromium.launch({ headless: process.env.GOOGLE_MAPS_HEADLESS !== 'false' });
-    const context = await browser.newContext({
-        userAgent:
-            'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36',
-        locale: 'en-US',
-        viewport: { width: 1280, height: 900 },
-        ...(storageState ? { storageState } : {}),
-    });
+  const context = await browser.newContext({
+      userAgent:
+          'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36',
+      locale: 'en-US',
+      viewport: { width: 1280, height: 900 },
+      ...(storageState ? { storageState } : {}),
+  });
   const page = await context.newPage();
 
   try {
-    console.log(`Navigating to ${url}...`);
-    // Use domcontentloaded instead of networkidle as Google Maps rarely reaches idle
+    console.log(`[Details Scraper] Navigating to ${url}...`);
     await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 30000 }).catch(() => console.log('Navigation timeout, proceeding anyway...'));
 
-    // Sometimes Google asks for terms/cookies. Let's wait a tiny bit to see if we hit a wall but don't fail if we don't.
-    // Give it 8 seconds to load at least some content.
-    await page.waitForTimeout(8000);
+    await page.waitForTimeout(6000);
 
-        try {
-            const consentSelectors = [
-                'button:has-text("Accept all")',
-                'button:has-text("Accept")',
-                'button:has-text("I agree")',
-            ];
+    try {
+        const consentSelectors = [
+            'button:has-text("Accept all")',
+            'button:has-text("Accept")',
+            'button:has-text("I agree")',
+        ];
 
-            for (const selector of consentSelectors) {
-                const acceptBtn = page.locator(selector).first();
-                if ((await acceptBtn.count()) > 0) {
-                    await acceptBtn.click({ timeout: 2000 }).catch(() => {});
-                    await page.waitForTimeout(2000);
-                    break;
-                }
+        for (const selector of consentSelectors) {
+            const acceptBtn = page.locator(selector).first();
+            if ((await acceptBtn.count()) > 0) {
+                await acceptBtn.click({ timeout: 2000 }).catch(() => {});
+                await page.waitForTimeout(1500);
+                break;
             }
-        } catch {}
+        }
+    } catch {}
 
-    // Wait for the main title to appear (usually an h1 in GBP mobile or desktop layout)
-    await page.waitForSelector('h1', { timeout: 10000 }).catch(() => console.log('h1 not found... trying to extract anyway'));
+    await page.waitForSelector('h1', { timeout: 8000 }).catch(() => console.log('h1 not found... trying to extract anyway'));
 
     // Extract Name
     const name = await page.locator('h1').innerText().catch(() => '');
@@ -831,22 +838,21 @@ export async function scrapeGoogleBusinessProfile(url: string, photosUrl?: strin
     }
 
     // Extract Address
-        let address = await page
-            .locator('button[data-tooltip*="Copy address"], button[aria-label*="Address"]')
-            .first()
-            .innerText()
-            .catch(() => '');
+    let address = await page
+        .locator('button[data-tooltip*="Copy address"], button[aria-label*="Address"]')
+        .first()
+        .innerText()
+        .catch(() => '');
     if (!address) {
-       // Fallback: sometimes text isn't in a button but a span with a specific class or near an icon
        address = await page.locator(':text("Address: ") + *').innerText().catch(() => '');
     }
 
     // Extract Phone
-        const phone = await page
-            .locator('button[data-tooltip*="Copy phone number"], button[aria-label*="Phone"]')
-            .first()
-            .innerText()
-            .catch(() => '');
+    const phone = await page
+        .locator('button[data-tooltip*="Copy phone number"], button[aria-label*="Phone"]')
+        .first()
+        .innerText()
+        .catch(() => '');
 
     // Extract Website
     const website = await page
@@ -858,8 +864,8 @@ export async function scrapeGoogleBusinessProfile(url: string, photosUrl?: strin
     // --- Extract Reviews ---
     const extractedReviews: ReviewData[] = [];
     try {
-        console.log('Attempting to extract 5-star reviews...');
-        await page.waitForTimeout(2000);
+        console.log('[Details Scraper] Attempting to extract 5-star reviews...');
+        await page.waitForTimeout(1500);
         const reviewsPanelOpened = await openExpandedReviewsPanel(page);
         const limitedView = await isLimitedGoogleMapsView(page);
 
@@ -873,7 +879,7 @@ export async function scrapeGoogleBusinessProfile(url: string, photosUrl?: strin
             const reviewMap = new Map<string, ReviewData>();
             let stagnantPasses = 0;
             let maxVisibleReviewCards = 0;
-            const maxReviewPasses = 300;
+            const maxReviewPasses = 150;
 
             for (let pass = 0; pass < maxReviewPasses; pass++) {
                 await expandVisibleReviewBodies(page);
@@ -982,159 +988,25 @@ export async function scrapeGoogleBusinessProfile(url: string, photosUrl?: strin
                     stagnantPasses += 2;
                 }
 
-                if (atEnd && stagnantPasses >= 6) break;
-                if (stagnantPasses >= 20) break;
+                if (atEnd && stagnantPasses >= 5) break;
+                if (stagnantPasses >= 15) break;
 
-                await page.waitForTimeout(stagnantPasses > 0 ? 950 : 700);
+                await page.waitForTimeout(stagnantPasses > 0 ? 800 : 500);
             }
 
             extractedReviews.push(...Array.from(reviewMap.values()));
         }
-        console.log(`Successfully scraped ${extractedReviews.length} 5-star reviews.`);
+        console.log(`[Details Scraper] Successfully scraped ${extractedReviews.length} 5-star reviews.`);
     } catch (e) {
         console.log('Error extracting 5-star reviews:', e);
     }
-    // -----------------------
 
-        const imageUrlSet = new Map<string, string>();
-
-    if (photosUrl) {
-        console.log(`Navigating directly to photos URL: ${photosUrl}...`);
-        await page.goto(photosUrl, { waitUntil: 'domcontentloaded', timeout: 30000 }).catch(() => console.log('Navigation timeout, proceeding anyway...'));
-        await page.waitForTimeout(5000);
-    } else {
-        // Reviews scraping may leave us in an overlay/dialog context; reset to details page first.
-        await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 30000 }).catch(() => {});
-        await page.waitForTimeout(3500);
-
-        // Extract Images (Scroll side panel slightly to ensure images load)
-        try {
-            console.log('Attempting to open the fully expanded photo gallery...');
-            
-            // Try multiple selectors that Google Maps uses for the gallery button
-            // "See all", "Photos", or an element with an aria-label containing "photo"
-            const photoButtonSelectors = [
-                'button:has-text("See all photos")',
-                'button:has-text("See photos")',
-                'a:has-text("See photos")',
-                'button:has-text("See all")',
-                'button:has-text("Photos")',
-                'button[aria-label*="photo" i]',
-                'div[role="button"][aria-label*="photo" i]',
-                'div[role="button"]:has-text("See photos")',
-                'div[role="button"]:has-text("Photos")',
-                'div.fontHeadlineSmall:has-text("Photos")'
-            ];
-
-            let clicked = false;
-            for (const selector of photoButtonSelectors) {
-                const btn = page.locator(selector).first();
-                if (await btn.count() === 0) continue;
-
-                try {
-                    const href = await btn.getAttribute('href').catch(() => null);
-                    if (href && /^https?:\/\//i.test(href)) {
-                        await page.goto(href, { waitUntil: 'domcontentloaded', timeout: 30000 }).catch(() => {});
-                    } else {
-                        await btn.click({ force: true, timeout: 3000 });
-                    }
-
-                    await page.waitForTimeout(1800);
-                    clicked = true;
-                    console.log(`Clicked photos button using selector: ${selector}`);
-                    break;
-                } catch {}
-            }
-
-            if (!clicked) {
-                // Fallback: click the first large image which almost always opens the gallery
-                await page.locator('img[decoding="async"]').first().click({ force: true, timeout: 3000 }).catch(() => {});
-            }
-            
-        } catch {
-            console.log('Error interacting with expanded photo gallery, capturing strictly visible images...');
-        }
-    }
-
-    try {
-        await page.waitForTimeout(2500); // let gallery animate/render before first harvest
-
-        let previousCount = -1;
-        let stagnantPasses = 0;
-        let exhaustedEndChecks = 0;
-        let previousScrollHeight = 0;
-        const maxScrollPasses = 320;
-
-        for (let pass = 0; pass < maxScrollPasses; pass++) {
-            await collectImageCandidates(page, imageUrlSet);
-
-            const currentCount = imageUrlSet.size;
-            if (currentCount === previousCount) {
-                stagnantPasses += 1;
-            } else {
-                stagnantPasses = 0;
-            }
-            previousCount = currentCount;
-
-            const { moved, atEnd, scrollHeight } = await scrollGalleryStep(page);
-            previousScrollHeight = Math.max(previousScrollHeight, scrollHeight);
-
-            if (atEnd) {
-                const beforeCount = imageUrlSet.size;
-                const beforeHeight = previousScrollHeight;
-
-                await nudgeGalleryForLazyLoad(page);
-                const growth = await waitForLazyGrowth(page, imageUrlSet, beforeCount, beforeHeight);
-                previousScrollHeight = Math.max(previousScrollHeight, growth.scrollHeight);
-
-                if (growth.foundMore) {
-                    stagnantPasses = 0;
-                    exhaustedEndChecks = 0;
-                    continue;
-                }
-
-                exhaustedEndChecks += 1;
-                if (exhaustedEndChecks >= 4) {
-                    break;
-                }
-                continue;
-            }
-
-            exhaustedEndChecks = 0;
-
-            if (!moved && stagnantPasses >= 6) {
-                const beforeCount = imageUrlSet.size;
-                const growth = await waitForLazyGrowth(page, imageUrlSet, beforeCount, previousScrollHeight);
-                previousScrollHeight = Math.max(previousScrollHeight, growth.scrollHeight);
-
-                if (!growth.foundMore) {
-                    break;
-                }
-
-                stagnantPasses = 0;
-            }
-
-            await page.waitForTimeout(stagnantPasses > 0 ? 750 : 420);
-        }
-
-        // Final pass after last scroll settles.
-        await page.waitForTimeout(500);
-        await collectImageCandidates(page, imageUrlSet);
-    } catch {
-        console.log('Error during gallery scroll/harvest loop, keeping currently collected images...');
-    }
-
-        const uniqueImageUrls = Array.from(imageUrlSet.values());
-
-    console.log(`Scraped ${name}. Found ${uniqueImageUrls.length} images.`);
-
-        const cleanedAddress = cleanLabeledText(address).replace(/\s*\n\s*/g, ', ');
-        const cleanedPhone = cleanLabeledText(phone).replace(/[^\d+]/g, '');
+    const cleanedAddress = cleanLabeledText(address).replace(/\s*\n\s*/g, ', ');
+    const cleanedPhone = cleanLabeledText(phone).replace(/[^\d+]/g, '');
 
     // --- Build a Google Maps embed URL ---
     let mapEmbedUrl = '';
     try {
-      // Try to extract lat/lng from the URL pattern: @LAT,LNG,ZOOMz
       const currentUrl = page.url();
       const coordsMatch = currentUrl.match(/@(-?[\d.]+),(-?[\d.]+),([\d.]+)z/);
       if (coordsMatch) {
@@ -1142,13 +1014,7 @@ export async function scrapeGoogleBusinessProfile(url: string, photosUrl?: strin
         const lng = coordsMatch[2];
         mapEmbedUrl = `https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d3000!2d${lng}!3d${lat}!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sin!4v1`;
       }
-      // Fallback: use a search-based embed with the business name + address
       if (!mapEmbedUrl && name.trim()) {
-        const query = encodeURIComponent(`${name.trim()} ${cleanedAddress || ''}`.trim());
-        mapEmbedUrl = `https://www.google.com/maps/embed/v1/place?key=&q=${query}`;
-      }
-      // Best fallback: use a simple search embed (works without API key)
-      if (!mapEmbedUrl || mapEmbedUrl.includes('key=&')) {
         const query = encodeURIComponent(`${name.trim()} ${cleanedAddress || ''}`.trim());
         mapEmbedUrl = `https://maps.google.com/maps?q=${query}&output=embed`;
       }
@@ -1163,14 +1029,201 @@ export async function scrapeGoogleBusinessProfile(url: string, photosUrl?: strin
       address: cleanedAddress || '',
       phone: cleanedPhone || '',
       website: website.trim(),
-      imageUrls: uniqueImageUrls,
       reviews: extractedReviews.filter(r => r.rating === 5),
       mapEmbedUrl,
     };
   } catch (error) {
-    console.error('Error during scraping:', error);
-    throw new Error('Failed to scrape Google Business Profile');
+    console.error('[Details Scraper] Error during scraping:', error);
+    throw new Error('Failed to scrape Google Business Profile details');
   } finally {
     await browser.close();
   }
 }
+
+export async function scrapeBusinessImages(url: string, photosUrl?: string): Promise<string[]> {
+  const storageStatePath = process.env.GOOGLE_MAPS_STORAGE_STATE_PATH?.trim();
+  const storageState = storageStatePath && fs.existsSync(storageStatePath)
+      ? storageStatePath
+      : undefined;
+  const browser = await chromium.launch({ headless: process.env.GOOGLE_MAPS_HEADLESS !== 'false' });
+  const context = await browser.newContext({
+      userAgent:
+          'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36',
+      locale: 'en-US',
+      viewport: { width: 1280, height: 900 },
+      ...(storageState ? { storageState } : {}),
+  });
+  const page = await context.newPage();
+
+  const imageUrlSet = new Map<string, string>();
+
+  try {
+    if (photosUrl) {
+      console.log(`[Images Scraper] Navigating directly to photos URL: ${photosUrl}...`);
+      await page.goto(photosUrl, { waitUntil: 'domcontentloaded', timeout: 30000 }).catch(() => console.log('Navigation timeout, proceeding anyway...'));
+      await page.waitForTimeout(4000);
+    } else {
+      console.log(`[Images Scraper] Navigating to: ${url}...`);
+      await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 30000 }).catch(() => {});
+      await page.waitForTimeout(4000);
+
+      try {
+        const consentSelectors = [
+            'button:has-text("Accept all")',
+            'button:has-text("Accept")',
+            'button:has-text("I agree")',
+        ];
+
+        for (const selector of consentSelectors) {
+            const acceptBtn = page.locator(selector).first();
+            if ((await acceptBtn.count()) > 0) {
+                await acceptBtn.click({ timeout: 2000 }).catch(() => {});
+                await page.waitForTimeout(1500);
+                break;
+            }
+        }
+      } catch {}
+
+      try {
+        console.log('[Images Scraper] Attempting to open the photo gallery...');
+        const photoButtonSelectors = [
+            'button:has-text("See all photos")',
+            'button:has-text("See photos")',
+            'a:has-text("See photos")',
+            'button:has-text("See all")',
+            'button:has-text("Photos")',
+            'button[aria-label*="photo" i]',
+            'div[role="button"][aria-label*="photo" i]',
+            'div[role="button"]:has-text("See photos")',
+            'div[role="button"]:has-text("Photos")',
+            'div.fontHeadlineSmall:has-text("Photos")'
+        ];
+
+        let clicked = false;
+        for (const selector of photoButtonSelectors) {
+            const btn = page.locator(selector).first();
+            if (await btn.count() === 0) continue;
+
+            try {
+                const href = await btn.getAttribute('href').catch(() => null);
+                if (href && /^https?:\/\//i.test(href)) {
+                    await page.goto(href, { waitUntil: 'domcontentloaded', timeout: 30000 }).catch(() => {});
+                } else {
+                    await btn.click({ force: true, timeout: 3000 });
+                }
+
+                await page.waitForTimeout(1800);
+                clicked = true;
+                console.log(`Clicked photos button using selector: ${selector}`);
+                break;
+            } catch {}
+        }
+
+        if (!clicked) {
+            await page.locator('img[decoding="async"]').first().click({ force: true, timeout: 3000 }).catch(() => {});
+        }
+      } catch {
+        console.log('Error interacting with expanded photo gallery, capturing visible images...');
+      }
+    }
+
+    try {
+      await page.waitForTimeout(2000);
+
+      let previousCount = -1;
+      let stagnantPasses = 0;
+      let exhaustedEndChecks = 0;
+      let previousScrollHeight = 0;
+      const maxScrollPasses = 280;
+
+      for (let pass = 0; pass < maxScrollPasses; pass++) {
+          await collectImageCandidates(page, imageUrlSet);
+
+          const currentCount = imageUrlSet.size;
+          if (currentCount === previousCount) {
+              stagnantPasses += 1;
+          } else {
+              stagnantPasses = 0;
+          }
+          previousCount = currentCount;
+
+          const { moved, atEnd, scrollHeight } = await scrollGalleryStep(page);
+          previousScrollHeight = Math.max(previousScrollHeight, scrollHeight);
+
+          if (atEnd) {
+              const beforeCount = imageUrlSet.size;
+              const beforeHeight = previousScrollHeight;
+
+              await nudgeGalleryForLazyLoad(page);
+              const growth = await waitForLazyGrowth(page, imageUrlSet, beforeCount, beforeHeight);
+              previousScrollHeight = Math.max(previousScrollHeight, growth.scrollHeight);
+
+              if (growth.foundMore) {
+                  stagnantPasses = 0;
+                  exhaustedEndChecks = 0;
+                  continue;
+              }
+
+              exhaustedEndChecks += 1;
+              if (exhaustedEndChecks >= 4) {
+                  break;
+              }
+              continue;
+          }
+
+          exhaustedEndChecks = 0;
+
+          if (!moved && stagnantPasses >= 5) {
+              const beforeCount = imageUrlSet.size;
+              const growth = await waitForLazyGrowth(page, imageUrlSet, beforeCount, previousScrollHeight);
+              previousScrollHeight = Math.max(previousScrollHeight, growth.scrollHeight);
+
+              if (!growth.foundMore) {
+                  break;
+              }
+
+              stagnantPasses = 0;
+          }
+
+          await page.waitForTimeout(stagnantPasses > 0 ? 600 : 350);
+      }
+
+      await page.waitForTimeout(400);
+      await collectImageCandidates(page, imageUrlSet);
+    } catch {
+      console.log('Error during gallery scroll loop, returning currently collected images...');
+    }
+
+    const uniqueImageUrls = Array.from(imageUrlSet.values());
+    console.log(`[Images Scraper] Found ${uniqueImageUrls.length} images.`);
+    return uniqueImageUrls;
+  } catch (error) {
+    console.error('[Images Scraper] Error during scraping:', error);
+    throw new Error('Failed to scrape Google Business Profile images');
+  } finally {
+    await browser.close();
+  }
+}
+
+export async function scrapeGoogleBusinessProfile(
+  url: string,
+  photosUrl?: string,
+  options?: { skipImages?: boolean }
+): Promise<ScrapedData> {
+  const details = await scrapeBusinessDetails(url);
+
+  if (options?.skipImages) {
+    return {
+      ...details,
+      imageUrls: [],
+    };
+  }
+
+  const imageUrls = await scrapeBusinessImages(url, photosUrl);
+
+  return {
+    ...details,
+    imageUrls,
+  };
+}
+

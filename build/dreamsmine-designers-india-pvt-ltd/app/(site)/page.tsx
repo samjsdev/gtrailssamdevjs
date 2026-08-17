@@ -382,7 +382,16 @@ export default async function HomePage({ params }: PageProps) {
             </div>
 
             <div className="w-full flex justify-center border border-[var(--line-strong)] bg-[var(--white)] p-2 md:p-6 rounded-3xl shadow-xl relative">
-              <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdsYUIz-6IWzBpZXEpOIrAiVt1iiD8lRr3Gto5o7zjz0Ubq8Q/viewform?embedded=true" width="640" height="826" frameBorder="0" marginHeight={0} marginWidth={0} className="w-full max-w-[640px] min-h-[1200px] md:min-h-[850px] rounded-xl bg-transparent">Loading…</iframe>
+              <div className="w-full max-w-[640px] bg-white rounded-xl shadow-sm border border-gray-100 p-8 flex flex-col justify-center">
+                <h3 className="text-2xl font-bold mb-6 text-gray-800">Request Estimate</h3>
+                <form className="space-y-4" >
+                  <input type="text" placeholder="Name" required className="w-full p-3 border border-gray-200 rounded-md outline-none focus:border-gray-400 transition-colors" />
+                  <input type="email" placeholder="Email" required className="w-full p-3 border border-gray-200 rounded-md outline-none focus:border-gray-400 transition-colors" />
+                  <input type="tel" placeholder="Phone" required className="w-full p-3 border border-gray-200 rounded-md outline-none focus:border-gray-400 transition-colors" />
+                  <textarea placeholder="Tell us about your requirements" required className="w-full p-3 border border-gray-200 rounded-md outline-none focus:border-gray-400 h-32 transition-colors"></textarea>
+                  <button type="submit" className="w-full bg-gray-800 text-white py-3 rounded-md uppercase tracking-wide text-sm font-semibold hover:bg-gray-700 transition-colors">Submit Request</button>
+                </form>
+              </div>
             </div>
 
           </div>

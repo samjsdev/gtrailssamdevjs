@@ -129,16 +129,16 @@ export default async function ContactPage({ params }: PageProps) {
               Send a Message
             </h2>
             
-            <iframe
-              id="contact-form-iframe"
-              src="https://docs.google.com/forms/d/e/1FAIpQLSdfYBDLFToYidjSU3rU7oomyXQ71fzGjRw8WXdgo0i4aS9H4A/viewform?embedded=true"
-              width="100%"
-              height="850"
-              className="w-full border-0 relative z-10"
-              title="Contact Inquiry Form"
-            >
-              Loading…
-            </iframe>
+            <div className="w-full bg-white rounded-xl shadow-sm border border-gray-100 p-8 flex flex-col justify-center">
+              <h3 className="text-2xl font-bold mb-6 text-gray-800">Send us a message</h3>
+              <form className="space-y-4" >
+                <input type="text" placeholder="Name" required className="w-full p-3 border border-gray-200 rounded-md outline-none focus:border-gray-400 transition-colors" />
+                <input type="email" placeholder="Email" required className="w-full p-3 border border-gray-200 rounded-md outline-none focus:border-gray-400 transition-colors" />
+                <input type="tel" placeholder="Phone" required className="w-full p-3 border border-gray-200 rounded-md outline-none focus:border-gray-400 transition-colors" />
+                <textarea placeholder="Tell us about your requirements" required className="w-full p-3 border border-gray-200 rounded-md outline-none focus:border-gray-400 h-32 transition-colors"></textarea>
+                <button type="submit" className="w-full bg-gray-800 text-white py-3 rounded-md uppercase tracking-wide text-sm font-semibold hover:bg-gray-700 transition-colors">Submit Request</button>
+              </form>
+            </div>
           </div>
         </div>
       </div>

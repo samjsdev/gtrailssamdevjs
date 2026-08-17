@@ -212,7 +212,8 @@ export async function createSourceConfig(slug: string, data: any): Promise<Gener
       },
       contact: {
         phone: data.phone || '',
-        website: data.website || ''
+        website: data.website || '',
+        googleMapsUrl: data.googleMapsUrl || data.gbpUrl || ''
       },
       mapEmbedUrl: data.mapEmbedUrl || ''
     },
@@ -242,7 +243,8 @@ export async function createSourceConfig(slug: string, data: any): Promise<Gener
     },
     meta: {
       generatedAt: new Date().toISOString(),
-      source: 'google_maps'
+      source: 'google_maps',
+      gbpUrl: data.googleMapsUrl || data.gbpUrl || ''
     }
   };
 

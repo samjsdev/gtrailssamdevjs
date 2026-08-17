@@ -46,7 +46,7 @@ function needsAuth(request: NextRequest): boolean {
     return !isPublicAdminPath(pathname);
   }
 
-  if (pathname === '/api/generate' || pathname === '/api/intake' || pathname === '/api/publish' || pathname === '/api/unpublish') {
+  if (pathname === '/api/generate' || pathname === '/api/intake' || pathname.startsWith('/api/intake/') || pathname === '/api/publish' || pathname === '/api/unpublish') {
     return true;
   }
 
@@ -94,7 +94,7 @@ export const config = {
     '/private/:path*',
     '/api/data',
     '/api/generate',
-    '/api/intake',
+    '/api/intake/:path*',
     '/api/publish',
     '/api/unpublish',
     '/api/admin/:path*',

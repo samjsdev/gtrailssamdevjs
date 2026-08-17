@@ -1,0 +1,71 @@
+{
+  "clinic": {
+    "name": "SATHIESH PLANNERS",
+    "slug": "sathiesh-planners",
+    "tagline": "Thoughtful Interiors for Everyday Living",
+    "description": "Welcome to SATHIESH PLANNERS. We create refined, functional interiors tailored to your lifestyle, budget, and space.",
+    "address": {
+      "full": "Srinivasan St, T Nagar, CIT Nagar, Chennai, Greater Chennai, Tamil Nadu 600017",
+      "area": "",
+      "city": "Chennai",
+      "state": "Greater Chennai",
+      "country": "India"
+    },
+    "contact": {
+      "phone": "09381030444",
+      "website": ""
+    },
+    "mapEmbedUrl": "https://maps.google.com/maps?q=SATHIESH%20PLANNERS%20Srinivasan%20St%2C%20T%20Nagar%2C%20CIT%20Nagar%2C%20Chennai%2C%20Greater%20Chennai%2C%20Tamil%20Nadu%20600017&output=embed"
+  },
+  "business": {
+    "rating": "4.8",
+    "reviewCount": "",
+    "timings": [],
+    "services": [
+      "Residential Interior Design",
+      "Modular Kitchen Design",
+      "Living Room Styling",
+      "Bedroom Makeovers",
+      "Space Planning",
+      "Custom Furniture"
+    ],
+    "highlights": [
+      "Personalized design concepts",
+      "Material and finish guidance",
+      "Transparent project planning",
+      "End-to-end execution support"
+    ]
+  },
+  "doctor": {
+    "name": "SATHIESH Studio Team",
+    "images": [],
+    "experience": "5+ years",
+    "specialization": "Interior Design & Turnkey Execution"
+  },
+  "reviews": [],
+  "media": {
+    "clinicImages": [
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/6222f16a09c7baf71674144c66005e4b/view?project=6a1cf32a002c668912cc",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/5a09d92a74c4f6736d6e8fc252cacb60/view?project=6a1cf32a002c668912cc",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/d0355d7980a639f4e3b85828f02f586a/view?project=6a1cf32a002c668912cc",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/cdb942a2b3ebc3224b04066d03906beb/view?project=6a1cf32a002c668912cc"
+    ],
+    "treatmentImages": [
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/c74990d6eba4f831415cba91d75cd543/view?project=6a1cf32a002c668912cc",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/fa7a8510a97baf65b1fa128c9f70e2b2/view?project=6a1cf32a002c668912cc",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/f1d4dd3a7e8a4823fc2d516d5f339ca1/view?project=6a1cf32a002c668912cc",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/23cff410abc59c39f6748517c318e9b1/view?project=6a1cf32a002c668912cc"
+    ],
+    "otherImages": []
+  },
+  "overrides": {
+    "doctorName": "",
+    "doctorImages": [],
+    "extraImages": []
+  },
+  "meta": {
+    "generatedAt": "2026-08-17T10:45:51.698Z",
+    "source": "google_maps",
+    "updatedAt": "2026-08-17T10:45:51.701Z"
+  }
+}

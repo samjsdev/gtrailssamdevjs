@@ -1,0 +1,68 @@
+{
+  "clinic": {
+    "name": "ProjectX Interior Studio",
+    "slug": "projectx-interior-studio",
+    "tagline": "Thoughtful Interiors for Everyday Living",
+    "description": "Welcome to ProjectX Interior Studio. We create refined, functional interiors tailored to your lifestyle, budget, and space.",
+    "address": {
+      "full": "7, Perambur Red Hills Rd, near Retteri, Flyover, Bhavani Nagar, Kolathur, Chennai, Greater Chennai, Tamil Nadu 600099",
+      "area": "",
+      "city": "Chennai",
+      "state": "Greater Chennai",
+      "country": "India"
+    },
+    "contact": {
+      "phone": "07871864111",
+      "website": ""
+    },
+    "mapEmbedUrl": "https://maps.google.com/maps?q=ProjectX%20Interior%20Studio%207%2C%20Perambur%20Red%20Hills%20Rd%2C%20near%20Retteri%2C%20Flyover%2C%20Bhavani%20Nagar%2C%20Kolathur%2C%20Chennai%2C%20Greater%20Chennai%2C%20Tamil%20Nadu%20600099&output=embed"
+  },
+  "business": {
+    "rating": "5.0",
+    "reviewCount": "",
+    "timings": [],
+    "services": [
+      "Residential Interior Design",
+      "Modular Kitchen Design",
+      "Living Room Styling",
+      "Bedroom Makeovers",
+      "Space Planning",
+      "Custom Furniture"
+    ],
+    "highlights": [
+      "Personalized design concepts",
+      "Material and finish guidance",
+      "Transparent project planning",
+      "End-to-end execution support"
+    ]
+  },
+  "doctor": {
+    "name": "ProjectX Studio Team",
+    "images": [],
+    "experience": "5+ years",
+    "specialization": "Interior Design & Turnkey Execution"
+  },
+  "reviews": [],
+  "media": {
+    "clinicImages": [
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/e9e70031f77fda3aef244bf044456f11/view?project=6a1cf32a002c668912cc",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/87f259cccfbedebd6f5e5b4312b97e32/view?project=6a1cf32a002c668912cc",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/fe5d104ea9f1f83c119c8c9e3d8a8568/view?project=6a1cf32a002c668912cc",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/b547145402d99b0c42e3aa2039330710/view?project=6a1cf32a002c668912cc"
+    ],
+    "treatmentImages": [
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/052a568f45c014345e9a88c0a7725af3/view?project=6a1cf32a002c668912cc"
+    ],
+    "otherImages": []
+  },
+  "overrides": {
+    "doctorName": "",
+    "doctorImages": [],
+    "extraImages": []
+  },
+  "meta": {
+    "generatedAt": "2026-08-17T10:35:21.881Z",
+    "source": "google_maps",
+    "updatedAt": "2026-08-17T10:35:21.886Z"
+  }
+}

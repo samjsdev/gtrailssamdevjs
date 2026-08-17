@@ -74,7 +74,7 @@
       "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/df5b156bd109102dff802d6c9431ef6d/view?project=6a1cf32a002c668912cc",
       "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/87a81d55008c0d65494a19bdc7b75087/view?project=6a1cf32a002c668912cc",
       "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/b9d8c907c88ccd987a90d4c4b52d74ef/view?project=6a1cf32a002c668912cc",
-      "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/2aedd072cafa48c60419e2b8bf5d89e0/view?project=6a1cf32a002c668912cc",
+      "/api/media?slug=bwd-furn-interior-s&file=otherImages-26.jpg",
       "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/7c4af832e7f4d52847b1735cb8620d58/view?project=6a1cf32a002c668912cc",
       "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/6b101c15a90b436617a0dd3d40baf8bf/view?project=6a1cf32a002c668912cc",
       "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/01998fb8d5e689ee5aeb31f7cb2faa23/view?project=6a1cf32a002c668912cc",
@@ -112,8 +112,8 @@
     "extraImages": []
   },
   "meta": {
-    "generatedAt": "2026-08-07T11:30:26.786Z",
+    "generatedAt": "2026-08-17T10:59:05.885Z",
     "source": "google_maps",
-    "updatedAt": "2026-08-07T11:30:26.793Z"
+    "updatedAt": "2026-08-17T10:59:05.894Z"
   }
 }

@@ -1,0 +1,75 @@
+{
+  "clinic": {
+    "name": "Arino Designs",
+    "slug": "arino-designs",
+    "tagline": "Thoughtful Interiors for Everyday Living",
+    "description": "Welcome to Arino Designs. We create refined, functional interiors tailored to your lifestyle, budget, and space.",
+    "address": {
+      "full": "2nd floor, 7/35, Bajanai Kovil St, Thirumazhisai, Tamil Nadu 600124",
+      "area": "",
+      "city": "Bajanai Kovil St",
+      "state": "Thirumazhisai",
+      "country": "India"
+    },
+    "contact": {
+      "phone": "08870282242",
+      "website": ""
+    },
+    "mapEmbedUrl": "https://maps.google.com/maps?q=Arino%20Designs%202nd%20floor%2C%207%2F35%2C%20Bajanai%20Kovil%20St%2C%20Thirumazhisai%2C%20Tamil%20Nadu%20600124&output=embed"
+  },
+  "business": {
+    "rating": "4.6",
+    "reviewCount": "",
+    "timings": [],
+    "services": [
+      "Residential Interior Design",
+      "Modular Kitchen Design",
+      "Living Room Styling",
+      "Bedroom Makeovers",
+      "Space Planning",
+      "Custom Furniture"
+    ],
+    "highlights": [
+      "Personalized design concepts",
+      "Material and finish guidance",
+      "Transparent project planning",
+      "End-to-end execution support"
+    ]
+  },
+  "doctor": {
+    "name": "Arino Studio Team",
+    "images": [],
+    "experience": "5+ years",
+    "specialization": "Interior Design & Turnkey Execution"
+  },
+  "reviews": [],
+  "media": {
+    "clinicImages": [
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/139fa0127c648c85b485cfdde54c8e2c/view?project=6a1cf32a002c668912cc",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/90cc5edc31938ec7cb673e2a41088bd8/view?project=6a1cf32a002c668912cc",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/3c6482fb810007887527d07cd22b6b36/view?project=6a1cf32a002c668912cc",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/d626fdf9dd8324cb867e3393f7a93801/view?project=6a1cf32a002c668912cc"
+    ],
+    "treatmentImages": [
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/e3ece25ddf6d478af0efd47b4778bfe5/view?project=6a1cf32a002c668912cc",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/3291e049106bafe94b187485c0d7ca27/view?project=6a1cf32a002c668912cc",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/3ad95b496d8cfbfd562bf04df8259b6e/view?project=6a1cf32a002c668912cc",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/38ae50a8cbd6f065285720262926bec5/view?project=6a1cf32a002c668912cc"
+    ],
+    "otherImages": [
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/0189373827071b416d9a63954f6870c2/view?project=6a1cf32a002c668912cc",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/5957e520d713614200fb670eaa25a82b/view?project=6a1cf32a002c668912cc",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/c34c2f1e08b2969480cbab1755d83b8a/view?project=6a1cf32a002c668912cc"
+    ]
+  },
+  "overrides": {
+    "doctorName": "",
+    "doctorImages": [],
+    "extraImages": []
+  },
+  "meta": {
+    "generatedAt": "2026-08-17T11:01:34.776Z",
+    "source": "google_maps",
+    "updatedAt": "2026-08-17T11:01:34.786Z"
+  }
+}

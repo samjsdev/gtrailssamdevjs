@@ -1,0 +1,63 @@
+{
+  "clinic": {
+    "name": "Power City Interiors",
+    "slug": "power-city-interiors",
+    "tagline": "Thoughtful Interiors for Everyday Living",
+    "description": "Welcome to Power City Interiors. We create refined, functional interiors tailored to your lifestyle, budget, and space.",
+    "address": {
+      "full": "No, 1326, 6th St, Gandhi Nagar, Kovilambakkam, Chennai, Greater Chennai, Tamil Nadu 600117",
+      "area": "",
+      "city": "Chennai",
+      "state": "Greater Chennai",
+      "country": "India"
+    },
+    "contact": {
+      "phone": "09884813717",
+      "website": "https://powercityinteriors.com/",
+      "googleMapsUrl": "https://www.google.com/maps/place/Power+City+Interiors/@12.9390517,80.1898351,17z/data=!3m1!4b1!4m6!3m5!1s0x4440dce06b2dc54d:0x64f7d5651ea8c63e!8m2!3d12.9390517!4d80.1898351!16s%2Fg%2F11xmr5k2qd?authuser=0&hl=en&entry=ttu&g_ep=EgoyMDI2MDgxMi4wIKXMDSoASAFQAw%3D%3D"
+    },
+    "mapEmbedUrl": "https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d3000!2d80.1898351!3d12.9390517!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sin!4v1"
+  },
+  "business": {
+    "rating": "4.9",
+    "reviewCount": "",
+    "timings": [],
+    "services": [
+      "Residential Interior Design",
+      "Modular Kitchen Design",
+      "Living Room Styling",
+      "Bedroom Makeovers",
+      "Space Planning",
+      "Custom Furniture"
+    ],
+    "highlights": [
+      "Personalized design concepts",
+      "Material and finish guidance",
+      "Transparent project planning",
+      "End-to-end execution support"
+    ]
+  },
+  "doctor": {
+    "name": "Power Studio Team",
+    "images": [],
+    "experience": "5+ years",
+    "specialization": "Interior Design & Turnkey Execution"
+  },
+  "reviews": [],
+  "media": {
+    "clinicImages": [],
+    "treatmentImages": [],
+    "otherImages": []
+  },
+  "overrides": {
+    "doctorName": "",
+    "doctorImages": [],
+    "extraImages": []
+  },
+  "meta": {
+    "generatedAt": "2026-08-17T11:36:35.887Z",
+    "source": "google_maps",
+    "gbpUrl": "https://www.google.com/maps/place/Power+City+Interiors/@12.9390517,80.1898351,17z/data=!3m1!4b1!4m6!3m5!1s0x4440dce06b2dc54d:0x64f7d5651ea8c63e!8m2!3d12.9390517!4d80.1898351!16s%2Fg%2F11xmr5k2qd?authuser=0&hl=en&entry=ttu&g_ep=EgoyMDI2MDgxMi4wIKXMDSoASAFQAw%3D%3D",
+    "updatedAt": "2026-08-17T11:36:35.891Z"
+  }
+}

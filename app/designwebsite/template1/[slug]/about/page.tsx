@@ -1,11 +1,16 @@
 import { readSourceConfig } from '@/lib/dataBuilder';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
+import {
+  Check, Award, ShieldCheck, Hammer, Layers,
+  Sparkles, Compass, Users, CheckCircle2
+} from 'lucide-react';
 import { cleanClinicName, cleanClinicDescription } from '@/lib/copyCleaner';
 import { DEFAULT_INTERIOR_HIGHLIGHTS, DEFAULT_INTERIOR_SERVICES,
   previewMedia,
 } from '@/lib/interiorContent';
 import Reveal from '../Reveal';
+import PageNarrative from '../PageNarrative';
 
 type PageProps = { params: Promise<{ slug: string }> };
 
@@ -37,11 +42,46 @@ export default async function Template1About({ params }: PageProps) {
     media.otherImages?.[4] ||
     '/images/stock/dc1759ad.webp';
 
-  const VALUE_NOTES = [
-    'Every project starts from your lifestyle — never a catalogue.',
-    'Curated palettes and honest advice on materials that last.',
-    'Itemised estimates and a schedule you can hold us to.',
-    'One accountable team from first sketch to final handover.',
+  const TIMELINE = [
+    {
+      year: 'Founding Year',
+      title: 'The Studio Atelier Founded',
+      desc: `Established in ${city} with a focus on bespoke residential joinery and personal client collaboration.`,
+    },
+    {
+      year: `${experienceYears > 3 ? 'Year 3' : 'Expansion'}`,
+      title: 'Precision Factory Integration',
+      desc: 'Invested in high-precision CNC edge-banding and calibrated processing to bring factory tolerances to home interiors.',
+    },
+    {
+      year: 'Milestone',
+      title: 'Turnkey Architectural Practice',
+      desc: 'Expanded into complete turnkey residential execution — integrating civil, electrical, false ceiling, and bespoke furniture.',
+    },
+    {
+      year: 'Present Day',
+      title: 'Over 100+ Homes Delivered',
+      desc: `Recognized across ${city} for punctual 45-day handovers, zero cost escalations, and enduring craftsmanship.`,
+    },
+  ];
+
+  const QUALITY_STANDARDS = [
+    {
+      title: '100% Calibrated BWP Marine Ply',
+      desc: 'Boiling water proof core ply with zero interior gaps or warping risks — tested against humidity and heavy usage.',
+    },
+    {
+      title: 'German Soft-Close Engineered Hardware',
+      desc: 'Fitted exclusively with Blum and Häfele hinges, tandem boxes, and hydraulic stays tested for 200,000 opening cycles.',
+    },
+    {
+      title: 'Zero-VOC & Anti-Microbial Finishes',
+      desc: 'Non-toxic PU polishes and certified eco-laminates safe for children, pets, and indoor air purity.',
+    },
+    {
+      title: '140-Point Pre-Handover Audit',
+      desc: 'Every drawer alignment, door reveal, and electrical socket is verified against architectural drawings by our site engineer.',
+    },
   ];
 
   return (
@@ -51,13 +91,15 @@ export default async function Template1About({ params }: PageProps) {
         <div className="max-w-7xl mx-auto">
           <Reveal>
             <span className="flex items-center gap-3.5 text-[12px] tracking-[0.38em] uppercase text-[#c9ab7c] mb-5 before:content-[''] before:w-10 before:h-px before:bg-[#c9ab7c]">
-              The studio
+              The Studio
             </span>
-            <h1 className="font-[family-name:var(--font-marcellus)] text-[clamp(38px,5vw,68px)] leading-[1.08] max-w-[760px]">
+            <h1 className="font-[family-name:var(--font-marcellus)] text-[clamp(38px,5vw,68px)] leading-[1.08] max-w-[800px]">
               {cleanName || 'A design studio'} —{' '}
               <em className="not-italic italic font-light text-[#c9ab7c]">crafted in {city}</em>
             </h1>
-            <p className="mt-6 max-w-[560px] text-[16.5px] font-light leading-[1.75] text-white/75">{cleanDesc}</p>
+            <p className="mt-6 max-w-[620px] text-[16.5px] font-light leading-[1.75] text-white/80">
+              {cleanDesc || `A dedicated interior architecture studio in ${city}. We design and build enduring residences where spatial elegance and site discipline unite.`}
+            </p>
           </Reveal>
         </div>
       </section>
@@ -79,23 +121,23 @@ export default async function Template1About({ params }: PageProps) {
 
           <Reveal delay={120}>
             <span className="flex items-center gap-3.5 text-[12px] tracking-[0.38em] uppercase text-[#a58150] mb-4 before:content-[''] before:w-10 before:h-px before:bg-[#a58150]">
-              Our story
+              Our Story &amp; Ethos
             </span>
             <h2 className="font-[family-name:var(--font-marcellus)] text-[clamp(32px,3.8vw,52px)] leading-[1.12] mb-6">
               Homes shaped by <em className="not-italic italic font-light text-[#a58150]">listening first</em>
             </h2>
             <p className="text-[#7d7264] leading-[1.85] font-light text-[15.5px] mb-4.5">
-              {clinic.tagline || 'Thoughtful Interiors for Everyday Living'} — that is the promise behind every drawing that leaves our studio. We believe great interiors are not imported taste; they are deep listening translated into space.
+              {clinic.tagline || 'Thoughtful Interiors for Everyday Living'} — that is the guiding principle behind every line we draw. We believe great interiors are never about transient trends; they are an empathetic translation of daily routines into balanced, enduring architecture.
             </p>
-            <p className="text-[#7d7264] leading-[1.85] font-light text-[15.5px]">
-              From compact apartments to independent villas across {city}, our work balances beauty with the practical weight of daily life: storage that disappears, light that flatters, materials that age gracefully.
+            <p className="text-[#7d7264] leading-[1.85] font-light text-[15.5px] mb-8">
+              From compact urban apartments to independent multi-generational villas across {city}, our studio balances visual restraint with tactile luxury: storage that disappears behind seamless panelling, lighting that flatters at all hours, and materials that grow richer with time.
             </p>
 
-            <div className="grid grid-cols-3 border-t border-b border-[#211a13]/10 mt-9">
+            <div className="grid grid-cols-3 border-t border-b border-[#211a13]/10">
               {[
                 { value: `${rating}★`, label: 'Google Rating' },
                 { value: `${experienceYears}+`, label: 'Years Experience' },
-                { value: `${servicesCount}+`, label: 'Services Offered' },
+                { value: `${servicesCount}+`, label: 'Design Disciplines' },
               ].map((stat, i) => (
                 <div key={stat.label} className={`py-5 px-5 border-l border-[#211a13]/10 ${i === 0 ? 'border-l-0 pl-0' : ''}`}>
                   <b className="font-[family-name:var(--font-marcellus)] font-normal text-[clamp(24px,2.4vw,34px)] block">{stat.value}</b>
@@ -107,30 +149,36 @@ export default async function Template1About({ params }: PageProps) {
         </div>
       </section>
 
-      {/* VALUES */}
-      <section id="values" className="py-[clamp(84px,9vw,130px)] px-6 lg:px-7 bg-[#fdfbf6] border-y border-[#211a13]/10">
+      {/* CHRONOLOGY / TIMELINE */}
+      <section className="py-[clamp(84px,9vw,130px)] px-6 lg:px-7 bg-[#211a13] text-white">
         <div className="max-w-7xl mx-auto">
-          <Reveal className="text-center mb-[clamp(44px,5vw,68px)]">
-            <span className="inline-flex items-center gap-3.5 text-[12px] tracking-[0.38em] uppercase text-[#a58150] mb-4 before:content-[''] before:w-10 before:h-px before:bg-[#a58150] after:content-[''] after:w-10 after:h-px after:bg-[#a58150]">
-              What we stand for
+          <Reveal className="mb-14">
+            <span className="flex items-center gap-3.5 text-[12px] tracking-[0.38em] uppercase text-[#c9ab7c] mb-4 before:content-[''] before:w-10 before:h-px before:bg-[#c9ab7c]">
+              Studio Evolution
             </span>
-            <h2 className="font-[family-name:var(--font-marcellus)] text-[clamp(34px,4.2vw,58px)] leading-[1.1]">
-              The values behind <em className="not-italic italic font-light text-[#a58150]">the craft</em>
+            <h2 className="font-[family-name:var(--font-marcellus)] text-[clamp(32px,3.8vw,52px)] leading-[1.12]">
+              Milestones of <em className="not-italic italic font-light text-[#c9ab7c]">architectural practice</em>
             </h2>
           </Reveal>
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {highlights.slice(0, 4).map((h, idx) => (
-              <Reveal key={h} delay={idx * 80}>
-                <div className="border border-[#211a13]/10 bg-[#f6f1e8] px-7 py-9 h-full hover:border-[#a58150] transition-colors duration-300">
-                  <span
-                    className="font-[family-name:var(--font-marcellus)] text-[46px] block mb-5 text-transparent"
-                    style={{ WebkitTextStroke: '1px #a58150' }}
-                  >
-                    0{idx + 1}
+            {TIMELINE.map((item, idx) => (
+              <Reveal key={item.title} delay={idx * 80}>
+                <div className="bg-[#2c231a] border border-[#a58150]/25 p-8 h-full flex flex-col justify-between hover:border-[#a58150] transition-colors">
+                  <div>
+                    <span className="text-[12px] tracking-[0.25em] uppercase text-[#c9ab7c] font-medium block mb-3">
+                      {item.year}
+                    </span>
+                    <h3 className="font-[family-name:var(--font-marcellus)] font-normal text-[20px] text-white mb-3 leading-snug">
+                      {item.title}
+                    </h3>
+                    <p className="text-[13.5px] font-light text-white/70 leading-[1.7]">
+                      {item.desc}
+                    </p>
+                  </div>
+                  <span className="font-[family-name:var(--font-marcellus)] text-[14px] text-[#a58150] mt-6 block">
+                    Phase 0{idx + 1}
                   </span>
-                  <h3 className="font-[family-name:var(--font-marcellus)] font-normal text-[20px] mb-3 leading-snug">{h}</h3>
-                  <p className="text-[13.5px] font-light text-[#7d7264] leading-[1.7]">{VALUE_NOTES[idx % VALUE_NOTES.length]}</p>
                 </div>
               </Reveal>
             ))}
@@ -138,67 +186,139 @@ export default async function Template1About({ params }: PageProps) {
         </div>
       </section>
 
-      {/* PRINCIPAL DESIGNER */}
-      <section id="designer" className="py-[clamp(84px,9vw,130px)] px-6 lg:px-7">
+      {/* VALUES & PHILOSOPHY */}
+      <section id="values" className="py-[clamp(84px,9vw,130px)] px-6 lg:px-7 bg-[#fdfbf6] border-y border-[#211a13]/10">
+        <div className="max-w-7xl mx-auto">
+          <Reveal className="text-center max-w-3xl mx-auto mb-[clamp(44px,5vw,68px)]">
+            <span className="inline-flex items-center gap-3.5 text-[12px] tracking-[0.38em] uppercase text-[#a58150] mb-4 before:content-[''] before:w-10 before:h-px before:bg-[#a58150] after:content-[''] after:w-10 after:h-px after:bg-[#a58150]">
+              What We Stand For
+            </span>
+            <h2 className="font-[family-name:var(--font-marcellus)] text-[clamp(34px,4.2vw,58px)] leading-[1.1] mb-4">
+              The values behind <em className="not-italic italic font-light text-[#a58150]">every detail</em>
+            </h2>
+            <p className="text-[#7d7264] font-light text-[15.5px]">
+              We take pride in transparent pricing, architectural integrity, and on-time handovers.
+            </p>
+          </Reveal>
+
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {highlights.slice(0, 4).map((h, idx) => {
+              const VALUE_NOTES = [
+                'Every project begins from scratch with your lifestyle rituals — never a copy-paste template.',
+                'Curated material palettes and honest advisory on hardware and finishes engineered to last decades.',
+                'Itemised BOQ quotes with frozen prices — no hidden surprises or mid-project price spikes.',
+                'One accountable interior architect and project lead from the initial sketch to final handover.',
+              ];
+              return (
+                <Reveal key={h} delay={idx * 80}>
+                  <div className="border border-[#211a13]/10 bg-[#f6f1e8] px-7 py-9 h-full hover:border-[#a58150] transition-colors duration-300">
+                    <span
+                      className="font-[family-name:var(--font-marcellus)] text-[46px] block mb-5 text-transparent"
+                      style={{ WebkitTextStroke: '1px #a58150' }}
+                    >
+                      0{idx + 1}
+                    </span>
+                    <h3 className="font-[family-name:var(--font-marcellus)] font-normal text-[20px] mb-3 leading-snug">{h}</h3>
+                    <p className="text-[13.5px] font-light text-[#7d7264] leading-[1.7]">{VALUE_NOTES[idx % VALUE_NOTES.length]}</p>
+                  </div>
+                </Reveal>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* QUALITY & MATERIALS STANDARDS */}
+      <section className="py-[clamp(84px,9vw,130px)] px-6 lg:px-7">
+        <div className="max-w-7xl mx-auto grid lg:grid-cols-[0.9fr_1.1fr] gap-[clamp(44px,6vw,90px)] items-center">
+          <Reveal className="relative overflow-hidden aspect-[4/4.6]">
+            <img src={craftImage} alt="Precision woodworking and craft" loading="lazy" className="w-full h-full object-cover" />
+          </Reveal>
+
+          <Reveal delay={120}>
+            <span className="flex items-center gap-3.5 text-[12px] tracking-[0.38em] uppercase text-[#a58150] mb-4 before:content-[''] before:w-10 before:h-px before:bg-[#a58150]">
+              Engineering &amp; Standards
+            </span>
+            <h2 className="font-[family-name:var(--font-marcellus)] text-[clamp(32px,3.8vw,52px)] leading-[1.12] mb-6">
+              Precision joinery backed by a <em className="not-italic italic font-light text-[#a58150]">10-year warranty</em>
+            </h2>
+            <p className="text-[#7d7264] leading-[1.85] font-light text-[15.5px] mb-8">
+              We hold our manufacturing to strict European tolerances. Every cabinet, drawer slide, and panel is built to withstand decades of daily use in tropical climates.
+            </p>
+
+            <div className="grid sm:grid-cols-2 gap-6">
+              {QUALITY_STANDARDS.map((std) => (
+                <div key={std.title} className="border-t border-[#211a13]/10 pt-4">
+                  <div className="flex items-center gap-2 mb-1.5">
+                    <CheckCircle2 className="w-4 h-4 text-[#a58150] shrink-0" />
+                    <b className="font-[family-name:var(--font-marcellus)] text-[16px]">{std.title}</b>
+                  </div>
+                  <p className="text-[13px] text-[#7d7264] font-light leading-[1.65]">{std.desc}</p>
+                </div>
+              ))}
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* PRINCIPAL DESIGNER & LEADERSHIP */}
+      <section id="designer" className="py-[clamp(84px,9vw,130px)] px-6 lg:px-7 bg-[#211a13] text-white">
         <div className="max-w-7xl mx-auto grid lg:grid-cols-[0.9fr_1.1fr] gap-[clamp(44px,6vw,90px)] items-center">
           <Reveal className="relative overflow-hidden aspect-[4/4.6]">
             <img src={designerImage} alt={doctor?.name || 'Principal designer'} loading="lazy" className="w-full h-full object-cover" />
           </Reveal>
 
           <Reveal delay={120}>
-            <span className="flex items-center gap-3.5 text-[12px] tracking-[0.38em] uppercase text-[#a58150] mb-4 before:content-[''] before:w-10 before:h-px before:bg-[#a58150]">
-              The people behind the work
+            <span className="flex items-center gap-3.5 text-[12px] tracking-[0.38em] uppercase text-[#c9ab7c] mb-4 before:content-[''] before:w-10 before:h-px before:bg-[#c9ab7c]">
+              Studio Leadership
             </span>
-            <h2 className="font-[family-name:var(--font-marcellus)] text-[clamp(32px,3.8vw,52px)] leading-[1.12] mb-6">
-              {doctor?.name || 'Our Design Team'}
+            <h2 className="font-[family-name:var(--font-marcellus)] text-[clamp(32px,3.8vw,52px)] leading-[1.12] mb-3">
+              {doctor?.name || 'Principal Designer'}
             </h2>
-            <p className="text-[15px] tracking-[0.08em] uppercase text-[#a58150] mb-5">
-              {doctor?.specialization || 'Interior Design & Turnkey Execution'} · {doctor?.experience || '5+ years'}
+            <p className="text-[14.5px] text-[#c9ab7c] tracking-[0.1em] uppercase mb-6 font-medium">
+              {doctor?.credentials || 'Principal Architect & Creative Director'}
             </p>
-            <p className="text-[#7d7264] leading-[1.85] font-light text-[15.5px] mb-4.5">
-              Every project is personally reviewed before handover — one signature, one standard. Our team blends design sensibility with site discipline, so what you approve in 3D is exactly what gets built.
+            <p className="text-white/75 leading-[1.85] font-light text-[15.5px] mb-6">
+              {doctor?.bio || `With over ${experienceYears}+ years of design practice across residential and turnkey luxury projects, the studio is dedicated to creating homes that exude effortless calm and architectural permanence.`}
             </p>
-            <blockquote className="font-[family-name:var(--font-marcellus)] text-[clamp(20px,2.2vw,26px)] leading-[1.5] border-l-2 border-[#a58150] pl-6 my-8">
-              &ldquo;A home should hold your life the way a well-tailored garment holds the body — invisibly, perfectly, yours.&rdquo;
-            </blockquote>
+            <div className="grid grid-cols-2 gap-4 border-t border-[#f6f1e8]/15 pt-6 mb-8">
+              <div>
+                <b className="font-[family-name:var(--font-marcellus)] text-[28px] text-[#c9ab7c] block">{experienceYears}+ Years</b>
+                <span className="text-[11px] tracking-[0.2em] uppercase text-white/60">Design Experience</span>
+              </div>
+              <div>
+                <b className="font-[family-name:var(--font-marcellus)] text-[28px] text-[#c9ab7c] block">100%</b>
+                <span className="text-[11px] tracking-[0.2em] uppercase text-white/60">Punctual Handover</span>
+              </div>
+            </div>
             <Link
               href={`${basePath}/contact`}
-              className="inline-flex items-center gap-3 bg-[#211a13] text-white px-7 py-4 text-[12.5px] tracking-[0.2em] uppercase font-medium border border-[#211a13] hover:bg-[#a58150] hover:border-[#a58150] transition-colors duration-300"
+              className="inline-flex items-center gap-3 bg-[#a58150] text-white px-8 py-4 text-[12.5px] tracking-[0.2em] uppercase font-medium border border-[#a58150] hover:bg-white hover:text-[#211a13] hover:border-white transition-colors duration-300"
             >
-              Meet Us For A Consultation
+              Schedule Studio Meeting
             </Link>
           </Reveal>
         </div>
       </section>
 
-      {/* CRAFT CTA */}
-      <section id="craft" className="relative py-[clamp(84px,9vw,130px)] px-6 lg:px-7 text-white overflow-hidden">
-        <div className="absolute inset-0">
-          <img src={craftImage} alt="" loading="lazy" className="w-full h-full object-cover" />
-          <div className="absolute inset-0 bg-[rgba(24,18,12,0.82)]" />
-        </div>
-        <div className="relative z-10 max-w-3xl mx-auto text-center">
+      <PageNarrative page="about" studioName={cleanName} city={city} />
+
+      {/* CTA */}
+      <section id="about-cta" className="bg-[#f6f1e8] px-6 lg:px-7 py-[clamp(70px,8vw,100px)] text-center">
+        <div className="max-w-3xl mx-auto">
           <Reveal>
-            <h2 className="font-[family-name:var(--font-marcellus)] text-[clamp(32px,4vw,54px)] leading-[1.12] mb-6">
-              Ready to see what your home <em className="not-italic italic font-light text-[#c9ab7c]">could become?</em>
+            <h2 className="font-[family-name:var(--font-marcellus)] text-[clamp(30px,3.8vw,50px)] leading-[1.12] mb-5">
+              Ready to create your <em className="not-italic italic font-light text-[#a58150]">sanctuary?</em>
             </h2>
-            <p className="text-white/75 font-light leading-[1.8] mb-9">
-              Browse the portfolio, or sit with us for 45 minutes — space plan, style direction and a ballpark estimate, free.
+            <p className="text-[#7d7264] font-light leading-[1.8] mb-8 text-[16px]">
+              Meet our principal design team for an insightful 45-minute spatial consultation for your {city} home.
             </p>
-            <div className="flex flex-wrap gap-4 justify-center">
-              <Link
-                href={`${basePath}/gallery`}
-                className="inline-flex items-center gap-3 bg-transparent text-white px-7 py-4 text-[12.5px] tracking-[0.2em] uppercase font-medium border border-white/50 hover:border-white hover:bg-white/10 transition-colors duration-300"
-              >
-                View Portfolio
-              </Link>
-              <Link
-                href={`${basePath}/contact`}
-                className="inline-flex items-center gap-3 bg-[#a58150] text-white px-7 py-4 text-[12.5px] tracking-[0.2em] uppercase font-medium border border-[#a58150] hover:bg-white hover:text-[#211a13] hover:border-white transition-colors duration-300"
-              >
-                Book Free Consultation
-              </Link>
-            </div>
+            <Link
+              href={`${basePath}/contact`}
+              className="inline-flex items-center gap-3 bg-[#211a13] text-white px-9 py-4.5 text-[12.5px] tracking-[0.2em] uppercase font-medium border border-[#211a13] hover:bg-[#a58150] hover:border-[#a58150] transition-colors duration-300"
+            >
+              Book Free Consultation
+            </Link>
           </Reveal>
         </div>
       </section>

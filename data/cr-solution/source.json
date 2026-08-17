@@ -1,0 +1,92 @@
+{
+  "clinic": {
+    "name": "CR SOLUTION",
+    "slug": "cr-solution",
+    "tagline": "Thoughtful Interiors for Everyday Living",
+    "description": "Welcome to CR SOLUTION. We create refined, functional interiors tailored to your lifestyle, budget, and space.",
+    "address": {
+      "full": "15A, Sarathy Nagar Extension, Mugambigai Nagar, Kolathur, Chennai, Greater Chennai, Tamil Nadu 600099",
+      "area": "",
+      "city": "Chennai",
+      "state": "Greater Chennai",
+      "country": "India"
+    },
+    "contact": {
+      "phone": "",
+      "website": ""
+    },
+    "mapEmbedUrl": "https://maps.google.com/maps?q=CR%20SOLUTION%2015A%2C%20Sarathy%20Nagar%20Extension%2C%20Mugambigai%20Nagar%2C%20Kolathur%2C%20Chennai%2C%20Greater%20Chennai%2C%20Tamil%20Nadu%20600099&output=embed"
+  },
+  "business": {
+    "rating": "4.7",
+    "reviewCount": "",
+    "timings": [],
+    "services": [
+      "Residential Interior Design",
+      "Modular Kitchen Design",
+      "Living Room Styling",
+      "Bedroom Makeovers",
+      "Space Planning",
+      "Custom Furniture"
+    ],
+    "highlights": [
+      "Personalized design concepts",
+      "Material and finish guidance",
+      "Transparent project planning",
+      "End-to-end execution support"
+    ]
+  },
+  "doctor": {
+    "name": "CR Studio Team",
+    "images": [],
+    "experience": "5+ years",
+    "specialization": "Interior Design & Turnkey Execution"
+  },
+  "reviews": [],
+  "media": {
+    "clinicImages": [
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/034d86ef5cfbc66baed11e502c86548b/view?project=6a1cf32a002c668912cc",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/36554fe46771338010974fc48990ebfa/view?project=6a1cf32a002c668912cc",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/c6d7397fddca1283eab1e64dd0a09382/view?project=6a1cf32a002c668912cc",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/21b652fcbe04aa26a5c6714d52102cac/view?project=6a1cf32a002c668912cc"
+    ],
+    "treatmentImages": [
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/744af678db19e74ba79ea001f85bd335/view?project=6a1cf32a002c668912cc",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/46b875f01a51b9359ea0453bbbf4ebe6/view?project=6a1cf32a002c668912cc",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/c2bf5c2ab2f0e212becf234419a8b02c/view?project=6a1cf32a002c668912cc",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/bcf0d7898df7a4d11ff07516c23bce1e/view?project=6a1cf32a002c668912cc"
+    ],
+    "otherImages": [
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/d16c4d4c073961dc4c1cf2feaa493bc2/view?project=6a1cf32a002c668912cc",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/7acbe643ec95c18d51b30a8c7faa1cd0/view?project=6a1cf32a002c668912cc",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/228a30c636c4b3c07d0a40de209df301/view?project=6a1cf32a002c668912cc",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/02f5c12e72d4b3aa9dcad23b81bdd198/view?project=6a1cf32a002c668912cc",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/c10bad1b0f27cfc3311611130b7189c2/view?project=6a1cf32a002c668912cc",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/c7236f108f43a92f2dec05e55acf15fd/view?project=6a1cf32a002c668912cc",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/f39fb86192fea3117b606fcc209c0fc6/view?project=6a1cf32a002c668912cc",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/c44e0ee1898c4053ce04c6fc4135bd8a/view?project=6a1cf32a002c668912cc",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/fc25d0a4ebcad19f1bde56b7e584f846/view?project=6a1cf32a002c668912cc",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/0f8b3b5f646268c6139048e45139aa81/view?project=6a1cf32a002c668912cc",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/f43b36f9e2cbc8a0ada75742f533faeb/view?project=6a1cf32a002c668912cc",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/02854a9de578eaab0ebe65ea202a06cb/view?project=6a1cf32a002c668912cc",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/4a96b740e4cb22d740efb6e52b557491/view?project=6a1cf32a002c668912cc",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/53dc5c2b8f00861e25495ab02c9ca3f3/view?project=6a1cf32a002c668912cc",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/f66de23955243021f23fcf476ea884b2/view?project=6a1cf32a002c668912cc",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/b395d8b2ccc9fdd8de04e74f4e4703c9/view?project=6a1cf32a002c668912cc",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/8ac255f6f5bd03e4fee9afe4a5308b5b/view?project=6a1cf32a002c668912cc",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/a42d44f70c366f244841d91c1f9fa46b/view?project=6a1cf32a002c668912cc",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/18ae3eabac2a6dfa7dc2867a9ccde184/view?project=6a1cf32a002c668912cc",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/a0552cee91fd80e4e11ae025ee43ff92/view?project=6a1cf32a002c668912cc"
+    ]
+  },
+  "overrides": {
+    "doctorName": "",
+    "doctorImages": [],
+    "extraImages": []
+  },
+  "meta": {
+    "generatedAt": "2026-08-17T10:15:01.466Z",
+    "source": "google_maps",
+    "updatedAt": "2026-08-17T10:15:01.476Z"
+  }
+}

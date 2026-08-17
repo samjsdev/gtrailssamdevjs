@@ -1,0 +1,63 @@
+{
+  "clinic": {
+    "name": "Ashwin Interior",
+    "slug": "ashwin-interior",
+    "tagline": "Thoughtful Interiors for Everyday Living",
+    "description": "Welcome to Ashwin Interior. We create refined, functional interiors tailored to your lifestyle, budget, and space.",
+    "address": {
+      "full": "Chettinad Enclave, no.1/A2, Manogar Nagar Main Rd, near SG SWIM SCHOOL, Narayanapuram, Pallikaranai, Chennai, Greater Chennai, Tamil Nadu 600100",
+      "area": "",
+      "city": "Chennai",
+      "state": "Greater Chennai",
+      "country": "India"
+    },
+    "contact": {
+      "phone": "09094461310",
+      "website": "https://www.ashwininteriors.com/",
+      "googleMapsUrl": "https://www.google.com/maps/place/Ashwin+Interior/@12.9400626,80.2015372,17z/data=!3m1!4b1!4m6!3m5!1s0x3a525d3ebc02bb89:0xee58bbd2a91c1adb!8m2!3d12.9400626!4d80.2015372!16s%2Fg%2F11k3d1m3sl?authuser=0&hl=en&entry=ttu&g_ep=EgoyMDI2MDgxMi4wIKXMDSoASAFQAw%3D%3D"
+    },
+    "mapEmbedUrl": "https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d3000!2d80.2015372!3d12.9400626!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sin!4v1"
+  },
+  "business": {
+    "rating": "4.9",
+    "reviewCount": "",
+    "timings": [],
+    "services": [
+      "Residential Interior Design",
+      "Modular Kitchen Design",
+      "Living Room Styling",
+      "Bedroom Makeovers",
+      "Space Planning",
+      "Custom Furniture"
+    ],
+    "highlights": [
+      "Personalized design concepts",
+      "Material and finish guidance",
+      "Transparent project planning",
+      "End-to-end execution support"
+    ]
+  },
+  "doctor": {
+    "name": "Ashwin Studio Team",
+    "images": [],
+    "experience": "5+ years",
+    "specialization": "Interior Design & Turnkey Execution"
+  },
+  "reviews": [],
+  "media": {
+    "clinicImages": [],
+    "treatmentImages": [],
+    "otherImages": []
+  },
+  "overrides": {
+    "doctorName": "",
+    "doctorImages": [],
+    "extraImages": []
+  },
+  "meta": {
+    "generatedAt": "2026-08-17T11:39:59.486Z",
+    "source": "google_maps",
+    "gbpUrl": "https://www.google.com/maps/place/Ashwin+Interior/@12.9400626,80.2015372,17z/data=!3m1!4b1!4m6!3m5!1s0x3a525d3ebc02bb89:0xee58bbd2a91c1adb!8m2!3d12.9400626!4d80.2015372!16s%2Fg%2F11k3d1m3sl?authuser=0&hl=en&entry=ttu&g_ep=EgoyMDI2MDgxMi4wIKXMDSoASAFQAw%3D%3D",
+    "updatedAt": "2026-08-17T11:39:59.489Z"
+  }
+}

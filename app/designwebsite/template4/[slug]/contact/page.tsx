@@ -1,14 +1,23 @@
 import { readSourceConfig } from '@/lib/dataBuilder';
 import { notFound } from 'next/navigation';
-import { MapPin, Phone, Clock, Check } from 'lucide-react';
+import { MapPin, Phone, Clock, Check, Sparkles, ShieldCheck } from 'lucide-react';
 import { cleanClinicName } from '@/lib/copyCleaner';
 import { INTERIOR_FAQS,
   previewMedia,
 } from '@/lib/interiorContent';
 import Reveal from '../Reveal';
+import PageNarrative from '../PageNarrative';
 import VisitForm from '../VisitForm';
+import FAQAccordion, { FAQItem } from '../FAQAccordion';
 
 type PageProps = { params: Promise<{ slug: string }> };
+
+const CONSULTATION_STEPS = [
+  { step: '01', title: 'Private Inquiry', desc: 'Our studio coordinator connects to discuss your property layout and design vision.' },
+  { step: '02', title: 'Studio Walkthrough', desc: 'Touch and feel physical samples of smoked veneers, marble slabs, and custom joinery.' },
+  { step: '03', title: 'Cinematic 3D Concept', desc: 'Review 3D spatial walkthroughs and an exhaustive itemised Bill of Quantities.' },
+  { step: '04', title: 'Turnkey Handover', desc: 'Factory fabrication, precision assembly, and final styling with 10-year craft warranty.' },
+];
 
 export default async function Template4Contact({ params }: PageProps) {
   const { slug } = await params;
@@ -31,6 +40,19 @@ export default async function Template4Contact({ params }: PageProps) {
     media.otherImages?.[0] ||
     '/images/stock/68b39046.webp';
 
+  const contactFaqs: FAQItem[] = INTERIOR_FAQS.slice(0, 6).map((faq) => ({
+    q: faq.q,
+    a: faq.a,
+    tag: 'Atelier FAQ',
+  }));
+
+  const neighborhoods = [
+    `Prime Residential Enclaves in ${city}`,
+    `Seaside & Coastal Residences`,
+    `Gated Villa Layouts`,
+    `Luxury High-Rise Penthouses`,
+  ];
+
   return (
     <div>
       {/* VISIT + FORM */}
@@ -38,19 +60,18 @@ export default async function Template4Contact({ params }: PageProps) {
         <div className="max-w-[1240px] mx-auto px-[30px]">
           <Reveal className="mb-[52px]">
             <div className="flex items-center gap-3 text-[11.5px] font-semibold tracking-[0.3em] uppercase text-[#a4532f] before:content-[''] before:w-8 before:h-px before:bg-[#a4532f]">
-              By appointment
+              By Appointment Only
             </div>
-            <h1 className="font-[family-name:var(--font-cormorant)] text-[clamp(34px,4.6vw,56px)] font-semibold leading-[1.12] mt-4 mb-3.5 max-w-[760px]">
-              Feel the materials. <em className="italic text-[#a4532f]">Meet your designer.</em>
+            <h1 className="font-[family-name:var(--font-cormorant)] text-[clamp(36px,4.8vw,60px)] font-light leading-[1.08] mt-4 mb-3.5 max-w-[780px]">
+              Feel the materials. <em className="italic text-[#a4532f]">Meet your architect.</em>
             </h1>
-            <p className="text-[#7a6f60] text-[16px] font-light max-w-[620px]">
-              Sit with a designer from {cleanName || 'our studio'} for an unhurried hour — walk through materials, budgets
-              and your floor plan. By appointment only, never a queue.
+            <p className="text-[#7a6f60] text-[16px] font-light max-w-[640px]">
+              Sit with an interior architect from {cleanName || 'our studio'} for an unhurried hour — walk through materials, floor plans, and budgets. By private appointment, never a queue.
             </p>
           </Reveal>
 
           <Reveal>
-            <div className="grid lg:grid-cols-[1.1fr_0.9fr] bg-[#17130f] text-white overflow-hidden">
+            <div className="grid lg:grid-cols-[1.1fr_0.9fr] bg-[#17130f] text-white overflow-hidden shadow-2xl">
               <div className="min-h-[300px] lg:min-h-[480px]">
                 <img
                   src={visitImage}
@@ -60,16 +81,16 @@ export default async function Template4Contact({ params }: PageProps) {
               </div>
               <div className="px-8 py-12 lg:px-[58px] lg:py-16 flex flex-col justify-center">
                 <div className="flex items-center gap-3 text-[11.5px] font-semibold tracking-[0.3em] uppercase text-[#d9c49a] before:content-[''] before:w-8 before:h-px before:bg-[#d9c49a]">
-                  Step into the studio
+                  Step into the Atelier
                 </div>
                 <h2 className="font-[family-name:var(--font-cormorant)] text-[clamp(28px,3.4vw,40px)] font-semibold leading-[1.12] my-4">
-                  Request your <em className="italic text-[#d9c49a]">appointment</em>
+                  Request your <em className="italic text-[#d9c49a]">private session</em>
                 </h2>
                 <ul className="flex flex-col gap-3 mb-8">
                   {[
-                    'A dedicated hour with a designer',
-                    'Material samples you can touch and compare',
-                    'Honest budgets, itemised on the spot',
+                    'A dedicated hour with a senior architect',
+                    'Tactile material samples you can touch & compare',
+                    'Transparent budgets, itemised on the spot',
                     'Zero cost, zero obligation',
                   ].map((li) => (
                     <li key={li} className="flex gap-3 text-[14px] text-white/88 font-light">
@@ -85,9 +106,41 @@ export default async function Template4Contact({ params }: PageProps) {
         </div>
       </section>
 
+      {/* ROADMAP */}
+      <section className="py-20 bg-[#fbf8f1] border-y border-[#221c14]/12">
+        <div className="max-w-[1240px] mx-auto px-[30px]">
+          <Reveal className="mb-12 text-center max-w-xl mx-auto">
+            <div className="inline-flex items-center gap-3 text-[11.5px] font-semibold tracking-[0.3em] uppercase text-[#a4532f] before:content-[''] before:w-8 before:h-px before:bg-[#a4532f] after:content-[''] after:w-8 after:h-px after:bg-[#a4532f]">
+              Consultation Experience
+            </div>
+            <h2 className="font-[family-name:var(--font-cormorant)] text-[clamp(30px,4vw,48px)] font-semibold leading-[1.08] mt-3">
+              The appointment roadmap
+            </h2>
+          </Reveal>
+
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {CONSULTATION_STEPS.map((s) => (
+              <Reveal key={s.step}>
+                <div className="bg-white border border-[#221c14]/12 p-7 h-full flex flex-col justify-between shadow-sm">
+                  <div>
+                    <span className="font-[family-name:var(--font-cormorant)] text-[24px] text-[#a4532f] block mb-3">
+                      {s.step}
+                    </span>
+                    <h3 className="font-[family-name:var(--font-cormorant)] text-[20px] font-semibold text-[#17130f] mb-2">
+                      {s.title}
+                    </h3>
+                    <p className="text-[13px] text-[#7a6f60] font-light leading-[1.65]">{s.desc}</p>
+                  </div>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* DETAILS + MAP */}
-      <section className="pb-[clamp(48px,6vw,80px)]">
-        <div className="max-w-[1240px] mx-auto px-[30px] grid lg:grid-cols-[0.9fr_1.1fr] gap-[22px] items-stretch">
+      <section className="py-24">
+        <div className="max-w-[1240px] mx-auto px-[30px] grid lg:grid-cols-[0.9fr_1.1fr] gap-[26px] items-stretch">
           <Reveal>
             <div className="bg-[#fbf8f1] border border-[#221c14]/14 p-9 sm:p-11 h-full flex flex-col justify-center gap-7">
               <div className="flex gap-4 items-start">
@@ -95,86 +148,80 @@ export default async function Template4Contact({ params }: PageProps) {
                   <MapPin className="w-5 h-5" strokeWidth={1.8} />
                 </span>
                 <div>
-                  <h3 className="font-[family-name:var(--font-cormorant)] text-[22px] font-semibold mb-1">The Studio</h3>
+                  <h3 className="font-[family-name:var(--font-cormorant)] text-[22px] font-semibold mb-1">The Atelier &amp; Library</h3>
                   <p className="text-[14.5px] text-[#7a6f60] font-light leading-[1.7]">{address}</p>
                 </div>
               </div>
-              <div className="flex gap-4 items-start">
-                <span className="w-[46px] h-[46px] rounded-full bg-[#f5f1e8] grid place-items-center text-[#a4532f] shrink-0">
-                  <Clock className="w-5 h-5" strokeWidth={1.8} />
-                </span>
-                <div>
-                  <h3 className="font-[family-name:var(--font-cormorant)] text-[22px] font-semibold mb-1">Hours</h3>
-                  <p className="text-[14.5px] text-[#7a6f60] font-light leading-[1.7]">
-                    Open Mon–Sat, 10 AM – 7 PM
-                    <br />
-                    Sundays by prior appointment
-                  </p>
-                </div>
-              </div>
+
               {phone && (
                 <div className="flex gap-4 items-start">
                   <span className="w-[46px] h-[46px] rounded-full bg-[#f5f1e8] grid place-items-center text-[#a4532f] shrink-0">
                     <Phone className="w-5 h-5" strokeWidth={1.8} />
                   </span>
                   <div>
-                    <h3 className="font-[family-name:var(--font-cormorant)] text-[22px] font-semibold mb-1">Prefer to talk first?</h3>
-                    <p className="text-[14.5px] text-[#7a6f60] font-light leading-[1.7] mb-3">
-                      A designer will call you at a time you choose.
-                    </p>
-                    <a
-                      href={`tel:${phone}`}
-                      className="inline-flex items-center justify-center bg-[#17130f] text-white px-[26px] py-[13px] text-[11.5px] font-semibold tracking-[0.14em] uppercase hover:bg-black transition-colors duration-300"
-                    >
-                      Call {phone}
+                    <h3 className="font-[family-name:var(--font-cormorant)] text-[22px] font-semibold mb-1">Direct Line</h3>
+                    <a href={`tel:${phone}`} className="text-[14.5px] text-[#17130f] font-medium hover:text-[#a4532f]">
+                      {phone}
                     </a>
                   </div>
                 </div>
               )}
+
+              <div className="flex gap-4 items-start">
+                <span className="w-[46px] h-[46px] rounded-full bg-[#f5f1e8] grid place-items-center text-[#a4532f] shrink-0">
+                  <Clock className="w-5 h-5" strokeWidth={1.8} />
+                </span>
+                <div>
+                  <h3 className="font-[family-name:var(--font-cormorant)] text-[22px] font-semibold mb-1">Studio Hours</h3>
+                  <p className="text-[14.5px] text-[#7a6f60] font-light">Monday – Saturday: 10:00 AM – 7:30 PM (Sunday by appointment)</p>
+                </div>
+              </div>
+
+              {/* Neighborhoods */}
+              <div className="border-t border-[#221c14]/10 pt-5">
+                <b className="font-[family-name:var(--font-cormorant)] text-[17px] text-[#17130f] block mb-2">
+                  Private site visits across {city}:
+                </b>
+                <div className="flex flex-wrap gap-2">
+                  {neighborhoods.map((n) => (
+                    <span key={n} className="text-[12px] bg-white border border-[#221c14]/12 text-[#7a6f60] px-3 py-1 font-light">
+                      {n}
+                    </span>
+                  ))}
+                </div>
+              </div>
             </div>
           </Reveal>
+
           <Reveal delay={120}>
-            <div className="h-full min-h-[380px] border border-[#221c14]/14 overflow-hidden">
+            <div className="overflow-hidden border border-[#221c14]/14 min-h-[380px] h-full shadow-sm">
               <iframe
-                title={`Map showing location of ${cleanName || 'our studio'}`}
-                src={clinic.mapEmbedUrl || `https://www.google.com/maps?q=${mapQuery}&output=embed`}
+                title="Atelier Location"
+                src={`https://maps.google.com/maps?q=${mapQuery}&output=embed`}
                 className="w-full h-full min-h-[380px] border-0"
                 loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
               />
             </div>
           </Reveal>
         </div>
       </section>
 
+      <PageNarrative page="contact" studioName={cleanName} city={city} />
+
       {/* FAQ */}
-      <section className="py-24 bg-[#fbf8f1]">
-        <div className="max-w-[1240px] mx-auto px-[30px] grid lg:grid-cols-[0.8fr_1.2fr] gap-[52px] lg:gap-[70px] items-start">
-          <Reveal>
-            <div className="flex items-center gap-3 text-[11.5px] font-semibold tracking-[0.3em] uppercase text-[#a4532f] before:content-[''] before:w-8 before:h-px before:bg-[#a4532f]">
-              Questions, answered
+      <section className="py-24 bg-[#fbf8f1] border-t border-[#221c14]/12">
+        <div className="max-w-[860px] mx-auto px-[30px]">
+          <Reveal className="text-center mb-12">
+            <div className="inline-flex items-center gap-3 text-[11.5px] font-semibold tracking-[0.3em] uppercase text-[#a4532f] before:content-[''] before:w-8 before:h-px before:bg-[#a4532f] after:content-[''] after:w-8 after:h-px after:bg-[#a4532f]">
+              Atelier FAQ
             </div>
-            <h2 className="font-[family-name:var(--font-cormorant)] text-[clamp(30px,4vw,46px)] font-semibold leading-[1.12] mt-4 mb-4">
-              Everything worth <em className="italic text-[#a4532f]">asking</em>
+            <h2 className="font-[family-name:var(--font-cormorant)] text-[clamp(30px,4vw,48px)] font-semibold leading-[1.08] mt-3">
+              Frequently asked inquiries
             </h2>
-            <p className="text-[#7a6f60] text-[15.5px] font-light max-w-[420px]">
-              If your question isn&apos;t here, ask it on WhatsApp — a designer, not a bot, will answer.
-            </p>
           </Reveal>
-          <Reveal delay={120}>
-            <div className="border-t border-[#221c14]/14">
-              {INTERIOR_FAQS.map((faq) => (
-                <details key={faq.q} className="group border-b border-[#221c14]/14 px-1 py-5">
-                  <summary className="font-[family-name:var(--font-cormorant)] text-[22px] font-semibold cursor-pointer list-none flex justify-between items-center gap-4 [&::-webkit-details-marker]:hidden">
-                    {faq.q}
-                    <span className="font-[family-name:var(--font-outfit)] text-[24px] font-light text-[#a4532f] transition-transform duration-250 group-open:rotate-45">
-                      +
-                    </span>
-                  </summary>
-                  <p className="text-[#7a6f60] text-[14.5px] font-light pt-3.5 leading-[1.75]">{faq.a}</p>
-                </details>
-              ))}
-            </div>
+
+          <Reveal>
+            <FAQAccordion items={contactFaqs} />
           </Reveal>
         </div>
       </section>

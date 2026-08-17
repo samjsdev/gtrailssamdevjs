@@ -1,12 +1,13 @@
 import { readSourceConfig } from '@/lib/dataBuilder';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
-import { Clock, Users, Heart, ShieldCheck, ArrowRight } from 'lucide-react';
+import { Clock, Users, Heart, ShieldCheck, ArrowRight, Sparkles, Compass, Layers, Award } from 'lucide-react';
 import { cleanClinicName, cleanClinicDescription } from '@/lib/copyCleaner';
 import { DEFAULT_INTERIOR_HIGHLIGHTS,
   previewMedia,
 } from '@/lib/interiorContent';
 import Reveal from '../Reveal';
+import PageNarrative from '../PageNarrative';
 
 type PageProps = { params: Promise<{ slug: string }> };
 
@@ -28,6 +29,29 @@ export default async function Template4About({ params }: PageProps) {
   const experienceYears = doctor?.experience?.replace(/\D/g, '') || '5';
   const highlights: string[] = business.highlights?.length ? business.highlights : DEFAULT_INTERIOR_HIGHLIGHTS;
 
+  const milestones = [
+    {
+      era: 'Genesis',
+      title: 'The Atelier Founded',
+      desc: `Established in ${city} as an intimate interior architecture practice dedicated to quiet luxury and spatial restraint.`,
+    },
+    {
+      era: 'Craft Guild',
+      title: 'Bespoke Joinery Workshop',
+      desc: 'Brought together master joiners and high-precision tooling to produce furniture-grade modular components.',
+    },
+    {
+      era: 'Residences',
+      title: 'Private Villa Commissions',
+      desc: 'Completed landmark duplexes and coastal residences blending indigenous craftsmanship with modern lines.',
+    },
+    {
+      era: 'Today',
+      title: 'A Living Portfolio',
+      desc: `Delivered over 100+ bespoke residences with a reputation for punctual handovers and lifelong patron relationships.`,
+    },
+  ];
+
   const founderName = data.overrides?.doctorName || doctor?.name || `${cleanName} Design Team`;
   const founderImage =
     data.overrides?.doctorImages?.[0] ||
@@ -42,7 +66,7 @@ export default async function Template4About({ params }: PageProps) {
     {
       icon: Clock,
       title: 'Daily Rhythms',
-      desc: 'Morning light in the pooja corner, evening calm in the reading nook — spaces tuned to the hours of your day.',
+      desc: 'Morning light in the breakfast corner, evening calm in the reading nook — spaces tuned to the hours of your day.',
     },
     {
       icon: Users,
@@ -68,24 +92,23 @@ export default async function Template4About({ params }: PageProps) {
         <div className="max-w-[1240px] mx-auto px-[30px] grid lg:grid-cols-2 gap-[52px] lg:gap-[70px] items-center">
           <Reveal>
             <div className="flex items-center gap-3 text-[11.5px] font-semibold tracking-[0.3em] uppercase text-[#a4532f] before:content-[''] before:w-8 before:h-px before:bg-[#a4532f]">
-              The studio
+              The Atelier
             </div>
-            <h1 className="font-[family-name:var(--font-cormorant)] text-[clamp(34px,4.6vw,56px)] font-semibold leading-[1.12] mt-4 mb-4">
+            <h1 className="font-[family-name:var(--font-cormorant)] text-[clamp(36px,4.8vw,60px)] font-light leading-[1.08] mt-4 mb-4">
               A quiet obsession with <em className="italic text-[#a4532f]">homes done right</em>
             </h1>
-            <p className="text-[#7a6f60] text-[16px] font-light mb-4 max-w-[540px]">
+            <p className="text-[#7a6f60] text-[16px] font-light mb-4 max-w-[540px] leading-relaxed">
               {cleanDesc ||
-                `${cleanName || 'Our studio'} is a boutique interior practice in ${city}. We believe great design is not imported taste — it is deep listening, translated into space.`}
+                `${cleanName || 'Our studio'} is an interior architecture practice in ${city}. We believe great design is never imported catalogue taste — it is deep listening, translated into space.`}
             </p>
-            <p className="text-[#7a6f60] text-[16px] font-light mb-8 max-w-[540px]">
-              Every home we deliver is personally reviewed before handover — one signature, one standard. That is why most of
-              our new clients arrive through an old client&apos;s dinner table.
+            <p className="text-[#7a6f60] text-[16px] font-light mb-8 max-w-[540px] leading-relaxed">
+              Every residence we deliver is personally reviewed by our principal designer before handover — one standard, one signature. That is why most of our new commissions arrive through a previous patron&rsquo;s dinner table.
             </p>
             <div className="flex flex-col sm:flex-row border-y border-[#221c14]/14">
               {[
                 { b: `${rating}★`, s: 'Google rating' },
                 { b: `${experienceYears}+ yrs`, s: 'Of practice' },
-                { b: reviewCount ? `${reviewCount}+` : '100%', s: reviewCount ? 'Reviews' : 'Itemised quotes' },
+                { b: '10-Year', s: 'Craft Warranty' },
               ].map((stat, idx) => (
                 <div
                   key={stat.s}
@@ -116,12 +139,49 @@ export default async function Template4About({ params }: PageProps) {
         </div>
       </section>
 
+      {/* MILESTONES */}
+      <section className="py-24 bg-[#17130f] text-white">
+        <div className="max-w-[1240px] mx-auto px-[30px]">
+          <Reveal className="text-center max-w-xl mx-auto mb-16">
+            <div className="inline-flex items-center gap-3 text-[11.5px] font-semibold tracking-[0.3em] uppercase text-[#d9c49a] before:content-[''] before:w-8 before:h-px before:bg-[#d9c49a] after:content-[''] after:w-8 after:h-px after:bg-[#d9c49a]">
+              Chronology
+            </div>
+            <h2 className="font-[family-name:var(--font-cormorant)] text-[clamp(32px,4.5vw,52px)] font-light leading-[1.08] mt-3">
+              The evolution of our practice
+            </h2>
+          </Reveal>
+
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {milestones.map((m, idx) => (
+              <Reveal key={m.title} delay={idx * 80}>
+                <div className="bg-[#221c16] border border-[#b08d4f]/25 p-7 h-full flex flex-col justify-between">
+                  <div>
+                    <span className="text-[11px] font-semibold tracking-widest uppercase text-[#d9c49a] block mb-3">
+                      {m.era}
+                    </span>
+                    <h3 className="font-[family-name:var(--font-cormorant)] text-[22px] font-semibold text-white mb-2.5">
+                      {m.title}
+                    </h3>
+                    <p className="text-[13px] font-light text-white/70 leading-[1.65]">
+                      {m.desc}
+                    </p>
+                  </div>
+                  <span className="font-[family-name:var(--font-cormorant)] text-[14px] text-[#d9c49a] mt-5 block">
+                    0{idx + 1}
+                  </span>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* VALUES */}
       <section className="py-24 bg-[#fbf8f1]">
         <div className="max-w-[1240px] mx-auto px-[30px]">
           <Reveal className="text-center mb-[52px]">
             <div className="inline-flex items-center gap-3 text-[11.5px] font-semibold tracking-[0.3em] uppercase text-[#a4532f] before:content-[''] before:w-8 before:h-px before:bg-[#a4532f]">
-              What we design for
+              What We Design For
             </div>
             <h2 className="font-[family-name:var(--font-cormorant)] text-[clamp(30px,4vw,46px)] font-semibold leading-[1.12] mt-4">
               Life first, <em className="italic text-[#a4532f]">then walls</em>
@@ -148,84 +208,69 @@ export default async function Template4About({ params }: PageProps) {
         </div>
       </section>
 
-      {/* FOUNDER */}
-      <section className="py-24">
-        <div className="max-w-[1240px] mx-auto px-[30px] grid lg:grid-cols-[0.9fr_1.1fr] gap-[52px] lg:gap-[70px] items-center">
+      {/* LEADERSHIP */}
+      <section className="py-24 bg-white border-t border-[#221c14]/12">
+        <div className="max-w-[1240px] mx-auto px-[30px] grid lg:grid-cols-2 gap-[52px] lg:gap-[70px] items-center">
           <Reveal>
             <div className="relative">
+              <div className="absolute -top-4 -left-4 bottom-4 right-4 border border-[#b08d4f]" />
               <img
                 src={founderImage}
-                alt={`${founderName}, leading the studio`}
-                className="w-full aspect-[4/4.6] object-cover object-top"
+                alt={founderName}
+                className="relative z-[1] w-full aspect-[4/4.2] object-cover"
               />
-              <div className="absolute bottom-7 -left-3 sm:-left-7 bg-[#17130f] text-white px-[30px] py-[22px]">
-                <b className="font-[family-name:var(--font-cormorant)] text-[34px] text-[#d9c49a] block leading-none">
-                  {reviewCount ? `${reviewCount}+` : `${experienceYears}+`}
-                </b>
-                <span className="text-[10.5px] tracking-[0.2em] uppercase text-white/65">
-                  {reviewCount ? 'Happy families' : 'Years & counting'}
-                </span>
-              </div>
             </div>
           </Reveal>
           <Reveal delay={130}>
             <div className="flex items-center gap-3 text-[11.5px] font-semibold tracking-[0.3em] uppercase text-[#a4532f] before:content-[''] before:w-8 before:h-px before:bg-[#a4532f]">
-              The people behind it
+              Creative Direction
             </div>
-            <blockquote className="font-[family-name:var(--font-cormorant)] italic text-[clamp(24px,2.8vw,32px)] leading-[1.4] my-6">
-              &ldquo;A home should hold your life the way a well-tailored garment holds the body — invisibly, perfectly,
-              yours.&rdquo;
-            </blockquote>
-            <p className="text-[#7a6f60] text-[15.5px] font-light mb-4.5 max-w-[540px]">
-              {doctor?.specialization
-                ? `Specialising in ${doctor.specialization.toLowerCase()}, our team leads every project from first sketch to final styling.`
-                : 'Our team leads every project from first sketch to final styling — design, execution and handover under one accountable roof.'}
-            </p>
-            <p className="text-[#7a6f60] text-[15.5px] font-light mb-6 max-w-[540px]">
-              Every home is still personally reviewed before handover — one signature, one standard.
-            </p>
-            <div className="font-[family-name:var(--font-cormorant)] italic text-[26px] text-[#a4532f]">
+            <h2 className="font-[family-name:var(--font-cormorant)] text-[clamp(32px,4vw,50px)] font-light leading-[1.1] mt-3 mb-2">
               {founderName}
-              <small className="block not-italic font-[family-name:var(--font-outfit)] text-[11.5px] tracking-[0.18em] uppercase text-[#7a6f60] mt-1.5">
-                {doctor?.specialization || 'Design & Execution Lead'}
-              </small>
+            </h2>
+            <p className="text-[13px] font-semibold tracking-[0.18em] uppercase text-[#a4532f] mb-5">
+              {doctor?.credentials || 'Principal Architect & Founder'}
+            </p>
+            <p className="text-[#7a6f60] text-[15.5px] font-light leading-relaxed mb-6">
+              {doctor?.bio || `With over ${experienceYears}+ years of architectural practice in ${city}, leading a multidisciplinary atelier dedicated to thoughtful residences, bespoke joinery, and enduring material compositions.`}
+            </p>
+            <div className="grid grid-cols-2 gap-4 border-t border-[#221c14]/10 pt-5 mb-8">
+              <div>
+                <b className="font-[family-name:var(--font-cormorant)] text-[26px] block">{experienceYears}+ Years</b>
+                <span className="text-[11px] tracking-wider uppercase text-[#7a6f60]">Of Practice</span>
+              </div>
+              <div>
+                <b className="font-[family-name:var(--font-cormorant)] text-[26px] block">10-Year</b>
+                <span className="text-[11px] tracking-wider uppercase text-[#7a6f60]">Craft Warranty</span>
+              </div>
             </div>
+            <Link
+              href={`${basePath}/contact`}
+              className="inline-flex items-center gap-2.5 bg-[#17130f] text-white text-[12px] font-semibold tracking-[0.18em] uppercase px-7 py-3.5 hover:bg-[#a4532f] transition-colors"
+            >
+              Request Private Studio Session <ArrowRight className="w-4 h-4" />
+            </Link>
           </Reveal>
         </div>
       </section>
 
-      {/* HIGHLIGHTS */}
-      <section className="py-24 bg-[#17130f] text-white">
-        <div className="max-w-[1240px] mx-auto px-[30px]">
-          <Reveal className="text-center mb-[52px]">
-            <div className="inline-flex items-center gap-3 text-[11.5px] font-semibold tracking-[0.3em] uppercase text-[#d9c49a] before:content-[''] before:w-8 before:h-px before:bg-[#d9c49a]">
-              Why families choose us
-            </div>
-            <h2 className="font-[family-name:var(--font-cormorant)] text-[clamp(30px,4vw,46px)] font-semibold leading-[1.12] mt-4 text-white">
-              The promises we <em className="italic text-[#d9c49a]">keep</em>
-            </h2>
-          </Reveal>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-[22px]">
-            {highlights.slice(0, 6).map((highlight, idx) => (
-              <Reveal key={highlight} delay={idx * 60}>
-                <div className="border border-white/15 p-8 h-full hover:border-[#b08d4f] transition-colors duration-300">
-                  <span className="font-[family-name:var(--font-cormorant)] italic text-[40px] text-[#d9c49a] block leading-none mb-4">
-                    {String(idx + 1).padStart(2, '0')}
-                  </span>
-                  <p className="text-[15px] font-light text-white/85">{highlight}</p>
-                </div>
-              </Reveal>
-            ))}
-          </div>
-          <Reveal className="text-center mt-12">
-            <Link
-              href={`${basePath}/contact`}
-              className="inline-flex items-center justify-center gap-2.5 px-8 py-4 text-[13px] font-semibold tracking-[0.14em] uppercase bg-[#b08d4f] text-[#17130f] hover:bg-[#c5a266] hover:-translate-y-0.5 hover:shadow-[0_14px_28px_rgba(176,141,79,0.3)] transition-all duration-300"
-            >
-              Book a Private Consultation
-              <ArrowRight className="w-4 h-4" strokeWidth={2.2} />
-            </Link>
-          </Reveal>
+      <PageNarrative page="about" studioName={cleanName} city={city} />
+
+      {/* CTA */}
+      <section className="py-24 bg-[#17130f] text-white text-center">
+        <div className="max-w-[720px] mx-auto px-[30px]">
+          <h2 className="font-[family-name:var(--font-cormorant)] text-[clamp(30px,4vw,48px)] font-light mb-4">
+            Let&rsquo;s talk about your residence
+          </h2>
+          <p className="text-white/75 text-[16px] font-light mb-8">
+            Tell us about your space — sit with our principal architect for an unhurried consultation.
+          </p>
+          <Link
+            href={`${basePath}/contact`}
+            className="inline-flex items-center gap-2.5 bg-[#a4532f] text-white text-[12.5px] font-semibold tracking-[0.18em] uppercase px-8 py-4 hover:bg-[#854021] transition-colors"
+          >
+            Request Appointment
+          </Link>
         </div>
       </section>
     </div>

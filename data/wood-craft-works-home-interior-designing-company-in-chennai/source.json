@@ -1,0 +1,122 @@
+{
+  "clinic": {
+    "name": "Wood Craft Home Interior ",
+    "slug": "wood-craft-works-home-interior-designing-company-in-chennai",
+    "tagline": "Thoughtful Interiors for Everyday Living",
+    "description": "Welcome to Wood Craft Works | Home Interior Designing Company in Chennai. We create refined, functional interiors tailored to your lifestyle, budget, and space.",
+    "address": {
+      "full": "3rd Floor, Venkatesan Thiyagaraya Nagar, No: 21, behind Indian Oil Petrol Bunk Back Side, Villivakkam, Chennai, Tamil Nadu 600049",
+      "area": "",
+      "city": "Villivakkam",
+      "state": "Chennai",
+      "country": "India"
+    },
+    "contact": {
+      "phone": "09940570474",
+      "website": ""
+    },
+    "mapEmbedUrl": "https://maps.google.com/maps?q=Wood%20Craft%20Works%20%7C%20Home%20Interior%20Designing%20Company%20in%20Chennai%203rd%20Floor%2C%20Venkatesan%20Thiyagaraya%20Nagar%2C%20No%3A%2021%2C%20behind%20Indian%20Oil%20Petrol%20Bunk%20Back%20Side%2C%20Villivakkam%2C%20Chennai%2C%20Tamil%20Nadu%20600049&output=embed"
+  },
+  "business": {
+    "rating": "4.8",
+    "reviewCount": "",
+    "timings": [],
+    "services": [
+      "Residential Interior Design",
+      "Modular Kitchen Design",
+      "Living Room Styling",
+      "Bedroom Makeovers",
+      "Space Planning",
+      "Custom Furniture"
+    ],
+    "highlights": [
+      "Personalized design concepts",
+      "Material and finish guidance",
+      "Transparent project planning",
+      "End-to-end execution support"
+    ]
+  },
+  "doctor": {
+    "name": "Wood Studio Team",
+    "images": [],
+    "experience": "5+ years",
+    "specialization": "Interior Design & Turnkey Execution"
+  },
+  "reviews": [],
+  "media": {
+    "clinicImages": [
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/712dda5bea32c54c6fd03916088f7db3/view?project=6a1cf32a002c668912cc",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/1dbc320424c59dfebfa855836c6cd208/view?project=6a1cf32a002c668912cc",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/2a127a6c3586d413975cb241040e8803/view?project=6a1cf32a002c668912cc",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/7fa9231a4b7b9f5a95b1a494e76992eb/view?project=6a1cf32a002c668912cc"
+    ],
+    "treatmentImages": [
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/b93577105f56abecd7876a46483eb6f3/view?project=6a1cf32a002c668912cc",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/bf54dd6fd1daf73b3b6b85a474d457e0/view?project=6a1cf32a002c668912cc",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/f5f09536e091f02fa434739f90f8c6ab/view?project=6a1cf32a002c668912cc",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/0226718824eed6bd272c15f4d4488a09/view?project=6a1cf32a002c668912cc"
+    ],
+    "otherImages": [
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/05e7b3ae5e07e938f9065ac6f9481f6b/view?project=6a1cf32a002c668912cc",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/846d8157e315cc01559c7a597a155b75/view?project=6a1cf32a002c668912cc",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/c4c1b7caa9363856e5230f8470a8e5ae/view?project=6a1cf32a002c668912cc",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/ca123e1e73ff1734cf6941ce0f87868c/view?project=6a1cf32a002c668912cc",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/793cfc2f1ac9a25e594b7301f1ddd7b6/view?project=6a1cf32a002c668912cc",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/b71af2146a2a3fec685c640b1e4f85bd/view?project=6a1cf32a002c668912cc",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/b87ff940c084aa8f8bb471ddce86c173/view?project=6a1cf32a002c668912cc",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/0fc1abe1f6d29fea2dfb3487a5aa9149/view?project=6a1cf32a002c668912cc",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/439b0d82b7038cb0f87a3413af8545bf/view?project=6a1cf32a002c668912cc",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/4f3137be446e5235bbd4cee5f75f0fbd/view?project=6a1cf32a002c668912cc",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/318cc58ebbd74c9c8841306203cecc84/view?project=6a1cf32a002c668912cc",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/db07a00113b550953094a67dc2ed9704/view?project=6a1cf32a002c668912cc",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/f504d5464f30affb4a81c5e66855dded/view?project=6a1cf32a002c668912cc",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/ebda72586303c7412fa831a06fb08850/view?project=6a1cf32a002c668912cc",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/833fdb9551fba34f924b603a65fff50a/view?project=6a1cf32a002c668912cc",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/3b05c70945f44de1e95a949d813d7f67/view?project=6a1cf32a002c668912cc",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/3d021405d29a4ee49ad2569c3b446c30/view?project=6a1cf32a002c668912cc",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/5875a439ebade4501d822f063ffcc79b/view?project=6a1cf32a002c668912cc",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/3471d3ecc465a68322f3fc1a2cca32ad/view?project=6a1cf32a002c668912cc",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/9f452bfce6560cdb1f225362f99365b8/view?project=6a1cf32a002c668912cc",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/03351900ac497f8cb0466607c2a0d465/view?project=6a1cf32a002c668912cc",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/94ece7a6bd5a0850ee99705e57898738/view?project=6a1cf32a002c668912cc",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/d754d84dde4ecd15be316b20730ba090/view?project=6a1cf32a002c668912cc",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/b3d8021c6d68e3509c3ca17e1011c1d6/view?project=6a1cf32a002c668912cc",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/efb4c230178203ade3cd21cd0225af8e/view?project=6a1cf32a002c668912cc",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/c54a0c3dfae5d4f14b9b23d1eccaac29/view?project=6a1cf32a002c668912cc",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/b93d1b6db2fe02296135e5c3a41457cb/view?project=6a1cf32a002c668912cc",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/e854c98ba4041f2da4edf44752f878ab/view?project=6a1cf32a002c668912cc",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/3aad9d2791486d15db9272dc5c626d3b/view?project=6a1cf32a002c668912cc",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/c6a5412b00954abbd5fb8cfbe6324ed8/view?project=6a1cf32a002c668912cc",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/ddcf4507eb31341c48f4e8147b229507/view?project=6a1cf32a002c668912cc",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/9248c0951676951937044770a6678b96/view?project=6a1cf32a002c668912cc",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/4624ff27523ef17acde43e59b1046229/view?project=6a1cf32a002c668912cc",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/a194b984101e6b09e62edc43e7112435/view?project=6a1cf32a002c668912cc",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/c256c311779b60c07967c8801c4dcdd2/view?project=6a1cf32a002c668912cc",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/87b5f10bed5cd3f0c007873a38425cb3/view?project=6a1cf32a002c668912cc",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/41d8a0d31b593f96c7e9f9c12804161f/view?project=6a1cf32a002c668912cc",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/cd6db70e9cacdd2a38a42fbf2968510f/view?project=6a1cf32a002c668912cc",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/dc063a6ecaf553459943773ba086b226/view?project=6a1cf32a002c668912cc",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/45fae2913f2463d1c4f664e709b12fc9/view?project=6a1cf32a002c668912cc",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/cfed11e0e45973a012c11a8aaf473173/view?project=6a1cf32a002c668912cc",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/45782902c52562c03527538d1c7e79f4/view?project=6a1cf32a002c668912cc",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/df2734ec5288938e17521359b544157e/view?project=6a1cf32a002c668912cc",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/1fa27a57e59d8b77ec1d1fe49c6d019c/view?project=6a1cf32a002c668912cc",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/61355cd6d4eb69007ecb84e563ff7c37/view?project=6a1cf32a002c668912cc",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/362abde1fe773ec2a9bbcd8939f09fe8/view?project=6a1cf32a002c668912cc",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/cf2dba4286bae5a687e03daf7695332e/view?project=6a1cf32a002c668912cc",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/52d49e0d2681a2ae78292531a30bceee/view?project=6a1cf32a002c668912cc",
+      "https://sgp.cloud.appwrite.io/v1/storage/buckets/scraped_images/files/3eb94752827f5568306bac7a96e4ba71/view?project=6a1cf32a002c668912cc"
+    ]
+  },
+  "overrides": {
+    "doctorName": "",
+    "doctorImages": [],
+    "extraImages": []
+  },
+  "meta": {
+    "generatedAt": "2026-08-17T10:31:32.225Z",
+    "source": "google_maps",
+    "updatedAt": "2026-08-17T10:32:34.001Z"
+  },
+  "templateOverrides": {}
+}
