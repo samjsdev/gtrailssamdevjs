@@ -17,6 +17,8 @@ import {
 import Reveal from './Reveal';
 import LeadForm from './LeadForm';
 import FAQAccordion, { FAQItem } from './FAQAccordion';
+import HeroStats, { HeroStat } from './HeroStats';
+import CountUp from '@/components/CountUp';
 
 type PageProps = {
   params: Promise<{ slug: string }>;
@@ -80,27 +82,6 @@ const DESIGN_PILLARS = [
   },
 ];
 
-const DESIGN_BRIEF_DELIVERABLES = [
-  {
-    icon: FileText,
-    number: '01',
-    title: 'A plan that makes daily life easier',
-    desc: 'We begin with circulation, furniture clearances, storage pressure points, and the small rituals that make a home feel intuitive from day one.',
-  },
-  {
-    icon: Layers,
-    number: '02',
-    title: 'A material story you can touch',
-    desc: 'Veneers, laminates, hardware, stone, lighting, and paint are considered together so every finish feels intentional rather than simply expensive.',
-  },
-  {
-    icon: Clock,
-    number: '03',
-    title: 'A scope you can confidently approve',
-    desc: 'Your final proposal brings drawings, specifications, budget allowances, and key milestones into one clear decision-making document.',
-  },
-];
-
 export default async function Template1Home({ params }: PageProps) {
   const { slug } = await params;
   const basePath = `/designwebsite/template1/${slug}`;
@@ -136,6 +117,18 @@ export default async function Template1Home({ params }: PageProps) {
   const reviews = data.reviews?.length ? data.reviews : DEFAULT_INTERIOR_REVIEWS;
   const rating = business.rating || '4.9';
   const experienceYears = doctor?.experience?.replace(/\D/g, '') || '5';
+
+  const ratingNum = parseFloat(business.rating) || 4.9;
+  const experienceYearsNum = parseInt(doctor?.experience?.replace(/\D/g, '') || '5', 10) || 5;
+  const servicesCountNum = servicesList.length || 6;
+  const reviewCountNum = parseInt(String(business.reviewCount || '100').replace(/\D/g, ''), 10) || 100;
+
+  const heroStats: HeroStat[] = [
+    { value: ratingNum, decimals: 1, suffix: '★', label: 'Google Rating' },
+    { value: experienceYearsNum, decimals: 0, suffix: '+ yrs', label: 'Of Craftsmanship' },
+    { value: servicesCountNum, decimals: 0, suffix: '+', label: 'Design Disciplines' },
+    { value: reviewCountNum, decimals: 0, suffix: '+', label: 'Delivered Residences' },
+  ];
 
   const portfolioImages = [
     ...(media.treatmentImages || []),
@@ -210,38 +203,21 @@ export default async function Template1Home({ params }: PageProps) {
           <div className="flex flex-wrap gap-4 mb-16">
             <Link
               href={`${basePath}/contact`}
-              className="inline-flex items-center gap-3 bg-[#a58150] text-white px-7 py-4 text-[12.5px] tracking-[0.2em] uppercase font-medium border border-[#a58150] hover:bg-[#211a13] hover:border-[#211a13] transition-colors duration-300"
+              className="inline-flex items-center gap-2 bg-[#a58150] text-white px-5 py-3 sm:px-6 sm:py-3.5 text-[10.5px] sm:text-[11.5px] tracking-[0.2em] uppercase font-medium border border-[#a58150] hover:bg-[#211a13] hover:border-[#211a13] transition-colors duration-300"
             >
-              Book Free Consultation
+              Reach Us
             </Link>
             <Link
               href={`${basePath}/gallery`}
-              className="inline-flex items-center gap-3 bg-transparent text-white px-7 py-4 text-[12.5px] tracking-[0.2em] uppercase font-medium border border-white/50 hover:border-white hover:bg-white/10 transition-colors duration-300"
+              className="inline-flex items-center gap-2 bg-transparent text-white px-5 py-3 sm:px-6 sm:py-3.5 text-[10.5px] sm:text-[11.5px] tracking-[0.2em] uppercase font-medium border border-white/50 hover:border-white hover:bg-white/10 transition-colors duration-300"
             >
-              View Portfolio
+              Projects
             </Link>
           </div>
         </div>
 
         {/* STATS BAR */}
-        <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-7 w-full">
-          <div className="grid grid-cols-2 md:grid-cols-4 border-t border-[#f6f1e8]/15 bg-black/20 backdrop-blur-sm">
-            {[
-              { value: rating, suffix: '★', label: 'Google Rating' },
-              { value: experienceYears, suffix: '+ yrs', label: 'Of Craftsmanship' },
-              { value: String(servicesList.length), suffix: '+', label: 'Design Disciplines' },
-              { value: business.reviewCount || '100', suffix: '+', label: 'Delivered Residences' },
-            ].map((stat, i) => (
-              <div key={i} className={`py-7 px-6 border-l border-[#f6f1e8]/15 ${i === 0 ? 'md:border-l-0 md:pl-0' : ''} ${i % 2 === 0 ? 'max-md:border-l-0 max-md:pl-0' : ''}`}>
-                <b className="font-[family-name:var(--font-marcellus)] font-normal text-[clamp(30px,3vw,44px)] block text-white">
-                  {stat.value}
-                  <i className="not-italic text-[#c9ab7c]">{stat.suffix}</i>
-                </b>
-                <span className="text-[11.5px] tracking-[0.26em] uppercase text-white/60">{stat.label}</span>
-              </div>
-            ))}
-          </div>
-        </div>
+        <HeroStats stats={heroStats} />
       </section>
 
       {/* TRUST ASSURANCE RIBBON */}
@@ -277,7 +253,7 @@ export default async function Template1Home({ params }: PageProps) {
               </div>
               <div className="absolute -right-2 sm:-right-4 bottom-11 bg-[#211a13] text-white px-8 py-7 shadow-[0_30px_60px_rgba(33,26,19,0.3)]">
                 <b className="font-[family-name:var(--font-marcellus)] font-normal text-[44px] text-[#c9ab7c] block leading-none">
-                  {experienceYears}+
+                  <CountUp value={experienceYears} suffix="+" />
                 </b>
                 <span className="text-[11px] tracking-[0.3em] uppercase text-white/65">Years in {city}</span>
               </div>
@@ -309,9 +285,9 @@ export default async function Template1Home({ params }: PageProps) {
             </div>
             <Link
               href={`${basePath}/about`}
-              className="inline-flex items-center gap-3 bg-transparent text-[#211a13] px-7 py-4 text-[12.5px] tracking-[0.2em] uppercase font-medium border border-[#211a13] hover:bg-[#211a13] hover:text-white transition-colors duration-300"
+              className="inline-flex items-center gap-2 bg-transparent text-[#211a13] px-5 py-3 sm:px-6 sm:py-3.5 text-[10.5px] sm:text-[11.5px] tracking-[0.2em] uppercase font-medium border border-[#211a13] hover:bg-[#211a13] hover:text-white transition-colors duration-300"
             >
-              Discover Our Story &amp; Philosophy
+              Our Story
             </Link>
           </Reveal>
         </div>
@@ -452,92 +428,6 @@ export default async function Template1Home({ params }: PageProps) {
               </div>
             ))}
           </Reveal>
-        </div>
-      </section>
-
-      <section id="estimator" className="py-[clamp(84px,9vw,130px)] px-6 lg:px-7 bg-[#fdfbf6]">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid lg:grid-cols-[1fr_1fr] gap-12 lg:gap-20 items-center">
-            <Reveal className="max-w-2xl">
-              <span className="flex items-center gap-3.5 text-[12px] tracking-[0.38em] uppercase text-[#a58150] mb-4 before:content-[''] before:w-10 before:h-px before:bg-[#a58150]">
-                PROJECT ESTIMATE
-              </span>
-              <h2 className="font-[family-name:var(--font-marcellus)] text-[clamp(32px,3.8vw,52px)] leading-[1.12]">
-                Transparent Pricing,<br/>No Hidden Costs
-              </h2>
-              <p className="mt-6 text-[15.5px] text-[#7d7264] leading-[1.85] font-light">
-                Fill out the brief form to receive a detailed, line-item quotation for your dream home. Our design-build experts will get back to you with a clear cost breakdown based on your plot size and requirements.
-              </p>
-              <div className="mt-10 grid gap-6 sm:grid-cols-2 border-t border-[#211a13]/10 pt-10">
-                <div>
-                  <h3 className="text-[17px] font-medium text-[#211a13] mb-2">01 / Share Details</h3>
-                  <p className="text-[14.5px] text-[#7d7264] font-light leading-[1.6]">Tell us about your floor plan, location, and lifestyle requirements.</p>
-                </div>
-                <div>
-                  <h3 className="text-[17px] font-medium text-[#211a13] mb-2">02 / Get Estimate</h3>
-                  <p className="text-[14.5px] text-[#7d7264] font-light leading-[1.6]">Receive a transparent quotation covering turnkey execution and interiors.</p>
-                </div>
-              </div>
-            </Reveal>
-
-            <Reveal delay={0.2} className="w-full flex justify-center border border-[#211a13]/10 bg-white p-2 md:p-6 rounded-3xl shadow-sm relative">
-              <div className="w-full max-w-[640px] bg-white rounded-xl shadow-sm border border-gray-100 p-8 flex flex-col justify-center">
-                <h3 className="text-2xl font-bold mb-6 text-gray-800">Request Estimate</h3>
-                <form className="space-y-4" >
-                  <input type="text" placeholder="Name" required className="w-full p-3 border border-gray-200 rounded-md outline-none focus:border-gray-400 transition-colors" />
-                  <input type="email" placeholder="Email" required className="w-full p-3 border border-gray-200 rounded-md outline-none focus:border-gray-400 transition-colors" />
-                  <input type="tel" placeholder="Phone" required className="w-full p-3 border border-gray-200 rounded-md outline-none focus:border-gray-400 transition-colors" />
-                  <textarea placeholder="Tell us about your requirements" required className="w-full p-3 border border-gray-200 rounded-md outline-none focus:border-gray-400 h-32 transition-colors"></textarea>
-                  <button type="submit" className="w-full bg-gray-800 text-white py-3 rounded-md uppercase tracking-wide text-sm font-semibold hover:bg-gray-700 transition-colors">Submit Request</button>
-                </form>
-              </div>
-            </Reveal>
-
-          </div>
-        </div>
-      </section>
-
-      {/* DESIGN BRIEF */}
-      <section className="py-[clamp(84px,9vw,130px)] px-6 lg:px-7 bg-[#fdfbf6] border-b border-[#211a13]/10">
-        <div className="max-w-7xl mx-auto grid lg:grid-cols-[0.82fr_1.18fr] gap-[clamp(42px,6vw,90px)] items-start">
-          <Reveal className="lg:sticky lg:top-32">
-            <span className="flex items-center gap-3.5 text-[12px] tracking-[0.38em] uppercase text-[#a58150] mb-4 before:content-[''] before:w-10 before:h-px before:bg-[#a58150]">
-              Before We Build
-            </span>
-            <h2 className="font-[family-name:var(--font-marcellus)] text-[clamp(34px,4.2vw,56px)] leading-[1.1] mb-5">
-              A proposal with <em className="not-italic italic font-light text-[#a58150]">real answers</em>
-            </h2>
-            <p className="text-[#7d7264] leading-[1.85] text-[15.5px] font-light max-w-[430px] mb-8">
-              A beautiful reference image is a starting point, not a plan. Before you commit, we help turn your ideas into a clear brief that is practical, personal, and ready for execution.
-            </p>
-            <Link
-              href={`${basePath}/contact`}
-              className="inline-flex items-center gap-3 text-[12.5px] tracking-[0.2em] uppercase font-medium text-[#211a13] border-b border-[#a58150] pb-1.5 hover:text-[#a58150] transition-colors"
-            >
-              Start Your Design Brief <ArrowRight className="w-4 h-4" />
-            </Link>
-          </Reveal>
-
-          <div className="grid gap-4">
-            {DESIGN_BRIEF_DELIVERABLES.map((item, idx) => {
-              const Icon = item.icon;
-              return (
-                <Reveal key={item.number} delay={idx * 90}>
-                  <article className="group grid sm:grid-cols-[76px_1fr_auto] gap-5 sm:items-center bg-white border border-[#211a13]/10 p-6 sm:p-7 transition-all duration-300 hover:border-[#a58150]/65 hover:shadow-[0_20px_45px_rgba(33,26,19,0.07)]">
-                    <span className="w-14 h-14 border border-[#a58150]/55 text-[#a58150] grid place-items-center">
-                      <Icon className="w-5 h-5" strokeWidth={1.6} />
-                    </span>
-                    <div>
-                      <span className="text-[10.5px] tracking-[0.28em] uppercase text-[#a58150] font-medium">Step {item.number}</span>
-                      <h3 className="font-[family-name:var(--font-marcellus)] text-[22px] mt-1.5 mb-2 text-[#211a13]">{item.title}</h3>
-                      <p className="text-[13.5px] leading-[1.75] text-[#7d7264] font-light max-w-[600px]">{item.desc}</p>
-                    </div>
-                    <span className="hidden sm:block font-[family-name:var(--font-marcellus)] text-[28px] text-[#a58150]/60 group-hover:text-[#a58150] transition-colors">/{item.number}</span>
-                  </article>
-                </Reveal>
-              );
-            })}
-          </div>
         </div>
       </section>
 
@@ -722,35 +612,39 @@ export default async function Template1Home({ params }: PageProps) {
         </div>
       </section>
 
-      {/* CTA / LEAD FORM */}
-      <section id="consult" className="relative py-[clamp(84px,9vw,130px)] px-6 lg:px-7 text-white overflow-hidden">
+      {/* PROJECT ESTIMATE (FINAL SECTION) */}
+      <section id="estimator" className="relative py-[clamp(84px,9vw,130px)] px-6 lg:px-7 text-white overflow-hidden">
         <div className="absolute inset-0">
           <img src={ctaImage} alt="" loading="lazy" className="w-full h-full object-cover" />
-          <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(24,18,12,0.94)_0%,rgba(24,18,12,0.8)_55%,rgba(24,18,12,0.48)_100%)]" />
+          <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(24,18,12,0.95)_0%,rgba(24,18,12,0.85)_55%,rgba(24,18,12,0.55)_100%)]" />
         </div>
 
-        <div className="relative z-10 max-w-7xl mx-auto grid lg:grid-cols-[1.1fr_0.9fr] gap-[clamp(44px,6vw,90px)] items-center">
+        <div className="relative z-10 max-w-7xl mx-auto grid lg:grid-cols-[1.05fr_0.95fr] gap-[clamp(44px,6vw,90px)] items-center">
           <Reveal>
             <span className="flex items-center gap-3.5 text-[12px] tracking-[0.38em] uppercase text-[#c9ab7c] mb-4 before:content-[''] before:w-10 before:h-px before:bg-[#c9ab7c]">
-              Begin Your Home
+              PROJECT ESTIMATE
             </span>
             <h2 className="font-[family-name:var(--font-marcellus)] text-[clamp(34px,4.4vw,58px)] leading-[1.1] mb-5">
-              Book a complimentary design <em className="not-italic italic font-light text-[#c9ab7c]">consultation</em>
+              Transparent Pricing,<br />
+              <em className="not-italic italic font-light text-[#c9ab7c]">No Hidden Costs</em>
             </h2>
-            <p className="text-white/80 font-light leading-[1.8] max-w-[480px] mb-7">
-              A 45-minute session with our principal design team — spatial planning, style moodboards, and an exact itemised estimate for your floor plan. Free, and genuinely insightful.
+            <p className="text-white/80 font-light leading-[1.8] max-w-[500px] mb-7">
+              Fill out the brief form to receive a detailed, line-item quotation for your dream home. Our design-build experts will get back to you with a clear cost breakdown based on your plot size and requirements.
             </p>
-            <div className="flex flex-wrap gap-8">
-              {[
-                { value: '45 min', label: 'With a senior designer' },
-                { value: '₹0', label: 'No fee, zero obligation' },
-                { value: '24 hrs', label: 'Guaranteed response time' },
-              ].map((item) => (
-                <div key={item.label}>
-                  <b className="font-[family-name:var(--font-marcellus)] font-normal text-[26px] block text-[#c9ab7c]">{item.value}</b>
-                  <span className="text-[11px] tracking-[0.24em] uppercase text-white/60">{item.label}</span>
-                </div>
-              ))}
+
+            <div className="mt-8 grid gap-6 sm:grid-cols-2 border-t border-white/15 pt-8">
+              <div>
+                <h3 className="text-[17px] font-medium text-[#c9ab7c] mb-2">01 / Share Details</h3>
+                <p className="text-[14px] text-white/70 font-light leading-[1.6]">
+                  Tell us about your floor plan, location, and lifestyle requirements.
+                </p>
+              </div>
+              <div>
+                <h3 className="text-[17px] font-medium text-[#c9ab7c] mb-2">02 / Get Estimate</h3>
+                <p className="text-[14px] text-white/70 font-light leading-[1.6]">
+                  Receive a transparent quotation covering turnkey execution and interiors.
+                </p>
+              </div>
             </div>
           </Reveal>
 

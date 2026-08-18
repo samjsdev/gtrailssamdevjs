@@ -62,7 +62,7 @@ export default function ClientHeader({ clinic, basePath }: ClientHeaderProps) {
           <Link href={`${basePath}`} className="hover:text-white transition-colors">Home</Link>
           <Link href={`${basePath}/about`} className="hover:text-white transition-colors">About</Link>
           <Link href={`${basePath}/services`} className="hover:text-white transition-colors">Services</Link>
-          <Link href={`${basePath}/gallery`} className="hover:text-white transition-colors">Gallery</Link>
+          <Link href={`${basePath}/gallery`} className="hover:text-white transition-colors">Portfolio</Link>
           <Link href={`${basePath}/contact`} className="hover:text-white transition-colors">Contact</Link>
         </nav>
 
@@ -95,7 +95,7 @@ export default function ClientHeader({ clinic, basePath }: ClientHeaderProps) {
           <Link href={`${basePath}`} onClick={() => setIsOpen(false)} className="hover:text-white transition-colors py-1">Home</Link>
           <Link href={`${basePath}/about`} onClick={() => setIsOpen(false)} className="hover:text-white transition-colors py-1">About</Link>
           <Link href={`${basePath}/services`} onClick={() => setIsOpen(false)} className="hover:text-white transition-colors py-1">Services</Link>
-          <Link href={`${basePath}/gallery`} onClick={() => setIsOpen(false)} className="hover:text-white transition-colors py-1">Gallery</Link>
+          <Link href={`${basePath}/gallery`} onClick={() => setIsOpen(false)} className="hover:text-white transition-colors py-1">Portfolio</Link>
           <Link href={`${basePath}/contact`} onClick={() => setIsOpen(false)} className="hover:text-white transition-colors py-1">Contact</Link>
           <a
             href={walink}

@@ -3,6 +3,7 @@ import { notFound } from 'next/navigation';
 import { Archivo_Black, Inter } from 'next/font/google';
 import GalleryGrid from './GalleryGrid';
 import { cleanClinicName } from '@/lib/copyCleaner';
+import CountUp from '@/components/CountUp';
 
 const archivo = Archivo_Black({
   subsets: ['latin'],
@@ -117,7 +118,9 @@ export default async function GalleryPage({ params }: { params: Promise<{ slug: 
                   { num: '15+', label: 'Years in Fabrication' },
                 ].map((stat, i) => (
                   <div key={i} className="flex flex-col">
-                    <span className={`${archivo.className} text-4xl text-white`}>{stat.num}</span>
+                    <span className={`${archivo.className} text-4xl text-white`}>
+                      <CountUp value={stat.num} />
+                    </span>
                     <span className="text-[9px] font-bold tracking-[0.25em] text-slate-500 uppercase mt-1">
                       {stat.label}
                     </span>

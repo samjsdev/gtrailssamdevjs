@@ -11,6 +11,7 @@ import { DEFAULT_INTERIOR_HIGHLIGHTS, DEFAULT_INTERIOR_SERVICES,
 } from '@/lib/interiorContent';
 import Reveal from '../Reveal';
 import PageNarrative from '../PageNarrative';
+import CountUp from '@/components/CountUp';
 
 type PageProps = { params: Promise<{ slug: string }> };
 
@@ -96,7 +97,9 @@ export default async function Template2About({ params }: PageProps) {
               <img src={storyImage} alt={`${cleanName || 'Studio'} project`} loading="lazy" className="w-full h-full object-cover" />
             </div>
             <div className="absolute left-5 bottom-5 bg-white rounded-2xl px-5.5 py-4 shadow-[0_24px_60px_rgba(27,27,27,0.12)]">
-              <b className="font-[family-name:var(--font-bricolage)] text-[24px] text-[#0e5a43] block leading-none">{experienceYears}+ yrs</b>
+              <b className="font-[family-name:var(--font-bricolage)] text-[24px] text-[#0e5a43] block leading-none">
+                <CountUp value={experienceYears} suffix="+ yrs" />
+              </b>
               <span className="text-[11px] font-extrabold tracking-[0.12em] uppercase text-[#6b6660]">of happy homes</span>
             </div>
           </Reveal>
@@ -122,7 +125,9 @@ export default async function Template2About({ params }: PageProps) {
                 { value: `${servicesCount}+`, label: 'Disciplines' },
               ].map((stat) => (
                 <div key={stat.label} className="bg-[#faf7f1] border border-[#1b1b1b]/10 rounded-2xl px-4 py-5 text-center">
-                  <b className="font-[family-name:var(--font-bricolage)] font-bold text-[clamp(20px,2.4vw,28px)] text-[#0e5a43] block">{stat.value}</b>
+                  <b className="font-[family-name:var(--font-bricolage)] font-bold text-[clamp(20px,2.4vw,28px)] text-[#0e5a43] block">
+                    <CountUp value={stat.value} />
+                  </b>
                   <span className="text-[11px] font-extrabold tracking-[0.1em] uppercase text-[#6b6660]">{stat.label}</span>
                 </div>
               ))}
@@ -238,11 +243,15 @@ export default async function Template2About({ params }: PageProps) {
             </p>
             <div className="grid grid-cols-2 gap-4 border-t border-[#1b1b1b]/10 pt-5 mb-7">
               <div>
-                <b className="font-[family-name:var(--font-bricolage)] text-[24px] text-[#0e5a43] block">{experienceYears}+ Yrs</b>
+                <b className="font-[family-name:var(--font-bricolage)] text-[24px] text-[#0e5a43] block">
+                  <CountUp value={experienceYears} suffix="+ Yrs" />
+                </b>
                 <span className="text-[11px] font-extrabold tracking-wider uppercase text-[#6b6660]">Experience</span>
               </div>
               <div>
-                <b className="font-[family-name:var(--font-bricolage)] text-[24px] text-[#0e5a43] block">10-Year</b>
+                <b className="font-[family-name:var(--font-bricolage)] text-[24px] text-[#0e5a43] block">
+                  <CountUp value="10-Year" />
+                </b>
                 <span className="text-[11px] font-extrabold tracking-wider uppercase text-[#6b6660]">Warranty</span>
               </div>
             </div>

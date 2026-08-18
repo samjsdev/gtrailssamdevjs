@@ -11,6 +11,7 @@ import SeriesScroll, { SeriesTheme } from './SeriesScroll';
 import TestimonialRotator, { Testimonial } from './TestimonialRotator';
 import VisitForm from './VisitForm';
 import FAQAccordion, { FAQItem } from './FAQAccordion';
+import CountUp from '@/components/CountUp';
 
 type PageProps = { params: Promise<{ slug: string }> };
 
@@ -211,19 +212,19 @@ export default async function Template4Home({ params }: PageProps) {
           <p className="text-white/85 text-[17px] font-light max-w-[560px] leading-relaxed mb-9">
             {cleanDesc || `A bespoke interior design practice in ${city}. We craft private residences with quiet luxury, tailored storage, and natural material palettes.`}
           </p>
-          <div className="flex flex-wrap gap-4">
+          <div className="flex flex-wrap gap-3">
             <Link
               href={`${basePath}/contact`}
-              className="inline-flex items-center gap-2.5 bg-[#a4532f] text-white text-[12.5px] font-semibold tracking-[0.18em] uppercase px-8 py-4 transition-all duration-300 hover:bg-[#854021] hover:-translate-y-0.5"
+              className="inline-flex items-center gap-2 bg-[#a4532f] text-white text-[10.5px] sm:text-[11.5px] font-semibold tracking-[0.18em] uppercase px-5 py-3 sm:px-6 transition-all duration-300 hover:bg-[#854021] hover:-translate-y-0.5"
             >
-              Request Private Consultation
-              <ArrowRight className="w-4 h-4" />
+              Reach Us
+              <ArrowRight className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
             </Link>
             <Link
               href={`${basePath}/gallery`}
-              className="inline-flex items-center gap-2.5 bg-transparent text-white text-[12.5px] font-semibold tracking-[0.18em] uppercase px-8 py-4 border border-white/40 transition-all duration-300 hover:bg-white/10"
+              className="inline-flex items-center gap-2 bg-transparent text-white text-[10.5px] sm:text-[11.5px] font-semibold tracking-[0.18em] uppercase px-5 py-3 sm:px-6 border border-white/40 transition-all duration-300 hover:bg-white/10"
             >
-              Curated Residences
+              Projects
             </Link>
           </div>
         </div>
@@ -508,7 +509,9 @@ export default async function Template4Home({ params }: PageProps) {
                 { v: '₹0', l: 'Consultation Fee' },
               ].map((b) => (
                 <div key={b.l} className="bg-white/10 p-3.5 text-center">
-                  <b className="font-[family-name:var(--font-cormorant)] text-[22px] text-[#d9c49a] block">{b.v}</b>
+                  <b className="font-[family-name:var(--font-cormorant)] text-[22px] text-[#d9c49a] block">
+                    <CountUp value={b.v} />
+                  </b>
                   <span className="text-[10px] uppercase tracking-wider text-white/70 font-semibold">{b.l}</span>
                 </div>
               ))}

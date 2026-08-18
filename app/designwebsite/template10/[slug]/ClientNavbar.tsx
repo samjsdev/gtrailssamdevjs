@@ -73,7 +73,7 @@ export default function ClientNavbar({ clinicName, basePath }: ClientNavbarProps
               <span className="absolute bottom-0 left-0 w-0 h-[1px] bg-[#E07A5F] transition-all group-hover:w-full" />
             </Link>
             <Link href={`${basePath}/about`} className="hover:text-white transition-colors py-2 relative group">
-              About Us
+              About
               <span className="absolute bottom-0 left-0 w-0 h-[1px] bg-[#E07A5F] transition-all group-hover:w-full" />
             </Link>
             <Link href={`${basePath}/services`} className="hover:text-white transition-colors py-2 relative group">
@@ -81,7 +81,7 @@ export default function ClientNavbar({ clinicName, basePath }: ClientNavbarProps
               <span className="absolute bottom-0 left-0 w-0 h-[1px] bg-[#E07A5F] transition-all group-hover:w-full" />
             </Link>
             <Link href={`${basePath}/gallery`} className="hover:text-white transition-colors py-2 relative group">
-              Gallery
+              Portfolio
               <span className="absolute bottom-0 left-0 w-0 h-[1px] bg-[#E07A5F] transition-all group-hover:w-full" />
             </Link>
             <Link href={`${basePath}/contact`} className="hover:text-white transition-colors py-2 relative group">
@@ -118,13 +118,13 @@ export default function ClientNavbar({ clinicName, basePath }: ClientNavbarProps
               Home
             </Link>
             <Link href={`${basePath}/about`} onClick={() => setIsOpen(false)} className="hover:text-white transition-colors py-1">
-              About Us
+              About
             </Link>
             <Link href={`${basePath}/services`} onClick={() => setIsOpen(false)} className="hover:text-white transition-colors py-1">
               Services
             </Link>
             <Link href={`${basePath}/gallery`} onClick={() => setIsOpen(false)} className="hover:text-white transition-colors py-1">
-              Gallery
+              Portfolio
             </Link>
             <Link href={`${basePath}/contact`} onClick={() => setIsOpen(false)} className="hover:text-white transition-colors py-1">
               Contact

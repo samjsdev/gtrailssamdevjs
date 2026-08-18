@@ -7,6 +7,7 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useGSAP } from '@gsap/react';
 import { getInteriorServiceData, getInteriorServiceSummary } from '@/lib/interiorContent';
+import CountUp from '@/components/CountUp';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -155,10 +156,12 @@ export default function AboutSection({ data }: { data?: any }) {
                  
                  {/* Floating Badge */}
                  <div className="absolute -bottom-6 -right-6 lg:-bottom-10 lg:-right-10 z-20">
-                   <div className="glass-card p-6 rounded-3xl shadow-xl border border-white/60 backdrop-blur-xl text-center">
-                      <span className="block text-3xl font-serif text-[var(--accent)] font-bold mb-1">{leaderExp}+</span>
-                      <span className="text-xs font-semibold text-[var(--muted)] uppercase tracking-wider">Years Design<br/>Experience</span>
-                   </div>
+                    <div className="glass-card p-6 rounded-3xl shadow-xl border border-white/60 backdrop-blur-xl text-center">
+                       <span className="block text-3xl font-serif text-[var(--accent)] font-bold mb-1">
+                         <CountUp value={leaderExp} suffix="+" />
+                       </span>
+                       <span className="text-xs font-semibold text-[var(--muted)] uppercase tracking-wider">Years Design<br/>Experience</span>
+                    </div>
                  </div>
               </div>
 

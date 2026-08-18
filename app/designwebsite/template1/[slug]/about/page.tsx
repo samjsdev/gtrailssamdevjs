@@ -11,6 +11,7 @@ import { DEFAULT_INTERIOR_HIGHLIGHTS, DEFAULT_INTERIOR_SERVICES,
 } from '@/lib/interiorContent';
 import Reveal from '../Reveal';
 import PageNarrative from '../PageNarrative';
+import CountUp from '@/components/CountUp';
 
 type PageProps = { params: Promise<{ slug: string }> };
 
@@ -113,7 +114,9 @@ export default async function Template1About({ params }: PageProps) {
                 <img src={storyImage} alt={`${cleanName || 'Studio'} interior project`} loading="lazy" className="w-full h-full object-cover" />
               </div>
               <div className="absolute -right-2 sm:-right-4 bottom-11 bg-[#211a13] text-white px-8 py-7 shadow-[0_30px_60px_rgba(33,26,19,0.3)]">
-                <b className="font-[family-name:var(--font-marcellus)] font-normal text-[44px] text-[#c9ab7c] block leading-none">{experienceYears}+</b>
+                <b className="font-[family-name:var(--font-marcellus)] font-normal text-[44px] text-[#c9ab7c] block leading-none">
+                  <CountUp value={experienceYears} suffix="+" />
+                </b>
                 <span className="text-[11px] tracking-[0.3em] uppercase text-white/65">Years of Craft</span>
               </div>
             </div>
@@ -140,7 +143,9 @@ export default async function Template1About({ params }: PageProps) {
                 { value: `${servicesCount}+`, label: 'Design Disciplines' },
               ].map((stat, i) => (
                 <div key={stat.label} className={`py-5 px-5 border-l border-[#211a13]/10 ${i === 0 ? 'border-l-0 pl-0' : ''}`}>
-                  <b className="font-[family-name:var(--font-marcellus)] font-normal text-[clamp(24px,2.4vw,34px)] block">{stat.value}</b>
+                  <b className="font-[family-name:var(--font-marcellus)] font-normal text-[clamp(24px,2.4vw,34px)] block">
+                    <CountUp value={stat.value} />
+                  </b>
                   <span className="text-[10.5px] tracking-[0.2em] uppercase text-[#7d7264]">{stat.label}</span>
                 </div>
               ))}
@@ -293,9 +298,9 @@ export default async function Template1About({ params }: PageProps) {
             </div>
             <Link
               href={`${basePath}/contact`}
-              className="inline-flex items-center gap-3 bg-[#a58150] text-white px-8 py-4 text-[12.5px] tracking-[0.2em] uppercase font-medium border border-[#a58150] hover:bg-white hover:text-[#211a13] hover:border-white transition-colors duration-300"
+              className="inline-flex items-center gap-2 bg-[#a58150] text-white px-5 py-3 sm:px-6 sm:py-3.5 text-[10.5px] sm:text-[11.5px] tracking-[0.2em] uppercase font-medium border border-[#a58150] hover:bg-white hover:text-[#211a13] hover:border-white transition-colors duration-300"
             >
-              Schedule Studio Meeting
+              Contact Us
             </Link>
           </Reveal>
         </div>
@@ -315,9 +320,9 @@ export default async function Template1About({ params }: PageProps) {
             </p>
             <Link
               href={`${basePath}/contact`}
-              className="inline-flex items-center gap-3 bg-[#211a13] text-white px-9 py-4.5 text-[12.5px] tracking-[0.2em] uppercase font-medium border border-[#211a13] hover:bg-[#a58150] hover:border-[#a58150] transition-colors duration-300"
+              className="inline-flex items-center gap-2 bg-[#211a13] text-white px-5 py-3 sm:px-6 sm:py-3.5 text-[10.5px] sm:text-[11.5px] tracking-[0.2em] uppercase font-medium border border-[#211a13] hover:bg-[#a58150] hover:border-[#a58150] transition-colors duration-300"
             >
-              Book Free Consultation
+              Contact Us
             </Link>
           </Reveal>
         </div>

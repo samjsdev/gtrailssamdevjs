@@ -1,6 +1,7 @@
 'use client';
 
 import Image from 'next/image';
+import CountUp from '@/components/CountUp';
 
 import { useTemplateData } from './context/TemplateContext';
 
@@ -41,7 +42,9 @@ export default function AboutSection({ sourcePage = 'home', business, media }: {
                 data-gsap="stagger-item"
                 className={`${stat.bg} ${stat.text} p-6 rounded-3xl flex flex-col justify-center shadow-sm ${idx === 3 || idx === 0 ? 'border border-gray-100' : ''} aspect-square md:aspect-auto md:h-40`}
               >
-                <h3 className="text-4xl font-bold mb-2">{stat.value}</h3>
+                <h3 className="text-4xl font-bold mb-2">
+                  <CountUp value={stat.value} />
+                </h3>
                 <p className="text-sm opacity-80">{stat.label}</p>
               </div>
             ))}

@@ -14,9 +14,9 @@ interface ClientHeaderProps {
 
 const NAV_ITEMS = [
   { label: 'Home', href: '' },
-  { label: 'Designs', href: '/gallery' },
+  { label: 'About', href: '/about' },
   { label: 'Services', href: '/services' },
-  { label: 'About Us', href: '/about' },
+  { label: 'Portfolio', href: '/gallery' },
   { label: 'Contact', href: '/contact' },
 ];
 

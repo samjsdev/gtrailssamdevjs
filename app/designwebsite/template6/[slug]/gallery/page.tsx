@@ -3,6 +3,7 @@ import { notFound } from 'next/navigation';
 import { Playfair_Display, Lato } from 'next/font/google';
 import GalleryGrid from './GalleryGrid';
 import { cleanClinicName } from '@/lib/copyCleaner';
+import CountUp from '@/components/CountUp';
 
 const playfair = Playfair_Display({
   subsets: ['latin'],
@@ -117,7 +118,9 @@ export default async function GalleryPage({ params }: { params: Promise<{ slug: 
                   { num: '15+', label: 'Years of Excellence' },
                 ].map((stat, i) => (
                   <div key={i} className="flex flex-col">
-                    <span className={`${playfair.className} text-4xl text-white font-light`}>{stat.num}</span>
+                    <span className={`${playfair.className} text-4xl text-white font-light`}>
+                      <CountUp value={stat.num} />
+                    </span>
                     <span className="text-[9px] font-bold tracking-[0.25em] text-zinc-500 uppercase mt-1">
                       {stat.label}
                     </span>

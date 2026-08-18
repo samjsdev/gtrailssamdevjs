@@ -173,9 +173,9 @@ export default async function Template4Gallery({ params }: PageProps) {
               </p>
               <Link
                 href={`${basePath}/contact`}
-                className="inline-flex items-center gap-2.5 bg-[#a4532f] text-white text-[12.5px] font-semibold tracking-[0.18em] uppercase px-8 py-4 hover:bg-[#854021] transition-colors"
+                className="inline-flex items-center gap-2 bg-[#a4532f] text-white text-[10.5px] sm:text-[11.5px] font-semibold tracking-[0.18em] uppercase px-5 py-3 sm:px-6 hover:bg-[#854021] transition-colors"
               >
-                Request Studio Appointment
+                Contact Us
               </Link>
             </div>
           </Reveal>

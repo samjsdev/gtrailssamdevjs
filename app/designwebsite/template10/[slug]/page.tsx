@@ -7,6 +7,7 @@ import {
 import Link from 'next/link';
 import ClientHero from './ClientHero';
 import ReviewsSlider from '@/components/ReviewsSlider';
+import CountUp from '@/components/CountUp';
 import {
   DEFAULT_INTERIOR_REVIEWS,
   DEFAULT_INTERIOR_SERVICES,
@@ -166,7 +167,9 @@ export default async function DesignStudioHome({ params }: PageProps) {
                   <h3 className={`${archivo.className} text-base uppercase`}>{doctor.name || 'Lead Designer'}</h3>
                   <p className="text-[10px] text-white uppercase tracking-wider mt-1 font-bold">{doctor.specialization || 'Space Architect'}</p>
                 </div>
-                <div className="text-white text-sm border-l border-white/20 pl-6 font-bold">{doctor.experience || '10+ Years'}</div>
+                <div className="text-white text-sm border-l border-white/20 pl-6 font-bold">
+                  <CountUp value={doctor.experience || '10+ Years'} />
+                </div>
               </div>
             </div>
 

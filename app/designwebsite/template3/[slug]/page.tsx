@@ -13,6 +13,8 @@ import Reveal from './Reveal';
 import LeadForm from './LeadForm';
 import BeforeAfter from './BeforeAfter';
 import FAQAccordion, { FAQItem } from './FAQAccordion';
+import HeroStats, { HeroStat } from './HeroStats';
+import CountUp from '@/components/CountUp';
 
 type PageProps = { params: Promise<{ slug: string }> };
 
@@ -78,7 +80,7 @@ export default async function Template3Home({ params }: PageProps) {
   const data = await readSourceConfig(slug, 'template3');
   if (!data) return notFound();
 
-  const { clinic, business } = data;
+  const { clinic, business, doctor } = data;
 
   const media = previewMedia(data.media);
 
@@ -88,7 +90,9 @@ export default async function Template3Home({ params }: PageProps) {
   const phone = clinic.contact?.phone || '';
   const waPhone = phone.replace(/\D/g, '') || '919751396117';
   const rating = business.rating || '4.9';
-  const reviewCount = business.reviewCount || '50';
+  const reviewCount = parseInt(String(business.reviewCount || '').replace(/\D/g, ''), 10) || 50;
+  const experienceYears = doctor?.experience?.replace(/\D/g, '') || '6';
+  const servicesCount = (business.services?.length ? business.services : DEFAULT_INTERIOR_SERVICES).length || 6;
 
   const heroImage =
     media.clinicImages?.[0] ||
@@ -147,6 +151,38 @@ export default async function Template3Home({ params }: PageProps) {
     },
   ];
 
+  const heroStats: HeroStat[] = [
+    {
+      value: rating,
+      decimals: 1,
+      suffix: '★',
+      label: 'Google Rating',
+      sublabel: `${reviewCount}+ verified reviews`,
+      icon: 'star',
+    },
+    {
+      value: experienceYears,
+      suffix: '+ Yrs',
+      label: 'Turnkey Craft',
+      sublabel: `Residential in ${city}`,
+      icon: 'award',
+    },
+    {
+      value: servicesCount,
+      suffix: '+',
+      label: 'Design Disciplines',
+      sublabel: 'Modular & Turnkey',
+      icon: 'layers',
+    },
+    {
+      value: Math.max(reviewCount, 50),
+      suffix: '+',
+      label: 'Delivered Homes',
+      sublabel: '100% On-Time Handover',
+      icon: 'shield',
+    },
+  ];
+
   return (
     <div>
       {/* HERO */}
@@ -199,8 +235,12 @@ export default async function Template3Home({ params }: PageProps) {
                     ★
                   </span>
                   <div>
-                    <b className="text-[17px] font-extrabold block text-white">{rating} Google Rating</b>
-                    <span className="text-[12px] text-white/70">{reviewCount}+ happy homeowners in {city}</span>
+                    <b className="text-[17px] font-extrabold block text-white">
+                      <CountUp value={rating} decimals={1} /> Google Rating
+                    </b>
+                    <span className="text-[12px] text-white/70">
+                      <CountUp value={reviewCount} suffix="+" /> happy homeowners in {city}
+                    </span>
                   </div>
                 </div>
                 <div className="grid grid-cols-2 gap-4 border-t border-white/15 pt-4 text-[13px] text-white/85">
@@ -213,6 +253,11 @@ export default async function Template3Home({ params }: PageProps) {
                 </div>
               </div>
             </Reveal>
+          </div>
+
+          {/* DEDICATED HERO NUMBERS SECTION */}
+          <div className="mt-12 lg:mt-16">
+            <HeroStats stats={heroStats} />
           </div>
         </div>
       </section>
@@ -232,11 +277,15 @@ export default async function Template3Home({ params }: PageProps) {
             </p>
             <div className="grid grid-cols-2 gap-4 mb-7">
               <div className="bg-white border border-[#241f1a]/8 rounded-xl p-4">
-                <b className="text-[18px] font-extrabold text-[#d8442c] block">45 Days</b>
+                <b className="text-[18px] font-extrabold text-[#d8442c] block">
+                  <CountUp value="45 Days" />
+                </b>
                 <span className="text-[12px] text-[#6d6259] font-semibold">Total Turnaround</span>
               </div>
               <div className="bg-white border border-[#241f1a]/8 rounded-xl p-4">
-                <b className="text-[18px] font-extrabold text-[#d8442c] block">100%</b>
+                <b className="text-[18px] font-extrabold text-[#d8442c] block">
+                  <CountUp value="100%" />
+                </b>
                 <span className="text-[12px] text-[#6d6259] font-semibold">BWP Marine Ply</span>
               </div>
             </div>
@@ -618,7 +667,9 @@ export default async function Template3Home({ params }: PageProps) {
                 { v: '₹0', l: 'Consultation Fee' },
               ].map((b) => (
                 <div key={b.l} className="bg-white/10 rounded-xl p-3.5 text-center">
-                  <b className="text-[20px] font-extrabold text-[#f4b942] block">{b.v}</b>
+                  <b className="text-[20px] font-extrabold text-[#f4b942] block">
+                    <CountUp value={b.v} />
+                  </b>
                   <span className="text-[10.5px] uppercase tracking-wider text-white/70 font-bold">{b.l}</span>
                 </div>
               ))}

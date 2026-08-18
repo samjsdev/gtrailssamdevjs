@@ -13,6 +13,8 @@ import {
 import Reveal from './Reveal';
 import LeadForm from './LeadForm';
 import FAQAccordion, { FAQItem } from './FAQAccordion';
+import HeroStats, { HeroStat } from './HeroStats';
+import CountUp from '@/components/CountUp';
 
 type PageProps = { params: Promise<{ slug: string }> };
 
@@ -84,7 +86,9 @@ export default async function Template2Home({ params }: PageProps) {
   const highlights: string[] = business.highlights?.length ? business.highlights : DEFAULT_INTERIOR_HIGHLIGHTS;
   const reviews = data.reviews?.length ? data.reviews : DEFAULT_INTERIOR_REVIEWS;
   const rating = business.rating || '4.8';
+  const reviewCount = parseInt(String(business.reviewCount || '').replace(/\D/g, ''), 10) || (reviews.length ? reviews.length * 15 : 120);
   const experienceYears = doctor?.experience?.replace(/\D/g, '') || '5';
+  const servicesCount = servicesList.length || 6;
 
   const rooms = servicesList.slice(0, 6).map((svc: string, idx: number) => {
     const detail = getInteriorServiceData(svc);
@@ -134,74 +138,111 @@ export default async function Template2Home({ params }: PageProps) {
     },
   ];
 
+  const heroStats: HeroStat[] = [
+    {
+      value: rating,
+      decimals: 1,
+      suffix: '★',
+      label: 'Google Rating',
+      sublabel: `${reviewCount}+ verified reviews`,
+      icon: 'star',
+    },
+    {
+      value: experienceYears,
+      suffix: '+ Yrs',
+      label: 'Craftsmanship',
+      sublabel: `Residential in ${city}`,
+      icon: 'award',
+    },
+    {
+      value: servicesCount,
+      suffix: '+',
+      label: 'Design Disciplines',
+      sublabel: 'Turnkey & Modular',
+      icon: 'layers',
+    },
+    {
+      value: Math.max(reviewCount, 50),
+      suffix: '+',
+      label: 'Delivered Homes',
+      sublabel: '100% On-Time Handover',
+      icon: 'home',
+    },
+  ];
+
   return (
     <div>
       {/* HERO */}
       <section id="hero" className="bg-[#faf7f1] overflow-hidden">
-        <div className="max-w-[1240px] mx-auto px-6 py-[clamp(44px,6vw,80px)] grid lg:grid-cols-[1.02fr_0.98fr] gap-[clamp(34px,5vw,64px)] items-center">
-          <div>
-            <p className="font-[family-name:var(--font-bricolage)] font-bold text-[clamp(22px,2.4vw,28px)] text-[#0e5a43] mb-4 flex items-center gap-2">
-              <span className="w-2.5 h-2.5 rounded-full bg-[#f2a007]" />
-              {cleanName || 'Design Studio'} · {city}
-            </p>
-            <h1 className="font-[family-name:var(--font-bricolage)] font-bold text-[clamp(38px,4.8vw,62px)] leading-[1.05] tracking-[-0.02em]">
-              {clinic.tagline || (
-                <>Uncompromising Quality In Every Detail in {city}</>
-              )}
-            </h1>
-            <p className="mt-5 mb-8 max-w-[520px] text-[#6b6660] text-[16.5px] leading-[1.7] font-medium">
-              {cleanDesc || `We exclusively use ISI-certified, premium materials to ensure generational durability. From 3D space planning to factory-precision modular joinery and flawless handover.`}
-            </p>
-            <div className="flex flex-wrap gap-3.5 items-center">
-              <Link
-                href={`${basePath}/contact`}
-                className="inline-flex items-center justify-center gap-2 bg-[#0e5a43] text-white font-bold text-[14px] px-6.5 py-3.5 rounded-xl hover:bg-[#0a4232] hover:-translate-y-0.5 hover:shadow-[0_14px_28px_rgba(14,90,67,0.28)] transition-all duration-300"
-              >
-                Get a Free Estimate
-              </Link>
-              <Link
-                href={`${basePath}/gallery`}
-                className="inline-flex items-center justify-center gap-2 bg-transparent text-[#1b1b1b] font-bold text-[14px] px-6.5 py-3.5 rounded-xl border-[1.5px] border-[#1b1b1b] hover:bg-[#1b1b1b] hover:text-white transition-all duration-300"
-              >
-                Browse Real Homes
-              </Link>
+        <div className="max-w-[1240px] mx-auto px-6 pt-[clamp(44px,6vw,80px)] pb-12 sm:pb-16">
+          <div className="grid lg:grid-cols-[1.02fr_0.98fr] gap-[clamp(34px,5vw,64px)] items-center">
+            <div>
+              <p className="font-[family-name:var(--font-bricolage)] font-bold text-[clamp(22px,2.4vw,28px)] text-[#0e5a43] mb-4 flex items-center gap-2">
+                <span className="w-2.5 h-2.5 rounded-full bg-[#f2a007]" />
+                {cleanName || 'Design Studio'} · {city}
+              </p>
+              <h1 className="font-[family-name:var(--font-bricolage)] font-bold text-[clamp(38px,4.8vw,62px)] leading-[1.05] tracking-[-0.02em]">
+                {clinic.tagline || (
+                  <>Uncompromising Quality In Every Detail in {city}</>
+                )}
+              </h1>
+              <p className="mt-5 mb-8 max-w-[520px] text-[#6b6660] text-[16.5px] leading-[1.7] font-medium">
+                {cleanDesc || `We exclusively use ISI-certified, premium materials to ensure generational durability. From 3D space planning to factory-precision modular joinery and flawless handover.`}
+              </p>
+              <div className="flex flex-wrap gap-3.5 items-center">
+                <Link
+                  href={`${basePath}/contact`}
+                  className="inline-flex items-center justify-center gap-2 bg-[#0e5a43] text-white font-bold text-[14px] px-6.5 py-3.5 rounded-xl hover:bg-[#0a4232] hover:-translate-y-0.5 hover:shadow-[0_14px_28px_rgba(14,90,67,0.28)] transition-all duration-300"
+                >
+                  Get a Free Estimate
+                </Link>
+                <Link
+                  href={`${basePath}/gallery`}
+                  className="inline-flex items-center justify-center gap-2 bg-transparent text-[#1b1b1b] font-bold text-[14px] px-6.5 py-3.5 rounded-xl border-[1.5px] border-[#1b1b1b] hover:bg-[#1b1b1b] hover:text-white transition-all duration-300"
+                >
+                  Browse Real Homes
+                </Link>
+              </div>
             </div>
-            <p className="mt-5 text-[12.5px] text-[#6b6660] font-semibold flex items-center gap-2">
-              <span className="text-[#f2a007] tracking-[2px]">★★★★★</span>
-              {rating} rated by homeowners on Google · {experienceYears}+ years in {city}
-            </p>
+
+            <div className="relative">
+              <div className="absolute -top-4 right-2 sm:-right-3 z-10 bg-white border border-[#1b1b1b]/10 rounded-2xl px-5 py-3.5 shadow-[0_24px_60px_rgba(27,27,27,0.12)] flex items-center gap-3">
+                <span className="w-10 h-10 rounded-xl bg-[#fdeecb] grid place-items-center">
+                  <Home className="w-5 h-5 text-[#f2a007]" strokeWidth={2} />
+                </span>
+                <span>
+                  <b className="font-[family-name:var(--font-bricolage)] text-[17px] block leading-tight">
+                    <CountUp value={experienceYears} suffix="+ years" />
+                  </b>
+                  <span className="text-[11px] text-[#6b6660] font-bold">designing in {city}</span>
+                </span>
+              </div>
+              <div className="rounded-[26px] overflow-hidden aspect-[4/3.5] shadow-[0_24px_60px_rgba(27,27,27,0.12)]">
+                <img src={heroImage} alt={`${cleanName || 'Studio'} interior`} className="w-full h-full object-cover" fetchPriority="high" />
+              </div>
+              <div className="mt-5 border-t border-[#1b1b1b]/12 pt-5">
+                <p className="text-[11px] font-extrabold tracking-[0.2em] uppercase text-[#0e5a43] mb-3.5">
+                  The {cleanName || 'Studio'} Guarantee
+                </p>
+                <ul className="grid sm:grid-cols-3 gap-2.5">
+                  {[
+                    '45-Day Handover Guarantee',
+                    '10-Year Material Warranty',
+                    '0% Cost Overrun Lock',
+                  ].map((item) => (
+                    <li key={item} className="flex gap-2 items-center text-[12.5px] font-bold text-[#1b1b1b] bg-white/80 border border-[#1b1b1b]/8 rounded-xl px-3 py-2">
+                      <Check className="w-4 h-4 text-[#0e5a43] shrink-0" strokeWidth={2.4} />
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
           </div>
 
-          <div className="relative">
-            <div className="absolute -top-4 right-2 sm:-right-3 z-10 bg-white border border-[#1b1b1b]/10 rounded-2xl px-5 py-3.5 shadow-[0_24px_60px_rgba(27,27,27,0.12)] flex items-center gap-3">
-              <span className="w-10 h-10 rounded-xl bg-[#fdeecb] grid place-items-center">
-                <Home className="w-5 h-5 text-[#f2a007]" strokeWidth={2} />
-              </span>
-              <span>
-                <b className="font-[family-name:var(--font-bricolage)] text-[17px] block leading-tight">{experienceYears}+ years</b>
-                <span className="text-[11px] text-[#6b6660] font-bold">designing in {city}</span>
-              </span>
-            </div>
-            <div className="rounded-[26px] overflow-hidden aspect-[4/3.5] shadow-[0_24px_60px_rgba(27,27,27,0.12)]">
-              <img src={heroImage} alt={`${cleanName || 'Studio'} interior`} className="w-full h-full object-cover" fetchPriority="high" />
-            </div>
-            <div className="mt-5 border-t border-[#1b1b1b]/12 pt-5">
-              <p className="text-[11px] font-extrabold tracking-[0.2em] uppercase text-[#0e5a43] mb-3.5">
-                The {cleanName || 'Studio'} Guarantee
-              </p>
-              <ul className="grid sm:grid-cols-3 gap-2.5">
-                {[
-                  '45-Day Handover Guarantee',
-                  '10-Year Material Warranty',
-                  '0% Cost Overrun Lock',
-                ].map((item) => (
-                  <li key={item} className="flex gap-2 items-center text-[12.5px] font-bold text-[#1b1b1b] bg-white/80 border border-[#1b1b1b]/8 rounded-xl px-3 py-2">
-                    <Check className="w-4 h-4 text-[#0e5a43] shrink-0" strokeWidth={2.4} />
-                    <span>{item}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
+          {/* DEDICATED HERO NUMBERS SECTION */}
+          <div className="mt-12 lg:mt-16">
+            <HeroStats stats={heroStats} />
           </div>
         </div>
       </section>
@@ -560,7 +601,9 @@ export default async function Template2Home({ params }: PageProps) {
                 { v: '10 Yrs', l: 'Material Warranty' },
               ].map((b) => (
                 <div key={b.l} className="bg-white/10 rounded-xl p-3.5 text-center">
-                  <b className="font-[family-name:var(--font-bricolage)] text-[20px] text-[#f2a007] block">{b.v}</b>
+                  <b className="font-[family-name:var(--font-bricolage)] text-[20px] text-[#f2a007] block">
+                    <CountUp value={b.v} />
+                  </b>
                   <span className="text-[10.5px] uppercase tracking-wider text-white/70 font-semibold">{b.l}</span>
                 </div>
               ))}

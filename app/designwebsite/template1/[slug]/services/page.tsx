@@ -325,9 +325,9 @@ export default async function Template1Services({ params }: PageProps) {
             </p>
             <Link
               href={`${basePath}/contact`}
-              className="inline-flex items-center gap-3 bg-[#a58150] text-white px-8 py-4 text-[12.5px] tracking-[0.2em] uppercase font-medium border border-[#a58150] hover:bg-white hover:text-[#211a13] hover:border-white transition-colors duration-300"
+              className="inline-flex items-center gap-2 bg-[#a58150] text-white px-5 py-3 sm:px-6 sm:py-3.5 text-[10.5px] sm:text-[11.5px] tracking-[0.2em] uppercase font-medium border border-[#a58150] hover:bg-white hover:text-[#211a13] hover:border-white transition-colors duration-300"
             >
-              Book Free Consultation
+              Contact Us
             </Link>
           </Reveal>
         </div>

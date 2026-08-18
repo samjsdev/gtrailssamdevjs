@@ -19,10 +19,10 @@ export default function ClientHeader({ studioName, basePath, city }: ClientHeade
 
   const links = [
     { href: basePath, label: 'Home' },
-    { href: `${basePath}/about`, label: 'The Atelier' },
+    { href: `${basePath}/about`, label: 'About' },
     { href: `${basePath}/services`, label: 'Services' },
-    { href: `${basePath}/gallery`, label: 'Homes' },
-    { href: `${basePath}/contact`, label: 'Visit' },
+    { href: `${basePath}/gallery`, label: 'Portfolio' },
+    { href: `${basePath}/contact`, label: 'Contact' },
   ];
 
   return (

@@ -21,7 +21,7 @@ export default function ClientHeader({
     { name: 'Home', href: basePath },
     { name: 'About', href: `${basePath}/about` },
     { name: 'Services', href: `${basePath}/services` },
-    { name: 'Gallery', href: `${basePath}/gallery` },
+    { name: 'Portfolio', href: `${basePath}/gallery` },
     { name: 'Contact', href: `${basePath}/contact` },
   ];
 

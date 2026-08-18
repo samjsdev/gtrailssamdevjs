@@ -8,6 +8,7 @@ import { DEFAULT_INTERIOR_HIGHLIGHTS,
 } from '@/lib/interiorContent';
 import Reveal from '../Reveal';
 import PageNarrative from '../PageNarrative';
+import CountUp from '@/components/CountUp';
 
 type PageProps = { params: Promise<{ slug: string }> };
 
@@ -114,7 +115,9 @@ export default async function Template4About({ params }: PageProps) {
                   key={stat.s}
                   className={`flex-1 py-4 sm:px-4.5 ${idx === 0 ? 'sm:pl-0' : 'border-t sm:border-t-0 sm:border-l border-[#221c14]/14'}`}
                 >
-                  <b className="font-[family-name:var(--font-cormorant)] text-[26px] font-semibold block">{stat.b}</b>
+                  <b className="font-[family-name:var(--font-cormorant)] text-[26px] font-semibold block">
+                    <CountUp value={stat.b} />
+                  </b>
                   <span className="text-[11px] tracking-[0.14em] uppercase text-[#7a6f60]">{stat.s}</span>
                 </div>
               ))}
@@ -130,7 +133,7 @@ export default async function Template4About({ params }: PageProps) {
               />
               <div className="absolute z-[2] -bottom-[18px] left-8 bg-[#17130f] text-white px-7 py-5">
                 <b className="font-[family-name:var(--font-cormorant)] text-[34px] text-[#d9c49a] block leading-none">
-                  {experienceYears}+
+                  <CountUp value={experienceYears} suffix="+" />
                 </b>
                 <span className="text-[10.5px] tracking-[0.2em] uppercase text-white/65">Years of craft</span>
               </div>
@@ -236,11 +239,15 @@ export default async function Template4About({ params }: PageProps) {
             </p>
             <div className="grid grid-cols-2 gap-4 border-t border-[#221c14]/10 pt-5 mb-8">
               <div>
-                <b className="font-[family-name:var(--font-cormorant)] text-[26px] block">{experienceYears}+ Years</b>
+                <b className="font-[family-name:var(--font-cormorant)] text-[26px] block">
+                  <CountUp value={experienceYears} suffix="+ Years" />
+                </b>
                 <span className="text-[11px] tracking-wider uppercase text-[#7a6f60]">Of Practice</span>
               </div>
               <div>
-                <b className="font-[family-name:var(--font-cormorant)] text-[26px] block">10-Year</b>
+                <b className="font-[family-name:var(--font-cormorant)] text-[26px] block">
+                  <CountUp value="10-Year" />
+                </b>
                 <span className="text-[11px] tracking-wider uppercase text-[#7a6f60]">Craft Warranty</span>
               </div>
             </div>
@@ -267,9 +274,9 @@ export default async function Template4About({ params }: PageProps) {
           </p>
           <Link
             href={`${basePath}/contact`}
-            className="inline-flex items-center gap-2.5 bg-[#a4532f] text-white text-[12.5px] font-semibold tracking-[0.18em] uppercase px-8 py-4 hover:bg-[#854021] transition-colors"
+            className="inline-flex items-center gap-2 bg-[#a4532f] text-white text-[10.5px] sm:text-[11.5px] font-semibold tracking-[0.18em] uppercase px-5 py-3 sm:px-6 hover:bg-[#854021] transition-colors"
           >
-            Request Appointment
+            Contact Us
           </Link>
         </div>
       </section>

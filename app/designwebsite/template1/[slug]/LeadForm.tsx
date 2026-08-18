@@ -78,9 +78,9 @@ export default function LeadForm({ studioName, waPhone, phoneDisplay }: LeadForm
 
       <button
         type="submit"
-        className="w-full mt-8 inline-flex items-center justify-center gap-3 bg-[#a58150] text-white py-4 text-[12.5px] tracking-[0.2em] uppercase font-medium border border-[#a58150] hover:bg-[#211a13] hover:border-[#211a13] transition-colors duration-300"
+        className="w-full mt-8 inline-flex items-center justify-center gap-2 bg-[#a58150] text-white py-3 sm:py-3.5 text-[10.5px] sm:text-[11.5px] tracking-[0.2em] uppercase font-medium border border-[#a58150] hover:bg-[#211a13] hover:border-[#211a13] transition-colors duration-300"
       >
-        {sent ? 'Request Received — We\u2019ll Call You' : 'Get My Free Consultation'}
+        {sent ? 'Received — We\u2019ll Call You' : 'Contact Us'}
       </button>
 
       {phoneDisplay && (

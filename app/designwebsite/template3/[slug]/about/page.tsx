@@ -11,6 +11,7 @@ import { DEFAULT_INTERIOR_HIGHLIGHTS, DEFAULT_INTERIOR_SERVICES,
 } from '@/lib/interiorContent';
 import Reveal from '../Reveal';
 import PageNarrative from '../PageNarrative';
+import CountUp from '@/components/CountUp';
 
 type PageProps = { params: Promise<{ slug: string }> };
 
@@ -106,7 +107,9 @@ export default async function Template3About({ params }: PageProps) {
                 { b: `${servicesCount}+`, s: 'Disciplines' },
               ].map((stat) => (
                 <div key={stat.s} className="bg-[#fbf7f2] border border-[#241f1a]/10 rounded-2xl px-4 py-5 text-center">
-                  <b className="text-[clamp(20px,2.4vw,27px)] font-extrabold text-[#d8442c] block">{stat.b}</b>
+                  <b className="text-[clamp(20px,2.4vw,27px)] font-extrabold text-[#d8442c] block">
+                    <CountUp value={stat.b} />
+                  </b>
                   <span className="text-[11.5px] text-[#6d6259] font-semibold tracking-[0.05em] uppercase">{stat.s}</span>
                 </div>
               ))}
@@ -205,11 +208,15 @@ export default async function Template3About({ params }: PageProps) {
             </p>
             <div className="grid grid-cols-2 gap-4 border-t border-[#241f1a]/10 pt-5 mb-7">
               <div>
-                <b className="text-[24px] font-extrabold text-[#d8442c] block">{experienceYears}+ Yrs</b>
+                <b className="text-[24px] font-extrabold text-[#d8442c] block">
+                  <CountUp value={experienceYears} suffix="+ Yrs" />
+                </b>
                 <span className="text-[12px] text-[#6d6259] font-semibold">Experience</span>
               </div>
               <div>
-                <b className="text-[24px] font-extrabold text-[#d8442c] block">10-Year</b>
+                <b className="text-[24px] font-extrabold text-[#d8442c] block">
+                  <CountUp value="10-Year" />
+                </b>
                 <span className="text-[12px] text-[#6d6259] font-semibold">Warranty</span>
               </div>
             </div>

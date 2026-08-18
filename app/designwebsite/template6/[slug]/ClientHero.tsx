@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { INTERIOR_HERO_IMAGES } from '@/lib/interiorContent';
 import { Playfair_Display } from "next/font/google";
 import { Star } from 'lucide-react';
+import CountUp from '@/components/CountUp';
 
 const playfair = Playfair_Display({
   subsets: ["latin"],
@@ -78,7 +79,9 @@ export default function ClientHero({ clinic, business, basePath, heroImage }: Cl
                   <Star className="w-5 h-5 fill-current" />
                 </div>
                 <div>
-                  <div className={`${playfair.className} text-4xl font-light text-white`}>15+</div>
+                  <div className={`${playfair.className} text-4xl font-light text-white`}>
+                    <CountUp value="15+" />
+                  </div>
                   <div className="text-[9px] text-zinc-500 font-bold tracking-widest uppercase mt-0.5">Years Experience</div>
                 </div>
               </div>

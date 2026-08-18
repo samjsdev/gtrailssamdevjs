@@ -56,7 +56,7 @@ export default function VisitForm({ studioName, waPhone, dark = true }: VisitFor
       <button
         type="submit"
         disabled={sent}
-        className={`col-span-full mt-1.5 inline-flex items-center justify-center gap-2.5 px-8 py-4 text-[13px] font-semibold tracking-[0.14em] uppercase transition-all duration-300 ${
+        className={`col-span-full mt-1.5 inline-flex items-center justify-center gap-2.5 px-6 py-3 text-[12px] font-semibold tracking-[0.14em] uppercase transition-all duration-300 ${
           sent
             ? 'bg-[#1e9e5a] text-white cursor-default'
             : 'bg-[#b08d4f] text-[#17130f] hover:bg-[#c5a266] hover:-translate-y-0.5 hover:shadow-[0_14px_28px_rgba(176,141,79,0.3)]'
