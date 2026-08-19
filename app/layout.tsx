@@ -13,8 +13,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Interior Site Generator",
-  description: "Generate interior design websites from Google Business Profile data.",
+  title: "Interior Business Website",
+  description: "Interior business website",
 };
 
 export default function RootLayout({
