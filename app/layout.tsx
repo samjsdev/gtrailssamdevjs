@@ -13,8 +13,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Interior Business Website",
-  description: "Interior business website",
+  title: " Business Website",
+  description: " business website",
 };
 
 export default function RootLayout({
