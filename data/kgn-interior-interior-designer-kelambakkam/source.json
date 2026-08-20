@@ -1,0 +1,63 @@
+{
+  "clinic": {
+    "name": "KGN Interior - Interior Designer Kelambakkam",
+    "slug": "kgn-interior-interior-designer-kelambakkam",
+    "tagline": "Thoughtful Interiors for Everyday Living",
+    "description": "Welcome to KGN Interior - Interior Designer Kelambakkam. We create refined, functional interiors tailored to your lifestyle, budget, and space.",
+    "address": {
+      "full": "609, Urbanrise Jasmine Springs, next to humming Villas, Ramalingapuram, Kelambakkam, Chennai, Tamil Nadu 603103",
+      "area": "",
+      "city": "Kelambakkam",
+      "state": "Chennai",
+      "country": "India"
+    },
+    "contact": {
+      "phone": "07903494710",
+      "website": "https://kgninterior.com/",
+      "googleMapsUrl": "https://www.google.com/maps/place/KGN+Interior+-+Interior+Designer+Kelambakkam/@12.7776513,80.2150783,17z/data=!3m1!4b1!4m6!3m5!1s0x3a5251fc4b3038f5:0x6625a7ab03d1e27b!8m2!3d12.7776513!4d80.2150783!16s%2Fg%2F11ldv3qrkd?authuser=0&hl=en&entry=ttu&g_ep=EgoyMDI2MDgxNy4wIKXMDSoASAFQAw%3D%3D"
+    },
+    "mapEmbedUrl": "https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d3000!2d80.2150783!3d12.7776513!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sin!4v1"
+  },
+  "business": {
+    "rating": "4.3",
+    "reviewCount": "",
+    "timings": [],
+    "services": [
+      "Residential Interior Design",
+      "Modular Kitchen Design",
+      "Living Room Styling",
+      "Bedroom Makeovers",
+      "Space Planning",
+      "Custom Furniture"
+    ],
+    "highlights": [
+      "Personalized design concepts",
+      "Material and finish guidance",
+      "Transparent project planning",
+      "End-to-end execution support"
+    ]
+  },
+  "doctor": {
+    "name": "KGN Studio Team",
+    "images": [],
+    "experience": "5+ years",
+    "specialization": "Interior Design & Turnkey Execution"
+  },
+  "reviews": [],
+  "media": {
+    "clinicImages": [],
+    "treatmentImages": [],
+    "otherImages": []
+  },
+  "overrides": {
+    "doctorName": "",
+    "doctorImages": [],
+    "extraImages": []
+  },
+  "meta": {
+    "generatedAt": "2026-08-20T10:02:08.516Z",
+    "source": "google_maps",
+    "gbpUrl": "https://www.google.com/maps/place/KGN+Interior+-+Interior+Designer+Kelambakkam/@12.7776513,80.2150783,17z/data=!3m1!4b1!4m6!3m5!1s0x3a5251fc4b3038f5:0x6625a7ab03d1e27b!8m2!3d12.7776513!4d80.2150783!16s%2Fg%2F11ldv3qrkd?authuser=0&hl=en&entry=ttu&g_ep=EgoyMDI2MDgxNy4wIKXMDSoASAFQAw%3D%3D",
+    "updatedAt": "2026-08-20T10:02:08.518Z"
+  }
+}
