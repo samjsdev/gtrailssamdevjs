@@ -1,0 +1,63 @@
+{
+  "clinic": {
+    "name": "Balarathna Civil & Interiors.",
+    "slug": "balarathna-civil-interiors",
+    "tagline": "Thoughtful Interiors for Everyday Living",
+    "description": "Welcome to Balarathna Civil & Interiors.. We create refined, functional interiors tailored to your lifestyle, budget, and space.",
+    "address": {
+      "full": "First Floor, Govindaraj Kalyana Mandapam, 34, Thennur Bridge, Hidayath Nagar, Anna Nagar, Tennur, Tiruchirappalli, Tamil Nadu 620017",
+      "area": "",
+      "city": "Tennur",
+      "state": "Tiruchirappalli",
+      "country": "India"
+    },
+    "contact": {
+      "phone": "09965598050",
+      "website": "https://www.balarathnacivilandinteriors.com/",
+      "googleMapsUrl": "https://www.google.com/maps/place/Balarathna+Civil+%26+Interiors./@10.8179133,78.6888418,17z/data=!3m1!4b1!4m6!3m5!1s0x3baaf5b4e309ff4d:0x903a1bddb1187089!8m2!3d10.8179133!4d78.6888418!16s%2Fg%2F11np7j98t_?authuser=0&hl=en&entry=ttu&g_ep=EgoyMDI2MDgxNy4wIKXMDSoASAFQAw%3D%3D"
+    },
+    "mapEmbedUrl": "https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d3000!2d78.6888418!3d10.8179133!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sin!4v1"
+  },
+  "business": {
+    "rating": "5.0",
+    "reviewCount": "",
+    "timings": [],
+    "services": [
+      "Residential Interior Design",
+      "Modular Kitchen Design",
+      "Living Room Styling",
+      "Bedroom Makeovers",
+      "Space Planning",
+      "Custom Furniture"
+    ],
+    "highlights": [
+      "Personalized design concepts",
+      "Material and finish guidance",
+      "Transparent project planning",
+      "End-to-end execution support"
+    ]
+  },
+  "doctor": {
+    "name": "Balarathna Studio Team",
+    "images": [],
+    "experience": "5+ years",
+    "specialization": "Interior Design & Turnkey Execution"
+  },
+  "reviews": [],
+  "media": {
+    "clinicImages": [],
+    "treatmentImages": [],
+    "otherImages": []
+  },
+  "overrides": {
+    "doctorName": "",
+    "doctorImages": [],
+    "extraImages": []
+  },
+  "meta": {
+    "generatedAt": "2026-08-20T12:14:14.028Z",
+    "source": "google_maps",
+    "gbpUrl": "https://www.google.com/maps/place/Balarathna+Civil+%26+Interiors./@10.8179133,78.6888418,17z/data=!3m1!4b1!4m6!3m5!1s0x3baaf5b4e309ff4d:0x903a1bddb1187089!8m2!3d10.8179133!4d78.6888418!16s%2Fg%2F11np7j98t_?authuser=0&hl=en&entry=ttu&g_ep=EgoyMDI2MDgxNy4wIKXMDSoASAFQAw%3D%3D",
+    "updatedAt": "2026-08-20T12:14:14.031Z"
+  }
+}
