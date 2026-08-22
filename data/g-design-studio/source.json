@@ -1,0 +1,63 @@
+{
+  "clinic": {
+    "name": "G Design Studio",
+    "slug": "g-design-studio",
+    "tagline": "Thoughtful Interiors for Everyday Living",
+    "description": "Welcome to G Design Studio. We create refined, functional interiors tailored to your lifestyle, budget, and space.",
+    "address": {
+      "full": "14,Paari Nagar, Bypass Rd, Sungam, Coimbatore, Tamil Nadu 641045",
+      "area": "",
+      "city": "Sungam",
+      "state": "Coimbatore",
+      "country": "India"
+    },
+    "contact": {
+      "phone": "09043147645",
+      "website": "https://gdesignstudio.co.in/",
+      "googleMapsUrl": "https://www.google.com/maps/place/G+Design+Studio/data=!4m7!3m6!1s0x3ba8597fa1a6a5df:0xcd1a4a8ce6543bd!8m2!3d10.9907874!4d76.9848111!16s%2Fg%2F11fmv9y2vs!19sChIJ36WmoX9ZqDsRvUNlzqik0Qw?authuser=0&hl=en&rclk=1"
+    },
+    "mapEmbedUrl": "https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d3000!2d76.9848111!3d10.9907874!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sin!4v1"
+  },
+  "business": {
+    "rating": "4.8",
+    "reviewCount": "",
+    "timings": [],
+    "services": [
+      "Residential Interior Design",
+      "Modular Kitchen Design",
+      "Living Room Styling",
+      "Bedroom Makeovers",
+      "Space Planning",
+      "Custom Furniture"
+    ],
+    "highlights": [
+      "Personalized design concepts",
+      "Material and finish guidance",
+      "Transparent project planning",
+      "End-to-end execution support"
+    ]
+  },
+  "doctor": {
+    "name": "G Studio Team",
+    "images": [],
+    "experience": "5+ years",
+    "specialization": "Interior Design & Turnkey Execution"
+  },
+  "reviews": [],
+  "media": {
+    "clinicImages": [],
+    "treatmentImages": [],
+    "otherImages": []
+  },
+  "overrides": {
+    "doctorName": "",
+    "doctorImages": [],
+    "extraImages": []
+  },
+  "meta": {
+    "generatedAt": "2026-08-22T07:06:49.933Z",
+    "source": "google_maps",
+    "gbpUrl": "https://www.google.com/maps/place/G+Design+Studio/data=!4m7!3m6!1s0x3ba8597fa1a6a5df:0xcd1a4a8ce6543bd!8m2!3d10.9907874!4d76.9848111!16s%2Fg%2F11fmv9y2vs!19sChIJ36WmoX9ZqDsRvUNlzqik0Qw?authuser=0&hl=en&rclk=1",
+    "updatedAt": "2026-08-22T07:06:49.936Z"
+  }
+}
