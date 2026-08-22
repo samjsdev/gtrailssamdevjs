@@ -1,0 +1,63 @@
+{
+  "clinic": {
+    "name": "Buildlink Interiors",
+    "slug": "buildlink-interiors",
+    "tagline": "Thoughtful Interiors for Everyday Living",
+    "description": "Welcome to Buildlink Interiors. We create refined, functional interiors tailored to your lifestyle, budget, and space.",
+    "address": {
+      "full": "1st Floor, East, Bashyakarlu Rd, R.S. Puram, Coimbatore, Tamil Nadu 641002",
+      "area": "",
+      "city": "R.S. Puram",
+      "state": "Coimbatore",
+      "country": "India"
+    },
+    "contact": {
+      "phone": "",
+      "website": "https://buildlinkinteriors.in/",
+      "googleMapsUrl": "https://www.google.com/maps/place/Buildlink+Interiors/@11.0146797,76.9532904,17z/data=!3m1!4b1!4m6!3m5!1s0x47289cb1858dd3ed:0x41db1fe2d2559626!8m2!3d11.0146797!4d76.9532904!16s%2Fg%2F11x2spkdl6?authuser=0&hl=en&entry=ttu&g_ep=EgoyMDI2MDgxOS4wIKXMDSoASAFQAw%3D%3D"
+    },
+    "mapEmbedUrl": "https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d3000!2d76.9532904!3d11.0146797!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sin!4v1"
+  },
+  "business": {
+    "rating": "5.0",
+    "reviewCount": "",
+    "timings": [],
+    "services": [
+      "Residential Interior Design",
+      "Modular Kitchen Design",
+      "Living Room Styling",
+      "Bedroom Makeovers",
+      "Space Planning",
+      "Custom Furniture"
+    ],
+    "highlights": [
+      "Personalized design concepts",
+      "Material and finish guidance",
+      "Transparent project planning",
+      "End-to-end execution support"
+    ]
+  },
+  "doctor": {
+    "name": "Buildlink Studio Team",
+    "images": [],
+    "experience": "5+ years",
+    "specialization": "Interior Design & Turnkey Execution"
+  },
+  "reviews": [],
+  "media": {
+    "clinicImages": [],
+    "treatmentImages": [],
+    "otherImages": []
+  },
+  "overrides": {
+    "doctorName": "",
+    "doctorImages": [],
+    "extraImages": []
+  },
+  "meta": {
+    "generatedAt": "2026-08-22T06:02:36.017Z",
+    "source": "google_maps",
+    "gbpUrl": "https://www.google.com/maps/place/Buildlink+Interiors/@11.0146797,76.9532904,17z/data=!3m1!4b1!4m6!3m5!1s0x47289cb1858dd3ed:0x41db1fe2d2559626!8m2!3d11.0146797!4d76.9532904!16s%2Fg%2F11x2spkdl6?authuser=0&hl=en&entry=ttu&g_ep=EgoyMDI2MDgxOS4wIKXMDSoASAFQAw%3D%3D",
+    "updatedAt": "2026-08-22T06:02:36.019Z"
+  }
+}

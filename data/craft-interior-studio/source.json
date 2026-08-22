@@ -1,0 +1,63 @@
+{
+  "clinic": {
+    "name": "craft interior studio",
+    "slug": "craft-interior-studio",
+    "tagline": "Thoughtful Interiors for Everyday Living",
+    "description": "Welcome to craft interior studio. We create refined, functional interiors tailored to your lifestyle, budget, and space.",
+    "address": {
+      "full": "abullu naidu Floor, mill compound, srinagar, Kamarajar Rd, Sri Ram Nagar, Alamelu Nagar, Varadharajapuram, Coimbatore, Tamil Nadu 641015",
+      "area": "",
+      "city": "Varadharajapuram",
+      "state": "Coimbatore",
+      "country": "India"
+    },
+    "contact": {
+      "phone": "08940555526",
+      "website": "http://www.craftinteriorstudio.in/",
+      "googleMapsUrl": "https://www.google.com/maps/place/craft+interior+studio/@11.0212505,77.0226872,17z/data=!3m1!4b1!4m6!3m5!1s0x3ba857c600afd49f:0xde49aac6d8ad4cac!8m2!3d11.0212505!4d77.0226872!16s%2Fg%2F11twqdcnys?authuser=0&hl=en&entry=ttu&g_ep=EgoyMDI2MDgxOS4wIKXMDSoASAFQAw%3D%3D"
+    },
+    "mapEmbedUrl": "https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d3000!2d77.0226872!3d11.0212505!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sin!4v1"
+  },
+  "business": {
+    "rating": "5.0",
+    "reviewCount": "8",
+    "timings": [],
+    "services": [
+      "Residential Interior Design",
+      "Modular Kitchen Design",
+      "Living Room Styling",
+      "Bedroom Makeovers",
+      "Space Planning",
+      "Custom Furniture"
+    ],
+    "highlights": [
+      "Personalized design concepts",
+      "Material and finish guidance",
+      "Transparent project planning",
+      "End-to-end execution support"
+    ]
+  },
+  "doctor": {
+    "name": "craft Studio Team",
+    "images": [],
+    "experience": "5+ years",
+    "specialization": "Interior Design & Turnkey Execution"
+  },
+  "reviews": [],
+  "media": {
+    "clinicImages": [],
+    "treatmentImages": [],
+    "otherImages": []
+  },
+  "overrides": {
+    "doctorName": "",
+    "doctorImages": [],
+    "extraImages": []
+  },
+  "meta": {
+    "generatedAt": "2026-08-22T05:48:47.996Z",
+    "source": "google_maps",
+    "gbpUrl": "https://www.google.com/maps/place/craft+interior+studio/@11.0212505,77.0226872,17z/data=!3m1!4b1!4m6!3m5!1s0x3ba857c600afd49f:0xde49aac6d8ad4cac!8m2!3d11.0212505!4d77.0226872!16s%2Fg%2F11twqdcnys?authuser=0&hl=en&entry=ttu&g_ep=EgoyMDI2MDgxOS4wIKXMDSoASAFQAw%3D%3D",
+    "updatedAt": "2026-08-22T05:48:47.998Z"
+  }
+}
