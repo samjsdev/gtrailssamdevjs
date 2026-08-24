@@ -1,0 +1,63 @@
+{
+  "clinic": {
+    "name": "EAZY MODULAR KITCHEN",
+    "slug": "eazy-modular-kitchen",
+    "tagline": "Thoughtful Interiors for Everyday Living",
+    "description": "Welcome to EAZY MODULAR KITCHEN. We create refined, functional interiors tailored to your lifestyle, budget, and space.",
+    "address": {
+      "full": "No 138, Ramachandra Rd, near Annapoorana Hotel, R.S. Puram, Coimbatore, Tamil Nadu 641002",
+      "area": "",
+      "city": "R.S. Puram",
+      "state": "Coimbatore",
+      "country": "India"
+    },
+    "contact": {
+      "phone": "09043017180",
+      "website": "http://www.eazymodularkitchen.in/",
+      "googleMapsUrl": "https://www.google.com/maps/place/EAZY+MODULAR+KITCHEN/@11.006799,76.953177,17z/data=!3m1!4b1!4m6!3m5!1s0x3ba85904c9df74e3:0x73e6cc2667dfe3c5!8m2!3d11.006799!4d76.953177!16s%2Fg%2F1tddqmkq?authuser=0&hl=en&entry=ttu&g_ep=EgoyMDI2MDgxOS4wIKXMDSoASAFQAw%3D%3D"
+    },
+    "mapEmbedUrl": "https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d3000!2d76.953177!3d11.006799!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sin!4v1"
+  },
+  "business": {
+    "rating": "5.0",
+    "reviewCount": "",
+    "timings": [],
+    "services": [
+      "Residential Interior Design",
+      "Modular Kitchen Design",
+      "Living Room Styling",
+      "Bedroom Makeovers",
+      "Space Planning",
+      "Custom Furniture"
+    ],
+    "highlights": [
+      "Personalized design concepts",
+      "Material and finish guidance",
+      "Transparent project planning",
+      "End-to-end execution support"
+    ]
+  },
+  "doctor": {
+    "name": "EAZY Studio Team",
+    "images": [],
+    "experience": "5+ years",
+    "specialization": "Interior Design & Turnkey Execution"
+  },
+  "reviews": [],
+  "media": {
+    "clinicImages": [],
+    "treatmentImages": [],
+    "otherImages": []
+  },
+  "overrides": {
+    "doctorName": "",
+    "doctorImages": [],
+    "extraImages": []
+  },
+  "meta": {
+    "generatedAt": "2026-08-24T13:19:58.551Z",
+    "source": "google_maps",
+    "gbpUrl": "https://www.google.com/maps/place/EAZY+MODULAR+KITCHEN/@11.006799,76.953177,17z/data=!3m1!4b1!4m6!3m5!1s0x3ba85904c9df74e3:0x73e6cc2667dfe3c5!8m2!3d11.006799!4d76.953177!16s%2Fg%2F1tddqmkq?authuser=0&hl=en&entry=ttu&g_ep=EgoyMDI2MDgxOS4wIKXMDSoASAFQAw%3D%3D",
+    "updatedAt": "2026-08-24T13:19:58.554Z"
+  }
+}
