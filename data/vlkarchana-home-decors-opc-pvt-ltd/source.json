@@ -1,0 +1,63 @@
+{
+  "clinic": {
+    "name": "VLKARCHANA HOME DECORS OPC PVT LTD",
+    "slug": "vlkarchana-home-decors-opc-pvt-ltd",
+    "tagline": "Thoughtful Interiors for Everyday Living",
+    "description": "Welcome to VLKARCHANA HOME DECORS OPC PVT LTD. We create refined, functional interiors tailored to your lifestyle, budget, and space.",
+    "address": {
+      "full": "2 street, Kallimadai Rd, Kallimadi, Kallimadai, Singanallur, Coimbatore, Tamil Nadu 641005",
+      "area": "",
+      "city": "Singanallur",
+      "state": "Coimbatore",
+      "country": "India"
+    },
+    "contact": {
+      "phone": "",
+      "website": "http://www.vlkarchana.com/",
+      "googleMapsUrl": "https://www.google.com/maps/place/VLKARCHANA+HOME+DECORS+OPC+PVT+LTD/@10.9950562,77.0143251,17z/data=!3m1!4b1!4m6!3m5!1s0x3ba857c0dadff487:0x483758d43511e3e2!8m2!3d10.9950562!4d77.0143251!16s%2Fg%2F11m5cql19c?authuser=0&hl=en&entry=ttu&g_ep=EgoyMDI2MDgxOS4wIKXMDSoASAFQAw%3D%3D"
+    },
+    "mapEmbedUrl": "https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d3000!2d77.0143251!3d10.9950562!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sin!4v1"
+  },
+  "business": {
+    "rating": "5.0",
+    "reviewCount": "",
+    "timings": [],
+    "services": [
+      "Residential Interior Design",
+      "Modular Kitchen Design",
+      "Living Room Styling",
+      "Bedroom Makeovers",
+      "Space Planning",
+      "Custom Furniture"
+    ],
+    "highlights": [
+      "Personalized design concepts",
+      "Material and finish guidance",
+      "Transparent project planning",
+      "End-to-end execution support"
+    ]
+  },
+  "doctor": {
+    "name": "VLKARCHANA Studio Team",
+    "images": [],
+    "experience": "5+ years",
+    "specialization": "Interior Design & Turnkey Execution"
+  },
+  "reviews": [],
+  "media": {
+    "clinicImages": [],
+    "treatmentImages": [],
+    "otherImages": []
+  },
+  "overrides": {
+    "doctorName": "",
+    "doctorImages": [],
+    "extraImages": []
+  },
+  "meta": {
+    "generatedAt": "2026-08-25T05:30:44.198Z",
+    "source": "google_maps",
+    "gbpUrl": "https://www.google.com/maps/place/VLKARCHANA+HOME+DECORS+OPC+PVT+LTD/@10.9950562,77.0143251,17z/data=!3m1!4b1!4m6!3m5!1s0x3ba857c0dadff487:0x483758d43511e3e2!8m2!3d10.9950562!4d77.0143251!16s%2Fg%2F11m5cql19c?authuser=0&hl=en&entry=ttu&g_ep=EgoyMDI2MDgxOS4wIKXMDSoASAFQAw%3D%3D",
+    "updatedAt": "2026-08-25T05:30:44.201Z"
+  }
+}

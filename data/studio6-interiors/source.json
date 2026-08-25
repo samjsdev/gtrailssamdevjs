@@ -1,0 +1,63 @@
+{
+  "clinic": {
+    "name": "Studio6 interiors",
+    "slug": "studio6-interiors",
+    "tagline": "Thoughtful Interiors for Everyday Living",
+    "description": "Welcome to Studio6 interiors. We create refined, functional interiors tailored to your lifestyle, budget, and space.",
+    "address": {
+      "full": "STUDIO6 interiors, Vadakku sambala, 1/98, Nagaiyan Thottam Rd, opposite DMART, Kannampalayam, Ravathur, Tamil Nadu 641402",
+      "area": "",
+      "city": "Kannampalayam",
+      "state": "Ravathur",
+      "country": "India"
+    },
+    "contact": {
+      "phone": "09043463200",
+      "website": "https://studio6interiors.in/",
+      "googleMapsUrl": "https://www.google.com/maps/place/Studio6+interiors/data=!4m7!3m6!1s0x3ba856beeaaaaaab:0xc0e1e181de68f55f!8m2!3d11.0207888!4d77.0990117!16s%2Fg%2F11lkmrnp0j!19sChIJq6qq6r5WqDsRX_Vo3oHh4cA?authuser=0&hl=en&rclk=1"
+    },
+    "mapEmbedUrl": "https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d3000!2d77.0990117!3d11.0207888!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sin!4v1"
+  },
+  "business": {
+    "rating": "5.0",
+    "reviewCount": "",
+    "timings": [],
+    "services": [
+      "Residential Interior Design",
+      "Modular Kitchen Design",
+      "Living Room Styling",
+      "Bedroom Makeovers",
+      "Space Planning",
+      "Custom Furniture"
+    ],
+    "highlights": [
+      "Personalized design concepts",
+      "Material and finish guidance",
+      "Transparent project planning",
+      "End-to-end execution support"
+    ]
+  },
+  "doctor": {
+    "name": "Studio6 Studio Team",
+    "images": [],
+    "experience": "5+ years",
+    "specialization": "Interior Design & Turnkey Execution"
+  },
+  "reviews": [],
+  "media": {
+    "clinicImages": [],
+    "treatmentImages": [],
+    "otherImages": []
+  },
+  "overrides": {
+    "doctorName": "",
+    "doctorImages": [],
+    "extraImages": []
+  },
+  "meta": {
+    "generatedAt": "2026-08-25T05:34:27.048Z",
+    "source": "google_maps",
+    "gbpUrl": "https://www.google.com/maps/place/Studio6+interiors/data=!4m7!3m6!1s0x3ba856beeaaaaaab:0xc0e1e181de68f55f!8m2!3d11.0207888!4d77.0990117!16s%2Fg%2F11lkmrnp0j!19sChIJq6qq6r5WqDsRX_Vo3oHh4cA?authuser=0&hl=en&rclk=1",
+    "updatedAt": "2026-08-25T05:34:27.051Z"
+  }
+}

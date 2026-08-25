@@ -1,0 +1,63 @@
+{
+  "clinic": {
+    "name": "DREAM HOME MAKERS",
+    "slug": "dream-home-makers",
+    "tagline": "Thoughtful Interiors for Everyday Living",
+    "description": "Welcome to DREAM HOME MAKERS. We create refined, functional interiors tailored to your lifestyle, budget, and space.",
+    "address": {
+      "full": "Shop No 57, Vadavalli, Rotikara thottam, Eb colony, Coimbatore, Tamil Nadu 641041",
+      "area": "",
+      "city": "Eb colony",
+      "state": "Coimbatore",
+      "country": "India"
+    },
+    "contact": {
+      "phone": "09003034564",
+      "website": "https://dreamhomemakerscbe.in/",
+      "googleMapsUrl": "https://www.google.com/maps/place/DREAM+HOME+MAKERS/@11.0295636,76.9079018,17z/data=!3m1!4b1!4m6!3m5!1s0x3ba85fdb0aeda4b5:0x3806c200f3008b9a!8m2!3d11.0295636!4d76.9079018!16s%2Fg%2F11v_4vzvwm?authuser=0&hl=en&entry=ttu&g_ep=EgoyMDI2MDgxOS4wIKXMDSoASAFQAw%3D%3D"
+    },
+    "mapEmbedUrl": "https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d3000!2d76.9079018!3d11.0295636!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sin!4v1"
+  },
+  "business": {
+    "rating": "5.0",
+    "reviewCount": "",
+    "timings": [],
+    "services": [
+      "Residential Interior Design",
+      "Modular Kitchen Design",
+      "Living Room Styling",
+      "Bedroom Makeovers",
+      "Space Planning",
+      "Custom Furniture"
+    ],
+    "highlights": [
+      "Personalized design concepts",
+      "Material and finish guidance",
+      "Transparent project planning",
+      "End-to-end execution support"
+    ]
+  },
+  "doctor": {
+    "name": "DREAM Studio Team",
+    "images": [],
+    "experience": "5+ years",
+    "specialization": "Interior Design & Turnkey Execution"
+  },
+  "reviews": [],
+  "media": {
+    "clinicImages": [],
+    "treatmentImages": [],
+    "otherImages": []
+  },
+  "overrides": {
+    "doctorName": "",
+    "doctorImages": [],
+    "extraImages": []
+  },
+  "meta": {
+    "generatedAt": "2026-08-25T05:35:47.504Z",
+    "source": "google_maps",
+    "gbpUrl": "https://www.google.com/maps/place/DREAM+HOME+MAKERS/@11.0295636,76.9079018,17z/data=!3m1!4b1!4m6!3m5!1s0x3ba85fdb0aeda4b5:0x3806c200f3008b9a!8m2!3d11.0295636!4d76.9079018!16s%2Fg%2F11v_4vzvwm?authuser=0&hl=en&entry=ttu&g_ep=EgoyMDI2MDgxOS4wIKXMDSoASAFQAw%3D%3D",
+    "updatedAt": "2026-08-25T05:35:47.507Z"
+  }
+}
