@@ -1840,220 +1840,158 @@ export const TEMPLATE_SCHEMAS: Record<string, TemplateSchema> = {
   template10: {
     pages: [
       {
-        id: 'home',
+        id: "home",
         label: "Home Page",
         sections: [
           {
             label: "Hero Section",
             elements: [
-              {
-                type: 'text',
-                label: "Studio Name",
-                path: ['clinic', 'name']
-              },
-              {
-                type: 'text',
-                label: "Hero Tagline",
-                path: ['clinic', 'tagline']
-              },
-              {
-                type: 'textarea',
-                label: "Studio Description",
-                path: ['clinic', 'description']
-              },
-              {
-                type: 'image',
-                label: "Hero Main Banner Image",
-                imageConfig: { arrayKey: 'clinicImages', index: 0 }
-              },
-              {
-                type: 'list',
-                label: "Highlights List (1 per line)",
-                path: ['business', 'highlights']
-              },
+              { type: "text", label: "Studio Name", path: ["clinic", "name"] },
+              { type: "text", label: "Hero Tagline", path: ["clinic", "tagline"] },
+              { type: "textarea", label: "Studio Description", path: ["clinic", "description"] },
+              { type: "image", label: "Hero Main Banner Image", imageConfig: { arrayKey: "clinicImages", index: 0 } },
             ]
           },
           {
-            label: "About Us Section",
+            label: "Quality Assurances Section",
             elements: [
-              {
-                type: 'text',
-                label: "Principal Designer Name",
-                path: ['doctor', 'name']
-              },
-              {
-                type: 'text',
-                label: "Designer Experience Details",
-                path: ['doctor', 'experience']
-              },
-              {
-                type: 'image',
-                label: "Principal Portrait Image",
-                imageConfig: { arrayKey: 'otherImages', index: 0 }
-              },
+              { type: "list", label: "Highlights List (1 per line)", path: ["business", "highlights"] },
+              { type: "image", label: "Quality Audit Image", imageConfig: { arrayKey: "clinicImages", index: 1 } },
             ]
           },
           {
-            label: "Services Section",
+            label: "Leadership & Credentials Section",
             elements: [
-              {
-                type: 'list',
-                label: "Services List (1 per line)",
-                path: ['business', 'services']
-              },
+              { type: "text", label: "Principal Architect Name", path: ["doctor", "name"] },
+              { type: "text", label: "Architect Experience Details", path: ["doctor", "experience"] },
+              { type: "text", label: "Specialization Details", path: ["doctor", "specialization"] },
+              { type: "image", label: "Principal Architect Portrait", imageConfig: { arrayKey: "otherImages", index: 0 } },
             ]
           },
           {
-            label: "Contact Section",
+            label: "Featured Projects Section",
             elements: [
-              {
-                type: 'text',
-                label: "Contact Phone Number",
-                path: ['clinic', 'contact', 'phone']
-              },
-              {
-                type: 'text',
-                label: "Full Address location",
-                path: ['clinic', 'address', 'full']
-              },
+              { type: "image", label: "Project Showcase 1", imageConfig: { arrayKey: "otherImages", index: 1 } },
+              { type: "image", label: "Project Showcase 2", imageConfig: { arrayKey: "otherImages", index: 2 } },
+              { type: "image", label: "Project Showcase 3", imageConfig: { arrayKey: "otherImages", index: 3 } },
+              { type: "image", label: "Project Showcase 4", imageConfig: { arrayKey: "otherImages", index: 4 } },
+              { type: "image", label: "Project Showcase 5", imageConfig: { arrayKey: "otherImages", index: 5 } },
+              { type: "image", label: "Project Showcase 6", imageConfig: { arrayKey: "otherImages", index: 6 } },
             ]
           },
+          {
+            label: "CTA Banner Section",
+            elements: [
+              { type: "text", label: "Contact Phone Number", path: ["clinic", "contact", "phone"] },
+            ]
+          }
         ]
       },
       {
-        id: 'about',
+        id: "about",
         label: "About Page",
         sections: [
           {
-            label: "About Us Section",
+            label: "Hero Banner Section",
             elements: [
-              {
-                type: 'text',
-                label: "Studio Name",
-                path: ['clinic', 'name']
-              },
-              {
-                type: 'textarea',
-                label: "Studio Description",
-                path: ['clinic', 'description']
-              },
-              {
-                type: 'image',
-                label: "Clinic / Studio Gallery Image 2",
-                imageConfig: { arrayKey: 'clinicImages', index: 1 }
-              },
+              { type: "text", label: "Studio Name", path: ["clinic", "name"] },
+              { type: "text", label: "Hero Tagline", path: ["clinic", "tagline"] },
             ]
           },
           {
-            label: "Creative Leadership - Lead",
+            label: "About Narrative Section",
             elements: [
-              {
-                type: 'text',
-                label: "Principal Designer Name",
-                path: ['doctor', 'name']
-              },
-              {
-                type: 'image',
-                label: "Principal Portrait Image",
-                imageConfig: { arrayKey: 'otherImages', index: 0 }
-              },
+              { type: "textarea", label: "Studio Description", path: ["clinic", "description"] },
+              { type: "image", label: "Studio Engineering Image", imageConfig: { arrayKey: "clinicImages", index: 1 } },
             ]
           },
+          {
+            label: "Leadership & Credentials Section",
+            elements: [
+              { type: "text", label: "Principal Architect Name", path: ["doctor", "name"] },
+              { type: "text", label: "Architect Experience Details", path: ["doctor", "experience"] },
+              { type: "text", label: "Specialization Details", path: ["doctor", "specialization"] },
+              { type: "image", label: "Principal Architect Portrait", imageConfig: { arrayKey: "otherImages", index: 0 } },
+            ]
+          },
+          {
+            label: "Highlights Section",
+            elements: [
+              { type: "list", label: "Highlights List (1 per line)", path: ["business", "highlights"] },
+            ]
+          }
         ]
       },
       {
-        id: 'services',
+        id: "services",
         label: "Services Page",
         sections: [
           {
-            label: "Hero Section",
+            label: "Hero Banner Section",
             elements: [
-              {
-                type: 'textarea',
-                label: "Principal Bio",
-                path: ['doctor', 'bio']
-              },
-              {
-                type: 'textarea',
-                label: "Studio Description",
-                path: ['clinic', 'description']
-              },
-              {
-                type: 'text',
-                label: "Studio Name",
-                path: ['clinic', 'name']
-              },
-              {
-                type: 'text',
-                label: "Hero Tagline",
-                path: ['clinic', 'tagline']
-              },
+              { type: "text", label: "Studio Name", path: ["clinic", "name"] },
+              { type: "text", label: "Hero Tagline", path: ["clinic", "tagline"] },
             ]
           },
           {
-            label: "Transformations",
+            label: "Our Services Section",
             elements: [
-              {
-                type: 'text',
-                label: "Specialization",
-                path: ['doctor', 'specialization']
-              },
-              {
-                type: 'textarea',
-                label: "Vision Quote",
-                path: ['about', 'vision']
-              },
+              { type: "list", label: "Services List (1 per line)", path: ["business", "services"] },
             ]
           },
+          {
+            label: "Standards & Assurances Section",
+            elements: [
+              { type: "list", label: "Highlights List (1 per line)", path: ["business", "highlights"] },
+              { type: "image", label: "Certified Specifications Image", imageConfig: { arrayKey: "clinicImages", index: 1 } },
+            ]
+          }
         ]
       },
       {
-        id: 'gallery',
+        id: "gallery",
         label: "Gallery Page",
         sections: [
           {
-            label: "Hero Section",
+            label: "Hero Banner Section",
             elements: [
-              {
-                type: 'textarea',
-                label: "Principal Bio",
-                path: ['doctor', 'bio']
-              },
-              {
-                type: 'textarea',
-                label: "Studio Description",
-                path: ['clinic', 'description']
-              },
-              {
-                type: 'text',
-                label: "Studio Name",
-                path: ['clinic', 'name']
-              },
+              { type: "text", label: "Studio Name", path: ["clinic", "name"] },
+              { type: "text", label: "Hero Tagline", path: ["clinic", "tagline"] },
             ]
           },
+          {
+            label: "Gallery Grid Section",
+            elements: [
+              { type: "image", label: "Gallery Item 1", imageConfig: { arrayKey: "otherImages", index: 0 } },
+              { type: "image", label: "Gallery Item 2", imageConfig: { arrayKey: "otherImages", index: 1 } },
+              { type: "image", label: "Gallery Item 3", imageConfig: { arrayKey: "otherImages", index: 2 } },
+              { type: "image", label: "Gallery Item 4", imageConfig: { arrayKey: "otherImages", index: 3 } },
+              { type: "image", label: "Gallery Item 5", imageConfig: { arrayKey: "otherImages", index: 4 } },
+              { type: "image", label: "Gallery Item 6", imageConfig: { arrayKey: "otherImages", index: 5 } },
+            ]
+          }
         ]
       },
       {
-        id: 'contact',
+        id: "contact",
         label: "Contact Page",
         sections: [
           {
-            label: "Contact Section",
+            label: "Hero Banner Section",
             elements: [
-              {
-                type: 'text',
-                label: "Contact Phone Number",
-                path: ['clinic', 'contact', 'phone']
-              },
-              {
-                type: 'text',
-                label: "Full Address location",
-                path: ['clinic', 'address', 'full']
-              },
+              { type: "text", label: "Studio Name", path: ["clinic", "name"] },
+              { type: "text", label: "Hero Tagline", path: ["clinic", "tagline"] },
             ]
           },
+          {
+            label: "Contact Section",
+            elements: [
+              { type: "text", label: "Contact Phone Number", path: ["clinic", "contact", "phone"] },
+              { type: "text", label: "Full Address location", path: ["clinic", "address", "full"] },
+            ]
+          }
         ]
-      },
+      }
     ]
   },
   base: {

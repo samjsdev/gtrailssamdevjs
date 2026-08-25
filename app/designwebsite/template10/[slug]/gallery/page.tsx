@@ -1,161 +1,151 @@
 import { readSourceConfig } from '@/lib/dataBuilder';
-import { notFound } from 'next/navigation';
-import { Archivo_Black, Inter } from 'next/font/google';
-import GalleryGrid from './GalleryGrid';
 import { cleanClinicName } from '@/lib/copyCleaner';
-import CountUp from '@/components/CountUp';
+import { notFound } from 'next/navigation';
+import Link from 'next/link';
+import GalleryClient from '../GalleryClient';
+import { Building, Compass, Sparkles, ArrowRight, Phone } from 'lucide-react';
 
-const archivo = Archivo_Black({
-  subsets: ['latin'],
-  weight: ['400'],
-  display: 'swap',
-});
+interface PageProps {
+  params: Promise<{ slug: string }>;
+}
 
-const inter = Inter({
-  subsets: ['latin'],
-  weight: ['400', '500', '700'],
-  display: 'swap',
-});
-
-export default async function GalleryPage({ params }: { params: Promise<{ slug: string }> }) {
+export default async function Template10GalleryPage({ params }: PageProps) {
   const resolvedParams = await params;
   const { slug } = resolvedParams;
   const data = await readSourceConfig(slug, 'template10');
-  if (!data) return notFound();
 
-  const { clinic, media } = data;
-  const cleanName = cleanClinicName(clinic.name);
-
-  const defaultGalleryStock = [
-    "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=2000&q=80",
-    "https://images.unsplash.com/photo-1616594039964-ae9021a400a0?auto=format&fit=crop&w=2000&q=80",
-    "https://images.unsplash.com/photo-1556910103-1c02745aae4d?auto=format&fit=crop&w=2000&q=80",
-    "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=2000&q=80",
-    "https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=2000&q=80",
-    "https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?auto=format&fit=crop&w=2000&q=80",
-    "https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=2000&q=80",
-    "https://images.unsplash.com/photo-1538688525198-9b88f6f53126?auto=format&fit=crop&w=2000&q=80",
-    "https://images.unsplash.com/photo-1581579438747-1dc8d1e0ca96?auto=format&fit=crop&w=2000&q=80",
-    "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=2000&q=80",
-    "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=2000&q=80",
-    "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=2000&q=80",
-    "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=2000&q=80",
-    "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=2000&q=80",
-    "https://images.unsplash.com/photo-1600210492493-0946911123ea?auto=format&fit=crop&w=2000&q=80",
-    "https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&w=2000&q=80",
-    "https://images.unsplash.com/photo-1600121848594-d8644e57abab?auto=format&fit=crop&w=2000&q=80",
-    "https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&w=2000&q=80",
-    "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=2000&q=80",
-    "https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=2000&q=80",
-    "https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=2000&q=80"
-  ];
-
-  const uniqueUserImages = Array.from(new Set([
-    ...(media.clinicImages || []),
-    ...(media.treatmentImages || []),
-    ...(media.otherImages || [])
-  ].filter(Boolean)));
-
-  const PORTFOLIO = [];
-  const totalToRender = 50;
-
-  for (let i = 0; i < totalToRender; i++) {
-    let imgUrl = "";
-    let isUserImg = false;
-
-    if (uniqueUserImages.length > 0) {
-      imgUrl = uniqueUserImages[i % uniqueUserImages.length];
-      isUserImg = true;
-    } else {
-      imgUrl = defaultGalleryStock[i % defaultGalleryStock.length];
-    }
-
-    const cats = ['Residential', 'Commercial', 'Studio & Process'];
-    const cat = cats[i % cats.length];
-    const span = i % 3 === 0 ? ('wide' as const) : i % 5 === 0 ? ('tall' as const) : ('normal' as const);
-
-    PORTFOLIO.push({
-      cat,
-      title: isUserImg ? `Loft Design Project #${i + 1}` : `Curated Loft Space #${i + 1}`,
-      desc: isUserImg 
-        ? `Custom loft architecture feature designed and coordinated for ${cleanName || 'our studio'}.`
-        : `Bespoke room configuration showcasing industrial materials and structural detailing.`,
-      img: imgUrl,
-      span
-    });
+  if (!data || !data.clinic) {
+    notFound();
   }
 
-  const clinicName = data?.clinic?.name || 'Studio';
+  const clinicName = cleanClinicName(data.clinic.name);
+  const clinicTagline = data.clinic.tagline || 'Delivering Iconic Architectural Elevations & Turnkey Residential Villas';
+  const clinicPhone = data.clinic.contact?.phone || '+91 81100 00384';
+
+  const media = data.media || {};
+  const heroImage = media.clinicImages?.[0] || 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1920&q=80';
+
+  const rawImages = [
+    media.otherImages?.[0] || 'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1200&q=80',
+    media.otherImages?.[1] || 'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1200&q=80',
+    media.otherImages?.[2] || 'https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=1200&q=80',
+    media.otherImages?.[3] || 'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1200&q=80',
+    media.otherImages?.[4] || 'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=1200&q=80',
+    media.otherImages?.[5] || 'https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=1200&q=80',
+  ];
+
+  const projects = [
+    {
+      id: 'p1',
+      title: 'THE OBSIDIAN GRAND VILLA',
+      category: 'construction' as const,
+      location: 'Grand Enclave, Chennai',
+      area: '4,500 sq.ft Built-Up',
+      image: rawImages[0],
+      description: 'Turnkey G+2 luxury residential villa with double-height living foyer, cantilevered balcony slabs, and integrated thermal insulation.',
+      badge: 'RESIDENTIAL CONSTRUCTION',
+    },
+    {
+      id: 'p2',
+      title: 'MONOLITH ARCHITECTURAL RESIDENCE',
+      category: 'architecture' as const,
+      location: 'Hilltop Avenue, Bangalore',
+      area: '5,500 sq.ft Built-Up',
+      image: rawImages[1],
+      description: 'Modern geometric facade elevation incorporating exposed concrete textures, large glazed curtain walls, and central courtyard ventilation.',
+      badge: 'ARCHITECTURAL DESIGN',
+    },
+    {
+      id: 'p3',
+      title: 'VANGUARD PENTHOUSE INTERIOR',
+      category: 'interior' as const,
+      location: 'Skyline Heights, Hyderabad',
+      area: '3,600 sq.ft Built-Up',
+      image: rawImages[2],
+      description: 'Ultra-luxury interior fit-out featuring imported bookmatched Italian marble, custom acoustic wall panelling, and integrated smart lighting.',
+      badge: 'LUXURY INTERIOR',
+    },
+    {
+      id: 'p4',
+      title: 'THE COURTYARD CONTEMPORARY VILLA',
+      category: 'construction' as const,
+      location: 'Palm Meadows, Coimbatore',
+      area: '4,800 sq.ft Built-Up',
+      image: rawImages[3],
+      description: 'Full-scope turnkey civil construction with Fe550D reinforcement, custom swimming pool engineering, and landscaped perimeter walls.',
+      badge: 'RESIDENTIAL CONSTRUCTION',
+    },
+    {
+      id: 'p5',
+      title: 'INDUSTRIAL BRUTALIST ELEVATION',
+      category: 'architecture' as const,
+      location: 'Boulevard Road, Chennai',
+      area: '6,100 sq.ft Built-Up',
+      image: rawImages[4],
+      description: 'Architectural blueprint highlighting sharp rectangular cantilevers, steel framing, bespoke louvre screening, and complete 3D BIM coordination.',
+      badge: 'ARCHITECTURAL DESIGN',
+    },
+    {
+      id: 'p6',
+      title: 'LUXE LIVING SUITE & KITCHEN',
+      category: 'interior' as const,
+      location: 'Central Residency, Bangalore',
+      area: '3,100 sq.ft Built-Up',
+      image: rawImages[5],
+      description: 'German modular kitchen with integrated Blum motorized drawers, custom quartz island counter, and bespoke master suite walk-in wardrobes.',
+      badge: 'LUXURY INTERIOR',
+    },
+  ];
+
+  const basePath = `/designwebsite/template10/${slug}`;
 
   return (
-    <div className={`${inter.className} text-[#F4F1DE] min-h-screen bg-[#1E2022]`}>
-
-      {/* ── HERO BANNER ─────────────────────────────────────────────────── */}
-      <section className="pt-44 pb-0 border-b border-white/10 bg-[#1E2022]">
-        <div className="max-w-7xl mx-auto px-8 pb-16">
-          <div className="grid lg:grid-cols-12 gap-12 items-end">
-            <div className="lg:col-span-7 space-y-6">
-              <div className="flex items-center gap-4">
-                <div className="w-8 h-[1px] bg-[#E07A5F]" />
-                <span className="text-[10px] font-bold tracking-[0.35em] text-[#E07A5F] uppercase">BUILT SHELLS</span>
-              </div>
-              <h1 className={`${archivo.className} text-5xl sm:text-6xl lg:text-8xl text-white uppercase leading-[1.05]`}>
-                {clinic.name || "Loft Work"} &amp;<br />
-                <span className="text-[#E07A5F]">Shells</span>
-              </h1>
+    <div className="w-full bg-[#111111] text-[#F4F3EE]">
+      {/* ─── Hero Banner Section ─── */}
+      <section id="gallery-hero" className="relative py-20 sm:py-28 bg-[#181B1A] border-b-4 border-[#252A29]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-8">
+          <div className="max-w-3xl">
+            <div className="inline-flex items-center gap-2 px-3 py-1 bg-[#E94B26] text-[#F4F3EE] text-xs font-black uppercase tracking-widest mb-4 border border-[#111111]">
+              <Building className="w-3.5 h-3.5" />
+              <span>COMPLETED SITES & DELIVERED HOMES</span>
             </div>
-            
-            <div className="lg:col-span-5 space-y-8 lg:pb-4">
-              <p className="text-slate-400 font-light leading-relaxed text-sm md:text-base">
-                {clinic.description || "Explore the spaces we have transformed and the creative environment where our designs come to life."}
-              </p>
-              
-              {/* Stats strip - Template 3 matching stats styled in raw metal columns */}
-              <div className="flex flex-wrap gap-x-12 gap-y-4 pt-4">
-                {[
-                  { num: '200+', label: 'Loft Handovers' },
-                  { num: '11', label: 'Portfolio Shells' },
-                  { num: '15+', label: 'Years in Fabrication' },
-                ].map((stat, i) => (
-                  <div key={i} className="flex flex-col">
-                    <span className={`${archivo.className} text-4xl text-white`}>
-                      <CountUp value={stat.num} />
-                    </span>
-                    <span className="text-[9px] font-bold tracking-[0.25em] text-slate-500 uppercase mt-1">
-                      {stat.label}
-                    </span>
-                  </div>
-                ))}
-              </div>
-            </div>
+            <h1 className="text-4xl sm:text-6xl font-black uppercase text-[#F4F3EE] tracking-tight leading-none mb-4">
+              OUR BUILT <span className="text-[#E94B26]">PROJECT PORTFOLIO</span>
+            </h1>
+            <p className="text-sm sm:text-base font-bold uppercase tracking-wider text-[#C8A84E]">
+              {clinicName} &bull; {clinicTagline}
+            </p>
           </div>
         </div>
+      </section>
 
-        {/* Divider */}
-        <div className="flex items-center gap-6 max-w-7xl mx-auto px-8 py-12 border-t border-white/10">
-          <div className="h-[1px] flex-1 bg-white/10" />
-          <span className="text-[9px] font-bold uppercase tracking-[0.3em] text-slate-500">
-            Browse Shell Catalog
-          </span>
-          <div className="h-[1px] flex-1 bg-white/10" />
+      {/* ─── Interactive Gallery Section ─── */}
+      <section id="gallery-grid" className="py-20 px-4 sm:px-8 bg-[#111111] border-b-4 border-[#252A29]">
+        <div className="max-w-7xl mx-auto">
+          <GalleryClient projects={projects} />
         </div>
       </section>
 
-      {/* ── GALLERY GRID ─────────────────────────────────────────────────── */}
-      <section id="gallery-grid" className="max-w-7xl mx-auto px-8 py-20 bg-[#1E2022]">
-        <GalleryGrid items={PORTFOLIO} />
-      </section>
-
-      {/* ── FOOTER SEPARATOR ─────────────────────────────────────────────── */}
-      <section className="border-t border-white/10 py-16 bg-[#141517]">
-        <div className="max-w-7xl mx-auto px-8 flex flex-col md:flex-row items-center justify-between gap-6">
-          <p className={`${archivo.className} text-xl md:text-2xl text-white uppercase`}>
-            &ldquo;Every exposed weld represents structural truth.&rdquo;
-          </p>
-          <span className="text-[9px] font-bold tracking-[0.3em] text-[#E07A5F] uppercase shrink-0">— {clinicName} Studio</span>
+      {/* ─── CTA Banner Section ─── */}
+      <section id="gallery-cta" className="py-16 px-4 sm:px-8 bg-[#E94B26] text-[#F4F3EE]">
+        <div className="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-6">
+          <div>
+            <h2 className="text-3xl sm:text-4xl font-black uppercase tracking-tight text-[#F4F3EE]">
+              WANT TO VISIT OUR COMPLETED SITES IN PERSON?
+            </h2>
+            <p className="text-xs font-mono text-[#F4F3EE]/90 uppercase mt-1">
+              Call {clinicPhone} to schedule a guided technical site walkthrough.
+            </p>
+          </div>
+          <Link
+            href={`${basePath}/contact`}
+            className="px-8 py-4 bg-[#111111] text-[#F4F3EE] font-black text-xs uppercase tracking-widest border border-[#111111] shadow-[4px_4px_0px_#000000] hover:bg-[#181B1A] transition-all flex items-center gap-2"
+          >
+            <span>REQUEST SITE VISIT</span>
+            <ArrowRight className="w-4 h-4 text-[#E94B26]" />
+          </Link>
         </div>
       </section>
-
     </div>
   );
 }

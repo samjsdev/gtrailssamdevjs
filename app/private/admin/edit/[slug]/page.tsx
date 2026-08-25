@@ -18,7 +18,7 @@ const TEMPLATE_OPTIONS = [
   { id: 'template6', name: 'Template 6 (Glassmorphism Flow layout)' },
   { id: 'template7', name: 'Template 7 (Lumina Interior layout)' },
   { id: 'template8', name: 'Template 8 (Property Match layout)' },
-  { id: 'template10', name: 'Template 10 (Raw Industrial theme layout)' }
+  { id: 'template10', name: 'Template 10 (Industrial Architecture & Construction layout)' }
 ];
 
 import { TEMPLATE_SCHEMAS, SHARED_PAGES } from './schemas';
@@ -172,22 +172,15 @@ const TEMPLATE_STOCK_IMAGES: Record<string, { url: string; label: string }[]> = 
     { url: 'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&q=80&w=600', label: 'Real Estate Home' }
   ],
   template10: [
-    { url: 'https://images.unsplash.com/photo-1542889601-399c4f3a8402?auto=format&fit=crop&w=600&q=80', label: 'Studio Drafting Desk' },
-    { url: 'https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=600&q=80', label: 'Living Room Shelf Corner' },
-    { url: 'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=600&q=80', label: 'Bright Cozy Bedroom' },
-    { url: 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=600&q=80', label: 'Modern Office Room' },
-    { url: 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=600&q=80', label: 'Study Table & Desk Setup' },
-    { url: 'https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=600&q=80', label: 'Open Concrete Architecture' },
-    { url: 'https://images.unsplash.com/photo-1538688525198-9b88f6f53126?auto=format&fit=crop&w=600&q=80', label: 'Bespoke Chair Curation' },
-    { url: 'https://images.unsplash.com/photo-1616594039964-ae9021a400a0?auto=format&fit=crop&w=800&q=80', label: 'Serene Modern Bed' },
-    { url: 'https://images.unsplash.com/photo-1556910103-1c02745aae4d?auto=format&fit=crop&w=800&q=80', label: 'Dining Area Setup' },
-    { url: 'https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=800&q=80', label: 'Office Bright Corridor' },
-    { url: 'https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?auto=format&fit=crop&w=800&q=80', label: 'Cosy Seating Corner' },
-    { url: 'https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=800&q=80', label: 'Boutique Store Area' },
-    { url: 'https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&w=800&q=80', label: 'Collaborative Workspace' },
-    { url: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=800&q=80', label: 'Principal Portrait' },
-    { url: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=800&q=80', label: 'Associate Portrait' },
-    { url: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80', label: 'Living Room Hero' }
+    { url: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80', label: 'Obsidian Grand Villa Elevation' },
+    { url: 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1200&q=80', label: 'Civil Engineering Center Studio' },
+    { url: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=800&q=80', label: 'Principal Architect Portrait' },
+    { url: 'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=800&q=80', label: 'Monolith Residence Elevation' },
+    { url: 'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=800&q=80', label: 'Turnkey Villa Construction' },
+    { url: 'https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=800&q=80', label: 'Luxury Penthouse Fitout' },
+    { url: 'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=800&q=80', label: 'Courtyard Villa Living' },
+    { url: 'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=800&q=80', label: 'Brutalist Architectural Facade' },
+    { url: 'https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=800&q=80', label: 'German Modular Kitchen' }
   ]
 };
 

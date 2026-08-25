@@ -1,6 +1,6 @@
 {
   "clinic": {
-    "name": "VLKARCHANA HOME DECORS OPC PVT LTD",
+    "name": "VLKARCHANA HOME DECORS",
     "slug": "vlkarchana-home-decors-opc-pvt-ltd",
     "tagline": "Thoughtful Interiors for Everyday Living",
     "description": "Welcome to VLKARCHANA HOME DECORS OPC PVT LTD. We create refined, functional interiors tailored to your lifestyle, budget, and space.",
@@ -58,6 +58,7 @@
     "generatedAt": "2026-08-25T05:30:44.198Z",
     "source": "google_maps",
     "gbpUrl": "https://www.google.com/maps/place/VLKARCHANA+HOME+DECORS+OPC+PVT+LTD/@10.9950562,77.0143251,17z/data=!3m1!4b1!4m6!3m5!1s0x3ba857c0dadff487:0x483758d43511e3e2!8m2!3d10.9950562!4d77.0143251!16s%2Fg%2F11m5cql19c?authuser=0&hl=en&entry=ttu&g_ep=EgoyMDI2MDgxOS4wIKXMDSoASAFQAw%3D%3D",
-    "updatedAt": "2026-08-25T05:30:44.201Z"
-  }
+    "updatedAt": "2026-08-25T06:08:52.198Z"
+  },
+  "templateOverrides": {}
 }

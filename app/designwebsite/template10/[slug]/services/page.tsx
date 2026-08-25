@@ -1,454 +1,192 @@
 import { readSourceConfig } from '@/lib/dataBuilder';
+import { cleanClinicName, cleanClinicDescription } from '@/lib/copyCleaner';
 import { notFound } from 'next/navigation';
-import { Archivo_Black, Inter } from 'next/font/google';
 import Link from 'next/link';
+import Image from 'next/image';
 import { 
-  Sparkles, MoveRight, ArrowUpRight, CheckCircle2, 
-  Users, Box, Compass, CreditCard, Award, Shield, 
-  Home, Hammer, Activity 
+  Compass, Building, Sparkles, HardHat, Check, 
+  ArrowRight, ShieldCheck, Ruler, Layers, CheckCircle2, Phone 
 } from 'lucide-react';
 
-const archivo = Archivo_Black({
-  subsets: ['latin'],
-  weight: ['400'],
-  display: 'swap',
-});
+interface PageProps {
+  params: Promise<{ slug: string }>;
+}
 
-const inter = Inter({
-  subsets: ['latin'],
-  weight: ['400', '500', '700'],
-  display: 'swap',
-});
-
-export default async function ServicesPage({ params }: { params: Promise<{ slug: string }> }) {
+export default async function Template10ServicesPage({ params }: PageProps) {
   const resolvedParams = await params;
   const { slug } = resolvedParams;
   const data = await readSourceConfig(slug, 'template10');
-  if (!data) return notFound();
-  const { media, clinic } = data;
+
+  if (!data || !data.clinic) {
+    notFound();
+  }
+
+  const clinicName = cleanClinicName(data.clinic.name);
+  const clinicTagline = data.clinic.tagline || 'Integrated Architectural Design, Turnkey Civil Construction & Luxury Fitouts';
+  const clinicDescription = cleanClinicDescription(data.clinic.description, data.clinic.name);
+  const clinicPhone = data.clinic.contact?.phone || '+91 81100 00384';
+
+  const servicesList: string[] = (data.business?.services && data.business.services.length > 0)
+    ? (data.business.services as string[])
+    : [
+        'Turnkey Residential House Construction',
+        'Architectural Concept Design & 3D BIM Modeling',
+        'Structural Engineering, Soil Tests & RCC Framed Blueprints',
+        'Bespoke Luxury Interior Design & Custom Millwork',
+        'Building Approvals, Plan Sanctions & Milestone Inspections',
+        '400-Point Rigorous Quality Audits with Fixed Cost Guarantee'
+      ];
+
+  const highlightsList: string[] = (data.business?.highlights && data.business.highlights.length > 0)
+    ? (data.business.highlights as string[])
+    : [
+        'Over 850+ Luxury Homes & Residential Villas Delivered On-Time',
+        '10-Year Comprehensive Structural Warranty on All Civil Work',
+        'Guaranteed Zero Cost Escalation with Itemised Milestone Billing',
+        'Dedicated Senior Project Manager Assigned to Every Individual Site',
+        'Lab-Certified Fe550D TMT Structural Steel & Tested Grade-53 Concrete'
+      ];
+
+  const media = data.media || {};
+  const heroImage = media.clinicImages?.[0] || 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1920&q=80';
+  const secondaryImage = media.clinicImages?.[1] || 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1200&q=80';
 
   const basePath = `/designwebsite/template10/${slug}`;
 
   return (
-    <div className={`${inter.className} bg-[#1E2022] text-[#F4F1DE] min-h-screen pb-32 selection:bg-[#E07A5F] selection:text-white`}>
-      
-      {/* ── HERO BANNER ─────────────────────────────────────────────────── */}
-      <section className="relative min-h-[50vh] flex flex-col justify-end pb-16 px-8 border-b-2 border-[#E07A5F] bg-[#141517]">
-        <div className="absolute inset-0 z-0 opacity-20">
-          <img
-            src={media?.otherImages?.[11] || "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=2000&q=80"}
-            alt="Drafting tables in loft"
-            className="w-full h-full object-cover grayscale"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#141517] to-transparent"></div>
-        </div>
-
-        <div className="relative z-10 max-w-7xl mx-auto w-full space-y-4">
-          <span className="text-xs font-bold text-[#E07A5F] tracking-[0.25em] uppercase bg-white/5 border border-white/10 px-3 py-1">
-            {clinic.name || 'PRODUCTION CATALOG'}
-          </span>
-          <h1 className={`${archivo.className} text-4xl sm:text-5xl lg:text-7xl text-white uppercase leading-[1.05]`}>
-            {clinic.tagline || <>Our Loft <br /><span className="text-[#E07A5F]">Services</span></>}
-          </h1>
+    <div className="w-full bg-[#111111] text-[#F4F3EE]">
+      {/* ─── Hero Banner Section ─── */}
+      <section id="services-hero" className="relative py-20 sm:py-28 bg-[#181B1A] border-b-4 border-[#252A29]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-8">
+          <div className="max-w-3xl">
+            <div className="inline-flex items-center gap-2 px-3 py-1 bg-[#E94B26] text-[#F4F3EE] text-xs font-black uppercase tracking-widest mb-4 border border-[#111111]">
+              <Compass className="w-3.5 h-3.5" />
+              <span>COMPREHENSIVE CIVIL & DESIGN CAPABILITIES</span>
+            </div>
+            <h1 className="text-4xl sm:text-6xl font-black uppercase text-[#F4F3EE] tracking-tight leading-none mb-4">
+              OUR COMPLETE <span className="text-[#E94B26]">TURNKEY SERVICES</span> & PILLARS
+            </h1>
+            <p className="text-sm sm:text-base font-bold uppercase tracking-wider text-[#C8A84E]">
+              {clinicName} &bull; {clinicTagline}
+            </p>
+          </div>
         </div>
       </section>
 
-      {/* ── 01 - FOUNDATIONAL SERVICES ────────────────────────────────────── */}
-      <section className="py-24 px-8 bg-[#141517] border-b border-white/5 relative z-10">
+      {/* ─── Our Services Grid Section ─── */}
+      <section id="services-list" className="py-20 px-4 sm:px-8 bg-[#111111] border-b-4 border-[#252A29]">
         <div className="max-w-7xl mx-auto">
-          <div className="mb-20 space-y-4 relative">
-            <span className={`${archivo.className} text-9xl font-black text-white/5 select-none absolute -z-10 -ml-8 -mt-20 tracking-wider`}>01</span>
-            <div className="inline-flex items-center gap-4">
-              <div className="w-12 h-[1px] bg-[#E07A5F]"></div>
-              <span className="text-[10px] font-bold tracking-[0.2em] text-[#E07A5F] uppercase">Architecture Foundation</span>
+          <div className="text-center max-w-3xl mx-auto mb-16">
+            <div className="inline-block px-3 py-1 bg-[#252A29] text-[#C8A84E] text-xs font-bold uppercase tracking-[0.25em] border border-[#C8A84E]/40 mb-3">
+              END-TO-END OFFERINGS
             </div>
-            <h2 className={`${archivo.className} text-3xl sm:text-4xl text-white uppercase`}>
-              Foundational <span className="text-[#E07A5F]">Services</span>
+            <h2 className="text-3xl sm:text-5xl font-black uppercase text-[#F4F3EE] tracking-tight">
+              DESIGN, CIVIL ENGINEERING & FIT-OUT SERVICES
             </h2>
-            <p className="text-slate-400 font-light text-sm max-w-xl leading-relaxed">
-              The building blocks of every great loft interior—planning, materials, and lighting.
+            <p className="text-xs sm:text-sm font-mono text-[#F4F3EE]/70 mt-2">
+              EVERY STAGE OF YOUR RESIDENTIAL PROJECT MANAGED UNDER RIGOROUS METRIC QUALITY STANDARDS
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {[
-              { 
-                title: "Space Zoning & Layout", 
-                desc: "Optimize every square foot with intelligent layouts that enhance flow, light, and daily living.", 
-                img: media?.otherImages?.[6] || "https://images.unsplash.com/photo-1542889601-399c4f3a8402?auto=format&fit=crop&w=2000&q=80", 
-                subs: ["Floor Plan Design", "Furniture Layout", "Traffic Flow Optimization"],
-                link: "#"
-              },
-              { 
-                title: "Material & Finish Selection", 
-                desc: "Curated palettes of flooring, wall treatments, and hardware that define the character of your space.", 
-                img: media?.otherImages?.[7] || "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=2000&q=80", 
-                subs: ["Flooring & Tiling", "Wall Finishes & Paint", "Hardware & Fixtures"],
-                link: "#"
-              },
-              { 
-                title: "Lighting Design", 
-                desc: "Layered lighting schemes that set the mood, enhance functionality, and showcase architectural details.", 
-                img: media?.otherImages?.[8] || "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=2000&q=80", 
-                subs: ["Ambient & Task Lighting", "Accent & Decorative Fixtures", "Smart Lighting Integration"],
-                link: "#"
-              }
-            ].map((srv, i) => (
-              <div 
-                key={i} 
-                className="bg-[#1E2022] p-8 border border-white/10 hover:border-[#E07A5F] transition-all duration-300 group flex flex-col justify-between h-full relative"
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {servicesList.map((service, idx) => (
+              <div
+                key={idx}
+                className="bg-[#181B1A] border-2 border-[#252A29] p-8 hover:border-[#E94B26] transition-all shadow-[4px_4px_0px_#111111] flex flex-col justify-between"
               >
                 <div>
-                  <div className="aspect-[4/3] overflow-hidden mb-8 border border-white/10 relative bg-[#141517]">
-                    <img 
-                      src={srv.img} 
-                      alt={srv.title} 
-                      className="w-full h-full object-cover grayscale opacity-70 group-hover:scale-102 group-hover:opacity-100 transition-all duration-700 ease-out" 
-                    />
+                  <div className="flex items-center justify-between mb-4">
+                    <span className="text-xl font-black text-[#E94B26] font-mono">
+                      0{idx + 1}
+                    </span>
+                    <Building className="w-5 h-5 text-[#C8A84E]" />
                   </div>
-                  
-                  <h3 className={`${archivo.className} text-xl text-white uppercase mb-4 group-hover:text-[#E07A5F] transition-colors pr-12`}>
-                    {srv.title}
+                  <h3 className="text-xl font-black uppercase text-[#F4F3EE] tracking-tight mb-3">
+                    {service}
                   </h3>
-                  
-                  <p className="text-slate-400 text-sm leading-relaxed mb-8 font-light">
-                    {srv.desc}
+                  <p className="text-xs text-[#F4F3EE]/75 leading-relaxed font-sans">
+                    Precision planning, transparent bill of quantities, high-grade certified construction materials, and continuous on-site civil supervisor oversight.
                   </p>
                 </div>
-                
-                <div>
-                  <div className="flex flex-wrap gap-2.5 pt-6 border-t border-white/10">
-                    {srv.subs.map((sub, j) => (
-                      <span 
-                        key={j} 
-                        className="inline-flex items-center gap-1.5 text-xs bg-[#141517] text-slate-300 border border-white/10 px-3 py-1.5 rounded-none font-light"
-                      >
-                        <span className="w-1.5 h-1.5 rounded-full bg-[#E07A5F]" />
-                        {sub}
+                <div className="mt-6 pt-4 border-t border-[#252A29] flex items-center justify-between text-xs font-mono text-[#C8A84E]">
+                  <span>TECHNICAL SERVICE #{idx + 1}</span>
+                  <ArrowRight className="w-3.5 h-3.5 text-[#E94B26]" />
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ─── Highlights Section ─── */}
+      <section id="services-highlights" className="py-20 px-4 sm:px-8 bg-[#181B1A] border-b-4 border-[#252A29]">
+        <div className="max-w-7xl mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+            <div className="lg:col-span-5 space-y-6">
+              <div className="inline-block px-3 py-1 bg-[#252A29] text-[#C8A84E] text-xs font-bold uppercase tracking-[0.25em] border border-[#C8A84E]/40">
+                CERTIFIED STANDARDS
+              </div>
+              <h2 className="text-3xl sm:text-4xl font-black uppercase text-[#F4F3EE] tracking-tight">
+                GUARANTEED FIXED-COST & ZERO-DEFECT QUALITY
+              </h2>
+              <p className="text-xs sm:text-sm text-[#F4F3EE]/80 leading-relaxed font-sans">
+                Our standardized construction practices are governed by National Building Code (NBC 2016) and IS 456 standards, ensuring seismic structural durability and leakproof longevity.
+              </p>
+              <div className="relative h-64 w-full border-4 border-[#252A29] overflow-hidden shadow-[6px_6px_0px_#111111]">
+                <Image
+                  src={secondaryImage}
+                  alt="Certified Construction Specifications"
+                  fill
+                  className="object-cover grayscale contrast-125"
+                  sizes="(max-width: 1024px) 100vw, 500px"
+                />
+              </div>
+            </div>
+
+            <div className="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-4">
+              {highlightsList.map((highlight, idx) => (
+                <div
+                  key={idx}
+                  className="bg-[#111111] p-6 border-2 border-[#252A29] hover:border-[#C8A84E] transition-colors shadow-[4px_4px_0px_#111111]"
+                >
+                  <div className="flex items-start gap-3">
+                    <CheckCircle2 className="w-5 h-5 text-[#E94B26] shrink-0 mt-0.5" />
+                    <div>
+                      <span className="text-[10px] font-mono text-[#C8A84E] uppercase tracking-wider block mb-1">
+                        ASSURANCE CLAUSE #{idx + 1}
                       </span>
-                    ))}
-                  </div>
-                  
-                  <div className="mt-8 flex justify-end">
-                    <a 
-                      href={srv.link} 
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 text-xs font-bold text-slate-300 hover:text-white transition-colors tracking-wider uppercase group/btn"
-                    >
-                      <span>Explore Layouts</span>
-                      <MoveRight className="w-4 h-4 transition-transform group-hover/btn:translate-x-1 duration-300" />
-                    </a>
+                      <p className="text-xs font-bold text-[#F4F3EE] leading-relaxed">
+                        {highlight}
+                      </p>
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         </div>
       </section>
 
-      {/* ── 02 - TRANSFORMATIONS ──────────────────────────────────────────── */}
-      <section className="py-24 px-8 bg-[#1E2022] border-b border-white/5 relative z-10">
-        <div className="max-w-7xl mx-auto">
-          <div className="mb-24 space-y-4 relative">
-            <span className={`${archivo.className} text-9xl font-black text-white/5 select-none absolute -z-10 -ml-8 -mt-20 tracking-wider`}>02</span>
-            <div className="inline-flex items-center gap-4">
-              <div className="w-12 h-[1px] bg-[#E07A5F]"></div>
-              <span className="text-[10px] font-bold tracking-[0.2em] text-[#E07A5F] uppercase">Turnkey Execution</span>
-            </div>
-            <h2 className={`${archivo.className} text-3xl sm:text-4xl text-white uppercase`}>
-              Transformations
+      {/* ─── CTA Banner Section ─── */}
+      <section id="services-cta" className="py-16 px-4 sm:px-8 bg-[#E94B26] text-[#F4F3EE]">
+        <div className="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-6">
+          <div>
+            <h2 className="text-3xl sm:text-4xl font-black uppercase tracking-tight text-[#F4F3EE]">
+              NEED AN ACCURATE BILL OF QUANTITIES (BOQ)?
             </h2>
-            <p className="text-slate-400 font-light text-sm max-w-xl leading-relaxed">
-              Full-scale execution and turnkey design solutions that bring comfort and personal expression to your spaces.
+            <p className="text-xs font-mono text-[#F4F3EE]/90 uppercase mt-1">
+              Direct Hotline: {clinicPhone} &bull; Turnkey Fixed Price Estimate
             </p>
           </div>
-
-          <div className="space-y-36">
-            {[
-              { 
-                idx: "02.1",
-                title: "Residential Design", 
-                desc: "Transform your home into a sanctuary. We craft living spaces for all scales—from studio lofts to sprawling estates—with a focus on comfort, raw finishes, and spatial expression.", 
-                img: media?.otherImages?.[9] || "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=2000&q=80", 
-                subs: ["Living & Dining Rooms", "Bedrooms & Walk-in Closets", "Kitchens & Bathrooms"],
-                isReverse: false
-              },
-              { 
-                idx: "02.2",
-                title: "Commercial Interiors", 
-                desc: "Spaces that drive productivity and impress clients. We design offices, retail stores, and hospitality venues that align with your industrial brand identity and operational needs.", 
-                img: media?.otherImages?.[10] || "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=2000&q=80", 
-                subs: ["Office & Co-working Spaces", "Retail & Showroom Design", "Restaurant & Café Interiors"],
-                isReverse: true
-              },
-              { 
-                idx: "02.3",
-                title: "Styling & Décor", 
-                desc: "The finishing layer that brings your space to life. We source industrial lighting, raw wood details, soft textured linen, and curated lofts décor.", 
-                img: media?.otherImages?.[11] || "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=2000&q=80", 
-                subs: ["Art Curation & Placement", "Soft Furnishing & Textiles", "Accessory & Object Styling"],
-                isReverse: false
-              }
-            ].map((srv, i) => (
-              <div 
-                key={i} 
-                className={`flex flex-col lg:flex-row items-center gap-12 lg:gap-20 ${srv.isReverse ? 'lg:flex-row-reverse' : ''}`}
-              >
-                {/* Image Container with Original Clean Grayscale Style */}
-                <div className="w-full lg:w-1/2 relative group border border-white/10 p-2 bg-[#141517]">
-                  <div className="aspect-[4/3] overflow-hidden bg-zinc-900 shadow-2xl">
-                    <img 
-                      src={srv.img} 
-                      alt={srv.title} 
-                      className="w-full h-full object-cover grayscale opacity-70 group-hover:opacity-100 group-hover:scale-102 transition-transform duration-[1500ms] ease-out" 
-                    />
-                  </div>
-                </div>
-
-                {/* Typography Column */}
-                <div className="w-full lg:w-1/2 space-y-6">
-                  <div className="flex items-center gap-3">
-                    <span className="text-xs font-bold text-[#E07A5F] tracking-[0.3em] uppercase font-mono">{srv.idx}</span>
-                    <span className="h-[1px] w-8 bg-[#E07A5F]/30" />
-                    <span className="text-xs text-slate-500 font-bold uppercase tracking-widest">Transformations</span>
-                  </div>
-
-                  <h3 className={`${archivo.className} text-3xl sm:text-4xl text-white uppercase`}>
-                    {srv.title}
-                  </h3>
-
-                  <p className="text-slate-400 font-light leading-relaxed text-sm md:text-base">
-                    {srv.desc}
-                  </p>
-
-                  <div className="grid sm:grid-cols-3 gap-3 pt-4">
-                    {srv.subs.map((sub, j) => (
-                      <div 
-                        key={j} 
-                        className="bg-[#141517] px-4 py-4 border border-white/10 flex flex-col justify-between h-24 hover:border-[#E07A5F] transition-colors"
-                      >
-                        <CheckCircle2 className="w-4 h-4 text-[#E07A5F]" />
-                        <span className="text-[11px] font-semibold text-white leading-tight font-sans uppercase tracking-wider">{sub}</span>
-                      </div>
-                    ))}
-                  </div>
-
-                  <div className="pt-6">
-                    <Link 
-                      href={`${basePath}/contact`} 
-                      className="inline-flex items-center justify-center gap-3 px-8 py-4 text-xs font-bold text-white bg-[#E07A5F] hover:bg-[#C9644A] uppercase tracking-widest transition-colors shadow-lg group/cta"
-                    >
-                      <span>Book Design Consultation</span>
-                      <ArrowUpRight className="w-4 h-4 transition-transform group-hover/cta:-translate-y-0.5 group-hover/cta:translate-x-0.5 duration-300" />
-                    </Link>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
+          <Link
+            href={`${basePath}/contact`}
+            className="px-8 py-4 bg-[#111111] text-[#F4F3EE] font-black text-xs uppercase tracking-widest border border-[#111111] shadow-[4px_4px_0px_#000000] hover:bg-[#181B1A] transition-all flex items-center gap-2"
+          >
+            <span>GET CUSTOM ESTIMATE</span>
+            <ArrowRight className="w-4 h-4 text-[#E94B26]" />
+          </Link>
         </div>
       </section>
-
-      {/* ── 03 - SPECIALIZED SERVICES ─────────────────────────────────────── */}
-      <section className="py-24 px-8 bg-[#141517] border-b border-white/5 relative z-10">
-        <div className="max-w-7xl mx-auto">
-          <div className="mb-24 space-y-4 relative">
-            <span className={`${archivo.className} text-9xl font-black text-white/5 select-none absolute -z-10 -ml-8 -mt-20 tracking-wider`}>03</span>
-            <div className="inline-flex items-center gap-4">
-              <div className="w-12 h-[1px] bg-[#E07A5F]"></div>
-              <span className="text-[10px] font-bold tracking-[0.2em] text-[#E07A5F] uppercase">Technical Execution</span>
-            </div>
-            <h2 className={`${archivo.className} text-3xl sm:text-4xl text-white uppercase`}>
-              Specialized <span className="text-[#E07A5F]">Services</span>
-            </h2>
-            <p className="text-slate-400 font-light text-sm max-w-xl leading-relaxed">
-              Technical, structural, and custom joinery services delivered by master craftsmen.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
-            {[
-              { 
-                title: "Full Loft Renovation", 
-                desc: "End-to-end renovation management from demolition to final styling. We coordinate contractors, timelines, and budgets.", 
-                img: media?.otherImages?.[12] || "https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=2000&q=80", 
-                subs: ["Structural Modifications", "Kitchen & Bathroom Overhauls", "Complete Interior Makeover"],
-                link: "#"
-              },
-              { 
-                title: "Custom Steel & Millwork", 
-                desc: "Bespoke furniture designed and crafted to fit your space perfectly. Handmade pieces with steel profiling.", 
-                img: media?.otherImages?.[13] || "https://images.unsplash.com/photo-1538688525198-9b88f6f53126?auto=format&fit=crop&w=2000&q=80", 
-                subs: ["Built-in Wardrobes & Storage", "Custom Tables & Seating", "Modular Kitchen Units"],
-                link: "#"
-              }
-            ].map((srv, i) => (
-              <div 
-                key={i} 
-                className="group flex flex-col relative"
-              >
-                <div className="w-full aspect-[16/10] overflow-hidden border border-white/10 p-2 bg-[#1E2022] relative">
-                  <img 
-                    src={srv.img} 
-                    alt={srv.title} 
-                    className="w-full h-full object-cover grayscale opacity-70 group-hover:scale-[1.03] transition-transform duration-[1200ms] ease-out" 
-                  />
-                </div>
-
-                <div className="bg-[#1E2022] border border-white/10 p-8 sm:p-10 shadow-2xl max-w-[90%] mx-auto -mt-16 sm:-mt-24 relative z-20 hover:border-[#E07A5F] transition-all duration-300 w-[95%]">
-                  <h3 className={`${archivo.className} text-xl sm:text-2xl text-white uppercase mb-4 leading-snug`}>
-                    {srv.title}
-                  </h3>
-                  
-                  <p className="text-slate-400 text-sm leading-relaxed mb-6 font-light">
-                    {srv.desc}
-                  </p>
-
-                  <div className="flex flex-wrap gap-2 pt-6 border-t border-white/10">
-                    {srv.subs.map((sub, j) => (
-                      <span 
-                        key={j} 
-                        className="inline-flex items-center gap-1.5 text-xs bg-[#141517] text-slate-300 border border-white/10 px-3 py-1 rounded-none font-light"
-                      >
-                        <span className="w-1.5 h-1.5 rounded-full bg-[#E07A5F]" />
-                        {sub}
-                      </span>
-                    ))}
-                  </div>
-
-                  <div className="mt-8 flex justify-end">
-                    <a 
-                      href={srv.link} 
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1.5 text-xs font-bold text-slate-300 hover:text-white transition-colors tracking-wider uppercase group/link"
-                    >
-                      <span>Explore Technicals</span>
-                      <MoveRight className="w-4 h-4 transition-transform group-hover/link:translate-x-1 duration-300" />
-                    </a>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ── THE LUXE DIFFERENCE ────────────────────────────────────────────── */}
-      <section className="bg-[#1E2022] relative py-24 px-8 z-10 border-b border-white/5">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center max-w-2xl mx-auto mb-20 space-y-4">
-            <div className="inline-flex items-center justify-center gap-4">
-              <div className="w-12 h-[1px] bg-[#E07A5F]"></div>
-              <span className="text-[10px] font-bold tracking-[0.2em] text-[#E07A5F] uppercase">Our Sincerity</span>
-            </div>
-            <h2 className={`${archivo.className} text-3xl md:text-5xl text-white uppercase`}>
-              The Studio Loft <span className="text-[#E07A5F]">Difference</span>
-            </h2>
-            <p className="text-slate-400 font-light text-sm leading-relaxed max-w-sm mx-auto">
-              We combine raw textures, welding craftsmanship, and budget honesty to deliver structural shells.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {[
-              {
-                title: "Multidisciplinary Team",
-                desc: "Architects, interior designers, and stylists collaborate for holistic design solutions.",
-                icon: Users
-              },
-              {
-                title: "Premium Materials",
-                desc: "Sourced from trusted vendors—sustainable, durable, and aesthetically curated.",
-                icon: Box
-              },
-              {
-                title: "Personalized Approach",
-                desc: "Tailored design plans that respect your taste, budget, and lifestyle.",
-                icon: Compass
-              },
-              {
-                title: "Transparent Pricing",
-                desc: "Clear, upfront cost breakdowns with no hidden charges or surprises.",
-                icon: CreditCard
-              },
-              {
-                title: "Trusted Portfolio",
-                desc: "A legacy of beautiful spaces and lasting client relationships.",
-                icon: Award
-              },
-              {
-                title: "Studio & Site Access",
-                desc: "Visit our studio or we come to you—flexible consultations at your convenience.",
-                icon: Shield
-              }
-            ].map((diff, index) => (
-              <div 
-                key={index} 
-                className="bg-[#141517] p-8 border border-white/10 hover:border-[#E07A5F] transition-colors duration-500 group"
-              >
-                <div className="w-10 h-10 bg-white/5 border border-white/10 flex items-center justify-center text-[#E07A5F] mb-6 group-hover:bg-[#E07A5F] group-hover:text-white transition-colors duration-500">
-                  <diff.icon className="w-4.5 h-4.5" />
-                </div>
-                <h3 className={`${archivo.className} text-base text-white uppercase mb-2 group-hover:text-[#E07A5F] transition-colors`}>{diff.title}</h3>
-                <p className="text-xs text-slate-400 leading-loose font-light">{diff.desc}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ── DESIGN BENTO PILLARS ─────────────────────────────────────────── */}
-      <section className="bg-[#141517] py-24 px-8">
-        <div className="max-w-7xl mx-auto space-y-16">
-          <div className="text-center space-y-6 max-w-2xl mx-auto">
-            <div className="inline-flex items-center justify-center gap-4">
-              <div className="w-12 h-[1px] bg-[#E07A5F]"></div>
-              <span className="text-[10px] font-bold tracking-[0.2em] text-[#E07A5F] uppercase">Drafting Pillars</span>
-            </div>
-            <h2 className={`${archivo.className} text-3xl sm:text-5xl text-white uppercase`}>
-              Explore Our Loft <span className="text-[#E07A5F]">Pillars</span>
-            </h2>
-            <p className="text-slate-400 font-light text-sm leading-relaxed max-w-md mx-auto">
-              Review the core metrics of Luxe Interiors Studio. Industrial, structural, and turnkey spaces.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
-            {[
-              { tag: "Residential", title: "Residential Lofts", desc: "Luxury homes tailored to your lifestyle.", icon: Home },
-              { tag: "Commercial", title: "Corporate Shells", desc: "Offices and retail that elevate your brand.", icon: Compass },
-              { tag: "Bespoke", title: "Custom Welds", desc: "Bespoke pieces crafted for your space.", icon: Box },
-              { tag: "Transform", title: "Masonry Shells", desc: "Full-scale makeovers from concept to completion.", icon: Hammer }
-            ].map((hl, hidx) => (
-              <div 
-                key={hidx} 
-                className="bg-[#1E2022] p-6 border border-white/10 hover:border-[#E07A5F] hover:bg-[#141517] transition-all duration-300 flex flex-col justify-between h-56 group"
-              >
-                <div>
-                  <div className="w-9 h-9 bg-white/5 border border-white/10 flex items-center justify-center text-[#E07A5F] mb-6 group-hover:scale-105 group-hover:bg-[#E07A5F] group-hover:text-white transition-all duration-300">
-                    <hl.icon className="w-4 h-4" />
-                  </div>
-                  
-                  <span className="text-[9px] font-bold text-white uppercase tracking-widest bg-[#E07A5F] px-2.5 py-1">
-                    {hl.tag}
-                  </span>
-                  
-                  <h4 className={`${archivo.className} text-base text-white uppercase mt-4 mb-1`}>
-                    {hl.title}
-                  </h4>
-                </div>
-                
-                <p className="text-xs text-slate-400 font-light leading-relaxed pt-3 border-t border-white/10">
-                  {hl.desc}
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
     </div>
   );
 }

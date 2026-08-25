@@ -67,11 +67,11 @@ const TEMPLATES = [
   },
   { 
     id: 'template10', 
-    name: 'Template 10 - Urban Industrial', 
-    description: 'Raw grids, steel frames, and concrete textures. Tailored for industrial loft designs and rustic decors.', 
-    color: 'from-gray-500/20 to-slate-700/20',
-    accentColor: '#475569',
-    tag: 'Industrial & Raw'
+    name: 'Template 10 - Industrial Architecture & Construction', 
+    description: 'Industrial architectural layout featuring burnt orange signage, deep charcoal surfaces, gold precision rules, and turnkey civil construction calculators.', 
+    color: 'from-orange-600/25 to-stone-900/60',
+    accentColor: '#E94B26',
+    tag: 'Architecture & Civil'
   },
 ];
 

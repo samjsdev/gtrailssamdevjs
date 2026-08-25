@@ -1,187 +1,235 @@
-import { readSourceConfig, getAllSlugs } from '@/lib/dataBuilder';
-import { notFound } from 'next/navigation';
-import { Phone, Anchor, MapPin } from 'lucide-react';
-import Link from 'next/link';
 import { ReactNode } from 'react';
-import { Archivo_Black, Inter } from 'next/font/google';
+import Link from 'next/link';
+import { readSourceConfig } from '@/lib/dataBuilder';
+import { cleanClinicName, cleanClinicDescription } from '@/lib/copyCleaner';
+import { notFound } from 'next/navigation';
 import ClientNavbar from './ClientNavbar';
+import { 
+  Phone, Mail, MapPin, ShieldCheck, Compass, Building, Award, 
+  Clock, ArrowRight, Layers, FileCheck, CheckCircle2 
+} from 'lucide-react';
 
-export async function generateStaticParams() {
-  const slugs = await getAllSlugs();
-  return slugs.map((slug) => ({
-    slug: slug,
-  }));
-}
-
-const archivo = Archivo_Black({
-  subsets: ['latin'],
-  weight: ['400'],
-  display: 'swap',
-});
-
-const inter = Inter({
-  subsets: ['latin'],
-  weight: ['400', '500', '700'],
-  display: 'swap',
-});
-
-type LayoutProps = {
+interface LayoutProps {
   children: ReactNode;
   params: Promise<{ slug: string }>;
-};
+}
 
-export default async function DesignStudioLayout({ children, params }: LayoutProps) {
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
   const resolvedParams = await params;
   const { slug } = resolvedParams;
-
   const data = await readSourceConfig(slug, 'template10');
-  if (!data) return notFound();
 
-  const { clinic } = data;
+  if (!data || !data.clinic) {
+    return {
+      title: 'Architectural & Residential Construction Experts',
+      description: 'End-to-end Architectural Design, Turnkey Residential Construction, and Bespoke Interior Execution.',
+    };
+  }
+
+  const clinicName = cleanClinicName(data.clinic.name);
+  const clinicTagline = data.clinic.tagline || 'End-to-End Architectural Design & Residential Construction';
+  const clinicDescription = cleanClinicDescription(data.clinic.description, data.clinic.name);
+
+  return {
+    title: `${clinicName} | Architectural Design & Residential Construction Firm`,
+    description: `${clinicTagline}. ${clinicDescription.slice(0, 160)}...`,
+  };
+}
+
+export default async function Template10Layout({ children, params }: LayoutProps) {
+  const resolvedParams = await params;
+  const { slug } = resolvedParams;
+  const data = await readSourceConfig(slug, 'template10');
+
+  if (!data || !data.clinic) {
+    notFound();
+  }
+
+  const clinicName = cleanClinicName(data.clinic.name);
+  const clinicPhone = data.clinic.contact?.phone || '+91 98400 12345';
+  const clinicEmail = data.clinic.contact?.email || 'contact@architecturalconstruction.com';
+  const clinicAddress = data.clinic.address?.full || 'Industrial Design Studio & Engineering Center, Prime City Road';
+  const clinicTagline = data.clinic.tagline || 'A Turnkey Architecture & Residential Construction Enterprise';
+  const clinicDescription = cleanClinicDescription(data.clinic.description, data.clinic.name);
+
   const basePath = `/designwebsite/template10/${slug}`;
 
   return (
-    <div className={`${inter.className} min-h-screen bg-[#1E2022] text-[#F4F1DE] selection:bg-[#E07A5F] selection:text-white scroll-smooth flex flex-col`}>
+    <div className="min-h-screen bg-[#111111] text-[#F4F3EE] flex flex-col font-sans selection:bg-[#E94B26] selection:text-[#F4F3EE] antialiased">
+      {/* Heavy Industrial Navigation Header */}
+      <ClientNavbar
+        slug={slug}
+        clinicName={clinicName}
+        phone={clinicPhone}
+        basePath={basePath}
+      />
 
-      {/* Top info bar */}
-      <div className="bg-[#141517] border-b border-white/5 text-slate-400 py-2.5 px-8 text-xs relative z-50">
-        <div className="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-2">
-          <div className="flex items-center gap-2">
-             <Anchor className="w-3.5 h-3.5 text-[#E07A5F]" />
-             <span>{clinic.address?.full || 'Studio Location'}</span>
-          </div>
-          <div className="flex items-center gap-4 text-slate-200">
-             <a href={`tel:${clinic.contact?.phone || ''}`} className="flex items-center gap-2 hover:text-[#E07A5F] transition-colors">
-               <Phone className="w-3.5 h-3.5 text-[#E07A5F]" /> {clinic.contact?.phone || 'Call'}
-             </a>
-          </div>
-        </div>
-      </div>
-
-      {/* Sticky Shrinking Navbar */}
-      <ClientNavbar clinicName={clinic.name} basePath={basePath} />
-
-      {/* Main Content */}
-      <main className="grow relative z-10">
+      {/* Main Content Area */}
+      <main className="flex-1 w-full">
         {children}
       </main>
 
-      {/* Footer */}
-      {/* Tally Forms Contact Mockup - Restyled to cohesive Raw Industrial Dark Mode */}
-      <section className="py-24 bg-[#141517] border-t border-white/5 z-10 relative" id="tally-form">
-        <div className="max-w-4xl mx-auto px-8 w-full text-center">
-          <div className="mb-12 space-y-4">
-             <h2 className={`${archivo.className} text-3xl sm:text-4xl text-white uppercase`}>Ready to Start Your Project?</h2>
-             <p className="text-slate-400 font-light max-w-sm mx-auto text-sm">Please fill out the form below and our team will get back to you shortly.</p>
-          </div>
-          <div className="max-w-xl mx-auto w-full">
-            <form className="bg-[#1E2022] rounded-none border border-white/10 p-8 sm:p-10 text-left space-y-6 shadow-2xl">
-              <div className="space-y-2">
-                <label htmlFor="fullName" className="block text-xs font-bold uppercase tracking-wider text-slate-300 font-sans">Full Name</label>
-                <input type="text" id="fullName" placeholder="Your name" className="w-full text-white px-4 py-3 rounded-none border border-white/10 focus:outline-none focus:border-[#E07A5F] transition-colors bg-[#141517] font-sans text-sm" />
+      {/* Industrial Architectural Footer */}
+      <footer className="bg-[#111111] border-t-4 border-[#252A29] text-[#F4F3EE]">
+        {/* Top Highlight Banner */}
+        <div className="bg-[#181B1A] border-b-2 border-[#252A29] py-8 px-4 sm:px-8">
+          <div className="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-6">
+            <div className="flex items-center gap-4">
+              <div className="w-12 h-12 bg-[#E94B26] text-[#F4F3EE] flex items-center justify-center font-black text-2xl border border-[#111111] shadow-[3px_3px_0px_#C8A84E]">
+                <Building className="w-6 h-6" />
               </div>
-              <div className="space-y-2">
-                <label htmlFor="email" className="block text-xs font-bold uppercase tracking-wider text-slate-300 font-sans">Email Address</label>
-                <input type="email" id="email" placeholder="you@company.com" className="w-full text-white px-4 py-3 rounded-none border border-white/10 focus:outline-none focus:border-[#E07A5F] transition-colors bg-[#141517] font-sans text-sm" />
+              <div>
+                <h4 className="text-lg sm:text-xl font-black uppercase text-[#F4F3EE] tracking-tight">
+                  PLANNING TO BUILD YOUR DREAM RESIDENCE?
+                </h4>
+                <p className="text-xs font-mono text-[#C8A84E] tracking-wider">
+                  SCHEDULE A COMPREHENSIVE ON-SITE SPATIAL & STRUCTURAL CONSULTATION
+                </p>
               </div>
-              <div className="space-y-2">
-                <label htmlFor="message" className="block text-xs font-bold uppercase tracking-wider text-slate-300 font-sans">Message</label>
-                <textarea id="message" rows={4} placeholder="Tell us about your project" className="w-full text-white px-4 py-3 rounded-none border border-white/10 focus:outline-none focus:border-[#E07A5F] transition-colors resize-none bg-[#141517] font-sans text-sm"></textarea>
-              </div>
-              <button type="button" className="w-full py-4 mt-2 bg-[#E07A5F] hover:bg-[#C9644A] text-white font-bold rounded-none uppercase tracking-wider text-xs transition-colors shadow-lg font-sans">
-                Request a Proposal
-              </button>
-            </form>
+            </div>
+
+            <div className="flex items-center gap-4">
+              <a
+                href={`tel:${clinicPhone.replace(/[^0-9+]/g, '')}`}
+                className="px-6 py-3.5 bg-[#E94B26] text-[#F4F3EE] font-black text-xs uppercase tracking-widest border border-[#111111] shadow-[4px_4px_0px_#111111] hover:shadow-[1px_1px_0px_#111111] hover:translate-x-[2px] hover:translate-y-[2px] transition-all flex items-center gap-2"
+              >
+                <Phone className="w-4 h-4" />
+                <span>CALL DIRECT: {clinicPhone}</span>
+              </a>
+            </div>
           </div>
         </div>
-      </section>
 
-      <footer id="contact" className="bg-[#141517] border-t border-white/10 pt-16 pb-12 px-8 mt-auto text-slate-400">
-        <div className="max-w-7xl mx-auto">
-          {/* Map Embed block */}
-          {(() => {
-            const mapUrl = clinic.mapEmbedUrl || 
-              `https://maps.google.com/maps?q=${encodeURIComponent((clinic.name || '') + ' ' + (clinic.address?.full || ''))}&output=embed`;
-            return (
-              <div className="mb-16 rounded-none overflow-hidden border border-white/10 shadow-sm bg-slate-950">
-                <iframe
-                  src={mapUrl}
-                  width="100%"
-                  height="350"
-                  style={{ border: 0, filter: 'invert(90%) hue-rotate(180deg)' }}
-                  allowFullScreen
-                  loading="lazy"
-                  referrerPolicy="no-referrer-when-downgrade"
-                  title={`Location of ${clinic.name || 'our studio'}`}
-                  className="w-full block"
-                ></iframe>
+        {/* Multi-Column Grid */}
+        <div className="max-w-7xl mx-auto px-4 sm:px-8 py-16">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
+            {/* Column 1: Brand & Firm Profile */}
+            <div className="space-y-4">
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 bg-[#E94B26] text-[#F4F3EE] font-black text-xl flex items-center justify-center border border-[#111111]">
+                  {clinicName.charAt(0).toUpperCase()}
+                </div>
+                <div className="flex flex-col">
+                  <span className="text-lg font-black uppercase tracking-tight text-[#F4F3EE]">
+                    {clinicName}
+                  </span>
+                  <span className="text-[10px] font-bold uppercase tracking-[0.25em] text-[#C8A84E]">
+                    ARCHITECTS & BUILDERS
+                  </span>
+                </div>
               </div>
-            );
-          })()}
-
-          {/* Footer Grid */}
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8 mb-16">
-            <div className="lg:col-span-2 space-y-6">
-              <h4 className={`${archivo.className} text-xl text-white uppercase`}>{clinic.name || 'Loft Studio'}</h4>
-              <p className="font-light leading-relaxed max-w-sm text-[15px]">{clinic.description || 'Shaping raw architectural volumes with industrial details, rustic brick walls, and concrete flooring.'}</p>
+              <p className="text-xs text-[#F4F3EE]/75 leading-relaxed font-sans">
+                {clinicDescription.slice(0, 190)}...
+              </p>
+              <div className="pt-2">
+                <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-[#252A29] text-[#C8A84E] text-[10px] font-bold uppercase tracking-widest border border-[#C8A84E]/40">
+                  <ShieldCheck className="w-3.5 h-3.5 text-[#E94B26]" />
+                  10-YEAR STRUCTURAL WARRANTY
+                </span>
+              </div>
             </div>
 
-            <div>
-              <h5 className="text-white font-semibold mb-6 uppercase text-xs tracking-wider">CONTACT DIRECT</h5>
-              <ul className="space-y-4 font-light text-sm">
-                <li className="flex items-start gap-3">
-                  <MapPin className="w-4 h-4 mt-1 shrink-0 text-[#E07A5F]" />
-                  <span>{clinic.address?.full || 'Studio Location'}</span>
+            {/* Column 2: 3 Core Pillars */}
+            <div className="space-y-3">
+              <h4 className="text-xs font-black uppercase tracking-[0.25em] text-[#C8A84E] border-b-2 border-[#252A29] pb-2">
+                OUR THREE CORE PILLARS
+              </h4>
+              <ul className="space-y-2 text-xs font-mono text-[#F4F3EE]/80">
+                <li className="flex items-center gap-2 hover:text-[#E94B26] transition-colors">
+                  <span className="text-[#E94B26] font-bold">&gt;</span>
+                  <Link href={`${basePath}/services`}>Architectural 3D BIM & Elevations</Link>
                 </li>
-                <li className="flex items-start gap-3">
-                  <Phone className="w-4 h-4 mt-1 shrink-0 text-[#E07A5F]" />
-                  <span>{clinic.contact?.phone || 'Phone Number'}</span>
+                <li className="flex items-center gap-2 hover:text-[#E94B26] transition-colors">
+                  <span className="text-[#E94B26] font-bold">&gt;</span>
+                  <Link href={`${basePath}/services`}>Turnkey Residential Construction</Link>
+                </li>
+                <li className="flex items-center gap-2 hover:text-[#E94B26] transition-colors">
+                  <span className="text-[#E94B26] font-bold">&gt;</span>
+                  <Link href={`${basePath}/services`}>Bespoke Luxury Interior Fitouts</Link>
+                </li>
+                <li className="flex items-center gap-2 hover:text-[#E94B26] transition-colors">
+                  <span className="text-[#E94B26] font-bold">&gt;</span>
+                  <Link href={`${basePath}/services`}>Structural Engineering & Soil Audits</Link>
+                </li>
+                <li className="flex items-center gap-2 hover:text-[#E94B26] transition-colors">
+                  <span className="text-[#E94B26] font-bold">&gt;</span>
+                  <Link href={`${basePath}/services`}>Building Sanctions & Approvals</Link>
                 </li>
               </ul>
             </div>
 
-            <div>
-              <h5 className="text-white font-semibold mb-6 uppercase text-xs tracking-wider">NAVIGATION</h5>
-              <ul className="space-y-3 text-sm">
-                <li><Link href={`${basePath}`} className="hover:text-white transition-colors">Home</Link></li>
-                <li><Link href={`${basePath}/about`} className="hover:text-white transition-colors">About Us</Link></li>
-                <li><Link href={`${basePath}/services`} className="hover:text-white transition-colors">Services</Link></li>
-                <li><Link href={`${basePath}/gallery`} className="hover:text-white transition-colors">Gallery</Link></li>
-                <li><Link href={`${basePath}/contact`} className="hover:text-white transition-colors">Contact Us</Link></li>
+            {/* Column 3: Quick Direct Navigation */}
+            <div className="space-y-3">
+              <h4 className="text-xs font-black uppercase tracking-[0.25em] text-[#C8A84E] border-b-2 border-[#252A29] pb-2">
+                PROJECTS & ESTIMATION
+              </h4>
+              <ul className="space-y-2 text-xs font-mono text-[#F4F3EE]/80">
+                <li className="flex items-center gap-2 hover:text-[#E94B26] transition-colors">
+                  <span className="text-[#E94B26] font-bold">&gt;</span>
+                  <Link href={`${basePath}#cost-calculator`}>Construction Cost Calculator</Link>
+                </li>
+                <li className="flex items-center gap-2 hover:text-[#E94B26] transition-colors">
+                  <span className="text-[#E94B26] font-bold">&gt;</span>
+                  <Link href={`${basePath}#packages`}>Standard, Premium & Luxury Packages</Link>
+                </li>
+                <li className="flex items-center gap-2 hover:text-[#E94B26] transition-colors">
+                  <span className="text-[#E94B26] font-bold">&gt;</span>
+                  <Link href={`${basePath}/gallery`}>Completed Villa Projects Showcase</Link>
+                </li>
+                <li className="flex items-center gap-2 hover:text-[#E94B26] transition-colors">
+                  <span className="text-[#E94B26] font-bold">&gt;</span>
+                  <Link href={`${basePath}/about`}>Chief Architect & Engineering Team</Link>
+                </li>
+                <li className="flex items-center gap-2 hover:text-[#E94B26] transition-colors">
+                  <span className="text-[#E94B26] font-bold">&gt;</span>
+                  <Link href={`${basePath}/contact`}>Book Technical Site Inspection</Link>
+                </li>
               </ul>
+            </div>
+
+            {/* Column 4: Contact & Office Coordinates */}
+            <div className="space-y-3">
+              <h4 className="text-xs font-black uppercase tracking-[0.25em] text-[#C8A84E] border-b-2 border-[#252A29] pb-2">
+                HEAD OFFICE & COORDINATES
+              </h4>
+              <div className="space-y-3 text-xs text-[#F4F3EE]/85 font-mono">
+                <div className="flex items-start gap-2.5">
+                  <MapPin className="w-4 h-4 text-[#E94B26] shrink-0 mt-0.5" />
+                  <span className="leading-tight">{clinicAddress}</span>
+                </div>
+                <div className="flex items-center gap-2.5">
+                  <Phone className="w-4 h-4 text-[#E94B26] shrink-0" />
+                  <a href={`tel:${clinicPhone.replace(/[^0-9+]/g, '')}`} className="hover:text-[#E94B26]">
+                    {clinicPhone}
+                  </a>
+                </div>
+                <div className="flex items-center gap-2.5">
+                  <Mail className="w-4 h-4 text-[#E94B26] shrink-0" />
+                  <a href={`mailto:${clinicEmail}`} className="hover:text-[#E94B26]">
+                    {clinicEmail}
+                  </a>
+                </div>
+                <div className="flex items-center gap-2.5 text-[#C8A84E] text-[11px]">
+                  <Clock className="w-4 h-4 shrink-0" />
+                  <span>MON - SAT: 09:00 AM - 07:30 PM</span>
+                </div>
+              </div>
             </div>
           </div>
 
-          {/* Subfooter */}
-          <div className="pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-slate-500">
-            <p>&copy; {new Date().getFullYear()} {clinic.name || 'Studio'}. ALL RIGHTS RESERVED.</p>
-            <div className="flex gap-6">
-              <a href="#" className="hover:text-white transition-colors">Privacy Policy</a>
-              <a href="#" className="hover:text-white transition-colors">Terms of Service</a>
+          {/* Bottom Hard Industrial Bar */}
+          <div className="mt-12 pt-8 border-t-2 border-[#252A29] flex flex-wrap items-center justify-between gap-4 text-[11px] font-mono text-[#F4F3EE]/50">
+            <div>
+              &copy; {new Date().getFullYear()} {clinicName}. ALL RIGHTS RESERVED. ARCHITECTURAL & RESIDENTIAL CIVIL ENTERPRISE.
+            </div>
+            <div className="flex items-center gap-4 text-[#C8A84E]">
+              <span>STANDARDS: IS 456 &bull; NBC 2016</span>
+              <span>•</span>
+              <span>ZERO COST ESCALATION CONTRACTS</span>
             </div>
           </div>
         </div>
       </footer>
-          {/* WhatsApp Floating Bubble */}
-      {(() => {
-        const waPhone = clinic.contact?.phone?.replace(/\D/g, '') || '919751396117';
-        const waText = `Hi, I'm interested in booking a design consultation at ${clinic.name || 'your studio'}!`;
-        const waLink = `https://wa.me/${waPhone}?text=${encodeURIComponent(waText)}`;
-        return (
-          <a
-            href={waLink}
-            target="_blank"
-            rel="noreferrer"
-            aria-label="Chat on WhatsApp"
-            className="fixed bottom-6 right-6 z-50 w-16 h-16 bg-[#25D366] hover:bg-[#1db954] rounded-full flex items-center justify-center shadow-2xl transition-all hover:scale-110 active:scale-95"
-            style={{ boxShadow: '0 8px 32px rgba(37,211,102,0.4)' }}
-          >
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" className="w-8 h-8">
-              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
-            </svg>
-          </a>
-        );
-      })()}
-</div>
+    </div>
   );
 }

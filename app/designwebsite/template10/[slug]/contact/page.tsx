@@ -1,140 +1,242 @@
 import { readSourceConfig } from '@/lib/dataBuilder';
+import { cleanClinicName } from '@/lib/copyCleaner';
 import { notFound } from 'next/navigation';
-import { Archivo_Black, Inter } from 'next/font/google';
-import { MessageSquare, Phone, MapPin, Send, Sparkles } from 'lucide-react';
+import { 
+  Phone, Mail, MapPin, Clock, ShieldCheck, 
+  Building, Compass, ArrowRight, CheckCircle2, HardHat 
+} from 'lucide-react';
 
-const archivo = Archivo_Black({
-  subsets: ['latin'],
-  weight: ['400'],
-  display: 'swap',
-});
+interface PageProps {
+  params: Promise<{ slug: string }>;
+  searchParams?: Promise<{ area?: string; package?: string }>;
+}
 
-const inter = Inter({
-  subsets: ['latin'],
-  weight: ['400', '500', '700'],
-  display: 'swap',
-});
-
-export default async function ContactPage({ params }: { params: Promise<{ slug: string }> }) {
+export default async function Template10ContactPage({ params, searchParams }: PageProps) {
   const resolvedParams = await params;
   const { slug } = resolvedParams;
+  const resolvedSearchParams = searchParams ? await searchParams : {};
   const data = await readSourceConfig(slug, 'template10');
-  if (!data) return notFound();
 
-  const { clinic } = data;
-  const basePath = `/designwebsite/template10/${slug}`;
+  if (!data || !data.clinic) {
+    notFound();
+  }
+
+  const clinicName = cleanClinicName(data.clinic.name);
+  const clinicTagline = data.clinic.tagline || 'Direct Engineering Coordination & Technical Consultation';
+  const clinicPhone = data.clinic.contact?.phone || '+91 81100 00384';
+  const clinicEmail = data.clinic.contact?.email || 'contact@architecturalconstruction.com';
+  const clinicAddress = data.clinic.address?.full || 'Engineering Center & Corporate Studio, Prime City Road';
+
+  const defaultArea = resolvedSearchParams?.area || '2400';
+  const defaultPackage = resolvedSearchParams?.package || 'premium';
 
   return (
-    <div className={`${inter.className} text-[#F4F1DE] min-h-screen pt-44 pb-32 bg-[#1E2022] selection:bg-[#E07A5F] selection:text-white`}>
-      {/* Symmetrical dot grid overlay */}
-      <div className="absolute inset-0 pointer-events-none z-0">
-        <div className="absolute inset-0 bg-[radial-gradient(rgba(255,255,255,0.03)_1px,transparent_1px)] [background-size:32px_32px] opacity-60" />
-      </div>
-
-      <div className="max-w-7xl mx-auto px-8 relative z-10 space-y-16">
-        
-        {/* Page Hero Header */}
-        <section className="text-center space-y-4 max-w-3xl mx-auto">
-          <span className="text-xs font-bold text-[#E07A5F] tracking-[0.2em] uppercase bg-white/5 border border-white/10 px-3 py-1">
-            LAUNCH LOFT PLAN
-          </span>
-          <h1 className={`${archivo.className} text-4xl sm:text-5xl lg:text-7xl text-white uppercase leading-[1.05]`}>
-            Visit Our <span className="text-[#E07A5F]">Studio</span>
-          </h1>
-          <p className="text-slate-400 font-light leading-relaxed text-sm md:text-base max-w-lg mx-auto mt-4">
-            Let's collaborate on your custom loft volumes. Reach out to book a workshop walkthrough or request a sizing checklist.
-          </p>
-        </section>
-
-        {/* Contact Split Columns */}
-        <div className="grid lg:grid-cols-12 gap-12 items-start pt-8">
-          
-          {/* Left Column: Direct Coordinates details */}
-          <div className="lg:col-span-5 space-y-8 bg-[#141517] p-8 md:p-12 border border-white/10 shadow-2xl relative overflow-hidden">
-            <div className="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-bl-full pointer-events-none"></div>
-            
-            <div className={`${archivo.className} flex items-center gap-3 mb-8 text-xl relative z-10 text-white uppercase`}>
-              <Sparkles className="text-[#E07A5F] w-5 h-5 shrink-0"/> Coordinates
+    <div className="w-full bg-[#111111] text-[#F4F3EE]">
+      {/* ─── Hero Banner Section ─── */}
+      <section id="contact-hero" className="relative py-20 sm:py-28 bg-[#181B1A] border-b-4 border-[#252A29]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-8">
+          <div className="max-w-3xl">
+            <div className="inline-flex items-center gap-2 px-3 py-1 bg-[#E94B26] text-[#F4F3EE] text-xs font-black uppercase tracking-widest mb-4 border border-[#111111]">
+              <HardHat className="w-3.5 h-3.5" />
+              <span>DIRECT TECHNICAL ENQUIRY & ESTIMATES</span>
             </div>
-
-            <div className="space-y-6 relative z-10">
-              <div className="flex items-start gap-4">
-                <div className="w-10 h-10 bg-[#1E2022] flex items-center justify-center text-white shrink-0 border border-white/10">
-                  <MapPin className="w-4 h-4 text-[#E07A5F]" />
-                </div>
-                <div>
-                  <h4 className="text-[10px] font-bold uppercase tracking-widest text-slate-500">Showroom Location</h4>
-                  <p className="text-sm text-slate-300 mt-2 leading-relaxed font-light">
-                    {clinic.address?.full || '1/20, Anna Street, Velachery - Tambaram Main Rd, Pallikaranai, Chennai, Tamil Nadu 600100'}
-                  </p>
-                </div>
-              </div>
-
-              <div className="flex items-start gap-4">
-                <div className="w-10 h-10 bg-[#1E2022] flex items-center justify-center text-white shrink-0 border border-white/10">
-                  <Phone className="w-4 h-4 text-[#E07A5F]" />
-                </div>
-                <div>
-                  <h4 className="text-[10px] font-bold uppercase tracking-widest text-slate-500">Direct Call</h4>
-                  <p className="text-base text-white font-medium mt-1 font-sans">
-                    <a href={`tel:${clinic.contact?.phone || ''}`} className="hover:text-[#E07A5F] transition-colors">
-                      {clinic.contact?.phone || 'Contact Number'}
-                    </a>
-                  </p>
-                  <p className="text-[10px] text-slate-500 font-light mt-1">Mon-Sat · 9:00 AM - 6:00 PM</p>
-                </div>
-              </div>
-            </div>
-
-            <div className="flex items-center justify-between p-6 bg-[#1E2022] border border-white/10 rounded-none relative z-10 mt-8">
-              <div>
-                <h4 className={`${archivo.className} text-white uppercase text-sm`}>WhatsApp Chat</h4>
-                <p className="text-[10px] text-slate-400 mt-1 font-light">Instant volume planning.</p>
-              </div>
-              {(() => {
-                const waPhone = clinic.contact?.phone?.replace(/\D/g, '') || '919751396117';
-                const waText = `Hi, I'm interested in booking a design consultation at ${clinic.name || 'your studio'}!`;
-                const waLink = `https://wa.me/${waPhone}?text=${encodeURIComponent(waText)}`;
-                return (
-                  <a 
-                    href={waLink} 
-                    target="_blank" 
-                    rel="noopener noreferrer" 
-                    className="bg-[#25D366] hover:bg-[#1db954] text-white px-5 py-2.5 rounded-none font-bold shadow-md hover:scale-[1.02] active:scale-[0.98] transition-all text-[9px] uppercase tracking-widest"
-                  >
-                    Chat Now
-                  </a>
-                );
-              })()}
-            </div>
-          </div>
-
-          {/* Right Column: Industrial enquiry Form */}
-          <div className="lg:col-span-7 bg-[#141517] p-8 md:p-12 border border-white/10 shadow-2xl relative overflow-hidden">
-            <div className={`${archivo.className} flex items-center gap-3 mb-8 text-xl relative z-10 text-white uppercase`}>
-              <MessageSquare className="text-[#E07A5F] w-5 h-5 shrink-0"/> Log Project Shell
-            </div>
-            
-            <form className="space-y-6 relative z-10">
-              <div className="space-y-2">
-                <label htmlFor="fullName" className="block text-[10px] font-bold uppercase tracking-wider text-slate-400 font-sans">Full Name</label>
-                <input type="text" id="fullName" placeholder="Your name" className="w-full text-white px-4 py-3 rounded-none border border-white/10 focus:outline-none focus:border-[#E07A5F] transition-colors bg-[#1E2022] font-sans text-sm" />
-              </div>
-              <div className="space-y-2">
-                <label htmlFor="email" className="block text-[10px] font-bold uppercase tracking-wider text-slate-400 font-sans">Email Address</label>
-                <input type="email" id="email" placeholder="you@company.com" className="w-full text-white px-4 py-3 rounded-none border border-white/10 focus:outline-none focus:border-[#E07A5F] transition-colors bg-[#1E2022] font-sans text-sm" />
-              </div>
-              <div className="space-y-2">
-                <label htmlFor="message" className="block text-[10px] font-bold uppercase tracking-wider text-slate-400 font-sans">Loft Configurations</label>
-                <textarea id="message" rows={5} placeholder="Describe exposed beams, raw concrete ideas, specific clearances, or custom weld layouts..." className="w-full text-white px-4 py-3 rounded-none border border-white/10 focus:outline-none focus:border-[#E07A5F] transition-colors resize-none bg-[#1E2022] font-sans text-sm"></textarea>
-              </div>
-              <button type="button" className="w-full py-4 mt-2 bg-[#E07A5F] hover:bg-[#C9644A] text-white font-bold rounded-none uppercase tracking-wider text-xs transition-colors shadow-lg font-sans flex items-center justify-center gap-2">
-                Log Project Plan <Send className="w-3.5 h-3.5" />
-              </button>
-            </form>
+            <h1 className="text-4xl sm:text-6xl font-black uppercase text-[#F4F3EE] tracking-tight leading-none mb-4">
+              CONNECT WITH OUR <span className="text-[#E94B26]">ENGINEERING DESK</span>
+            </h1>
+            <p className="text-sm sm:text-base font-bold uppercase tracking-wider text-[#C8A84E]">
+              {clinicName} &bull; {clinicTagline}
+            </p>
           </div>
         </div>
-      </div>
+      </section>
+
+      {/* ─── Contact Details & Form Section ─── */}
+      <section id="contact-details" className="py-20 px-4 sm:px-8 bg-[#111111] border-b-4 border-[#252A29]">
+        <div className="max-w-7xl mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
+            {/* Left: Office Coordinates & Credentials */}
+            <div className="lg:col-span-5 space-y-8">
+              <div>
+                <div className="inline-block px-3 py-1 bg-[#252A29] text-[#C8A84E] text-xs font-bold uppercase tracking-[0.25em] border border-[#C8A84E]/40 mb-3">
+                  CENTRAL COORDINATES
+                </div>
+                <h2 className="text-3xl font-black uppercase text-[#F4F3EE] tracking-tight">
+                  CORPORATE STUDIO & SITE OFFICE
+                </h2>
+                <p className="text-xs text-[#F4F3EE]/70 font-mono mt-2">
+                  SCHEDULE AN IN-PERSON SPATIAL BLUEPRINT REVIEW WITH OUR CHIEF ARCHITECTS
+                </p>
+              </div>
+
+              <div className="space-y-6 text-xs font-mono text-[#F4F3EE]/90">
+                <div className="bg-[#181B1A] p-6 border-2 border-[#252A29] flex items-start gap-4">
+                  <div className="w-10 h-10 bg-[#252A29] text-[#E94B26] flex items-center justify-center shrink-0 border border-[#C8A84E]/40">
+                    <MapPin className="w-5 h-5" />
+                  </div>
+                  <div>
+                    <span className="text-[10px] font-bold uppercase text-[#C8A84E] tracking-widest block mb-1">
+                      STUDIO & CIVIL HQ
+                    </span>
+                    <p className="font-sans text-sm text-[#F4F3EE] leading-snug">
+                      {clinicAddress}
+                    </p>
+                  </div>
+                </div>
+
+                <div className="bg-[#181B1A] p-6 border-2 border-[#252A29] flex items-start gap-4">
+                  <div className="w-10 h-10 bg-[#252A29] text-[#E94B26] flex items-center justify-center shrink-0 border border-[#C8A84E]/40">
+                    <Phone className="w-5 h-5" />
+                  </div>
+                  <div>
+                    <span className="text-[10px] font-bold uppercase text-[#C8A84E] tracking-widest block mb-1">
+                      DIRECT CONSULTATION HOTLINE
+                    </span>
+                    <a
+                      href={`tel:${clinicPhone.replace(/[^0-9+]/g, '')}`}
+                      className="text-lg font-black text-[#E94B26] hover:underline"
+                    >
+                      {clinicPhone}
+                    </a>
+                    <p className="text-[11px] text-[#F4F3EE]/60 mt-0.5">Available Mon to Sat (09:00 AM - 07:30 PM)</p>
+                  </div>
+                </div>
+
+                <div className="bg-[#181B1A] p-6 border-2 border-[#252A29] flex items-start gap-4">
+                  <div className="w-10 h-10 bg-[#252A29] text-[#E94B26] flex items-center justify-center shrink-0 border border-[#C8A84E]/40">
+                    <Mail className="w-5 h-5" />
+                  </div>
+                  <div>
+                    <span className="text-[10px] font-bold uppercase text-[#C8A84E] tracking-widest block mb-1">
+                      PROJECT ESTIMATIONS & TENDERS
+                    </span>
+                    <a
+                      href={`mailto:${clinicEmail}`}
+                      className="text-sm font-bold text-[#F4F3EE] hover:text-[#E94B26]"
+                    >
+                      {clinicEmail}
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+              <div className="p-6 bg-[#252A29] border border-[#C8A84E]/50">
+                <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-[#C8A84E] mb-2">
+                  <ShieldCheck className="w-4 h-4 text-[#E94B26]" />
+                  <span>OUR FIXED COMMITMENTS</span>
+                </div>
+                <p className="text-xs text-[#F4F3EE]/80 font-sans leading-relaxed">
+                  We guarantee 100% fixed pricing with no escalations during construction, milestone-based payment schedules, and a legally bonded 10-year structural warranty.
+                </p>
+              </div>
+            </div>
+
+            {/* Right: Technical Consultation Request Form */}
+            <div className="lg:col-span-7 bg-[#181B1A] p-8 sm:p-10 border-4 border-[#252A29] shadow-[8px_8px_0px_#111111]">
+              <div className="border-b-2 border-[#252A29] pb-4 mb-6">
+                <span className="text-xs font-mono text-[#C8A84E] uppercase tracking-widest block mb-1">
+                  STAGE 01 ENQUIRY
+                </span>
+                <h3 className="text-2xl sm:text-3xl font-black uppercase text-[#F4F3EE] tracking-tight">
+                  REQUEST DETAILED ESTIMATE & FREE SITE AUDIT
+                </h3>
+              </div>
+
+              <form className="space-y-5">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                  <div>
+                    <label className="block text-xs font-mono text-[#C8A84E] uppercase tracking-wider mb-2">
+                      YOUR FULL NAME *
+                    </label>
+                    <input
+                      type="text"
+                      required
+                      placeholder="e.g. Anand Kumar"
+                      className="w-full bg-[#111111] border-2 border-[#252A29] focus:border-[#E94B26] p-3.5 text-xs text-[#F4F3EE] font-mono focus:outline-none"
+                    />
+                  </div>
+
+                  <div>
+                    <label className="block text-xs font-mono text-[#C8A84E] uppercase tracking-wider mb-2">
+                      PHONE NUMBER *
+                    </label>
+                    <input
+                      type="tel"
+                      required
+                      placeholder="e.g. +91 98400 12345"
+                      className="w-full bg-[#111111] border-2 border-[#252A29] focus:border-[#E94B26] p-3.5 text-xs text-[#F4F3EE] font-mono focus:outline-none"
+                    />
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                  <div>
+                    <label className="block text-xs font-mono text-[#C8A84E] uppercase tracking-wider mb-2">
+                      PLOT / PROJECT LOCATION *
+                    </label>
+                    <input
+                      type="text"
+                      required
+                      placeholder="e.g. ECR / Anna Nagar"
+                      className="w-full bg-[#111111] border-2 border-[#252A29] focus:border-[#E94B26] p-3.5 text-xs text-[#F4F3EE] font-mono focus:outline-none"
+                    />
+                  </div>
+
+                  <div>
+                    <label className="block text-xs font-mono text-[#C8A84E] uppercase tracking-wider mb-2">
+                      APPROX. BUILT-UP AREA (SQ.FT)
+                    </label>
+                    <input
+                      type="number"
+                      defaultValue={defaultArea}
+                      placeholder="e.g. 2400"
+                      className="w-full bg-[#111111] border-2 border-[#252A29] focus:border-[#E94B26] p-3.5 text-xs text-[#F4F3EE] font-mono focus:outline-none"
+                    />
+                  </div>
+                </div>
+
+                <div>
+                  <label className="block text-xs font-mono text-[#C8A84E] uppercase tracking-wider mb-2">
+                    PRIMARY SERVICE REQUIREMENT
+                  </label>
+                  <select
+                    defaultValue={defaultPackage === 'luxury' ? 'villa' : 'turnkey'}
+                    className="w-full bg-[#111111] border-2 border-[#252A29] focus:border-[#E94B26] p-3.5 text-xs text-[#F4F3EE] font-mono focus:outline-none"
+                  >
+                    <option value="turnkey">Turnkey Residential Construction (Civil + Design + MEP)</option>
+                    <option value="architecture">Architectural Blueprint & 3D BIM Elevations Only</option>
+                    <option value="villa">Ultra-Luxury Villa Turnkey Execution</option>
+                    <option value="interior">Luxury Interior Fit-out & Modular Woodwork</option>
+                    <option value="consultation">Site Soil Audit & Feasibility Assessment</option>
+                  </select>
+                </div>
+
+                <div>
+                  <label className="block text-xs font-mono text-[#C8A84E] uppercase tracking-wider mb-2">
+                    PROJECT NOTES / TIMELINE REQUIREMENTS
+                  </label>
+                  <textarea
+                    rows={4}
+                    placeholder="Describe your plot dimensions, expected start date, architectural style preferences..."
+                    className="w-full bg-[#111111] border-2 border-[#252A29] focus:border-[#E94B26] p-3.5 text-xs text-[#F4F3EE] font-mono focus:outline-none"
+                  ></textarea>
+                </div>
+
+                <button
+                  type="button"
+                  className="w-full py-4 bg-[#E94B26] text-[#F4F3EE] font-black text-xs uppercase tracking-widest border border-[#111111] shadow-[4px_4px_0px_#111111] hover:shadow-[1px_1px_0px_#111111] hover:translate-x-[2px] hover:translate-y-[2px] transition-all flex items-center justify-center gap-2"
+                >
+                  <span>SUBMIT FOR FREE CONSULTATION & BOQ</span>
+                  <ArrowRight className="w-4 h-4" />
+                </button>
+
+                <p className="text-[11px] text-[#F4F3EE]/50 font-mono text-center">
+                  Your project information is protected under standard non-disclosure policy. No marketing spam.
+                </p>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
     </div>
   );
 }
