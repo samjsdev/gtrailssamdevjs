@@ -15,10 +15,16 @@ const TEMPLATE_OPTIONS = [
   { id: 'template2', name: 'Template 2 (Garamond Luxe theme layout)' },
   { id: 'template3', name: 'Template 3 (Reference theme layout)' },
   { id: 'template4', name: 'Template 4 (Minimal Creative theme layout)' },
+  { id: 'template5', name: 'Template 5 (Architectural, Civil & Interior layout)' },
   { id: 'template6', name: 'Template 6 (Glassmorphism Flow layout)' },
   { id: 'template7', name: 'Template 7 (Lumina Interior layout)' },
   { id: 'template8', name: 'Template 8 (Property Match layout)' },
-  { id: 'template10', name: 'Template 10 (Industrial Architecture & Construction layout)' }
+  { id: 'template10', name: 'Template 10 (Industrial Architecture & Construction layout)' },
+  { id: 'template11', name: 'Template 11 (Architectural Atelier layout)' },
+  { id: 'template12', name: 'Template 12 (Organic Architecture & Villas layout)' },
+  { id: 'template13', name: 'Template 13 (Monolithic Luxury Architecture layout)' },
+  { id: 'template14', name: 'Template 14 (Curated Architectural Monograph layout)' },
+  { id: 'template17', name: 'Template 17 (Civic & Residential Architecture layout)' }
 ];
 
 import { TEMPLATE_SCHEMAS, SHARED_PAGES } from './schemas';

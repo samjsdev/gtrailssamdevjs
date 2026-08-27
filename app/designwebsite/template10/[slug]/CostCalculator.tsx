@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-import { Calculator, Check, ArrowRight, ShieldCheck, Building2, Sparkles, Sliders } from 'lucide-react';
+import { Calculator, Check, ArrowRight, ShieldCheck, Building, Sparkles, Sliders, CheckCircle2, Layers } from 'lucide-react';
 
 interface CostCalculatorProps {
   basePath: string;
@@ -11,56 +11,59 @@ interface CostCalculatorProps {
 const PACKAGES = [
   {
     id: 'standard',
-    name: 'STANDARD CIVIL & DESIGN',
+    name: 'STANDARD CIVIL & ARCHITECTURE',
     rate: 2150,
     tag: 'ESSENTIAL HOMES',
     popular: false,
+    color: '#252A29',
     specs: [
-      'Architectural 2D Plan & 3D Front Elevation',
-      'Fe500 Grade TMT Steel (Tata / JSW)',
-      'UltraTech / Ramco 53-Grade Cement',
-      'First-Quality Wire-Cut Red Bricks',
-      'Somany / Kajaria 2x2 Vitrified Tiles',
-      'Parryware / Hindware Sanitary Fittings',
+      'Architectural 2D Working Plan & 3D Facade Elevation',
+      'Fe500 Grade TMT Steel (Tata Tiscon / JSW Neosteel)',
+      'UltraTech / Ramco 53-Grade High-Strength Cement',
+      'First-Quality Wire-Cut Red Clay Bricks & River Sand',
+      'Kajaria / Somany 2x2 Double Charged Vitrified Tiles',
+      'Parryware / Hindware Sanitary & CP Fixtures',
     ],
   },
   {
     id: 'premium',
-    name: 'PREMIUM ARCHITECTURAL',
+    name: 'PREMIUM ARCHITECTURAL TURNKEY',
     rate: 2750,
     tag: 'MOST POPULAR TIER',
     popular: true,
+    color: '#E94B26',
     specs: [
-      'Comprehensive 3D BIM & Vastu Architectural Blueprint',
-      'Fe550D Seismic Corrosion-Resistant TMT Steel',
-      '4x2 Large Format Glazed Vitrified Tiles',
-      'Jaquar / Kohler Concealed Diverters & CP Fittings',
-      'German Profile Soundproof UPVC Windows',
-      'Custom Modular Kitchen Baseline Provision',
-      'Complete 400-Point Civil Quality Audit',
+      'Complete 3D BIM Architectural Blueprint & Vastu Coordination',
+      'Fe550D Seismic & Corrosion-Resistant Structural TMT Steel',
+      'M20 Grade Ready-Mix Concrete with 28-Day Strength Lab Reports',
+      '4x2 Large Format Glazed Vitrified Tiles (GVT/PGVT)',
+      'Jaquar / Kohler Concealed Diverters & Designer Fixtures',
+      'German Profile Soundproof UPVC Windows with Mesh',
+      'Custom Modular Kitchen Baseline Provision & 400-Point Audit',
     ],
   },
   {
     id: 'luxury',
-    name: 'ULTRA LUXURY TURNKEY',
+    name: 'ULTRA LUXURY VILLA BESPOKE',
     rate: 3500,
-    tag: 'VILLA SPECIAL',
+    tag: 'SIGNATURE VILLA',
     popular: false,
+    color: '#C8A84E',
     specs: [
-      'Full Cinematic 3D Walkthrough & Interior Rendering',
-      'Imported Italian Marble in Living & Dining Spaces',
-      'Grohe / Toto Sensor Bath Fixtures',
-      'First-Grade Burma Teakwood Doors & Heavy Frames',
-      'Complete Luxury Modular Kitchen & Wardrobe Joinery',
-      'VRV Air Conditioning & Smart Home Automation Wiring',
-      'Dedicated Senior Project Manager & Daily Video Audits',
+      'Cinematic 3D Video Walkthroughs & Photoreal Interior Renderings',
+      'Imported Bookmatched Italian Marble in Living, Foyer & Dining',
+      'Grohe / Toto Sensor-Activated Luxury Bathrooms & Rain Showers',
+      'Solid First-Grade Burma Teakwood Doors & Custom Heavy Frames',
+      'Full-Scale Luxury Modular Kitchen with Blum Motorized Hardware',
+      'Concealed VRV Air-Conditioning & Smart Automation Conduits',
+      'Dedicated Senior Project Manager with Daily High-Res Video Logs',
     ],
   },
 ];
 
 export default function CostCalculator({ basePath }: CostCalculatorProps) {
   const [selectedPkg, setSelectedPkg] = useState(PACKAGES[1]);
-  const [builtUpArea, setBuiltUpArea] = useState<number>(2400);
+  const [builtUpArea, setBuiltUpArea] = useState<number>(2500);
   const [floors, setFloors] = useState<number>(2);
 
   const totalSqFt = builtUpArea;
@@ -79,37 +82,45 @@ export default function CostCalculator({ basePath }: CostCalculatorProps) {
   };
 
   return (
-    <div className="w-full bg-[#181B1A] border-4 border-[#252A29] p-6 sm:p-10 shadow-[8px_8px_0px_#111111]">
-      {/* Header */}
-      <div className="flex flex-wrap items-center justify-between gap-4 border-b-2 border-[#252A29] pb-6 mb-8">
+    <div className="w-full bg-[#252A29] border-4 border-[#111111] p-6 sm:p-10 shadow-[10px_10px_0px_#111111] text-[#F4F3EE] relative overflow-hidden">
+      {/* Decorative Blueprint Corner Mark */}
+      <div className="absolute top-0 right-0 w-24 h-24 border-b-2 border-l-2 border-[#C8A84E]/30 pointer-events-none" />
+
+      {/* Header Band */}
+      <div className="flex flex-wrap items-center justify-between gap-4 border-b-2 border-[#111111] pb-6 mb-8">
         <div>
-          <div className="inline-flex items-center gap-2 px-3 py-1 bg-[#E94B26] text-[#F4F3EE] text-xs font-black uppercase tracking-widest mb-2 border border-[#111111]">
+          <div className="inline-flex items-center gap-2 px-3 py-1 bg-[#E94B26] text-[#F4F3EE] text-xs font-black uppercase tracking-[0.2em] mb-2.5 border border-[#111111] shadow-[2px_2px_0px_#111111]">
             <Calculator className="w-3.5 h-3.5" />
-            <span>REAL-TIME ESTIMATOR</span>
+            <span>INTERACTIVE ESTIMATION ENGINE</span>
           </div>
           <h3 className="text-2xl sm:text-4xl font-black uppercase text-[#F4F3EE] tracking-tight">
             RESIDENTIAL CONSTRUCTION & DESIGN COST CALCULATOR
           </h3>
-          <p className="text-xs sm:text-sm text-[#F4F3EE]/70 font-mono mt-1">
-            ESTIMATE YOUR TURNKEY ARCHITECTURAL & RESIDENTIAL CONSTRUCTION BUDGET TRANSPARENTLY
+          <p className="text-xs sm:text-sm text-[#C8A84E] font-mono mt-1 tracking-wider uppercase">
+            CALCULATE YOUR ESTIMATED TURNKEY BUDGET BASED ON BUILT-UP AREA & ARCHITECTURAL PACKAGE TIER
           </p>
         </div>
-        <div className="text-right">
-          <span className="text-[11px] font-mono text-[#C8A84E] uppercase tracking-widest block">
-            ESTIMATION STANDARD: 2026
+
+        <div className="text-right bg-[#1A1E1D] p-3 border border-[#C8A84E]/40">
+          <span className="text-[10px] font-mono text-[#C8A84E] uppercase tracking-widest block font-bold">
+            SCHEDULE: 2026 FIXED-RATES
           </span>
-          <span className="text-xs font-bold text-[#F4F3EE] bg-[#252A29] px-2.5 py-1 inline-block mt-1">
+          <span className="text-xs font-black text-[#F4F3EE] uppercase tracking-wide">
             ZERO COST ESCALATION
           </span>
         </div>
       </div>
 
-      {/* Package Selection Tabs */}
+      {/* STEP 1: Package Selection */}
       <div className="mb-8">
-        <label className="block text-xs font-black uppercase tracking-widest text-[#C8A84E] mb-3">
-          STEP 1: SELECT CONSTRUCTION PACKAGE TIER
-        </label>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div className="flex items-center justify-between mb-3">
+          <label className="text-xs font-black uppercase tracking-[0.2em] text-[#C8A84E]">
+            STEP 1: SELECT CONSTRUCTION & DESIGN TIER
+          </label>
+          <span className="text-[11px] font-mono text-[#F4F3EE]/60">INCLUDES 10-YEAR STRUCTURAL WARRANTY</span>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
           {PACKAGES.map((pkg) => {
             const isSelected = selectedPkg.id === pkg.id;
             return (
@@ -117,33 +128,36 @@ export default function CostCalculator({ basePath }: CostCalculatorProps) {
                 key={pkg.id}
                 type="button"
                 onClick={() => setSelectedPkg(pkg)}
-                className={`text-left p-5 transition-all relative border-2 ${
+                className={`text-left p-6 transition-all relative border-2 flex flex-col justify-between ${
                   isSelected
-                    ? 'bg-[#252A29] border-[#E94B26] shadow-[4px_4px_0px_#E94B26]'
-                    : 'bg-[#111111] border-[#252A29] hover:border-[#C8A84E]/60'
+                    ? 'bg-[#1A1E1D] border-[#E94B26] shadow-[6px_6px_0px_#E94B26]'
+                    : 'bg-[#1A1E1D]/80 border-[#111111] hover:border-[#C8A84E]/70 hover:bg-[#1A1E1D]'
                 }`}
               >
                 {pkg.popular && (
-                  <span className="absolute top-0 right-0 bg-[#E94B26] text-[#F4F3EE] text-[9px] font-black uppercase px-2 py-0.5 tracking-widest">
+                  <span className="absolute top-0 right-0 bg-[#E94B26] text-[#F4F3EE] text-[9px] font-black uppercase px-2.5 py-1 tracking-widest border-l border-b border-[#111111]">
                     {pkg.tag}
                   </span>
                 )}
                 {!pkg.popular && (
-                  <span className="absolute top-0 right-0 bg-[#252A29] text-[#C8A84E] text-[9px] font-bold uppercase px-2 py-0.5 tracking-widest border-l border-b border-[#181B1A]">
+                  <span className="absolute top-0 right-0 bg-[#252A29] text-[#C8A84E] text-[9px] font-bold uppercase px-2.5 py-1 tracking-widest border-l border-b border-[#111111]">
                     {pkg.tag}
                   </span>
                 )}
 
-                <div className="text-xs font-black text-[#F4F3EE] uppercase tracking-wider mb-1 mt-1">
-                  {pkg.name}
+                <div>
+                  <div className="text-xs font-black text-[#F4F3EE] uppercase tracking-wider mb-2 mt-2">
+                    {pkg.name}
+                  </div>
+                  <div className="text-3xl font-black text-[#E94B26] tracking-tight">
+                    ₹{pkg.rate.toLocaleString()}{' '}
+                    <span className="text-xs font-normal text-[#F4F3EE]/70 font-mono">/ sq.ft Built-Up</span>
+                  </div>
                 </div>
-                <div className="text-2xl font-black text-[#E94B26] tracking-tight">
-                  ₹{pkg.rate.toLocaleString()}{' '}
-                  <span className="text-xs font-normal text-[#F4F3EE]/60">/ sq.ft</span>
-                </div>
-                <ul className="mt-4 space-y-1.5 border-t border-[#252A29] pt-3 text-[11px] text-[#F4F3EE]/80">
-                  {pkg.specs.slice(0, 3).map((spec, i) => (
-                    <li key={i} className="flex items-start gap-1.5">
+
+                <ul className="mt-5 space-y-2 border-t border-[#252A29] pt-4 text-[11px] font-sans text-[#F4F3EE]/85">
+                  {pkg.specs.slice(0, 4).map((spec, i) => (
+                    <li key={i} className="flex items-start gap-2">
                       <Check className="w-3.5 h-3.5 text-[#C8A84E] shrink-0 mt-0.5" />
                       <span className="line-clamp-1">{spec}</span>
                     </li>
@@ -155,18 +169,19 @@ export default function CostCalculator({ basePath }: CostCalculatorProps) {
         </div>
       </div>
 
-      {/* Built-up Area & Floors Slider */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8 bg-[#111111] p-6 border-2 border-[#252A29]">
-        <div>
-          <div className="flex items-center justify-between mb-2">
-            <label className="text-xs font-black uppercase tracking-widest text-[#C8A84E] flex items-center gap-1.5">
-              <Sliders className="w-3.5 h-3.5" />
-              TOTAL BUILT-UP AREA (SQ.FT)
+      {/* STEP 2: Built-Up Area & Floors */}
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-8 bg-[#1A1E1D] p-6 sm:p-8 border-2 border-[#111111]">
+        <div className="lg:col-span-7">
+          <div className="flex items-center justify-between mb-3">
+            <label className="text-xs font-black uppercase tracking-[0.2em] text-[#C8A84E] flex items-center gap-2">
+              <Sliders className="w-4 h-4 text-[#E94B26]" />
+              STEP 2: TOTAL BUILT-UP AREA (SQ.FT)
             </label>
-            <span className="text-xl font-black text-[#F4F3EE] bg-[#252A29] px-3 py-1 border border-[#C8A84E]/40 font-mono">
+            <span className="text-2xl font-black text-[#F4F3EE] bg-[#252A29] px-4 py-1.5 border border-[#C8A84E]/50 font-mono shadow-[2px_2px_0px_#111111]">
               {builtUpArea.toLocaleString()} sq.ft
             </span>
           </div>
+
           <input
             type="range"
             min={1000}
@@ -174,21 +189,21 @@ export default function CostCalculator({ basePath }: CostCalculatorProps) {
             step={100}
             value={builtUpArea}
             onChange={(e) => setBuiltUpArea(Number(e.target.value))}
-            className="w-full h-3 bg-[#252A29] rounded-none appearance-none cursor-pointer accent-[#E94B26] mt-4"
+            className="w-full h-3.5 bg-[#252A29] rounded-none appearance-none cursor-pointer accent-[#E94B26] mt-4 border border-[#111111]"
           />
-          <div className="flex justify-between text-[10px] font-mono text-[#F4F3EE]/50 mt-2">
+          <div className="flex justify-between text-[11px] font-mono text-[#F4F3EE]/60 mt-2 font-bold">
             <span>1,000 sq.ft</span>
-            <span>3,000 sq.ft</span>
+            <span>2,500 sq.ft</span>
             <span>5,000 sq.ft</span>
             <span>8,000 sq.ft</span>
           </div>
         </div>
 
-        <div>
-          <label className="text-xs font-black uppercase tracking-widest text-[#C8A84E] block mb-3">
-            ESTIMATED ELEVATION STRUCTURE
+        <div className="lg:col-span-5">
+          <label className="text-xs font-black uppercase tracking-[0.2em] text-[#C8A84E] block mb-3">
+            STRUCTURE ELEVATION
           </label>
-          <div className="grid grid-cols-3 gap-3">
+          <div className="grid grid-cols-3 gap-2.5">
             {[
               { label: 'G + 1 FLOOR', num: 2 },
               { label: 'G + 2 FLOORS', num: 3 },
@@ -200,8 +215,8 @@ export default function CostCalculator({ basePath }: CostCalculatorProps) {
                 onClick={() => setFloors(item.num)}
                 className={`py-3 text-center text-xs font-black uppercase tracking-wider transition-all border ${
                   floors === item.num
-                    ? 'bg-[#E94B26] text-[#F4F3EE] border-[#E94B26] shadow-[2px_2px_0px_#111111]'
-                    : 'bg-[#252A29] text-[#F4F3EE]/70 border-[#252A29] hover:text-[#F4F3EE]'
+                    ? 'bg-[#E94B26] text-[#F4F3EE] border-[#E94B26] shadow-[3px_3px_0px_#111111]'
+                    : 'bg-[#252A29] text-[#F4F3EE]/75 border-[#111111] hover:text-[#F4F3EE] hover:border-[#C8A84E]'
                 }`}
               >
                 {item.label}
@@ -209,76 +224,83 @@ export default function CostCalculator({ basePath }: CostCalculatorProps) {
             ))}
           </div>
           <p className="text-[11px] text-[#F4F3EE]/60 mt-3 font-mono">
-            Includes complete foundation footing, RCC structural framing, and external facade masonry.
+            Includes deep excavation, anti-termite plinth beams, column framing, and perimeter boundary.
           </p>
         </div>
       </div>
 
-      {/* Output Budget Breakdown */}
-      <div className="bg-[#252A29] p-6 sm:p-8 border-2 border-[#C8A84E] relative">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 items-center">
-          {/* Main Total Result */}
-          <div className="lg:col-span-1 border-b lg:border-b-0 lg:border-r border-[#181B1A] pb-6 lg:pb-0 lg:pr-6">
-            <span className="text-[11px] font-mono text-[#C8A84E] uppercase tracking-widest block mb-1">
-              ESTIMATED PROJECT BUDGET
+      {/* Output Total & Breakdown Card */}
+      <div className="bg-[#1A1E1D] p-6 sm:p-8 border-2 border-[#C8A84E] relative shadow-[6px_6px_0px_#111111]">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+          {/* Main Total Number */}
+          <div className="lg:col-span-5 border-b lg:border-b-0 lg:border-r border-[#252A29] pb-6 lg:pb-0 lg:pr-6">
+            <span className="text-xs font-mono text-[#C8A84E] uppercase tracking-widest block font-bold mb-1">
+              TOTAL ESTIMATED PROJECT BUDGET
             </span>
-            <div className="text-4xl sm:text-5xl font-black text-[#F4F3EE] tracking-tight">
+            <div className="text-4xl sm:text-5xl lg:text-6xl font-black text-[#F4F3EE] tracking-tight">
               {formatLakhs(estimatedCost)}
             </div>
-            <div className="text-xs font-mono text-[#F4F3EE]/70 mt-1">
-              Exact Approx: ₹{estimatedCost.toLocaleString()} (Excl. Govt Permits & Taxes)
+            <div className="text-xs font-mono text-[#F4F3EE]/70 mt-2">
+              Exact Approx: ₹{estimatedCost.toLocaleString()} (Turnkey Civil + Finishes + Architecture)
             </div>
           </div>
 
-          {/* Breakdown Items */}
-          <div className="lg:col-span-2 grid grid-cols-2 sm:grid-cols-4 gap-4 text-left">
-            <div className="bg-[#181B1A] p-3 border border-[#111111]">
-              <span className="text-[10px] font-mono text-[#F4F3EE]/60 uppercase block">
+          {/* Itemized Deliverables */}
+          <div className="lg:col-span-7 grid grid-cols-2 sm:grid-cols-4 gap-3.5">
+            <div className="bg-[#252A29] p-3.5 border border-[#111111]">
+              <span className="text-[10px] font-mono text-[#C8A84E] uppercase tracking-wider block font-bold">
                 CIVIL STRUCTURE (52%)
               </span>
-              <span className="text-base sm:text-lg font-bold text-[#E94B26]">
+              <span className="text-lg font-black text-[#E94B26] block mt-1">
                 {formatLakhs(civilCost)}
               </span>
+              <span className="text-[10px] text-[#F4F3EE]/50 font-mono">Steel, RCC, Bricks</span>
             </div>
-            <div className="bg-[#181B1A] p-3 border border-[#111111]">
-              <span className="text-[10px] font-mono text-[#F4F3EE]/60 uppercase block">
+
+            <div className="bg-[#252A29] p-3.5 border border-[#111111]">
+              <span className="text-[10px] font-mono text-[#C8A84E] uppercase tracking-wider block font-bold">
                 FINISHING & MEP (26%)
               </span>
-              <span className="text-base sm:text-lg font-bold text-[#F4F3EE]">
+              <span className="text-lg font-black text-[#F4F3EE] block mt-1">
                 {formatLakhs(finishingCost)}
               </span>
+              <span className="text-[10px] text-[#F4F3EE]/50 font-mono">Plumbing, Tiles, Paint</span>
             </div>
-            <div className="bg-[#181B1A] p-3 border border-[#111111]">
-              <span className="text-[10px] font-mono text-[#F4F3EE]/60 uppercase block">
+
+            <div className="bg-[#252A29] p-3.5 border border-[#111111]">
+              <span className="text-[10px] font-mono text-[#C8A84E] uppercase tracking-wider block font-bold">
                 INTERIORS (16%)
               </span>
-              <span className="text-base sm:text-lg font-bold text-[#C8A84E]">
+              <span className="text-lg font-black text-[#C8A84E] block mt-1">
                 {formatLakhs(interiorCost)}
               </span>
+              <span className="text-[10px] text-[#F4F3EE]/50 font-mono">Kitchen & Wardrobes</span>
             </div>
-            <div className="bg-[#181B1A] p-3 border border-[#111111]">
-              <span className="text-[10px] font-mono text-[#F4F3EE]/60 uppercase block">
+
+            <div className="bg-[#252A29] p-3.5 border border-[#111111]">
+              <span className="text-[10px] font-mono text-[#C8A84E] uppercase tracking-wider block font-bold">
                 ARCHITECTURAL (6%)
               </span>
-              <span className="text-base sm:text-lg font-bold text-[#F4F3EE]">
+              <span className="text-lg font-black text-[#F4F3EE] block mt-1">
                 {formatLakhs(designCost)}
               </span>
+              <span className="text-[10px] text-[#F4F3EE]/50 font-mono">3D BIM & Approvals</span>
             </div>
           </div>
         </div>
 
-        {/* CTA Button */}
-        <div className="mt-6 pt-6 border-t border-[#181B1A] flex flex-wrap items-center justify-between gap-4">
-          <div className="flex items-center gap-2 text-xs text-[#F4F3EE]/80">
+        {/* CTA Strip */}
+        <div className="mt-8 pt-6 border-t border-[#252A29] flex flex-wrap items-center justify-between gap-4">
+          <div className="flex items-center gap-2 text-xs font-mono text-[#F4F3EE]/80">
             <ShieldCheck className="w-4 h-4 text-[#C8A84E]" />
-            <span>Includes 10-Year Structural Warranty & 400-Point Milestone Audits</span>
+            <span>Includes Milestone-Based Payments & 100% On-Time Completion Guarantee</span>
           </div>
 
           <Link
             href={`${basePath}/contact?area=${builtUpArea}&package=${selectedPkg.id}`}
-            className="inline-flex items-center gap-2 px-6 py-3.5 bg-[#E94B26] text-[#F4F3EE] font-black text-xs uppercase tracking-widest border border-[#111111] shadow-[4px_4px_0px_#111111] hover:shadow-[1px_1px_0px_#111111] hover:translate-x-[2px] hover:translate-y-[2px] transition-all"
+            className="inline-flex items-center gap-2.5 px-7 py-3.5 bg-[#E94B26] text-[#F4F3EE] font-black text-xs uppercase tracking-widest border border-[#111111] shadow-[4px_4px_0px_#111111] hover:shadow-[1px_1px_0px_#111111] hover:translate-x-[2px] hover:translate-y-[2px] transition-all"
           >
-            <span>GET DETAILED ITEMISED BOQ & SITE VISIT</span>
+            <span>GET DETAILED ITEMISED BOQ & SITE AUDIT</span>
             <ArrowRight className="w-4 h-4" />
           </Link>
         </div>

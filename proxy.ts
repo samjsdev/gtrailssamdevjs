@@ -4,7 +4,8 @@ import {
   ADMIN_COOKIE,
   getAdminSessionToken,
   isAdminPasswordConfigured,
-} from '@/lib/adminAuth';
+} from './lib/adminAuth';
+
 
 function timingSafeEqualString(a: string, b: string): boolean {
   if (a.length !== b.length) return false;

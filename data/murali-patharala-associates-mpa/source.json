@@ -63,7 +63,8 @@
   "meta": {
     "generatedAt": "2026-08-07T11:24:51.254Z",
     "source": "google_maps",
-    "updatedAt": "2026-08-07T11:26:05.820Z"
+    "updatedAt": "2026-08-25T10:04:14.139Z"
   },
-  "templateOverrides": {}
+  "templateOverrides": {},
+  "selected_template": "template5"
 }

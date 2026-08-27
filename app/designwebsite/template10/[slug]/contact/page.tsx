@@ -31,16 +31,16 @@ export default async function Template10ContactPage({ params, searchParams }: Pa
   const defaultPackage = resolvedSearchParams?.package || 'premium';
 
   return (
-    <div className="w-full bg-[#111111] text-[#F4F3EE]">
+    <div className="w-full bg-[#252A29] text-[#F4F3EE]">
       {/* ─── Hero Banner Section ─── */}
-      <section id="contact-hero" className="relative py-20 sm:py-28 bg-[#181B1A] border-b-4 border-[#252A29]">
+      <section id="contact-hero" className="relative py-24 sm:py-32 bg-[#1A1E1D] border-b-4 border-[#111111]">
         <div className="max-w-7xl mx-auto px-4 sm:px-8">
           <div className="max-w-3xl">
-            <div className="inline-flex items-center gap-2 px-3 py-1 bg-[#E94B26] text-[#F4F3EE] text-xs font-black uppercase tracking-widest mb-4 border border-[#111111]">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 bg-[#E94B26] text-[#F4F3EE] text-xs font-black uppercase tracking-[0.2em] mb-4 border border-[#111111] shadow-[3px_3px_0px_#111111]">
               <HardHat className="w-3.5 h-3.5" />
               <span>DIRECT TECHNICAL ENQUIRY & ESTIMATES</span>
             </div>
-            <h1 className="text-4xl sm:text-6xl font-black uppercase text-[#F4F3EE] tracking-tight leading-none mb-4">
+            <h1 className="text-4xl sm:text-6xl font-black uppercase text-[#F4F3EE] tracking-tight leading-[0.95] mb-4">
               CONNECT WITH OUR <span className="text-[#E94B26]">ENGINEERING DESK</span>
             </h1>
             <p className="text-sm sm:text-base font-bold uppercase tracking-wider text-[#C8A84E]">
@@ -51,25 +51,25 @@ export default async function Template10ContactPage({ params, searchParams }: Pa
       </section>
 
       {/* ─── Contact Details & Form Section ─── */}
-      <section id="contact-details" className="py-20 px-4 sm:px-8 bg-[#111111] border-b-4 border-[#252A29]">
+      <section id="contact-details" className="py-24 px-4 sm:px-8 bg-[#252A29] border-b-4 border-[#111111]">
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
             {/* Left: Office Coordinates & Credentials */}
             <div className="lg:col-span-5 space-y-8">
               <div>
-                <div className="inline-block px-3 py-1 bg-[#252A29] text-[#C8A84E] text-xs font-bold uppercase tracking-[0.25em] border border-[#C8A84E]/40 mb-3">
+                <div className="inline-block px-3.5 py-1 bg-[#1A1E1D] text-[#C8A84E] text-xs font-black uppercase tracking-[0.25em] border border-[#C8A84E]/40 mb-3">
                   CENTRAL COORDINATES
                 </div>
                 <h2 className="text-3xl font-black uppercase text-[#F4F3EE] tracking-tight">
                   CORPORATE STUDIO & SITE OFFICE
                 </h2>
-                <p className="text-xs text-[#F4F3EE]/70 font-mono mt-2">
+                <p className="text-xs text-[#F4F3EE]/70 font-mono mt-2 uppercase tracking-wider">
                   SCHEDULE AN IN-PERSON SPATIAL BLUEPRINT REVIEW WITH OUR CHIEF ARCHITECTS
                 </p>
               </div>
 
-              <div className="space-y-6 text-xs font-mono text-[#F4F3EE]/90">
-                <div className="bg-[#181B1A] p-6 border-2 border-[#252A29] flex items-start gap-4">
+              <div className="space-y-6 text-xs font-mono text-[#F4F3EE]">
+                <div className="bg-[#1A1E1D] p-6 border-2 border-[#111111] shadow-[4px_4px_0px_#111111] flex items-start gap-4">
                   <div className="w-10 h-10 bg-[#252A29] text-[#E94B26] flex items-center justify-center shrink-0 border border-[#C8A84E]/40">
                     <MapPin className="w-5 h-5" />
                   </div>
@@ -83,7 +83,7 @@ export default async function Template10ContactPage({ params, searchParams }: Pa
                   </div>
                 </div>
 
-                <div className="bg-[#181B1A] p-6 border-2 border-[#252A29] flex items-start gap-4">
+                <div className="bg-[#1A1E1D] p-6 border-2 border-[#111111] shadow-[4px_4px_0px_#111111] flex items-start gap-4">
                   <div className="w-10 h-10 bg-[#252A29] text-[#E94B26] flex items-center justify-center shrink-0 border border-[#C8A84E]/40">
                     <Phone className="w-5 h-5" />
                   </div>
@@ -97,17 +97,17 @@ export default async function Template10ContactPage({ params, searchParams }: Pa
                     >
                       {clinicPhone}
                     </a>
-                    <p className="text-[11px] text-[#F4F3EE]/60 mt-0.5">Available Mon to Sat (09:00 AM - 07:30 PM)</p>
+                    <p className="text-[11px] text-[#F4F3EE]/60 mt-0.5 font-mono">Available Mon to Sat (09:00 AM - 07:30 PM)</p>
                   </div>
                 </div>
 
-                <div className="bg-[#181B1A] p-6 border-2 border-[#252A29] flex items-start gap-4">
+                <div className="bg-[#1A1E1D] p-6 border-2 border-[#111111] shadow-[4px_4px_0px_#111111] flex items-start gap-4">
                   <div className="w-10 h-10 bg-[#252A29] text-[#E94B26] flex items-center justify-center shrink-0 border border-[#C8A84E]/40">
                     <Mail className="w-5 h-5" />
                   </div>
                   <div>
                     <span className="text-[10px] font-bold uppercase text-[#C8A84E] tracking-widest block mb-1">
-                      PROJECT ESTIMATIONS & TENDERS
+                      ENGINEERING & ESTIMATES EMAIL
                     </span>
                     <a
                       href={`mailto:${clinicEmail}`}
@@ -118,106 +118,108 @@ export default async function Template10ContactPage({ params, searchParams }: Pa
                   </div>
                 </div>
               </div>
-
-              <div className="p-6 bg-[#252A29] border border-[#C8A84E]/50">
-                <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-[#C8A84E] mb-2">
-                  <ShieldCheck className="w-4 h-4 text-[#E94B26]" />
-                  <span>OUR FIXED COMMITMENTS</span>
-                </div>
-                <p className="text-xs text-[#F4F3EE]/80 font-sans leading-relaxed">
-                  We guarantee 100% fixed pricing with no escalations during construction, milestone-based payment schedules, and a legally bonded 10-year structural warranty.
-                </p>
-              </div>
             </div>
 
-            {/* Right: Technical Consultation Request Form */}
-            <div className="lg:col-span-7 bg-[#181B1A] p-8 sm:p-10 border-4 border-[#252A29] shadow-[8px_8px_0px_#111111]">
+            {/* Right: Technical Consultation Form */}
+            <div className="lg:col-span-7 bg-[#1A1E1D] border-4 border-[#111111] p-8 sm:p-10 shadow-[8px_8px_0px_#111111]">
               <div className="border-b-2 border-[#252A29] pb-4 mb-6">
-                <span className="text-xs font-mono text-[#C8A84E] uppercase tracking-widest block mb-1">
-                  STAGE 01 ENQUIRY
+                <span className="text-xs font-mono text-[#C8A84E] uppercase tracking-widest font-bold">
+                  PROJECT SPECIFICATIONS & BOQ REQUEST
                 </span>
-                <h3 className="text-2xl sm:text-3xl font-black uppercase text-[#F4F3EE] tracking-tight">
-                  REQUEST DETAILED ESTIMATE & FREE SITE AUDIT
+                <h3 className="text-2xl font-black uppercase text-[#F4F3EE] tracking-tight mt-1">
+                  REQUEST A FREE SITE VISIT & QUOTATION
                 </h3>
               </div>
 
-              <form className="space-y-5">
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+              <form className="space-y-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-xs font-mono text-[#C8A84E] uppercase tracking-wider mb-2">
-                      YOUR FULL NAME *
+                    <label className="block text-[11px] font-mono uppercase tracking-wider text-[#C8A84E] font-bold mb-1">
+                      FULL NAME *
                     </label>
                     <input
                       type="text"
                       required
-                      placeholder="e.g. Anand Kumar"
-                      className="w-full bg-[#111111] border-2 border-[#252A29] focus:border-[#E94B26] p-3.5 text-xs text-[#F4F3EE] font-mono focus:outline-none"
+                      placeholder="e.g. Rajesh Kumar"
+                      className="w-full bg-[#252A29] border-2 border-[#111111] focus:border-[#E94B26] p-3 text-xs text-[#F4F3EE] font-sans placeholder-[#F4F3EE]/30 focus:outline-none"
                     />
                   </div>
 
                   <div>
-                    <label className="block text-xs font-mono text-[#C8A84E] uppercase tracking-wider mb-2">
-                      PHONE NUMBER *
+                    <label className="block text-[11px] font-mono uppercase tracking-wider text-[#C8A84E] font-bold mb-1">
+                      CONTACT PHONE *
                     </label>
                     <input
                       type="tel"
                       required
-                      placeholder="e.g. +91 98400 12345"
-                      className="w-full bg-[#111111] border-2 border-[#252A29] focus:border-[#E94B26] p-3.5 text-xs text-[#F4F3EE] font-mono focus:outline-none"
+                      placeholder="+91 98765 43210"
+                      className="w-full bg-[#252A29] border-2 border-[#111111] focus:border-[#E94B26] p-3 text-xs text-[#F4F3EE] font-sans placeholder-[#F4F3EE]/30 focus:outline-none"
                     />
                   </div>
                 </div>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-xs font-mono text-[#C8A84E] uppercase tracking-wider mb-2">
-                      PLOT / PROJECT LOCATION *
+                    <label className="block text-[11px] font-mono uppercase tracking-wider text-[#C8A84E] font-bold mb-1">
+                      PLOT / SITE LOCATION *
                     </label>
                     <input
                       type="text"
                       required
-                      placeholder="e.g. ECR / Anna Nagar"
-                      className="w-full bg-[#111111] border-2 border-[#252A29] focus:border-[#E94B26] p-3.5 text-xs text-[#F4F3EE] font-mono focus:outline-none"
+                      placeholder="e.g. OMR, Anna Nagar, Whitefield"
+                      className="w-full bg-[#252A29] border-2 border-[#111111] focus:border-[#E94B26] p-3 text-xs text-[#F4F3EE] font-sans placeholder-[#F4F3EE]/30 focus:outline-none"
                     />
                   </div>
 
                   <div>
-                    <label className="block text-xs font-mono text-[#C8A84E] uppercase tracking-wider mb-2">
-                      APPROX. BUILT-UP AREA (SQ.FT)
+                    <label className="block text-[11px] font-mono uppercase tracking-wider text-[#C8A84E] font-bold mb-1">
+                      ESTIMATED BUILT-UP AREA (SQ.FT)
                     </label>
                     <input
-                      type="number"
+                      type="text"
                       defaultValue={defaultArea}
-                      placeholder="e.g. 2400"
-                      className="w-full bg-[#111111] border-2 border-[#252A29] focus:border-[#E94B26] p-3.5 text-xs text-[#F4F3EE] font-mono focus:outline-none"
+                      placeholder="e.g. 2500 sq.ft"
+                      className="w-full bg-[#252A29] border-2 border-[#111111] focus:border-[#E94B26] p-3 text-xs text-[#F4F3EE] font-sans placeholder-[#F4F3EE]/30 focus:outline-none"
                     />
                   </div>
                 </div>
 
-                <div>
-                  <label className="block text-xs font-mono text-[#C8A84E] uppercase tracking-wider mb-2">
-                    PRIMARY SERVICE REQUIREMENT
-                  </label>
-                  <select
-                    defaultValue={defaultPackage === 'luxury' ? 'villa' : 'turnkey'}
-                    className="w-full bg-[#111111] border-2 border-[#252A29] focus:border-[#E94B26] p-3.5 text-xs text-[#F4F3EE] font-mono focus:outline-none"
-                  >
-                    <option value="turnkey">Turnkey Residential Construction (Civil + Design + MEP)</option>
-                    <option value="architecture">Architectural Blueprint & 3D BIM Elevations Only</option>
-                    <option value="villa">Ultra-Luxury Villa Turnkey Execution</option>
-                    <option value="interior">Luxury Interior Fit-out & Modular Woodwork</option>
-                    <option value="consultation">Site Soil Audit & Feasibility Assessment</option>
-                  </select>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div>
+                    <label className="block text-[11px] font-mono uppercase tracking-wider text-[#C8A84E] font-bold mb-1">
+                      PRIMARY SERVICE REQUIREMENT
+                    </label>
+                    <select className="w-full bg-[#252A29] border-2 border-[#111111] focus:border-[#E94B26] p-3 text-xs text-[#F4F3EE] font-sans focus:outline-none">
+                      <option value="turnkey">Turnkey Civil Construction + Architecture</option>
+                      <option value="architecture">Architectural Concept & 3D BIM Only</option>
+                      <option value="interiors">Luxury Interior Design Fitout</option>
+                      <option value="all">Full Turnkey Package (All 3 Pillars)</option>
+                    </select>
+                  </div>
+
+                  <div>
+                    <label className="block text-[11px] font-mono uppercase tracking-wider text-[#C8A84E] font-bold mb-1">
+                      PREFERRED PACKAGE TIER
+                    </label>
+                    <select
+                      defaultValue={defaultPackage}
+                      className="w-full bg-[#252A29] border-2 border-[#111111] focus:border-[#E94B26] p-3 text-xs text-[#F4F3EE] font-sans focus:outline-none"
+                    >
+                      <option value="standard">Standard Package (₹2,150/sq.ft)</option>
+                      <option value="premium">Premium Architectural (₹2,750/sq.ft)</option>
+                      <option value="luxury">Ultra Luxury Villa (₹3,500/sq.ft)</option>
+                    </select>
+                  </div>
                 </div>
 
                 <div>
-                  <label className="block text-xs font-mono text-[#C8A84E] uppercase tracking-wider mb-2">
-                    PROJECT NOTES / TIMELINE REQUIREMENTS
+                  <label className="block text-[11px] font-mono uppercase tracking-wider text-[#C8A84E] font-bold mb-1">
+                    PROJECT NOTES / SPECIFIC REQUIREMENTS
                   </label>
                   <textarea
                     rows={4}
-                    placeholder="Describe your plot dimensions, expected start date, architectural style preferences..."
-                    className="w-full bg-[#111111] border-2 border-[#252A29] focus:border-[#E94B26] p-3.5 text-xs text-[#F4F3EE] font-mono focus:outline-none"
+                    placeholder="Tell us about your plot dimensions, number of floors, timeline, and design inspirations..."
+                    className="w-full bg-[#252A29] border-2 border-[#111111] focus:border-[#E94B26] p-3 text-xs text-[#F4F3EE] font-sans placeholder-[#F4F3EE]/30 focus:outline-none"
                   ></textarea>
                 </div>
 
@@ -225,13 +227,15 @@ export default async function Template10ContactPage({ params, searchParams }: Pa
                   type="button"
                   className="w-full py-4 bg-[#E94B26] text-[#F4F3EE] font-black text-xs uppercase tracking-widest border border-[#111111] shadow-[4px_4px_0px_#111111] hover:shadow-[1px_1px_0px_#111111] hover:translate-x-[2px] hover:translate-y-[2px] transition-all flex items-center justify-center gap-2"
                 >
-                  <span>SUBMIT FOR FREE CONSULTATION & BOQ</span>
+                  <span>SUBMIT FOR ARCHITECTURAL REVIEW & BOQ</span>
                   <ArrowRight className="w-4 h-4" />
                 </button>
 
-                <p className="text-[11px] text-[#F4F3EE]/50 font-mono text-center">
-                  Your project information is protected under standard non-disclosure policy. No marketing spam.
-                </p>
+                <div className="text-center pt-2">
+                  <span className="text-[10px] font-mono text-[#F4F3EE]/60">
+                    &bull; 100% Privacy Guaranteed &bull; Zero Spam &bull; Confidential Blueprint Protection &bull;
+                  </span>
+                </div>
               </form>
             </div>
           </div>

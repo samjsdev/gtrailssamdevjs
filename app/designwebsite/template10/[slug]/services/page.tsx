@@ -54,17 +54,17 @@ export default async function Template10ServicesPage({ params }: PageProps) {
   const basePath = `/designwebsite/template10/${slug}`;
 
   return (
-    <div className="w-full bg-[#111111] text-[#F4F3EE]">
+    <div className="w-full bg-[#252A29] text-[#F4F3EE]">
       {/* ─── Hero Banner Section ─── */}
-      <section id="services-hero" className="relative py-20 sm:py-28 bg-[#181B1A] border-b-4 border-[#252A29]">
+      <section id="services-hero" className="relative py-24 sm:py-32 bg-[#1A1E1D] border-b-4 border-[#111111]">
         <div className="max-w-7xl mx-auto px-4 sm:px-8">
           <div className="max-w-3xl">
-            <div className="inline-flex items-center gap-2 px-3 py-1 bg-[#E94B26] text-[#F4F3EE] text-xs font-black uppercase tracking-widest mb-4 border border-[#111111]">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 bg-[#E94B26] text-[#F4F3EE] text-xs font-black uppercase tracking-[0.2em] mb-4 border border-[#111111] shadow-[3px_3px_0px_#111111]">
               <Compass className="w-3.5 h-3.5" />
               <span>COMPREHENSIVE CIVIL & DESIGN CAPABILITIES</span>
             </div>
-            <h1 className="text-4xl sm:text-6xl font-black uppercase text-[#F4F3EE] tracking-tight leading-none mb-4">
-              OUR COMPLETE <span className="text-[#E94B26]">TURNKEY SERVICES</span> & PILLARS
+            <h1 className="text-4xl sm:text-6xl font-black uppercase text-[#F4F3EE] tracking-tight leading-[0.95] mb-4">
+              OUR COMPLETE <span className="text-[#E94B26]">TURNKEY SERVICES</span> & CORE DISCIPLINES
             </h1>
             <p className="text-sm sm:text-base font-bold uppercase tracking-wider text-[#C8A84E]">
               {clinicName} &bull; {clinicTagline}
@@ -74,16 +74,16 @@ export default async function Template10ServicesPage({ params }: PageProps) {
       </section>
 
       {/* ─── Our Services Grid Section ─── */}
-      <section id="services-list" className="py-20 px-4 sm:px-8 bg-[#111111] border-b-4 border-[#252A29]">
+      <section id="services-list" className="py-24 px-4 sm:px-8 bg-[#252A29] border-b-4 border-[#111111]">
         <div className="max-w-7xl mx-auto">
           <div className="text-center max-w-3xl mx-auto mb-16">
-            <div className="inline-block px-3 py-1 bg-[#252A29] text-[#C8A84E] text-xs font-bold uppercase tracking-[0.25em] border border-[#C8A84E]/40 mb-3">
+            <div className="inline-block px-3.5 py-1 bg-[#1A1E1D] text-[#C8A84E] text-xs font-black uppercase tracking-[0.25em] border border-[#C8A84E]/40 mb-3">
               END-TO-END OFFERINGS
             </div>
             <h2 className="text-3xl sm:text-5xl font-black uppercase text-[#F4F3EE] tracking-tight">
               DESIGN, CIVIL ENGINEERING & FIT-OUT SERVICES
             </h2>
-            <p className="text-xs sm:text-sm font-mono text-[#F4F3EE]/70 mt-2">
+            <p className="text-xs sm:text-sm font-mono text-[#F4F3EE]/70 mt-2 uppercase tracking-wider">
               EVERY STAGE OF YOUR RESIDENTIAL PROJECT MANAGED UNDER RIGOROUS METRIC QUALITY STANDARDS
             </p>
           </div>
@@ -92,11 +92,11 @@ export default async function Template10ServicesPage({ params }: PageProps) {
             {servicesList.map((service, idx) => (
               <div
                 key={idx}
-                className="bg-[#181B1A] border-2 border-[#252A29] p-8 hover:border-[#E94B26] transition-all shadow-[4px_4px_0px_#111111] flex flex-col justify-between"
+                className="bg-[#1A1E1D] border-2 border-[#111111] p-8 hover:border-[#E94B26] transition-all shadow-[4px_4px_0px_#111111] flex flex-col justify-between"
               >
                 <div>
                   <div className="flex items-center justify-between mb-4">
-                    <span className="text-xl font-black text-[#E94B26] font-mono">
+                    <span className="text-2xl font-black text-[#E94B26] font-mono">
                       0{idx + 1}
                     </span>
                     <Building className="w-5 h-5 text-[#C8A84E]" />
@@ -104,13 +104,20 @@ export default async function Template10ServicesPage({ params }: PageProps) {
                   <h3 className="text-xl font-black uppercase text-[#F4F3EE] tracking-tight mb-3">
                     {service}
                   </h3>
-                  <p className="text-xs text-[#F4F3EE]/75 leading-relaxed font-sans">
-                    Precision planning, transparent bill of quantities, high-grade certified construction materials, and continuous on-site civil supervisor oversight.
+                  <p className="text-xs text-[#F4F3EE]/80 font-sans leading-relaxed">
+                    Delivered with absolute engineering oversight, itemized milestones, lab-tested raw materials, and dedicated on-site project managers.
                   </p>
                 </div>
-                <div className="mt-6 pt-4 border-t border-[#252A29] flex items-center justify-between text-xs font-mono text-[#C8A84E]">
-                  <span>TECHNICAL SERVICE #{idx + 1}</span>
-                  <ArrowRight className="w-3.5 h-3.5 text-[#E94B26]" />
+
+                <div className="mt-6 pt-4 border-t border-[#252A29] flex items-center justify-between">
+                  <span className="text-[10px] font-mono text-[#C8A84E] font-bold">TURNKEY SCOPE</span>
+                  <Link
+                    href={`${basePath}/contact`}
+                    className="text-xs font-black text-[#E94B26] hover:text-[#C8A84E] uppercase tracking-wider flex items-center gap-1"
+                  >
+                    <span>ENQUIRE</span>
+                    <ArrowRight className="w-3.5 h-3.5" />
+                  </Link>
                 </div>
               </div>
             ))}
@@ -118,73 +125,43 @@ export default async function Template10ServicesPage({ params }: PageProps) {
         </div>
       </section>
 
-      {/* ─── Highlights Section ─── */}
-      <section id="services-highlights" className="py-20 px-4 sm:px-8 bg-[#181B1A] border-b-4 border-[#252A29]">
+      {/* ─── Standards & Assurances Section ─── */}
+      <section id="services-standards" className="py-24 px-4 sm:px-8 bg-[#1A1E1D] border-b-4 border-[#111111]">
         <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
-            <div className="lg:col-span-5 space-y-6">
-              <div className="inline-block px-3 py-1 bg-[#252A29] text-[#C8A84E] text-xs font-bold uppercase tracking-[0.25em] border border-[#C8A84E]/40">
-                CERTIFIED STANDARDS
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+            <div className="lg:col-span-6 space-y-6">
+              <div className="inline-block px-3.5 py-1 bg-[#252A29] text-[#C8A84E] text-xs font-black uppercase tracking-[0.25em] border border-[#C8A84E]/40">
+                QUALITY BENCHMARKS
               </div>
               <h2 className="text-3xl sm:text-4xl font-black uppercase text-[#F4F3EE] tracking-tight">
-                GUARANTEED FIXED-COST & ZERO-DEFECT QUALITY
+                CERTIFIED RAW MATERIALS & GUARANTEED SPECIFICATIONS
               </h2>
-              <p className="text-xs sm:text-sm text-[#F4F3EE]/80 leading-relaxed font-sans">
-                Our standardized construction practices are governed by National Building Code (NBC 2016) and IS 456 standards, ensuring seismic structural durability and leakproof longevity.
+              <p className="text-xs sm:text-sm text-[#F4F3EE]/85 leading-relaxed font-sans">
+                We refuse to cut corners on structural safety. Every single foundation, column, and beam cast under our supervision adheres to IS 456 standards with documented batch testing and 10-year warranty protection.
               </p>
-              <div className="relative h-64 w-full border-4 border-[#252A29] overflow-hidden shadow-[6px_6px_0px_#111111]">
+
+              <div className="space-y-3 pt-2">
+                {highlightsList.slice(0, 4).map((highlight, idx) => (
+                  <div key={idx} className="flex items-start gap-3 bg-[#252A29] p-4 border border-[#111111]">
+                    <CheckCircle2 className="w-4 h-4 text-[#E94B26] shrink-0 mt-0.5" />
+                    <span className="text-xs font-bold text-[#F4F3EE]">{highlight}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="lg:col-span-6">
+              <div className="relative h-96 sm:h-[450px] w-full border-4 border-[#111111] shadow-[8px_8px_0px_#111111] bg-[#111111]">
                 <Image
                   src={secondaryImage}
-                  alt="Certified Construction Specifications"
+                  alt="Certified Engineering Specifications"
                   fill
-                  className="object-cover grayscale contrast-125"
-                  sizes="(max-width: 1024px) 100vw, 500px"
+                  className="object-cover contrast-115"
+                  sizes="(max-width: 1024px) 100vw, 600px"
                 />
               </div>
             </div>
-
-            <div className="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-4">
-              {highlightsList.map((highlight, idx) => (
-                <div
-                  key={idx}
-                  className="bg-[#111111] p-6 border-2 border-[#252A29] hover:border-[#C8A84E] transition-colors shadow-[4px_4px_0px_#111111]"
-                >
-                  <div className="flex items-start gap-3">
-                    <CheckCircle2 className="w-5 h-5 text-[#E94B26] shrink-0 mt-0.5" />
-                    <div>
-                      <span className="text-[10px] font-mono text-[#C8A84E] uppercase tracking-wider block mb-1">
-                        ASSURANCE CLAUSE #{idx + 1}
-                      </span>
-                      <p className="text-xs font-bold text-[#F4F3EE] leading-relaxed">
-                        {highlight}
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
           </div>
-        </div>
-      </section>
-
-      {/* ─── CTA Banner Section ─── */}
-      <section id="services-cta" className="py-16 px-4 sm:px-8 bg-[#E94B26] text-[#F4F3EE]">
-        <div className="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-6">
-          <div>
-            <h2 className="text-3xl sm:text-4xl font-black uppercase tracking-tight text-[#F4F3EE]">
-              NEED AN ACCURATE BILL OF QUANTITIES (BOQ)?
-            </h2>
-            <p className="text-xs font-mono text-[#F4F3EE]/90 uppercase mt-1">
-              Direct Hotline: {clinicPhone} &bull; Turnkey Fixed Price Estimate
-            </p>
-          </div>
-          <Link
-            href={`${basePath}/contact`}
-            className="px-8 py-4 bg-[#111111] text-[#F4F3EE] font-black text-xs uppercase tracking-widest border border-[#111111] shadow-[4px_4px_0px_#000000] hover:bg-[#181B1A] transition-all flex items-center gap-2"
-          >
-            <span>GET CUSTOM ESTIMATE</span>
-            <ArrowRight className="w-4 h-4 text-[#E94B26]" />
-          </Link>
         </div>
       </section>
     </div>

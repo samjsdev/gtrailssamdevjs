@@ -1994,6 +1994,9 @@ export const TEMPLATE_SCHEMAS: Record<string, TemplateSchema> = {
       }
     ]
   },
+  template5: {
+    pages: SHARED_PAGES
+  },
   base: {
     pages: SHARED_PAGES
   }

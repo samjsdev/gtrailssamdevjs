@@ -1,9 +1,8 @@
 import { readSourceConfig } from '@/lib/dataBuilder';
 import { cleanClinicName } from '@/lib/copyCleaner';
 import { notFound } from 'next/navigation';
-import Link from 'next/link';
 import GalleryClient from '../GalleryClient';
-import { Building, Compass, Sparkles, ArrowRight, Phone } from 'lucide-react';
+import { Compass, HardHat, Sparkles } from 'lucide-react';
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -19,98 +18,94 @@ export default async function Template10GalleryPage({ params }: PageProps) {
   }
 
   const clinicName = cleanClinicName(data.clinic.name);
-  const clinicTagline = data.clinic.tagline || 'Delivering Iconic Architectural Elevations & Turnkey Residential Villas';
-  const clinicPhone = data.clinic.contact?.phone || '+91 81100 00384';
+  const clinicTagline = data.clinic.tagline || 'Delivered Architecture, Turnkey Villas & Luxury Interior Sites';
 
   const media = data.media || {};
-  const heroImage = media.clinicImages?.[0] || 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1920&q=80';
-
-  const rawImages = [
-    media.otherImages?.[0] || 'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1200&q=80',
-    media.otherImages?.[1] || 'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1200&q=80',
-    media.otherImages?.[2] || 'https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=1200&q=80',
-    media.otherImages?.[3] || 'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1200&q=80',
-    media.otherImages?.[4] || 'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=1200&q=80',
-    media.otherImages?.[5] || 'https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=1200&q=80',
+  const projectImages = [
+    media.otherImages?.[0] || 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80',
+    media.otherImages?.[1] || 'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1200&q=80',
+    media.otherImages?.[2] || 'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1200&q=80',
+    media.otherImages?.[3] || 'https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=1200&q=80',
+    media.otherImages?.[4] || 'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1200&q=80',
+    media.otherImages?.[5] || 'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=1200&q=80',
+    media.otherImages?.[6] || 'https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=1200&q=80',
   ];
 
   const projects = [
     {
       id: 'p1',
-      title: 'THE OBSIDIAN GRAND VILLA',
+      title: 'The Obsidian Grand Duplex Villa',
       category: 'construction' as const,
-      location: 'Grand Enclave, Chennai',
+      location: 'Prime Residential Enclave',
       area: '4,500 sq.ft Built-Up',
-      image: rawImages[0],
-      description: 'Turnkey G+2 luxury residential villa with double-height living foyer, cantilevered balcony slabs, and integrated thermal insulation.',
-      badge: 'RESIDENTIAL CONSTRUCTION',
+      image: projectImages[0],
+      description: 'Turnkey RCC framed residential villa execution with Fe550D TMT reinforcement, double-height living foyer, and German UPVC architectural fenestrations.',
+      badge: 'RESIDENTIAL CIVIL CONSTRUCTION',
     },
     {
       id: 'p2',
-      title: 'MONOLITH ARCHITECTURAL RESIDENCE',
+      title: 'Monolith Brutalist Elevation & Facade',
       category: 'architecture' as const,
-      location: 'Hilltop Avenue, Bangalore',
-      area: '5,500 sq.ft Built-Up',
-      image: rawImages[1],
-      description: 'Modern geometric facade elevation incorporating exposed concrete textures, large glazed curtain walls, and central courtyard ventilation.',
+      location: 'Hilltop Avenue',
+      area: '5,500 sq.ft Plot Plan',
+      image: projectImages[1],
+      description: '3D BIM architectural concept, cantilevers, textured stone louvers, and complete structural working blueprints aligned with municipal sanctions.',
       badge: 'ARCHITECTURAL DESIGN',
     },
     {
       id: 'p3',
-      title: 'VANGUARD PENTHOUSE INTERIOR',
+      title: 'Vanguard Penthouse Full-Home Fitout',
       category: 'interior' as const,
-      location: 'Skyline Heights, Hyderabad',
-      area: '3,600 sq.ft Built-Up',
-      image: rawImages[2],
-      description: 'Ultra-luxury interior fit-out featuring imported bookmatched Italian marble, custom acoustic wall panelling, and integrated smart lighting.',
-      badge: 'LUXURY INTERIOR',
+      location: 'Skyline Residences',
+      area: '3,600 sq.ft Interior',
+      image: projectImages[2],
+      description: 'Imported bookmatched Italian marble flooring, motorized Blum kitchen cabinetry, acoustic wood-fluted panelling, and integrated architectural lighting.',
+      badge: 'LUXURY INTERIOR DESIGN',
     },
     {
       id: 'p4',
-      title: 'THE COURTYARD CONTEMPORARY VILLA',
+      title: 'The Courtyard Contemporary Villa',
       category: 'construction' as const,
-      location: 'Palm Meadows, Coimbatore',
+      location: 'Palm Meadows',
       area: '4,800 sq.ft Built-Up',
-      image: rawImages[3],
-      description: 'Full-scope turnkey civil construction with Fe550D reinforcement, custom swimming pool engineering, and landscaped perimeter walls.',
-      badge: 'RESIDENTIAL CONSTRUCTION',
+      image: projectImages[3],
+      description: 'Custom G+2 residence with private courtyard, M20 lab-certified concrete casting, and full 10-year waterproofing & structural warranty.',
+      badge: 'RESIDENTIAL CIVIL CONSTRUCTION',
     },
     {
       id: 'p5',
-      title: 'INDUSTRIAL BRUTALIST ELEVATION',
+      title: 'Minimalist Cubist Residence Facade',
       category: 'architecture' as const,
-      location: 'Boulevard Road, Chennai',
-      area: '6,100 sq.ft Built-Up',
-      image: rawImages[4],
-      description: 'Architectural blueprint highlighting sharp rectangular cantilevers, steel framing, bespoke louvre screening, and complete 3D BIM coordination.',
+      location: 'Boulevard Road',
+      area: '6,100 sq.ft Plan',
+      image: projectImages[4],
+      description: 'Parametric screen detailing, cantilevered overhangs, 3D sun-path simulation, and structural framing drawings.',
       badge: 'ARCHITECTURAL DESIGN',
     },
     {
       id: 'p6',
-      title: 'LUXE LIVING SUITE & KITCHEN',
+      title: 'Bespoke Master Suite & Modular Kitchen',
       category: 'interior' as const,
-      location: 'Central Residency, Bangalore',
-      area: '3,100 sq.ft Built-Up',
-      image: rawImages[5],
-      description: 'German modular kitchen with integrated Blum motorized drawers, custom quartz island counter, and bespoke master suite walk-in wardrobes.',
-      badge: 'LUXURY INTERIOR',
+      location: 'Central Residency',
+      area: '3,100 sq.ft Interior',
+      image: projectImages[5],
+      description: 'Full-height seamless wardrobes, hydraulic hardware, quartz stone countertops, and ambient cove lighting systems.',
+      badge: 'LUXURY INTERIOR DESIGN',
     },
   ];
 
-  const basePath = `/designwebsite/template10/${slug}`;
-
   return (
-    <div className="w-full bg-[#111111] text-[#F4F3EE]">
+    <div className="w-full bg-[#252A29] text-[#F4F3EE]">
       {/* ─── Hero Banner Section ─── */}
-      <section id="gallery-hero" className="relative py-20 sm:py-28 bg-[#181B1A] border-b-4 border-[#252A29]">
+      <section id="gallery-hero" className="relative py-24 sm:py-32 bg-[#1A1E1D] border-b-4 border-[#111111]">
         <div className="max-w-7xl mx-auto px-4 sm:px-8">
           <div className="max-w-3xl">
-            <div className="inline-flex items-center gap-2 px-3 py-1 bg-[#E94B26] text-[#F4F3EE] text-xs font-black uppercase tracking-widest mb-4 border border-[#111111]">
-              <Building className="w-3.5 h-3.5" />
-              <span>COMPLETED SITES & DELIVERED HOMES</span>
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 bg-[#E94B26] text-[#F4F3EE] text-xs font-black uppercase tracking-[0.2em] mb-4 border border-[#111111] shadow-[3px_3px_0px_#111111]">
+              <Compass className="w-3.5 h-3.5" />
+              <span>DELIVERED SITES & PORTFOLIO</span>
             </div>
-            <h1 className="text-4xl sm:text-6xl font-black uppercase text-[#F4F3EE] tracking-tight leading-none mb-4">
-              OUR BUILT <span className="text-[#E94B26]">PROJECT PORTFOLIO</span>
+            <h1 className="text-4xl sm:text-6xl font-black uppercase text-[#F4F3EE] tracking-tight leading-[0.95] mb-4">
+              PORTFOLIO OF <span className="text-[#E94B26]">BUILT SITES</span> & ELEVATIONS
             </h1>
             <p className="text-sm sm:text-base font-bold uppercase tracking-wider text-[#C8A84E]">
               {clinicName} &bull; {clinicTagline}
@@ -119,31 +114,10 @@ export default async function Template10GalleryPage({ params }: PageProps) {
         </div>
       </section>
 
-      {/* ─── Interactive Gallery Section ─── */}
-      <section id="gallery-grid" className="py-20 px-4 sm:px-8 bg-[#111111] border-b-4 border-[#252A29]">
+      {/* ─── Gallery Grid Section ─── */}
+      <section id="gallery-grid" className="py-24 px-4 sm:px-8 bg-[#252A29] border-b-4 border-[#111111]">
         <div className="max-w-7xl mx-auto">
           <GalleryClient projects={projects} />
-        </div>
-      </section>
-
-      {/* ─── CTA Banner Section ─── */}
-      <section id="gallery-cta" className="py-16 px-4 sm:px-8 bg-[#E94B26] text-[#F4F3EE]">
-        <div className="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-6">
-          <div>
-            <h2 className="text-3xl sm:text-4xl font-black uppercase tracking-tight text-[#F4F3EE]">
-              WANT TO VISIT OUR COMPLETED SITES IN PERSON?
-            </h2>
-            <p className="text-xs font-mono text-[#F4F3EE]/90 uppercase mt-1">
-              Call {clinicPhone} to schedule a guided technical site walkthrough.
-            </p>
-          </div>
-          <Link
-            href={`${basePath}/contact`}
-            className="px-8 py-4 bg-[#111111] text-[#F4F3EE] font-black text-xs uppercase tracking-widest border border-[#111111] shadow-[4px_4px_0px_#000000] hover:bg-[#181B1A] transition-all flex items-center gap-2"
-          >
-            <span>REQUEST SITE VISIT</span>
-            <ArrowRight className="w-4 h-4 text-[#E94B26]" />
-          </Link>
         </div>
       </section>
     </div>

@@ -1,0 +1,268 @@
+{
+  "site": {
+    "name": "Architectural Atelier & Civil Build",
+    "tagline": "Architectural Design & Turnkey Civil Engineering"
+  },
+  "navbar": {
+    "logo": {
+      "text": "Architectural Atelier"
+    },
+    "links": [
+      {
+        "label": "Home",
+        "href": "/"
+      },
+      {
+        "label": "About",
+        "href": "/about"
+      },
+      {
+        "label": "Services",
+        "href": "/services"
+      },
+      {
+        "label": "Portfolio",
+        "href": "/gallery"
+      },
+      {
+        "label": "Contact",
+        "href": "/contact"
+      }
+    ],
+    "cta": {
+      "label": "Consult Architects",
+      "href": "/contact"
+    }
+  },
+  "hero": {
+    "headline": "Sculpted Architecture. Generational Permanence in Chennai.",
+    "hotspots": [
+      {
+        "icon": "📐",
+        "text": "Passive Solar Chajjas & Jalis",
+        "position": {
+          "top": null,
+          "left": null
+        },
+        "variant": "left"
+      },
+      {
+        "icon": "🏛️",
+        "text": "Tata Tiscon Fe550D RCC Frame",
+        "position": {
+          "top": null,
+          "left": null
+        },
+        "variant": "right"
+      },
+      {
+        "icon": "🌿",
+        "text": "100% Vaastu Mutham Courtyard",
+        "position": {
+          "top": "65%",
+          "left": "30%"
+        },
+        "variant": "custom"
+      }
+    ],
+    "cards": {
+      "about": {
+        "label": "Council of Architecture Atelier · Chennai",
+        "title": "CMDA Sanctioned Excellence & Civil Rigor",
+        "description": "Led by licensed architects and structural engineers, we sculpt landmark residences across ECR, OMR, Anna Nagar, and Adyar with frozen civil contracts.",
+        "cta": {
+          "label": "Our Philosophy ↗",
+          "href": "/about"
+        }
+      },
+      "appointment": {
+        "title": "Commission a Chennai Estate",
+        "image": "/images/architecture/hero-villa-twilight.webp",
+        "cta": {
+          "label": "Consult Architects",
+          "href": "/contact"
+        }
+      }
+    }
+  },
+  "stats": [
+    {
+      "number": "150+",
+      "label": "Chennai Homes Delivered",
+      "variant": "highlight",
+      "image": "/images/architecture/civic-landmark-facade.webp"
+    },
+    {
+      "number": "100%",
+      "label": "CMDA & GCC Sanctions",
+      "variant": "default",
+      "image": "/images/architecture/architectural-blueprint-draft.webp"
+    },
+    {
+      "number": "10-Yr",
+      "label": "RCC Structural Warranty",
+      "variant": "accent",
+      "image": "/images/architecture/structural-construction-frame.webp"
+    },
+    {
+      "number": "0%",
+      "label": "Cost Escalation Guarantee",
+      "variant": "default",
+      "image": "/images/architecture/stone-concrete-residence.webp"
+    },
+    {
+      "number": "45+",
+      "label": "Soil-Matched Piles Cast",
+      "variant": "default",
+      "image": "/images/architecture/courtyard-water-residence.webp"
+    },
+    {
+      "number": "15+",
+      "label": "Years Master Practice",
+      "variant": "default",
+      "image": "/images/architecture/principal-architect.webp"
+    }
+  ],
+  "contact": {
+    "map": {
+      "embedUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d158781.33230635442!2d-0.793740263683057!3d51.61111603525232!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4876612df243886b%3A0xcda6b7384a7e9389!2sBeaconsfield%20HP9%2C%20UK!5e0!3m2!1sen!2sin!4v1714828000000!5m2!1sen!2sin"
+    },
+    "social": {
+      "instagram": "https://www.instagram.com/",
+      "facebook": "https://www.facebook.com/"
+    },
+    "whatsapp": {
+      "phone": "+919751396117",
+      "message": "Hello! I would like to book an architectural consultation."
+    }
+  },
+  "booking": {
+    "calEmbedScriptSrc": "https://app.cal.com/embed/embed.js",
+    "calLink": "demo/architecture-appointment",
+    "calNamespace": "architecture-appointment"
+  },
+  "services": {
+    "header": {
+      "title": "Architectural",
+      "highlight": "Disciplines",
+      "description": "Comprehensive architectural planning, STAAD civil engineering, and turnkey construction under one single contract."
+    },
+    "essentialCare": {
+      "number": "01",
+      "title": "BIM & Sanction Dossiers",
+      "description": "Topographical analysis, 3D digital twins, and statutory municipal compliance.",
+      "services": [
+        {
+          "title": "Site Topography & Solar Study",
+          "description": "Comprehensive sun-path geometry, contour maps, and natural wind tunnel modeling.",
+          "image": "/images/architecture/urban-master-plan.webp",
+          "features": [
+            "Contour Surveys",
+            "Sun-Path Vectors",
+            "Wind Tunnel Modeling"
+          ]
+        },
+        {
+          "title": "3D BIM Digital Twin",
+          "description": "Volumetric massing, clash-detection, and photorealistic daylight simulations.",
+          "image": "/images/architecture/architect-studio-model.webp",
+          "features": [
+            "Volumetric Massing",
+            "Clash Detection",
+            "Material Simulation"
+          ]
+        },
+        {
+          "title": "Municipal Sanction Dossiers",
+          "description": "Statutory municipal approvals strictly adhering to zoning bylaws and FSI norms.",
+          "image": "/images/architecture/architectural-blueprint-draft.webp",
+          "features": [
+            "Bylaw Compliance",
+            "Structural Calculations",
+            "Statutory Approvals"
+          ]
+        }
+      ]
+    },
+    "transformations": {
+      "number": "02",
+      "title": "Structural & Civil Turnkey",
+      "orthodontics": {
+        "title": "Turnkey Villa Construction",
+        "description": "Complete single-contract execution from deep pile foundations to structural slab casting and curtain walls.",
+        "gallery": [
+          {
+            "src": "/images/architecture/hero-villa-twilight.webp",
+            "alt": "Contemporary Villa"
+          },
+          {
+            "src": "/images/architecture/civic-landmark-facade.webp",
+            "alt": "Commercial Landmark"
+          },
+          {
+            "src": "/images/architecture/courtyard-water-residence.webp",
+            "alt": "Courtyard Estate"
+          }
+        ],
+        "features": [
+          "Deep Pile Foundations",
+          "Primary Fe550D Steel",
+          "Grade-53 Monolithic Pours"
+        ]
+      },
+      "implants": {
+        "title": "Turnkey Villa & Building Construction",
+        "description": "End-to-end civil execution for luxury villas, independent residences, and commercial establishments.",
+        "image": "/images/architecture/modern-villa-duplex.webp",
+        "features": [
+          "Post-Tensioned Slabs",
+          "Board-Marked Concrete",
+          "Column-Free Living"
+        ]
+      },
+      "cosmetic": {
+        "title": "Civic & Commercial Pavilions",
+        "description": "High-performance glass curtain walls, double-height atriums, and institutional landmarks.",
+        "image": "/images/architecture/civic-landmark-facade.webp",
+        "features": [
+          "Low-E Solar Glazing",
+          "Structural Steel Trusses",
+          "Acoustic Atriums"
+        ]
+      }
+    },
+    "advancedProcedures": {
+      "number": "03",
+      "title": "Sustainable Innovations",
+      "services": [
+        {
+          "title": "Open Rainwater Courtyards",
+          "description": "Central reflection courtyards and rainwater harvesting systems that naturally condition indoor air.",
+          "image": "/images/architecture/courtyard-water-residence.webp",
+          "features": [
+            "Rainwater Harvesting",
+            "Stack Cooling Atriums",
+            "Native Landscaping"
+          ]
+        },
+        {
+          "title": "Passive Solar Envelope",
+          "description": "High thermal mass concrete walls and operable timber louvers that buffer external summer heat.",
+          "image": "/images/architecture/brutalist-glass-pavilion.webp",
+          "features": [
+            "Operable Louvers",
+            "Thermal Mass Concrete",
+            "Zero Daytime AC"
+          ]
+        }
+      ]
+    },
+    "cta": {
+      "title": "Commission Your",
+      "highlight": "Landmark",
+      "suffix": "Estate",
+      "description": "Experience the perfect synthesis of architectural brilliance and structural engineering. Let us sculpt your generational estate.",
+      "button": "Consult Architects"
+    }
+  }
+}

@@ -42,6 +42,14 @@ const TEMPLATES = [
     tag: 'Technical & Bold'
   },
   { 
+    id: 'template5', 
+    name: 'Template 5 - Architecture & Turnkey Civil', 
+    description: 'High-contrast light architectural layout with burnt orange signage, deep charcoal typography, 3-pillar integrated scope, and live construction calculators.', 
+    color: 'from-amber-600/20 to-orange-700/20',
+    accentColor: '#E94B26',
+    tag: 'Architecture & Civil'
+  },
+  { 
     id: 'template6', 
     name: 'Template 6 - Neo-Brutalist Flow', 
     description: 'Flat shadows, vintage highlights, and bold borders. Perfect for avant-garde design agencies.', 
@@ -72,6 +80,46 @@ const TEMPLATES = [
     color: 'from-orange-600/25 to-stone-900/60',
     accentColor: '#E94B26',
     tag: 'Architecture & Civil'
+  },
+  { 
+    id: 'template11', 
+    name: 'Template 11 - Architectural Atelier', 
+    description: 'Editorial architectural layout with high-contrast serif typography, structural rebar standards, and villa construction scope estimators.', 
+    color: 'from-amber-600/20 to-orange-700/20',
+    accentColor: '#C1FF72',
+    tag: 'Architecture & Editorial'
+  },
+  { 
+    id: 'template12', 
+    name: 'Template 12 - Organic Architecture & Villas', 
+    description: 'Warm, airy architectural presentation with passive solar planning, villa civil estimators, and natural material palettes.', 
+    color: 'from-stone-500/20 to-amber-700/20',
+    accentColor: '#10B981',
+    tag: 'Organic & Climate-Responsive'
+  },
+  { 
+    id: 'template13', 
+    name: 'Template 13 - Monolithic Luxury Architecture', 
+    description: 'Minimalist, monumental architectural theme featuring blueprint-to-concrete sliders, cantilever villa typologies, and frozen civil contracts.', 
+    color: 'from-zinc-600/20 to-stone-800/20',
+    accentColor: '#d8442c',
+    tag: 'Monolithic & Cantilever'
+  },
+  { 
+    id: 'template14', 
+    name: 'Template 14 - Curated Architectural Monograph', 
+    description: 'Structured architectural monographs, cantilever horizontal series scroll, board-marked concrete textures, and turnkey civil roadmaps.', 
+    color: 'from-stone-600/20 to-amber-800/20',
+    accentColor: '#b08d4f',
+    tag: 'Architectural Monograph'
+  },
+  { 
+    id: 'template17', 
+    name: 'Template 17 - Civic & Residential Architecture', 
+    description: 'Interactive GSAP architectural cards, solar path hotspots, 3D BIM showcase, and turnkey engineering disciplines.', 
+    color: 'from-cyan-600/20 to-blue-800/20',
+    accentColor: '#06B6D4',
+    tag: 'BIM & Civil Turnkey'
   },
 ];
 

@@ -1,0 +1,70 @@
+{
+  "clinic": {
+    "name": "murali patharala associates",
+    "slug": "murali-patharala-associates-mpa",
+    "tagline": "Thoughtful Interiors for Everyday Living",
+    "description": "Welcome to murali patharala & associates ( mpa). We create refined, functional interiors tailored to your lifestyle, budget, and space.",
+    "address": {
+      "full": "murali patharala & associates(mpa W115A, 3rd Ave, Annanagar East, Chennai, Tamil Nadu 600040",
+      "area": "",
+      "city": "Annanagar East",
+      "state": "Chennai",
+      "country": "India"
+    },
+    "contact": {
+      "phone": "09841098490",
+      "website": ""
+    },
+    "mapEmbedUrl": "https://maps.google.com/maps?q=murali%20patharala%20%26%20associates%20(%20mpa)%20murali%20patharala%20%26%20associates(mpa%20W115A%2C%203rd%20Ave%2C%20Annanagar%20East%2C%20Chennai%2C%20Tamil%20Nadu%20600040&output=embed"
+  },
+  "business": {
+    "rating": "4.8",
+    "reviewCount": "",
+    "timings": [],
+    "services": [
+      "Residential Interior Design",
+      "Modular Kitchen Design",
+      "Living Room Styling",
+      "Bedroom Makeovers",
+      "Space Planning",
+      "Custom Furniture"
+    ],
+    "highlights": [
+      "Personalized design concepts",
+      "Material and finish guidance",
+      "Transparent project planning",
+      "End-to-end execution support"
+    ]
+  },
+  "doctor": {
+    "name": "murali Studio Team",
+    "images": [],
+    "experience": "5+ years",
+    "specialization": "Interior Design & Turnkey Execution"
+  },
+  "reviews": [],
+  "media": {
+    "clinicImages": [
+      "/images/clinicImages-1.jpg",
+      "/images/clinicImages-2.jpg",
+      "/images/clinicImages-3.jpg",
+      "/images/clinicImages-4.jpg"
+    ],
+    "treatmentImages": [
+      "/images/treatmentImages-1.jpg"
+    ],
+    "otherImages": []
+  },
+  "overrides": {
+    "doctorName": "",
+    "doctorImages": [],
+    "extraImages": []
+  },
+  "meta": {
+    "generatedAt": "2026-08-07T11:24:51.254Z",
+    "source": "google_maps",
+    "updatedAt": "2026-08-25T10:04:14.139Z"
+  },
+  "templateOverrides": {},
+  "selected_template": "template5"
+}

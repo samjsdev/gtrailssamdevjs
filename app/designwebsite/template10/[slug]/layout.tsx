@@ -216,16 +216,37 @@ export default async function Template10Layout({ children, params }: LayoutProps
               </div>
             </div>
           </div>
+        </div>
 
-          {/* Bottom Hard Industrial Bar */}
-          <div className="mt-12 pt-8 border-t-2 border-[#252A29] flex flex-wrap items-center justify-between gap-4 text-[11px] font-mono text-[#F4F3EE]/50">
+        {/* Embedded Google Maps Location */}
+        <div className="max-w-7xl mx-auto px-4 sm:px-8 pt-12">
+          <div className="w-full h-64 sm:h-80 border-2 border-[#111111] overflow-hidden shadow-[6px_6px_0px_#111111] bg-[#1A1E1D] relative">
+            <iframe
+              title="Studio Engineering Center Location"
+              src={`https://www.google.com/maps?q=${encodeURIComponent(clinicAddress || 'Chennai, Tamil Nadu, India')}&output=embed`}
+              width="100%"
+              height="100%"
+              style={{ border: 0, filter: 'grayscale(1) contrast(1.2) invert(0.9)' }}
+              allowFullScreen={false}
+              loading="lazy"
+            />
+            <div className="absolute top-3 left-3 bg-[#252A29]/95 text-[#F4F3EE] px-3.5 py-1.5 border border-[#C8A84E] text-[11px] font-mono font-bold flex items-center gap-2">
+              <MapPin className="w-3.5 h-3.5 text-[#E94B26]" />
+              <span>OFFICIAL CORPORATE & SITE ENGINEERING LOCATION</span>
+            </div>
+          </div>
+        </div>
+
+        {/* Bottom Hard Industrial Bar */}
+        <div className="max-w-7xl mx-auto px-4 sm:px-8 pb-12 pt-8">
+          <div className="border-t-2 border-[#252A29] pt-6 flex flex-wrap items-center justify-between gap-4 text-[11px] font-mono text-[#F4F3EE]/60">
             <div>
               &copy; {new Date().getFullYear()} {clinicName}. ALL RIGHTS RESERVED. ARCHITECTURAL & RESIDENTIAL CIVIL ENTERPRISE.
             </div>
-            <div className="flex items-center gap-4 text-[#C8A84E]">
+            <div className="flex items-center gap-4 text-[#C8A84E] font-bold">
               <span>STANDARDS: IS 456 &bull; NBC 2016</span>
               <span>•</span>
-              <span>ZERO COST ESCALATION CONTRACTS</span>
+              <span>100% FIXED-COST CONTRACTS</span>
             </div>
           </div>
         </div>

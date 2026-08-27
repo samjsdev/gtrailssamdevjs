@@ -1,0 +1,27 @@
+.statsContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+    padding-right: 4rem;
+}
+
+.statItem {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.number {
+    font-size: 2.5rem;
+    font-weight: 700;
+    line-height: 1;
+    color: var(--accent-2);
+}
+
+.label {
+    font-size: 0.9rem;
+    font-weight: 300;
+    max-width: 200px;
+    line-height: 1.4;
+    color: var(--muted);
+}

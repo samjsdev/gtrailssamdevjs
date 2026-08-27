@@ -235,6 +235,7 @@ async function moveTemplateOutputs() {
       { id: 'template2', baseHtml: path.join(serverAppDir, 'template2', `${slug}.html`), subDir: path.join(serverAppDir, 'template2', slug) },
       { id: 'template3', baseHtml: path.join(serverAppDir, 'template3', `${slug}.html`), subDir: path.join(serverAppDir, 'template3', slug) },
       { id: 'template4', baseHtml: path.join(serverAppDir, 'template4', `${slug}.html`), subDir: path.join(serverAppDir, 'template4', slug) },
+      { id: 'template5', baseHtml: path.join(serverAppDir, 'template5', `${slug}.html`), subDir: path.join(serverAppDir, 'template5', slug) },
       { id: 'template6', baseHtml: path.join(serverAppDir, 'template6', `${slug}.html`), subDir: path.join(serverAppDir, 'template6', slug) },
       { id: 'template7', baseHtml: path.join(serverAppDir, 'template7', `${slug}.html`), subDir: path.join(serverAppDir, 'template7', slug) },
       { id: 'template10', baseHtml: path.join(serverAppDir, 'template10', `${slug}.html`), subDir: path.join(serverAppDir, 'template10', slug) },
