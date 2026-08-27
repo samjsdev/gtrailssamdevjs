@@ -175,28 +175,31 @@ export default function CostEstimator({ basePath = '' }: CostEstimatorProps) {
   );
 
   return (
-    <div className="w-full bg-white border border-stone-200 rounded-lg shadow-md overflow-hidden font-sans">
+    <div className="w-full bg-white border-2 md:border-4 border-[#111111] shadow-xl overflow-hidden font-sans">
       {/* Header strip */}
-      <div className="bg-[#FAF9F7] text-stone-900 p-6 sm:p-8 border-b border-stone-200">
-        <div className="max-w-4xl mx-auto flex flex-wrap items-center justify-between gap-4">
-          <div className="space-y-1">
-            <div className="inline-flex items-center gap-2 px-3 py-1 bg-orange-50 border border-orange-200 rounded-full text-xs font-semibold text-[#E64D16] uppercase tracking-wider">
-              <Calculator className="w-3.5 h-3.5 text-[#E64D16]" />
+      <div className="bg-[#111111] text-white p-6 sm:p-10 border-b-4 border-[#111111]">
+        <div className="max-w-4xl mx-auto flex flex-wrap items-center justify-between gap-6">
+          <div className="space-y-2">
+            <div className="inline-flex items-center gap-2 px-3 py-1 bg-[#EA580C] text-[#111111] text-xs font-bold uppercase tracking-wider">
+              <Calculator className="w-3.5 h-3.5" />
               <span>Chennai Market Rates (2026 Edition)</span>
             </div>
-            <h3 className="text-2xl sm:text-3xl font-bold tracking-tight text-stone-900">
-              Home Construction &amp; Interior Cost Calculator
+            <h3
+              className="text-2xl sm:text-4xl font-bold tracking-tight text-white"
+              style={{ fontFamily: "'Lora', serif" }}
+            >
+              Construction &amp; Interior Cost Calculator
             </h3>
-            <p className="text-xs sm:text-sm text-stone-500 font-normal">
-              Transparent, itemized pricing based on 28+ years of construction data in Chennai. No hidden charges.
+            <p className="text-xs sm:text-sm text-white/70 font-medium">
+              Transparent, itemized pricing based on 28+ years of construction data in Chennai. No hidden escalation.
             </p>
           </div>
 
-          <div className="hidden sm:flex items-center gap-3 bg-white border border-stone-200 px-4 py-2.5 rounded-md shadow-xs">
-            <ShieldCheck className="w-6 h-6 text-[#E64D16]" />
+          <div className="hidden sm:flex items-center gap-3 bg-[#1A1A1A] border border-[#333333] px-5 py-3">
+            <ShieldCheck className="w-6 h-6 text-[#EA580C]" />
             <div className="text-left text-xs">
-              <div className="text-stone-900 font-bold">100% Fixed-Price</div>
-              <div className="text-stone-500 text-[11px]">Zero Cost Overruns</div>
+              <div className="text-white font-bold uppercase tracking-wide">100% Fixed-Price</div>
+              <div className="text-white/60 text-[11px]">Zero Cost Overruns</div>
             </div>
           </div>
         </div>

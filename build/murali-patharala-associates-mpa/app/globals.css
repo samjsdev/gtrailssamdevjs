@@ -1,152 +1,88 @@
 @import "tailwindcss";
 
 @theme {
-  --font-serif: var(--font-playfair), "Playfair Display", Georgia, serif;
-  --font-sans: var(--font-sans), "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  /* Brand palette sampled from the MPA name board:
-     orange #E64D16, brass #B8934B, champagne #E6C673, charcoal #1A1B1A */
-  --color-brand-orange: #E64D16;
-  --color-brand-orange-hover: #C93F0F;
-  --color-brand-orange-light: #FDF2EC;
-  --color-brand-charcoal: #1A1B1A;
-  --color-brand-dark: #141514;
-  --color-brand-gold: #B8934B;
-  --color-brand-gold-light: #F8F1E2;
-  --color-canvas-bg: #FAF9F7;
+  --font-serif: var(--font-lora), "Lora", Georgia, serif;
+  --font-sans: var(--font-work-sans), "Work Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  /* Primary Brand Palette matching Design Reference */
+  --color-brand-orange: #EA580C;
+  --color-brand-orange-hover: #C2410C;
+  --color-brand-orange-light: #FFEDD5;
+  --color-brand-charcoal: #111111;
+  --color-brand-dark: #1A1A1A;
+  --color-charcoal-mid: #212121;
+  --color-canvas-bg: #FAFAFA;
   --color-canvas-white: #FFFFFF;
-
-  /* Override Tailwind's blue-cast orange ramp with the board orange family */
-  --color-orange-50: #FDF2EC;
-  --color-orange-100: #FBE3D6;
-  --color-orange-200: #F6C4AC;
-  --color-orange-300: #EFA07C;
-  --color-orange-400: #EE7A4A;
-  --color-orange-500: #E64D16;
-  --color-orange-600: #C93F0F;
-  --color-orange-700: #A6340C;
-  --color-orange-800: #832B0C;
-  --color-orange-900: #6A2610;
-  --color-orange-950: #38110A;
-
-  /* Warm neutral charcoal ramp (removes the blue cast from zinc/stone) */
-  --color-stone-800: #2A2C2A;
-  --color-stone-900: #1A1B1A;
-  --color-stone-950: #121312;
+  --color-concrete-gray: #757575;
+  --color-border-warm: #E0E0E0;
 }
 
 :root {
-  --background: #FAF9F7;
-  --foreground: #1A1B1A;
+  --amber: #EA580C;
+  --amber-light: #FB923C;
+  --amber-dark: #C2410C;
+  --cream: #FAFAFA;
+  --cream-dark: #F5F5F0;
+  --charcoal: #111111;
+  --charcoal-mid: #212121;
+  --stone: #757575;
+  --border-warm: #E0E0E0;
 }
 
 html {
+  scrollbar-width: none;
   scroll-behavior: smooth;
 }
 
 body {
-  background-color: #FAF9F7;
-  color: #1A1B1A;
-  font-family: var(--font-sans), -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family: var(--font-sans), 'Work Sans', sans-serif;
+  background-color: var(--charcoal);
+  color: #111111;
   overflow-x: hidden;
 }
 
-/* Custom refined architectural scrollbar */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-serif), 'Lora', serif;
+}
+
+/* Hide default scrollbars */
 ::-webkit-scrollbar {
-  width: 7px;
-}
-::-webkit-scrollbar-track {
-  background: #FAF9F7;
-}
-::-webkit-scrollbar-thumb {
-  background: #D4D4D8;
-  border-radius: 9999px;
-}
-::-webkit-scrollbar-thumb:hover {
-  background: #E64D16;
-}
-
-/* ─── MPA dynamic components ─── */
-
-/* Project marquee (auto-scrolling carousel) */
-.marquee-viewport {
-  overflow: hidden;
-  width: 100%;
-}
-.marquee-track {
-  display: flex;
-  gap: 24px;
-  width: max-content;
-  animation: mpa-marquee 55s linear infinite;
-}
-.marquee-track.paused {
-  animation-play-state: paused;
-}
-@keyframes mpa-marquee {
-  from { transform: translateX(0); }
-  to { transform: translateX(-50%); }
-}
-.marquee-fade-left,
-.marquee-fade-right {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  width: 80px;
-  z-index: 5;
-  pointer-events: none;
-}
-.marquee-fade-left {
-  left: 0;
-  background: linear-gradient(to right, #ffffff, transparent);
-}
-.marquee-fade-right {
-  right: 0;
-  background: linear-gradient(to left, #ffffff, transparent);
-}
-
-/* Fast services marquee strip */
-.marquee-track-fast {
-  animation: mpa-marquee 30s linear infinite;
-}
-
-/* Hide horizontal scrollbars on carousels */
-.scrollbar-hide {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-}
-.scrollbar-hide::-webkit-scrollbar {
   display: none;
 }
 
-/* Hero slide text entrance */
-@keyframes mpa-fade-up {
-  from { opacity: 0; transform: translateY(22px); }
-  to { opacity: 1; transform: translateY(0); }
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
-.mpa-fade-up {
-  animation: mpa-fade-up 0.7s ease-out both;
-}
-.mpa-fade-up.d1 { animation-delay: 0.1s; }
-.mpa-fade-up.d2 { animation-delay: 0.25s; }
-.mpa-fade-up.d3 { animation-delay: 0.4s; }
-.mpa-fade-up.d4 { animation-delay: 0.55s; }
 
-/* Generic fade for carousel swaps */
-@keyframes mpa-fade {
-  from { opacity: 0; }
-  to { opacity: 1; }
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
 }
-.mpa-fade {
-  animation: mpa-fade 0.5s ease-out both;
+
+/* Continuous marquee animation */
+.marquee-shell {
+  overflow: hidden;
+  width: 100%;
+}
+
+.marquee-track {
+  display: flex;
+  width: max-content;
+  align-items: center;
+  animation: marquee 35s linear infinite;
+}
+
+.marquee-track:hover {
+  animation-play-state: paused;
+}
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .marquee-track,
-  .marquee-track-fast {
-    animation: none;
-  }
-  .mpa-fade-up,
-  .mpa-fade {
+  .marquee-track {
     animation: none;
   }
 }
-

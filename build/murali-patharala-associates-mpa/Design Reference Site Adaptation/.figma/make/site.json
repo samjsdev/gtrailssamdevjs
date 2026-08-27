@@ -1,0 +1,10 @@
+{
+  "description": "This web application offers a user-friendly platform for service providers to showcase their offerings with a tailored design, enhancing online visibility and engagement.",
+  "robots": {
+    "index": false
+  },
+  "accessibility": {
+    "addBypassLinks": false,
+    "ignoreReducedMotion": false
+  }
+}

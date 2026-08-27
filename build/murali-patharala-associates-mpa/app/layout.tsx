@@ -1,33 +1,34 @@
 import type { Metadata } from 'next';
-import { Playfair_Display, Plus_Jakarta_Sans } from 'next/font/google';
+import { Lora, Work_Sans } from 'next/font/google';
 import './globals.css';
 
-const playfair = Playfair_Display({
+const lora = Lora({
   subsets: ['latin'],
-  weight: ['400', '500', '600', '700', '800'],
+  weight: ['400', '500', '600', '700'],
   style: ['normal', 'italic'],
-  variable: '--font-playfair',
+  variable: '--font-lora',
   display: 'swap',
 });
 
-const plusJakarta = Plus_Jakarta_Sans({
+const workSans = Work_Sans({
   subsets: ['latin'],
   weight: ['300', '400', '500', '600', '700'],
-  variable: '--font-sans',
+  variable: '--font-work-sans',
   display: 'swap',
 });
 
 export const metadata: Metadata = {
-  title: 'ARCH Foundations & Murali Patharala Associates (MPA) | Architects & Builders Chennai',
-  description: 'Architecture & Interior Design Consultants | Builders, Constructions & Property Developers. Serving Chennai with 28+ years of trust since 1998.',
+  title: 'Murali Patharala Associates (MPA) | Turnkey Construction & Architectural Design Chennai',
+  description: 'Turnkey Construction, Architecture & Interior Design in Chennai. Fixed-price contracts, zero delays, and 28+ years of structural excellence in Anna Nagar.',
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${playfair.variable} ${plusJakarta.variable}`}>
-      <body className="font-sans antialiased bg-[#FAF9F7] text-[#1A1B1A] selection:bg-[#E64D16] selection:text-white">
+    <html lang="en" className={`${lora.variable} ${workSans.variable}`}>
+      <body className="font-sans antialiased bg-[#111111] text-[#111111] selection:bg-[#EA580C] selection:text-white">
         {children}
       </body>
     </html>
   );
 }
+

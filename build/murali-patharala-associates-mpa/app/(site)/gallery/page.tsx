@@ -1,13 +1,7 @@
 import { readSourceConfig } from '@/lib/sourceData';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
-import Image from 'next/image';
 import GalleryClient from '../GalleryClient';
-import ProjectCarousel from '../ProjectCarousel';
-import {
-  Building2, Compass, Layers, ShieldCheck,
-  CheckCircle2, Ruler, ArrowRight, Phone, Palette, LayoutGrid, Sparkles
-} from 'lucide-react';
 
 interface PageProps {
   params?: any;
@@ -20,84 +14,61 @@ export default async function GalleryPage({ params }: PageProps) {
     notFound();
   }
 
-  const clinicPhone = '98410 98490';
+  const phone = '09841098490';
+  const displayPhone = '+91 98410 98490';
   const media = data.media || {};
 
   return (
-    <div className="w-full bg-[#FAF9F7] text-[#1A1B1A] font-sans">
-      {/* ─── Hero Banner Section ─── */}
-      <section id="gallery-hero" className="relative py-20 sm:py-28 bg-[#1A1B1A] text-white overflow-hidden">
-        <Image
-          src="/images/clinicImages-1.jpg"
-          alt="Completed villa at dusk by MPA"
-          fill
-          className="object-cover opacity-55"
-          sizes="100vw"
-          priority
-        />
-        <div className="absolute inset-0 bg-gradient-to-r from-[#1A1B1A]/75 via-[#1A1B1A]/35 to-transparent" />
-        <div className="max-w-7xl mx-auto px-4 sm:px-8 relative">
-          <div className="max-w-3xl space-y-4">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1 bg-[#E64D16]/20 border border-[#E64D16]/50 rounded-full text-xs font-bold text-[#E6C673] tracking-wide uppercase backdrop-blur-sm">
-              <LayoutGrid className="w-3.5 h-3.5" />
-              <span>Project Showcase &bull; Anna Nagar East Studio</span>
-            </div>
-            <h1 className="text-3xl sm:text-5xl font-serif font-bold tracking-tight leading-tight">
-              Completed Sites &amp; <span className="text-[#E64D16]">3D Architectural Designs</span>
-            </h1>
-            <p className="text-sm sm:text-base text-stone-200 font-normal leading-relaxed">
-              Explore independent villas, contemporary elevations, and luxury turnkey residences delivered by ARCH Foundations &amp; Murali Patharala Associates across Chennai.
-            </p>
-          </div>
+    <div className="w-full bg-[#FAFAFA] text-[#111111]">
+      {/* ── Hero Banner ── */}
+      <section className="py-20 md:py-28 bg-[#111111] text-white border-b-4 border-[#111111] px-6 md:px-12 text-center">
+        <div className="max-w-4xl mx-auto space-y-6">
+          <p className="text-xs font-bold tracking-[0.25em] uppercase text-[#EA580C]">
+            Visual Portfolio &bull; 850+ Projects Handled
+          </p>
+          <h1
+            className="text-4xl sm:text-5xl md:text-6xl font-bold font-serif leading-tight tracking-tight"
+            style={{ fontFamily: "'Lora', serif" }}
+          >
+            Signature Residences &amp; Architectural Designs.
+          </h1>
+          <p className="text-base sm:text-lg text-white/75 font-medium max-w-2xl mx-auto leading-relaxed">
+            Explore independent villas, contemporary 3D elevations, and turnkey modular interiors executed by Murali Patharala Associates across Chennai.
+          </p>
         </div>
       </section>
 
-      {/* ─── Featured Carousel ─── */}
-      <section className="py-16 sm:py-20 px-4 sm:px-8 bg-white border-b border-stone-200 overflow-hidden">
-        <div className="max-w-7xl mx-auto space-y-10">
-          <div className="flex items-center gap-2.5">
-            <span className="w-8 h-[3px] bg-[#E64D16]" />
-            <span className="text-[11px] font-extrabold tracking-[0.22em] uppercase text-[#E64D16]">
-              Featured Landmarks
-            </span>
-          </div>
-          <ProjectCarousel />
-        </div>
-      </section>
-
-      {/* ─── Interactive Gallery Portfolio ─── */}
-      <section className="py-20 sm:py-24 px-4 sm:px-8 bg-[#FAF9F7] border-b border-stone-200">
+      {/* ── Filterable Gallery Grid ── */}
+      <section className="py-16 md:py-24 px-6 md:px-12 bg-white border-b-4 border-[#111111]">
         <div className="max-w-7xl mx-auto">
           <GalleryClient images={media} />
         </div>
       </section>
 
-      {/* ─── Bottom CTA Banner ─── */}
-      <section className="py-16 sm:py-20 px-4 sm:px-8 bg-white">
-        <div className="max-w-4xl mx-auto text-center space-y-6">
-          <div className="inline-block px-3.5 py-1 bg-orange-50 border border-orange-200 rounded-full text-xs font-bold text-[#E64D16] tracking-wide uppercase">
-            Turnkey Construction Excellence
-          </div>
-          <h3 className="text-2xl sm:text-4xl font-serif font-bold text-stone-900">
-            Envisioning a similar home in Chennai?
-          </h3>
-          <p className="text-xs sm:text-sm text-stone-600 max-w-xl mx-auto leading-relaxed">
-            Our principal architects and civil engineers will meet you for a complimentary plot study and initial 3D elevation concept.
-          </p>
-          <div className="flex flex-wrap items-center justify-center gap-4 pt-2">
-            <Link
-              href="/#consultation-form"
-              className="px-8 py-3.5 bg-[#E64D16] hover:bg-[#C93F0F] text-white font-bold text-xs uppercase tracking-widest rounded-md shadow-md transition-all"
-            >
-              Book Free Site Inspection
-            </Link>
-            <a
-              href="tel:+919841098490"
-              className="px-8 py-3.5 bg-[#1A1B1A] hover:bg-stone-800 text-white font-bold text-xs uppercase tracking-widest rounded-md transition-all"
-            >
-              Call: +91 98410 98490
-            </a>
-          </div>
+      {/* ── Pre-Footer Action ── */}
+      <section className="py-16 md:py-20 px-6 md:px-12 bg-[#111111] text-white text-center">
+        <h3
+          className="text-2xl sm:text-4xl font-bold font-serif mb-4 text-[#EA580C]"
+          style={{ fontFamily: "'Lora', serif" }}
+        >
+          Have an Architectural Concept in Mind?
+        </h3>
+        <p className="text-white/70 max-w-xl mx-auto mb-8 text-sm sm:text-base font-medium">
+          Bring your site sketches, floor plan ideas, or Pinterest moodboards to our Anna Nagar studio.
+        </p>
+        <div className="flex flex-wrap items-center justify-center gap-4">
+          <Link
+            href="/contact"
+            className="px-8 py-4 bg-[#EA580C] text-[#111111] font-bold uppercase tracking-widest text-xs hover:bg-white transition-colors"
+          >
+            Book Free Feasibility
+          </Link>
+          <a
+            href={`tel:${displayPhone}`}
+            className="px-8 py-4 border-2 border-[#EA580C] text-[#EA580C] font-bold uppercase tracking-widest text-xs hover:bg-[#EA580C] hover:text-[#111111] transition-colors"
+          >
+            Call {displayPhone}
+          </a>
         </div>
       </section>
     </div>

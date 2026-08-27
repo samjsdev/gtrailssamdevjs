@@ -135,10 +135,10 @@ export default function GalleryClient({ images }: GalleryClientProps) {
           <button
             key={tab.id}
             onClick={() => setActiveFilter(tab.id as any)}
-            className={`px-4 sm:px-6 py-2.5 rounded-full text-xs font-bold transition-all ${
+            className={`px-5 sm:px-7 py-3 text-xs font-bold uppercase tracking-widest transition-all border-2 border-[#111111] cursor-pointer ${
               activeFilter === tab.id
-                ? 'bg-[#E64D16] text-white shadow-md'
-                : 'bg-white text-stone-700 hover:text-[#E64D16] border border-stone-200 hover:border-stone-300'
+                ? 'bg-[#111111] text-[#EA580C]'
+                : 'bg-white text-[#111111] hover:bg-[#FAFAFA]'
             }`}
           >
             {tab.label}
@@ -147,33 +147,33 @@ export default function GalleryClient({ images }: GalleryClientProps) {
       </div>
 
       {/* Grid of Portfolio Works */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {filteredItems.map((item, idx) => (
           <div
             key={idx}
             onClick={() => setActiveModalItem(item)}
-            className="group cursor-pointer overflow-hidden border border-stone-200 hover:border-orange-300 hover:shadow-lg transition-all duration-300 flex flex-col bg-white"
+            className="group cursor-pointer border-2 border-[#111111] hover:shadow-xl transition-all duration-300 flex flex-col bg-white"
           >
             {/* Image Container */}
-            <div className="relative aspect-[4/3] w-full overflow-hidden bg-stone-100">
+            <div className="relative aspect-[4/3] w-full overflow-hidden bg-[#181818]">
               <Image
                 src={item.url}
                 alt={item.title}
                 fill
-                className="object-cover group-hover:scale-105 transition-transform duration-500"
+                className="object-cover grayscale-[0.2] group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700"
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-stone-900/80 via-stone-900/20 to-transparent opacity-80 group-hover:opacity-90 transition-opacity" />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#111111] via-[#111111]/30 to-transparent opacity-80 group-hover:opacity-90 transition-opacity" />
 
               {/* Top Category Badge */}
               <div className="absolute top-3 left-3">
-                <span className="px-3 py-1 bg-[#242624]/90 backdrop-blur-xs text-white text-[10px] font-bold uppercase tracking-wider rounded-md border border-stone-700">
+                <span className="px-3 py-1 bg-[#111111] text-[#EA580C] text-[10px] font-bold uppercase tracking-widest border border-[#333333]">
                   {item.categoryLabel}
                 </span>
               </div>
 
               {/* Zoom Trigger */}
-              <div className="absolute top-3 right-3 w-8 h-8 rounded-md bg-white/20 backdrop-blur-xs text-white flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+              <div className="absolute top-3 right-3 w-8 h-8 bg-[#111111] text-[#EA580C] flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
                 <Maximize2 className="w-4 h-4" />
               </div>
 
@@ -216,13 +216,13 @@ export default function GalleryClient({ images }: GalleryClientProps) {
       {activeModalItem && (
         <div
           onClick={() => setActiveModalItem(null)}
-          className="fixed inset-0 z-50 bg-stone-900/80 backdrop-blur-sm p-4 sm:p-8 flex items-center justify-center animate-in fade-in duration-200"
+          className="fixed inset-0 z-50 bg-[#111111]/85 backdrop-blur-sm p-4 sm:p-8 flex items-center justify-center"
         >
           <div
             onClick={(e) => e.stopPropagation()}
-            className="bg-white rounded-lg max-w-4xl w-full max-h-[90vh] overflow-y-auto border border-stone-200 shadow-2xl overflow-hidden animate-in zoom-in-95 duration-200"
+            className="bg-white border-4 border-[#111111] max-w-4xl w-full max-h-[90vh] overflow-y-auto shadow-2xl"
           >
-            <div className="relative aspect-16/9 w-full bg-stone-900">
+            <div className="relative aspect-16/9 w-full bg-[#111111]">
               <Image
                 src={activeModalItem.url}
                 alt={activeModalItem.title}
@@ -231,7 +231,7 @@ export default function GalleryClient({ images }: GalleryClientProps) {
               />
               <button
                 onClick={() => setActiveModalItem(null)}
-                className="absolute top-4 right-4 w-9 h-9 rounded-full bg-black/60 hover:bg-black text-white flex items-center justify-center transition-colors"
+                className="absolute top-4 right-4 w-10 h-10 bg-[#111111] hover:bg-[#EA580C] hover:text-[#111111] text-white flex items-center justify-center transition-colors cursor-pointer border border-[#333333]"
                 aria-label="Close lightbox"
               >
                 <X className="w-5 h-5" />
@@ -239,48 +239,52 @@ export default function GalleryClient({ images }: GalleryClientProps) {
             </div>
 
             <div className="p-6 sm:p-8 space-y-6">
-              <div className="flex flex-wrap items-center justify-between gap-3 border-b border-stone-100 pb-4">
+              <div className="flex flex-wrap items-center justify-between gap-4 border-b-2 border-[#111111] pb-4">
                 <div>
-                  <div className="inline-block px-2.5 py-0.5 bg-orange-100 text-[#E64D16] text-[10px] font-bold uppercase tracking-wider rounded-md mb-1.5">
+                  <div className="inline-block px-3 py-1 bg-[#EA580C] text-[#111111] text-[10px] font-bold uppercase tracking-widest mb-2">
                     {activeModalItem.categoryLabel}
                   </div>
-                  <h3 className="text-xl sm:text-2xl font-bold text-stone-900">
+                  <h3
+                    className="text-xl sm:text-3xl font-bold font-serif text-[#111111]"
+                    style={{ fontFamily: "'Lora', serif" }}
+                  >
                     {activeModalItem.title}
                   </h3>
-                  <div className="flex items-center gap-2 text-xs text-stone-500 mt-1">
-                    <MapPin className="w-3.5 h-3.5 text-[#E64D16]" />
+                  <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-[#757575] mt-1">
+                    <MapPin className="w-3.5 h-3.5 text-[#EA580C]" />
                     <span>{activeModalItem.location}</span>
-                    <span>&bull;</span>
+                    <span>•</span>
                     <span>{activeModalItem.area}</span>
                   </div>
                 </div>
 
                 <a
-                  href="#consultation-form"
-                  onClick={() => setActiveModalItem(null)}
-                  className="px-5 py-2.5 bg-[#E64D16] hover:bg-[#C93F0F] text-white font-bold text-xs uppercase tracking-wider rounded-md transition-all shadow-xs"
+                  href={`https://wa.me/919841098490?text=${encodeURIComponent(`Hi Murali Patharala Associates, I am inquiring about project: ${activeModalItem.title}`)}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="px-6 py-3 bg-[#EA580C] text-[#111111] font-bold text-xs uppercase tracking-widest hover:bg-[#111111] hover:text-white transition-colors"
                 >
-                  Inquire About Similar Project
+                  Inquire About This Project
                 </a>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-xs text-stone-700">
-                <div className="p-4 bg-stone-50 rounded-md border border-stone-200 space-y-2">
-                  <div className="font-bold text-stone-900 text-sm flex items-center gap-2">
-                    <CheckCircle2 className="w-4 h-4 text-[#E64D16]" />
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-xs text-[#111111]">
+                <div className="p-5 bg-[#FAFAFA] border-2 border-[#111111] space-y-2">
+                  <div className="font-bold text-sm uppercase tracking-wider flex items-center gap-2 text-[#111111]">
+                    <span className="text-[#EA580C]">■</span>
                     <span>Project Scope &amp; Engineering</span>
                   </div>
-                  <p className="leading-relaxed text-stone-600">
+                  <p className="leading-relaxed text-[#757575] font-medium">
                     {activeModalItem.scope}
                   </p>
                 </div>
 
-                <div className="p-4 bg-stone-50 rounded-md border border-stone-200 space-y-2">
-                  <div className="font-bold text-stone-900 text-sm flex items-center gap-2">
-                    <CheckCircle2 className="w-4 h-4 text-[#E64D16]" />
+                <div className="p-5 bg-[#FAFAFA] border-2 border-[#111111] space-y-2">
+                  <div className="font-bold text-sm uppercase tracking-wider flex items-center gap-2 text-[#111111]">
+                    <span className="text-[#EA580C]">■</span>
                     <span>Materials &amp; Finish Grades</span>
                   </div>
-                  <p className="leading-relaxed text-stone-600">
+                  <p className="leading-relaxed text-[#757575] font-medium">
                     {activeModalItem.materials}
                   </p>
                 </div>

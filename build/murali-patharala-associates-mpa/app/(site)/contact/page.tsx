@@ -2,12 +2,6 @@ import { readSourceConfig } from '@/lib/sourceData';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import Image from 'next/image';
-import ConsultationForm from '../ConsultationForm';
-import {
-  Building2, Phone, Mail, MapPin, Clock, ShieldCheck,
-  CheckCircle2, HelpCircle, ArrowRight, Compass,
-  MessageSquare, Sparkles
-} from 'lucide-react';
 
 interface PageProps {
   params?: any;
@@ -20,148 +14,175 @@ export default async function ContactPage({ params }: PageProps) {
     notFound();
   }
 
-  const clinicPhone = '98410 98490';
-  const clinicEmail = 'archfoundations.mpa@gmail.com';
-  const clinicAddress = 'W115A, 3rd Ave, Annanagar East, Chennai, Tamil Nadu 600040';
-  const cleanPhone = `91${clinicPhone.replace(/\D/g, '')}`;
+  const phone = '09841098490';
+  const displayPhone = '+91 98410 98490';
+  const rawDigits = phone.replace(/\D/g, '');
+  const cleanPhone = rawDigits.startsWith('91') ? rawDigits : `91${rawDigits.replace(/^0+/, '')}`;
+
+  const address = 'W115A, 3rd Ave, Annanagar East, Chennai, Tamil Nadu 600040';
+  const mapEmbedUrl = data.clinic.mapEmbedUrl || 'https://maps.google.com/maps?q=murali%20patharala%20%26%20associates%20(%20mpa)%20W115A%2C%203rd%20Ave%2C%20Annanagar%20East%2C%20Chennai%2C%20Tamil%20Nadu%20600040&output=embed';
 
   const faqs = [
     {
-      q: 'What is included in the 10-Year Structural Guarantee?',
-      a: 'We provide a legally binding 10-year structural certificate that covers the foundation, RCC columns, beams, roof slabs, and load-bearing masonry against structural settlement, micro-cracking, or concrete delamination. We strictly use certified 53-grade cement and primary TMT steel (Tata Tiscon / JSW).',
+      q: 'What is included in your 10-Year Structural Guarantee?',
+      a: 'We provide a legally binding 10-year structural certificate covering foundation, RCC columns, beams, roof slabs, and load-bearing masonry against structural settlement or cracks. We strictly utilize primary TMT steel (Tata Tiscon / JSW) and 53-grade certified cement.',
     },
     {
       q: 'How does the Zero Cost Escalation & Fixed-Price Guarantee work?',
-      a: 'Before construction begins, our civil engineers prepare an exhaustive, itemized Bill of Quantities (BOQ) covering every bag of cement, ton of steel, plumbing pipe, and tile. Once signed, your price per square foot is 100% frozen. We absorb any market price increases.',
+      a: 'Before breaking ground, our civil engineers prepare an exhaustive Bill of Quantities (BOQ) covering every bag of cement, ton of steel, plumbing conduit, and tile. Once signed, your price per square foot is 100% frozen. We absorb all market material inflation.',
     },
     {
-      q: 'Do you provide CMDA and DTCP plan approvals in Chennai?',
-      a: 'Yes. Our in-house architectural team handles the entire statutory sanction process with CMDA, Greater Chennai Corporation (GCC), and DTCP, ensuring full adherence to setback norms, FSI calculations, and Vastu principles.',
+      q: 'Do you provide CMDA and Corporation plan approvals in Chennai?',
+      a: 'Yes. Our in-house architectural team handles the entire statutory sanction process with CMDA and Greater Chennai Corporation, ensuring full compliance with setback regulations, FSI norms, and structural safety bylaws.',
     },
     {
-      q: 'Can we hire you for Architecture or Interiors only?',
-      a: 'Yes, absolutely. While 80% of our clients choose our end-to-end Turnkey Construction package (from foundation to interiors), we also accept standalone Architectural 3D Elevation & Planning commissions, as well as Luxury Interior Joinery projects.',
+      q: 'Can we hire you for Architectural Planning or Interiors only?',
+      a: 'Yes. While over 80% of our clients select our full Turnkey Construction package (from soil testing to key handover), we also accept standalone Architectural 3D Elevation & Planning commissions, as well as Modular Interior Fit-outs.',
     },
     {
-      q: 'How do you monitor construction quality without a mobile app?',
-      a: 'We believe real engineering happens on-site, not on a phone screen. We assign a dedicated, full-time Civil Engineer to your site every single day. You receive structured weekly high-definition photo and video milestone progress reports via WhatsApp and email, with live compressive cube test certificates.',
+      q: 'How do you monitor daily construction quality on-site?',
+      a: 'We assign a dedicated, full-time Civil Engineer to your site every single day. You receive weekly photo and video milestone progress reports via WhatsApp with live compressive cube test certificates and material verification slips.',
     },
   ];
 
   return (
-    <div className="w-full bg-[#FAF9F7] text-[#1A1B1A] font-sans">
-      {/* ─── Hero Banner Section ─── */}
-      <section id="contact-hero" className="relative py-20 sm:py-28 bg-[#1A1B1A] text-white overflow-hidden">
-        <Image
-          src="/images/clinicImages-3.jpg"
-          alt="MPA studio building in Anna Nagar East"
-          fill
-          className="object-cover opacity-55"
-          sizes="100vw"
-          priority
-        />
-        <div className="absolute inset-0 bg-gradient-to-r from-[#1A1B1A]/75 via-[#1A1B1A]/35 to-transparent" />
-        <div className="max-w-7xl mx-auto px-4 sm:px-8 relative">
-          <div className="max-w-3xl space-y-4">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1 bg-[#E64D16]/20 border border-[#E64D16]/50 rounded-full text-xs font-bold text-[#E6C673] tracking-wide uppercase backdrop-blur-sm">
-              <Compass className="w-3.5 h-3.5" />
-              <span>Studio Coordinates &bull; Anna Nagar East, Chennai</span>
+    <div className="w-full bg-[#FAFAFA] text-[#111111]">
+      {/* ── Hero Banner ── */}
+      <section className="py-20 md:py-28 bg-[#111111] text-white border-b-4 border-[#111111] px-6 md:px-12 text-center">
+        <div className="max-w-4xl mx-auto space-y-6">
+          <p className="text-xs font-bold tracking-[0.25em] uppercase text-[#EA580C]">
+            Direct Consultation
+          </p>
+          <h1
+            className="text-4xl sm:text-5xl md:text-6xl font-bold font-serif leading-tight tracking-tight"
+            style={{ fontFamily: "'Lora', serif" }}
+          >
+            Connect With Our Senior Architectural Team.
+          </h1>
+          <p className="text-base sm:text-lg text-white/75 font-medium max-w-2xl mx-auto leading-relaxed">
+            Visit our studio in Anna Nagar East or schedule a free site feasibility inspection anywhere in Chennai.
+          </p>
+        </div>
+      </section>
+
+      {/* ── Studio Information & Map Grid ── */}
+      <section className="py-20 md:py-28 px-6 md:px-12 border-b-4 border-[#111111] bg-white">
+        <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-stretch">
+          {/* Studio Coordinates */}
+          <div className="border-4 border-[#111111] p-8 md:p-12 bg-[#FAFAFA] flex flex-col justify-between space-y-8 shadow-xl">
+            <div>
+              <span className="text-xs font-bold tracking-[0.2em] uppercase text-[#EA580C] block mb-2">
+                Office Location
+              </span>
+              <h2
+                className="text-2xl sm:text-3xl font-bold font-serif text-[#111111] mb-6"
+                style={{ fontFamily: "'Lora', serif" }}
+              >
+                Anna Nagar East Studio
+              </h2>
+
+              <div className="space-y-6 text-sm">
+                <div>
+                  <p className="text-xs font-bold uppercase tracking-widest text-[#757575] mb-1">
+                    Physical Address
+                  </p>
+                  <p className="text-base font-bold text-[#111111] leading-relaxed">
+                    {address}
+                  </p>
+                </div>
+
+                <div>
+                  <p className="text-xs font-bold uppercase tracking-widest text-[#757575] mb-1">
+                    Consultation Direct Line
+                  </p>
+                  <a
+                    href={`tel:${displayPhone}`}
+                    className="text-2xl font-bold font-serif text-[#EA580C] hover:text-[#111111] transition-colors block"
+                    style={{ fontFamily: "'Lora', serif" }}
+                  >
+                    {displayPhone}
+                  </a>
+                </div>
+
+                <div>
+                  <p className="text-xs font-bold uppercase tracking-widest text-[#757575] mb-1">
+                    Operating Hours
+                  </p>
+                  <p className="text-sm font-bold text-[#111111]">
+                    Monday – Saturday: 9:30 AM – 7:30 PM
+                  </p>
+                  <p className="text-xs text-[#757575] mt-0.5">
+                    Sunday: By Prior Appointment Only
+                  </p>
+                </div>
+              </div>
             </div>
-            <h1 className="text-3xl sm:text-5xl font-serif font-bold tracking-tight leading-tight">
-              Connect with Our <span className="text-[#E64D16]">Engineers &amp; Architects</span>
-            </h1>
-            <p className="text-sm sm:text-base text-stone-200 font-normal leading-relaxed">
-              Schedule an on-site plot inspection anywhere in Chennai or visit our studio in Anna Nagar East.
-            </p>
+
+            <div className="pt-6 border-t-2 border-[#E0E0E0] flex flex-wrap gap-4">
+              <a
+                href={`https://wa.me/${cleanPhone}?text=${encodeURIComponent('Hi Murali Patharala Associates (MPA), I would like to book an in-person consultation.')}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-6 py-3.5 bg-[#EA580C] text-[#111111] font-bold uppercase tracking-widest text-xs hover:bg-[#111111] hover:text-white transition-colors text-center flex-1"
+              >
+                WhatsApp Principal Architect
+              </a>
+              <a
+                href={`tel:${displayPhone}`}
+                className="px-6 py-3.5 border-2 border-[#111111] text-[#111111] font-bold uppercase tracking-widest text-xs hover:bg-[#111111] hover:text-white transition-colors text-center"
+              >
+                Call Studio
+              </a>
+            </div>
+          </div>
+
+          {/* Interactive Google Map Embed */}
+          <div className="border-4 border-[#111111] bg-[#111111] min-h-[450px] relative overflow-hidden shadow-xl">
+            <iframe
+              src={mapEmbedUrl}
+              width="100%"
+              height="100%"
+              style={{ border: 0 }}
+              allowFullScreen={false}
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              title="Murali Patharala Associates Anna Nagar Location"
+              className="absolute inset-0 w-full h-full grayscale-[0.3] contrast-[1.1]"
+            />
+            <div className="absolute bottom-4 left-4 right-4 bg-[#111111]/95 text-white p-4 border border-[#333333] flex items-center justify-between pointer-events-none">
+              <div>
+                <p className="text-xs font-bold uppercase tracking-wider text-[#EA580C]">Murali Patharala Associates</p>
+                <p className="text-[11px] text-white/70">W115A, 3rd Ave, Annanagar East</p>
+              </div>
+              <span className="text-xs text-[#EA580C] font-bold uppercase">Anna Nagar, Chennai</span>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* ─── Contact Form & Coordinates Section ─── */}
-      <section className="py-20 sm:py-24 px-4 sm:px-8 bg-[#FAF9F7] border-b border-stone-200">
-        <div className="max-w-7xl mx-auto space-y-16">
-          {/* Coordinates Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div className="bg-white p-7 border border-stone-200 rounded-lg shadow-xs hover:border-[#E64D16] transition-all space-y-3">
-              <div className="w-12 h-12 rounded-md bg-orange-100 text-[#E64D16] flex items-center justify-center shadow-xs">
-                <Phone className="w-5 h-5" />
-              </div>
-              <h3 className="text-base font-bold text-stone-900">Direct Telephone</h3>
-              <p className="text-xs text-stone-600 leading-relaxed">
-                Speak directly with our senior site engineers and estimators.
-              </p>
-              <div className="pt-2">
-                <a
-                  href={`tel:+919841098490`}
-                  className="text-sm font-bold text-[#E64D16] hover:underline"
-                >
-                  +91 98410 98490
-                </a>
-              </div>
-            </div>
-
-            <div className="bg-white p-7 border border-stone-200 rounded-lg shadow-xs hover:border-[#E64D16] transition-all space-y-3">
-              <div className="w-12 h-12 rounded-md bg-orange-100 text-[#E64D16] flex items-center justify-center shadow-xs">
-                <MapPin className="w-5 h-5" />
-              </div>
-              <h3 className="text-base font-bold text-stone-900">Anna Nagar Studio</h3>
-              <p className="text-xs text-stone-600 leading-relaxed">
-                {clinicAddress}
-              </p>
-              <div className="pt-2 text-xs font-semibold text-stone-700">
-                Mon &ndash; Sat: 9:30 AM &ndash; 7:30 PM
-              </div>
-            </div>
-
-            <div className="bg-white p-7 border border-stone-200 rounded-lg shadow-xs hover:border-[#E64D16] transition-all space-y-3">
-              <div className="w-12 h-12 rounded-md bg-emerald-100 text-emerald-700 flex items-center justify-center shadow-xs">
-                <MessageSquare className="w-5 h-5" />
-              </div>
-              <h3 className="text-base font-bold text-stone-900">WhatsApp Instant Connect</h3>
-              <p className="text-xs text-stone-600 leading-relaxed">
-                Send your plot dimensions, location, or drawings directly.
-              </p>
-              <div className="pt-2">
-                <a
-                  href={`https://wa.me/${cleanPhone}?text=${encodeURIComponent('Hi ARCH Foundations & Murali Patharala Associates, I would like to schedule a plot consultation in Chennai.')}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 text-xs font-bold text-emerald-700 hover:underline"
-                >
-                  <span>Chat on WhatsApp &rarr;</span>
-                </a>
-              </div>
-            </div>
-          </div>
-
-          {/* Form */}
-          <ConsultationForm phone={clinicPhone} />
-        </div>
-      </section>
-
-      {/* ─── Frequently Asked Questions ─── */}
-      <section className="py-20 sm:py-24 px-4 sm:px-8 bg-white border-b border-stone-200">
+      {/* ── Architectural FAQ Section ── */}
+      <section className="py-20 md:py-28 px-6 md:px-12 border-b-4 border-[#111111] bg-[#FAFAFA]">
         <div className="max-w-4xl mx-auto space-y-12">
-          <div className="text-center space-y-3">
-            <div className="inline-block px-3.5 py-1 bg-orange-50 text-[#E64D16] text-xs font-bold uppercase tracking-wider rounded-lg border border-orange-200">
-              Clear Answers
-            </div>
-            <h2 className="text-3xl font-serif font-bold text-stone-900 tracking-tight">
+          <div className="text-center">
+            <p className="text-xs font-bold tracking-[0.2em] uppercase text-[#EA580C] mb-3">FAQ</p>
+            <h2
+              className="text-3xl sm:text-4xl font-bold font-serif text-[#111111]"
+              style={{ fontFamily: "'Lora', serif" }}
+            >
               Frequently Asked Questions
             </h2>
-            <p className="text-xs sm:text-sm text-stone-600">
-              Everything you need to know about our turnkey home construction and architectural services in Chennai.
-            </p>
           </div>
 
-          <div className="space-y-4">
+          <div className="space-y-6">
             {faqs.map((faq, idx) => (
-              <div key={idx} className="p-6 bg-[#FAF9F7] border border-stone-200 rounded-md space-y-2">
-                <h3 className="text-sm font-bold text-stone-900 flex items-start gap-2">
-                  <span className="text-[#E64D16] text-base font-black">Q.</span>
-                  <span>{faq.q}</span>
+              <div key={idx} className="p-8 border-2 border-[#111111] bg-white space-y-3">
+                <h3
+                  className="text-lg sm:text-xl font-bold font-serif text-[#111111]"
+                  style={{ fontFamily: "'Lora', serif" }}
+                >
+                  {faq.q}
                 </h3>
-                <p className="text-xs text-stone-600 leading-relaxed pl-6">
+                <p className="text-sm text-[#757575] leading-relaxed font-medium">
                   {faq.a}
                 </p>
               </div>

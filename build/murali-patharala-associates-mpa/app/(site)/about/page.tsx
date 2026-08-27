@@ -2,11 +2,6 @@ import { readSourceConfig } from '@/lib/sourceData';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import Image from 'next/image';
-import { 
-  Building2, Compass, ShieldCheck, Award, Ruler, 
-  ArrowRight, Phone, Users, Check, Layers, Sparkles, 
-  Box, Palette, Star, CheckCircle2, HardHat, Clock, MapPin
-} from 'lucide-react';
 
 interface PageProps {
   params?: any;
@@ -19,172 +14,159 @@ export default async function AboutPage({ params }: PageProps) {
     notFound();
   }
 
-  const clinicPhone = '98410 98490';
-  const clinicAddress = 'W115A, 3rd Ave, Annanagar East, Chennai, Tamil Nadu 600040';
+  const phone = '09841098490';
+  const displayPhone = '+91 98410 98490';
+  const rawDigits = phone.replace(/\D/g, '');
+  const cleanPhone = rawDigits.startsWith('91') ? rawDigits : `91${rawDigits.replace(/^0+/, '')}`;
 
   const milestones = [
-    { year: '1998', title: 'Foundation Laid in Chennai', desc: 'ARCH Foundations established with a dedication to uncompromised civil construction and transparent building practices in Chennai.' },
-    { year: '2006', title: 'Expansion into Architectural Consulting', desc: 'Murali Patharala Associates (MPA) founded to seamlessly integrate avant-garde 3D architectural elevations and space planning with civil execution.' },
-    { year: '2014', title: 'In-House Modular Joinery Factory', desc: 'Commissioned an advanced CNC joinery unit to build 100% BWR Marine Plywood modular kitchens and bespoke residential cabinetry.' },
-    { year: '2026', title: '28+ Years & 500+ Residences', desc: 'Celebrated delivering over 500 bespoke villas, independent residences, and luxury interiors with a 100% fixed-price guarantee.' },
+    {
+      year: '1998',
+      title: 'Foundation in Anna Nagar',
+      desc: 'Established with an uncompromising commitment to transparent, fixed-price civil construction in Chennai.',
+    },
+    {
+      year: '2006',
+      title: 'Integrated Architectural Practice',
+      desc: 'Formed Murali Patharala Associates (MPA) to combine structural engineering with avant-garde 3D elevations and spatial planning.',
+    },
+    {
+      year: '2014',
+      title: 'Dedicated Modular Joinery Unit',
+      desc: 'Commissioned an in-house precision factory utilizing 100% BWR Marine Plywood for modular kitchens and architectural millwork.',
+    },
+    {
+      year: '2026',
+      title: '28+ Years & 850+ Residences',
+      desc: 'Celebrating over 850 delivered homes across Chennai with 0% cost escalation and guaranteed delivery schedules.',
+    },
   ];
 
   return (
-    <div className="w-full bg-[#FAF9F7] text-[#1A1B1A] font-sans">
-      {/* ─── Hero Banner Section ─── */}
-      <section id="about-hero" className="relative py-20 sm:py-28 bg-[#1A1B1A] text-white overflow-hidden">
-        <Image
-          src="/images/clinicImages-2.jpg"
-          alt="MPA signature building facade"
-          fill
-          className="object-cover opacity-55"
-          sizes="100vw"
-          priority
-        />
-        <div className="absolute inset-0 bg-gradient-to-r from-[#1A1B1A]/75 via-[#1A1B1A]/35 to-transparent" />
-        <div className="max-w-7xl mx-auto px-4 sm:px-8 relative">
-          <div className="max-w-3xl space-y-4">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1 bg-[#E64D16]/20 border border-[#E64D16]/50 rounded-full text-xs font-bold text-[#E6C673] tracking-wide uppercase backdrop-blur-sm">
-              <Compass className="w-3.5 h-3.5" />
-              <span>Studio Profile &bull; Anna Nagar East, Chennai</span>
-            </div>
-            <h1 className="text-3xl sm:text-5xl font-serif font-bold tracking-tight leading-tight">
-              28+ Years of Building Trust &amp; <span className="text-[#E64D16]">Architectural Excellence</span>
-            </h1>
-            <p className="text-sm sm:text-base text-stone-200 font-normal leading-relaxed">
-              ARCH Foundations &amp; Murali Patharala Associates (MPA) has shaped prestigious homes across Chennai since 1998.
-            </p>
-          </div>
+    <div className="w-full bg-[#FAFAFA] text-[#111111]">
+      {/* ── Hero Section ── */}
+      <section className="relative py-20 md:py-28 bg-[#111111] text-white border-b-4 border-[#111111] px-6 md:px-12">
+        <div className="max-w-4xl mx-auto text-center space-y-6">
+          <p className="text-xs font-bold tracking-[0.25em] uppercase text-[#EA580C]">
+            Firm Profile &amp; Legacy Since 1998
+          </p>
+          <h1
+            className="text-4xl sm:text-5xl md:text-6xl font-bold font-serif leading-tight tracking-tight"
+            style={{ fontFamily: "'Lora', serif" }}
+          >
+            28+ Years of Structural Discipline &amp; Architectural Integrity.
+          </h1>
+          <p className="text-base sm:text-lg text-white/75 font-medium max-w-2xl mx-auto leading-relaxed">
+            Murali Patharala Associates (MPA) unites architectural brilliance, civil engineering, and bespoke turnkey execution under one roof in Anna Nagar, Chennai.
+          </p>
         </div>
       </section>
 
-      {/* ─── Narrative Section ─── */}
-      <section className="py-20 sm:py-24 px-4 sm:px-8 bg-[#FAF9F7] border-b border-stone-200">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-            <div className="lg:col-span-6 space-y-6">
-              <div className="inline-block px-3.5 py-1 bg-white border border-stone-200 rounded-lg text-xs font-bold text-[#E64D16] uppercase tracking-wider shadow-2xs">
-                Our Ethos &amp; Heritage
-              </div>
-              <h2 className="text-2xl sm:text-4xl font-serif font-bold text-stone-900 tracking-tight leading-tight">
-                Where Civil Engineering Rigor Meets Creative Vision
-              </h2>
-              <p className="text-xs sm:text-sm text-stone-600 leading-relaxed font-normal">
-                Founded in 1998, <strong>ARCH Foundations</strong> and <strong>Murali Patharala Associates (MPA)</strong> was established to bridge a critical divide in Chennai’s real estate: the disconnect between design architects, civil building contractors, and interior craftsmen.
-              </p>
-              <p className="text-xs sm:text-sm text-stone-600 leading-relaxed font-normal">
-                By bringing architectural design, structural engineering, civil turnkey construction, and factory-fabricated modular interiors under one unified roof, we ensure that the aesthetic vision on paper is translated to the millimeter in the final built structure — with zero cost escalations and absolute transparency.
-              </p>
-
-              <div className="grid grid-cols-2 gap-4 pt-2">
-                <div className="p-4 bg-white border border-stone-200 rounded-md">
-                  <div className="text-2xl sm:text-3xl font-extrabold text-[#E64D16]">500+</div>
-                  <div className="text-xs font-bold text-stone-900 mt-1">Residences Delivered</div>
-                  <div className="text-[11px] text-stone-500">Across Chennai &amp; Tamil Nadu</div>
-                </div>
-                <div className="p-4 bg-white border border-stone-200 rounded-md">
-                  <div className="text-2xl sm:text-3xl font-extrabold text-[#C9A25C]">Since 1998</div>
-                  <div className="text-xs font-bold text-stone-900 mt-1">28+ Years of Practice</div>
-                  <div className="text-[11px] text-stone-500">Based in Anna Nagar East</div>
-                </div>
-              </div>
-            </div>
-
-            <div className="lg:col-span-6">
-              <div className="relative aspect-4/3 w-full overflow-hidden">
-                <Image
-                  src="/images/clinicImages-3.jpg"
-                  alt="MPA office building in Anna Nagar East"
-                  fill
-                  className="object-cover"
-                  sizes="50vw"
-                />
-              </div>
-              <div className="grid grid-cols-2 gap-4 mt-4">
-                <div className="relative aspect-[4/3] overflow-hidden">
-                  <Image src="/images/clinicImages-2.jpg" alt="MPA facade detail" fill className="object-cover" sizes="25vw" />
-                </div>
-                <div className="relative aspect-[4/3] overflow-hidden">
-                  <Image src="/images/stock/a151a9e5.webp" alt="Interior craftsmanship" fill className="object-cover" sizes="25vw" />
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ─── Timeline / Milestones ─── */}
-      <section className="py-20 sm:py-24 px-4 sm:px-8 bg-white border-b border-stone-200">
-        <div className="max-w-7xl mx-auto space-y-16">
-          <div className="text-center max-w-3xl mx-auto space-y-3">
-            <div className="inline-block px-3.5 py-1 bg-orange-50 text-[#E64D16] text-xs font-bold uppercase tracking-wider rounded-lg border border-orange-200">
-              Our Journey
-            </div>
-            <h2 className="text-3xl sm:text-4xl font-serif font-bold text-stone-900 tracking-tight">
-              A Legacy of Craftsmanship
+      {/* ── Story / Origin Section ── */}
+      <section className="py-20 md:py-28 px-6 md:px-12 border-b-4 border-[#111111] bg-white">
+        <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-12 items-center">
+          <div className="space-y-6">
+            <span className="text-xs font-bold tracking-[0.2em] uppercase text-[#EA580C] block">
+              The Firm&apos;s Origin
+            </span>
+            <h2
+              className="text-3xl sm:text-4xl font-bold font-serif text-[#111111] leading-tight"
+              style={{ fontFamily: "'Lora', serif" }}
+            >
+              Built to Eliminate Contractor Chaos and Price Overruns.
             </h2>
-            <p className="text-sm text-stone-600">
-              Key milestones shaping our reputation as Chennai’s premier turnkey construction and architecture atelier.
+            <p className="text-sm sm:text-base text-[#757575] leading-relaxed font-medium">
+              Since 1998, we have operated on a singular philosophy: every family deserves transparent contracts, verified materials, and punctual project completion without stress.
             </p>
+            <p className="text-sm sm:text-base text-[#757575] leading-relaxed font-medium">
+              Unlike broker-driven builder models, our senior architects and structural engineers work alongside full-time site supervisors. We do not subcontract your dream to lowest-bid third parties.
+            </p>
+            <div className="pt-4">
+              <Link
+                href="/contact"
+                className="inline-block px-8 py-4 bg-[#EA580C] text-[#111111] font-bold uppercase tracking-widest text-xs hover:bg-[#111111] hover:text-white transition-colors"
+              >
+                Consult Our Principal Architect
+              </Link>
+            </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {milestones.map((m) => (
-              <div key={m.year} className="p-6 bg-[#FAF9F7] rounded-md border border-stone-200 space-y-3 relative">
-                <div className="text-2xl sm:text-3xl font-black text-[#E64D16]">{m.year}</div>
-                <h3 className="text-sm font-bold text-stone-900">{m.title}</h3>
-                <p className="text-xs text-stone-600 leading-relaxed">{m.desc}</p>
+          <div className="relative aspect-[4/3] border-4 border-[#111111] bg-[#181818] overflow-hidden shadow-xl">
+            <Image
+              src="/images/clinicImages-1.jpg"
+              alt="Murali Patharala Associates Studio"
+              fill
+              className="object-cover grayscale-[0.2]"
+              sizes="(max-width: 768px) 100vw, 50vw"
+            />
+            <div className="absolute bottom-0 left-0 right-0 p-4 bg-[#111111]/90 text-white border-t-2 border-[#EA580C]">
+              <p className="text-xs font-bold uppercase tracking-wider">Anna Nagar East Studio</p>
+              <p className="text-[11px] text-white/70">W115A, 3rd Ave, Chennai</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── Chronological Milestones ── */}
+      <section className="py-20 md:py-28 px-6 md:px-12 border-b-4 border-[#111111] bg-[#FAFAFA]">
+        <div className="max-w-5xl mx-auto">
+          <div className="text-center mb-16">
+            <p className="text-xs font-bold tracking-[0.2em] uppercase text-[#EA580C] mb-3">Our History</p>
+            <h2
+              className="text-3xl sm:text-4xl font-bold font-serif text-[#111111]"
+              style={{ fontFamily: "'Lora', serif" }}
+            >
+              Key Milestones of Trust
+            </h2>
+          </div>
+
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {milestones.map((m, idx) => (
+              <div key={idx} className="p-8 border-2 border-[#111111] bg-white flex flex-col justify-between">
+                <div>
+                  <span
+                    className="text-4xl font-bold font-serif text-[#EA580C] block mb-4"
+                    style={{ fontFamily: "'Lora', serif" }}
+                  >
+                    {m.year}
+                  </span>
+                  <h3 className="text-base font-bold uppercase tracking-wide mb-3 text-[#111111]">
+                    {m.title}
+                  </h3>
+                  <p className="text-xs sm:text-sm text-[#757575] leading-relaxed font-medium">
+                    {m.desc}
+                  </p>
+                </div>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* ─── Studio Location & Direct Team Coordinates ─── */}
-      <section className="py-20 sm:py-24 px-4 sm:px-8 bg-[#FAF9F7]">
-        <div className="max-w-7xl mx-auto">
-          <div className="bg-[#1A1B1A] text-white rounded-lg p-8 sm:p-12 border border-stone-800 shadow-xl">
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-              <div className="lg:col-span-8 space-y-4">
-                <div className="inline-block px-3 py-1 bg-orange-500/20 text-[#E64D16] text-[11px] font-bold uppercase tracking-wider rounded-md border border-orange-500/30">
-                  Headquarters &amp; Studio
-                </div>
-                <h3 className="text-2xl sm:text-4xl font-bold tracking-tight">
-                  Visit Our Design Studio in Anna Nagar East
-                </h3>
-                <p className="text-xs sm:text-sm text-stone-400 max-w-xl leading-relaxed">
-                  Walk through physical material samples, live cross-sections of our RCC beam frameworks, and inspect full modular kitchen joinery swatches.
-                </p>
-
-                <div className="flex flex-wrap gap-4 pt-2 text-xs text-stone-300">
-                  <div className="flex items-center gap-2">
-                    <MapPin className="w-4 h-4 text-[#E64D16]" />
-                    <span>{clinicAddress}</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <Clock className="w-4 h-4 text-[#C9A25C]" />
-                    <span>Mon – Sat: 9:30 AM – 7:30 PM</span>
-                  </div>
-                </div>
-              </div>
-
-              <div className="lg:col-span-4 flex flex-col sm:flex-row lg:flex-col gap-3">
-                <a
-                  href={`tel:+919841098490`}
-                  className="w-full py-3.5 px-6 bg-[#E64D16] hover:bg-[#C93F0F] text-white font-bold text-xs uppercase tracking-wider rounded-md transition-all shadow-md flex items-center justify-center gap-2"
-                >
-                  <Phone className="w-4 h-4" />
-                  <span>Call: +91 98410 98490</span>
-                </a>
-                <Link
-                  href="/#consultation-form"
-                  className="w-full py-3.5 px-6 bg-white/10 hover:bg-white/15 text-white font-semibold text-xs uppercase tracking-wider rounded-md border border-stone-700 transition-all text-center block"
-                >
-                  Book Studio Visit
-                </Link>
-              </div>
-            </div>
-          </div>
+      {/* ── Pre-Footer Action ── */}
+      <section className="py-16 md:py-20 px-6 md:px-12 bg-[#111111] text-white text-center">
+        <h3
+          className="text-2xl sm:text-4xl font-bold font-serif mb-4 text-[#EA580C]"
+          style={{ fontFamily: "'Lora', serif" }}
+        >
+          Discuss Your Residential Plot in Chennai
+        </h3>
+        <p className="text-white/70 max-w-xl mx-auto mb-8 text-sm sm:text-base font-medium">
+          Schedule an in-person discovery session at our Anna Nagar studio or arrange a site visit.
+        </p>
+        <div className="flex flex-wrap items-center justify-center gap-4">
+          <Link
+            href="/contact"
+            className="px-8 py-4 bg-[#EA580C] text-[#111111] font-bold uppercase tracking-widest text-xs hover:bg-white transition-colors"
+          >
+            Visit Studio
+          </Link>
+          <a
+            href={`tel:${displayPhone}`}
+            className="px-8 py-4 border-2 border-[#EA580C] text-[#EA580C] font-bold uppercase tracking-widest text-xs hover:bg-[#EA580C] hover:text-[#111111] transition-colors"
+          >
+            Call {displayPhone}
+          </a>
         </div>
       </section>
     </div>
