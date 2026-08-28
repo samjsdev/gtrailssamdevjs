@@ -10,14 +10,14 @@ interface BeforeAfterProps {
 }
 
 export default function BeforeAfter({ image, beforeImage, afterImage, caption }: BeforeAfterProps) {
-  // Start on far right (100%) so the raw before image fills the frame on initial load
+  // Start on far right (100%) so the raw before plan sketch fills the frame on initial load
   const [pos, setPos] = useState<number>(100);
   const containerRef = useRef<HTMLDivElement>(null);
   const animRef = useRef<number | null>(null);
   const hasAnimated = useRef(false);
   const userInteracted = useRef(false);
 
-  const beforeSrc = beforeImage || image || '/images/architecture/villa-before-frame.webp';
+  const beforeSrc = beforeImage || image || '/images/architecture/villa-plan-sketch.webp';
   const afterSrc = afterImage || image || '/images/architecture/villa-after-finished.webp';
 
   const triggerSweep = useCallback(() => {
@@ -30,7 +30,7 @@ export default function BeforeAfter({ image, beforeImage, afterImage, caption }:
     const targetPos = 50;
     const duration = 2200; // 2.2s cinematic sweep
 
-    // 700ms pause so the viewer registers the raw structural frame first
+    // 700ms pause so the viewer registers the architectural plan sketch first
     const delayTimer = setTimeout(() => {
       if (userInteracted.current) return;
       const startTime = performance.now();
@@ -107,14 +107,14 @@ export default function BeforeAfter({ image, beforeImage, afterImage, caption }:
         className="relative overflow-hidden rounded-[20px] aspect-[16/10] sm:aspect-[16/9.5] shadow-[0_30px_60px_-24px_rgba(29,23,19,0.4)] select-none border border-[#241f1a]/10 bg-[#1d1713]"
         onPointerDown={handlePointerDown}
       >
-        {/* Before: Raw Structure (Underneath) */}
+        {/* Before: Plan Sketch (Underneath) */}
         <img
           src={beforeSrc}
-          alt="Raw structural RCC frame"
+          alt="Architectural plan sketch and blueprint"
           className="absolute inset-0 w-full h-full object-cover pointer-events-none"
         />
 
-        {/* After: Completed Landmark (Clipped from left at pos%) */}
+        {/* After: Completed Project (Clipped from left at pos%) */}
         <img
           src={afterSrc}
           alt="Completed architectural residence"
@@ -124,10 +124,10 @@ export default function BeforeAfter({ image, beforeImage, afterImage, caption }:
 
         {/* Badges */}
         <span className="absolute top-3 sm:top-5 left-2 max-[379px]:left-3 sm:left-5 z-[3] text-[8.5px] max-[379px]:text-[7.5px] max-[379px]:tracking-[0.02em] max-[379px]:px-2 max-[379px]:py-1 sm:text-[11px] font-extrabold tracking-[0.08em] sm:tracking-[0.12em] uppercase px-2.5 sm:px-3.5 py-1.5 bg-[#1d1713]/85 text-white backdrop-blur-sm rounded-full pointer-events-none">
-          Topography &amp; Shell
+          Plan Sketch
         </span>
         <span className="absolute top-3 sm:top-5 right-2 max-[379px]:right-3 sm:right-5 z-[3] text-[8.5px] max-[379px]:text-[7.5px] max-[379px]:tracking-[0.02em] max-[379px]:px-2 max-[379px]:py-1 sm:text-[11px] font-extrabold tracking-[0.08em] sm:tracking-[0.12em] uppercase px-2.5 sm:px-3.5 py-1.5 bg-[#f4b942] text-[#1d1713] rounded-full shadow-md pointer-events-none">
-          Completed Landmark
+          Completed Project
         </span>
 
         {/* Divider line & handle */}

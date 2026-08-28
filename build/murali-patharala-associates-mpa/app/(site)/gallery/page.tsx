@@ -24,16 +24,16 @@ export default async function GalleryPage({ params }: PageProps) {
       <section className="py-20 md:py-28 bg-[#111111] text-white border-b-4 border-[#111111] px-6 md:px-12 text-center">
         <div className="max-w-4xl mx-auto space-y-6">
           <p className="text-xs font-bold tracking-[0.25em] uppercase text-[#EA580C]">
-            Visual Portfolio &bull; 850+ Projects Handled
+            Completed Sites &bull; 3D Designs &bull; Actual Pictures
           </p>
           <h1
             className="text-4xl sm:text-5xl md:text-6xl font-bold font-serif leading-tight tracking-tight"
             style={{ fontFamily: "'Lora', serif" }}
           >
-            Signature Residences &amp; Architectural Designs.
+            Our Completed Site Pictures &amp; 3D Designs.
           </h1>
           <p className="text-base sm:text-lg text-white/75 font-medium max-w-2xl mx-auto leading-relaxed">
-            Explore independent villas, contemporary 3D elevations, and turnkey modular interiors executed by Murali Patharala Associates across Chennai.
+            Actual on-site photographs and photorealistic 3D architectural renders of bespoke villas, duplex residences, and modular luxury interiors delivered across Chennai.
           </p>
         </div>
       </section>
@@ -54,7 +54,7 @@ export default async function GalleryPage({ params }: PageProps) {
           Have an Architectural Concept in Mind?
         </h3>
         <p className="text-white/70 max-w-xl mx-auto mb-8 text-sm sm:text-base font-medium">
-          Bring your site sketches, floor plan ideas, or Pinterest moodboards to our Anna Nagar studio.
+          Bring your plot sketches, floor plan ideas, or Pinterest moodboards to our Anna Nagar studio for a free feasibility review.
         </p>
         <div className="flex flex-wrap items-center justify-center gap-4">
           <Link

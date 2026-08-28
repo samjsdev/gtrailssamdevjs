@@ -109,6 +109,7 @@ export default async function Template13Home({ params }: PageProps) {
   const heroImage =
     media.clinicImages?.[0] ||
     '/images/architecture/hero-villa-twilight.webp';
+  const baPlan = '/images/architecture/villa-plan-sketch.webp';
   const baBefore = '/images/architecture/villa-before-frame.webp';
   const baAfter = '/images/architecture/villa-after-finished.webp';
 
@@ -271,18 +272,18 @@ export default async function Template13Home({ params }: PageProps) {
               Real Transformation
             </span>
             <h2 className="text-[clamp(28px,3.6vw,44px)] font-extrabold mb-4 tracking-[-0.02em]">
-              From raw topography to a <span className="font-[family-name:var(--font-newsreader)] italic font-medium text-[#d8442c]">completed landmark</span>
+              From plan sketch to a <span className="font-[family-name:var(--font-newsreader)] italic font-medium text-[#d8442c]">completed project</span>
             </h2>
             <p className="text-[#6d6259] text-[15.5px] leading-relaxed">
-              See how our structural engineering, spacious shaded verandas, and double-glazed curtain walls transform raw topography into a luminous, climate-responsive estate.
+              See how our architectural blueprints, structural engineering, and precision construction transform a 2D plan sketch into a luminous, climate-responsive completed landmark.
             </p>
           </Reveal>
 
           <Reveal delay={100} className="w-full">
             <BeforeAfter
-              beforeImage={baBefore}
+              beforeImage={baPlan}
               afterImage={baAfter}
-              caption="Drag slider to compare raw structural RCC frame vs completed architectural landmark"
+              caption="Drag slider to compare 2D plan sketch vs completed project"
             />
           </Reveal>
 

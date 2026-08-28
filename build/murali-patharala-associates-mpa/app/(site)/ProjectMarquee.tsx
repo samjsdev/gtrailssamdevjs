@@ -11,9 +11,9 @@ export interface MarqueeProject {
 }
 
 const projects: MarqueeProject[] = [
-  { image: '/images/clinicImages-2.jpg', title: 'MPA Signature Residence', location: 'Anna Nagar East' },
-  { image: '/images/clinicImages-3.jpg', title: 'Urban Commercial Facade', location: 'Anna Nagar' },
-  { image: '/images/clinicImages-1.jpg', title: 'Dusk Contemporary Villa', location: 'Chennai' },
+  { image: '/images/clinicImages-2.webp', title: 'MPA Signature Residence', location: 'Anna Nagar East' },
+  { image: '/images/clinicImages-3.webp', title: 'Urban Commercial Facade', location: 'Anna Nagar' },
+  { image: '/images/clinicImages-1.webp', title: 'Dusk Contemporary Villa', location: 'Chennai' },
   { image: '/images/stock/34bba44b.webp', title: 'Poolside Luxury Villa', location: 'ECR, Chennai' },
   { image: '/images/stock/57b78bb7.webp', title: 'White Modern Residence', location: 'Neelankarai' },
   { image: '/images/stock/13246fc0.webp', title: 'Black Timber Facade Home', location: 'Injambakkam' },

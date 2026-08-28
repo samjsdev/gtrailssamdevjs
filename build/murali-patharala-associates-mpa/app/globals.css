@@ -69,7 +69,7 @@ h1, h2, h3, h4, h5, h6 {
   display: flex;
   width: max-content;
   align-items: center;
-  animation: marquee 35s linear infinite;
+  animation: marquee 70s linear infinite;
 }
 
 .marquee-track:hover {
@@ -81,8 +81,38 @@ h1, h2, h3, h4, h5, h6 {
   to { transform: translateX(-50%); }
 }
 
+/* Continuous portfolio scroll animation */
+@keyframes portfolioScroll {
+  from { transform: translate3d(0, 0, 0); }
+  to { transform: translate3d(-50%, 0, 0); }
+}
+
+.portfolio-marquee-track {
+  display: flex;
+  width: max-content;
+  will-change: transform;
+  animation: portfolioScroll 110s linear infinite;
+}
+
+.portfolio-marquee-track:hover,
+.portfolio-marquee-track.is-paused {
+  animation-play-state: paused;
+}
+
 @media (prefers-reduced-motion: reduce) {
-  .marquee-track {
+  .marquee-track,
+  .portfolio-marquee-track {
     animation: none;
   }
+}
+
+/* Initial Loader Animations */
+@keyframes drawSquare {
+  0% { stroke-dashoffset: 240; }
+  50% { stroke-dashoffset: 0; }
+  100% { stroke-dashoffset: -240; }
+}
+
+.animate-draw-square {
+  animation: drawSquare 2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
 }

@@ -1,7 +1,6 @@
 import { readSourceConfig } from '@/lib/sourceData';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
-import Image from 'next/image';
 
 interface PageProps {
   params?: any;
@@ -24,24 +23,28 @@ export default async function ContactPage({ params }: PageProps) {
 
   const faqs = [
     {
-      q: 'What is included in your 10-Year Structural Guarantee?',
-      a: 'We provide a legally binding 10-year structural certificate covering foundation, RCC columns, beams, roof slabs, and load-bearing masonry against structural settlement or cracks. We strictly utilize primary TMT steel (Tata Tiscon / JSW) and 53-grade certified cement.',
+      q: 'What are the types of Home Interior Services you provide?',
+      a: 'We provide End-to-End Luxury Home Interior Services, including Modular Kitchens, false ceilings, architectural lighting solutions, custom-designed walk-in wardrobes, furnishings & decor, wall paneling & painting, Bedroom Interiors, Living Room Interiors, Pooja units, home automation, and upholsteries. We ensure a seamless experience through proper space planning, concept development, and 3D visualization.',
     },
     {
-      q: 'How does the Zero Cost Escalation & Fixed-Price Guarantee work?',
-      a: 'Before breaking ground, our civil engineers prepare an exhaustive Bill of Quantities (BOQ) covering every bag of cement, ton of steel, plumbing conduit, and tile. Once signed, your price per square foot is 100% frozen. We absorb all market material inflation.',
+      q: 'What is included in your 10-Year Structural Warranty & Maintenance?',
+      a: 'We provide a legally binding 10-year structural certificate covering foundation, RCC columns, beams, roof slabs, and load-bearing masonry against structural settlement or cracks. We strictly utilize primary TMT steel (Tata Tiscon / JSW) and 53-grade certified cement. For interiors, we provide 5 years warranty on 100% BWR Marine Plywood (IS:710) against borer and termites, plus a 2-year maintenance service on all fittings and moving hardware.',
     },
     {
-      q: 'Do you provide CMDA and Corporation plan approvals in Chennai?',
-      a: 'Yes. Our in-house architectural team handles the entire statutory sanction process with CMDA and Greater Chennai Corporation, ensuring full compliance with setback regulations, FSI norms, and structural safety bylaws.',
+      q: 'How does the 100% Fixed-Price Contract and Zero Cost Escalation Guarantee work?',
+      a: 'Before breaking ground, our civil engineers prepare an exhaustive, line-by-line Bill of Quantities (BOQ) covering every bag of cement, ton of steel, plumbing conduit, tile, and fixture. Once signed, your price per square foot is 100% frozen. We absorb all market material inflation so you never pay a single rupee extra for the agreed scope.',
     },
     {
-      q: 'Can we hire you for Architectural Planning or Interiors only?',
-      a: 'Yes. While over 80% of our clients select our full Turnkey Construction package (from soil testing to key handover), we also accept standalone Architectural 3D Elevation & Planning commissions, as well as Modular Interior Fit-outs.',
+      q: 'How do you monitor site quality and prevent construction delays?',
+      a: 'We assign a dedicated, full-time Site Engineer to your project every single day. Every phase undergoes 425+ documented quality checks—including soil bearing capacity, concrete compressive cube testing, slump tests, and curing logs. You receive regular weekly milestone updates with verified photo and video documentation.',
     },
     {
-      q: 'How do you monitor daily construction quality on-site?',
-      a: 'We assign a dedicated, full-time Civil Engineer to your site every single day. You receive weekly photo and video milestone progress reports via WhatsApp with live compressive cube test certificates and material verification slips.',
+      q: 'What are the different architectural & interior design themes you specialize in?',
+      a: 'We specialize in a variety of design languages tailored to Chennai microclimates: Luxury Contemporary (sleek, modern aesthetics with subtle sophistication), Traditional Chettinad (rich South Indian heritage with intricate wood detailing), Minimalist (clean lines and uncluttered open spaces), and Scandinavian (organic woods with abundant natural daylight).',
+    },
+    {
+      q: "What is the step-by-step booking and consultation process?",
+      a: "1. Initial Contact: Fill out the enquiry form or call our studio directly. 2. Consultation Call: Our senior architectural expert reviews your plot size, requirements, and budget. 3. Studio Visit & Site Inspection: Meet at our Anna Nagar East studio to review 3D models and material samples, followed by a laser plot assessment. 4. Itemized BOQ & Contract: We provide a transparent quotation with line-by-line material specifications and freeze the price. 5. Construction Kick-Off: A dedicated site engineer is assigned and construction begins.",
     },
   ];
 
@@ -51,13 +54,13 @@ export default async function ContactPage({ params }: PageProps) {
       <section className="py-20 md:py-28 bg-[#111111] text-white border-b-4 border-[#111111] px-6 md:px-12 text-center">
         <div className="max-w-4xl mx-auto space-y-6">
           <p className="text-xs font-bold tracking-[0.25em] uppercase text-[#EA580C]">
-            Direct Consultation
+            Direct Consultation &bull; Anna Nagar East, Chennai
           </p>
           <h1
             className="text-4xl sm:text-5xl md:text-6xl font-bold font-serif leading-tight tracking-tight"
             style={{ fontFamily: "'Lora', serif" }}
           >
-            Connect With Our Senior Architectural Team.
+            Connect With Our Architectural &amp; Engineering Team.
           </h1>
           <p className="text-base sm:text-lg text-white/75 font-medium max-w-2xl mx-auto leading-relaxed">
             Visit our studio in Anna Nagar East or schedule a free site feasibility inspection anywhere in Chennai.
@@ -72,7 +75,7 @@ export default async function ContactPage({ params }: PageProps) {
           <div className="border-4 border-[#111111] p-8 md:p-12 bg-[#FAFAFA] flex flex-col justify-between space-y-8 shadow-xl">
             <div>
               <span className="text-xs font-bold tracking-[0.2em] uppercase text-[#EA580C] block mb-2">
-                Office Location
+                Headquarters
               </span>
               <h2
                 className="text-2xl sm:text-3xl font-bold font-serif text-[#111111] mb-6"
@@ -93,7 +96,7 @@ export default async function ContactPage({ params }: PageProps) {
 
                 <div>
                   <p className="text-xs font-bold uppercase tracking-widest text-[#757575] mb-1">
-                    Consultation Direct Line
+                    Direct Studio Helpline
                   </p>
                   <a
                     href={`tel:${displayPhone}`}
@@ -151,26 +154,62 @@ export default async function ContactPage({ params }: PageProps) {
             />
             <div className="absolute bottom-4 left-4 right-4 bg-[#111111]/95 text-white p-4 border border-[#333333] flex items-center justify-between pointer-events-none">
               <div>
-                <p className="text-xs font-bold uppercase tracking-wider text-[#EA580C]">Murali Patharala Associates</p>
+                <p className="text-xs font-bold uppercase tracking-wider text-[#EA580C]">Murali Patharala Associates (MPA)</p>
                 <p className="text-[11px] text-white/70">W115A, 3rd Ave, Annanagar East</p>
               </div>
-              <span className="text-xs text-[#EA580C] font-bold uppercase">Anna Nagar, Chennai</span>
+              <span className="text-xs text-[#EA580C] font-bold uppercase">Chennai, India</span>
             </div>
           </div>
         </div>
       </section>
 
-      {/* ── Architectural FAQ Section ── */}
+      {/* ── Contact Form Section ── */}
+      <section className="py-20 md:py-28 px-6 md:px-12 border-b-4 border-[#111111] bg-[#111111] text-white">
+        <div className="max-w-4xl mx-auto space-y-12">
+          <div className="text-center">
+            <p className="text-xs font-bold tracking-[0.2em] uppercase text-[#EA580C] mb-3">GET A QUOTE</p>
+            <h2
+              className="text-3xl sm:text-4xl font-bold font-serif text-white"
+              style={{ fontFamily: "'Lora', serif" }}
+            >
+              Request a Free Consultation
+            </h2>
+            <p className="text-sm text-white/70 mt-2">
+              Fill out the form below and our architectural team will get back to you within 24 hours.
+            </p>
+          </div>
+
+          <div className="bg-[#FAFAFA] border-4 border-[#262626] p-2 md:p-4 rounded-xl overflow-hidden flex justify-center">
+            <iframe 
+              src="https://docs.google.com/forms/d/e/1FAIpQLScTETlX3b5-sJb-jsJXL1hG0vRR0iGfsYOLWnXoUmaMLJVf_A/viewform?embedded=true" 
+              width="100%" 
+              height="860" 
+              frameBorder={0} 
+              marginHeight={0} 
+              marginWidth={0}
+              className="w-full max-w-[640px] bg-transparent mx-auto"
+              title="Contact Form"
+            >
+              Loading…
+            </iframe>
+          </div>
+        </div>
+      </section>
+
+      {/* ── Architectural FAQ Section (Adapted from Deejos) ── */}
       <section className="py-20 md:py-28 px-6 md:px-12 border-b-4 border-[#111111] bg-[#FAFAFA]">
         <div className="max-w-4xl mx-auto space-y-12">
           <div className="text-center">
-            <p className="text-xs font-bold tracking-[0.2em] uppercase text-[#EA580C] mb-3">FAQ</p>
+            <p className="text-xs font-bold tracking-[0.2em] uppercase text-[#EA580C] mb-3">HAVE QUESTIONS?</p>
             <h2
               className="text-3xl sm:text-4xl font-bold font-serif text-[#111111]"
               style={{ fontFamily: "'Lora', serif" }}
             >
               Frequently Asked Questions
             </h2>
+            <p className="text-sm text-[#666666] mt-2">
+              Here are answers to the most common questions from homeowners planning to build in Chennai.
+            </p>
           </div>
 
           <div className="space-y-6">
@@ -180,9 +219,9 @@ export default async function ContactPage({ params }: PageProps) {
                   className="text-lg sm:text-xl font-bold font-serif text-[#111111]"
                   style={{ fontFamily: "'Lora', serif" }}
                 >
-                  {faq.q}
+                  {idx + 1}. {faq.q}
                 </h3>
-                <p className="text-sm text-[#757575] leading-relaxed font-medium">
+                <p className="text-sm text-[#555555] leading-relaxed font-medium">
                   {faq.a}
                 </p>
               </div>

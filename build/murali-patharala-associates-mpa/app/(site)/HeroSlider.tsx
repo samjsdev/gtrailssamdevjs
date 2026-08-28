@@ -16,7 +16,7 @@ interface Slide {
 
 const slides: Slide[] = [
   {
-    image: '/images/clinicImages-1.jpg',
+    image: '/images/clinicImages-1.webp',
     kicker: 'Since 1998 • 28+ Years • 500+ Homes',
     titleA: 'GET YOUR DREAM HOME',
     titleB: 'CONSTRUCTED',
@@ -24,7 +24,7 @@ const slides: Slide[] = [
     desc: 'ARCH Foundations & Murali Patharala Associates (MPA) — Chennai\u2019s one-stop firm for architecture, turnkey construction, and bespoke interiors under one roof.',
   },
   {
-    image: '/images/clinicImages-2.jpg',
+    image: '/images/clinicImages-2.webp',
     kicker: 'Architecture • Approvals • Execution',
     titleA: 'DESIGNED & BUILT',
     titleB: 'UNDER ONE ROOF',

@@ -25,10 +25,11 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={`${lora.variable} ${workSans.variable}`}>
-      <body className="font-sans antialiased bg-[#111111] text-[#111111] selection:bg-[#EA580C] selection:text-white">
+      <body
+        className={`${lora.variable} ${workSans.variable} font-sans bg-[#FAFAFA] text-[#111111] antialiased selection:bg-[#EA580C] selection:text-white`}
+      >
         {children}
       </body>
     </html>
   );
 }
-

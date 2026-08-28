@@ -34,7 +34,7 @@ export default function GalleryClient({ images }: GalleryClientProps) {
 
   const allItems: GalleryItem[] = [
     {
-      url: clinicImgs[0] || '/images/clinicImages-1.jpg',
+      url: clinicImgs[0] || '/images/clinicImages-1.webp',
       title: 'Contemporary G+2 Independent Villa',
       category: 'villas',
       categoryLabel: 'Turnkey Construction',
@@ -54,7 +54,7 @@ export default function GalleryClient({ images }: GalleryClientProps) {
       materials: 'Thermally Broken Aluminium Profiles, High-Pressure Laminate Louvers, Textured Stucco',
     },
     {
-      url: clinicImgs[1] || '/images/clinicImages-2.jpg',
+      url: clinicImgs[1] || '/images/clinicImages-2.webp',
       title: 'Island Modular Kitchen with Calacatta Quartz',
       category: 'kitchen',
       categoryLabel: 'Modular Kitchen',
@@ -64,7 +64,7 @@ export default function GalleryClient({ images }: GalleryClientProps) {
       materials: '100% BWR Marine Plywood (IS:710), Anti-Fingerprint Matte Acrylic, Calacatta Quartz',
     },
     {
-      url: clinicImgs[2] || '/images/clinicImages-3.jpg',
+      url: clinicImgs[2] || '/images/clinicImages-3.webp',
       title: 'Master Bedroom Suite & Walk-in Wardrobe',
       category: 'living',
       categoryLabel: 'Living & Bedroom',
@@ -84,7 +84,7 @@ export default function GalleryClient({ images }: GalleryClientProps) {
       materials: 'Primary TMT Fe550 Steel, Coromandel 53-Grade Cement, Somany 4x2 Vitrified Tiles',
     },
     {
-      url: clinicImgs[3] || '/images/clinicImages-4.jpg',
+      url: clinicImgs[3] || '/images/clinicImages-4.webp',
       title: 'Double-Height Living & Media Console Architecture',
       category: 'living',
       categoryLabel: 'Living & Bedroom',

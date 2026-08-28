@@ -20,11 +20,10 @@ export default function ClientNavbar({
   const cleanPhone = rawDigits.startsWith('91') ? rawDigits : `91${rawDigits.replace(/^0+/, '')}`;
 
   const navLinks = [
-    { label: 'Services', href: `${basePath}/services` },
-    { label: 'Packages', href: `${basePath}#packages` },
-    { label: 'Projects', href: `${basePath}/gallery` },
-    { label: 'Process', href: `${basePath}#process` },
+    { label: 'Home', href: `${basePath || '/'}` },
     { label: 'About', href: `${basePath}/about` },
+    { label: 'Services', href: `${basePath}/services` },
+    { label: 'Our Projects', href: `${basePath}/gallery` },
     { label: 'Contact', href: `${basePath}/contact` },
   ];
 
@@ -38,7 +37,7 @@ export default function ClientNavbar({
             SINCE 1998
           </span>
           <span className="text-white/30 hidden sm:inline">•</span>
-          <span className="text-white/80 hidden sm:inline">28+ YEARS OF ARCHITECTURAL & TURNKEY TRUST</span>
+          <span className="text-white/80 hidden sm:inline">28+ YEARS &bull; 500+ HOMES DELIVERED IN CHENNAI</span>
           <span className="text-white/30 hidden md:inline">•</span>
           <span className="text-white/60 hidden md:inline">ANNA NAGAR EAST, CHENNAI</span>
         </div>
@@ -47,10 +46,10 @@ export default function ClientNavbar({
             href={`tel:${phone}`}
             className="text-white hover:text-[#EA580C] transition-colors"
           >
-            DIRECT LINE: <span className="text-[#EA580C]">{phone}</span>
+            STUDIO HELPLINE: <span className="text-[#EA580C]">{phone}</span>
           </a>
           <a
-            href={`https://wa.me/${cleanPhone}?text=${encodeURIComponent('Hi Murali Patharala Associates (MPA), I would like to enquire about turnkey construction and architecture.')}`}
+            href={`https://wa.me/${cleanPhone}?text=${encodeURIComponent('Hi Murali Patharala Associates (MPA), I would like to enquire about home construction and architecture.')}`}
             target="_blank"
             rel="noopener noreferrer"
             className="hidden sm:inline-block px-2.5 py-0.5 bg-[#EA580C] text-[#111111] hover:bg-white transition-colors text-[10px]"
@@ -85,7 +84,7 @@ export default function ClientNavbar({
             <li key={link.label}>
               <Link
                 href={link.href}
-                className="text-xs font-bold uppercase tracking-widest text-[#EA580C] hover:text-white transition-colors"
+                className="text-xs font-bold uppercase tracking-widest text-white/90 hover:text-[#EA580C] transition-colors"
               >
                 {link.label}
               </Link>
@@ -99,7 +98,7 @@ export default function ClientNavbar({
             href={`${basePath}#quick-estimate`}
             className="px-6 py-3 bg-[#EA580C] text-[#111111] text-xs font-bold uppercase tracking-widest hover:bg-white transition-colors"
           >
-            Get Estimate
+            Get Free Quote
           </Link>
         </div>
 
@@ -143,7 +142,7 @@ export default function ClientNavbar({
               onClick={() => setMobileOpen(false)}
               className="block w-full py-4 text-center bg-[#EA580C] text-[#111111] font-bold uppercase tracking-widest hover:bg-white transition-colors"
             >
-              Get Instant Estimate
+              Get Free Quote
             </Link>
             <a
               href={`tel:${phone}`}

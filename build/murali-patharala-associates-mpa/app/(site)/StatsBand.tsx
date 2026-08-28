@@ -2,43 +2,68 @@
 
 import { useEffect, useState, useRef } from 'react';
 
-const stats = [
-  { value: 28, suffix: '+', label: 'Years of Trust', sub: 'Since 1998 in Chennai' },
-  { value: 500, suffix: '+', label: 'Projects Delivered', sub: 'Villas & Residences' },
-  { value: 10, suffix: ' Yrs', label: 'Structural Warranty', sub: 'On every home' },
-  { value: 400, suffix: '+', label: 'Quality Checks', sub: 'Cube & soil tests' },
-  { value: 100, suffix: '%', label: 'Fixed Price', sub: 'Zero budget creep' },
-  { value: 100, suffix: '%', label: 'In-House Team', sub: 'No sub-contracting' },
+interface StatItemData {
+  value: number;
+  suffix: string;
+  label: string;
+  sub: string;
+}
+
+const stats: StatItemData[] = [
+  { value: 28, suffix: '+', label: 'Years of Trust', sub: 'Since 1998 in Anna Nagar' },
+  { value: 500, suffix: '+', label: 'Homes Delivered', sub: 'Villas & Residences' },
+  { value: 425, suffix: '+', label: 'Quality Checks', sub: 'Documented QC Audits' },
+  { value: 10, suffix: ' Yrs', label: 'Structural Warranty', sub: 'Legally Binding Guarantee' },
+  { value: 100, suffix: '%', label: 'Fixed Price', sub: 'Zero Cost Escalation' },
+  { value: 100, suffix: '%', label: 'In-House Team', sub: 'Dedicated Site Engineers' },
 ];
 
-function useCountUp(target: number, start: boolean, duration = 1600) {
+function useCountUp(target: number, start: boolean, duration = 1800) {
   const [value, setValue] = useState(0);
+
   useEffect(() => {
     if (!start) return;
+
+    if (typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      setValue(target);
+      return;
+    }
+
     let raf = 0;
     const t0 = performance.now();
     const tick = (t: number) => {
       const p = Math.min((t - t0) / duration, 1);
+      // easeOutCubic curve
       const eased = 1 - Math.pow(1 - p, 3);
       setValue(Math.round(target * eased));
-      if (p < 1) raf = requestAnimationFrame(tick);
+      if (p < 1) {
+        raf = requestAnimationFrame(tick);
+      }
     };
     raf = requestAnimationFrame(tick);
     return () => cancelAnimationFrame(raf);
   }, [start, target, duration]);
+
   return value;
 }
 
-function StatItem({ stat, start }: { stat: (typeof stats)[number]; start: boolean }) {
+function StatItem({ stat, start }: { stat: StatItemData; start: boolean }) {
   const value = useCountUp(stat.value, start);
   return (
-    <div className="space-y-1">
-      <div className="text-3xl sm:text-4xl font-black text-[#242624]">
-        {value}
-        <span className="text-[#E64D16]">{stat.suffix}</span>
+    <div className="space-y-2 w-full">
+      <div
+        className="text-4xl sm:text-5xl font-bold text-[#111111] tracking-tight flex items-center justify-center"
+        style={{ fontFamily: "'Lora', serif" }}
+      >
+        <span>{value}</span>
+        <span className="text-[#EA580C] ml-1">{stat.suffix}</span>
       </div>
-      <div className="text-xs uppercase tracking-wider text-[#242624]/80 font-bold">{stat.label}</div>
-      <div className="text-[10px] text-[#242624]/60">{stat.sub}</div>
+      <div className="text-xs sm:text-sm uppercase tracking-wider text-[#111111] font-bold">
+        {stat.label}
+      </div>
+      <div className="text-xs text-[#666666] font-medium leading-relaxed max-w-[260px] mx-auto">
+        {stat.sub}
+      </div>
     </div>
   );
 }
@@ -50,6 +75,12 @@ export default function StatsBand() {
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
+
+    if (!('IntersectionObserver' in window)) {
+      setStart(true);
+      return;
+    }
+
     const obs = new IntersectionObserver(
       (entries) => {
         if (entries[0].isIntersecting) {
@@ -57,24 +88,31 @@ export default function StatsBand() {
           obs.disconnect();
         }
       },
-      { threshold: 0.3 }
+      { threshold: 0.15 }
     );
     obs.observe(el);
     return () => obs.disconnect();
   }, []);
 
   return (
-    <section className="w-full bg-[#DFB65E] text-[#242624] relative overflow-hidden">
-      {/* charcoal pinstripes echoing the name board */}
-      <div className="h-[3px] w-full bg-gradient-to-r from-[#242624] via-[#E64D16] to-[#242624]" />
-      <div ref={ref} className="max-w-7xl mx-auto px-4 sm:px-8 py-12">
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 text-center">
-          {stats.map((s) => (
-            <StatItem key={s.label} stat={s} start={start} />
+    <section
+      ref={ref}
+      aria-label="MPA Credentials and Numbers"
+      className="w-full bg-white border-b-4 border-[#111111] relative py-12 sm:py-16"
+    >
+      <div className="max-w-6xl mx-auto px-4 sm:px-8">
+        {/* Two-row grid (3 columns x 2 rows on medium/large screens) */}
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6 text-center">
+          {stats.map((stat, idx) => (
+            <div
+              key={idx}
+              className="p-6 sm:p-8 bg-[#FAFAFA] border-2 border-[#111111] flex flex-col justify-center items-center hover:border-[#EA580C] hover:shadow-md transition-all duration-200 group"
+            >
+              <StatItem stat={stat} start={start} />
+            </div>
           ))}
         </div>
       </div>
-      <div className="h-[3px] w-full bg-gradient-to-r from-[#242624] via-[#E64D16] to-[#242624]" />
     </section>
   );
 }

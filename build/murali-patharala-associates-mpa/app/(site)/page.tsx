@@ -1,11 +1,13 @@
 import { readSourceConfig } from '@/lib/sourceData';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
+import Image from 'next/image';
 import HeroSection from './HeroSection';
+import StatsBand from './StatsBand';
 import MarqueeBand from './MarqueeBand';
 import ProjectCarousel from './ProjectCarousel';
-import InteriorSwitcher from './InteriorSwitcher';
-import CostEstimator from './CostEstimator';
+import BeforeAfter from './BeforeAfter';
+import ConstructionPackages from './ConstructionPackages';
 
 interface PageProps {
   params?: any;
@@ -13,135 +15,157 @@ interface PageProps {
 
 const STATS = [
   { value: '28+', label: 'Years Experience' },
-  { value: '850+', label: 'Homes Delivered' },
-  { value: '0%', label: 'Cost Escalation' },
+  { value: '500+', label: 'Homes Delivered' },
+  { value: '425+', label: 'Quality Checks' },
   { value: '10 Yr', label: 'Structural Warranty' },
+];
+
+const WHY_CHOOSE_PILLARS = [
+  {
+    num: '01',
+    category: 'IN-HOUSE MASTERY',
+    title: 'Licensed Architects & Civil Engineers',
+    highlight: 'Zero Subcontracting Guarantee',
+    specs: [
+      'Council of Architecture (COA) Registered',
+      'Dedicated Daily Site Engineer Oversight',
+      '500+ Luxury Homes Delivered in Chennai',
+    ],
+    iconType: 'drafting',
+  },
+  {
+    num: '02',
+    category: 'STRUCTURAL INTEGRITY',
+    title: '425+ Quality Audits & Branded Steel',
+    highlight: 'Tata Tiscon 550D & UltraTech 53-Grade',
+    specs: [
+      '7 & 28-Day Concrete Cube Strength Tests',
+      'Primary Steel Only (Tata Tiscon / JSW)',
+      '10-Year Structural Warranty Certificate',
+    ],
+    iconType: 'shield',
+  },
+  {
+    num: '03',
+    category: 'FINANCIAL TRANSPARENCY',
+    title: '100% Fixed-Price Contract',
+    highlight: 'Itemized BOQ & Zero Escalation',
+    specs: [
+      'Line-by-Line Itemized Material Specifications',
+      '100% Price Lock Guarantee Against Inflation',
+      'No Unplanned Contractor Surcharges',
+    ],
+    iconType: 'lock',
+  },
+  {
+    num: '04',
+    category: 'CLIMATIC & VASTU DESIGN',
+    title: 'Custom 3D Elevation & Microclimate',
+    highlight: '100% Vastu & Cross-Ventilation',
+    specs: [
+      'Photorealistic 3D Facade & Floorplan Renders',
+      'Thermal Comfort & Natural Cross-Drafting',
+      'Full GCC / CMDA Municipal Sanctions',
+    ],
+    iconType: 'compass',
+  },
+  {
+    num: '05',
+    category: 'TIMELY DELIVERY',
+    title: 'Guaranteed On-Time Handover',
+    highlight: 'Milestone-Linked Handover Schedule',
+    specs: [
+      'Legally Binding Completion Schedule',
+      'Weekly Structural Inspection Audits',
+      'Key Handover with Complete Documentation',
+    ],
+    iconType: 'calendar',
+  },
+  {
+    num: '06',
+    category: 'DIGITAL SURVEILLANCE',
+    title: 'Tech-Driven Milestone Tracking',
+    highlight: 'Verified Photo & Video Progress Logs',
+    specs: [
+      'Digital Daily Work & Material Logs',
+      'Weekly High-Def Drone & Site Video Updates',
+      'Direct WhatsApp Line with Lead Engineer',
+    ],
+    iconType: 'tech',
+  },
 ];
 
 const SERVICES = [
   {
     icon: '01',
-    title: 'Turnkey Construction',
-    desc: '100% end-to-end execution. From soil testing and foundation to the final coat of paint, we manage all materials, labor, and compliance. Zero subcontractors.',
+    title: 'Architectural Designs',
+    desc: 'Custom floor plans, photorealistic 3D elevations, structural analysis, CMDA / GCC municipal sanction drawings, and Vastu spatial planning.',
+    link: '/services#architecture',
   },
   {
     icon: '02',
-    title: 'Architectural Design',
-    desc: 'In-house licensed architects craft custom floor plans and stunning 3D elevations perfectly tailored to your plot, maximizing space, light, and Vaastu harmony.',
+    title: 'Residential Construction',
+    desc: 'Soil testing to key handover—earthwork, seismic-resistant RCC framing, branded materials, 425+ quality tests, and dedicated full-time site supervision.',
+    link: '/services#construction',
   },
   {
     icon: '03',
-    title: 'Interior Design',
-    desc: 'Seamlessly integrated interiors. We plan lighting, plumbing, and false ceilings alongside structural work, delivering a cohesive, move-in-ready home.',
+    title: 'Interior Designs',
+    desc: 'Bespoke living spaces crafted in 100% BWR Marine Plywood (IS:710)—modular kitchens, floor-to-ceiling wardrobes, designer ceilings, and mood lighting.',
+    link: '/services#interiors',
   },
   {
     icon: '04',
-    title: 'Approvals & Liaison',
-    desc: 'We handle all CMDA/civic body approvals, plan sanctions, and temporary electricity/water connections. Complete peace of mind before breaking ground.',
+    title: 'Turnkey Construction Services',
+    desc: 'One-stop solution combining architecture, civil engineering, and interior joinery under a single contract with a 10-year structural warranty.',
+    link: '/services#turnkey',
   },
 ];
 
-const PACKAGES = [
-  {
-    name: 'Classic',
-    tag: 'Essential Quality',
-    price: '₹2,050',
-    unit: '/ sq.ft',
-    features: [
-      'Custom 2D floor plans & structural drawings',
-      'FE 550 Grade ISI TMT Steel (Kamachi / ARS)',
-      '53-Grade PPC Cement (Coromandel / Chettinad)',
-      '2x2 Vitrified Tiles (Somany / Kajaria)',
-      'Teak wood main door frame + UPVC windows',
-      'Basic modular kitchen & wardrobes',
-      '5-year structural warranty',
-    ],
-    highlight: false,
-  },
-  {
-    name: 'Premium',
-    tag: 'Most Recommended',
-    price: '₹2,450',
-    unit: '/ sq.ft',
-    features: [
-      'Everything in Classic + 3D Elevation modeling',
-      'Tata Tiscon / JSW Neosteel 550D TMT Steel',
-      'UltraTech / Ramco Supergrade 53-Grade Cement',
-      '4x2 Glazed Vitrified Tiles or Spanish Granite',
-      'Soundproof Kommerling UPVC Windows',
-      '100% Marine Plywood Modular Kitchen & Wardrobes',
-      'False ceiling & concealed architectural lighting',
-      '8-year structural warranty + 5-yr maintenance',
-    ],
-    highlight: true,
-  },
-  {
-    name: 'Luxury',
-    tag: 'Uncompromising Finish',
-    price: '₹2,950+',
-    unit: '/ sq.ft',
-    features: [
-      'Complete interior architecture integration',
-      'Tata Tiscon 550D + Anti-seismic frame design',
-      'Italian Marble (Bottochino / Statuario inlays)',
-      'Grohe / Kohler Designer Collection Fixtures',
-      'Schüco Heavy-duty Aluminium & Burma Teak doors',
-      'Smart home automation & security cabling',
-      'Dedicated site engineer & senior architect',
-      '10-year comprehensive structural warranty',
-    ],
-    highlight: false,
-  },
-];
 
-const WHY_US = [
-  {
-    num: 'I.',
-    title: 'No Subcontractors',
-    body: 'Our architects, civil engineers, and site supervisors are all full-time employees. We maintain absolute control over material quality and site timelines.',
-  },
-  {
-    num: 'II.',
-    title: 'Zero Cost Overruns',
-    body: 'We operate on a strict fixed-price model. Once the itemized Bill of Quantities (BOQ) is signed, you will not pay a single rupee extra for the agreed scope.',
-  },
-  {
-    num: 'III.',
-    title: 'Guaranteed Timelines',
-    body: 'Every project comes with a legally binding delivery schedule. We track progress weekly and enforce strict milestone delivery clauses.',
-  },
-  {
-    num: 'IV.',
-    title: '200+ Point QC Protocol',
-    body: 'Quality is not left to chance. Every stage of construction undergoes documented, multi-tier quality checks by our independent audit team.',
-  },
-];
 
-const PROCESS_STEPS = [
+
+
+const JOURNEY_STEPS = [
   {
     step: '01',
-    title: 'Site Inspection & Brief',
-    desc: "We evaluate your plot, understand your family's lifestyle, and lock down the overarching architectural vision and budget.",
+    title: 'Tell Us Your Requirements',
+    desc: 'We capture your plot dimensions, family lifestyle requirements, number of floors, preferred architectural style, budget parameters, and future expansion plans.',
   },
   {
     step: '02',
-    title: 'Architecture & Approvals',
-    desc: 'Our architects draft floor plans and 3D elevations. Once approved by you, we secure all necessary CMDA permits.',
+    title: 'Laser Site Assessment',
+    desc: 'Our civil engineers conduct physical plot verification, boundary measurement, road width access checks, orientation sun-path analysis, and soil test investigation.',
   },
   {
     step: '03',
-    title: 'BOQ & Contracts',
-    desc: 'A highly detailed Bill of Quantities is generated. You sign a fixed-price contract with zero hidden clauses.',
+    title: 'Architectural Design',
+    desc: 'Our architects develop custom 2D functional floor plans, furniture layouts, and photorealistic 3D elevations aligned with your preferences and Chennai climatic conditions.',
   },
   {
     step: '04',
-    title: 'Construction Phase',
-    desc: 'Execution begins. You receive a dedicated WhatsApp group and weekly reports detailing progress and QC checks.',
+    title: 'Engineering & Detailed Drawings',
+    desc: 'Comprehensive structural RCC drawings, beam-column schedules, electrical schematics, and plumbing lines are developed for municipal compliance and error-free execution.',
   },
   {
     step: '05',
-    title: 'Handover & Warranty',
-    desc: 'Deep cleaning, final walkthrough, and handover of keys along with your 10-year structural warranty certificate.',
+    title: 'Final Design & Built-Up Area',
+    desc: 'The exact room dimensions, elevation specifications, and built-up area calculations are finalized and validated with you before estimating costs.',
+  },
+  {
+    step: '06',
+    title: 'Detailed Construction Estimate',
+    desc: 'We prepare an exhaustive, line-by-line Bill of Quantities (BOQ) covering every material brand, grade, quantity, and unit rate with total cost transparency.',
+  },
+  {
+    step: '07',
+    title: 'Construction Agreement',
+    desc: 'A legally binding agreement is signed freezing the price per sq.ft, material specifications, and milestone completion timelines. Zero hidden costs.',
+  },
+  {
+    step: '08',
+    title: 'Construction Begins',
+    desc: 'With your dedicated site engineer in place, construction commences. You receive weekly milestone tracking updates and 425+ documented quality test records up to key handover.',
   },
 ];
 
@@ -149,17 +173,20 @@ const TESTIMONIALS = [
   {
     name: 'S. Rajagopalan',
     area: 'Anna Nagar East, Chennai',
-    text: 'Murali Patharala Associates delivered exactly what they promised, on the exact date agreed in the contract. The 200-point QC checks meant I never had to worry while sitting in my office.',
+    project: '4,400 Sq.Ft Contemporary Villa',
+    text: 'Murali Patharala Associates delivered exactly what they promised, on the exact date agreed in the contract. The 425-point QC checks and daily engineer presence meant I never had to worry while sitting in my office.',
   },
   {
     name: 'Priya & Balaji',
     area: 'Kilpauk, Chennai',
-    text: 'The fixed-price contract is 100% genuine. We made custom tweaks to our kitchen finishes, but there were zero hidden civil structural surcharges. A truly stress-free turnkey experience.',
+    project: '3,850 Sq.Ft Duplex Residence',
+    text: 'The 100% fixed-price contract is genuine. We made custom tweaks to our finishes, but there were zero hidden civil surcharges or material price escalations. A truly stress-free turnkey experience.',
   },
   {
     name: 'Dr. K. Venkataraman',
     area: 'Boat Club Road, Chennai',
-    text: 'Having in-house architects made all the difference. The transition from our blueprint discussions to the actual physical villa was seamless. Exceptional finishing quality.',
+    project: '5,200 Sq.Ft Bespoke Residence',
+    text: 'Having in-house architects and civil engineers under one roof made all the difference. The transition from 3D conceptual drawings to the physical villa was flawless. Exceptional structural and interior craftsmanship.',
   },
 ];
 
@@ -177,280 +204,380 @@ export default async function HomePage({ params }: PageProps) {
 
   return (
     <div className="w-full bg-[#FAFAFA] text-[#111111]">
-      {/* 1. Hero Section (Split Screen with Quick Estimate Callback Form) */}
-      <HeroSection phone={displayPhone} />
+      {/* 1. Hero Section */}
+      <HeroSection phone={phone} />
 
-      {/* 2. Marquee Ribbon (Onyx Black Ticker) */}
+      {/* 2. Numbers / Credentials Section (Brought Down with Count-Up Animation) */}
+      <StatsBand />
+
+      {/* 3. Infinite Continuous Marquee Ribbon */}
       <MarqueeBand />
 
-      {/* 3. The Manifesto */}
-      <section className="py-20 md:py-32 px-6 md:px-12 border-b-4 border-[#111111] bg-white text-center">
-        <div className="max-w-4xl mx-auto">
-          <div className="w-12 h-1 bg-[#EA580C] mx-auto mb-8 sm:mb-10" />
-          <h2
-            className="text-3xl sm:text-4xl md:text-5xl font-bold mb-8 leading-tight text-[#111111] tracking-tight"
-            style={{ fontFamily: "'Lora', serif" }}
-          >
-            We Believe Building a Home Shouldn&apos;t Be a Nightmare of Escalating Costs and Broken Promises.
-          </h2>
-          <p className="text-base sm:text-lg md:text-xl text-[#757575] leading-relaxed font-medium">
-            The traditional construction industry is broken—riddled with subcontractors, hidden fees, and endless delays. Murali Patharala Associates was built to change that. We bring architecture, civil engineering, and interior execution under one roof in Anna Nagar, backed by unbreakable fixed-price contracts and ironclad delivery timelines.
-          </p>
+      {/* Real Transformation (Before / After Comparison) */}
+      <section id="transformations" className="py-20 md:py-28 px-6 md:px-12 border-b-4 border-[#111111] bg-white">
+        <div className="max-w-5xl mx-auto text-center">
+          <div className="max-w-2xl mx-auto mb-10">
+            <span className="text-xs font-bold tracking-[0.25em] uppercase text-[#EA580C] inline-block border-b-2 border-[#EA580C] pb-1 mb-4">
+              Real Transformation
+            </span>
+            <h2
+              className="text-3xl sm:text-4xl md:text-5xl font-bold font-serif text-[#111111] tracking-tight leading-tight mb-4"
+              style={{ fontFamily: "'Lora', serif" }}
+            >
+              From Plan Sketch to <span className="text-[#EA580C]">Completed Project</span>
+            </h2>
+            <p className="text-sm sm:text-base text-[#555555] leading-relaxed font-medium">
+              See how our architectural blueprints, structural engineering, and precision construction transform a 2D plan sketch and raw structural shell into a luminous, climate-responsive completed landmark.
+            </p>
+          </div>
+
+          <div className="w-full">
+            <BeforeAfter
+              beforeImage="/images/architecture/villa-plan-sketch.webp"
+              afterImage="/images/architecture/villa-after-finished.webp"
+              caption="Drag slider to compare 2D plan sketch vs completed project"
+            />
+          </div>
+
+          <div className="mt-10 flex flex-wrap items-center justify-center gap-4 sm:gap-8">
+            <div className="inline-flex items-center gap-3 bg-[#FAFAFA] border-2 border-[#111111] px-5 py-3 shadow-sm">
+              <span className="text-xl sm:text-2xl font-bold font-serif text-[#EA580C]" style={{ fontFamily: "'Lora', serif" }}>
+                10-Year
+              </span>
+              <span className="text-[11px] font-bold text-[#111111] uppercase tracking-wider">Structural Warranty</span>
+            </div>
+            <div className="inline-flex items-center gap-3 bg-[#FAFAFA] border-2 border-[#111111] px-5 py-3 shadow-sm">
+              <span className="text-xl sm:text-2xl font-bold font-serif text-[#EA580C]" style={{ fontFamily: "'Lora', serif" }}>
+                425+
+              </span>
+              <span className="text-[11px] font-bold text-[#111111] uppercase tracking-wider">Quality Audits</span>
+            </div>
+            <Link
+              href="/contact"
+              className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-[#EA580C] hover:text-[#111111] transition-colors border-b-2 border-[#EA580C] pb-0.5"
+            >
+              Get a Feasibility Report for Your Plot &rarr;
+            </Link>
+          </div>
         </div>
       </section>
 
-      {/* 4. Why Us / The Standard for Excellence */}
-      <section id="why-us" className="border-b-4 border-[#111111]">
-        <div className="grid md:grid-cols-2">
-          {/* Left Stats Column */}
-          <div className="p-8 md:p-16 border-b-4 md:border-b-0 md:border-r-4 border-[#111111] bg-[#FAFAFA] flex flex-col justify-between">
-            <div>
-              <p className="text-xs font-bold tracking-[0.2em] uppercase text-[#EA580C] mb-4">Firm Metrics</p>
+      {/* 4. Why Choose MPA - 6 Core Architectural Pillars */}
+      <section id="why-choose" className="border-b-4 border-[#111111] bg-[#FAFAFA] py-20 md:py-28 px-6 md:px-12">
+        <div className="max-w-7xl mx-auto">
+          {/* Section Header */}
+          <div className="flex flex-col lg:flex-row lg:items-end justify-between mb-16 gap-8 pb-8 border-b-2 border-[#111111]/15">
+            <div className="max-w-2xl">
+              <div className="inline-flex items-center gap-2 mb-3">
+                <span className="w-2.5 h-2.5 bg-[#EA580C]"></span>
+                <span className="text-xs font-bold tracking-[0.2em] uppercase text-[#EA580C]">
+                  Why Choose Murali Patharala Associates
+                </span>
+              </div>
               <h2
-                className="text-4xl md:text-5xl font-bold mb-6 text-[#111111] tracking-tight leading-tight"
+                className="text-3xl sm:text-4xl md:text-5xl font-bold font-serif text-[#111111] tracking-tight leading-tight"
                 style={{ fontFamily: "'Lora', serif" }}
               >
-                The Standard<br />For Excellence.
+                Engineered for Certainty. <br />
+                <span className="text-[#EA580C]">Architected</span> for Generations.
               </h2>
-              <p className="text-base sm:text-lg text-[#757575] mb-12 font-medium leading-relaxed">
-                We do not rely on third-party contractors. By keeping design, engineering, and turnkey execution in-house, we guarantee absolute accountability across Chennai.
-              </p>
             </div>
-
-            <div className="grid grid-cols-2 gap-8 gap-y-12 pt-6 border-t-2 border-[#E0E0E0]">
-              {STATS.map((s) => (
-                <div key={s.label}>
-                  <p
-                    className="text-4xl sm:text-5xl font-bold text-[#EA580C] mb-2 font-serif"
-                    style={{ fontFamily: "'Lora', serif" }}
-                  >
-                    {s.value}
-                  </p>
-                  <p className="text-xs font-bold uppercase tracking-widest text-[#111111]">
-                    {s.label}
-                  </p>
-                </div>
-              ))}
+            <div className="max-w-md">
+              <p className="text-sm sm:text-base text-[#555555] font-medium leading-relaxed">
+                Building a private home in Chennai is a major life milestone. We replace contractor ambiguity with architectural discipline, fixed pricing, and uncompromising engineering rigor.
+              </p>
             </div>
           </div>
 
-          {/* Right Roman Numeral 2x2 Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 bg-white">
-            {WHY_US.map((item, i) => (
+          {/* 3-Column Grid of 6 Distinct Architectural Pillar Cards */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+            {WHY_CHOOSE_PILLARS.map((pillar) => (
               <div
-                key={i}
-                className={`p-8 md:p-12 border-[#111111] flex flex-col justify-start ${
-                  i % 2 === 0 ? 'border-b-2 sm:border-r-2' : 'border-b-2'
-                } ${i > 1 ? 'border-b-0' : ''}`}
+                key={pillar.num}
+                className="group bg-white border-2 border-[#111111] p-7 sm:p-8 flex flex-col justify-between hover:border-[#EA580C] hover:shadow-2xl transition-all duration-300 relative overflow-hidden"
               >
-                <span
-                  className="text-2xl sm:text-3xl font-serif text-[#EA580C] font-bold block mb-4"
-                  style={{ fontFamily: "'Lora', serif" }}
-                >
-                  {item.num}
-                </span>
-                <h4 className="text-lg font-bold mb-3 uppercase tracking-wide text-[#111111]">
-                  {item.title}
-                </h4>
-                <p className="text-sm text-[#757575] leading-relaxed font-medium">
-                  {item.body}
-                </p>
+                {/* Top Accent Line on Hover */}
+                <div className="absolute top-0 left-0 right-0 h-1.5 bg-[#EA580C] scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
+
+                <div className="space-y-6">
+                  {/* Card Header: Editorial Number & Category Badge */}
+                  <div className="flex items-center justify-between">
+                    <span
+                      className="text-4xl sm:text-5xl font-bold font-serif text-[#111111]/20 group-hover:text-[#EA580C] transition-colors"
+                      style={{ fontFamily: "'Lora', serif" }}
+                    >
+                      {pillar.num}
+                    </span>
+                    <span className="text-[10px] font-bold tracking-[0.18em] uppercase text-[#EA580C] bg-[#EA580C]/10 border border-[#EA580C]/25 px-2.5 py-1">
+                      {pillar.category}
+                    </span>
+                  </div>
+
+                  {/* Descriptive Architectural SVG Illustration Centerpiece */}
+                  <div className="w-20 h-20 bg-[#FAFAFA] border-2 border-[#111111] p-3.5 flex items-center justify-center group-hover:border-[#EA580C] group-hover:bg-[#111111] transition-all duration-300 shadow-sm">
+                    {pillar.iconType === 'drafting' && (
+                      <svg viewBox="0 0 64 64" className="w-12 h-12 stroke-current text-[#111111] group-hover:text-white transition-colors" fill="none" strokeWidth="1.75">
+                        <rect x="8" y="8" width="48" height="48" rx="3" className="stroke-[#111111]/25 group-hover:stroke-white/30" strokeDasharray="3 3" />
+                        <path d="M14 50L46 50L14 18Z" className="stroke-[#111111] group-hover:stroke-white" fill="currentColor" fillOpacity="0.05" />
+                        <path d="M20 44L34 44L20 30Z" className="stroke-[#EA580C]" fill="currentColor" fillOpacity="0.15" />
+                        <path d="M18 50v-3m6 3v-2m6 3v-3m6 3v-2m6 3v-3" className="stroke-[#111111] group-hover:stroke-white" strokeLinecap="round" />
+                        <path d="M42 14L46 10L50 14" className="stroke-[#EA580C]" strokeLinecap="round" strokeLinejoin="round" />
+                        <path d="M46 10v6" className="stroke-[#EA580C]" strokeLinecap="round" />
+                        <circle cx="46" cy="18" r="2.5" className="stroke-[#EA580C] fill-[#EA580C]" />
+                        <path d="M44 20L34 40M48 20L54 36" className="stroke-[#EA580C]" strokeLinecap="round" />
+                        <path d="M38 30h12" className="stroke-[#EA580C]" strokeDasharray="2 2" />
+                      </svg>
+                    )}
+                    {pillar.iconType === 'shield' && (
+                      <svg viewBox="0 0 64 64" className="w-12 h-12 stroke-current text-[#111111] group-hover:text-white transition-colors" fill="none" strokeWidth="1.75">
+                        <path d="M32 6L12 14v18c0 14 8.5 22 20 26 11.5-4 20-12 20-26V14L32 6Z" className="stroke-[#111111] group-hover:stroke-white" fill="currentColor" fillOpacity="0.05" />
+                        <path d="M22 22h20M22 30h20M22 38h20" className="stroke-[#111111]/30 group-hover:stroke-white/40" strokeLinecap="round" />
+                        <path d="M26 18v24M38 18v24" className="stroke-[#111111]/30 group-hover:stroke-white/40" strokeLinecap="round" />
+                        <rect x="24" y="24" width="16" height="16" rx="2" className="stroke-[#EA580C] fill-[#EA580C]/15" />
+                        <path d="M28 32l3 3 6-6" className="stroke-[#EA580C]" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.25" />
+                        <circle cx="32" cy="13" r="1.5" className="fill-[#EA580C] stroke-none" />
+                        <circle cx="26" cy="15" r="1.2" className="fill-[#EA580C] stroke-none" />
+                        <circle cx="38" cy="15" r="1.2" className="fill-[#EA580C] stroke-none" />
+                      </svg>
+                    )}
+                    {pillar.iconType === 'lock' && (
+                      <svg viewBox="0 0 64 64" className="w-12 h-12 stroke-current text-[#111111] group-hover:text-white transition-colors" fill="none" strokeWidth="1.75">
+                        <rect x="12" y="10" width="28" height="42" rx="2.5" className="stroke-[#111111] group-hover:stroke-white" fill="currentColor" fillOpacity="0.05" />
+                        <path d="M18 18h16M18 24h12M18 30h16M18 36h10M18 42h8" className="stroke-[#111111]/30 group-hover:stroke-white/40" strokeLinecap="round" />
+                        <circle cx="24" cy="42" r="3.5" className="stroke-[#EA580C] fill-[#EA580C]/15" />
+                        <rect x="32" y="28" width="22" height="24" rx="3" className="stroke-[#EA580C] fill-[#FAFAFA] group-hover:fill-[#1A1A1A]" strokeWidth="2" />
+                        <path d="M37 28v-7a6 6 0 0112 0v7" className="stroke-[#EA580C]" strokeWidth="2" strokeLinecap="round" />
+                        <circle cx="43" cy="38" r="2.5" className="stroke-[#EA580C] fill-[#EA580C]" />
+                        <path d="M43 40.5v4" className="stroke-[#EA580C]" strokeWidth="2" strokeLinecap="round" />
+                      </svg>
+                    )}
+                    {pillar.iconType === 'compass' && (
+                      <svg viewBox="0 0 64 64" className="w-12 h-12 stroke-current text-[#111111] group-hover:text-white transition-colors" fill="none" strokeWidth="1.75">
+                        <path d="M32 10L14 20v22l18 10 18-10V20L32 10Z" className="stroke-[#111111] group-hover:stroke-white" fill="currentColor" fillOpacity="0.04" />
+                        <path d="M32 10v42M32 32L14 20M32 32l18-12" className="stroke-[#111111]/30 group-hover:stroke-white/40" />
+                        <circle cx="48" cy="14" r="5" className="stroke-[#EA580C] fill-[#EA580C]/20" />
+                        <path d="M48 6v2m0 12v2m-8-8h2m12 0h2m-7-5l1.5 1.5m-11 11l1.5 1.5m0-14l-1.5 1.5m11 11l-1.5 1.5" className="stroke-[#EA580C]" strokeLinecap="round" />
+                        <path d="M8 28c8-3 14 1 20-1s8-5 14-3" className="stroke-[#EA580C]" strokeLinecap="round" strokeDasharray="3 2" />
+                        <path d="M8 36c8-3 14 1 20-1s8-5 14-3" className="stroke-[#EA580C]" strokeLinecap="round" strokeDasharray="3 2" />
+                        <path d="M32 26l3 6-3-2-3 2 3-6Z" className="stroke-[#EA580C] fill-[#EA580C]" />
+                      </svg>
+                    )}
+                    {pillar.iconType === 'calendar' && (
+                      <svg viewBox="0 0 64 64" className="w-12 h-12 stroke-current text-[#111111] group-hover:text-white transition-colors" fill="none" strokeWidth="1.75">
+                        <circle cx="28" cy="34" r="18" className="stroke-[#111111] group-hover:stroke-white" fill="currentColor" fillOpacity="0.05" />
+                        <path d="M28 20v-4m-4 0h8" className="stroke-[#111111] group-hover:stroke-white" strokeLinecap="round" />
+                        <path d="M41 21l3-3" className="stroke-[#111111] group-hover:stroke-white" strokeLinecap="round" />
+                        <path d="M28 22v3m0 15v3m-11-9h3m15 0h3" className="stroke-[#111111]/30 group-hover:stroke-white/40" strokeLinecap="round" />
+                        <path d="M28 34l6-6" className="stroke-[#EA580C]" strokeWidth="2.25" strokeLinecap="round" />
+                        <circle cx="28" cy="34" r="2.5" className="stroke-[#EA580C] fill-[#EA580C]" />
+                        <circle cx="48" cy="24" r="6" className="stroke-[#EA580C] fill-[#FAFAFA] group-hover:fill-[#1A1A1A]" strokeWidth="2" />
+                        <circle cx="48" cy="24" r="2.5" className="stroke-[#EA580C]" />
+                        <path d="M48 30v20m0 0l-3-3m3 3l3-3m-3-9h4m-4 4h3" className="stroke-[#EA580C]" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                      </svg>
+                    )}
+                    {pillar.iconType === 'tech' && (
+                      <svg viewBox="0 0 64 64" className="w-12 h-12 stroke-current text-[#111111] group-hover:text-white transition-colors" fill="none" strokeWidth="1.75">
+                        <rect x="10" y="14" width="30" height="42" rx="3" className="stroke-[#111111] group-hover:stroke-white" fill="currentColor" fillOpacity="0.05" />
+                        <path d="M22 51h6" className="stroke-[#111111]/40 group-hover:stroke-white/40" strokeLinecap="round" />
+                        <path d="M16 26l9-5 9 5v12l-9 5-9-5V26Z" className="stroke-[#EA580C]/70" fill="none" strokeDasharray="2 1.5" />
+                        <path d="M25 21v22M25 32l9-5M25 32l-9-5" className="stroke-[#EA580C]/50" />
+                        <path d="M42 14h14M38 18l4-4 4 4M52 10l4 4-4 4" className="stroke-[#EA580C]" strokeLinecap="round" strokeLinejoin="round" />
+                        <circle cx="49" cy="14" r="3" className="stroke-[#EA580C] fill-[#EA580C]" />
+                        <path d="M44 20L36 34m18-14l6 14" className="stroke-[#EA580C]/40" strokeDasharray="2 2" />
+                        <path d="M41 26c3 1 7 1 10 0" className="stroke-[#EA580C]" strokeLinecap="round" />
+                        <path d="M38 31c5 1.5 11 1.5 16 0" className="stroke-[#EA580C]" strokeLinecap="round" />
+                      </svg>
+                    )}
+                  </div>
+
+                  {/* Title */}
+                  <h3
+                    className="text-xl sm:text-2xl font-bold font-serif text-[#111111] leading-snug group-hover:text-[#EA580C] transition-colors"
+                    style={{ fontFamily: "'Lora', serif" }}
+                  >
+                    {pillar.title}
+                  </h3>
+
+                  {/* Itemized Deliverables & Specs */}
+                  <div className="space-y-2 pt-2 border-t border-[#F0F0F0]">
+                    {pillar.specs.map((spec, i) => (
+                      <div key={i} className="flex items-start gap-2.5 text-xs text-[#444444] font-medium">
+                        <span className="text-[#EA580C] font-bold mt-0.5">✓</span>
+                        <span className="leading-snug">{spec}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Card Footer Badge */}
+                <div className="mt-8 pt-4 border-t-2 border-[#111111]/10 flex items-center justify-between">
+                  <span className="text-[11px] sm:text-xs font-bold uppercase tracking-wider text-[#111111] flex items-center gap-2">
+                    <span className="w-2 h-2 rounded-full bg-[#EA580C] animate-pulse"></span>
+                    {pillar.highlight}
+                  </span>
+                  <span className="text-xs text-[#EA580C] font-bold group-hover:translate-x-1 transition-transform">
+                    &rarr;
+                  </span>
+                </div>
               </div>
             ))}
           </div>
+
+          {/* Grand MPA Assurance Banner */}
+          <div className="mt-12 bg-[#111111] border-2 border-[#111111] text-white p-8 sm:p-10 md:p-12 shadow-2xl relative overflow-hidden">
+            <div className="grid lg:grid-cols-12 gap-8 items-center relative z-10">
+              <div className="lg:col-span-8 space-y-4">
+                <div className="inline-flex items-center gap-2 px-3 py-1 bg-[#EA580C]/20 border border-[#EA580C] text-[#EA580C] text-[11px] font-bold uppercase tracking-widest">
+                  <span>The MPA Assurance</span>
+                  <span>&bull;</span>
+                  <span>Anna Nagar, Chennai</span>
+                </div>
+                <h3
+                  className="text-2xl sm:text-3xl lg:text-4xl font-bold font-serif text-white leading-tight"
+                  style={{ fontFamily: "'Lora', serif" }}
+                >
+                  10-Year Structural Warranty &bull; Zero Compromise
+                </h3>
+                <p className="text-sm sm:text-base text-white/80 leading-relaxed font-medium max-w-2xl">
+                  Every home we build undergoes 425+ documented quality inspections—from soil bearing analysis to compressive cube testing. Backed by our legally binding 10-year structural warranty and full-time site supervision.
+                </p>
+                <div className="flex flex-wrap gap-x-8 gap-y-2 pt-2 text-xs font-bold text-[#EA580C] uppercase tracking-wider">
+                  <span>28+ Years Experience</span>
+                  <span>500+ Homes Handed Over</span>
+                  <span>100% Fixed-Price Contract</span>
+                </div>
+              </div>
+
+              <div className="lg:col-span-4 flex flex-col sm:flex-row lg:flex-col gap-3.5 justify-center">
+                <a
+                  href={`https://wa.me/${cleanPhone}?text=${encodeURIComponent('Hi Murali Patharala Associates, I would like to schedule a free site consultation.')}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-[#EA580C] text-[#111111] font-bold uppercase tracking-widest text-xs hover:bg-white transition-colors text-center shadow-lg group"
+                >
+                  <span>Consult Senior Architect</span>
+                  <span className="transition-transform group-hover:translate-x-1">&rarr;</span>
+                </a>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
-      {/* 5. End-to-End Capabilities (Services Grid) */}
-      <section id="services" className="border-b-4 border-[#111111]">
-        <div className="grid md:grid-cols-2 lg:grid-cols-4">
-          <div className="col-span-full p-8 md:p-12 border-b-4 border-[#111111] bg-[#111111] text-white flex flex-wrap items-end justify-between gap-4">
+      {/* 5. Scope of Services We Offer */}
+      <section id="services" className="py-20 md:py-28 px-6 md:px-12 border-b-4 border-[#111111] bg-[#111111] text-white">
+        <div className="max-w-7xl mx-auto">
+          <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
             <div>
-              <p className="text-xs font-bold tracking-[0.2em] uppercase text-[#EA580C] mb-2">Scope of Services</p>
+              <p className="text-xs font-bold tracking-[0.2em] uppercase text-[#EA580C] mb-3">WHAT WE DO</p>
               <h2
-                className="text-3xl sm:text-4xl font-bold font-serif text-white tracking-tight"
+                className="text-3xl md:text-5xl font-bold font-serif text-white tracking-tight"
                 style={{ fontFamily: "'Lora', serif" }}
               >
-                End-to-End Capabilities
+                Services We Offer
               </h2>
             </div>
             <Link
               href="/services"
               className="text-xs font-bold uppercase tracking-widest text-[#EA580C] hover:text-white transition-colors"
             >
-              Explore Detailed Service Specs →
+              Explore Detailed Service Specifications &rarr;
             </Link>
           </div>
 
-          {SERVICES.map((s, i) => (
-            <div
-              key={i}
-              className={`p-8 md:p-10 border-[#111111] bg-[#FAFAFA] hover:bg-white transition-colors ${
-                i < SERVICES.length - 1 ? 'border-b-2 md:border-b-0 md:border-r-2 lg:border-b-0' : ''
-              }`}
-            >
-              <div
-                className="text-4xl font-serif text-[#EA580C] font-bold mb-6"
-                style={{ fontFamily: "'Lora', serif" }}
-              >
-                {s.icon}
-              </div>
-              <h3 className="text-lg font-bold uppercase tracking-wide mb-4 text-[#111111]">
-                {s.title}
-              </h3>
-              <p className="text-sm text-[#757575] leading-relaxed font-medium">
-                {s.desc}
-              </p>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* 6. Methodology (How We Build) */}
-      <section id="process" className="py-20 md:py-28 border-b-4 border-[#111111] bg-white">
-        <div className="px-6 md:px-12 max-w-7xl mx-auto">
-          <div className="mb-16">
-            <p className="text-xs font-bold tracking-[0.2em] uppercase text-[#EA580C] mb-4">Methodology</p>
-            <h2
-              className="text-3xl md:text-5xl font-bold font-serif mb-4 text-[#111111] tracking-tight"
-              style={{ fontFamily: "'Lora', serif" }}
-            >
-              How We Build
-            </h2>
-            <p className="text-sm md:text-base text-[#757575] max-w-xl font-medium leading-relaxed">
-              A disciplined 5-stage engineering roadmap guaranteeing structural integrity, fixed pricing, and timely key handover.
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-5 gap-6">
-            {PROCESS_STEPS.map((proc, i) => (
-              <div key={i} className="relative pt-6">
-                {i !== PROCESS_STEPS.length - 1 && (
-                  <div className="hidden md:block absolute top-[1.35rem] left-[2.5rem] right-[-1rem] h-0.5 bg-[#E0E0E0]" />
-                )}
-                <div className="w-10 h-10 bg-[#111111] text-white flex items-center justify-center font-bold text-sm mb-6 relative z-10">
-                  {proc.step}
-                </div>
-                <h4 className="font-bold uppercase tracking-wide mb-3 text-sm text-[#111111]">
-                  {proc.title}
-                </h4>
-                <p className="text-xs sm:text-sm text-[#757575] leading-relaxed font-medium">
-                  {proc.desc}
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* 7. Signature Residences (Dynamic Project Carousel) */}
-      <ProjectCarousel />
-
-      {/* 8. Fixed-Price Packages */}
-      <section id="packages" className="border-b-4 border-[#111111] py-20 md:py-28 bg-[#FAFAFA]">
-        <div className="px-6 md:px-12 max-w-6xl mx-auto">
-          <div className="text-center mb-16">
-            <p className="text-xs font-bold tracking-[0.2em] uppercase text-[#EA580C] mb-4">
-              Transparent Pricing
-            </p>
-            <h2
-              className="text-3xl md:text-5xl font-bold font-serif mb-4 text-[#111111] tracking-tight"
-              style={{ fontFamily: "'Lora', serif" }}
-            >
-              Fixed-Price Contracts
-            </h2>
-            <p className="text-base text-[#757575] font-medium max-w-xl mx-auto">
-              Detailed Bill of Quantities (BOQ). No hidden escalation. No surprise material surcharges.
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-0 border-2 border-[#111111] shadow-2xl">
-            {PACKAGES.map((pkg, i) => (
-              <div
-                key={i}
-                className={`p-8 relative flex flex-col justify-between ${
-                  i !== 2 ? 'border-b-2 md:border-b-0 md:border-r-2 border-[#111111]' : ''
-                } ${pkg.highlight ? 'bg-[#111111] text-white' : 'bg-white text-[#111111]'}`}
-              >
-                {pkg.highlight && <div className="absolute top-0 left-0 right-0 h-2 bg-[#EA580C]" />}
-                
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 border-2 border-white/20 divide-y-2 md:divide-y-0 md:divide-x-2 divide-white/20">
+            {SERVICES.map((s, idx) => (
+              <div key={idx} className="p-8 flex flex-col justify-between space-y-8 bg-[#181818] hover:bg-[#222222] transition-colors">
                 <div>
-                  <p
-                    className={`text-xs font-bold tracking-widest uppercase mb-6 ${
-                      pkg.highlight ? 'text-[#EA580C]' : 'text-[#757575]'
-                    }`}
-                  >
-                    {pkg.tag}
-                  </p>
-                  <h3
-                    className="text-2xl sm:text-3xl font-bold font-serif mb-2"
+                  <span
+                    className="text-4xl font-bold font-serif text-[#EA580C] block mb-6"
                     style={{ fontFamily: "'Lora', serif" }}
                   >
-                    {pkg.name}
+                    {s.icon}
+                  </span>
+                  <h3 className="text-base font-bold uppercase tracking-wider mb-3 text-white">
+                    {s.title}
                   </h3>
-                  <div className="flex items-baseline gap-1 mb-8 pb-8 border-b border-current opacity-30">
-                    <span
-                      className={`text-4xl font-bold font-serif ${
-                        pkg.highlight ? 'text-white' : 'text-[#EA580C]'
-                      }`}
-                      style={{ fontFamily: "'Lora', serif" }}
-                    >
-                      {pkg.price}
-                    </span>
-                    <span className="text-sm font-bold uppercase tracking-wider">{pkg.unit}</span>
-                  </div>
-
-                  <ul className="space-y-4 mb-10">
-                    {pkg.features.map((f, idx) => (
-                      <li key={idx} className="flex gap-3 text-sm font-medium">
-                        <span className="text-[#EA580C] shrink-0">■</span>
-                        <span className={pkg.highlight ? 'text-white/90' : 'text-[#111111]'}>{f}</span>
-                      </li>
-                    ))}
-                  </ul>
+                  <p className="text-xs text-white/70 leading-relaxed font-medium">
+                    {s.desc}
+                  </p>
                 </div>
-
-                <a
-                  href={`https://wa.me/${cleanPhone}?text=${encodeURIComponent(`Hi Murali Patharala Associates, I am interested in the ${pkg.name} package (${pkg.price} / sq.ft). Please share details.`)}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={`w-full py-4 text-xs font-bold uppercase tracking-widest text-center transition-colors block ${
-                    pkg.highlight
-                      ? 'bg-[#EA580C] text-white hover:bg-white hover:text-[#111111]'
-                      : 'bg-[#FAFAFA] border-2 border-[#111111] hover:bg-[#111111] hover:text-white'
-                  }`}
+                <Link
+                  href={s.link}
+                  className="text-[11px] font-bold uppercase tracking-wider text-[#EA580C] hover:text-white transition-colors"
                 >
-                  Select Package
-                </a>
+                  View Specifications &rarr;
+                </Link>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* 9. Client Proof / Testimonials */}
-      <section className="py-20 md:py-28 border-b-4 border-[#111111] bg-white">
-        <div className="px-6 md:px-12 max-w-7xl mx-auto">
-          <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
-            <div>
-              <p className="text-xs font-bold tracking-[0.2em] uppercase text-[#EA580C] mb-4">
-                Client Proof
-              </p>
-              <h2
-                className="text-3xl md:text-5xl font-bold font-serif text-[#111111] tracking-tight"
-                style={{ fontFamily: "'Lora', serif" }}
-              >
-                Don&apos;t Take Our Word For It.
-              </h2>
-            </div>
-            <p className="text-[#757575] max-w-sm text-sm sm:text-base font-medium leading-relaxed">
-              Hear directly from Chennai homeowners who trusted our 100% in-house turnkey approach.
+      {/* 6. Fixed-Price Construction Packages (Simple Summary) */}
+      <div id="quick-estimate" className="relative -top-24" />
+      <ConstructionPackages phone={phone} variant="simple" />
+
+      {/* 7. How It Works: 8-Stage Turnkey Journey */}
+      <section id="process" className="py-20 md:py-28 px-6 md:px-12 border-b-4 border-[#111111] bg-[#FAFAFA]">
+        <div className="max-w-7xl mx-auto">
+          <div className="mb-16">
+            <p className="text-xs font-bold tracking-[0.2em] uppercase text-[#EA580C] mb-3">HOW IT WORKS</p>
+            <h2
+              className="text-3xl md:text-5xl font-bold font-serif text-[#111111] tracking-tight"
+              style={{ fontFamily: "'Lora', serif" }}
+            >
+              Your Home Construction Journey
+            </h2>
+            <p className="text-sm md:text-base text-[#666666] max-w-2xl mt-3 font-medium">
+              From understanding your initial lifestyle requirements to pouring foundations and turning the key—every stage is engineered and executed with total clarity.
+            </p>
+          </div>
+
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {JOURNEY_STEPS.map((step) => (
+              <div key={step.step} className="p-8 border-2 border-[#111111] bg-white space-y-4 hover:border-[#EA580C] transition-colors flex flex-col justify-between">
+                <div>
+                  <div className="w-10 h-10 bg-[#111111] text-[#EA580C] font-bold text-sm flex items-center justify-center mb-4">
+                    {step.step}
+                  </div>
+                  <h3 className="text-base font-bold uppercase tracking-wider text-[#111111] mb-2">
+                    {step.title}
+                  </h3>
+                  <p className="text-xs text-[#666666] leading-relaxed font-medium">
+                    {step.desc}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 8. Portfolio Showcase */}
+      <ProjectCarousel />
+
+
+
+      {/* 10. Client Proof / Testimonials */}
+      <section className="py-20 md:py-28 px-6 md:px-12 border-b-4 border-[#111111] bg-[#FAFAFA]">
+        <div className="max-w-7xl mx-auto">
+          <div className="mb-16 text-center max-w-2xl mx-auto">
+            <p className="text-xs font-bold tracking-[0.2em] uppercase text-[#EA580C] mb-3">CLIENT TESTIMONIALS</p>
+            <h2
+              className="text-3xl md:text-5xl font-bold font-serif text-[#111111] tracking-tight"
+              style={{ fontFamily: "'Lora', serif" }}
+            >
+              Rated 4.9 / 5.0 by Chennai Homeowners
+            </h2>
+            <p className="text-sm md:text-base text-[#666666] mt-3 font-medium">
+              Read authentic feedback from families who built their lifelong residences with Murali Patharala Associates.
             </p>
           </div>
 
           <div className="grid md:grid-cols-3 gap-6">
             {TESTIMONIALS.map((t, i) => (
-              <div key={i} className="p-8 border-2 border-[#111111] bg-[#FAFAFA] flex flex-col justify-between">
+              <div key={i} className="p-8 border-2 border-[#111111] bg-white flex flex-col justify-between">
                 <div>
                   <div className="flex gap-1 text-[#EA580C] mb-4 text-base">
                     <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
@@ -464,117 +591,11 @@ export default async function HomePage({ params }: PageProps) {
                 </div>
                 <div className="pt-4 border-t border-[#E0E0E0]">
                   <p className="text-xs font-bold uppercase tracking-widest text-[#111111]">{t.name}</p>
+                  <p className="text-[11px] text-[#EA580C] font-semibold">{t.project}</p>
                   <p className="text-xs text-[#757575] uppercase mt-0.5">{t.area}</p>
                 </div>
               </div>
             ))}
-          </div>
-        </div>
-      </section>
-
-      {/* 10. Interior Architecture (Split Section with Tabbed Image Switcher) */}
-      <InteriorSwitcher />
-
-      {/* 11. Interactive Cost Estimator (Full-featured Calculator) */}
-      <section id="cost-calculator" className="py-20 md:py-28 px-6 md:px-12 border-b-4 border-[#111111] bg-[#FAFAFA]">
-        <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-14">
-            <p className="text-xs font-bold tracking-[0.2em] uppercase text-[#EA580C] mb-3">
-              Cost Engineering
-            </p>
-            <h2
-              className="text-3xl md:text-5xl font-bold font-serif text-[#111111] tracking-tight"
-              style={{ fontFamily: "'Lora', serif" }}
-            >
-              Calculate Your Investment
-            </h2>
-            <p className="text-sm md:text-base text-[#757575] max-w-xl mx-auto mt-2 font-medium leading-relaxed">
-              Explore itemized estimates for turnkey residences, civil construction, and modular interior fit-outs in Chennai.
-            </p>
-          </div>
-          <CostEstimator basePath="" />
-        </div>
-      </section>
-
-      {/* 12. Design System & Architectural Standards */}
-      <section id="design-system" className="py-20 md:py-24 border-b-4 border-[#111111] bg-[#FAFAFA]">
-        <div className="px-6 md:px-12 max-w-7xl mx-auto">
-          <div className="mb-16">
-            <p className="text-xs font-bold tracking-[0.2em] uppercase text-[#EA580C] mb-4">Brand Identity &amp; Discipline</p>
-            <h2
-              className="text-3xl md:text-5xl font-bold font-serif mb-4 text-[#111111] tracking-tight"
-              style={{ fontFamily: "'Lora', serif" }}
-            >
-              The Architecture of Quality
-            </h2>
-            <p className="text-[#757575] font-medium max-w-2xl leading-relaxed text-sm sm:text-base">
-              A precise, high-contrast visual language built on deep onyx black, stark white, and safety orange. Engineered for structural clarity and unwavering trust since 1998.
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-2 gap-12 lg:gap-16">
-            {/* Colors */}
-            <div>
-              <h3 className="text-xs sm:text-sm font-bold uppercase tracking-widest mb-6 border-b-2 border-[#111111] pb-3 text-[#111111]">
-                Material Palette
-              </h3>
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-6">
-                <div className="space-y-2">
-                  <div className="h-20 sm:h-24 w-full bg-[#111111] border-2 border-[#111111]" />
-                  <div>
-                    <p className="text-xs font-bold uppercase tracking-widest text-[#111111]">Onyx Black</p>
-                    <p className="text-[11px] text-[#757575] font-medium">#111111</p>
-                  </div>
-                </div>
-                <div className="space-y-2">
-                  <div className="h-20 sm:h-24 w-full bg-[#EA580C] border-2 border-[#111111]" />
-                  <div>
-                    <p className="text-xs font-bold uppercase tracking-widest text-[#111111]">Safety Orange</p>
-                    <p className="text-[11px] text-[#757575] font-medium">#EA580C</p>
-                  </div>
-                </div>
-                <div className="space-y-2">
-                  <div className="h-20 sm:h-24 w-full bg-[#FAFAFA] border-2 border-[#111111]" />
-                  <div>
-                    <p className="text-xs font-bold uppercase tracking-widest text-[#111111]">Base White</p>
-                    <p className="text-[11px] text-[#757575] font-medium">#FAFAFA</p>
-                  </div>
-                </div>
-                <div className="space-y-2">
-                  <div className="h-20 sm:h-24 w-full bg-[#757575] border-2 border-[#111111]" />
-                  <div>
-                    <p className="text-xs font-bold uppercase tracking-widest text-[#111111]">Concrete Gray</p>
-                    <p className="text-[11px] text-[#757575] font-medium">#757575</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Typography */}
-            <div>
-              <h3 className="text-xs sm:text-sm font-bold uppercase tracking-widest mb-6 border-b-2 border-[#111111] pb-3 text-[#111111]">
-                Typographic Hierarchy
-              </h3>
-              <div className="space-y-6">
-                <div>
-                  <p className="text-xs font-bold uppercase tracking-widest text-[#EA580C] mb-2">Primary Heading (Lora)</p>
-                  <p
-                    className="text-3xl sm:text-4xl font-bold font-serif leading-tight text-[#111111]"
-                    style={{ fontFamily: "'Lora', serif" }}
-                  >
-                    Uncompromising Quality.
-                  </p>
-                  <p className="text-xs text-[#757575] mt-1 uppercase tracking-widest font-bold">Serif • Bold • Architectural Titles</p>
-                </div>
-                <div>
-                  <p className="text-xs font-bold uppercase tracking-widest text-[#EA580C] mb-2">Secondary Body (Work Sans)</p>
-                  <p className="text-sm font-medium leading-relaxed text-[#111111]">
-                    Structured, geometric, and highly legible. Used for all contract specifications, technical breakdowns, and interface controls.
-                  </p>
-                  <p className="text-xs text-[#757575] mt-1 uppercase tracking-widest font-bold">Sans-Serif • Medium • Body &amp; Data</p>
-                </div>
-              </div>
-            </div>
           </div>
         </div>
       </section>
