@@ -1,5 +1,44 @@
 @import "tailwindcss";
 
+/* Shared editorial treatment for this client's inner pages. */
+.mpa-page-intro { background: #121418; color: #fff; padding: 64px 48px; border-bottom: 1px solid #ffffff20; }
+.mpa-page-intro-inner { max-width: 1280px; margin: auto; display: grid; grid-template-columns: 1.2fr 1fr; gap: 72px; align-items: center; }
+.mpa-eyebrow { color: #fb923c; font-size: 11px; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; margin-bottom: 24px; }
+.mpa-page-intro h1 { font-size: clamp(40px, 4.3vw, 64px); line-height: 1.08; letter-spacing: -.04em; font-weight: 500; text-wrap: balance; }
+.mpa-page-intro h1 em { color: #fb923c; font-weight: 400; }
+.mpa-page-description { color: #bdbfbe; font-size: 15px; line-height: 1.8; max-width: 520px; margin-top: 24px; }
+.mpa-page-location { display: flex; justify-content: space-between; padding-top: 22px; margin-top: 32px; border-top: 1px solid #ffffff25; max-width: 520px; font-size: 10px; letter-spacing: .15em; text-transform: uppercase; color: #a1a6a8; }
+.mpa-page-intro-image { position: relative; min-width: 0; aspect-ratio: 5/4; overflow: hidden; }
+.mpa-page-intro-image img { object-fit: cover; }
+.mpa-page-intro-image figcaption { position: absolute; bottom: 0; inset-inline: 0; display: flex; justify-content: space-between; padding: 30px 22px 18px; color: #fff; background: linear-gradient(transparent, #000c); font-size: 10px; text-transform: uppercase; letter-spacing: .14em; }
+.mpa-inner section { border-bottom-width: 1px; }
+.mpa-inner .border-4, .mpa-inner .border-2 { border-width: 1px; }
+.mpa-inner .divide-y-4 > :not(:last-child) { border-bottom-width: 1px; border-color: #dcd8d0; }
+.mpa-inner section:not(.mpa-page-intro) { padding-block: clamp(56px, 6vw, 88px); }
+.mpa-inner h2, .mpa-inner h3 { text-wrap: balance; }
+.mpa-nav a[aria-current="page"] { color: #fb923c; }
+.mpa-nav li a[aria-current="page"] { padding-bottom: 8px; border-bottom: 1px solid #fb923c; }
+.mpa-dialog { margin: auto; width: min(560px, calc(100% - 32px)); max-height: calc(100dvh - 48px); border: 1px solid #ded9d1; background: #fff; color: #111; padding: 0; overflow-y: auto; overscroll-behavior: contain; box-shadow: 0 24px 100px #0005; }
+.mpa-dialog-wide { width: min(960px, calc(100% - 32px)); }
+.mpa-dialog::backdrop { background: #101216c9; backdrop-filter: blur(7px); }
+.mpa-faq { border-top: 1px solid #d8d4cb; }
+.mpa-faq details { border-bottom: 1px solid #d8d4cb; padding: 24px 0; }
+.mpa-faq summary { display: flex; align-items: baseline; gap: 20px; cursor: pointer; list-style: none; font-size: 18px; font-family: var(--font-serif); }
+.mpa-faq summary::-webkit-details-marker { display: none; }
+.mpa-faq summary::after { content: '+'; margin-left: auto; flex-shrink: 0; color: #c2410c; font-family: var(--font-sans); }
+.mpa-faq details[open] summary::after { content: '−'; }
+.mpa-faq details p { font-size: 14px; color: #60615b; line-height: 1.85; padding-top: 16px; max-width: 760px; }
+summary:focus-visible, [role="button"]:focus-visible { outline: 2px solid #c2410c; outline-offset: 5px; }
+@media (max-width: 767px) {
+  .mpa-page-intro { padding: 44px 24px 28px; }
+  .mpa-page-intro-inner { grid-template-columns: 1fr; gap: 28px; }
+  .mpa-page-intro h1 { font-size: 40px; }
+  .mpa-page-description { font-size: 14px; }
+  .mpa-page-location { margin-top: 24px; }
+  .mpa-page-intro-image { aspect-ratio: 16/9; }
+  .mpa-faq summary { font-size: 17px; }
+}
+
 @theme {
   --font-serif: var(--font-lora), "Lora", Georgia, serif;
   --font-sans: var(--font-work-sans), "Work Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
@@ -31,7 +70,7 @@
 
 html {
   scrollbar-width: none;
-  scroll-behavior: smooth;
+  scroll-behavior: auto;
 }
 
 body {
@@ -115,4 +154,266 @@ h1, h2, h3, h4, h5, h6 {
 
 .animate-draw-square {
   animation: drawSquare 2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+/* Architectural surfaces use MPA's existing black, white and orange palette. */
+.mpa-hero-copy {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  background-color: var(--charcoal);
+  background-image:
+    linear-gradient(#ffffff05 1px, transparent 1px),
+    linear-gradient(90deg, #ffffff05 1px, transparent 1px);
+  background-size: 72px 72px;
+  border-bottom: 4px solid var(--amber);
+}
+
+.mpa-hero-copy::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: -90px -250px -60px -60px;
+  background: url('/images/drawings/residence-plan.svg') right center / auto 100% no-repeat;
+  opacity: .48;
+  mask-image: linear-gradient(90deg, #0003, #0006 60%, #000);
+  pointer-events: none;
+}
+
+.mpa-studio-note {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 20px;
+  margin-bottom: 48px;
+  border-bottom: 1px solid #ffffff25;
+  color: #a3a3a3;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: .2em;
+}
+
+
+.mpa-service {
+  border-bottom: 2px solid var(--amber);
+}
+
+/* Light drawing-board surface separates the build sequence from services. */
+.mpa-process {
+  position: relative;
+  isolation: isolate;
+  overflow: clip;
+  background-color: #E9E3DA;
+}
+
+[data-process-track] {
+  transform-origin: top;
+}
+
+[data-process-progress] {
+  transform-origin: top;
+  will-change: transform;
+}
+
+[data-process-header-rail] {
+  will-change: transform;
+}
+
+[data-process-step] {
+  isolation: isolate;
+  position: relative;
+}
+
+/* Process Step Base & States */
+[data-process-icon] {
+  position: relative;
+  height: 3.5rem;
+  width: 3.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #F4EFE8;
+  border: 1.5px solid rgba(17, 17, 17, 0.18);
+  color: #78716C;
+  transition-property: background-color, border-color, color;
+  transition-duration: 140ms;
+  transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+[data-process-badge] {
+  position: absolute;
+  top: -9px;
+  right: -9px;
+  height: 22px;
+  min-width: 22px;
+  padding: 0 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #171717;
+  color: #FFFFFF;
+  font-family: monospace;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: -0.05em;
+  transition-property: background-color, color;
+  transition-duration: 140ms;
+  transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* 1. COMPLETED MILESTONE (Passed) */
+[data-process-step].is-completed [data-process-icon] {
+  background-color: #FFFFFF !important;
+  border-color: #C2410C !important;
+  color: #C2410C !important;
+}
+
+[data-process-step].is-completed [data-process-badge] {
+  background-color: #C2410C !important;
+  color: #FFFFFF !important;
+}
+
+[data-process-step].is-completed [data-process-title] {
+  color: #171717;
+}
+
+[data-process-step].is-completed [data-process-copy] {
+  color: #5E5D58;
+}
+
+/* The current milestone stays neutral; only completed milestones are highlighted. */
+
+@media (min-width: 768px) {
+  [data-process-icon] {
+    height: 4rem;
+    width: 4rem;
+  }
+
+  [data-process-badge] {
+    top: -10px;
+    right: -10px;
+    height: 24px;
+    min-width: 24px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-process-progress], [data-process-track] { display: none; }
+  [data-process-step], [data-process-step] * {
+    transition: none !important;
+  }
+}
+
+.mpa-testimonials {
+  background-color: #E8E2D9;
+}
+
+.mpa-quote {
+  background-color: #FBF8F2;
+  border-top: 3px solid var(--amber);
+  transition: all 0.25s ease;
+}
+
+/* Compact, warm surfaces for this generated homepage. */
+.mpa-home > section:not(#home):not(#numbers):not(#transformations):not(#why-choose) {
+  padding-block: clamp(64px, 6vw, 88px);
+}
+
+/* Offset in-page links beneath the sticky navigation. */
+section[id] {
+  scroll-margin-top: 90px;
+}
+
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--amber);
+  outline-offset: 4px;
+}
+
+@media (max-width: 639px) {
+  .mpa-hero-copy::before {
+    inset: -20px -280px -10px -50px;
+    opacity: .34;
+  }
+
+  .mpa-studio-note {
+    margin-bottom: 32px;
+  }
+}
+
+/* ─────────────────────────────────────────────────────────────
+   Architectural Blueprint & Line Diagram Surfaces (MPA CAD)
+   Transforms bland, plain solid black into authentic architectural
+   drafting surfaces with structural grids, dimension lines & CAD vectors.
+   ───────────────────────────────────────────────────────────── */
+.cad-blueprint-surface {
+  position: relative;
+  isolation: isolate;
+  background-color: #131519;
+  background-image:
+    radial-gradient(circle at 50% 10%, rgba(234, 88, 12, 0.09) 0%, transparent 60%),
+    linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  background-size: 100% 100%, 48px 48px, 48px 48px;
+}
+
+.cad-blueprint-surface::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background-image: url('/images/drawings/architectural-master-plan.svg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: min(1350px, 92%) auto;
+  opacity: 0.28;
+  pointer-events: none;
+  mask-image: radial-gradient(circle at center, black 60%, transparent 95%);
+}
+
+.cad-blueprint-elevation {
+  position: relative;
+  isolation: isolate;
+  background-color: #121418;
+  background-image:
+    linear-gradient(to right, rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+  background-size: 50px 50px;
+}
+
+.cad-blueprint-elevation::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background-image: url('/images/drawings/architectural-elevation-detail.svg');
+  background-position: center 30%;
+  background-repeat: no-repeat;
+  background-size: min(1300px, 92%) auto;
+  opacity: 0.28;
+  pointer-events: none;
+  mask-image: radial-gradient(circle at center, black 65%, transparent 98%);
+}
+
+.cad-blueprint-structural {
+  position: relative;
+  isolation: isolate;
+  background-color: #131519;
+  background-image:
+    linear-gradient(to right, rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+.cad-blueprint-structural::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background-image: url('/images/drawings/architectural-structural-lines.svg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: min(1200px, 95%) auto;
+  opacity: 0.3;
+  pointer-events: none;
+  mask-image: radial-gradient(circle at center, black 70%, transparent 98%);
 }

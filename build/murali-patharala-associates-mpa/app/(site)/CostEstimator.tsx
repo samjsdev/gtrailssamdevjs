@@ -178,7 +178,7 @@ export default function CostEstimator({ basePath = '' }: CostEstimatorProps) {
   const calculatedInteriors = Math.round((totalCost * currentConfig.breakdown.interiors) / 100);
 
   const whatsappMessage = encodeURIComponent(
-    `Hi ARCH Foundations & Murali Patharala Associates (MPA),\nI calculated my construction estimate on your website:\n- Scope: ${serviceMode === 'turnkey' ? 'Turnkey Home (Civil + Interiors)' : serviceMode === 'construction' ? 'Civil Construction Only' : 'Complete Interiors Only'}\n- Built-up Area: ${builtUpArea} Sq.Ft (${floors === 1 ? 'G' : floors === 2 ? 'G+1' : floors === 3 ? 'G+2' : 'G+3'})\n- Package: ${currentConfig.title} (₹${ratePerSqFt}/sq.ft)\n- Estimated Investment: ${formatIndianCurrency(totalCost)} (${formatIndianFullNumber(totalCost)})\nI would like to schedule a free site feasibility survey in Chennai.`
+    `Hi Murali Patharala & Associates (MPA) and ARCH Foundation,\nI calculated my construction estimate on your website:\n- Scope: ${serviceMode === 'turnkey' ? 'Turnkey Home (Civil + Interiors)' : serviceMode === 'construction' ? 'Civil Construction Only' : 'Complete Interiors Only'}\n- Built-up Area: ${builtUpArea} Sq.Ft (${floors === 1 ? 'G' : floors === 2 ? 'G+1' : floors === 3 ? 'G+2' : 'G+3'})\n- Package: ${currentConfig.title} (₹${ratePerSqFt}/sq.ft)\n- Estimated Investment: ${formatIndianCurrency(totalCost)} (${formatIndianFullNumber(totalCost)})\nI would like to schedule a free site feasibility survey in Chennai.`
   );
 
   return (

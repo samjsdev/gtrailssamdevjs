@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { Check, ArrowRight } from 'lucide-react';
 import Reveal from './Reveal';
+import StaggerReveal from './StaggerReveal';
 
 export const ARCHITECTURE_PACKAGES = [
   {
@@ -74,83 +75,84 @@ export default function PackagesSection({
           </p>
         </Reveal>
 
-        <div className="grid lg:grid-cols-3 gap-8">
+        <StaggerReveal className="grid lg:grid-cols-3 gap-8" stagger={0.14}>
           {ARCHITECTURE_PACKAGES.map((pkg, idx) => (
-            <Reveal key={pkg.tier} delay={idx * 90}>
-              <div
-                className={`p-8 sm:p-10 h-full flex flex-col justify-between border transition-all duration-300 ${
-                  idx === 1
-                    ? 'bg-[#211a13] text-white border-[#a58150] shadow-[0_20px_50px_rgba(33,26,19,0.35)] relative'
-                    : dark
-                    ? 'bg-white/[0.03] text-white border-white/10 hover:border-[#a58150]'
-                    : 'bg-[#f6f1e8] text-[#211a13] border-[#211a13]/10 hover:border-[#a58150]'
-                }`}
-              >
-                {idx === 1 && (
-                  <span className="absolute -top-3.5 right-8 bg-[#a58150] text-white text-[10px] tracking-[0.2em] uppercase px-3 py-1 font-semibold">
-                    {pkg.tag}
-                  </span>
-                )}
-                <div>
-                  <span
-                    className={`text-[11px] tracking-[0.25em] uppercase block mb-2 ${
-                      idx === 1 ? 'text-[#c9ab7c]' : 'text-[#a58150]'
-                    }`}
-                  >
-                    {pkg.tag}
-                  </span>
-                  <h3 className="font-[family-name:var(--font-marcellus)] text-[26px] mb-2 leading-tight">
-                    {pkg.tier}
-                  </h3>
-                  <b
-                    className={`font-[family-name:var(--font-marcellus)] text-[22px] block mb-4 ${
-                      idx === 1 ? 'text-[#c9ab7c]' : 'text-[#a58150]'
-                    }`}
-                  >
-                    {pkg.price}
-                  </b>
-                  <p
-                    className={`text-[13.5px] font-light leading-[1.65] mb-8 pb-6 border-b ${
-                      idx === 1
-                        ? 'text-white/75 border-white/15'
-                        : dark
-                        ? 'text-white/65 border-white/10'
-                        : 'text-[#7d7264] border-[#211a13]/10'
-                    }`}
-                  >
-                    {pkg.desc}
-                  </p>
-
-                  <ul className="grid gap-3 mb-8">
-                    {pkg.features.map((feat) => (
-                      <li key={feat} className="flex items-start gap-3 text-[13.5px] font-light leading-snug">
-                        <Check
-                          className={`w-4 h-4 shrink-0 mt-0.5 ${
-                            idx === 1 ? 'text-[#c9ab7c]' : 'text-[#a58150]'
-                          }`}
-                        />
-                        <span>{feat}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-
-                <Link
-                  href={`${basePath}/contact`}
-                  className={`inline-flex items-center justify-center gap-2 py-4 px-6 text-[12px] tracking-[0.2em] uppercase font-medium transition-colors duration-300 text-center ${
-                    idx === 1
-                      ? 'bg-[#a58150] text-white border border-[#a58150] hover:bg-white hover:text-[#211a13] hover:border-white'
-                      : dark
-                      ? 'bg-transparent text-white border border-white/25 hover:bg-white hover:text-[#211a13]'
-                      : 'bg-transparent text-[#211a13] border border-[#211a13] hover:bg-[#211a13] hover:text-white'
+            <div
+              key={pkg.tier}
+              className={`p-8 sm:p-10 h-full flex flex-col justify-between border transition-all duration-300 ${
+                idx === 1
+                  ? 'bg-[#211a13] text-white border-[#a58150] shadow-[0_20px_50px_rgba(33,26,19,0.35)] relative'
+                  : dark
+                  ? 'bg-white/[0.03] text-white border-white/10 hover:border-[#a58150]'
+                  : 'bg-[#f6f1e8] text-[#211a13] border-[#211a13]/10 hover:border-[#a58150]'
+              }`}
+            >
+              {idx === 1 && (
+                <span className="absolute -top-3.5 right-8 bg-[#a58150] text-white text-[10px] tracking-[0.2em] uppercase px-3 py-1 font-semibold">
+                  {pkg.tag}
+                </span>
+              )}
+              <div>
+                <span
+                  className={`text-[11px] tracking-[0.25em] uppercase block mb-2 ${
+                    idx === 1 ? 'text-[#c9ab7c]' : 'text-[#a58150]'
                   }`}
                 >
-                  Select This Package <ArrowRight className="w-3.5 h-3.5" />
-                </Link>
+                  {pkg.tag}
+                </span>
+                <h3 className="font-[family-name:var(--font-marcellus)] text-[26px] mb-2 leading-tight">
+                  {pkg.tier}
+                </h3>
+                <b
+                  className={`font-[family-name:var(--font-marcellus)] text-[22px] block mb-4 ${
+                    idx === 1 ? 'text-[#c9ab7c]' : 'text-[#a58150]'
+                  }`}
+                >
+                  {pkg.price}
+                </b>
+                <p
+                  className={`text-[13.5px] font-light leading-[1.65] mb-8 pb-6 border-b ${
+                    idx === 1
+                      ? 'text-white/75 border-white/15'
+                      : dark
+                      ? 'text-white/60 border-white/10'
+                      : 'text-[#7d7264] border-[#211a13]/10'
+                  }`}
+                >
+                  {pkg.desc}
+                </p>
+
+                <ul className="space-y-3 mb-8">
+                  {pkg.features.map((f) => (
+                    <li key={f} className="flex items-start gap-3 text-[13.5px] font-light">
+                      <Check
+                        className={`w-4 h-4 shrink-0 mt-0.5 ${
+                          idx === 1 ? 'text-[#c9ab7c]' : 'text-[#a58150]'
+                        }`}
+                      />
+                      <span className={idx === 1 ? 'text-white/85' : dark ? 'text-white/75' : 'text-[#52483e]'}>
+                        {f}
+                      </span>
+                    </li>
+                  ))}
+                </ul>
               </div>
-            </Reveal>
+
+              <Link
+                href={`${basePath}/contact`}
+                className={`inline-flex items-center justify-center gap-2 py-4 px-6 text-[12px] tracking-[0.2em] uppercase font-medium transition-colors duration-300 text-center ${
+                  idx === 1
+                    ? 'bg-[#a58150] text-white border border-[#a58150] hover:bg-white hover:text-[#211a13] hover:border-white'
+                    : dark
+                    ? 'bg-transparent text-white border border-white/25 hover:bg-white hover:text-[#211a13]'
+                    : 'bg-transparent text-[#211a13] border border-[#211a13] hover:bg-[#211a13] hover:text-white'
+                }`}
+              >
+                Select This Package <ArrowRight className="w-3.5 h-3.5" />
+              </Link>
+            </div>
           ))}
-        </div>
+        </StaggerReveal>
       </div>
     </section>
   );

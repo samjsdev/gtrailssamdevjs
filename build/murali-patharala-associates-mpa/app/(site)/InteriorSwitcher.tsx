@@ -31,7 +31,7 @@ export default function InteriorSwitcher() {
             You must have seen those tempting ads from assembly-line vendors: <em>&ldquo;Get your full-home interior package for just 6.5 Lakhs!&rdquo;</em> where they promise a cookie-cutter kitchen and identical wardrobes. But let&apos;s face it—in the real world, one-size-fits-all interior packages are more myth than magic. Settling for a standard catalog package is like wearing someone else&apos;s shoes: uncomfortable, ill-fitting, and compromised.
           </p>
           <p className="text-white/70 text-sm sm:text-base leading-relaxed font-medium">
-            At Murali Patharala Associates (MPA), we don&apos;t just install cupboards and countertops; we curate bespoke architectural living environments. Every millwork joint, fabric texture, lighting channel, and material finish is tailored to your family&apos;s specific daily rhythm, ceiling height, and floor plan.
+            At Murali Patharala & Associates (MPA), we don&apos;t just install cupboards and countertops; we curate bespoke architectural living environments. Every millwork joint, fabric texture, lighting channel, and material finish is tailored to your family&apos;s specific daily rhythm, ceiling height, and floor plan.
           </p>
 
           {/* Scope of Interior Elements Grid */}

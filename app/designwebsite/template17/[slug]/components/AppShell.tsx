@@ -5,6 +5,7 @@ import Navbar from "./Navbar/Navbar";
 import Footer from "./Footer/Footer";
 import Preloader from "./Preloader/Preloader";
 import { LoadingProvider } from "../context/LoadingContext";
+import SmoothScroll from "./SmoothScroll";
 
 export default function AppShell({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
@@ -15,11 +16,13 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
   }
 
   return (
-    <LoadingProvider>
-      <Preloader />
-      <Navbar />
-      {children}
-      <Footer />
-    </LoadingProvider>
+    <SmoothScroll>
+      <LoadingProvider>
+        <Preloader />
+        <Navbar />
+        {children}
+        <Footer />
+      </LoadingProvider>
+    </SmoothScroll>
   );
 }

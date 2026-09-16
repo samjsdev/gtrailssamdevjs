@@ -8,6 +8,8 @@ import { DEFAULT_INTERIOR_REVIEWS,
 } from '@/lib/interiorContent';
 import Reveal from './Reveal';
 import SeriesScroll, { SeriesTheme } from './SeriesScroll';
+import CurtainReveal from './CurtainReveal';
+import CurtainHorizontalSlider from './CurtainHorizontalSlider';
 import TestimonialRotator, { Testimonial } from './TestimonialRotator';
 import VisitForm from './VisitForm';
 import FAQAccordion, { FAQItem } from './FAQAccordion';
@@ -274,10 +276,10 @@ export default async function Template4Home({ params }: PageProps) {
         </div>
       </section>
 
-      {/* SERIES THEMES */}
-      <section className="py-24 bg-[#fbf8f1] border-b border-[#221c14]/12">
-        <div className="max-w-[1240px] mx-auto px-[30px]">
-          <Reveal className="flex flex-wrap justify-between items-end gap-6 mb-12">
+      {/* SERIES THEMES - APARNA KAUSHIK CURTAIN OPEN & HORIZONTAL SLIDES */}
+      <section className="py-20 bg-[#fbf8f1] border-b border-[#221c14]/12">
+        <div className="max-w-[1240px] mx-auto px-[30px] mb-12">
+          <Reveal className="flex flex-wrap justify-between items-end gap-6">
             <div>
               <div className="flex items-center gap-3 text-[11.5px] font-semibold tracking-[0.3em] uppercase text-[#a4532f] before:content-[''] before:w-8 before:h-px before:bg-[#a4532f]">
                 Design Series
@@ -287,14 +289,15 @@ export default async function Template4Home({ params }: PageProps) {
               </h2>
             </div>
             <p className="text-[#7a6f60] text-[15px] font-light max-w-[420px]">
-              Every home starts from an architectural dialogue — here are five themes we frequently tailor for {city} residences.
+              Every home starts from an architectural dialogue — here are five living narratives we frequently tailor for {city} residences.
             </p>
           </Reveal>
-
-          <Reveal>
-            <SeriesScroll themes={themes} collection={basePath} />
-          </Reveal>
         </div>
+
+        {/* Full-bleed Aparna Kaushik inspired Curtain Opening & Horizontal Slides */}
+        <Reveal>
+          <CurtainHorizontalSlider themes={themes} collection="Living Narratives" basePath={basePath} />
+        </Reveal>
       </section>
 
       {/* TACTILE MATERIALS ATELIER */}
@@ -384,10 +387,12 @@ export default async function Template4Home({ params }: PageProps) {
               <Reveal key={t.title} delay={idx * 100}>
                 <div className="bg-white border border-[#221c14]/12 overflow-hidden flex flex-col justify-between h-full shadow-[0_16px_40px_rgba(23,19,15,0.06)]">
                   <div className="aspect-[16/10] overflow-hidden relative">
-                    <span className="absolute top-4 left-4 z-10 bg-[#17130f] text-[#d9c49a] text-[10.5px] tracking-wider uppercase px-3 py-1 font-semibold">
+                    <span className="absolute top-4 left-4 z-30 bg-[#17130f] text-[#d9c49a] text-[10.5px] tracking-wider uppercase px-3 py-1 font-semibold">
                       {t.tag}
                     </span>
-                    <img src={t.img} alt={t.title} className="w-full h-full object-cover" />
+                    <CurtainReveal direction={idx % 2 === 0 ? 'left' : 'right'} duration={1200} className="w-full h-full">
+                      <img src={t.img} alt={t.title} className="w-full h-full object-cover" />
+                    </CurtainReveal>
                   </div>
                   <div className="p-8">
                     <blockquote className="font-[family-name:var(--font-cormorant)] italic text-[22px] text-[#a4532f] mb-2">

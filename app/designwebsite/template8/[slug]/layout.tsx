@@ -6,6 +6,7 @@ import { Jost } from 'next/font/google';
 import ClientHeader from './ClientHeader';
 import ClientLoader from './ClientLoader';
 import GsapInit from './GsapInit';
+import SmoothScroll from './SmoothScroll';
 import { TemplateProvider } from './context/TemplateContext';
 
 const jost = Jost({
@@ -39,7 +40,8 @@ export default async function DesignStudioLayout({ children, params }: LayoutPro
   const cleanName = cleanClinicName(clinic.name);
 
   return (
-    <div className={`${jost.variable} font-sans bg-[#f8f9fa] text-[#1A1D27] min-h-screen scroll-smooth`}>
+    <SmoothScroll>
+      <div className={`${jost.variable} font-sans bg-[#f8f9fa] text-[#1A1D27] min-h-screen`}>
       <TemplateProvider data={data} basePath={basePath}>
         <GsapInit />
         <ClientLoader brandName={cleanName || 'DESIGN'} />
@@ -120,5 +122,6 @@ export default async function DesignStudioLayout({ children, params }: LayoutPro
       </footer>
       </TemplateProvider>
     </div>
+    </SmoothScroll>
   );
 }

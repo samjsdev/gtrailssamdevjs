@@ -10,6 +10,7 @@ import {
 } from '@/lib/copyCleaner';
 import { Cormorant_Garamond, Outfit } from 'next/font/google';
 import ClientHeader from './ClientHeader';
+import SmoothScroll from './SmoothScroll';
 
 const cormorant = Cormorant_Garamond({
   subsets: ['latin'],
@@ -59,9 +60,10 @@ export default async function Template14Layout({ children, params }: LayoutProps
   const waLink = `https://wa.me/${waPhone}?text=${encodeURIComponent(waText)}`;
 
   return (
-    <div
-      className={`${outfit.className} ${outfit.variable} ${cormorant.variable} min-h-screen flex flex-col bg-[#f5f1e8] text-[#221c14] font-light leading-[1.65] selection:bg-[#b08d4f] selection:text-white scroll-smooth antialiased`}
-    >
+    <SmoothScroll>
+      <div
+        className={`${outfit.className} ${outfit.variable} ${cormorant.variable} min-h-screen flex flex-col bg-[#f5f1e8] text-[#221c14] font-light leading-[1.65] selection:bg-[#b08d4f] selection:text-white antialiased`}
+      >
       <style>{`@keyframes t4zoom { from { transform: scale(1); } to { transform: scale(1.1); } }`}</style>
       {/* Topbar */}
       <div className="bg-[#17130f] text-white/75 text-[12.5px] py-2.5 tracking-[0.06em]">
@@ -164,5 +166,6 @@ export default async function Template14Layout({ children, params }: LayoutProps
         </svg>
       </a>
     </div>
+    </SmoothScroll>
   );
 }

@@ -37,7 +37,7 @@ export default function ConsultationForm({
   const cleanPhone = rawPhone.startsWith('91') ? rawPhone : `91${rawPhone.replace(/^0+/, '')}`;
   
   const whatsappUrl = `https://wa.me/${cleanPhone}?text=${encodeURIComponent(
-    `Hi ARCH Foundations & Murali Patharala Associates,\nI would like to book a Free Consultation:\n- Name: ${formData.name || 'Prospective Homeowner'}\n- Service: ${formData.serviceType.replace('_', ' ')}\n- Site Location: ${formData.location || 'Chennai'}\n- Approx Area: ${formData.approxArea} Sq.Ft\n- Mode: ${formData.consultationMode}\nThank you!`
+    `Hi Murali Patharala & Associates (MPA) and ARCH Foundation,\nI would like to book a Free Consultation:\n- Name: ${formData.name || 'Prospective Homeowner'}\n- Service: ${formData.serviceType.replace('_', ' ')}\n- Site Location: ${formData.location || 'Chennai'}\n- Approx Area: ${formData.approxArea} Sq.Ft\n- Mode: ${formData.consultationMode}\nThank you!`
   )}`;
 
   return (
@@ -56,7 +56,7 @@ export default function ConsultationForm({
               Site Inspection Request Received
             </h3>
             <p className="text-xs sm:text-sm text-stone-600 font-normal leading-relaxed">
-              Thank you, <strong className="font-semibold text-stone-900">{formData.name}</strong>. A Senior Engineer or Principal Architect from ARCH Foundations &amp; MPA will contact you within 2 working hours to confirm your site survey appointment.
+              Thank you, <strong className="font-semibold text-stone-900">{formData.name}</strong>. A Senior Engineer or Principal Architect from ARCH Foundation &amp; MPA will contact you within 2 working hours to confirm your site survey appointment.
             </p>
           </div>
 
@@ -162,7 +162,7 @@ export default function ConsultationForm({
                 </div>
               </div>
               <a
-                href={`https://wa.me/${cleanPhone}?text=${encodeURIComponent('Hi ARCH Foundations & Murali Patharala Associates, I would like to schedule a free site consultation.')}`}
+                href={`https://wa.me/${cleanPhone}?text=${encodeURIComponent('Hi Murali Patharala & Associates (MPA) and ARCH Foundation, I would like to schedule a free site consultation.')}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="px-3 py-1.5 bg-emerald-600 hover:bg-emerald-700 text-white rounded-lg text-xs font-bold transition-colors"

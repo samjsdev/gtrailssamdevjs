@@ -3,6 +3,7 @@ import { notFound } from 'next/navigation';
 import { Playfair_Display, Lato } from 'next/font/google';
 import Link from 'next/link';
 import ClientHero from './ClientHero';
+import Reveal from './Reveal';
 import { Star, Plus, Minus, Quote } from 'lucide-react';
 import {
   DEFAULT_INTERIOR_SERVICES,
@@ -75,54 +76,58 @@ export default async function DesignStudioHome({ params }: PageProps) {
       {/* ── EXPERTISE / SERVICES ───────────────────────────────────────────── */}
       <section id="services" className="py-28 md:py-36 px-6 bg-[#121212] border-b border-white/5 relative z-10">
         <div className="max-w-7xl mx-auto">
-          <div className="mb-20 flex flex-col md:flex-row md:items-end justify-between gap-6">
-            <div className="space-y-4">
-              <div className="inline-flex items-center gap-4">
-                <div className="w-12 h-[1px] bg-[#c59b72]"></div>
-                <span className="text-[10px] font-bold tracking-[0.35em] text-[#c59b72] uppercase">
-                  Our Expertise
-                </span>
+          <Reveal direction="up">
+            <div className="mb-20 flex flex-col md:flex-row md:items-end justify-between gap-6">
+              <div className="space-y-4">
+                <div className="inline-flex items-center gap-4">
+                  <div className="w-12 h-[1px] bg-[#c59b72]"></div>
+                  <span className="text-[10px] font-bold tracking-[0.35em] text-[#c59b72] uppercase">
+                    Our Expertise
+                  </span>
+                </div>
+                <h2 className={`${playfair.className} text-4xl md:text-5xl text-white font-light`}>
+                  Comprehensive <span className="italic text-zinc-400 font-light">Design</span> Services
+                </h2>
               </div>
-              <h2 className={`${playfair.className} text-4xl md:text-5xl text-white font-light`}>
-                Comprehensive <span className="italic text-zinc-400 font-light">Design</span> Services
-              </h2>
+              <p className="text-zinc-500 font-light text-sm max-w-xs leading-relaxed">
+                Tailored spatial planning and high-end turnkey execution delivered with biophilic and structural sincerity.
+              </p>
             </div>
-            <p className="text-zinc-500 font-light text-sm max-w-xs leading-relaxed">
-              Tailored spatial planning and high-end turnkey execution delivered with biophilic and structural sincerity.
-            </p>
-          </div>
+          </Reveal>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-x-10 gap-y-16">
             {servicesList.map((svc: { title: string; desc: string; image: string }, idx: number) => (
-              <div key={idx} className="group flex flex-col justify-between border-t border-white/10 pt-8 hover:border-[#c59b72]/40 transition-colors duration-500">
-                <div>
-                  <div className="aspect-[16/10] overflow-hidden mb-8 relative">
-                    <div className="absolute inset-0 bg-[#c59b72]/10 opacity-0 group-hover:opacity-100 transition-opacity z-10 duration-500" />
-                    <img
-                      src={svc.image}
-                      alt={svc.title}
-                      className="w-full h-full object-cover opacity-70 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700"
-                    />
-                    <div className={`${playfair.className} absolute top-4 right-4 text-white/20 text-3xl font-light z-20`}>
-                      {String(idx + 1).padStart(2, '0')}
+              <Reveal key={idx} direction="up" delay={idx * 70}>
+                <div className="group flex flex-col justify-between border-t border-white/10 pt-8 hover:border-[#c59b72]/40 transition-colors duration-500">
+                  <div>
+                    <div className="aspect-[16/10] overflow-hidden mb-8 relative">
+                      <div className="absolute inset-0 bg-[#c59b72]/10 opacity-0 group-hover:opacity-100 transition-opacity z-10 duration-500" />
+                      <img
+                        src={svc.image}
+                        alt={svc.title}
+                        className="w-full h-full object-cover opacity-70 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700"
+                      />
+                      <div className={`${playfair.className} absolute top-4 right-4 text-white/20 text-3xl font-light z-20`}>
+                        {String(idx + 1).padStart(2, '0')}
+                      </div>
                     </div>
+                    <h3 className={`${playfair.className} text-2xl text-white mb-4 font-light group-hover:text-[#c59b72] transition-colors`}>
+                      {svc.title}
+                    </h3>
+                    <p className="text-zinc-500 font-light text-sm leading-relaxed mb-8">
+                      {svc.desc}
+                    </p>
                   </div>
-                  <h3 className={`${playfair.className} text-2xl text-white mb-4 font-light group-hover:text-[#c59b72] transition-colors`}>
-                    {svc.title}
-                  </h3>
-                  <p className="text-zinc-500 font-light text-sm leading-relaxed mb-8">
-                    {svc.desc}
-                  </p>
+                  <div>
+                    <Link 
+                      href={`${basePath}/services`} 
+                      className="inline-flex items-center gap-3 text-[10px] font-bold tracking-[0.25em] uppercase text-zinc-400 group-hover:text-white transition-colors border-b border-transparent group-hover:border-white pb-1"
+                    >
+                      Discover Details
+                    </Link>
+                  </div>
                 </div>
-                <div>
-                  <Link 
-                    href={`${basePath}/services`} 
-                    className="inline-flex items-center gap-3 text-[10px] font-bold tracking-[0.25em] uppercase text-zinc-400 group-hover:text-white transition-colors border-b border-transparent group-hover:border-white pb-1"
-                  >
-                    Discover Details
-                  </Link>
-                </div>
-              </div>
+              </Reveal>
             ))}
           </div>
         </div>
@@ -138,33 +143,37 @@ export default async function DesignStudioHome({ params }: PageProps) {
         </div>
 
         <div className="relative z-10 max-w-7xl mx-auto">
-          <div className="max-w-3xl mx-auto text-center space-y-8 mb-20">
-            <div className="inline-flex items-center gap-4">
-              <div className="w-12 h-[1px] bg-[#c59b72]"></div>
-              <span className="text-[10px] font-bold tracking-[0.35em] text-[#c59b72] uppercase">
-                About Our Studio
-              </span>
+          <Reveal direction="up">
+            <div className="max-w-3xl mx-auto text-center space-y-8 mb-20">
+              <div className="inline-flex items-center gap-4">
+                <div className="w-12 h-[1px] bg-[#c59b72]"></div>
+                <span className="text-[10px] font-bold tracking-[0.35em] text-[#c59b72] uppercase">
+                  About Our Studio
+                </span>
+              </div>
+              
+              <h2 className={`${playfair.className} text-4xl sm:text-5xl md:text-6xl text-white leading-tight font-light`}>
+                Crafting Spaces That <br />
+                <span className="italic text-zinc-400 font-light">Inspire &amp; Elevate</span> Everyday Life
+              </h2>
+              
+              <p className="text-zinc-400 font-light leading-loose text-base max-w-2xl mx-auto">
+                With over a decade of experience, our award-winning team brings passion, precision, and a personalized approach to every project. We believe that exceptional design is a perfect balance of form and function.
+              </p>
             </div>
-            
-            <h2 className={`${playfair.className} text-4xl sm:text-5xl md:text-6xl text-white leading-tight font-light`}>
-              Crafting Spaces That <br />
-              <span className="italic text-zinc-400 font-light">Inspire &amp; Elevate</span> Everyday Life
-            </h2>
-            
-            <p className="text-zinc-400 font-light leading-loose text-base max-w-2xl mx-auto">
-              With over a decade of experience, our award-winning team brings passion, precision, and a personalized approach to every project. We believe that exceptional design is a perfect balance of form and function.
-            </p>
-          </div>
+          </Reveal>
 
-          <div className="relative max-w-5xl mx-auto px-4">
-            <div className="aspect-[21/9] overflow-hidden border border-white/10">
-              <img
-                src={media?.otherImages?.[2] || "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=2000"}
-                alt="Modern luxury interior render"
-                className="w-full h-full object-cover"
-              />
+          <Reveal direction="scale" duration={0.95}>
+            <div className="relative max-w-5xl mx-auto px-4">
+              <div className="aspect-[21/9] overflow-hidden border border-white/10">
+                <img
+                  src={media?.otherImages?.[2] || "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=2000"}
+                  alt="Modern luxury interior render"
+                  className="w-full h-full object-cover"
+                />
+              </div>
             </div>
-          </div>
+          </Reveal>
         </div>
       </section>
 
@@ -174,30 +183,34 @@ export default async function DesignStudioHome({ params }: PageProps) {
           <div className="grid lg:grid-cols-12 gap-16 items-center">
             {/* Left side Image with Overlay Name tag */}
             <div className="lg:col-span-5 relative">
-              <div className="aspect-[3/4] overflow-hidden border border-white/10">
-                <img 
-                  src={doctorImage} 
-                  alt={doctor?.name || "Arjun Mehta"} 
-                  className="w-full h-full object-cover opacity-80 hover:opacity-100 transition-all duration-1000" 
-                />
-              </div>
-              <div className="absolute -bottom-6 -right-6 lg:-right-10 bg-[#1a1a1a] border border-white/10 p-6 md:p-8 shadow-2xl">
-                <p className="text-[9px] font-bold tracking-[0.25em] text-[#c59b72] mb-1.5 uppercase">PRINCIPAL DESIGNER</p>
-                <h3 className={`${playfair.className} text-2xl text-white font-light`}>{doctor?.name || "Arjun Mehta"}</h3>
-              </div>
+              <Reveal direction="left">
+                <div className="aspect-[3/4] overflow-hidden border border-white/10">
+                  <img 
+                    src={doctorImage} 
+                    alt={doctor?.name || "Arjun Mehta"} 
+                    className="w-full h-full object-cover opacity-80 hover:opacity-100 transition-all duration-1000" 
+                  />
+                </div>
+                <div className="absolute -bottom-6 -right-6 lg:-right-10 bg-[#1a1a1a] border border-white/10 p-6 md:p-8 shadow-2xl">
+                  <p className="text-[9px] font-bold tracking-[0.25em] text-[#c59b72] mb-1.5 uppercase">PRINCIPAL DESIGNER</p>
+                  <h3 className={`${playfair.className} text-2xl text-white font-light`}>{doctor?.name || "Arjun Mehta"}</h3>
+                </div>
+              </Reveal>
             </div>
 
             {/* Right side copy and details */}
             <div className="lg:col-span-7 space-y-8 lg:pl-12">
-              <div className="space-y-4">
-                <span className="text-[10px] font-bold tracking-[0.3em] text-zinc-500 uppercase block">ABOUT OUR FOUNDER</span>
-                <h2 className={`${playfair.className} text-4xl sm:text-5xl text-white leading-tight font-light`}>
-                  {doctor?.name || "Arjun Mehta"}
-                </h2>
-                <p className="text-zinc-400 font-light leading-relaxed text-sm md:text-base">
-                  Founder of Luxe Interiors Studio. With over a decade of design expertise, Arjun combines spatial intelligence with an artistic eye for refined aesthetics. Specializing in luxury residential and boutique commercial interiors.
-                </p>
-              </div>
+              <Reveal direction="right">
+                <div className="space-y-4">
+                  <span className="text-[10px] font-bold tracking-[0.3em] text-zinc-500 uppercase block">ABOUT OUR FOUNDER</span>
+                  <h2 className={`${playfair.className} text-4xl sm:text-5xl text-white leading-tight font-light`}>
+                    {doctor?.name || "Arjun Mehta"}
+                  </h2>
+                  <p className="text-zinc-400 font-light leading-relaxed text-sm md:text-base">
+                    Founder of Luxe Interiors Studio. With over a decade of design expertise, Arjun combines spatial intelligence with an artistic eye for refined aesthetics. Specializing in luxury residential and boutique commercial interiors.
+                  </p>
+                </div>
+              </Reveal>
 
               <div className="grid sm:grid-cols-2 gap-8 pt-8 border-t border-white/10">
                 <div className="space-y-2">

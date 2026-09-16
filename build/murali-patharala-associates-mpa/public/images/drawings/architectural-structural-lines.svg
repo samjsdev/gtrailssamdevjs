@@ -1,0 +1,103 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600" fill="none" stroke="currentColor">
+  <!-- BACKGROUND STRUCTURAL GRID -->
+  <g stroke="currentColor" stroke-width="0.5" stroke-opacity="0.1">
+    <path d="M40 0V600 M80 0V600 M120 0V600 M160 0V600 M200 0V600 M240 0V600 M280 0V600 M320 0V600 M360 0V600 M400 0V600 M440 0V600 M480 0V600 M520 0V600 M560 0V600 M600 0V600 M640 0V600 M680 0V600 M720 0V600 M760 0V600 M800 0V600 M840 0V600 M880 0V600 M920 0V600 M960 0V600 M1000 0V600 M1040 0V600 M1080 0V600 M1120 0V600 M1160 0V600" />
+    <path d="M0 40H1200 M0 80H1200 M0 120H1200 M0 160H1200 M0 200H1200 M0 240H1200 M0 280H1200 M0 320H1200 M0 360H1200 M0 400H1200 M0 440H1200 M0 480H1200 M0 520H1200 M0 560H1200" />
+  </g>
+
+  <!-- BEAM-COLUMN JUNCTION DETAIL (LEFT SIDE) -->
+  <g stroke="currentColor" stroke-width="2" stroke-opacity="0.8">
+    <!-- Concrete Outline of Column & Beam -->
+    <path d="M120 40V220H40V340H120V560H220V340H480V220H220V40H120Z" />
+    <path d="M130 50V230H50V330H130V550H210V330H470V230H210V50H130Z" stroke-width="1" stroke-dasharray="4 4" stroke-opacity="0.4" />
+  </g>
+
+  <!-- REINFORCEMENT TMT STEEL BARS (Orange Rebar Lines) -->
+  <g stroke="#EA580C" stroke-width="2.5">
+    <!-- Vertical Column Main Bars (4x Fe550D TMT) -->
+    <line x1="140" y1="40" x2="140" y2="560" />
+    <line x1="160" y1="40" x2="160" y2="560" />
+    <line x1="180" y1="40" x2="180" y2="560" />
+    <line x1="200" y1="40" x2="200" y2="560" />
+
+    <!-- Horizontal Beam Tension & Compression Bars -->
+    <line x1="40" y1="240" x2="480" y2="240" />
+    <line x1="40" y1="260" x2="480" y2="260" />
+    <line x1="40" y1="300" x2="480" y2="300" />
+    <line x1="40" y1="320" x2="480" y2="320" />
+
+    <!-- L-Bend Development Length (Ld) Anchorage Hooks -->
+    <path d="M140 240H110V280" fill="none" stroke-width="2" />
+    <path d="M140 320H110V280" fill="none" stroke-width="2" />
+  </g>
+
+  <!-- COLUMN TIES / STIRRUPS (Confined Zone Spacing: 100mm c/c) -->
+  <g stroke="currentColor" stroke-width="1.2" stroke-opacity="0.7">
+    <rect x="135" y="70" width="70" height="20" rx="2" />
+    <rect x="135" y="100" width="70" height="20" rx="2" />
+    <rect x="135" y="130" width="70" height="20" rx="2" />
+    <rect x="135" y="160" width="70" height="20" rx="2" />
+    <rect x="135" y="190" width="70" height="20" rx="2" />
+    <!-- Beam Stirrups -->
+    <rect x="230" y="235" width="20" height="90" rx="2" />
+    <rect x="260" y="235" width="20" height="90" rx="2" />
+    <rect x="290" y="235" width="20" height="90" rx="2" />
+    <rect x="330" y="235" width="20" height="90" rx="2" />
+    <rect x="370" y="235" width="20" height="90" rx="2" />
+    <rect x="420" y="235" width="20" height="90" rx="2" />
+  </g>
+
+  <!-- REINFORCEMENT CALLOUT ARROWS & LABELS -->
+  <g stroke="#EA580C" stroke-width="1" fill="none">
+    <!-- Callout 1 -->
+    <polyline points="200,90 280,70 360,70" />
+    <circle cx="200" cy="90" r="3" fill="#EA580C" />
+
+    <!-- Callout 2 -->
+    <polyline points="300,240 340,170 440,170" />
+    <circle cx="300" cy="240" r="3" fill="#EA580C" />
+
+    <!-- Callout 3 -->
+    <polyline points="170,440 240,470 340,470" />
+    <circle cx="170" cy="440" r="3" fill="#EA580C" />
+  </g>
+
+  <g fill="currentColor" font-family="'Courier New', monospace" font-size="10" font-weight="bold">
+    <text x="370" y="74" fill="#EA580C">4-T20 Fe550D MAIN BARS</text>
+    <text x="450" y="174" fill="#EA580C">2-T16 TOP TENSION STEEL</text>
+    <text x="350" y="474" fill="currentColor" fill-opacity="0.8">8mm STIRRUPS @ 100mm c/c CONFINED</text>
+  </g>
+
+  <!-- TRUSS & STRUCTURAL PORTAL FRAME (RIGHT SIDE) -->
+  <g transform="translate(560, 80)" stroke="currentColor" stroke-width="1.8" stroke-opacity="0.8" fill="none">
+    <!-- Multi-Bay Portal Frame -->
+    <polygon points="0,380 0,160 140,80 320,80 460,160 460,380" stroke-width="2.5" />
+    <line x1="0" y1="160" x2="460" y2="160" stroke-dasharray="8 4" stroke="#EA580C" stroke-width="1.5" />
+    <line x1="140" y1="80" x2="140" y2="380" stroke-width="1.5" />
+    <line x1="320" y1="80" x2="320" y2="380" stroke-width="1.5" />
+
+    <!-- Cross Diagonal Bracing -->
+    <line x1="0" y1="160" x2="140" y2="380" stroke="#EA580C" stroke-width="1.2" stroke-opacity="0.7" />
+    <line x1="140" y1="160" x2="0" y2="380" stroke="#EA580C" stroke-width="1.2" stroke-opacity="0.7" />
+    <line x1="140" y1="160" x2="320" y2="380" stroke="#EA580C" stroke-width="1.2" stroke-opacity="0.7" />
+    <line x1="320" y1="160" x2="140" y2="380" stroke="#EA580C" stroke-width="1.2" stroke-opacity="0.7" />
+    <line x1="320" y1="160" x2="460" y2="380" stroke="#EA580C" stroke-width="1.2" stroke-opacity="0.7" />
+    <line x1="460" y1="160" x2="320" y2="380" stroke="#EA580C" stroke-width="1.2" stroke-opacity="0.7" />
+
+    <!-- Pin Joint Nodes -->
+    <circle cx="0" cy="160" r="5" fill="#EA580C" />
+    <circle cx="140" cy="80" r="5" fill="#EA580C" />
+    <circle cx="320" cy="80" r="5" fill="#EA580C" />
+    <circle cx="460" cy="160" r="5" fill="#EA580C" />
+    <circle cx="140" cy="160" r="5" fill="#EA580C" />
+    <circle cx="320" cy="160" r="5" fill="#EA580C" />
+    <circle cx="0" cy="380" r="5" fill="#EA580C" />
+    <circle cx="140" cy="380" r="5" fill="#EA580C" />
+    <circle cx="320" cy="380" r="5" fill="#EA580C" />
+    <circle cx="460" cy="380" r="5" fill="#EA580C" />
+
+    <text x="230" y="40" fill="#EA580C" font-family="'Work Sans', sans-serif" font-size="12" font-weight="bold" text-anchor="middle" stroke="none" letter-spacing="2">SEISMIC ZONE III RCC FRAME ANALYSIS</text>
+    <text x="230" y="60" fill="currentColor" fill-opacity="0.6" font-family="'Courier New', monospace" font-size="9" text-anchor="middle" stroke="none">STAAD.PRO FINITE ELEMENT SIMULATION &bull; IS 456:2000 COMPLIANT</text>
+    <text x="230" y="415" fill="currentColor" fill-opacity="0.8" font-family="'Courier New', monospace" font-size="10" text-anchor="middle" stroke="none">M25 CONCRETE &bull; 28-DAY CUBE STRENGTH 25 N/mm²</text>
+  </g>
+</svg>

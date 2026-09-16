@@ -16,29 +16,29 @@ interface Slide {
 
 const slides: Slide[] = [
   {
-    image: '/images/clinicImages-1.webp',
+    image: '/images/architecture/hero-villa-twilight.webp',
     kicker: 'Since 1998 • 28+ Years • 500+ Homes',
     titleA: 'GET YOUR DREAM HOME',
     titleB: 'CONSTRUCTED',
     titleC: 'BY EXPERTS.',
-    desc: 'ARCH Foundations & Murali Patharala Associates (MPA) — Chennai\u2019s one-stop firm for architecture, turnkey construction, and bespoke interiors under one roof.',
+    desc: 'Murali Patharala & Associates (MPA) for architecture and interiors, with construction delivered by ARCH Foundation.',
   },
   {
-    image: '/images/clinicImages-2.webp',
+    image: '/images/architecture/modern-villa-duplex.webp',
     kicker: 'Architecture • Approvals • Execution',
     titleA: 'DESIGNED & BUILT',
     titleB: 'UNDER ONE ROOF',
     desc: 'From CMDA/DTCP sanctions and Vastu-compliant 3D elevations to high-strength RCC construction — zero coordination gaps, zero cost escalation.',
   },
   {
-    image: '/images/stock/34bba44b.webp',
+    image: '/images/architecture/villa-after-finished.webp',
     kicker: 'Turnkey Villas • Independent Homes',
     titleA: 'LUXURY VILLAS',
     titleB: 'TURNKEY DELIVERED',
     desc: 'Primary-grade Tata/JSW steel, 53-grade cement, a dedicated full-time site engineer, and a 10-year structural warranty on every home we build.',
   },
   {
-    image: '/images/stock/1c7b75e9.webp',
+    image: '/images/architecture/geometric-villa-elevation.webp',
     kicker: '3D Elevations • Facade Design',
     titleA: 'SIGNATURE 3D',
     titleB: 'ELEVATIONS',

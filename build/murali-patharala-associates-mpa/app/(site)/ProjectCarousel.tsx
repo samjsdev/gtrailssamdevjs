@@ -4,6 +4,7 @@ import { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Play, Pause, ArrowRight, Sparkles, MapPin } from 'lucide-react';
+import ArchitecturalDiagramBg from '@/components/ArchitecturalDiagramBg';
 
 interface Project {
   img: string;
@@ -15,7 +16,7 @@ interface Project {
 
 const PROJECTS: Project[] = [
   {
-    img: '/images/stock/68b39046.webp',
+    img: '/images/architecture/courtyard-water-residence.webp',
     title: 'The Courtyard Villa',
     tag: 'Anna Nagar East',
     sqft: '4,400 sq.ft',
@@ -29,7 +30,7 @@ const PROJECTS: Project[] = [
     category: 'Full Architectural & Structural Execution',
   },
   {
-    img: '/images/stock/a151a9e5.webp',
+    img: '/images/architecture/hero-minimalist-residence.webp',
     title: 'Minimalist Linear Residence',
     tag: 'Kilpauk, Chennai',
     sqft: '3,850 sq.ft',
@@ -43,14 +44,14 @@ const PROJECTS: Project[] = [
     category: 'Bespoke Turnkey Residential Build',
   },
   {
-    img: '/images/stock/bf333360.webp',
+    img: '/images/architecture/monolithic-brutalist-facade.webp',
     title: 'Warm Teak & Timber Home',
     tag: 'Poes Garden',
     sqft: '5,200 sq.ft',
     category: 'Turnkey Execution & Joinery',
   },
   {
-    img: '/images/stock/84fea9c5.webp',
+    img: '/images/architecture/linear-pool-pavilion.webp',
     title: 'Contemporary Urban Estate',
     tag: 'Nungambakkam',
     sqft: '6,100 sq.ft',
@@ -64,7 +65,7 @@ const PROJECTS: Project[] = [
     category: 'Glass Pavilion & Seismic RCC Structure',
   },
   {
-    img: '/images/hero-villa.webp',
+    img: '/images/architecture/villa-after-finished.webp',
     title: 'The Signature White Villa',
     tag: 'Anna Nagar West',
     sqft: '4,500 sq.ft',
@@ -78,7 +79,7 @@ const PROJECTS: Project[] = [
     category: 'Double-Height Living & Courtyard Build',
   },
   {
-    img: '/images/stock/284d6d29.webp',
+    img: '/images/architecture/monolithic-concrete-atrium.webp',
     title: 'Bespoke Duplex Penthouse',
     tag: 'Besant Nagar',
     sqft: '3,600 sq.ft',
@@ -93,9 +94,11 @@ export default function ProjectCarousel() {
   const displayProjects = [...PROJECTS, ...PROJECTS];
 
   return (
-    <section id="projects" className="border-b-4 border-[#111111] bg-[#111111] text-[#FAFAFA] overflow-hidden">
-      {/* Header Strip */}
-      <div className="p-6 md:p-12 border-b-2 border-[#212121] flex flex-wrap justify-between items-end gap-6">
+    <section id="projects" className="relative border-b-4 border-[#111111] bg-[#121418] text-[#FAFAFA] overflow-hidden">
+      <ArchitecturalDiagramBg variant="elevation" theme="dark" opacity={0.28} watermarkText="ELEVATION ARCHIVES" />
+      <div className="relative z-10">
+        {/* Header Strip */}
+        <div className="p-6 md:p-12 border-b-2 border-[#212121] flex flex-wrap justify-between items-end gap-6">
         <div>
           <p className="text-xs font-bold tracking-[0.2em] uppercase text-[#EA580C] mb-3 flex items-center gap-2">
             <Sparkles className="w-3.5 h-3.5" />
@@ -215,6 +218,7 @@ export default function ProjectCarousel() {
           </div>
         </div>
       </div>
-    </section>
-  );
+    </div>
+  </section>
+);
 }

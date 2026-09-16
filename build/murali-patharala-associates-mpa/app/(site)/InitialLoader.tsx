@@ -11,14 +11,24 @@ export default function InitialLoader({ companyName }: InitialLoaderProps) {
   const [fade, setFade] = useState(false);
 
   useEffect(() => {
-    // 1. Wait a bit, then trigger fade out
+    // Check if user already saw the loader in this session
+    try {
+      if (typeof window !== 'undefined' && sessionStorage.getItem('mpa_visited')) {
+        setLoading(false);
+        return;
+      }
+      sessionStorage.setItem('mpa_visited', '1');
+    } catch {
+      // ignore storage restriction errors
+    }
+
+    // Snappy intro animation for first-time session visitors
     const timer = setTimeout(() => {
       setFade(true);
-      // 2. Wait for fade transition to finish, then unmount
       setTimeout(() => {
         setLoading(false);
-      }, 700); // 700ms matches the duration-700 class
-    }, 1500); // Show loader for 1.5 seconds
+      }, 350);
+    }, 450);
 
     return () => clearTimeout(timer);
   }, []);
@@ -27,8 +37,8 @@ export default function InitialLoader({ companyName }: InitialLoaderProps) {
 
   return (
     <div
-      className={`fixed inset-0 z-[100] flex flex-col items-center justify-center bg-[#111111] transition-opacity duration-700 ease-in-out ${
-        fade ? 'opacity-0' : 'opacity-100'
+      className={`fixed inset-0 z-[100] flex flex-col items-center justify-center bg-[#111111] transition-opacity duration-350 ease-out ${
+        fade ? 'opacity-0 pointer-events-none' : 'opacity-100'
       }`}
     >
       {/* Container to handle the spinning and drawing */}

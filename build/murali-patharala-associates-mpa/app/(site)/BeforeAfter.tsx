@@ -114,7 +114,7 @@ export default function BeforeAfter({ image, beforeImage, afterImage, caption }:
       </div>
 
       <div
-        className="relative overflow-hidden aspect-[16/10] sm:aspect-[16/9.5] shadow-2xl select-none border-y-4 border-x-0 sm:border-4 border-[#111111] bg-[#111111] -mx-6 w-[calc(100%+3rem)] sm:mx-0 sm:w-full"
+        className="relative overflow-hidden aspect-[16/10] sm:aspect-[16/9.5] shadow-xl select-none border border-[#111111]/20 sm:border-2 border-[#111111] bg-[#111111] -mx-6 w-[calc(100%+3rem)] sm:mx-0 sm:w-full"
         onPointerDown={handlePointerDown}
       >
         {/* Before: Plan Sketch (Underneath) */}

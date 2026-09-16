@@ -4,7 +4,7 @@ import { MessageSquare, Phone } from 'lucide-react';
 
 export default function FloatingActions() {
   const waHref = `https://wa.me/919841098490?text=${encodeURIComponent(
-    'Hi ARCH Foundations & Murali Patharala Associates, I would like to enquire about home construction & architectural design.'
+    'Hi Murali Patharala & Associates (MPA) and ARCH Foundation, I would like to enquire about home construction & architectural design.'
   )}`;
 
   return (

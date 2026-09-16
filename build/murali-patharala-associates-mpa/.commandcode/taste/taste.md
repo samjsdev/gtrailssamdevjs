@@ -8,3 +8,4 @@
 ## Workflow
 
 - Validates work beyond screenshots before declaring done: runs a typecheck (`npx tsc --noEmit`) and a production build (`npm run build`) alongside visual verification. Confidence: 0.6
+- When asking for fixes to an existing site, wants evolutionary refinement preserving the current design language and section inventory — reorder/rewrite/polish in place rather than a complete redesign or removing sections. Confidence: 0.85

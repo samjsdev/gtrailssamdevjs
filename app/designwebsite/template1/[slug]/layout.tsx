@@ -5,6 +5,7 @@ import { ReactNode } from 'react';
 import { cleanClinicName, cleanClinicDescription } from '@/lib/copyCleaner';
 import { Marcellus, Jost } from 'next/font/google';
 import ClientHeader from './ClientHeader';
+import SmoothScroll from './SmoothScroll';
 
 const marcellus = Marcellus({ subsets: ['latin'], weight: '400', variable: '--font-marcellus' });
 const jost = Jost({ subsets: ['latin'], weight: ['300', '400', '500', '600'], variable: '--font-jost' });
@@ -45,7 +46,8 @@ export default async function Template1Layout({ children, params }: LayoutProps)
   const waLink = `https://wa.me/${waPhone}?text=${encodeURIComponent(waText)}`;
 
   return (
-    <div className={`${jost.className} ${jost.variable} ${marcellus.variable} min-h-screen flex flex-col bg-[#f6f1e8] text-[#211a13] selection:bg-[#a58150] selection:text-white scroll-smooth antialiased`}>
+    <SmoothScroll>
+      <div className={`${jost.className} ${jost.variable} ${marcellus.variable} min-h-screen flex flex-col bg-[#f6f1e8] text-[#211a13] selection:bg-[#a58150] selection:text-white antialiased`}>
       {/* Topbar */}
       <div className="bg-[#211a13] text-[#f6f1e8]/85 text-[12.5px] tracking-[0.06em]">
         <div className="max-w-7xl mx-auto px-6 lg:px-7 py-2.5 flex justify-between items-center gap-4">
@@ -153,6 +155,7 @@ export default async function Template1Layout({ children, params }: LayoutProps)
           <path d="M16 3C9.4 3 4 8.4 4 15c0 2.4.7 4.6 2 6.5L4 29l7.7-1.9c1.8 1 3.9 1.5 6 1.5h.3c6.6 0 12-5.4 12-12S22.6 3 16 3zm6.1 16.9c-.3.8-1.6 1.5-2.3 1.6-.6.1-1.4.2-4.4-.9-3.7-1.5-6.1-5.3-6.3-5.5-.2-.2-1.5-2-1.5-3.9s.9-2.7 1.3-3.1c.3-.4.7-.5 1-.5h.7c.2 0 .5-.1.8.6.3.8 1.1 2.7 1.2 2.9.1.2.2.4 0 .7-.1.3-.2.4-.4.7l-.6.7c-.2.2-.4.4-.2.8.2.4 1 1.6 2.1 2.6 1.4 1.3 2.6 1.7 3 1.8.4.2.6.1.8-.1.2-.2 1-1.1 1.2-1.5.3-.4.5-.3.9-.2.4.1 2.1 1 2.5 1.2.4.2.6.3.7.5.1.1.1.9-.2 1.7z" />
         </svg>
       </a>
-    </div>
+      </div>
+    </SmoothScroll>
   );
 }

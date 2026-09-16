@@ -15,6 +15,9 @@ import {
   previewMedia,
 } from '@/lib/interiorContent';
 import Reveal from './Reveal';
+import HeroParallax from './HeroParallax';
+import ScrollParallax from './ScrollParallax';
+import StaggerReveal from './StaggerReveal';
 import LeadForm from './LeadForm';
 import FAQAccordion, { FAQItem } from './FAQAccordion';
 import HeroStats, { HeroStat } from './HeroStats';
@@ -184,45 +187,47 @@ export default async function Template1Home({ params }: PageProps) {
   return (
     <div>
       {/* HERO */}
-      <section id="hero" className="relative min-h-[calc(100vh-116px)] flex flex-col justify-end text-white !p-0">
-        <div className="absolute inset-0">
-          <img src={heroImage} alt={`${cleanName || 'Studio'} signature interior`} className="w-full h-full object-cover" fetchPriority="high" />
-          <div className="absolute inset-0 bg-[linear-gradient(78deg,rgba(24,18,12,0.88)_0%,rgba(24,18,12,0.58)_42%,rgba(24,18,12,0.18)_72%),linear-gradient(0deg,rgba(24,18,12,0.7)_0%,transparent_30%)]" />
-        </div>
-
-        <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-7 pt-28 w-full">
-          <span className="inline-flex items-center gap-3.5 text-[12.5px] tracking-[0.38em] uppercase text-[#c9ab7c] mb-6 before:content-[''] before:w-[52px] before:h-px before:bg-[#c9ab7c]">
-            Interior Architecture &amp; Turnkey Design — {city}
-          </span>
-          <h1 className="font-[family-name:var(--font-marcellus)] text-[clamp(42px,5.8vw,82px)] leading-[1.06] max-w-[780px]">
-            {clinic.tagline || 'Uncompromising Quality In Every Detail'}
-          </h1>
-          <p className="mt-6 mb-9 max-w-[580px] text-[17px] font-light leading-[1.75] text-white/85">
-            {cleanDesc || `A full-service residential interior design and turnkey execution studio in ${city}. We exclusively use first-quality products to ensure generational durability.`}
-          </p>
-          <div className="flex flex-wrap gap-4 mb-16">
-            <Link
-              href={`${basePath}/contact`}
-              className="inline-flex items-center gap-2 bg-[#a58150] text-white px-5 py-3 sm:px-6 sm:py-3.5 text-[10.5px] sm:text-[11.5px] tracking-[0.2em] uppercase font-medium border border-[#a58150] hover:bg-[#211a13] hover:border-[#211a13] transition-colors duration-300"
-            >
-              Reach Us
-            </Link>
-            <Link
-              href={`${basePath}/gallery`}
-              className="inline-flex items-center gap-2 bg-transparent text-white px-5 py-3 sm:px-6 sm:py-3.5 text-[10.5px] sm:text-[11.5px] tracking-[0.2em] uppercase font-medium border border-white/50 hover:border-white hover:bg-white/10 transition-colors duration-300"
-            >
-              Projects
-            </Link>
+      <HeroParallax bgImageSelector=".hero-bg-img" contentSelector=".hero-content">
+        <section id="hero" className="relative min-h-[calc(100vh-116px)] flex flex-col justify-end text-white !p-0">
+          <div className="absolute inset-0 overflow-hidden">
+            <img src={heroImage} alt={`${cleanName || 'Studio'} signature interior`} className="hero-bg-img w-full h-full object-cover scale-105" fetchPriority="high" />
+            <div className="absolute inset-0 bg-[linear-gradient(78deg,rgba(24,18,12,0.88)_0%,rgba(24,18,12,0.58)_42%,rgba(24,18,12,0.18)_72%),linear-gradient(0deg,rgba(24,18,12,0.7)_0%,transparent_30%)]" />
           </div>
-        </div>
 
-        {/* STATS BAR */}
-        <HeroStats stats={heroStats} />
-      </section>
+          <div className="hero-content relative z-10 max-w-7xl mx-auto px-6 lg:px-7 pt-28 w-full">
+            <span className="inline-flex items-center gap-3.5 text-[12.5px] tracking-[0.38em] uppercase text-[#c9ab7c] mb-6 before:content-[''] before:w-[52px] before:h-px before:bg-[#c9ab7c]">
+              Interior Architecture &amp; Turnkey Design — {city}
+            </span>
+            <h1 className="font-[family-name:var(--font-marcellus)] text-[clamp(42px,5.8vw,82px)] leading-[1.06] max-w-[780px]">
+              {clinic.tagline || 'Uncompromising Quality In Every Detail'}
+            </h1>
+            <p className="mt-6 mb-9 max-w-[580px] text-[17px] font-light leading-[1.75] text-white/85">
+              {cleanDesc || `A full-service residential interior design and turnkey execution studio in ${city}. We exclusively use first-quality products to ensure generational durability.`}
+            </p>
+            <div className="flex flex-wrap gap-4 mb-16">
+              <Link
+                href={`${basePath}/contact`}
+                className="inline-flex items-center gap-2 bg-[#a58150] text-white px-5 py-3 sm:px-6 sm:py-3.5 text-[10.5px] sm:text-[11.5px] tracking-[0.2em] uppercase font-medium border border-[#a58150] hover:bg-[#211a13] hover:border-[#211a13] transition-colors duration-300"
+              >
+                Reach Us
+              </Link>
+              <Link
+                href={`${basePath}/gallery`}
+                className="inline-flex items-center gap-2 bg-transparent text-white px-5 py-3 sm:px-6 sm:py-3.5 text-[10.5px] sm:text-[11.5px] tracking-[0.2em] uppercase font-medium border border-white/50 hover:border-white hover:bg-white/10 transition-colors duration-300"
+              >
+                Projects
+              </Link>
+            </div>
+          </div>
+
+          {/* STATS BAR */}
+          <HeroStats stats={heroStats} />
+        </section>
+      </HeroParallax>
 
       {/* TRUST ASSURANCE RIBBON */}
       <section className="bg-[#1b150f] text-[#c9ab7c] py-5 px-6 border-b border-[#a58150]/20">
-        <div className="max-w-7xl mx-auto flex flex-wrap justify-around items-center gap-6 text-[12px] tracking-[0.2em] uppercase font-medium">
+        <StaggerReveal className="max-w-7xl mx-auto flex flex-wrap justify-around items-center gap-6 text-[12px] tracking-[0.2em] uppercase font-medium" stagger={0.08} yOffset={15}>
           <span className="flex items-center gap-2.5">
             <Award className="w-4 h-4 text-[#a58150]" /> 10-Year Structural Warranty
           </span>
@@ -235,7 +240,7 @@ export default async function Template1Home({ params }: PageProps) {
           <span className="flex items-center gap-2.5">
             <ShieldCheck className="w-4 h-4 text-[#a58150]" /> 0% Cost Overrun Guarantee
           </span>
-        </div>
+        </StaggerReveal>
       </section>
 
       {/* ABOUT STUDIO */}
@@ -243,15 +248,15 @@ export default async function Template1Home({ params }: PageProps) {
         <div className="max-w-7xl mx-auto grid lg:grid-cols-[1.05fr_0.95fr] gap-[clamp(44px,6vw,90px)] items-center">
           <Reveal>
             <div className="relative before:content-[''] before:absolute before:-left-4 before:-top-4 before:right-14 before:bottom-14 before:border before:border-[#a58150]">
-              <div className="overflow-hidden aspect-[4/4.7] group">
+              <ScrollParallax speed={12} className="aspect-[4/4.7]">
                 <img
                   src={aboutImage}
                   alt={`Inside the ${cleanName || 'design'} studio`}
                   loading="lazy"
-                  className="w-full h-full object-cover transition-transform duration-[1200ms] ease-[cubic-bezier(.19,1,.22,1)] group-hover:scale-[1.04]"
+                  className="w-full h-full object-cover transition-transform duration-[1200ms] ease-[cubic-bezier(.19,1,.22,1)] hover:scale-[1.04]"
                 />
-              </div>
-              <div className="absolute -right-2 sm:-right-4 bottom-11 bg-[#211a13] text-white px-8 py-7 shadow-[0_30px_60px_rgba(33,26,19,0.3)]">
+              </ScrollParallax>
+              <div className="absolute -right-2 sm:-right-4 bottom-11 bg-[#211a13] text-white px-8 py-7 shadow-[0_30px_60px_rgba(33,26,19,0.3)] z-10">
                 <b className="font-[family-name:var(--font-marcellus)] font-normal text-[44px] text-[#c9ab7c] block leading-none">
                   <CountUp value={experienceYears} suffix="+" />
                 </b>
@@ -275,14 +280,14 @@ export default async function Template1Home({ params }: PageProps) {
               Led by {doctor?.name || 'our principal design team'} — {doctor?.specialization || 'Interior Architecture & Turnkey Execution'} — we design
               spaces around real lives: ergonomic kitchens built for passionate cooking, silent joinery with storage that conceals clutter, and light-filled living rooms made for memorable family gatherings.
             </p>
-            <div className="grid sm:grid-cols-2 gap-x-8 gap-y-5 my-8">
+            <StaggerReveal className="grid sm:grid-cols-2 gap-x-8 gap-y-5 my-8" stagger={0.08} yOffset={20}>
               {highlights.slice(0, 4).map((h) => (
                 <div key={h} className="border-t border-[#211a13]/10 pt-4">
                   <b className="font-[family-name:var(--font-marcellus)] font-normal text-[17px] block mb-1.5">{h}</b>
                   <span className="text-[13px] text-[#7d7264] font-light">Customized and executed to millimeter precision.</span>
                 </div>
               ))}
-            </div>
+            </StaggerReveal>
             <Link
               href={`${basePath}/about`}
               className="inline-flex items-center gap-2 bg-transparent text-[#211a13] px-5 py-3 sm:px-6 sm:py-3.5 text-[10.5px] sm:text-[11.5px] tracking-[0.2em] uppercase font-medium border border-[#211a13] hover:bg-[#211a13] hover:text-white transition-colors duration-300"
@@ -308,31 +313,29 @@ export default async function Template1Home({ params }: PageProps) {
             </p>
           </Reveal>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <StaggerReveal className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6" stagger={0.12}>
             {DESIGN_PILLARS.map((pillar, idx) => {
               const Icon = pillar.icon;
               return (
-                <Reveal key={pillar.title} delay={idx * 80}>
-                  <div className="bg-[#2c231a] border border-[#a58150]/20 p-8 h-full flex flex-col justify-between transition-all duration-300 hover:border-[#a58150] hover:-translate-y-1">
-                    <div>
-                      <span className="w-12 h-12 border border-[#a58150] grid place-items-center mb-6 text-[#c9ab7c]">
-                        <Icon className="w-5 h-5" strokeWidth={1.8} />
-                      </span>
-                      <h3 className="font-[family-name:var(--font-marcellus)] font-normal text-[20px] mb-3 text-white">
-                        {pillar.title}
-                      </h3>
-                      <p className="text-[13.5px] font-light text-white/70 leading-[1.7]">
-                        {pillar.desc}
-                      </p>
-                    </div>
-                    <span className="font-[family-name:var(--font-marcellus)] text-[14px] text-[#a58150] mt-6 block">
-                      0{idx + 1}
+                <div key={pillar.title} className="bg-[#2c231a] border border-[#a58150]/20 p-8 h-full flex flex-col justify-between transition-all duration-300 hover:border-[#a58150] hover:-translate-y-1">
+                  <div>
+                    <span className="w-12 h-12 border border-[#a58150] grid place-items-center mb-6 text-[#c9ab7c]">
+                      <Icon className="w-5 h-5" strokeWidth={1.8} />
                     </span>
+                    <h3 className="font-[family-name:var(--font-marcellus)] font-normal text-[20px] mb-3 text-white">
+                      {pillar.title}
+                    </h3>
+                    <p className="text-[13.5px] font-light text-white/70 leading-[1.7]">
+                      {pillar.desc}
+                    </p>
                   </div>
-                </Reveal>
+                  <span className="font-[family-name:var(--font-marcellus)] text-[14px] text-[#a58150] mt-6 block">
+                    0{idx + 1}
+                  </span>
+                </div>
               );
             })}
-          </div>
+          </StaggerReveal>
         </div>
       </section>
 
@@ -353,7 +356,7 @@ export default async function Template1Home({ params }: PageProps) {
             </p>
           </Reveal>
 
-          <Reveal className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <StaggerReveal className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6" stagger={0.1}>
             {previewServices.map((svc, idx) => (
               <Link key={svc.title} href={`${basePath}/services`} className="group relative overflow-hidden aspect-[3/4] flex items-end text-white">
                 <img
@@ -374,7 +377,7 @@ export default async function Template1Home({ params }: PageProps) {
                 </div>
               </Link>
             ))}
-          </Reveal>
+          </StaggerReveal>
 
           <Reveal className="text-center mt-12">
             <Link
@@ -406,7 +409,7 @@ export default async function Template1Home({ params }: PageProps) {
               </p>
             </Reveal>
           </div>
-          <Reveal delay={0.2} className="mt-16 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 border-l border-t border-[#c9ab7c]/10">
+          <StaggerReveal className="mt-16 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 border-l border-t border-[#c9ab7c]/10" stagger={0.06} yOffset={25}>
             {[
               { name: "CenturyPly" },
               { name: "Asian Paints" },
@@ -427,7 +430,7 @@ export default async function Template1Home({ params }: PageProps) {
                 <p className="mt-1 text-[9px] font-bold uppercase tracking-[0.2em] text-[#c9ab7c]/60">Guaranteed</p>
               </div>
             ))}
-          </Reveal>
+          </StaggerReveal>
         </div>
       </section>
 
@@ -493,7 +496,7 @@ export default async function Template1Home({ params }: PageProps) {
             </p>
           </Reveal>
 
-          <Reveal className="grid sm:grid-cols-2 lg:grid-cols-4 gap-px bg-[#f6f1e8]/15 border border-[#f6f1e8]/15">
+          <StaggerReveal className="grid sm:grid-cols-2 lg:grid-cols-4 gap-px bg-[#f6f1e8]/15 border border-[#f6f1e8]/15" stagger={0.12}>
             {PROCESS_STEPS.map((step, idx) => (
               <div key={step.title} className="bg-[#211a13] hover:bg-[#2c231a] transition-colors duration-400 px-7 py-9">
                 <span
@@ -506,15 +509,17 @@ export default async function Template1Home({ params }: PageProps) {
                 <p className="text-[13.5px] font-light text-white/65 leading-[1.7]">{step.desc}</p>
               </div>
             ))}
-          </Reveal>
+          </StaggerReveal>
         </div>
       </section>
 
       {/* WHY US */}
       <section id="why" className="py-[clamp(84px,9vw,130px)] px-6 lg:px-7">
         <div className="max-w-7xl mx-auto grid lg:grid-cols-[0.95fr_1.05fr] gap-[clamp(44px,6vw,90px)] items-center">
-          <Reveal className="relative overflow-hidden aspect-[4/4.4]">
-            <img src={whyImage} alt="Design and material planning" loading="lazy" className="w-full h-full object-cover" />
+          <Reveal>
+            <ScrollParallax speed={10} className="relative aspect-[4/4.4]">
+              <img src={whyImage} alt="Design and material planning" loading="lazy" className="w-full h-full object-cover" />
+            </ScrollParallax>
           </Reveal>
 
           <Reveal delay={120}>
@@ -564,7 +569,7 @@ export default async function Template1Home({ params }: PageProps) {
             </p>
           </Reveal>
 
-          <Reveal className="grid md:grid-cols-3 gap-6">
+          <StaggerReveal className="grid md:grid-cols-3 gap-6" stagger={0.12}>
             {reviews.slice(0, 3).map((review: any, i: number) => (
               <div
                 key={i}
@@ -587,7 +592,7 @@ export default async function Template1Home({ params }: PageProps) {
                 </div>
               </div>
             ))}
-          </Reveal>
+          </StaggerReveal>
         </div>
       </section>
 

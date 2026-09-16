@@ -7,7 +7,7 @@ import { Star, Quote, ChevronLeft, ChevronRight } from 'lucide-react';
 
 const testimonials = [
   {
-    text: 'ARCH Foundations & Murali Patharala Associates built our independent villa in Anna Nagar East from scratch. Having both architecture and civil engineering under one roof meant zero confusion. The dedicated site engineer was present daily and we delivered two weeks ahead of schedule!',
+    text: 'Murali Patharala & Associates (MPA) and ARCH Foundation built our independent villa in Anna Nagar East from scratch. Having both architecture and civil engineering under one roof meant zero confusion. The dedicated site engineer was present daily and we delivered two weeks ahead of schedule!',
     author: 'Dr. R. Ramanathan',
     role: 'Homeowner — 4,200 Sq.Ft Villa',
     location: 'Anna Nagar East, Chennai',

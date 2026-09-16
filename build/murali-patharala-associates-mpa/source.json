@@ -1,6 +1,6 @@
 {
   "clinic": {
-    "name": "murali patharala associates",
+    "name": "murali patharala & associates",
     "slug": "murali-patharala-associates-mpa",
     "tagline": "Thoughtful Interiors for Everyday Living",
     "description": "Welcome to murali patharala & associates ( mpa). We create refined, functional interiors tailored to your lifestyle, budget, and space.",
@@ -37,23 +37,28 @@
     ]
   },
   "doctor": {
-    "name": "murali Studio Team",
-    "images": [],
-    "experience": "5+ years",
-    "specialization": "Interior Design & Turnkey Execution"
+    "name": "Ar. S. Murali",
+    "images": [
+      "/images/architecture/principal-architect.webp"
+    ],
+    "experience": "28+ years",
+    "specialization": "Architectural Design & Turnkey Execution"
   },
   "reviews": [],
   "media": {
     "clinicImages": [
-      "/images/clinicImages-1.jpg",
-      "/images/clinicImages-2.jpg",
-      "/images/clinicImages-3.jpg",
-      "/images/clinicImages-4.jpg"
+      "/images/architecture/tropical-modern-villa.webp",
+      "/images/architecture/modern-villa-duplex.webp",
+      "/images/architecture/modular-kitchen-luxury.webp",
+      "/images/architecture/luxury-master-bedroom.webp"
     ],
     "treatmentImages": [
-      "/images/treatmentImages-1.jpg"
+      "/images/architecture/living-room-double-height.webp"
     ],
-    "otherImages": []
+    "otherImages": [
+      "/images/architecture/courtyard-water-residence.webp",
+      "/images/architecture/parallel-kitchen-luxury.webp"
+    ]
   },
   "overrides": {
     "doctorName": "",

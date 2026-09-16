@@ -24,6 +24,7 @@ import {
   FileText,
   ExternalLink
 } from 'lucide-react';
+import ArchitecturalDiagramBg from '@/components/ArchitecturalDiagramBg';
 
 interface SpecItem {
   label: string;
@@ -108,7 +109,7 @@ const PACKAGES_DATA: PackageData[] = [
           { label: 'P Sand', detail: 'Plastering Works' },
           { label: 'Concrete Grade', detail: 'M20 | RMC for Roof' },
           { label: 'Ceiling Height', detail: '10 Feet' },
-          { label: 'Steel Reinforcement', detail: 'As per MPA Standard' },
+          { label: 'Steel Reinforcement', detail: 'As per ARCH Foundation Standard' },
           { label: 'Parapet Wall', detail: "3' Feet Height | 6\" Thick (Only for Floor with Headroom)" },
           { label: 'Anti-termite treatment', detail: 'Basement' },
         ],
@@ -225,7 +226,7 @@ const PACKAGES_DATA: PackageData[] = [
           { label: 'P Sand', detail: 'Plastering Works' },
           { label: 'Concrete Grade', detail: 'M20 | RMC for Roof' },
           { label: 'Ceiling Height', detail: '10 Feet (FFL to FFL)' },
-          { label: 'Steel Reinforcement', detail: 'As per MPA Structural Detailing.' },
+          { label: 'Steel Reinforcement', detail: 'As per ARCH Foundation Structural Detailing.' },
           { label: 'Parapet Wall', detail: "3.5' Feet Height | 6\" Thick" },
           { label: 'RCC Lift Pit', detail: 'Included (If Required)' },
           { label: 'Lift Pit & Shaft', detail: 'Included (If Required)' },
@@ -346,7 +347,7 @@ const PACKAGES_DATA: PackageData[] = [
           { label: 'Plastering Sand', detail: 'River Sand for Plastering Works' },
           { label: 'Concrete Grade', detail: 'M25 | RMC for Roof' },
           { label: 'Ceiling Height', detail: '11 Feet (FFL to FFL)' },
-          { label: 'Steel Reinforcement', detail: '1.5 times Strength as per MPA Structural Drawings & Detailing by Senior Structural Engineer.' },
+          { label: 'Steel Reinforcement', detail: '1.5 times Strength as per ARCH Foundation Structural Drawings & Detailing by Senior Structural Engineer.' },
           { label: 'Parapet Wall', detail: "3.5' Feet Height | 6\" Thick (Or) Toughened Glass Railing if Required" },
           { label: 'RCC Lift Pit', detail: 'Included (If Required)' },
           { label: 'RCC Base', detail: 'RCC Concrete Slab for Base' },
@@ -509,7 +510,7 @@ export default function ConstructionPackages({
   const handleOpenModal = (pkg: PackageData) => {
     setSelectedPackage(pkg);
     setFormSubmitted(false);
-    setReferenceId(`MPA-SPEC-${Math.floor(10000 + Math.random() * 90000)}`);
+    setReferenceId(`ARCH-SPEC-${Math.floor(10000 + Math.random() * 90000)}`);
     setIsModalOpen(true);
   };
 
@@ -521,7 +522,7 @@ export default function ConstructionPackages({
 
   const getWhatsAppUrlForPackage = (pkg: PackageData, customArea?: number) => {
     const area = customArea || 2400;
-    const text = `Hi Murali Patharala Associates (MPA),
+    const text = `Hi ARCH Foundation,
 I would like to receive the Detailed Specification & BOQ for:
 - Package: ${pkg.name} (${pkg.price} ${pkg.unit})
 - Estimated Built-Up Area: ${area.toLocaleString('en-IN')} Sq.Ft
@@ -538,27 +539,33 @@ Please share the complete itemized specification sheet. Thank you!`;
   };
 
   return (
-    <section id="packages" className="py-20 md:py-28 px-6 md:px-12 border-b-4 border-[#111111] bg-white">
-      <div className="max-w-7xl mx-auto">
-        {/* Section Heading */}
-        <div className="text-center max-w-3xl mx-auto mb-16 space-y-3">
-          <p className="text-xs font-bold tracking-[0.25em] uppercase text-[#EA580C]">
-            TRANSPARENT CONSTRUCTION PACKAGES
-          </p>
+    <section id="packages" className="relative py-24 md:py-32 px-6 md:px-12 border-b border-[#111111]/15 bg-[#FAFAF8] overflow-hidden">
+      {/* Quiet Architectural Facade Linework Watermark */}
+      <ArchitecturalDiagramBg variant="elevation" theme="light" opacity={0.10} showGrid={false} showCornerMarks={false} />
+
+      <div className="relative z-10 max-w-7xl mx-auto">
+        {/* Section Heading - Clean & Spacious */}
+        <div className="text-center max-w-2xl mx-auto mb-16 md:mb-20 space-y-3">
+          <div className="inline-flex items-center gap-2">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#EA580C]" />
+            <span className="text-[11px] font-mono tracking-[0.25em] uppercase text-[#777777]">
+              SPECIFICATION SCHEDULE &bull; 2026
+            </span>
+          </div>
           <h2
-            className="text-3xl md:text-5xl font-bold font-serif text-[#111111] tracking-tight"
+            className="text-3xl sm:text-4xl md:text-5xl font-bold font-serif text-[#111111] tracking-tight"
             style={{ fontFamily: "'Lora', serif" }}
           >
             Our Home Construction Packages
           </h2>
-          <p className="text-sm md:text-base text-[#666666] font-medium max-w-2xl mx-auto">
+          <p className="text-sm md:text-base text-[#666666] font-normal leading-relaxed">
             {variant === 'simple'
               ? 'Transparent turnkey construction benchmarks with legally binding price freeze guarantees and branded materials.'
-              : 'Itemized Bill of Quantities (BOQ). Fixed rate per sq.ft with branded material benchmarks and a legally binding delivery schedule across 9 distinct categories.'}
+              : 'Itemized Bill of Quantities (BOQ). Fixed rate per sq.ft with branded material benchmarks across 9 distinct categories.'}
           </p>
-          <div className="inline-flex items-center gap-2 bg-[#FFF7ED] border border-[#FDBA74] px-4 py-1.5 rounded-full text-xs font-bold text-[#EA580C] uppercase tracking-wider">
-            <span>* Minimum overall built-up area: 2,000 sq.ft</span>
-          </div>
+          <span className="text-[11px] font-mono text-[#888888] block pt-1">
+            * Minimum overall built-up area: 2,000 sq.ft &bull; Zero escalation guarantee
+          </span>
         </div>
 
         {/* 3 Package Cards */}
@@ -566,51 +573,44 @@ Please share the complete itemized specification sheet. Thank you!`;
           {PACKAGES_DATA.map((pkg, pkgIdx) => {
             const allOpen = isAllExpanded(pkgIdx);
             const highlights = SUMMARY_HIGHLIGHTS[pkg.id] || [];
+            const headerTags: Record<string, { label: string; sub: string }> = {
+              'standard-package': { label: '01 // ESSENTIAL', sub: '2,000–3,500 SQ.FT' },
+              'premium-package': { label: '02 // MOST REQUESTED', sub: 'FULL TURNKEY' },
+              'ultra-luxury': { label: '03 // SIGNATURE', sub: 'BESPOKE RESIDENCE' },
+            };
+            const tagInfo = headerTags[pkg.id] || { label: `0${pkgIdx + 1} // SPEC`, sub: 'TURNKEY' };
 
             return (
               <div
                 key={pkg.id}
-                className={`border-4 border-[#111111] flex flex-col transition-all duration-300 ${
+                className={`border flex flex-col transition-all duration-300 ${
                   pkg.highlight
-                    ? 'bg-[#111111] text-white shadow-2xl relative lg:-translate-y-2'
-                    : 'bg-[#FAFAFA] text-[#111111]'
+                    ? 'bg-[#121418] text-white border-2 border-[#EA580C] shadow-2xl relative lg:-translate-y-3'
+                    : 'bg-white text-[#111111] border-[#111111]/15 hover:border-[#111111]/40 shadow-sm'
                 }`}
               >
-                {/* Highlight Badge */}
-                {pkg.highlight ? (
-                  <div className="bg-[#EA580C] text-[#111111] text-center py-2.5 text-xs font-bold tracking-[0.25em] uppercase flex items-center justify-center gap-2">
-                    <Sparkles className="w-4 h-4 fill-current" />
-                    <span>{pkg.tag}</span>
-                  </div>
-                ) : pkg.luxuryBadge ? (
-                  <div className="bg-[#262626] text-[#EA580C] text-center py-2 text-xs font-bold tracking-[0.25em] uppercase border-b-2 border-[#111111]">
-                    ★ {pkg.tag} ★
-                  </div>
-                ) : (
-                  <div className="bg-[#E5E5E5] text-[#555555] text-center py-1.5 text-[11px] font-bold tracking-[0.2em] uppercase border-b border-[#D4D4D4]">
-                    {pkg.tag}
-                  </div>
-                )}
+                {/* Architectural Tag Header Ribbon */}
+                <div
+                  className={`px-6 py-3 flex items-center justify-between border-b text-[10px] font-mono font-bold tracking-widest ${
+                    pkg.highlight
+                      ? 'bg-[#EA580C] text-[#111111] border-[#EA580C]'
+                      : pkg.luxuryBadge
+                      ? 'bg-[#1C1E24] text-[#FB923C] border-[#1C1E24]'
+                      : 'bg-[#F5F5F2] text-[#666666] border-[#E5E5E0]'
+                  }`}
+                >
+                  <span>{tagInfo.label}</span>
+                  <span className="opacity-80 font-normal">{tagInfo.sub}</span>
+                </div>
 
                 {/* Card Header & Pricing */}
-                <div className="p-6 md:p-8 space-y-4 border-b-2 border-current/10">
-                  <div className="flex items-center justify-between">
-                    <h3
-                      className="text-2xl sm:text-3xl font-bold font-serif"
-                      style={{ fontFamily: "'Lora', serif" }}
-                    >
-                      {pkg.name}
-                    </h3>
-                    <span
-                      className={`text-xs font-mono font-bold px-2 py-0.5 border ${
-                        pkg.highlight
-                          ? 'border-[#EA580C] text-[#EA580C]'
-                          : 'border-[#111111] text-[#111111]'
-                      }`}
-                    >
-                      0{pkgIdx + 1}
-                    </span>
-                  </div>
+                <div className="p-6 md:p-8 space-y-4 border-b border-current/10">
+                  <h3
+                    className="text-2xl sm:text-3xl font-bold font-serif"
+                    style={{ fontFamily: "'Lora', serif" }}
+                  >
+                    {pkg.name}
+                  </h3>
 
                   <div className="flex items-baseline gap-2 pt-1">
                     <span
@@ -622,7 +622,7 @@ Please share the complete itemized specification sheet. Thank you!`;
                       {pkg.price}
                     </span>
                     <span
-                      className={`text-xs font-bold uppercase tracking-wider ${
+                      className={`text-xs font-mono font-bold uppercase tracking-wider ${
                         pkg.highlight ? 'text-white/70' : 'text-[#666666]'
                       }`}
                     >
@@ -630,11 +630,11 @@ Please share the complete itemized specification sheet. Thank you!`;
                     </span>
                   </div>
 
-                  <div className="flex items-center justify-between text-xs font-semibold pt-1">
-                    <span className={pkg.highlight ? 'text-white/80' : 'text-[#666666]'}>
+                  <div className="flex items-center justify-between text-xs font-medium pt-1">
+                    <span className={pkg.highlight ? 'text-white/70' : 'text-[#777777]'}>
                       Estimated Execution:
                     </span>
-                    <span className={`font-bold ${pkg.highlight ? 'text-[#EA580C]' : 'text-[#111111]'}`}>
+                    <span className={`font-mono font-bold ${pkg.highlight ? 'text-[#EA580C]' : 'text-[#111111]'}`}>
                       {pkg.timeline}
                     </span>
                   </div>
@@ -683,7 +683,7 @@ Please share the complete itemized specification sheet. Thank you!`;
                           >
                             ■ {hl.label}
                           </span>
-                          <span className={`font-medium ${pkg.highlight ? 'text-white/85' : 'text-[#444444]'}`}>
+                          <span className={`font-medium ${pkg.highlight ? 'text-[#E2E8F0]' : 'text-[#2B2D31]'}`}>
                             {hl.text}
                           </span>
                         </div>
@@ -821,7 +821,7 @@ Please share the complete itemized specification sheet. Thank you!`;
                 <div className="p-6 md:p-8 pt-2 mt-auto">
                   {variant === 'simple' ? (
                     <Link
-                      href="/services#packages"
+                      href="/construction-package#packages"
                       className={`w-full py-4 px-4 text-center text-xs font-bold uppercase tracking-widest transition-all duration-200 flex items-center justify-center gap-2 shadow-sm ${
                         pkg.highlight
                           ? 'bg-[#EA580C] text-[#111111] hover:bg-white'
@@ -853,8 +853,9 @@ Please share the complete itemized specification sheet. Thank you!`;
 
         {/* Bottom Banner */}
         {variant === 'simple' ? (
-          <div className="mt-14 p-6 sm:p-8 border-4 border-[#111111] bg-[#111111] text-white flex flex-col md:flex-row items-center justify-between gap-6">
-            <div className="space-y-1">
+          <div className="mt-14 p-6 sm:p-8 border border-white/15 bg-[#131519] text-white flex flex-col md:flex-row items-center justify-between gap-6 relative overflow-hidden shadow-xl">
+            <ArchitecturalDiagramBg variant="master-plan" theme="dark" opacity={0.2} showCornerMarks={false} showGrid={false} />
+            <div className="space-y-1 relative z-10 max-w-2xl">
               <span className="text-[10px] font-bold uppercase tracking-[0.25em] text-[#EA580C] block">
                 Expert Consultation
               </span>
@@ -871,13 +872,13 @@ Please share the complete itemized specification sheet. Thank you!`;
 
             <a
               href={`https://wa.me/${cleanPhone}?text=${encodeURIComponent(
-                'Hi Murali Patharala Associates (MPA), I am planning a custom residential construction project in Chennai and would like to discuss my plot requirements.'
+                'Hi ARCH Foundation, I am planning a custom residential construction project in Chennai and would like to discuss my plot requirements.'
               )}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="px-8 py-4 bg-[#25D366] text-white hover:bg-[#1EBE5D] text-xs font-bold uppercase tracking-widest transition-colors shrink-0 flex items-center gap-2"
+              className="relative z-10 px-5 py-3 bg-[#25D366] text-white hover:bg-[#1EBE5D] text-[11px] font-bold uppercase tracking-wider transition-colors shrink-0 flex items-center gap-2 shadow-md"
             >
-              <MessageSquare className="w-4 h-4" />
+              <MessageSquare className="w-3.5 h-3.5" />
               <span>WhatsApp Principal Architect &rarr;</span>
             </a>
           </div>
@@ -902,7 +903,7 @@ Please share the complete itemized specification sheet. Thank you!`;
 
             <a
               href={`https://wa.me/${cleanPhone}?text=${encodeURIComponent(
-                'Hi Murali Patharala Associates, I would like to schedule a site feasibility survey in Chennai for my residential plot.'
+                'Hi ARCH Foundation, I would like to schedule a site feasibility survey in Chennai for my residential plot.'
               )}`}
               target="_blank"
               rel="noopener noreferrer"
@@ -923,6 +924,7 @@ Please share the complete itemized specification sheet. Thank you!`;
           onClick={handleCloseModal}
         >
           <div
+            data-lenis-prevent
             className="bg-white border-4 border-[#111111] w-full max-w-xl max-h-[90vh] overflow-y-auto shadow-2xl relative animate-in zoom-in-95 duration-200"
             onClick={(e) => e.stopPropagation()}
           >

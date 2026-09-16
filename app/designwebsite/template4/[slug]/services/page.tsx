@@ -11,6 +11,7 @@ import {
   previewMedia,
 } from '@/lib/interiorContent';
 import Reveal from '../Reveal';
+import CurtainReveal from '../CurtainReveal';
 import PageNarrative from '../PageNarrative';
 import SeriesScroll, { SeriesTheme } from '../SeriesScroll';
 import FAQAccordion, { FAQItem } from '../FAQAccordion';
@@ -231,7 +232,11 @@ export default async function Template4Services({ params }: PageProps) {
                       idx % 2 === 1 ? '-top-4 -right-4 bottom-4 left-4' : '-top-4 right-4 bottom-4 -left-4'
                     }`}
                   />
-                  <img src={svc.img} alt={svc.title} loading="lazy" className="relative z-[1] w-full aspect-[4/3.1] object-cover" />
+                  <div className="relative z-[1] w-full aspect-[4/3.1] overflow-hidden">
+                    <CurtainReveal direction={idx % 2 === 1 ? 'right' : 'left'} duration={1200} className="w-full h-full">
+                      <img src={svc.img} alt={svc.title} loading="lazy" className="w-full h-full object-cover" />
+                    </CurtainReveal>
+                  </div>
                   <div className="absolute z-[2] -bottom-[18px] left-8 bg-[#17130f] text-white px-6 py-3.5 text-[11px] tracking-[0.18em] uppercase">
                     Service · <b className="text-[#d9c49a]">{String(idx + 1).padStart(2, '0')}</b>
                   </div>

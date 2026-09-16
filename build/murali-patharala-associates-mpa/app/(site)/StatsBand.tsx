@@ -1,21 +1,60 @@
 'use client';
 
 import { useEffect, useState, useRef } from 'react';
+import { Award, Building2, ShieldCheck, FileCheck, Lock, HardHat } from 'lucide-react';
+import styles from './HomeStorySections.module.css';
 
 interface StatItemData {
   value: number;
   suffix: string;
   label: string;
   sub: string;
+  icon: typeof Award;
 }
 
 const stats: StatItemData[] = [
-  { value: 28, suffix: '+', label: 'Years of Trust', sub: 'Since 1998 in Anna Nagar' },
-  { value: 500, suffix: '+', label: 'Homes Delivered', sub: 'Villas & Residences' },
-  { value: 425, suffix: '+', label: 'Quality Checks', sub: 'Documented QC Audits' },
-  { value: 10, suffix: ' Yrs', label: 'Structural Warranty', sub: 'Legally Binding Guarantee' },
-  { value: 100, suffix: '%', label: 'Fixed Price', sub: 'Zero Cost Escalation' },
-  { value: 100, suffix: '%', label: 'In-House Team', sub: 'Dedicated Site Engineers' },
+  {
+    value: 28,
+    suffix: '+',
+    label: 'Years of Trust',
+    sub: 'Continuous operation in Anna Nagar since 1998',
+    icon: Award,
+  },
+  {
+    value: 500,
+    suffix: '+',
+    label: 'Homes Delivered',
+    sub: 'Bespoke villas & turnkey residences completed',
+    icon: Building2,
+  },
+  {
+    value: 425,
+    suffix: '+',
+    label: 'Quality Checks',
+    sub: 'Documented audits & concrete cube strength tests',
+    icon: ShieldCheck,
+  },
+  {
+    value: 10,
+    suffix: ' Yrs',
+    label: 'Structural Warranty',
+    sub: 'Legally binding structural integrity guarantee',
+    icon: FileCheck,
+  },
+  {
+    value: 100,
+    suffix: '%',
+    label: 'Fixed Price',
+    sub: 'Line-by-line itemized BOQ with zero escalation',
+    icon: Lock,
+  },
+  {
+    value: 100,
+    suffix: '%',
+    label: 'In-House Team',
+    sub: 'Dedicated resident engineers & licensed architects',
+    icon: HardHat,
+  },
 ];
 
 function useCountUp(target: number, start: boolean, duration = 1800) {
@@ -33,7 +72,6 @@ function useCountUp(target: number, start: boolean, duration = 1800) {
     const t0 = performance.now();
     const tick = (t: number) => {
       const p = Math.min((t - t0) / duration, 1);
-      // easeOutCubic curve
       const eased = 1 - Math.pow(1 - p, 3);
       setValue(Math.round(target * eased));
       if (p < 1) {
@@ -47,22 +85,17 @@ function useCountUp(target: number, start: boolean, duration = 1800) {
   return value;
 }
 
-function StatItem({ stat, start }: { stat: StatItemData; start: boolean }) {
+function StatCard({ stat, start }: { stat: StatItemData; start: boolean }) {
   const value = useCountUp(stat.value, start);
+  const IconComp = stat.icon;
+
   return (
-    <div className="space-y-2 w-full">
-      <div
-        className="text-4xl sm:text-5xl font-bold text-[#111111] tracking-tight flex items-center justify-center"
-        style={{ fontFamily: "'Lora', serif" }}
-      >
-        <span>{value}</span>
-        <span className="text-[#EA580C] ml-1">{stat.suffix}</span>
-      </div>
-      <div className="text-xs sm:text-sm uppercase tracking-wider text-[#111111] font-bold">
-        {stat.label}
-      </div>
-      <div className="text-xs text-[#666666] font-medium leading-relaxed max-w-[260px] mx-auto">
-        {stat.sub}
+    <div className={styles.statCard}>
+      <div className={styles.iconTile}><IconComp size={21} strokeWidth={1.5} aria-hidden="true" /></div>
+      <div>
+        <div className={styles.statValue}>{value}<span>{stat.suffix}</span></div>
+        <div className={styles.statLabel}>{stat.label}</div>
+        <div className={styles.statDescription}>{stat.sub}</div>
       </div>
     </div>
   );
@@ -97,19 +130,19 @@ export default function StatsBand() {
   return (
     <section
       ref={ref}
-      aria-label="MPA Credentials and Numbers"
-      className="w-full bg-white border-b-4 border-[#111111] relative py-12 sm:py-16"
+      aria-label="MPA Credentials and Performance Metrics"
+      id="numbers"
+      className={styles.stats}
     >
-      <div className="max-w-6xl mx-auto px-4 sm:px-8">
-        {/* Two-row grid (3 columns x 2 rows on medium/large screens) */}
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6 text-center">
+      {/* Six credentials arranged as a 3 × 2 matrix on desktop. */}
+      <div className={styles.container}>
+        <div className={styles.statsHeader}>
+          <p className={styles.eyebrow}>MPA in numbers</p>
+          <span>Since 1998 · Chennai</span>
+        </div>
+        <div className={styles.statsGrid}>
           {stats.map((stat, idx) => (
-            <div
-              key={idx}
-              className="p-6 sm:p-8 bg-[#FAFAFA] border-2 border-[#111111] flex flex-col justify-center items-center hover:border-[#EA580C] hover:shadow-md transition-all duration-200 group"
-            >
-              <StatItem stat={stat} start={start} />
-            </div>
+            <StatCard key={stat.label} stat={stat} start={start} />
           ))}
         </div>
       </div>

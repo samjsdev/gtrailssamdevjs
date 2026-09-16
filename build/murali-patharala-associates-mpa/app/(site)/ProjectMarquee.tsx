@@ -11,14 +11,14 @@ export interface MarqueeProject {
 }
 
 const projects: MarqueeProject[] = [
-  { image: '/images/clinicImages-2.webp', title: 'MPA Signature Residence', location: 'Anna Nagar East' },
-  { image: '/images/clinicImages-3.webp', title: 'Urban Commercial Facade', location: 'Anna Nagar' },
-  { image: '/images/clinicImages-1.webp', title: 'Dusk Contemporary Villa', location: 'Chennai' },
-  { image: '/images/stock/34bba44b.webp', title: 'Poolside Luxury Villa', location: 'ECR, Chennai' },
-  { image: '/images/stock/57b78bb7.webp', title: 'White Modern Residence', location: 'Neelankarai' },
-  { image: '/images/stock/13246fc0.webp', title: 'Black Timber Facade Home', location: 'Injambakkam' },
-  { image: '/images/stock/704fc1ee.webp', title: 'Courtyard Villa Elevation', location: 'Velachery' },
-  { image: '/images/stock/1c7b75e9.webp', title: 'Cantilever 3D Elevation', location: 'Kilpauk' },
+  { image: '/images/architecture/modern-villa-duplex.webp', title: 'MPA Signature Duplex Villa', location: 'Anna Nagar East' },
+  { image: '/images/architecture/geometric-villa-elevation.webp', title: 'Geometric Parametric Facade', location: 'Anna Nagar' },
+  { image: '/images/architecture/hero-villa-twilight.webp', title: 'Dusk Contemporary Villa', location: 'Chennai' },
+  { image: '/images/architecture/linear-pool-pavilion.webp', title: 'Poolside Luxury Villa', location: 'ECR, Chennai' },
+  { image: '/images/architecture/villa-after-finished.webp', title: 'White Modern Residence', location: 'Neelankarai' },
+  { image: '/images/architecture/monolithic-brutalist-facade.webp', title: 'Contemporary Facade Home', location: 'Injambakkam' },
+  { image: '/images/architecture/courtyard-water-residence.webp', title: 'Courtyard Villa Elevation', location: 'Velachery' },
+  { image: '/images/architecture/tropical-modern-villa.webp', title: 'Tropical Modern Turnkey Villa', location: 'Kilpauk' },
 ];
 
 export default function ProjectMarquee() {

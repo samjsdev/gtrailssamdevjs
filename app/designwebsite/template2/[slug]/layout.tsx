@@ -6,6 +6,7 @@ import { Home } from 'lucide-react';
 import { cleanClinicName, cleanClinicDescription } from '@/lib/copyCleaner';
 import { Bricolage_Grotesque, Plus_Jakarta_Sans } from 'next/font/google';
 import ClientHeader from './ClientHeader';
+import SmoothScroll from './SmoothScroll';
 
 const bricolage = Bricolage_Grotesque({
   subsets: ['latin'],
@@ -52,7 +53,8 @@ export default async function Template2Layout({ children, params }: LayoutProps)
   const waLink = `https://wa.me/${waPhone}?text=${encodeURIComponent(waText)}`;
 
   return (
-    <div className={`${jakarta.className} ${jakarta.variable} ${bricolage.variable} min-h-screen flex flex-col bg-white text-[#1b1b1b] selection:bg-[#f2a007] selection:text-[#1b1b1b] scroll-smooth antialiased`}>
+    <SmoothScroll>
+      <div className={`${jakarta.className} ${jakarta.variable} ${bricolage.variable} min-h-screen flex flex-col bg-white text-[#1b1b1b] selection:bg-[#f2a007] selection:text-[#1b1b1b] antialiased`}>
       {/* Offer strip */}
       <div className="bg-[#0e5a43] text-white text-center text-[13px] font-semibold px-4 py-2.5 tracking-[0.02em]">
         <b className="text-[#f2a007]">Design consultation</b> — 3D views + itemised quote for your floor plan.{' '}
@@ -149,5 +151,6 @@ export default async function Template2Layout({ children, params }: LayoutProps)
         Chat with us
       </a>
     </div>
+    </SmoothScroll>
   );
 }

@@ -80,5 +80,18 @@ Theme: sustainable/green architecture (green #0e5a43, orange #f2a007, Bricolage 
 
 ## NEXT: template13 audit (has BeforeAfter.tsx component)
 
-### Notes
-- t11 mtime clues: page.tsx 23:14, layout/PageNarrative/ClientHeader 23:16, LeadForm 20:52 — was being edited at crash time (~23:16)
+## EDIT CANVAS SCHEMAS OVERHAUL
+- [x] Template 2 edit canvas schema updated across all 5 pages (`home`, `about`, `services`, `gallery`, `contact`), mapping all sections, real data paths, and image slots (`clinicImages`, `treatmentImages`, `otherImages`).
+- [x] Template 3 (Luxe Interiors): updated with real data bindings, Before & After, 5 treatment images, and 6 project showcase images.
+- [x] Template 4 (Precision Studio): updated with Series Themes, Living Philosophy, Real Transformation, and curated work grid.
+- [x] Template 5 (Architecture & Turnkey Civil): updated with discipline pillars, civil estimator, structural warranties, and turnkey services.
+- [x] Template 7 (Lumina Interior): updated with 5 Hero images, About narrative, space showcase, project carousel, and stats.
+- [x] Template 10 (Industrial Architecture): verified clean across all 5 pages.
+- [x] Template 11 (Architectural Atelier): custom schema added for Atelier Hero, practice narrative, construction packages, and showcase.
+- [x] Template 12 (Organic Architecture & Villas): custom schema added for Villa Hero, green/passive architecture, room-by-room design, and villa stories.
+- [x] Template 13 (Monolithic Luxury Architecture): custom schema added for monolithic hero, blueprint to villa before/after, cantilever typologies, and showcase.
+- [x] Template 14 (Curated Architectural Monograph): custom schema added for monograph hero, series monographs, and landmark transformations.
+- [x] Template 17 (Civic & Residential Architecture): custom schema added for BIM hero, transformation showcase, discipline showcases, and highlights carousel.
+- [x] Excluded templates (`template1`, `template6`, `template8`): 100% untouched and byte-identical to HEAD.
+- [x] Verified with `npx tsc --noEmit` (0 errors).
+

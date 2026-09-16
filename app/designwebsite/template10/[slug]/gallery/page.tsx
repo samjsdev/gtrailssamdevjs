@@ -1,123 +1,111 @@
 import { readSourceConfig } from '@/lib/dataBuilder';
-import { cleanClinicName } from '@/lib/copyCleaner';
 import { notFound } from 'next/navigation';
-import GalleryClient from '../GalleryClient';
-import { Compass, HardHat, Sparkles } from 'lucide-react';
+import Image from 'next/image';
+import Link from 'next/link';
+import { cleanClinicName } from '@/lib/copyCleaner';
+import { ARCHITECTURE_STOCK } from '@/lib/architectureContent';
+import CuratedWorks from '../CuratedWorks';
+import { Cinzel } from 'next/font/google';
 
-interface PageProps {
-  params: Promise<{ slug: string }>;
-}
+const cinzel = Cinzel({ subsets: ['latin'], weight: ['600', '700', '800'] });
 
-export default async function Template10GalleryPage({ params }: PageProps) {
-  const resolvedParams = await params;
-  const { slug } = resolvedParams;
+type PageProps = { params: Promise<{ slug: string }> };
+
+export default async function Template10Gallery({ params }: PageProps) {
+  const { slug } = await params;
+  const basePath = `/designwebsite/template10/${slug}`;
+
   const data = await readSourceConfig(slug, 'template10');
+  if (!data) return notFound();
 
-  if (!data || !data.clinic) {
-    notFound();
-  }
-
-  const clinicName = cleanClinicName(data.clinic.name);
-  const clinicTagline = data.clinic.tagline || 'Delivered Architecture, Turnkey Villas & Luxury Interior Sites';
-
-  const media = data.media || {};
-  const projectImages = [
-    media.otherImages?.[0] || 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80',
-    media.otherImages?.[1] || 'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1200&q=80',
-    media.otherImages?.[2] || 'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1200&q=80',
-    media.otherImages?.[3] || 'https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=1200&q=80',
-    media.otherImages?.[4] || 'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1200&q=80',
-    media.otherImages?.[5] || 'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=1200&q=80',
-    media.otherImages?.[6] || 'https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=1200&q=80',
-  ];
-
-  const projects = [
-    {
-      id: 'p1',
-      title: 'The Obsidian Grand Duplex Villa',
-      category: 'construction' as const,
-      location: 'Prime Residential Enclave',
-      area: '4,500 sq.ft Built-Up',
-      image: projectImages[0],
-      description: 'Turnkey RCC framed residential villa execution with Fe550D TMT reinforcement, double-height living foyer, and German UPVC architectural fenestrations.',
-      badge: 'RESIDENTIAL CIVIL CONSTRUCTION',
-    },
-    {
-      id: 'p2',
-      title: 'Monolith Brutalist Elevation & Facade',
-      category: 'architecture' as const,
-      location: 'Hilltop Avenue',
-      area: '5,500 sq.ft Plot Plan',
-      image: projectImages[1],
-      description: '3D BIM architectural concept, cantilevers, textured stone louvers, and complete structural working blueprints aligned with municipal sanctions.',
-      badge: 'ARCHITECTURAL DESIGN',
-    },
-    {
-      id: 'p3',
-      title: 'Vanguard Penthouse Full-Home Fitout',
-      category: 'interior' as const,
-      location: 'Skyline Residences',
-      area: '3,600 sq.ft Interior',
-      image: projectImages[2],
-      description: 'Imported bookmatched Italian marble flooring, motorized Blum kitchen cabinetry, acoustic wood-fluted panelling, and integrated architectural lighting.',
-      badge: 'LUXURY INTERIOR DESIGN',
-    },
-    {
-      id: 'p4',
-      title: 'The Courtyard Contemporary Villa',
-      category: 'construction' as const,
-      location: 'Palm Meadows',
-      area: '4,800 sq.ft Built-Up',
-      image: projectImages[3],
-      description: 'Custom G+2 residence with private courtyard, M20 lab-certified concrete casting, and full 10-year waterproofing & structural warranty.',
-      badge: 'RESIDENTIAL CIVIL CONSTRUCTION',
-    },
-    {
-      id: 'p5',
-      title: 'Minimalist Cubist Residence Facade',
-      category: 'architecture' as const,
-      location: 'Boulevard Road',
-      area: '6,100 sq.ft Plan',
-      image: projectImages[4],
-      description: 'Parametric screen detailing, cantilevered overhangs, 3D sun-path simulation, and structural framing drawings.',
-      badge: 'ARCHITECTURAL DESIGN',
-    },
-    {
-      id: 'p6',
-      title: 'Bespoke Master Suite & Modular Kitchen',
-      category: 'interior' as const,
-      location: 'Central Residency',
-      area: '3,100 sq.ft Interior',
-      image: projectImages[5],
-      description: 'Full-height seamless wardrobes, hydraulic hardware, quartz stone countertops, and ambient cove lighting systems.',
-      badge: 'LUXURY INTERIOR DESIGN',
-    },
-  ];
+  const { clinic } = data;
+  const cleanName = cleanClinicName(clinic.name);
 
   return (
-    <div className="w-full bg-[#252A29] text-[#F4F3EE]">
-      {/* ─── Hero Banner Section ─── */}
-      <section id="gallery-hero" className="relative py-24 sm:py-32 bg-[#1A1E1D] border-b-4 border-[#111111]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-8">
-          <div className="max-w-3xl">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 bg-[#E94B26] text-[#F4F3EE] text-xs font-black uppercase tracking-[0.2em] mb-4 border border-[#111111] shadow-[3px_3px_0px_#111111]">
-              <Compass className="w-3.5 h-3.5" />
-              <span>DELIVERED SITES & PORTFOLIO</span>
-            </div>
-            <h1 className="text-4xl sm:text-6xl font-black uppercase text-[#F4F3EE] tracking-tight leading-[0.95] mb-4">
-              PORTFOLIO OF <span className="text-[#E94B26]">BUILT SITES</span> & ELEVATIONS
-            </h1>
-            <p className="text-sm sm:text-base font-bold uppercase tracking-wider text-[#C8A84E]">
-              {clinicName} &bull; {clinicTagline}
-            </p>
+    <div className="bg-[#faf8f5]">
+      {/* Header Banner */}
+      <section className="py-20 sm:py-28 bg-[#111111] text-white relative overflow-hidden">
+        <div className="absolute inset-0 opacity-25 pointer-events-none">
+          <Image
+            src={ARCHITECTURE_STOCK.gallery[0]}
+            alt="Gallery Monograph"
+            fill
+            className="object-cover"
+            priority
+          />
+        </div>
+
+        <div className="relative z-10 max-w-[1360px] mx-auto px-5 sm:px-8 text-center flex flex-col items-center">
+          <span className="text-[11px] tracking-[0.35em] uppercase font-bold text-[#c5a47e] mb-3">
+            Architectural Portfolio
+          </span>
+          <h1
+            className={`${cinzel.className} text-[34px] sm:text-[48px] lg:text-[58px] font-bold text-white tracking-tight leading-tight max-w-4xl`}
+          >
+            Curated Architectural Archive
+          </h1>
+          <p className="mt-5 text-[15px] sm:text-[17px] text-[#cfcac2] max-w-2xl font-light leading-relaxed">
+            Explore our built oeuvre across ultra-luxury coastal villas, private family estates, double-height interior atriums, and monolithic structural frames.
+          </p>
+        </div>
+      </section>
+
+      {/* Main Works Grid */}
+      <CuratedWorks basePath={basePath} />
+
+      {/* Additional Architectural Captures Strip */}
+      <section className="py-20 sm:py-28 bg-[#f5f2ea] border-t border-[#141414]/10">
+        <div className="max-w-[1360px] mx-auto px-5 sm:px-8">
+          <div className="text-center mb-12">
+            <span className="text-[11px] tracking-[0.32em] uppercase font-bold text-[#b89568]">
+              Atelier Archive
+            </span>
+            <h2
+              className={`${cinzel.className} mt-2.5 text-[26px] sm:text-[34px] font-bold text-[#141414] leading-tight`}
+            >
+              Materiality & Structural Vignettes
+            </h2>
+          </div>
+
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+            {ARCHITECTURE_STOCK.gallery.slice(4, 12).map((img, idx) => (
+              <div
+                key={idx}
+                className="relative aspect-square overflow-hidden border border-[#141414]/10 shadow-sm group bg-black/5"
+              >
+                <Image
+                  src={img}
+                  alt={`Architectural detail ${idx + 1}`}
+                  fill
+                  className="object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
+                  sizes="(max-width: 768px) 50vw, 25vw"
+                  loading="lazy"
+                />
+              </div>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* ─── Gallery Grid Section ─── */}
-      <section id="gallery-grid" className="py-24 px-4 sm:px-8 bg-[#252A29] border-b-4 border-[#111111]">
-        <div className="max-w-7xl mx-auto">
-          <GalleryClient projects={projects} />
+      {/* Bottom CTA */}
+      <section className="py-20 bg-[#111111] text-white">
+        <div className="max-w-[1000px] mx-auto px-5 sm:px-8 text-center flex flex-col items-center">
+          <h2
+            className={`${cinzel.className} text-[28px] sm:text-[38px] font-bold text-white leading-tight`}
+          >
+            Envisioning a Similar Residence?
+          </h2>
+          <p className="mt-4 text-[15px] text-[#cfcac2] max-w-xl">
+            Our atelier reviews new commissions by appointment. Schedule a confidential feasibility session.
+          </p>
+          <div className="mt-8">
+            <Link
+              href={`${basePath}/contact`}
+              className="bg-[#c5a47e] text-[#111111] px-8 py-4 text-[11px] tracking-[0.22em] uppercase font-bold hover:bg-[#d9bb93] transition-colors shadow-lg"
+            >
+              Contact the Atelier
+            </Link>
+          </div>
         </div>
       </section>
     </div>

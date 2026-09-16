@@ -7,6 +7,7 @@ import { DEFAULT_INTERIOR_HIGHLIGHTS,
   previewMedia,
 } from '@/lib/interiorContent';
 import Reveal from '../Reveal';
+import CurtainReveal from '../CurtainReveal';
 import PageNarrative from '../PageNarrative';
 import CountUp from '@/components/CountUp';
 
@@ -126,11 +127,15 @@ export default async function Template4About({ params }: PageProps) {
           <Reveal delay={130}>
             <div className="relative">
               <div className="absolute -top-4 right-4 bottom-4 -left-4 border border-[#b08d4f]" />
-              <img
-                src={storyImage}
-                alt={`Interiors by ${cleanName || 'our studio'}`}
-                className="relative z-[1] w-full aspect-[4/4.4] object-cover"
-              />
+              <div className="relative z-[1] w-full aspect-[4/4.4] overflow-hidden">
+                <CurtainReveal direction="right" duration={1300} className="w-full h-full">
+                  <img
+                    src={storyImage}
+                    alt={`Interiors by ${cleanName || 'our studio'}`}
+                    className="w-full h-full object-cover"
+                  />
+                </CurtainReveal>
+              </div>
               <div className="absolute z-[2] -bottom-[18px] left-8 bg-[#17130f] text-white px-7 py-5">
                 <b className="font-[family-name:var(--font-cormorant)] text-[34px] text-[#d9c49a] block leading-none">
                   <CountUp value={experienceYears} suffix="+" />

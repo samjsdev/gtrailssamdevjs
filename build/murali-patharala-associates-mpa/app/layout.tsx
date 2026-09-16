@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { Lora, Work_Sans } from 'next/font/google';
 import './globals.css';
+import 'lenis/dist/lenis.css';
 
 const lora = Lora({
   subsets: ['latin'],
@@ -18,8 +19,8 @@ const workSans = Work_Sans({
 });
 
 export const metadata: Metadata = {
-  title: 'Murali Patharala Associates (MPA) | Turnkey Construction & Architectural Design Chennai',
-  description: 'Turnkey Construction, Architecture & Interior Design in Chennai. Fixed-price contracts, zero delays, and 28+ years of structural excellence in Anna Nagar.',
+  title: 'Murali Patharala & Associates (MPA) | Architectural Design Chennai',
+  description: 'Architecture and interior design by Murali Patharala & Associates, with residential construction delivered by ARCH Foundation across Chennai and regional offices.',
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

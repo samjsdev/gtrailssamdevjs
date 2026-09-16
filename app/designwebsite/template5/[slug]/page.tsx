@@ -5,6 +5,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import CostEstimator from './CostEstimator';
 import ConsultationForm from './ConsultationForm';
+import Reveal from './Reveal';
 import { 
   Building, Compass, ShieldCheck, Award, HardHat, 
   CheckCircle2, Ruler, ArrowRight, Phone, Users, FileCheck, 
@@ -180,23 +181,26 @@ export default async function Template5HomePage({ params }: PageProps) {
       <section id="disciplines" className="py-24 px-4 sm:px-8 bg-white border-b border-[#1E2322]/15">
         <div className="max-w-7xl mx-auto">
           {/* Header */}
-          <div className="text-center max-w-3xl mx-auto mb-16 space-y-3">
-            <div className="inline-flex items-center gap-2 px-3 py-1 bg-[#F8F7F4] text-[#C49B45] text-xs font-mono font-semibold uppercase tracking-[0.2em] border border-[#1E2322]/15 rounded-sm">
-              <Compass className="w-3.5 h-3.5 text-[#C85A32]" />
-              <span>THE THREE INTEGRATED PILLARS</span>
+          <Reveal direction="up">
+            <div className="text-center max-w-3xl mx-auto mb-16 space-y-3">
+              <div className="inline-flex items-center gap-2 px-3 py-1 bg-[#F8F7F4] text-[#C49B45] text-xs font-mono font-semibold uppercase tracking-[0.2em] border border-[#1E2322]/15 rounded-sm">
+                <Compass className="w-3.5 h-3.5 text-[#C85A32]" />
+                <span>THE THREE INTEGRATED PILLARS</span>
+              </div>
+              <h2 className="text-3xl sm:text-5xl font-bold uppercase text-[#1E2322] tracking-tight">
+                A ONE-STOP ARCHITECTURAL & CIVIL POWERHOUSE
+              </h2>
+              <p className="text-xs sm:text-sm text-[#1E2322]/75 font-sans">
+                Unlike fragmented local contractors or pure interior decorators, we orchestrate the entire home journey from architectural 3D drawings through structural concrete pouring to bespoke interior fitouts.
+              </p>
             </div>
-            <h2 className="text-3xl sm:text-5xl font-bold uppercase text-[#1E2322] tracking-tight">
-              A ONE-STOP ARCHITECTURAL & CIVIL POWERHOUSE
-            </h2>
-            <p className="text-xs sm:text-sm text-[#1E2322]/75 font-sans">
-              Unlike fragmented local contractors or pure interior decorators, we orchestrate the entire home journey from architectural 3D drawings through structural concrete pouring to bespoke interior fitouts.
-            </p>
-          </div>
+          </Reveal>
 
           {/* 3 Pillars Grid */}
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
             {/* Pillar 1: Architectural Designs */}
-            <div className="bg-[#F8F7F4] border border-[#1E2322]/15 rounded-sm shadow-sm flex flex-col justify-between overflow-hidden group hover:shadow-md hover:-translate-y-0.5 transition-all">
+            <Reveal direction="up" delay={0} className="h-full">
+            <div className="bg-[#F8F7F4] border border-[#1E2322]/15 rounded-sm shadow-sm flex flex-col justify-between overflow-hidden group hover:shadow-md hover:-translate-y-0.5 transition-all h-full">
               <div>
                 <div className="relative h-56 w-full bg-[#141716] border-b border-[#1E2322]/15">
                   <Image
@@ -253,9 +257,11 @@ export default async function Template5HomePage({ params }: PageProps) {
                 </Link>
               </div>
             </div>
+            </Reveal>
 
             {/* Pillar 2: Residential Construction */}
-            <div className="bg-white border border-[#C85A32] ring-1 ring-[#C85A32]/20 rounded-sm shadow-md flex flex-col justify-between overflow-hidden relative group hover:shadow-lg hover:-translate-y-0.5 transition-all">
+            <Reveal direction="up" delay={120} className="h-full">
+            <div className="bg-white border border-[#C85A32] ring-1 ring-[#C85A32]/20 rounded-sm shadow-md flex flex-col justify-between overflow-hidden relative group hover:shadow-lg hover:-translate-y-0.5 transition-all h-full">
               <div className="absolute top-0 right-0 bg-[#C85A32] text-white text-[9px] font-mono font-bold uppercase px-3 py-1 tracking-widest z-10 rounded-bl-sm">
                 CORE EXPERTISE
               </div>
@@ -316,9 +322,11 @@ export default async function Template5HomePage({ params }: PageProps) {
                 </Link>
               </div>
             </div>
+            </Reveal>
 
             {/* Pillar 3: Interior Designs */}
-            <div className="bg-[#F8F7F4] border border-[#1E2322]/15 rounded-sm shadow-sm flex flex-col justify-between overflow-hidden group hover:shadow-md hover:-translate-y-0.5 transition-all">
+            <Reveal direction="up" delay={240} className="h-full">
+            <div className="bg-[#F8F7F4] border border-[#1E2322]/15 rounded-sm shadow-sm flex flex-col justify-between overflow-hidden group hover:shadow-md hover:-translate-y-0.5 transition-all h-full">
               <div>
                 <div className="relative h-56 w-full bg-[#141716] border-b border-[#1E2322]/15">
                   <Image
@@ -375,6 +383,7 @@ export default async function Template5HomePage({ params }: PageProps) {
                 </Link>
               </div>
             </div>
+            </Reveal>
           </div>
         </div>
       </section>
@@ -382,18 +391,20 @@ export default async function Template5HomePage({ params }: PageProps) {
       {/* ─── 3. Interactive Construction & Interior Cost Estimator ─── */}
       <section id="cost-calculator" className="py-24 px-4 sm:px-8 bg-[#F8F7F4] border-b border-[#1E2322]/15">
         <div className="max-w-7xl mx-auto">
-          <div className="text-center max-w-3xl mx-auto mb-12 space-y-3">
-            <div className="inline-flex items-center gap-2 px-3 py-1 bg-[#181C1B] text-[#C49B45] text-xs font-mono font-semibold uppercase tracking-[0.2em] rounded-sm">
-              <Calculator className="w-3.5 h-3.5 text-[#C85A32]" />
-              <span>TRANSPARENT FINANCIAL CALCULATOR</span>
+          <Reveal direction="up">
+            <div className="text-center max-w-3xl mx-auto mb-12 space-y-3">
+              <div className="inline-flex items-center gap-2 px-3 py-1 bg-[#181C1B] text-[#C49B45] text-xs font-mono font-semibold uppercase tracking-[0.2em] rounded-sm">
+                <Calculator className="w-3.5 h-3.5 text-[#C85A32]" />
+                <span>TRANSPARENT FINANCIAL CALCULATOR</span>
+              </div>
+              <h2 className="text-3xl sm:text-5xl font-bold uppercase text-[#1E2322] tracking-tight">
+                ESTIMATE YOUR RESIDENTIAL BUILD IN SECONDS
+              </h2>
+              <p className="text-xs sm:text-sm text-[#1E2322]/75 font-sans">
+                Choose your built-up square footage, structural floors, specification package, and interior scope to calculate an immediate, itemized estimate.
+              </p>
             </div>
-            <h2 className="text-3xl sm:text-5xl font-bold uppercase text-[#1E2322] tracking-tight">
-              ESTIMATE YOUR RESIDENTIAL BUILD IN SECONDS
-            </h2>
-            <p className="text-xs sm:text-sm text-[#1E2322]/75 font-sans">
-              Choose your built-up square footage, structural floors, specification package, and interior scope to calculate an immediate, itemized estimate.
-            </p>
-          </div>
+          </Reveal>
 
           {/* Embedded Cost Estimator Component */}
           <CostEstimator basePath={basePath} />
@@ -403,18 +414,20 @@ export default async function Template5HomePage({ params }: PageProps) {
       {/* ─── 4. The 7-Stage Construction & 425+ Quality Audit Framework ─── */}
       <section id="stages" className="py-24 px-4 sm:px-8 bg-white border-b border-[#1E2322]/15">
         <div className="max-w-7xl mx-auto">
-          <div className="text-center max-w-3xl mx-auto mb-16 space-y-3">
-            <div className="inline-flex items-center gap-2 px-3 py-1 bg-[#F8F7F4] text-[#C49B45] text-xs font-mono font-semibold uppercase tracking-[0.2em] border border-[#1E2322]/15 rounded-sm">
-              <FileCheck className="w-3.5 h-3.5 text-[#C85A32]" />
-              <span>THE 425-POINT QUALITY CHECK SYSTEM</span>
+          <Reveal direction="up">
+            <div className="text-center max-w-3xl mx-auto mb-16 space-y-3">
+              <div className="inline-flex items-center gap-2 px-3 py-1 bg-[#F8F7F4] text-[#C49B45] text-xs font-mono font-semibold uppercase tracking-[0.2em] border border-[#1E2322]/15 rounded-sm">
+                <FileCheck className="w-3.5 h-3.5 text-[#C85A32]" />
+                <span>THE 425-POINT QUALITY CHECK SYSTEM</span>
+              </div>
+              <h2 className="text-3xl sm:text-5xl font-bold uppercase text-[#1E2322] tracking-tight">
+                OUR 7-STAGE RIGOROUS CONSTRUCTION TIMELINE
+              </h2>
+              <p className="text-xs sm:text-sm text-[#1E2322]/75 font-sans">
+                Every phase requires formal sign-off from our Quality Control Department before subsequent work commences.
+              </p>
             </div>
-            <h2 className="text-3xl sm:text-5xl font-bold uppercase text-[#1E2322] tracking-tight">
-              OUR 7-STAGE RIGOROUS CONSTRUCTION TIMELINE
-            </h2>
-            <p className="text-xs sm:text-sm text-[#1E2322]/75 font-sans">
-              Every phase requires formal sign-off from our Quality Control Department before subsequent work commences.
-            </p>
-          </div>
+          </Reveal>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {[
