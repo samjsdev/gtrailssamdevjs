@@ -97,7 +97,7 @@ export default async function ContactPage({ params }: PageProps) {
 
               <div className="bg-[var(--ink)] p-8 rounded-3xl shadow-xl text-[var(--white)] text-center">
                 <p className="inline-block bg-[var(--safety)] text-black px-3 py-1 text-[0.65rem] font-black uppercase tracking-[0.15em] rounded-full mb-4">BUILD RATE SIGNAL</p>
-                <p className="text-4xl sm:text-5xl font-black uppercase tracking-[-0.05em] mb-4">Rs.{business.pricePerSqft || '2200'} <span className="text-2xl">/ sqft</span></p>
+                <p className="text-4xl sm:text-5xl font-black uppercase tracking-[-0.05em] mb-4">Rs.{business.pricePerSqft || '2400'} <span className="text-2xl">/ sqft</span></p>
                 <p className="text-sm font-medium leading-6 text-white/62 border-t border-white/20 pt-4">Use this as a starting reference. Final estimates depend on site, scope and specification.</p>
               </div>
             </aside>
@@ -116,16 +116,17 @@ export default async function ContactPage({ params }: PageProps) {
               </div>
 
               <div className="flex justify-center w-full bg-[var(--paper)] py-6 rounded-2xl border border-[var(--line)]">
-                <div className="w-full max-w-[640px] bg-white rounded-xl shadow-sm border border-gray-100 p-8 flex flex-col justify-center">
-                  <h3 className="text-2xl font-bold mb-6 text-gray-800">Request Estimate</h3>
-                  <form className="space-y-4" >
-                    <input type="text" placeholder="Name" required className="w-full p-3 border border-gray-200 rounded-md outline-none focus:border-gray-400 transition-colors" />
-                    <input type="email" placeholder="Email" required className="w-full p-3 border border-gray-200 rounded-md outline-none focus:border-gray-400 transition-colors" />
-                    <input type="tel" placeholder="Phone" required className="w-full p-3 border border-gray-200 rounded-md outline-none focus:border-gray-400 transition-colors" />
-                    <textarea placeholder="Tell us about your requirements" required className="w-full p-3 border border-gray-200 rounded-md outline-none focus:border-gray-400 h-32 transition-colors"></textarea>
-                    <button type="submit" className="w-full bg-gray-800 text-white py-3 rounded-md uppercase tracking-wide text-sm font-semibold hover:bg-gray-700 transition-colors">Submit Request</button>
-                  </form>
-                </div>
+                <iframe
+                  src="https://docs.google.com/forms/d/e/1FAIpQLSdsYUIz-6IWzBpZXEpOIrAiVt1iiD8lRr3Gto5o7zjz0Ubq8Q/viewform?embedded=true"
+                  width="640"
+                  height="826"
+                  frameBorder="0"
+                  marginHeight={0}
+                  marginWidth={0}
+                  className="w-full max-w-[640px]"
+                >
+                  Loading…
+                </iframe>
               </div>
             </div>
           </div>

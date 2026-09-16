@@ -141,7 +141,7 @@ export const processSteps = [
   },
   {
     step: "04",
-    title: "Interior fit-out and handover",
+    title: "Interior design and handover",
     text: "Final carpentry, finishes, fixtures, maintenance cover, and warranty documentation close the project cleanly.",
   },
 ];

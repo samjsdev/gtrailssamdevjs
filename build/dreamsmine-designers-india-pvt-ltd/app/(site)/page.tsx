@@ -2,7 +2,7 @@ import { readSourceConfig } from '@/lib/sourceData';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import Image from 'next/image';
-import { ArrowRight, CheckCircle2, DraftingCompass, HardHat, ShieldCheck } from 'lucide-react';
+import { ArrowRight, CheckCircle2, DraftingCompass, HardHat, ShieldCheck, Eye, Download, FileText } from 'lucide-react';
 import {
   elevationImages,
   heroImages,
@@ -214,7 +214,7 @@ export default async function HomePage({ params }: PageProps) {
               <h2 className="mt-4 text-4xl sm:text-5xl font-black uppercase tracking-[-0.04em] leading-[0.9]">Everything needed to make a perfect home at one place</h2>
               <h3 className="mt-6 text-xl font-black uppercase tracking-[-0.03em] text-[var(--oxide)]">Plan, visualize, build and delivery</h3>
               <p className="section-subheading mt-4">
-                Four compact service pillars cover the complete journey from Vastu planning to exterior elevation, Constructions and interior fit-out.
+                Four compact service pillars cover the complete journey from Vastu planning to exterior elevation, Constructions and interior design.
               </p>
             </div>
 
@@ -356,6 +356,188 @@ export default async function HomePage({ params }: PageProps) {
         </div>
       </section>
 
+      {/* WANT TO KNOW MORE ABOUT OUR SERVICES / BROCHURES SECTION */}
+      <section className="bg-[var(--white)] py-16 md:py-24 border-b border-[var(--line)]">
+        <div className="site-grid">
+          {/* Header matching Dreamsmine Architectural Layout */}
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-12 md:mb-16">
+            <div className="max-w-3xl">
+              <div className="flex items-center gap-3 mb-6">
+                <div className="h-[2px] w-12 bg-[var(--oxide)]"></div>
+                <span className="text-xs font-black uppercase tracking-[0.2em] text-[var(--oxide)]">
+                  Download Brochures
+                </span>
+              </div>
+              <h2 className="text-4xl sm:text-5xl md:text-6xl font-black uppercase tracking-[-0.04em] leading-[0.95]">
+                Want To Know More <br className="hidden md:block"/> About Our Services?
+              </h2>
+            </div>
+            <div className="max-w-sm flex flex-col items-start gap-4">
+              <p className="text-sm md:text-base font-medium leading-relaxed text-black/60 border-l-2 border-[var(--line-strong)] pl-6">
+                Download our interior design brochure and construction brochure to see our designs, floor plans, and pricing.
+              </p>
+            </div>
+          </div>
+
+          {/* Brochure Cards Grid */}
+          <div className="grid md:grid-cols-2 gap-8">
+            {/* 01 / Interior Design Brochure */}
+            <div className="bg-[var(--paper)] rounded-3xl border border-[var(--line-strong)] p-6 sm:p-8 flex flex-col justify-between hover:border-[var(--ink)] transition-colors shadow-sm">
+              <div>
+                <div className="flex items-center justify-between gap-4 mb-6">
+                  <p className="text-[0.62rem] font-black uppercase tracking-[0.18em] text-[var(--oxide)]">
+                    01 / Interior Design Brochure
+                  </p>
+                  <span className="text-[0.62rem] font-black uppercase tracking-[0.18em] px-3 py-1 bg-[var(--white)] border border-[var(--line)] rounded-full text-black/70 shrink-0">
+                    16 Pages • 3.2 MB
+                  </span>
+                </div>
+
+                <div className="flex flex-col sm:flex-row items-start gap-5">
+                  {/* Real PDF Cover Thumbnail */}
+                  <a
+                    href="/images/all/brand-assets/dreamsmine-brochure-16pages.pdf"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group/thumb relative aspect-[1/1.414] w-24 sm:w-28 shrink-0 rounded-xl overflow-hidden border border-[var(--line-strong)] bg-white shadow-md block transition-transform duration-300 hover:scale-[1.03]"
+                    title="Click to view Interior Design Brochure"
+                  >
+                    <Image
+                      src="/images/all/brand-assets/brochure-preview.webp"
+                      alt="Interior Design Brochure PDF Preview"
+                      fill
+                      className="object-cover"
+                    />
+                    <div className="absolute inset-0 bg-black/0 group-hover/thumb:bg-black/30 flex items-center justify-center transition-colors">
+                      <span className="opacity-0 group-hover/thumb:opacity-100 bg-[var(--ink)] text-[var(--white)] text-[0.62rem] font-black uppercase tracking-[0.18em] px-2.5 py-1 rounded shadow-md transition-opacity">
+                        View PDF
+                      </span>
+                    </div>
+                  </a>
+
+                  <div className="min-w-0 flex-1">
+                    <h3 className="text-2xl sm:text-3xl font-black uppercase leading-[0.95] tracking-[-0.05em] text-[var(--ink)]">
+                      Interior Design Brochure
+                    </h3>
+                    <p className="mt-3 text-sm font-medium leading-6 text-black/62">
+                      See our modular kitchen designs, living rooms, bedroom wardrobes, false ceiling ideas, and package prices.
+                    </p>
+                    <div className="mt-4 flex flex-wrap items-center gap-2">
+                      <span className="text-[0.62rem] font-black uppercase tracking-[0.14em] text-[var(--oxide)] bg-[var(--oxide)]/10 px-2.5 py-1 rounded">
+                        Modular Kitchens
+                      </span>
+                      <span className="text-[0.62rem] font-black uppercase tracking-[0.14em] text-black/60 bg-black/5 px-2.5 py-1 rounded">
+                        10-Year Warranty
+                      </span>
+                      <span className="text-[0.62rem] font-black uppercase tracking-[0.14em] text-black/60 bg-black/5 px-2.5 py-1 rounded">
+                        100% Vastu
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="mt-8 pt-6 border-t border-[var(--line)] flex flex-col sm:flex-row gap-3">
+                <a
+                  href="/images/all/brand-assets/dreamsmine-brochure-16pages.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn-line rounded-xl flex-1 text-center"
+                >
+                  <Eye className="h-4 w-4" />
+                  View Brochure
+                </a>
+                <a
+                  href="/images/all/brand-assets/dreamsmine-brochure-16pages.pdf"
+                  download="Dreamsmine-Designers-Interior-Design-Brochure.pdf"
+                  className="btn-solid rounded-xl flex-1 text-center"
+                >
+                  <Download className="h-4 w-4" />
+                  Download Brochure
+                </a>
+              </div>
+            </div>
+
+            {/* 02 / Construction Brochure */}
+            <div className="bg-[var(--paper)] rounded-3xl border border-[var(--line-strong)] p-6 sm:p-8 flex flex-col justify-between hover:border-[var(--ink)] transition-colors shadow-sm">
+              <div>
+                <div className="flex items-center justify-between gap-4 mb-6">
+                  <p className="text-[0.62rem] font-black uppercase tracking-[0.18em] text-[var(--oxide)]">
+                    02 / Construction Brochure
+                  </p>
+                  <span className="text-[0.62rem] font-black uppercase tracking-[0.18em] px-3 py-1 bg-[var(--white)] border border-[var(--line)] rounded-full text-black/70 shrink-0">
+                    PDF • 3.4 MB
+                  </span>
+                </div>
+
+                <div className="flex flex-col sm:flex-row items-start gap-5">
+                  {/* Real PDF Cover Thumbnail */}
+                  <a
+                    href="/images/all/brand-assets/dreamsmine-construction-profile.pdf"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group/thumb relative aspect-[1/1.414] w-24 sm:w-28 shrink-0 rounded-xl overflow-hidden border border-[var(--line-strong)] bg-white shadow-md block transition-transform duration-300 hover:scale-[1.03]"
+                    title="Click to view Construction Brochure"
+                  >
+                    <Image
+                      src="/images/all/brand-assets/construction-preview.webp"
+                      alt="Construction Brochure PDF Preview"
+                      fill
+                      className="object-cover"
+                    />
+                    <div className="absolute inset-0 bg-black/0 group-hover/thumb:bg-black/30 flex items-center justify-center transition-colors">
+                      <span className="opacity-0 group-hover/thumb:opacity-100 bg-[var(--ink)] text-[var(--white)] text-[0.62rem] font-black uppercase tracking-[0.18em] px-2.5 py-1 rounded shadow-md transition-opacity">
+                        View PDF
+                      </span>
+                    </div>
+                  </a>
+
+                  <div className="min-w-0 flex-1">
+                    <h3 className="text-2xl sm:text-3xl font-black uppercase leading-[0.95] tracking-[-0.05em] text-[var(--ink)]">
+                      Construction Brochure
+                    </h3>
+                    <p className="mt-3 text-sm font-medium leading-6 text-black/62">
+                      See our house construction packages from ₹2,400/sq.ft, building materials, work steps, and warranty details.
+                    </p>
+                    <div className="mt-4 flex flex-wrap items-center gap-2">
+                      <span className="text-[0.62rem] font-black uppercase tracking-[0.14em] text-[var(--oxide)] bg-[var(--oxide)]/10 px-2.5 py-1 rounded">
+                        From ₹2,400 / sq.ft
+                      </span>
+                      <span className="text-[0.62rem] font-black uppercase tracking-[0.14em] text-black/60 bg-black/5 px-2.5 py-1 rounded">
+                        ISO 9001 Certified
+                      </span>
+                      <span className="text-[0.62rem] font-black uppercase tracking-[0.14em] text-black/60 bg-black/5 px-2.5 py-1 rounded">
+                        Free 3D Elevation
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="mt-8 pt-6 border-t border-[var(--line)] flex flex-col sm:flex-row gap-3">
+                <a
+                  href="/images/all/brand-assets/dreamsmine-construction-profile.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn-line rounded-xl flex-1 text-center"
+                >
+                  <Eye className="h-4 w-4" />
+                  View Brochure
+                </a>
+                <a
+                  href="/images/all/brand-assets/dreamsmine-construction-profile.pdf"
+                  download="Dreamsmine-Construction-Brochure.pdf"
+                  className="btn-solid rounded-xl flex-1 text-center"
+                >
+                  <Download className="h-4 w-4" />
+                  Download Brochure
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section className="bg-[var(--paper)] py-16 md:py-24 border-b border-[var(--line)]">
         <div className="site-grid">
           <div className="grid lg:grid-cols-[1fr_1fr] gap-12 lg:gap-20 items-center">
@@ -382,16 +564,17 @@ export default async function HomePage({ params }: PageProps) {
             </div>
 
             <div className="w-full flex justify-center border border-[var(--line-strong)] bg-[var(--white)] p-2 md:p-6 rounded-3xl shadow-xl relative">
-              <div className="w-full max-w-[640px] bg-white rounded-xl shadow-sm border border-gray-100 p-8 flex flex-col justify-center">
-                <h3 className="text-2xl font-bold mb-6 text-gray-800">Request Estimate</h3>
-                <form className="space-y-4" >
-                  <input type="text" placeholder="Name" required className="w-full p-3 border border-gray-200 rounded-md outline-none focus:border-gray-400 transition-colors" />
-                  <input type="email" placeholder="Email" required className="w-full p-3 border border-gray-200 rounded-md outline-none focus:border-gray-400 transition-colors" />
-                  <input type="tel" placeholder="Phone" required className="w-full p-3 border border-gray-200 rounded-md outline-none focus:border-gray-400 transition-colors" />
-                  <textarea placeholder="Tell us about your requirements" required className="w-full p-3 border border-gray-200 rounded-md outline-none focus:border-gray-400 h-32 transition-colors"></textarea>
-                  <button type="submit" className="w-full bg-gray-800 text-white py-3 rounded-md uppercase tracking-wide text-sm font-semibold hover:bg-gray-700 transition-colors">Submit Request</button>
-                </form>
-              </div>
+              <iframe
+                src="https://docs.google.com/forms/d/e/1FAIpQLSdsYUIz-6IWzBpZXEpOIrAiVt1iiD8lRr3Gto5o7zjz0Ubq8Q/viewform?embedded=true"
+                width="640"
+                height="826"
+                frameBorder="0"
+                marginHeight={0}
+                marginWidth={0}
+                className="w-full max-w-[640px] min-h-[1200px] md:min-h-[850px] rounded-xl bg-transparent"
+              >
+                Loading…
+              </iframe>
             </div>
 
           </div>
