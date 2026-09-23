@@ -38,23 +38,114 @@ export function generateStaticParams() {
   return SERVICE_DETAILS.map((service) => ({ service: service.slug }));
 }
 
+const SERVICE_SEO: Record<
+  string,
+  {
+    title: string;
+    description: string;
+    keywords: string[];
+  }
+> = {
+  'architectural-design': {
+    title: 'Architectural Design & 3D Floor Plans in Chennai | MPA',
+    description:
+      'Custom 2D floor plans, photorealistic 3D elevations, CMDA/GCC sanction drawings, structural engineering, and itemized BOQ estimates in Chennai by Ar. S. Murali.',
+    keywords: [
+      'architectural design chennai',
+      'residential architects anna nagar',
+      'vastu floor plans chennai',
+      '3d elevation design chennai',
+      'cmda sanction drawings chennai',
+      'structural engineering chennai',
+      'architectural blueprint drafting',
+      'house plan design chennai',
+    ],
+  },
+  'residential-construction': {
+    title: 'Residential Construction & Civil Contracting Chennai | ARCH Foundation',
+    description:
+      'Engineered residential home construction with Tata Tiscon 550D steel, UltraTech cement, 425+ quality inspections, fixed-price BOQ, and 10-year structural warranty in Chennai.',
+    keywords: [
+      'residential construction chennai',
+      'house builders anna nagar',
+      'civil contractors chennai',
+      'arch foundation construction',
+      'turnkey home builders chennai',
+      'fixed price construction packages',
+      'tata tiscon 550d house construction',
+      'structural warranty home construction',
+    ],
+  },
+  'interior-design': {
+    title: 'Luxury Home Interior Design & Modular Kitchens Chennai | MPA',
+    description:
+      'Signature luxury residential interiors, custom modular kitchens, bespoke wardrobes, false ceilings, and architectural lighting in Chennai tailored to your lifestyle.',
+    keywords: [
+      'interior design chennai',
+      'luxury home interiors anna nagar',
+      'modular kitchen manufacturers chennai',
+      'wardrobe interior designers chennai',
+      'false ceiling lighting chennai',
+      'bespoke furniture joinery chennai',
+      'living room interior makeovers',
+    ],
+  },
+  'turnkey-construction': {
+    title: 'Turnkey House Construction & Architectural Execution Chennai | MPA + ARCH Foundation',
+    description:
+      'Complete design-build turnkey construction from architectural blueprints and municipal sanctions to structural handover and bespoke interior fit-out.',
+    keywords: [
+      'turnkey house construction chennai',
+      'design and build contractors chennai',
+      'single point accountability home building',
+      'end to end house construction chennai',
+    ],
+  },
+};
+
 export async function generateMetadata({ params }: ServicePageProps): Promise<Metadata> {
   const { service: slug } = await params;
   const service = getServiceDetail(slug);
 
   if (!service) return {};
 
-  const serviceName = `${service.title} ${service.accent.replace(/\.$/, '')}`;
-  const companyName =
-    service.slug === 'residential-construction'
-      ? 'ARCH Foundation'
-      : service.slug === 'turnkey-construction'
-        ? 'MPA + ARCH Foundation'
-        : 'Murali Patharala & Associates';
+  const seo = SERVICE_SEO[slug] || {
+    title: `${service.title} ${service.accent.replace(/\.$/, '')} | Murali Patharala & Associates`,
+    description: service.summary,
+    keywords: [slug, 'murali patharala associates', 'chennai architecture'],
+  };
+
+  const canonicalUrl = `/services/${slug}/`;
+  const heroImage = service.heroImage || '/og-image.jpg';
 
   return {
-    title: `${serviceName} | ${companyName}`,
-    description: service.summary,
+    title: seo.title,
+    description: seo.description,
+    keywords: seo.keywords,
+    alternates: {
+      canonical: canonicalUrl,
+    },
+    openGraph: {
+      title: seo.title,
+      description: seo.description,
+      url: `https://muralipatharalaassociates.com${canonicalUrl}`,
+      siteName: 'Murali Patharala & Associates (MPA)',
+      images: [
+        {
+          url: heroImage,
+          width: 1200,
+          height: 630,
+          alt: service.heroAlt || seo.title,
+        },
+      ],
+      type: 'website',
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: seo.title,
+      description: seo.description,
+      images: [heroImage],
+    },
   };
 }
 
@@ -176,8 +267,47 @@ export default async function ServiceDetailPage({ params }: ServicePageProps) {
     siblingBullets: ['Fixed Price', 'Quality Audits'],
   };
 
+  const serviceJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    '@id': `https://muralipatharalaassociates.com/services/${service.slug}/#service`,
+    name: `${service.title} ${service.accent.replace(/\.$/, '')}`,
+    provider: {
+      '@type': 'LocalBusiness',
+      name: service.ownership.company,
+      telephone: '+91 98410 98490',
+      address: {
+        '@type': 'PostalAddress',
+        streetAddress: 'W115A, 3rd Ave, Annanagar East',
+        addressLocality: 'Chennai',
+        addressRegion: 'Tamil Nadu',
+        postalCode: '600040',
+        addressCountry: 'IN',
+      },
+    },
+    description: service.summary,
+    image: `https://muralipatharalaassociates.com${service.heroImage}`,
+    areaServed: ['Chennai', 'Anna Nagar', 'Coimbatore', 'Bangalore', 'Pondicherry', 'Tamil Nadu'],
+    serviceType: service.eyebrow,
+    hasOfferCatalog: {
+      '@type': 'OfferCatalog',
+      name: `${service.title} Deliverables`,
+      itemListElement: service.deliverables?.slice(0, 5).map((d) => ({
+        '@type': 'Offer',
+        itemOffered: {
+          '@type': 'Service',
+          name: d,
+        },
+      })),
+    },
+  };
+
   return (
     <article className="w-full bg-[#FAFAF8] text-[#111111]">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceJsonLd) }}
+      />
       {/* ── 00 · Hero Header ── */}
       <header className="relative min-h-[640px] overflow-hidden bg-[#111111] text-white lg:min-h-[720px]">
         <Image

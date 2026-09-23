@@ -1,3 +1,4 @@
+import type { Metadata } from 'next';
 import { readSourceConfig } from '@/lib/sourceData';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
@@ -21,6 +22,48 @@ import {
   ScanLine,
   Workflow,
 } from 'lucide-react';
+
+export const metadata: Metadata = {
+  title: 'Architects & Builders in Chennai | Architecture, Construction & Interiors',
+  description:
+    'Award-winning architectural design by Ar. S. Murali, paired with engineered residential construction by ARCH Foundation and bespoke luxury interiors across Chennai, Anna Nagar, and regional Tamil Nadu.',
+  keywords: [
+    'architectural design chennai',
+    'residential architects anna nagar',
+    'house construction chennai',
+    'turnkey civil contractor chennai',
+    'luxury home interiors chennai',
+    'modular kitchen chennai',
+    'vastu floor plans chennai',
+    '3d elevation designs chennai',
+    'murali patharala associates',
+    'arch foundation construction',
+  ],
+  alternates: {
+    canonical: '/',
+  },
+  openGraph: {
+    title: 'Murali Patharala & Associates | Architecture, Construction & Interiors Chennai',
+    description:
+      'Turnkey architectural design, residential construction by ARCH Foundation, and luxury interior design in Chennai with 28+ years experience and 500+ delivered homes.',
+    url: 'https://muralipatharalaassociates.com/',
+    images: [
+      {
+        url: '/og-image.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'Murali Patharala & Associates Architecture, Construction & Interiors',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Murali Patharala & Associates | Architecture, Construction & Interiors',
+    description:
+      'Bespoke architectural design, structural home construction with ARCH Foundation, and luxury interiors in Chennai.',
+    images: ['/og-image.jpg'],
+  },
+};
 
 interface PageProps {
   params?: any;

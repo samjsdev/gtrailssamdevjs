@@ -1,7 +1,45 @@
+import type { Metadata } from 'next';
 import { readSourceConfig } from '@/lib/sourceData';
 import { notFound } from 'next/navigation';
 import Image from 'next/image';
 import OfficeLocations from '../OfficeLocations';
+
+export const metadata: Metadata = {
+  title: 'Contact Architectural Studio Anna Nagar | MPA Chennai',
+  description:
+    'Schedule an architectural consultation, site survey, or luxury interior review at our Anna Nagar East studio in Chennai. Call +91 98410 98490.',
+  keywords: [
+    'contact architects chennai',
+    'anna nagar architecture office',
+    'book architectural consultation chennai',
+    'construction quotation chennai',
+    'interior designer consultation anna nagar',
+  ],
+  alternates: {
+    canonical: '/contact/',
+  },
+  openGraph: {
+    title: 'Contact Murali Patharala & Associates | Anna Nagar East, Chennai',
+    description:
+      'Visit our design studio or reach our architects directly at +91 98410 98490 for custom drawings, construction estimates, or interior consultations.',
+    url: 'https://muralipatharalaassociates.com/contact/',
+    images: [
+      {
+        url: '/og-image.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'Contact Murali Patharala & Associates',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Contact Studio | Murali Patharala & Associates Chennai',
+    description:
+      'Schedule your architectural consultation or site visit in Chennai. Call +91 98410 98490.',
+    images: ['/og-image.jpg'],
+  },
+};
 
 interface PageProps {
   params?: any;

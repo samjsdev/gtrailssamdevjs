@@ -1,3 +1,4 @@
+import type { Metadata } from 'next';
 import { readSourceConfig } from '@/lib/sourceData';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
@@ -20,6 +21,44 @@ import {
   HeartHandshake
 } from 'lucide-react';
 import ArchitecturalDiagramBg from '@/components/ArchitecturalDiagramBg';
+
+export const metadata: Metadata = {
+  title: 'About Us | 28+ Years Architectural Excellence in Chennai | MPA',
+  description:
+    'Founded in 1998 by Ar. S. Murali in Anna Nagar, Murali Patharala & Associates (MPA) pairs custom architectural design and bespoke interiors with civil construction delivered by ARCH Foundation.',
+  keywords: [
+    'about murali patharala associates',
+    'ar s murali architect chennai',
+    'arch foundation civil construction',
+    'anna nagar architects',
+    'residential architecture firm chennai',
+    'experienced house designers chennai',
+  ],
+  alternates: {
+    canonical: '/about/',
+  },
+  openGraph: {
+    title: 'About Murali Patharala & Associates | 28+ Years in Chennai',
+    description:
+      'Learn about our journey from 1998, principal architect Ar. S. Murali, our engineering arm ARCH Foundation, and our philosophy of design-build excellence.',
+    url: 'https://muralipatharalaassociates.com/about/',
+    images: [
+      {
+        url: '/images/architecture/principal-architect.webp',
+        width: 1200,
+        height: 630,
+        alt: 'Ar. S. Murali, Principal Architect',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'About Us | Murali Patharala & Associates',
+    description:
+      'Over 28 years and 500+ residential projects delivered across Chennai, Coimbatore, Bangalore and Pondicherry.',
+    images: ['/images/architecture/principal-architect.webp'],
+  },
+};
 
 interface PageProps {
   params?: any;

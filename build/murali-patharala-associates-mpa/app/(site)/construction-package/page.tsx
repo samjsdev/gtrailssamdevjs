@@ -5,9 +5,43 @@ import { ArrowDown, ArrowRight, ArrowUpRight, CheckCircle2, FileText, ShieldChec
 import ConstructionPackages from '../ConstructionPackages';
 
 export const metadata: Metadata = {
-  title: 'Construction Packages in Chennai | ARCH Foundation',
+  title: 'Fixed-Price Home Construction Packages in Chennai | ARCH Foundation',
   description:
-    'Compare fixed-price home construction packages, branded material specifications, timelines and itemized BOQ inclusions from ARCH Foundation Chennai.',
+    'Compare Classic, Premium, and Supreme residential construction packages with 100% frozen pricing, Tata Tiscon 550D steel, UltraTech cement, 425+ quality audits, and 10-year structural warranty in Chennai.',
+  keywords: [
+    'home construction packages chennai',
+    'fixed price house construction chennai',
+    'construction cost per sq ft chennai',
+    'civil contractors anna nagar',
+    'arch foundation construction packages',
+    'turnkey builders chennai',
+    'tata tiscon 550d house builders',
+    '10 year warranty home construction',
+  ],
+  alternates: {
+    canonical: '/construction-package/',
+  },
+  openGraph: {
+    title: 'Fixed-Price Home Construction Packages in Chennai | ARCH Foundation',
+    description:
+      'Compare transparent building specifications, itemized BOQ inclusions, primary steel specifications, and zero escalation contracts from ARCH Foundation Chennai.',
+    url: 'https://muralipatharalaassociates.com/construction-package/',
+    images: [
+      {
+        url: '/images/architecture/structural-construction-frame.webp',
+        width: 1200,
+        height: 630,
+        alt: 'Residential Construction Packages by ARCH Foundation',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Home Construction Packages in Chennai | ARCH Foundation',
+    description:
+      'Fixed-price home construction packages with branded materials, 425+ quality audits, and zero cost escalation.',
+    images: ['/images/architecture/structural-construction-frame.webp'],
+  },
 };
 
 const PACKAGE_PROMISES = [

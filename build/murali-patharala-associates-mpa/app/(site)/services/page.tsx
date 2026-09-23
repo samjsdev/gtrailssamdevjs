@@ -1,3 +1,4 @@
+import type { Metadata } from 'next';
 import { readSourceConfig } from '@/lib/sourceData';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
@@ -5,6 +6,46 @@ import Image from 'next/image';
 import PageIntro from '@/components/PageIntro';
 import { SERVICE_DETAILS } from '@/lib/serviceDetails';
 import { ArrowRight, ArrowUpRight, CheckCircle2, Layers, ShieldCheck, Sparkles, FileText } from 'lucide-react';
+
+export const metadata: Metadata = {
+  title: 'Architecture, Construction & Interior Design Services in Chennai',
+  description:
+    'Comprehensive design-build solutions under one roof: Bespoke Architectural Design by MPA, Residential Civil Construction by ARCH Foundation, and Signature Luxury Interiors in Chennai.',
+  keywords: [
+    'architectural design services chennai',
+    'residential construction services chennai',
+    'interior design services chennai',
+    'house plan 3d elevation chennai',
+    'turnkey civil construction anna nagar',
+    'modular kitchen and wardrobe chennai',
+    'vastu consultation chennai',
+    'arch foundation construction packages',
+  ],
+  alternates: {
+    canonical: '/services/',
+  },
+  openGraph: {
+    title: 'Architecture, Construction & Interior Design Services | MPA Chennai',
+    description:
+      'From custom 2D/3D architectural drawings and municipal approvals to turnkey civil construction and luxury interior styling in Chennai.',
+    url: 'https://muralipatharalaassociates.com/services/',
+    images: [
+      {
+        url: '/og-image.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'MPA Architecture, Construction and Interior Services',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Architecture, Construction & Interior Design Services | MPA Chennai',
+    description:
+      'Design, construct, and furnish your dream home with 28+ years of architectural excellence and on-time execution.',
+    images: ['/og-image.jpg'],
+  },
+};
 
 interface PageProps {
   params?: any;

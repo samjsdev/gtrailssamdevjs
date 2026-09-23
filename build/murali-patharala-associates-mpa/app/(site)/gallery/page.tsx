@@ -1,9 +1,48 @@
+import type { Metadata } from 'next';
 import { readSourceConfig } from '@/lib/sourceData';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import Image from 'next/image';
 import GalleryClient from '../GalleryClient';
 import { Building2, Award, ShieldCheck, FileCheck2, ArrowDown } from 'lucide-react';
+
+export const metadata: Metadata = {
+  title: 'Architectural & Interior Design Portfolio Chennai | MPA Projects',
+  description:
+    'Explore finished residential villas, contemporary facades, custom modular kitchens, and luxury living spaces designed by Murali Patharala & Associates across Chennai and Tamil Nadu.',
+  keywords: [
+    'architecture portfolio chennai',
+    'villa design gallery chennai',
+    'interior design photos chennai',
+    'modern elevation gallery',
+    'modular kitchen gallery chennai',
+    'completed residential projects chennai',
+  ],
+  alternates: {
+    canonical: '/gallery/',
+  },
+  openGraph: {
+    title: 'Architectural & Interior Design Portfolio Chennai | MPA Projects',
+    description:
+      'Curated showcase of bespoke contemporary residences, interior styling, and structural execution by Murali Patharala & Associates.',
+    url: 'https://muralipatharalaassociates.com/gallery/',
+    images: [
+      {
+        url: '/images/architecture/tropical-modern-villa.webp',
+        width: 1200,
+        height: 630,
+        alt: 'Murali Patharala & Associates Architectural Portfolio',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Architectural & Interior Design Portfolio Chennai | MPA',
+    description:
+      'Showcase of contemporary villas, elevations, and luxury interior design across Chennai.',
+    images: ['/images/architecture/tropical-modern-villa.webp'],
+  },
+};
 
 interface PageProps {
   params?: any;

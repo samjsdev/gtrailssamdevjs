@@ -5,9 +5,42 @@ import { ArrowDown, ArrowRight, ArrowUpRight, DraftingCompass, FileSearch, Home,
 import DesignPackages from '../DesignPackages';
 
 export const metadata: Metadata = {
-  title: 'Architectural Design Packages in Chennai | MPA',
+  title: 'Architectural Design Packages in Chennai | Murali Patharala & Associates',
   description:
-    'Compare concept, construction-ready and complete home design packages from Murali Patharala & Associates in Chennai.',
+    'Compare Concept, Construction-Ready, and Complete Home Design packages with custom 2D floor plans, photorealistic 3D elevations, structural engineering drawings, and itemized BOQ estimates in Chennai.',
+  keywords: [
+    'architectural design packages chennai',
+    'house plan packages chennai',
+    '3d elevation package chennai',
+    'structural drawings cost chennai',
+    'cmda sanction approval plans',
+    'vastu floor plan packages',
+    'architect cost per sq ft chennai',
+  ],
+  alternates: {
+    canonical: '/design-package/',
+  },
+  openGraph: {
+    title: 'Architectural Design Packages in Chennai | Murali Patharala & Associates',
+    description:
+      'Plan your home with complete clarity. Compare transparent 2D floor planning, 3D exterior elevations, structural sets, and itemized construction estimates before you build.',
+    url: 'https://muralipatharalaassociates.com/design-package/',
+    images: [
+      {
+        url: '/images/architecture/architectural-blueprint-draft.webp',
+        width: 1200,
+        height: 630,
+        alt: 'Architectural Design Packages by Murali Patharala & Associates',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Architectural Design Packages in Chennai | MPA',
+    description:
+      'Transparent design packages covering 2D plans, 3D elevations, and engineering drawings before construction.',
+    images: ['/images/architecture/architectural-blueprint-draft.webp'],
+  },
 };
 
 const DESIGN_SEQUENCE = [
