@@ -1,6 +1,6 @@
 .section {
   padding: clamp(56px, 6vw, 88px) clamp(24px, 4vw, 48px);
-  background: #ded8ce;
+  background: var(--color-surface-pale);
   color: #151616;
 }
 
@@ -13,9 +13,12 @@
   margin-inline: auto;
 }
 
+.brandLead { display: flex; align-items: center; gap: 24px; margin-bottom: 24px; }
+.brandLogo { width: 124px; height: 124px; object-fit: contain; flex: none; transition: transform .2s ease; cursor: pointer; }
+.brandLogo:hover { transform: scale(1.05); }
 .eyebrow {
-  margin-bottom: 16px;
-  color: #a64319;
+  margin-bottom: 0;
+  color: #703015;
   font-size: 10px;
   font-weight: 700;
   letter-spacing: .2em;
@@ -39,8 +42,8 @@
 .lead {
   max-width: 460px;
   margin: 22px 0 30px;
-  color: #565953;
-  font-size: 14px;
+  color: var(--color-ink-muted);
+  font-size: 15px;
   font-weight: 450;
   line-height: 1.85;
 }
@@ -61,7 +64,7 @@
   padding: 17px 19px;
   border-radius: 6px;
   background: #a94419;
-  color: white;
+  color: #fff;
   font-size: 10px;
   font-weight: 700;
   letter-spacing: .08em;
@@ -69,7 +72,7 @@
   transition: background .2s, transform .2s;
 }
 
-.primary:hover { background: #171918; transform: translateY(-2px); }
+.primary:hover { background: #9A431F; transform: translateY(-2px); }
 
 .secondary {
   display: inline-flex;
@@ -82,13 +85,13 @@
   text-transform: uppercase;
 }
 
-.secondary:hover { color: #a64319; }
+.secondary:hover { color: #703015; }
 
 .visual {
   position: relative;
   min-height: 480px;
   overflow: hidden;
-  background: #181a1c;
+  background: var(--color-surface-linen);
   border: 1px solid rgba(17, 17, 17, .18);
   border-radius: 8px;
 }
@@ -99,7 +102,7 @@
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, transparent 45%, rgba(7, 9, 10, .82));
+  background: linear-gradient(180deg, transparent 45%, rgba(227, 216, 183, 0.92));
   pointer-events: none;
 }
 
@@ -109,7 +112,7 @@
   left: 28px;
   right: 28px;
   bottom: 26px;
-  color: white;
+  color: #302A20;
 }
 
 .caption span {
@@ -117,8 +120,8 @@
   margin-bottom: 10px;
   padding: 5px 10px;
   border: 1px solid rgba(251, 146, 60, .65);
-  background: rgba(10, 10, 10, .45);
-  color: #fb923c;
+  background: rgba(227, 216, 183, 0.92);
+  color: #703015;
   font-size: 8px;
   font-weight: 700;
   letter-spacing: .18em;
@@ -138,8 +141,10 @@
 
 @media (max-width: 560px) {
   .section { padding: 54px 20px; }
+  .brandLead { gap: 18px; }
+  .brandLogo { width: 104px; height: 104px; }
   .copy h2 { font-size: 34px; }
-  .lead { font-size: 13px; margin-block: 20px 26px; }
+  .lead { font-size: 14px; margin-block: 20px 26px; }
   .visual { min-height: 300px; }
   .caption { left: 20px; right: 20px; bottom: 20px; }
   .primary { width: 100%; }

@@ -1,176 +1,94 @@
 'use client';
 
+import Image from 'next/image';
 import { useState, useRef, useEffect, useCallback } from 'react';
+import styles from './BeforeAfter.module.css';
 
 interface BeforeAfterProps {
   image?: string;
   beforeImage?: string;
   afterImage?: string;
+  title?: string;
   caption?: string;
+  aspectRatio?: string;
 }
 
-export default function BeforeAfter({ image, beforeImage, afterImage, caption }: BeforeAfterProps) {
-  // Start on far right (100%) so the raw before plan sketch fills the frame on initial load
-  const [pos, setPos] = useState<number>(100);
+export default function BeforeAfter({
+  image,
+  beforeImage,
+  afterImage,
+  title = 'Architectural design',
+  caption,
+  aspectRatio,
+}: BeforeAfterProps) {
+  const [pos, setPos] = useState(100);
+  const [beforeLoaded, setBeforeLoaded] = useState(false);
+  const [afterLoaded, setAfterLoaded] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
   const animRef = useRef<number | null>(null);
+  const delayRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const hasAnimated = useRef(false);
   const userInteracted = useRef(false);
 
-  const beforeSrc = beforeImage || image || '/images/architecture/villa-plan-sketch.webp';
-  const afterSrc = afterImage || image || '/images/architecture/villa-after-finished.webp';
-
-  const triggerSweep = useCallback(() => {
-    if (hasAnimated.current || userInteracted.current) return;
-    hasAnimated.current = true;
-
-    setPos(100);
-
-    const startPos = 100;
-    const targetPos = 50;
-    const duration = 2200; // 2.2s cinematic sweep
-
-    // 700ms pause so the viewer registers the plan sketch first
-    const delayTimer = setTimeout(() => {
-      if (userInteracted.current) return;
-      const startTime = performance.now();
-
-      const step = (now: number) => {
-        if (userInteracted.current) return;
-        const elapsed = now - startTime;
-        const progress = Math.min(elapsed / duration, 1);
-
-        // easeInOutCubic: gentle departure, smooth sweep, graceful arrival
-        const ease =
-          progress < 0.5
-            ? 4 * progress * progress * progress
-            : 1 - Math.pow(-2 * progress + 2, 3) / 2;
-
-        const current = startPos - (startPos - targetPos) * ease;
-        setPos(current);
-
-        if (progress < 1) {
-          animRef.current = requestAnimationFrame(step);
-        }
-      };
-
-      animRef.current = requestAnimationFrame(step);
-    }, 700);
-
-    return () => clearTimeout(delayTimer);
+  const stopAnimation = useCallback(() => {
+    if (delayRef.current !== null) clearTimeout(delayRef.current);
+    if (animRef.current !== null) cancelAnimationFrame(animRef.current);
   }, []);
 
   useEffect(() => {
-    const el = containerRef.current;
-    if (!el) return;
+    if (!beforeLoaded || !afterLoaded || !containerRef.current) return;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      if (!userInteracted.current) setPos(50);
+      return;
+    }
 
-    let observer: IntersectionObserver | null = null;
-    const setupTimer = setTimeout(() => {
+    const observer = new IntersectionObserver(entries => {
+      if (!entries.some(entry => entry.isIntersecting && entry.intersectionRatio >= 0.15)) return;
+      observer.disconnect();
       if (hasAnimated.current || userInteracted.current) return;
+      hasAnimated.current = true;
 
-      observer = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting && entry.intersectionRatio >= 0.15) {
-              triggerSweep();
-              if (observer) observer.disconnect();
-            }
-          });
-        },
-        { threshold: [0.15, 0.35] }
-      );
+      // Preserve the original pause and 2.2-second sweep from sketch to split view.
+      delayRef.current = setTimeout(() => {
+        if (userInteracted.current) return;
+        const start = performance.now();
+        const sweep = (now: number) => {
+          if (userInteracted.current) return;
+          const progress = Math.min((now - start) / 2200, 1);
+          const ease = progress < 0.5 ? 4 * progress ** 3 : 1 - (-2 * progress + 2) ** 3 / 2;
+          setPos(100 - 50 * ease);
+          if (progress < 1) animRef.current = requestAnimationFrame(sweep);
+        };
+        animRef.current = requestAnimationFrame(sweep);
+      }, 700);
+    }, { threshold: 0.15 });
 
-      observer.observe(el);
-    }, 250);
+    observer.observe(containerRef.current);
+    return () => { observer.disconnect(); stopAnimation(); };
+  }, [beforeLoaded, afterLoaded, stopAnimation]);
 
-    return () => {
-      clearTimeout(setupTimer);
-      if (observer) (observer as IntersectionObserver).disconnect();
-      if (animRef.current) cancelAnimationFrame(animRef.current);
-    };
-  }, [triggerSweep]);
-
-  const handlePointerDown = () => {
-    userInteracted.current = true;
-    if (animRef.current) cancelAnimationFrame(animRef.current);
-  };
-
-  const handleSliderChange = (newVal: number) => {
-    userInteracted.current = true;
-    if (animRef.current) cancelAnimationFrame(animRef.current);
-    setPos(newVal);
-  };
+  const takeControl = () => { userInteracted.current = true; stopAnimation(); };
+  const imageSizes = '(max-width: 767px) calc(100vw - 48px), (max-width: 1200px) calc((100vw - 80px) / 2), 588px';
 
   return (
-    <div ref={containerRef} className="w-full">
-      {/* Mobile Badges (Above image) */}
-      <div className="flex sm:hidden items-center justify-between mb-4 mt-2">
-        <span className="text-[10px] font-bold tracking-widest uppercase bg-[#111111] text-white px-3 py-1.5">
-          Plan Sketch
-        </span>
-        <span className="text-[10px] font-bold tracking-widest uppercase bg-[#EA580C] text-[#111111] px-3 py-1.5 shadow-sm">
-          Completed Project
-        </span>
-      </div>
-
+    <div>
+      <div className={styles.labels}><span>2D sketch</span><span>3D view</span></div>
       <div
-        className="relative overflow-hidden aspect-[16/10] sm:aspect-[16/9.5] shadow-xl select-none border border-[#111111]/20 sm:border-2 border-[#111111] bg-[#111111] -mx-6 w-[calc(100%+3rem)] sm:mx-0 sm:w-full"
-        onPointerDown={handlePointerDown}
+        ref={containerRef}
+        data-comparison-frame
+        className={styles.frame}
+        style={aspectRatio ? { aspectRatio } : undefined}
       >
-        {/* Before: Plan Sketch (Underneath) */}
-        <img
-          src={beforeSrc}
-          alt="Architectural plan sketch and blueprint"
-          className="absolute inset-0 w-full h-full object-cover pointer-events-none"
-        />
-
-        {/* After: Completed Project (Clipped from left at pos%) */}
-        <img
-          src={afterSrc}
-          alt="Completed architectural project"
-          className="absolute inset-0 w-full h-full object-cover pointer-events-none"
-          style={{ clipPath: `inset(0 0 0 ${pos}%)` }}
-        />
-
-        {/* Badges (Desktop Only) */}
-        <span className="hidden sm:block absolute top-4 sm:top-5 left-3 sm:left-5 z-[3] text-[9px] sm:text-[11px] font-bold tracking-widest uppercase px-3.5 py-1.5 bg-[#111111]/90 text-white backdrop-blur-sm border border-white/20 pointer-events-none">
-          Plan Sketch
-        </span>
-        <span className="hidden sm:block absolute top-4 sm:top-5 right-3 sm:right-5 z-[3] text-[9px] sm:text-[11px] font-bold tracking-widest uppercase px-3.5 py-1.5 bg-[#EA580C] text-[#111111] font-extrabold shadow-md pointer-events-none">
-          Completed Project
-        </span>
-
-        {/* Divider line & handle */}
-        <div
-          className="absolute top-0 bottom-0 w-[3px] bg-white -translate-x-1/2 shadow-[0_0_25px_rgba(0,0,0,0.6)] pointer-events-none z-[4]"
-          style={{ left: `${pos}%` }}
-        >
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[46px] h-[46px] sm:w-[54px] sm:h-[54px] rounded-full bg-[#EA580C] grid place-items-center text-[#111111] text-[18px] font-extrabold shadow-[0_8px_24px_rgba(0,0,0,0.4)] border-2 border-white">
-            ↔
-          </div>
+        <Image src={beforeImage || image || '/images/architecture/villa-plan-sketch.webp'} alt={`${title}: 2D elevation sketch`} fill sizes={imageSizes} className={styles.image} onLoad={() => setBeforeLoaded(true)} />
+        <div className={styles.reveal} style={{ clipPath: `inset(0 0 0 ${pos}%)` }}>
+          <Image src={afterImage || image || '/images/architecture/villa-after-finished.webp'} alt={`${title}: 3D exterior visualisation`} fill sizes={imageSizes} loading={beforeLoaded ? 'eager' : 'lazy'} className={styles.image} onLoad={() => setAfterLoaded(true)} />
         </div>
-
-        {/* Interactive range input overlay */}
-        <input
-          type="range"
-          min={0}
-          max={100}
-          step={0.1}
-          value={pos}
-          onPointerDown={handlePointerDown}
-          onTouchStart={handlePointerDown}
-          onMouseDown={handlePointerDown}
-          onChange={(e) => handleSliderChange(Number(e.target.value))}
-          aria-label="Drag to compare plan sketch and completed project"
-          className="absolute inset-0 w-full h-full opacity-0 cursor-ew-resize z-[10]"
-        />
+        <div className={styles.divider} style={{ left: `${pos}%` }} aria-hidden="true"><span>↔</span></div>
+        <input type="range" min={0} max={100} step={0.1} value={pos} onPointerDown={takeControl} onKeyDown={takeControl}
+          onChange={event => { takeControl(); setPos(Number(event.target.value)); }}
+          aria-label={`${title}: drag to compare 2D sketch and 3D view`} aria-valuetext={`${Math.round(pos)}% sketch, ${Math.round(100 - pos)}% 3D view`} className={styles.slider} />
       </div>
-
-      {caption && (
-        <p className="text-center text-xs sm:text-sm text-[#757575] mt-4 font-semibold uppercase tracking-wider">
-          {caption}
-        </p>
-      )}
+      {caption && <p className={styles.caption}>{caption}</p>}
     </div>
   );
 }

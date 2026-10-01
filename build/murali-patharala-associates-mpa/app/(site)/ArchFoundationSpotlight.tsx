@@ -8,17 +8,37 @@ export default function ArchFoundationSpotlight() {
     <section className={styles.section} aria-labelledby="mpa-build-heading">
       <div className={styles.container}>
         <div data-motion-reveal className={styles.copy}>
-          <p className={styles.eyebrow}>Design to handover</p>
+          <div className={styles.brandLead}>
+            <Link href="/construction-package" aria-label="ARCH foundations Construction Packages">
+              <Image
+                src="/murali-patharala-associates-assets/brand_identity/WhatsApp Image 2026-09-23 at 16.52.36.webp"
+                alt="ARCH foundations logo"
+                width={124}
+                height={124}
+                className={styles.brandLogo}
+              />
+            </Link>
+            <p className={styles.eyebrow}>Design to handover</p>
+          </div>
           <h2 id="mpa-build-heading">
             Designed by MPA.<br />
-            <em>Built by ARCH Foundation.</em>
+            <em>
+              Built by{' '}
+              <Link href="/construction-package" className="hover:underline text-inherit" title="View Construction Packages">
+                <span className="brand-name">ARCH foundations</span>
+              </Link>.
+            </em>
           </h2>
           <p className={styles.lead}>
-            You plan your home with MPA. On site, ARCH Foundation — our construction team — builds exactly that. One responsibility from first sketch to handover.
+            MPA provides architectural and interior design consultancy.{' '}
+            <Link href="/construction-package" className="hover:underline text-inherit font-semibold" title="View Construction Packages">
+              <span className="brand-name">ARCH foundations</span>
+            </Link>{' '}
+            complements that work with construction, property development, project management and site supervision.
           </p>
           <div className={styles.actions}>
-            <Link href="/services/architectural-design" className={styles.primary}>
-              Explore architectural design <ArrowUpRight size={17} aria-hidden="true" />
+            <Link href="/construction-package" className={styles.primary}>
+              Construction Packages <ArrowUpRight size={17} aria-hidden="true" />
             </Link>
             <Link href="/services/residential-construction" className={styles.secondary}>
               How we build
@@ -29,7 +49,7 @@ export default function ArchFoundationSpotlight() {
         <div data-motion-reveal className={styles.visual}>
           <Image
             src="/images/architecture/structural-construction-frame.webp"
-            alt="MPA construction team building a home to approved drawings"
+            alt="Construction work at the structural stage"
             fill
             sizes="(max-width: 900px) 100vw, 52vw"
             className={styles.image}

@@ -1,13 +1,15 @@
+import { CONTACT_LINKS } from '@/lib/contactLinks';
 import { ReactNode } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { readSourceConfig } from '@/lib/sourceData';
 import { notFound } from 'next/navigation';
 import ClientNavbar from './ClientNavbar';
-import { MessageCircle } from 'lucide-react';
-import InitialLoader from './InitialLoader';
 import SiteMotion from './SiteMotion';
 import { OFFICE_LOCATIONS } from '@/lib/offices';
+import BrandMark from '@/components/BrandMark';
+import { STUDIO } from '@/lib/clientProfile';
+import SocialLinks from '@/components/SocialLinks';
 
 interface LayoutProps {
   children: ReactNode;
@@ -21,16 +23,11 @@ export default async function SiteLayout({ children, params }: LayoutProps) {
     notFound();
   }
 
-  const phone = '09841098490';
   const displayPhone = '+91 98410 98490';
-  const rawDigits = phone.replace(/\D/g, '');
-  const cleanPhone = rawDigits.startsWith('91') ? rawDigits : `91${rawDigits.replace(/^0+/, '')}`;
 
-  const address = 'W115A, 3rd Ave, Annanagar East, Chennai, Tamil Nadu 600040';
-  const mapEmbedUrl = data.clinic.mapEmbedUrl || 'https://maps.google.com/maps?q=murali%20patharala%20%26%20associates%20(%20mpa)%20W115A%2C%203rd%20Ave%2C%20Annanagar%20East%2C%20Chennai%2C%20Tamil%20Nadu%20600040&output=embed';
+  const mapEmbedUrl = OFFICE_LOCATIONS[0].mapEmbedUrl;
   return (
-    <div className="min-h-screen font-sans antialiased text-[#111111] selection:bg-[#EA580C] selection:text-white w-full bg-[#FAFAFA] flex flex-col">
-      <InitialLoader companyName={data.clinic.clinicName || 'Murali Patharala & Associates'} />
+    <div className="min-h-screen font-sans antialiased text-[#111111] selection:bg-[#EA580C] selection:text-white w-full bg-surface-cream flex flex-col">
       <SiteMotion />
       {/* ── Sticky Nav ── */}
       <ClientNavbar
@@ -40,11 +37,11 @@ export default async function SiteLayout({ children, params }: LayoutProps) {
       />
 
       {/* ── Page Content ── */}
-      <main className="flex-1 w-full bg-[#FAFAFA]">
+      <main className="flex-1 w-full bg-surface-cream">
         {children}
       </main>
 
-      {/* ── FOOTER (Deejos-Inspired Authority Signboard) ── */}
+      {/* ── FOOTER (Practice contact information) ── */}
       <footer id="contact-footer" className="relative bg-[#121418] text-white border-t border-white/10 overflow-hidden">
         {/* Atmospheric Architectural Twilight Residence Background */}
         <Image
@@ -60,32 +57,19 @@ export default async function SiteLayout({ children, params }: LayoutProps) {
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-10 border-b-2 border-[#262626] pb-12 mb-8">
             <div>
               <div className="flex items-center gap-3 mb-6">
-                <div className="w-8 h-8 bg-[#EA580C] flex items-center justify-center shrink-0">
-                  <div className="w-2.5 h-2.5 bg-[#111111]"></div>
-                </div>
+                <BrandMark size={44} className="shrink-0" />
                 <div className="flex flex-col">
-                  <span
-                    className="text-2xl sm:text-3xl font-bold tracking-tight uppercase text-[#EA580C]"
-                    style={{ fontFamily: "'Lora', serif" }}
-                  >
-                    MPA
-                  </span>
-                  <span className="text-[10px] font-bold tracking-[0.2em] text-white/70 uppercase">
-                    Murali Patharala & Associates
-                  </span>
+                  <span className="brand-name text-lg lowercase leading-none tracking-tight text-white">murali patharala</span>
+                  <span className="brand-name mt-1 text-[11px] lowercase tracking-[0.11em] text-[#FB923C]">&amp; associates</span>
                 </div>
               </div>
               <p className="text-sm text-white/80 max-w-sm mb-6 leading-relaxed font-medium">
-                An architectural and interior design practice founded in 1998. For complete turnkey delivery, MPA&apos;s design expertise is paired with civil construction and quality control by ARCH Foundation.
+                An architectural and interior design practice founded in 1998. For complete turnkey delivery, MPA&apos;s design expertise is paired with civil construction and quality control by <Link href="/construction-package" className="hover:text-[#FB923C] underline underline-offset-2 transition-colors"><span className="brand-name">ARCH foundations</span></Link>.
               </p>
 
               <div className="mb-6">
-                <span className="text-xs text-[#EA580C] font-bold uppercase tracking-wider block mb-1">
-                  RATED 4.9 / 5.0
-                </span>
-                <p className="text-xs text-white/70">
-                  500+ completed residential projects across Chennai, Coimbatore, Bangalore &amp; Pondicherry.
-                </p>
+                <span className="block text-xs font-bold uppercase tracking-wider text-[#FB923C]">Residential · Commercial · Institutional</span>
+                <p className="mt-2 text-xs leading-relaxed text-white/70">Architecture and interiors by MPA. Construction and property development by <Link href="/construction-package" className="hover:text-[#FB923C] underline underline-offset-2 transition-colors"><span className="brand-name">ARCH foundations</span></Link>.</p>
               </div>
 
               <div className="bg-[#181818] border border-[#2A2A2A] inline-flex flex-col px-5 py-3.5">
@@ -114,9 +98,8 @@ export default async function SiteLayout({ children, params }: LayoutProps) {
                   <li key={link.label}>
                     <Link
                       href={link.href}
-                      className="text-xs font-semibold text-white/80 hover:text-[#EA580C] transition-colors flex items-center gap-1.5"
+                      className="text-xs font-semibold text-white/80 hover:text-[#EA580C] transition-colors"
                     >
-                      <span className="text-[#EA580C]/60 text-[10px]">&rarr;</span>
                       <span>{link.label}</span>
                     </Link>
                   </li>
@@ -130,18 +113,13 @@ export default async function SiteLayout({ children, params }: LayoutProps) {
                 {[
                   { label: 'Design Packages (MPA)', href: '/design-package' },
                   { label: 'Construction Packages (ARCH)', href: '/construction-package' },
-                  { label: 'Classic Construction Package', href: '/construction-package#packages' },
-                  { label: 'Premium Construction Package', href: '/construction-package#packages' },
-                  { label: 'Supreme Luxury Package', href: '/construction-package#packages' },
-                  { label: 'Design Sequence & Feasibility', href: '/design-package#design-packages' },
                   { label: 'Book Consultation & BOQ', href: '/contact#enquiry' },
                 ].map((link) => (
                   <li key={link.label}>
                     <Link
                       href={link.href}
-                      className="text-xs font-semibold text-white/80 hover:text-[#EA580C] transition-colors flex items-center gap-1.5"
+                      className="text-xs font-semibold text-white/80 hover:text-[#EA580C] transition-colors"
                     >
-                      <span className="text-[#EA580C]/60 text-[10px]">&rarr;</span>
                       <span>{link.label}</span>
                     </Link>
                   </li>
@@ -150,7 +128,7 @@ export default async function SiteLayout({ children, params }: LayoutProps) {
             </div>
 
             <div>
-              <h5 className="text-xs font-bold uppercase tracking-widest text-[#EA580C] mb-5">OUR STUDIOS</h5>
+              <h5 className="text-xs font-bold uppercase tracking-widest text-[#EA580C] mb-5">PROJECT LOCATIONS</h5>
               <div className="grid grid-cols-2 gap-x-4 gap-y-3">
                 {OFFICE_LOCATIONS.map((office) => (
                   <Link key={office.city} href={`/contact#offices`} className="group border-b border-white/10 pb-2">
@@ -160,12 +138,11 @@ export default async function SiteLayout({ children, params }: LayoutProps) {
                 ))}
               </div>
               <div className="mt-4 space-y-2">
-                <p className="text-[11px] text-[#757575] font-bold uppercase tracking-wider">
-                  Mon – Sat: 9:30 AM – 7:30 PM
-                </p>
-                <p className="text-xs text-white/70">
-                  hello@muralipatharala.com
-                </p>
+                <p className="text-xs leading-relaxed text-white/70">{STUDIO.address}</p>
+                <a href={STUDIO.alternatePhoneHref} className="inline-block text-sm font-semibold text-[#FB923C] hover:text-white">{STUDIO.alternatePhone}</a>
+                <div className="pt-3">
+                  <SocialLinks dark />
+                </div>
                 <div className="mt-5 border-2 border-[#262626] overflow-hidden bg-[#111111]">
                   <iframe 
                     src={mapEmbedUrl}
@@ -184,23 +161,26 @@ export default async function SiteLayout({ children, params }: LayoutProps) {
           </div>
 
           <div className="flex flex-col md:flex-row justify-between items-center text-center md:text-left text-[11px] font-bold uppercase tracking-widest text-[#757575] gap-4">
-            <p>© {new Date().getFullYear()} Murali Patharala & Associates (MPA). All rights reserved.</p>
+            <p>© {new Date().getFullYear()} <span className="brand-name">Murali Patharala & Associates</span> (MPA). All rights reserved.</p>
             <div className="flex flex-wrap justify-center md:justify-end gap-x-4 gap-y-2 text-center">
-              <span className="text-white/60">Home Construction &bull; Architecture &bull; Interiors</span>
+              <span className="text-white/60">Architecture &bull; Interiors &bull; Construction</span>
               <span className="hidden sm:inline">•</span>
-              <span className="text-[#EA580C]">Chennai &bull; Coimbatore &bull; Bangalore &bull; Pondicherry</span>
+              <span className="text-[#EA580C]">Anna Nagar East &bull; Chennai</span>
             </div>
           </div>
+          <nav aria-label="Legal information" className="mt-6 flex flex-wrap justify-center gap-x-6 gap-y-2 border-t border-white/10 pt-5 text-[11px] font-semibold text-white/65 md:justify-start">
+            <Link href="/privacy" className="transition-colors hover:text-[#FB923C] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#FB923C]">Privacy Policy</Link>
+            <Link href="/terms" className="transition-colors hover:text-[#FB923C] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#FB923C]">Terms of Use</Link>
+          </nav>
         </div>
       </footer>
 
       {/* ── Floating WhatsApp Widget ── */}
       <a
-        href={`https://wa.me/${cleanPhone}?text=${encodeURIComponent('Hi Murali Patharala & Associates (MPA), I would like to schedule a free architectural consultation.')}`}
+        href={`${CONTACT_LINKS.whatsapp}?text=${encodeURIComponent('Hi Murali Patharala & Associates (MPA), I would like to schedule an architectural consultation.')}`}
         target="_blank"
         rel="noopener noreferrer"
-        className="fixed bottom-5 right-4 sm:bottom-6 sm:right-6 z-50 bg-[#25D366] text-white p-3.5 sm:p-4 rounded-full shadow-2xl hover:scale-110 hover:bg-[#1ebd5a] transition-all flex items-center justify-center"
-        style={{ animation: 'bounce 2s infinite' }}
+        className="fixed bottom-[calc(1rem+env(safe-area-inset-bottom))] right-4 z-50 flex size-14 items-center justify-center rounded-full bg-[#25D366] text-white shadow-2xl transition-all hover:scale-110 hover:bg-[#1ebd5a] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#25D366] sm:bottom-6 sm:right-6 sm:size-16"
         aria-label="Chat with us on WhatsApp"
       >
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" className="w-7 h-7 sm:w-8 sm:h-8 fill-current">

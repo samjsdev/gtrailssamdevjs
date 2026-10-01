@@ -1,3 +1,4 @@
+import BrandText from '@/components/BrandText';
 import Image from 'next/image';
 
 type Props = {
@@ -34,18 +35,18 @@ export default function PageIntro(props: Props) {
         </p>
         <h1
           className="text-4xl sm:text-6xl font-bold font-serif leading-[1.08] tracking-tight text-white"
-          style={{ fontFamily: "'Lora', serif" }}
+          style={{ fontFamily: "var(--font-content)" }}
         >
           {props.title} <br />
           <em className="text-[#EA580C] not-italic">{props.accent}</em>
         </h1>
         <p className="text-sm sm:text-lg text-white/80 max-w-2xl font-medium leading-relaxed">
-          {props.description}
+          <BrandText>{props.description}</BrandText>
         </p>
         <div className="flex items-center gap-6 pt-2 text-xs font-bold uppercase tracking-widest text-white/60">
           <span className="flex items-center gap-2">
             <span className="w-2 h-2 bg-[#EA580C] rounded-full inline-block" />
-            MPA Architecture &amp; ARCH Foundation Civil
+            MPA Architecture &amp; <span className="brand-name">ARCH Foundation</span> Civil
           </span>
           <span>•</span>
           <span>Anna Nagar, Chennai</span>

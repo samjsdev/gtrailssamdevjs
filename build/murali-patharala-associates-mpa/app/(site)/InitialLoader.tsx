@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import BrandMark from '@/components/BrandMark';
 
 interface InitialLoaderProps {
   companyName: string;
@@ -37,7 +38,7 @@ export default function InitialLoader({ companyName }: InitialLoaderProps) {
 
   return (
     <div
-      className={`fixed inset-0 z-[100] flex flex-col items-center justify-center bg-[#111111] transition-opacity duration-350 ease-out ${
+      className={`fixed inset-0 z-[100] flex flex-col items-center justify-center bg-surface-sand transition-opacity duration-350 ease-out ${
         fade ? 'opacity-0 pointer-events-none' : 'opacity-100'
       }`}
     >
@@ -71,12 +72,12 @@ export default function InitialLoader({ companyName }: InitialLoaderProps) {
         
         {/* Inner static branding (optional, but looks premium) */}
         <div className="absolute inset-0 flex items-center justify-center">
-          <div className="w-1.5 h-1.5 bg-[#EA580C] animate-pulse"></div>
+          <BrandMark size={42} className="animate-pulse" />
         </div>
       </div>
       
       <div className="mt-8 overflow-hidden">
-        <p className="text-[10px] font-bold tracking-[0.3em] uppercase text-[#EA580C] animate-pulse">
+        <p className="text-[10px] font-bold tracking-[0.3em] uppercase text-[#703015] animate-pulse">
           {companyName}
         </p>
       </div>

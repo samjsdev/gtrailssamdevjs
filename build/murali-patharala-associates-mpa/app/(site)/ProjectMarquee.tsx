@@ -44,12 +44,12 @@ export default function ProjectMarquee() {
   };
 
   return (
-    <section className="relative w-full bg-white border-y border-stone-200 py-14 sm:py-16 overflow-hidden">
+    <section className="relative w-full bg-surface-cream border-y border-stone-200 py-14 sm:py-16 overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-8 flex flex-wrap items-end justify-between gap-4 mb-10">
         <div className="space-y-3 max-w-2xl">
           <div className="flex items-center gap-2.5">
             <span className="w-8 h-[3px] bg-[#E64D16]" />
-            <span className="text-[11px] font-extrabold tracking-[0.22em] uppercase text-[#E64D16]">
+            <span className="text-[11px] font-extrabold tracking-[0.22em] uppercase text-[#703015]">
               Delivered Across Chennai
             </span>
           </div>
@@ -61,14 +61,14 @@ export default function ProjectMarquee() {
           <button
             onClick={() => scrollByAmount(-1)}
             aria-label="Scroll projects left"
-            className="w-11 h-11 rounded-full border border-stone-300 text-stone-700 hover:bg-[#E64D16] hover:border-[#E64D16] hover:text-white flex items-center justify-center transition-all"
+            className="w-11 h-11 rounded-full border border-stone-300 text-stone-700 hover:bg-[#E64D16] hover:border-[#E64D16] hover:text-[#302A20] flex items-center justify-center transition-all"
           >
             <ChevronLeft className="w-5 h-5" />
           </button>
           <button
             onClick={() => scrollByAmount(1)}
             aria-label="Scroll projects right"
-            className="w-11 h-11 rounded-full border border-stone-300 text-stone-700 hover:bg-[#E64D16] hover:border-[#E64D16] hover:text-white flex items-center justify-center transition-all"
+            className="w-11 h-11 rounded-full border border-stone-300 text-stone-700 hover:bg-[#E64D16] hover:border-[#E64D16] hover:text-[#302A20] flex items-center justify-center transition-all"
           >
             <ChevronRight className="w-5 h-5" />
           </button>
@@ -87,7 +87,7 @@ export default function ProjectMarquee() {
             <div
               key={i}
               data-card
-              className="marquee-card group relative shrink-0 w-[360px] sm:w-[440px] aspect-[4/3] overflow-hidden bg-stone-200"
+              className="marquee-card group relative shrink-0 w-[360px] sm:w-[440px] aspect-[4/3] overflow-hidden bg-surface-oat"
             >
               <Image
                 src={p.image}
@@ -96,11 +96,11 @@ export default function ProjectMarquee() {
                 className="object-cover group-hover:scale-105 transition-transform duration-700"
                 sizes="440px"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#1A1B1A]/85 via-transparent to-transparent" />
-              <div className="absolute bottom-0 left-0 right-0 p-4 text-white">
+              <div className="absolute inset-0 bg-gradient-to-t from-surface-linen/95 via-transparent to-transparent" />
+              <div className="absolute bottom-0 left-0 right-0 p-4 text-[#302A20]">
                 <h4 className="font-bold text-sm leading-tight">{p.title}</h4>
                 <div className="flex items-center gap-1.5 text-[11px] text-[#E6C673] font-semibold mt-1">
-                  <MapPin className="w-3 h-3 text-[#E64D16]" />
+                  <MapPin className="w-3 h-3 text-[#703015]" />
                   <span>{p.location}</span>
                 </div>
               </div>

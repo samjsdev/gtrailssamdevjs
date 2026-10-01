@@ -1,5 +1,7 @@
 'use client';
 
+import BrandText from '@/components/BrandText';
+
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -47,21 +49,21 @@ export default function TestimonialCarousel() {
 
   return (
     <div className="relative max-w-4xl mx-auto">
-      <div className="relative bg-white border border-stone-200 rounded-lg shadow-lg p-8 sm:p-12 overflow-hidden">
+      <div className="relative bg-surface-cream border border-stone-200 rounded-lg shadow-lg p-8 sm:p-12 overflow-hidden">
         <div className="absolute top-0 left-0 w-1.5 h-full bg-gradient-to-b from-[#E64D16] to-[#B8934B]" />
         <Quote className="absolute top-6 right-8 w-16 h-16 text-orange-100" />
 
         <div key={index} className="mpa-fade space-y-6">
-          <div className="flex items-center gap-1 text-[#E64D16]">
+          <div className="flex items-center gap-1 text-[#703015]">
             {[...Array(5)].map((_, i) => (
               <Star key={i} className="w-4 h-4 fill-[#E64D16]" />
             ))}
           </div>
           <p className="text-sm sm:text-base text-stone-700 leading-relaxed italic font-normal min-h-[96px] sm:min-h-[72px]">
-            &ldquo;{t.text}&rdquo;
+            &ldquo;<BrandText>{t.text}</BrandText>&rdquo;
           </p>
           <div className="flex items-center gap-3.5">
-            <div className="w-12 h-12 rounded-full bg-gradient-to-br from-[#E64D16] to-[#A6340C] text-white font-bold flex items-center justify-center text-lg shadow-md">
+            <div className="w-12 h-12 rounded-full bg-gradient-to-br from-[#E64D16] to-[#A6340C] text-[#302A20] font-bold flex items-center justify-center text-lg shadow-md">
               {t.author.charAt(0)}
             </div>
             <div>
@@ -78,7 +80,7 @@ export default function TestimonialCarousel() {
         <button
           onClick={() => go(-1)}
           aria-label="Previous testimonial"
-          className="w-10 h-10 rounded-full border border-stone-300 bg-white text-stone-600 hover:bg-[#E64D16] hover:text-white hover:border-[#E64D16] flex items-center justify-center transition-all"
+          className="w-10 h-10 rounded-full border border-stone-300 bg-surface-cream text-stone-600 hover:bg-[#E64D16] hover:text-[#302A20] hover:border-[#E64D16] flex items-center justify-center transition-all"
         >
           <ChevronLeft className="w-4 h-4" />
         </button>
@@ -97,7 +99,7 @@ export default function TestimonialCarousel() {
         <button
           onClick={() => go(1)}
           aria-label="Next testimonial"
-          className="w-10 h-10 rounded-full border border-stone-300 bg-white text-stone-600 hover:bg-[#E64D16] hover:text-white hover:border-[#E64D16] flex items-center justify-center transition-all"
+          className="w-10 h-10 rounded-full border border-stone-300 bg-surface-cream text-stone-600 hover:bg-[#E64D16] hover:text-[#302A20] hover:border-[#E64D16] flex items-center justify-center transition-all"
         >
           <ChevronRight className="w-4 h-4" />
         </button>

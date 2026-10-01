@@ -1,0 +1,58 @@
+.page { --ink: #1d1c1a; --paper: var(--color-surface-cream); --orange: #ef7935; min-height: 100vh; background: var(--paper); color: var(--ink); }
+.previewBar { display: flex; justify-content: space-between; gap: 20px; padding: 11px 4.5%; background: #242321; color: #eee7df; font: 600 10px/1.3 var(--font-content); letter-spacing: .19em; text-transform: uppercase; }
+.previewBar span:nth-child(2) { color: #ffae79; }
+.header { height: 100px; display: flex; align-items: center; justify-content: space-between; gap: 32px; padding: 0 4.5%; background: #f8f6f1; border-bottom: 1px solid #d8d3cb; }
+.headerBrand { display: flex; align-items: center; gap: 14px; min-width: 235px; }
+.croppedMark { width: 58px; height: 58px; position: relative; overflow: hidden; flex: none; background: var(--orange); }
+.croppedImage { object-fit: cover; object-position: center top; }
+.headerWordmark { display: flex; flex-direction: column; gap: 2px; color: #242321; font: 700 18px/1.05 var(--font-content); letter-spacing: -.055em; text-transform: lowercase; }
+.headerWordmark span { font-weight: 500; letter-spacing: .08em; font-size: 12px; }
+.nav { display: flex; align-items: center; gap: clamp(20px, 3vw, 54px); font: 650 11px/1 var(--font-content); letter-spacing: .14em; text-transform: uppercase; }
+.headerAction { display: flex; gap: 25px; align-items: center; padding: 17px 19px; border: 1px solid var(--ink); white-space: nowrap; font: 700 11px/1 var(--font-content); letter-spacing: .12em; text-transform: uppercase; }
+.hero { display: grid; grid-template-columns: minmax(0, 48%) minmax(0, 52%); min-height: 650px; background: #282825; color: white; }
+.heroCopy { display: flex; flex-direction: column; justify-content: space-between; padding: clamp(58px, 6vw, 100px) 6% 42px 9.4%; }
+.eyebrow, .overline, .aboutLabel { font: 650 10px/1.5 var(--font-content); letter-spacing: .2em; text-transform: uppercase; }
+.eyebrow { display: flex; align-items: center; gap: 13px; color: #eda77f; }
+.line { width: 36px; height: 1px; background: #eda77f; flex: none; }
+.hero h1 { margin-top: 50px; max-width: 710px; font: 400 clamp(55px, 5.25vw, 92px)/1.06 var(--font-content); letter-spacing: -.06em; }
+.hero h1 em { color: #f38a4b; font-weight: 400; }
+.heroCopy > p { max-width: 560px; margin: 30px 0 70px; color: #d4d0c9; font: 400 16px/1.85 var(--font-content); }
+.heroFoot { display: flex; justify-content: space-between; align-items: end; border-top: 1px solid #ffffff4a; padding-top: 20px; color: #f4e5d8; font: 650 11px/1.35 var(--font-content); letter-spacing: .12em; text-transform: uppercase; }
+.heroFoot small { display: block; margin-top: 5px; color: #afa9a1; font-size: 9px; }
+.heroVisual { position: relative; min-height: 650px; overflow: hidden; background: #3d3d39; }
+.heroImage { object-fit: cover; object-position: center center; }
+.imageCaption { position: absolute; bottom: 0; left: 0; right: 0; display: flex; justify-content: space-between; gap: 18px; padding: 44px 40px 27px; color: white; background: linear-gradient(transparent, #000b); font: 650 10px/1.2 var(--font-content); letter-spacing: .16em; text-transform: uppercase; }
+.identitySection { background: var(--color-surface-oat); padding: 110px 4.5% 125px; }
+.sectionLead { display: flex; flex-direction: column; align-items: flex-start; margin-bottom: 42px; }
+.overline { color: #a7471c; }
+.sectionLead h2, .servicesHeading h2 { margin-top: 21px; font: 400 clamp(44px, 4vw, 68px)/1.15 var(--font-content); letter-spacing: -.055em; }
+.sectionLead h2 em, .servicesHeading h2 em { color: #ae4d24; font-weight: 400; }
+.sectionLead p, .servicesHeading p { margin-top: 19px; color: #68635c; font: 400 14px/1.75 var(--font-content); }
+.identityGrid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.identityCard { min-width: 0; display: grid; grid-template-columns: minmax(210px, 44%) 1fr; min-height: 350px; background: var(--color-surface-cream); border: 1px solid #ded9d1; }
+.logoStage { display: grid; place-items: center; min-height: 350px; padding: 34px; background: var(--color-surface-oat); }
+.mpaFullLogo { width: 165px; height: auto; box-shadow: 0 18px 30px #35230d29; }
+.archFullLogo { width: 214px; height: auto; box-shadow: 0 18px 30px #35230d29; }
+.identityCopy { display: flex; flex-direction: column; justify-content: flex-end; padding: 36px; }
+.identityCopy > span { color: #a7471c; font: 700 10px/1.3 var(--font-content); letter-spacing: .18em; text-transform: uppercase; }
+.identityCopy h3 { margin-top: 18px; font: 400 clamp(28px, 2.3vw, 39px)/1.2 var(--font-content); letter-spacing: -.04em; }
+.identityCopy p { max-width: 340px; margin-top: 22px; color: #6a655e; font: 400 13px/1.8 var(--font-content); }
+.aboutSection { display: grid; grid-template-columns: 24% 1fr; gap: 30px; padding: 115px 4.5%; background: var(--color-surface-linen); }
+.aboutLabel { padding-top: 9px; color: #9c421e; }
+.aboutSection h2 { font: 400 clamp(40px, 4vw, 66px)/1.18 var(--font-content); letter-spacing: -.055em; }
+.aboutColumns { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; max-width: 890px; margin-top: 38px; border-top: 1px solid #9d968d; padding-top: 28px; }
+.aboutColumns p { color: #494641; font: 400 15px/1.9 var(--font-content); }
+.servicesSection { padding: 110px 4.5% 125px; background: var(--color-surface-honey); }
+.servicesHeading { margin-bottom: 48px; }
+.serviceGrid { display: grid; grid-template-columns: repeat(4, 1fr); border-top: 1px solid #c7c0b7; border-left: 1px solid #c7c0b7; }
+.serviceCard { min-height: 300px; display: flex; flex-direction: column; padding: 30px 26px 24px; border-right: 1px solid #c7c0b7; border-bottom: 1px solid #c7c0b7; }
+.serviceTop { display: flex; align-items: flex-start; justify-content: space-between; color: #a7471c; font: 700 10px/1 var(--font-content); letter-spacing: .15em; }
+.serviceCard h3 { margin-top: 64px; font: 400 clamp(23px, 2vw, 34px)/1.2 var(--font-content); letter-spacing: -.04em; }
+.serviceCard p { margin-top: 17px; color: #67625c; font: 400 13px/1.7 var(--font-content); }
+.serviceCard > svg { margin-top: auto; align-self: flex-end; color: #a7471c; }
+.footer { display: flex; align-items: center; justify-content: space-between; gap: 20px; padding: 30px 4.5%; background: #242321; color: #bbb4ab; font: 600 10px/1.4 var(--font-content); letter-spacing: .14em; text-transform: uppercase; }
+.footer p { letter-spacing: .06em; text-transform: none; }
+@media (max-width: 1180px) { .nav { display: none; } .identityCard { grid-template-columns: 1fr; } .logoStage { min-height: 260px; } .identityCopy { min-height: 220px; } }
+@media (max-width: 900px) { .hero { grid-template-columns: 1fr; } .heroCopy { min-height: 540px; padding: 64px 6% 35px; } .heroVisual { min-height: 480px; } .identityGrid { grid-template-columns: 1fr 1fr; } .aboutSection { grid-template-columns: 1fr; gap: 24px; } .serviceGrid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 650px) { .previewBar { padding: 10px 5%; } .previewBar span:last-child { display: none; } .header { height: 80px; padding: 0 5%; } .headerBrand { min-width: 0; } .croppedMark { width: 48px; height: 48px; } .headerWordmark { font-size: 14px; } .headerWordmark span { font-size: 9px; } .headerAction { display: none; } .heroCopy { min-height: 520px; padding: 54px 6% 30px; } .hero h1 { margin-top: 46px; font-size: clamp(44px, 10vw, 62px); } .heroCopy > p { margin-bottom: 45px; font-size: 14px; } .heroVisual { min-height: 340px; } .imageCaption { padding: 45px 18px 18px; font-size: 8px; } .identitySection, .servicesSection { padding: 75px 5% 85px; } .identityGrid { grid-template-columns: 1fr; } .identityCard { grid-template-columns: minmax(135px, 38%) 1fr; min-height: 245px; } .logoStage { min-height: 245px; padding: 20px; } .mpaFullLogo { width: 100px; } .archFullLogo { width: 130px; } .identityCopy { min-height: 0; padding: 24px; } .identityCopy h3 { font-size: 23px; } .identityCopy p { font-size: 11px; margin-top: 12px; } .aboutSection { padding: 75px 5%; } .aboutColumns { grid-template-columns: 1fr; gap: 18px; } .serviceCard { min-height: 270px; padding: 22px 16px; } .serviceCard h3 { margin-top: 42px; font-size: 22px; } .serviceCard p { font-size: 11px; } .footer { flex-wrap: wrap; padding: 24px 5%; } .footer p { order: 3; width: 100%; } }
+@media (max-width: 650px) { .identityCard { grid-template-columns: 1fr; } .logoStage { min-height: 230px; } .mpaFullLogo { width: 125px; } .archFullLogo { width: 170px; } .identityCopy { padding: 26px; } .identityCopy h3 { font-size: 27px; } .identityCopy p { font-size: 13px; } }

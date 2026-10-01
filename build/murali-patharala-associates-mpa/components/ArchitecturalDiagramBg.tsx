@@ -17,7 +17,7 @@ interface ArchitecturalDiagramBgProps {
 
 export default function ArchitecturalDiagramBg({
   variant = 'master-plan',
-  theme = 'dark',
+  theme = 'light',
   opacity,
   showGrid = true,
   showCornerMarks = true,
@@ -51,7 +51,7 @@ export default function ArchitecturalDiagramBg({
     <div
       className={`absolute inset-0 pointer-events-none overflow-hidden select-none z-0 ${
         softDarkBg
-          ? 'bg-gradient-to-b from-[#16181D] via-[#101216] to-[#14171D]'
+          ? 'bg-surface-linen'
           : ''
       } ${className}`}
       aria-hidden="true"
@@ -72,16 +72,15 @@ export default function ArchitecturalDiagramBg({
         />
       )}
 
-      {/* 2. Soft Studio Atmosphere Vignette */}
-      <div
-        className="absolute inset-0"
-        style={{
-          background:
-            theme === 'dark'
-              ? 'radial-gradient(ellipse at 50% 30%, transparent 40%, rgba(10, 12, 16, 0.5) 100%)'
-              : 'radial-gradient(ellipse at 50% 50%, transparent 60%, rgba(248, 248, 246, 0.4) 100%)',
-        }}
-      />
+      {/* Keep light section surfaces at their exact palette shade. */}
+      {theme === 'dark' && (
+        <div
+          className="absolute inset-0"
+          style={{
+            background: 'radial-gradient(ellipse at 50% 30%, transparent 40%, rgba(10, 12, 16, 0.5) 100%)',
+          }}
+        />
+      )}
 
       {/* 3. Primary Architectural Blueprint Linework SVG (Quiet, delicate watermark) */}
       {svgSrc && (
@@ -99,16 +98,16 @@ export default function ArchitecturalDiagramBg({
       {/* 4. Minimal Architectural Crop / Registration Crosshairs */}
       {showCornerMarks && (
         <>
-          <div className="absolute top-6 left-8 font-mono text-xs font-light text-[#EA580C]/40 select-none">
+          <div className="absolute top-6 left-8 font-mono text-xs font-light text-[#703015]/40 select-none">
             +
           </div>
-          <div className="absolute top-6 right-8 font-mono text-xs font-light text-[#EA580C]/40 select-none">
+          <div className="absolute top-6 right-8 font-mono text-xs font-light text-[#703015]/40 select-none">
             +
           </div>
-          <div className="absolute bottom-6 left-8 font-mono text-xs font-light text-[#EA580C]/40 select-none">
+          <div className="absolute bottom-6 left-8 font-mono text-xs font-light text-[#703015]/40 select-none">
             +
           </div>
-          <div className="absolute bottom-6 right-8 font-mono text-xs font-light text-[#EA580C]/40 select-none">
+          <div className="absolute bottom-6 right-8 font-mono text-xs font-light text-[#703015]/40 select-none">
             +
           </div>
         </>

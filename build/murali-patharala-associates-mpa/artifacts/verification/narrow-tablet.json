@@ -1,0 +1,170 @@
+[
+  {
+    "route": "/",
+    "width": 320,
+    "scrollWidth": 320,
+    "clipped": []
+  },
+  {
+    "route": "/",
+    "width": 768,
+    "scrollWidth": 768,
+    "clipped": []
+  },
+  {
+    "route": "/about/",
+    "width": 320,
+    "scrollWidth": 320,
+    "clipped": []
+  },
+  {
+    "route": "/about/",
+    "width": 768,
+    "scrollWidth": 768,
+    "clipped": []
+  },
+  {
+    "route": "/services/",
+    "width": 320,
+    "scrollWidth": 320,
+    "clipped": []
+  },
+  {
+    "route": "/services/",
+    "width": 768,
+    "scrollWidth": 768,
+    "clipped": []
+  },
+  {
+    "route": "/services/architectural-design/",
+    "width": 320,
+    "scrollWidth": 320,
+    "clipped": []
+  },
+  {
+    "route": "/services/architectural-design/",
+    "width": 768,
+    "scrollWidth": 768,
+    "clipped": []
+  },
+  {
+    "route": "/services/residential-construction/",
+    "width": 320,
+    "scrollWidth": 320,
+    "clipped": []
+  },
+  {
+    "route": "/services/residential-construction/",
+    "width": 768,
+    "scrollWidth": 768,
+    "clipped": []
+  },
+  {
+    "route": "/services/interior-design/",
+    "width": 320,
+    "scrollWidth": 320,
+    "clipped": []
+  },
+  {
+    "route": "/services/interior-design/",
+    "width": 768,
+    "scrollWidth": 768,
+    "clipped": []
+  },
+  {
+    "route": "/services/turnkey-construction/",
+    "width": 320,
+    "scrollWidth": 320,
+    "clipped": []
+  },
+  {
+    "route": "/services/turnkey-construction/",
+    "width": 768,
+    "scrollWidth": 768,
+    "clipped": []
+  },
+  {
+    "route": "/design-package/",
+    "width": 320,
+    "scrollWidth": 320,
+    "clipped": []
+  },
+  {
+    "route": "/design-package/",
+    "width": 768,
+    "scrollWidth": 768,
+    "clipped": []
+  },
+  {
+    "route": "/construction-package/",
+    "width": 320,
+    "scrollWidth": 320,
+    "clipped": []
+  },
+  {
+    "route": "/construction-package/",
+    "width": 768,
+    "scrollWidth": 768,
+    "clipped": []
+  },
+  {
+    "route": "/gallery/",
+    "width": 320,
+    "scrollWidth": 320,
+    "clipped": []
+  },
+  {
+    "route": "/gallery/",
+    "width": 768,
+    "scrollWidth": 768,
+    "clipped": []
+  },
+  {
+    "route": "/contact/",
+    "width": 320,
+    "scrollWidth": 320,
+    "clipped": []
+  },
+  {
+    "route": "/contact/",
+    "width": 768,
+    "scrollWidth": 768,
+    "clipped": []
+  },
+  {
+    "route": "/privacy/",
+    "width": 320,
+    "scrollWidth": 320,
+    "clipped": []
+  },
+  {
+    "route": "/privacy/",
+    "width": 768,
+    "scrollWidth": 768,
+    "clipped": []
+  },
+  {
+    "route": "/terms/",
+    "width": 320,
+    "scrollWidth": 320,
+    "clipped": []
+  },
+  {
+    "route": "/terms/",
+    "width": 768,
+    "scrollWidth": 768,
+    "clipped": []
+  },
+  {
+    "route": "/brand-preview/",
+    "width": 320,
+    "scrollWidth": 320,
+    "clipped": []
+  },
+  {
+    "route": "/brand-preview/",
+    "width": 768,
+    "scrollWidth": 768,
+    "clipped": []
+  }
+]

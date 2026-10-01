@@ -1,5 +1,119 @@
 @import "tailwindcss";
 
+.brand-name.brand-name,
+.brand-name.brand-name em,
+.brand-name.brand-name strong {
+  font-family: var(--font-brand);
+  font-weight: 400;
+  font-style: normal;
+  font-synthesis: none;
+  letter-spacing: normal;
+  text-transform: none;
+}
+
+/* Secondary page actions share one clear button treatment. */
+.mpa-outline-cta {
+  display: inline-flex;
+  min-height: 44px;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  padding: 10px 16px;
+  border: 1px solid #111111;
+  background: transparent;
+  color: #111111;
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 1.3;
+  letter-spacing: .12em;
+  text-align: center;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: background-color 180ms ease, border-color 180ms ease, color 180ms ease;
+}
+.mpa-outline-cta:hover {
+  background: var(--color-surface-sand);
+  color: #302A20;
+}
+.mpa-outline-cta:focus-visible {
+  outline: 2px solid #ea580c;
+  outline-offset: 3px;
+}
+.mpa-outline-cta svg,
+.mpa-outline-cta [aria-hidden="true"] {
+  flex-shrink: 0;
+  transition: transform 180ms ease;
+}
+.mpa-outline-cta:hover svg,
+.mpa-outline-cta:hover [aria-hidden="true"] {
+  transform: translateX(3px);
+}
+.mpa-outline-cta--accent {
+  border-color: #703015;
+  color: #703015;
+}
+.mpa-outline-cta--accent:hover {
+  border-color: #703015;
+  background: var(--color-surface-tan);
+  color: #111111;
+}
+
+.mpa-outline-cta--dark {
+  border-color: #fb923c;
+  color: #fb923c;
+}
+.mpa-outline-cta--dark:hover {
+  border-color: #fb923c;
+  background: #fb923c;
+  color: #111111;
+}
+
+/* Package pages use a quieter stone and copper finish. */
+.mpa-package-page .mpa-outline-cta {
+  border-color: #a94f2d;
+  color: #873d22;
+}
+.mpa-package-page .mpa-outline-cta:hover {
+  border-color: #a94f2d;
+  background: #a94f2d;
+  color: #fff;
+}
+.mpa-package-page .mpa-outline-cta--accent {
+  border-color: #703015;
+  color: #703015;
+}
+.mpa-package-page .mpa-outline-cta--accent:hover {
+  border-color: #703015;
+  background: var(--color-surface-tan);
+  color: #1c2927;
+}
+.mpa-package-page .mpa-outline-cta--dark {
+  border-color: #f3b687;
+  color: #f3b687;
+}
+.mpa-package-page .mpa-outline-cta--dark:hover {
+  border-color: #f3b687;
+  background: #f3b687;
+  color: #1c2927;
+}
+.mpa-package-page .mpa-outline-cta:focus-visible {
+  outline-color: #a94f2d;
+}
+.mpa-package-tier {
+  box-shadow: 0 14px 36px rgb(33 40 33 / 8%);
+  transition: border-color 200ms ease, box-shadow 200ms ease;
+}
+.mpa-package-tier:hover,
+.mpa-package-tier:focus-within {
+  box-shadow: 0 22px 50px rgb(33 40 33 / 15%);
+}
+@media (prefers-reduced-motion: reduce) {
+  .mpa-outline-cta,
+  .mpa-outline-cta svg,
+  .mpa-outline-cta [aria-hidden="true"],
+  .mpa-package-tier { transition: none; }
+}
+
 /* Shared editorial treatment for this client's inner pages. */
 .mpa-page-intro { background: #121418; color: #fff; padding: 64px 48px; border-bottom: 1px solid #ffffff20; }
 .mpa-page-intro-inner { max-width: 1280px; margin: auto; display: grid; grid-template-columns: 1.2fr 1fr; gap: 72px; align-items: center; }
@@ -18,12 +132,12 @@
 .mpa-inner h2, .mpa-inner h3 { text-wrap: balance; }
 .mpa-nav a[aria-current="page"] { color: #fb923c; }
 .mpa-nav li a[aria-current="page"] { padding-bottom: 8px; border-bottom: 1px solid #fb923c; }
-.mpa-dialog { margin: auto; width: min(560px, calc(100% - 32px)); max-height: calc(100dvh - 48px); border: 1px solid #ded9d1; background: #fff; color: #111; padding: 0; overflow-y: auto; overscroll-behavior: contain; box-shadow: 0 24px 100px #0005; }
+.mpa-dialog { margin: auto; width: min(560px, calc(100% - 32px)); max-height: calc(100dvh - 48px); border: 1px solid #ded9d1; background: var(--color-surface-cream); color: #111; padding: 0; overflow-y: auto; overscroll-behavior: contain; box-shadow: 0 24px 100px #0005; }
 .mpa-dialog-wide { width: min(960px, calc(100% - 32px)); }
-.mpa-dialog::backdrop { background: #101216c9; backdrop-filter: blur(7px); }
+.mpa-dialog::backdrop { background: #E3D8B7c9; backdrop-filter: blur(7px); }
 .mpa-faq { border-top: 1px solid #d8d4cb; }
 .mpa-faq details { border-bottom: 1px solid #d8d4cb; padding: 24px 0; }
-.mpa-faq summary { display: flex; align-items: baseline; gap: 20px; cursor: pointer; list-style: none; font-size: 18px; font-family: var(--font-serif); }
+.mpa-faq summary { display: flex; align-items: baseline; gap: 20px; cursor: pointer; list-style: none; font-size: 18px; font-family: var(--font-brand); }
 .mpa-faq summary::-webkit-details-marker { display: none; }
 .mpa-faq summary::after { content: '+'; margin-left: auto; flex-shrink: 0; color: #c2410c; font-family: var(--font-sans); }
 .mpa-faq details[open] summary::after { content: '−'; }
@@ -40,32 +154,51 @@ summary:focus-visible, [role="button"]:focus-visible { outline: 2px solid #c2410
 }
 
 @theme {
-  --font-serif: var(--font-lora), "Lora", Georgia, serif;
-  --font-sans: var(--font-work-sans), "Work Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-content: var(--font-tahoma), Tahoma, Verdana, sans-serif;
+  --font-brand: var(--font-bauhaus-93), "Bauhaus 93", Tahoma, Verdana, sans-serif;
+  --font-serif: var(--font-content);
+  --font-sans: var(--font-content);
+  --font-mono: var(--font-content);
 
-  /* Primary Brand Palette matching Design Reference */
+  /* Body sections use pale beige; originally dark sections use the sand shade (#DACAA4). */
+  --color-surface-white: #FFFFFF;
+  --color-surface-pale: #FAF8F0;
+  --color-surface-cream: #F5F5DD;
+  --color-surface-oat: #ECE7CA;
+  --color-surface-linen: #E3D8B7;
+  --color-surface-sand: #DACAA4;
+  --color-surface-honey: #D1BB91;
+  --color-surface-tan: #C8AD7E;
+  --color-ink: #302A20;
+  --color-ink-muted: #4A4032;
+
+  /* MPA's existing orange remains an action accent. */
   --color-brand-orange: #EA580C;
   --color-brand-orange-hover: #C2410C;
   --color-brand-orange-light: #FFEDD5;
   --color-brand-charcoal: #111111;
   --color-brand-dark: #1A1A1A;
   --color-charcoal-mid: #212121;
-  --color-canvas-bg: #FAFAFA;
-  --color-canvas-white: #FFFFFF;
+  --color-canvas-bg: #F5F5DD;
+  --color-canvas-white: #F5F5DD;
   --color-concrete-gray: #757575;
   --color-border-warm: #E0E0E0;
 }
 
 :root {
+  --type-display: clamp(32px, 4.4vw, 64px);
+  --type-section: clamp(28px, 3.2vw, 44px);
+  --type-title: clamp(18px, 1.8vw, 24px);
+  --type-subtitle: clamp(22px, 2.2vw, 28px);
   --amber: #EA580C;
   --amber-light: #FB923C;
   --amber-dark: #C2410C;
-  --cream: #FAFAFA;
-  --cream-dark: #F5F5F0;
+  --cream: #F5F5DD;
+  --cream-dark: #ECE7CA;
   --charcoal: #111111;
   --charcoal-mid: #212121;
-  --stone: #757575;
-  --border-warm: #E0E0E0;
+  --stone: #5D5140;
+  --border-warm: #C8AD7E;
 }
 
 html {
@@ -74,14 +207,51 @@ html {
 }
 
 body {
-  font-family: var(--font-sans), 'Work Sans', sans-serif;
-  background-color: var(--charcoal);
+  font-family: var(--font-content);
+  background-color: var(--color-surface-cream);
   color: #111111;
   overflow-x: hidden;
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-serif), 'Lora', serif;
+  /* Keep the heading typeface consistent across modules and inline styles. */
+  font-family: var(--font-brand) !important;
+  font-synthesis: none;
+  letter-spacing: -.015em !important;
+}
+
+h1 {
+  font-size: var(--type-display) !important;
+  line-height: 1.12 !important;
+}
+
+h2 {
+  font-size: var(--type-section) !important;
+  line-height: 1.18 !important;
+}
+
+h3 {
+  font-size: var(--type-title) !important;
+  line-height: 1.25 !important;
+}
+
+h4 { font-size: clamp(16px, 1.5vw, 20px) !important; line-height: 1.3 !important; }
+h5 { font-size: 14px !important; line-height: 1.35 !important; }
+h6 { font-size: 12px !important; line-height: 1.4 !important; }
+
+/* Keep short card labels and document headings below the section-title scale. */
+.mpa-heading-compact { font-size: clamp(16px, 1.5vw, 18px) !important; line-height: 1.3 !important; }
+.mpa-heading-subtitle { font-size: var(--type-subtitle) !important; }
+.mpa-heading-section { font-size: var(--type-section) !important; line-height: 1.18 !important; }
+#founder-title, #arch-title { font-size: var(--type-display) !important; }
+h3.truncate { font-size: clamp(16px, 1.4vw, 20px) !important; }
+
+main p.text-sm { font-size: 15px; }
+main p.text-xs:not(.uppercase) { font-size: 13px; }
+.mpa-faq summary { font-size: clamp(17px, 1.6vw, 20px); line-height: 1.4; }
+
+:is(h1, h2, h3, h4, h5, h6) :is(em, strong, a, span) {
+  font-family: var(--font-brand) !important;
 }
 
 /* Hide default scrollbars */
@@ -156,7 +326,7 @@ h1, h2, h3, h4, h5, h6 {
   animation: drawSquare 2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
 }
 
-/* Architectural surfaces use MPA's existing black, white and orange palette. */
+/* Warm drawing-board surfaces with architectural linework. */
 .mpa-hero-copy {
   position: relative;
   isolation: isolate;
@@ -202,7 +372,7 @@ h1, h2, h3, h4, h5, h6 {
   position: relative;
   isolation: isolate;
   overflow: clip;
-  background-color: #E9E3DA;
+  background-color: var(--color-surface-pale);
 }
 
 [data-process-track] {
@@ -231,12 +401,14 @@ h1, h2, h3, h4, h5, h6 {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #F4EFE8;
+  background-color: var(--color-surface-cream);
   border: 1.5px solid rgba(17, 17, 17, 0.18);
   color: #78716C;
-  transition-property: background-color, border-color, color;
-  transition-duration: 140ms;
-  transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+  transition: background-color 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+              color 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 [data-process-badge] {
@@ -249,27 +421,54 @@ h1, h2, h3, h4, h5, h6 {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #171717;
-  color: #FFFFFF;
-  font-family: monospace;
+  background-color: var(--color-surface-linen);
+  color: #302A20;
+  font-family: var(--font-content);
   font-size: 9px;
   font-weight: 700;
   letter-spacing: -0.05em;
-  transition-property: background-color, color;
-  transition-duration: 140ms;
-  transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+  transition: background-color 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+              color 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+              outline 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* 1. COMPLETED MILESTONE (Passed) */
+/* 1. CURRENT ACTIVE MILESTONE (Under construction / focused) */
+[data-process-step].is-active [data-process-icon] {
+  background-color: #C2410C !important;
+  border-color: #C2410C !important;
+  color: #fff !important;
+  box-shadow: 0 6px 20px rgba(194, 65, 12, 0.35);
+  transform: scale(1.05);
+}
+
+[data-process-step].is-active [data-process-badge] {
+  background-color: var(--color-surface-cream) !important;
+  color: #C2410C !important;
+  outline: 1.5px solid #C2410C !important;
+  font-weight: 800 !important;
+}
+
+[data-process-step].is-active [data-process-title] {
+  color: #C2410C !important;
+}
+
+[data-process-step].is-active [data-process-copy] {
+  color: #171717;
+}
+
+/* 2. COMPLETED MILESTONE (Passed) */
 [data-process-step].is-completed [data-process-icon] {
-  background-color: #FFFFFF !important;
+  background-color: var(--color-surface-cream) !important;
   border-color: #C2410C !important;
   color: #C2410C !important;
+  box-shadow: none;
+  transform: scale(1);
 }
 
 [data-process-step].is-completed [data-process-badge] {
   background-color: #C2410C !important;
-  color: #FFFFFF !important;
+  color: #fff !important;
+  outline: none !important;
 }
 
 [data-process-step].is-completed [data-process-title] {
@@ -280,7 +479,12 @@ h1, h2, h3, h4, h5, h6 {
   color: #5E5D58;
 }
 
-/* The current milestone stays neutral; only completed milestones are highlighted. */
+/* 3. HOVER INTERACTION ON UPCOMING MILESTONES */
+[data-process-step]:not(.is-active):not(.is-completed):hover [data-process-icon] {
+  background-color: var(--color-surface-cream);
+  border-color: rgba(194, 65, 12, 0.45);
+  color: #C2410C;
+}
 
 @media (min-width: 768px) {
   [data-process-icon] {
@@ -304,11 +508,11 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .mpa-testimonials {
-  background-color: #E8E2D9;
+  background-color: var(--color-surface-oat);
 }
 
 .mpa-quote {
-  background-color: #FBF8F2;
+  background-color: var(--color-surface-cream);
   border-top: 3px solid var(--amber);
   transition: all 0.25s ease;
 }
@@ -342,17 +546,17 @@ button:focus-visible {
 
 /* ─────────────────────────────────────────────────────────────
    Architectural Blueprint & Line Diagram Surfaces (MPA CAD)
-   Transforms bland, plain solid black into authentic architectural
-   drafting surfaces with structural grids, dimension lines & CAD vectors.
+   Warm drafting surfaces with structural grids, dimension lines
+   and CAD vectors.
    ───────────────────────────────────────────────────────────── */
 .cad-blueprint-surface {
   position: relative;
   isolation: isolate;
-  background-color: #131519;
+  background-color: var(--color-surface-linen);
   background-image:
     radial-gradient(circle at 50% 10%, rgba(234, 88, 12, 0.09) 0%, transparent 60%),
-    linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+    linear-gradient(to right, rgba(93, 81, 64, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(93, 81, 64, 0.05) 1px, transparent 1px);
   background-size: 100% 100%, 48px 48px, 48px 48px;
 }
 
@@ -373,10 +577,10 @@ button:focus-visible {
 .cad-blueprint-elevation {
   position: relative;
   isolation: isolate;
-  background-color: #121418;
+  background-color: var(--color-surface-oat);
   background-image:
-    linear-gradient(to right, rgba(255, 255, 255, 0.04) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+    linear-gradient(to right, rgba(93, 81, 64, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(93, 81, 64, 0.04) 1px, transparent 1px);
   background-size: 50px 50px;
 }
 
@@ -397,10 +601,10 @@ button:focus-visible {
 .cad-blueprint-structural {
   position: relative;
   isolation: isolate;
-  background-color: #131519;
+  background-color: var(--color-surface-linen);
   background-image:
-    linear-gradient(to right, rgba(255, 255, 255, 0.04) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+    linear-gradient(to right, rgba(93, 81, 64, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(93, 81, 64, 0.04) 1px, transparent 1px);
   background-size: 40px 40px;
 }
 

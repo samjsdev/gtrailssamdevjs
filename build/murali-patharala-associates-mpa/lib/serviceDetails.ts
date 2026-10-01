@@ -7,17 +7,12 @@ export interface ServiceSectionBlock {
   bullets?: string[];
 }
 
-export interface ServiceIdealFor {
-  title: string;
-  text: string;
-}
-
 export interface ServiceScopeItem {
   number: string;
   title: string;
   description: string;
-  image: string;
-  imageAlt: string;
+  image?: string;
+  imageAlt?: string;
   tag?: string;
 }
 
@@ -25,7 +20,8 @@ export interface ServiceProcessStep {
   step: string;
   title: string;
   description: string;
-  image: string;
+  image?: string;
+  imageAlt?: string;
   deliverable: string;
 }
 
@@ -36,6 +32,20 @@ export interface DeliverableCategory {
   items: string[];
 }
 
+export interface BentoImageItem {
+  src: string;
+  alt: string;
+  tag: string;
+  caption: string;
+  location?: string;
+}
+
+export interface ServiceBentoGrid {
+  hero: BentoImageItem;
+  sub1: BentoImageItem;
+  sub2: BentoImageItem;
+}
+
 export interface ServiceDetail {
   slug: string;
   number: string;
@@ -44,17 +54,16 @@ export interface ServiceDetail {
   accent: string;
   ownership: { label: string; company: string };
   summary: string;
-  promise: string;
+  shortSummary: string;
   heroImage: string;
   heroAlt: string;
+  heroMobileImage?: string;
+  heroMobileAlt?: string;
   highlights: string[];
-  stats: Array<{ value: string; label: string }>;
   overviewKicker: string;
   overviewTitle: string;
   overviewLead: string;
   overviewSections: ServiceSectionBlock[];
-  idealForTitle: string;
-  idealFor: ServiceIdealFor[];
   scopeKicker: string;
   scopeTitle: string;
   scopeIntro: string;
@@ -66,1070 +75,1165 @@ export interface ServiceDetail {
   standardsKicker: string;
   standardsTitle: string;
   standardsIntro: string;
-  standards: Array<{ label: string; title: string; description: string; image?: string }>;
+  standards: Array<{ label: string; title: string; description: string; image?: string; imageAlt?: string }>;
   deliverablesKicker: string;
   deliverablesTitle: string;
   deliverablesIntro: string;
   deliverables: string[];
   deliverableCategories: DeliverableCategory[];
   gallery: Array<{ src: string; alt: string; caption: string }>;
+  bentoImages: ServiceBentoGrid;
   faqs: Array<{ question: string; answer: string }>;
 }
 
 export const SERVICE_DETAILS: ServiceDetail[] = [
   {
-    slug: 'architectural-design',
-    number: '01',
-    eyebrow: 'Planning / 3D Elevations / Working Drawings',
-    title: 'Architectural',
-    accent: 'Design.',
-    ownership: { label: 'Architectural design by', company: 'Murali Patharala & Associates (MPA)' },
-    summary:
-      "Design it first. Know what you're building, and know what it will cost. Complete architectural planning, 3D elevations, structural engineering, and detailed construction estimates before building.",
-    promise: "Design It First. Know What You're Building. Know What It Will Cost.",
-    heroImage: '/images/architecture/architectural-blueprint-draft.webp',
-    heroAlt: 'Architect developing a detailed residential floor plan',
-    highlights: [
-      'Custom Vastu-Compliant Plans',
-      'Photorealistic 3D Elevations',
-      'Structural & MEP Drawings',
-      'Detailed Construction Estimate (BOQ)',
+    "slug": "architectural-design",
+    "number": "01",
+    "eyebrow": "Architecture & interior design consultancy",
+    "title": "Architectural",
+    "accent": "Design.",
+    "ownership": {
+      "label": "Architectural design by",
+      "company": "Murali Patharala & Associates (MPA)"
+    },
+    "summary": "Architectural consultancy for residential, commercial and institutional projects, including feasibility, design development, technical coordination, tender support and construction administration.",
+    "shortSummary": "Architecture for homes, workplaces and institutions, from site study to construction documentation.",
+    "heroImage": "/images/architecture/architectural-blueprint-draft.webp",
+    "heroAlt": "Architect developing a detailed residential floor plan",
+    "highlights": [
+      "Residential, commercial & institutional",
+      "Concept to construction documents",
+      "Structural & MEP coordination",
+      "Tender & approval support"
     ],
-    stats: [
-      { value: '100%', label: 'Custom Floor Plans' },
-      { value: '3D Views', label: 'Exterior & Walkthrough' },
-      { value: 'Vastu', label: '100% Vastu Compliant' },
-      { value: 'Accurate', label: 'Detailed Cost Estimate' },
+    "overviewKicker": "Our approach",
+    "overviewTitle": "Spaces shaped around the people who use them.",
+    "overviewLead": "We bring form, function and feeling together, respecting cultural roots while responding to contemporary needs.",
+    "overviewSections": [
+      {
+        "heading": "Understand the place and the brief",
+        "body": "Site analysis, zoning, budget and the way people will use a building inform the first design decisions.",
+        "image": "/images/architecture/villa-plan-sketch.webp",
+        "imageAlt": "Architect sketching a villa plan around site requirements",
+        "caption": "Understand the place and the brief",
+        "bullets": [
+          "Site conditions and planning constraints",
+          "Project viability and budget forecasting",
+          "User needs and spatial relationships"
+        ]
+      },
+      {
+        "heading": "Develop the architectural idea",
+        "body": "Sketches, mood boards, floor plans, elevations and 3D massing allow the design to develop through discussion.",
+        "image": "/images/architecture/bim-3d-walkthrough.webp",
+        "imageAlt": "Photorealistic 3D walkthrough of a home interior",
+        "caption": "Develop the architectural idea",
+        "bullets": [
+          "Conceptual and schematic design",
+          "Materials, finishes and spatial character",
+          "Tradition and modernity considered together"
+        ]
+      },
+      {
+        "heading": "Coordinate before construction",
+        "body": "Detailed drawings connect architecture with structure and building services so contractors can understand the scope.",
+        "image": "/images/architecture/cmda-sanction-drafting.webp",
+        "imageAlt": "Sanction drawings and technical specifications",
+        "caption": "Coordinate before construction",
+        "bullets": [
+          "Structural and MEP coordination",
+          "Working drawings, schedules and specifications",
+          "Quantity take-offs and BOQs"
+        ]
+      }
     ],
-    overviewKicker: 'Our 4-Pillar Design Approach',
-    overviewTitle: 'Plan with complete clarity before you build.',
-    overviewLead:
-      'From understanding your family lifestyle to finalizing built-up area and construction costs, every stage is planned and executed with engineering precision and aesthetic detail.',
-    overviewSections: [
+    "scopeKicker": "Service scope",
+    "scopeTitle": "Support shaped around your project.",
+    "scopeIntro": "The required services and deliverables are defined in your project proposal.",
+    "scope": [
       {
-        heading: 'DESIGN: Tailored to your land & lifestyle',
-        body: 'We understand your plot dimensions, orientation, family requirements, room numbers, and style preferences to create custom floor plans shaped around your life.',
-        image: '/images/architecture/villa-plan-sketch.webp',
-        imageAlt: 'Architect sketching a villa plan around site requirements',
-        caption: 'Design & Space Planning',
-        bullets: [
-          'Land dimensions, orientation, and natural sunlight analysis',
-          'Room sizes tailored to family routine and future expansion',
-          '100% Vastu compliance integrated thoughtfully without dark compromises',
-        ],
+        "number": "01",
+        "title": "Pre-design & Feasibility",
+        "description": "Site analysis, zoning checks, budget forecasting and project viability assessments.",
+        "image": "/images/architecture/villa-plan-sketch.webp",
+        "imageAlt": "Pre-design & Feasibility"
       },
       {
-        heading: 'FINALISE: Photorealistic 3D elevations & areas',
-        body: 'Walk through your home virtually. Finalize floor plans, exterior facade concepts, room volumes, and built-up areas with complete clarity before committing funds.',
-        image: '/images/architecture/bim-3d-walkthrough.webp',
-        imageAlt: 'Photorealistic 3D walkthrough of a home interior',
-        caption: '3D Elevation & Area Finalisation',
-        bullets: [
-          'Photorealistic 3D exterior and interior elevation concepts',
-          'Finalized built-up area statements with floor-by-floor breakdown',
-          'Freeze design and specifications with total family confidence',
-        ],
+        "number": "02",
+        "title": "Conceptual & Schematic Design",
+        "description": "Sketches, mood boards, floor plans, elevations and basic 3D massing.",
+        "image": "/images/architecture/space-planning-atrium.webp",
+        "imageAlt": "Conceptual & Schematic Design"
       },
       {
-        heading: 'ESTIMATE: Detailed construction estimate upfront',
-        body: 'Prepare an itemized construction estimate and coordinated engineering drawings so you know exact specifications, quantities, and costs before construction begins.',
-        image: '/images/architecture/cmda-sanction-drafting.webp',
-        imageAlt: 'Sanction drawings and technical specifications',
-        caption: 'Detailed Estimate & Working Set',
-        bullets: [
-          'Comprehensive itemized BOQ with branded material specifications',
-          'Vetted structural framing and coordinated electrical/plumbing sets',
-          'CMDA / GCC municipal sanction drawings compliant with local bylaws',
-        ],
+        "number": "03",
+        "title": "Design Development",
+        "description": "Refined drawings, material specifications, structural coordination and service integration.",
+        "image": "/images/architecture/geometric-villa-elevation.webp",
+        "imageAlt": "Design Development"
       },
+      {
+        "number": "04",
+        "title": "Construction Documentation",
+        "description": "Detailed working drawings, sections, schedules and specifications for tendering and execution.",
+        "image": "/images/architecture/staad-structural-engineering.webp",
+        "imageAlt": "Construction Documentation"
+      },
+      {
+        "number": "05",
+        "title": "Specialist Technical Coordination",
+        "description": "Structural integration, HVAC and MEP coordination, fire-safety documentation, generator sizing and AC load calculations.",
+        "image": "/images/architecture/architectural-blueprint-draft.webp",
+        "imageAlt": "Specialist Technical Coordination"
+      },
+      {
+        "number": "06",
+        "title": "Approvals & Environmental Support",
+        "description": "CMDA and DTCP liaison, permits and NOCs, and LEED, IGBC or GRIHA documentation according to project requirements.",
+        "image": "/images/architecture/cmda-sanction-drafting.webp",
+        "imageAlt": "Approvals & Environmental Support"
+      }
     ],
-    idealForTitle: 'Choose this if…',
-    idealFor: [
-      { title: 'You own a residential plot', text: 'You want custom floor plans designed around your family requirements, plot size, and orientation.' },
-      { title: 'You want to see first', text: 'You want to approve photorealistic 3D elevations and room flows before starting civil construction.' },
-      { title: 'You want budget clarity', text: 'You want an accurate construction estimate and itemized BOQ before signing a contractor agreement.' },
-      { title: 'You need building approvals', text: 'Statutory sanction drawings prepared strictly to CMDA / GCC norms for first-time approval.' },
+    "processKicker": "How we work",
+    "processTitle": "A clear sequence, with room for your project.",
+    "processIntro": "Each stage develops the information and coordination needed for the work that follows.",
+    "process": [
+      {
+        "step": "01",
+        "title": "Pre-design & Feasibility",
+        "description": "Review the site, zoning, budget and viability with the client.",
+        "deliverable": "Site and project assessment",
+        "image": "/images/architecture/architect-studio-model.webp"
+      },
+      {
+        "step": "02",
+        "title": "Conceptual Design",
+        "description": "Explore sketches, mood boards and spatial planning.",
+        "deliverable": "Concept direction",
+        "image": "/images/architecture/villa-plan-sketch.webp"
+      },
+      {
+        "step": "03",
+        "title": "Schematic Design",
+        "description": "Develop floor plans, elevations and basic 3D massing.",
+        "deliverable": "Schematic drawing set",
+        "image": "/images/architecture/space-planning-atrium.webp"
+      },
+      {
+        "step": "04",
+        "title": "Design Development",
+        "description": "Refine materials and integrate structure, HVAC, electrical and plumbing systems.",
+        "deliverable": "Coordinated design",
+        "image": "/images/architecture/bim-3d-walkthrough.webp"
+      },
+      {
+        "step": "05",
+        "title": "Construction Documentation",
+        "description": "Prepare working drawings, schedules, specifications and BOQs.",
+        "deliverable": "Tender and execution information",
+        "image": "/images/architecture/staad-structural-engineering.webp"
+      },
+      {
+        "step": "06",
+        "title": "Bidding & Negotiation",
+        "description": "Assist with contractor selection, bid evaluation and contract finalisation.",
+        "deliverable": "Reviewed contractor proposals",
+        "image": "/images/architecture/architectural-blueprint-draft.webp"
+      },
+      {
+        "step": "07",
+        "title": "Construction Administration",
+        "description": "Coordinate site visits, quality checks, RFIs and change orders to uphold the design.",
+        "deliverable": "Design coordination during construction",
+        "image": "/images/architecture/architectural-blueprint-draft.webp"
+      }
     ],
-    scopeKicker: 'What is included',
-    scopeTitle: 'Complete architecture & engineering solutions.',
-    scopeIntro: 'Six core design stages covering planning, 3D visualization, engineering, and cost estimation.',
-    scope: [
+    "standardsKicker": "What guides the work",
+    "standardsTitle": "Purpose, coordination and care.",
+    "standardsIntro": "Our approach connects the design intent with practical delivery.",
+    "standards": [
       {
-        number: '01',
-        title: 'Requirements & Site Assessment',
-        description: 'Plot dimensions, orientation, access road width, and family room requirements analyzed upfront.',
-        image: '/images/architecture/villa-plan-sketch.webp',
-        imageAlt: 'Site assessment and requirements planning',
-        tag: 'Step 01',
+        "label": "User experience",
+        "title": "Design around real use",
+        "description": "Homes, workplaces and institutions each need a different response to the people they serve."
       },
       {
-        number: '02',
-        title: 'Architectural Floor Plans',
-        description: 'Vastu-compliant room layouts, furniture planning, circulation paths, and natural ventilation.',
-        image: '/images/architecture/space-planning-atrium.webp',
-        imageAlt: 'Space planning and room circulation layouts',
-        tag: 'Step 02',
+        "label": "Coordination",
+        "title": "Resolve structure and services together",
+        "description": "Coordinated documentation helps identify clashes, reduce rework and communicate design intent."
       },
       {
-        number: '03',
-        title: '3D Exterior Elevation Concepts',
-        description: 'Contemporary facade massing, shading elements, material textures, and street-facing lighting.',
-        image: '/images/architecture/geometric-villa-elevation.webp',
-        imageAlt: 'Contemporary facade 3D elevation',
-        tag: 'Step 03',
-      },
-      {
-        number: '04',
-        title: 'Structural Engineering Drawings',
-        description: 'Vetted column-beam structural framing, footing designs, and slab reinforcement schedules.',
-        image: '/images/architecture/staad-structural-engineering.webp',
-        imageAlt: 'Structural engineering analysis and drawings',
-        tag: 'Step 04',
-      },
-      {
-        number: '05',
-        title: 'Plumbing & Electrical Working Set',
-        description: 'Concealed conduit points, switch locations, water supply lines, and drainage schematics.',
-        image: '/images/architecture/architectural-blueprint-draft.webp',
-        imageAlt: 'Plumbing and electrical working drawings',
-        tag: 'Step 05',
-      },
-      {
-        number: '06',
-        title: 'Sanction Drawings & BOQ Estimate',
-        description: 'Municipal approval documentation plus a comprehensive, itemized construction cost estimate.',
-        image: '/images/architecture/cmda-sanction-drafting.webp',
-        imageAlt: 'Sanction package drafting and BOQ preparation',
-        tag: 'Step 06',
-      },
+        "label": "Cost planning",
+        "title": "Make scope and quantities clear",
+        "description": "Detailed specifications and BOQs support comparable bids, budget review and value engineering."
+      }
     ],
-    processKicker: 'Your Home Design Journey',
-    processTitle: 'From requirements to construction with total clarity.',
-    processIntro: 'Follow our structured 6-stage journey matching the proven Deejos architectural framework.',
-    process: [
-      {
-        step: '01',
-        title: 'Tell Us Your Requirements',
-        description: 'Share land dimensions, family room needs, number of floors, preferred style, and budget expectations.',
-        image: '/images/architecture/architect-studio-model.webp',
-        deliverable: 'Client brief & space requirements',
-      },
-      {
-        step: '02',
-        title: 'Site Assessment & Plot Study',
-        description: 'Analyze plot orientation, road access, site conditions, sunlight angles, and setback guidelines.',
-        image: '/images/architecture/villa-plan-sketch.webp',
-        deliverable: 'Site orientation & zoning study',
-      },
-      {
-        step: '03',
-        title: 'Architectural Floor Plans',
-        description: 'Develop custom 2D floor plans and furniture layouts collaboratively with your family.',
-        image: '/images/architecture/space-planning-atrium.webp',
-        deliverable: 'Approved 2D architectural plans',
-      },
-      {
-        step: '04',
-        title: '3D Elevation & Built-Up Area',
-        description: 'Walk through photorealistic 3D elevations and freeze finalized built-up areas and specifications.',
-        image: '/images/architecture/bim-3d-walkthrough.webp',
-        deliverable: '3D elevations & area statement',
-      },
-      {
-        step: '05',
-        title: 'Engineering & Detailed Drawings',
-        description: 'Prepare coordinated structural drawings, column-beam schedules, and MEP service layouts.',
-        image: '/images/architecture/staad-structural-engineering.webp',
-        deliverable: 'Execution-ready working drawing set',
-      },
-      {
-        step: '06',
-        title: 'Detailed Construction Estimate',
-        description: 'Arrive at an accurate, itemized construction estimate (BOQ) before signing any building agreement.',
-        image: '/images/architecture/architectural-blueprint-draft.webp',
-        deliverable: 'Detailed BOQ estimate & agreement',
-      },
+    "deliverablesKicker": "Project information",
+    "deliverablesTitle": "A scope you can understand and review.",
+    "deliverablesIntro": "Your proposal identifies which drawings, documents and services apply to the commission.",
+    "deliverables": [
+      "Floor plans, elevations and sections",
+      "Spatial planning and 3D massing",
+      "Material specifications and finishes",
+      "Working drawings and schedules",
+      "Structural engineer coordination",
+      "Mechanical, electrical and plumbing integration",
+      "HVAC layouts and AC load calculations",
+      "Generator sizing and fire-safety documentation",
+      "Quantity take-offs and BOQs",
+      "Tender documentation and bid evaluation support",
+      "CMDA / DTCP submissions and NOC coordination",
+      "Certification documentation where commissioned",
+      "Site visits and quality checks",
+      "RFIs and contractor coordination",
+      "Change-order review",
+      "Post-occupancy evaluation when included in scope"
     ],
-    standardsKicker: 'Why choose our architectural services',
-    standardsTitle: 'Professional designs built to last.',
-    standardsIntro: 'Designed with engineering precision, aesthetic detail, and complete budget control.',
-    standards: [
+    "deliverableCategories": [
       {
-        label: 'Vastu & Climate',
-        title: '100% Vastu-Compliant & Climate-Responsive',
-        description: 'Designs tailored to local sun and wind directions, cutting heat buildup while honoring directional traditions.',
-        image: '/images/architecture/passive-timber-screens.webp',
+        "title": "Architectural drawings",
+        "subtitle": "Plans that communicate the design",
+        "icon": "compass",
+        "items": [
+          "Floor plans, elevations and sections",
+          "Spatial planning and 3D massing",
+          "Material specifications and finishes",
+          "Working drawings and schedules"
+        ]
       },
       {
-        label: 'Engineering Precision',
-        title: 'Coordinated Structural & MEP Drawings',
-        description: 'Structural framing and building services aligned before site work, preventing costly on-site clashes.',
-        image: '/images/architecture/staad-structural-engineering.webp',
+        "title": "Technical coordination",
+        "subtitle": "Structure and building services",
+        "icon": "layers",
+        "items": [
+          "Structural engineer coordination",
+          "Mechanical, electrical and plumbing integration",
+          "HVAC layouts and AC load calculations",
+          "Generator sizing and fire-safety documentation"
+        ]
       },
       {
-        label: 'Cost Transparency',
-        title: 'Know What You Are Building & What It Costs',
-        description: 'Itemized area statements and construction estimates ensure zero budget surprises when building.',
-        image: '/images/architecture/cmda-sanction-drafting.webp',
+        "title": "Tender & approval information",
+        "subtitle": "A clear scope for review",
+        "icon": "file",
+        "items": [
+          "Quantity take-offs and BOQs",
+          "Tender documentation and bid evaluation support",
+          "CMDA / DTCP submissions and NOC coordination",
+          "Certification documentation where commissioned"
+        ]
       },
+      {
+        "title": "Construction administration",
+        "subtitle": "Design support through execution",
+        "icon": "shield",
+        "items": [
+          "Site visits and quality checks",
+          "RFIs and contractor coordination",
+          "Change-order review",
+          "Post-occupancy evaluation when included in scope"
+        ]
+      }
     ],
-    deliverablesKicker: 'What you take home',
-    deliverablesTitle: 'Complete architectural & engineering package.',
-    deliverablesIntro: 'All files provided in high-resolution print binders and digital CAD/PDF formats.',
-    deliverables: [
-      'Custom 2D floor plans with dimensioned room layouts',
-      'Photorealistic 3D exterior elevation renders',
-      'Structural column-beam framing and footing details',
-      'Concealed plumbing and drainage schematic layouts',
-      'Electrical switch point and conduit distribution plans',
-      'Door, window, and ventilation schedule details',
-      'CMDA / GCC municipal sanction drawing package',
-      'Detailed built-up area statement & construction estimate (BOQ)',
-    ],
-    deliverableCategories: [
+    "gallery": [
       {
-        title: 'Architectural Blueprints',
-        subtitle: 'Dimensioned working plans for site execution',
-        icon: 'Compass',
-        items: [
-          'All-floor dimensioned floor plans with room tags',
-          'Cross-sectional wall and staircase details',
-          'Exterior elevation views with finish callouts',
-          'Door, window, and ventilation schedules',
-        ],
+        "src": "/murali-patharala-associates-assets/exterior_renders/JAMEE2.webp",
+        "alt": "Contemporary residence rendered at dusk with layered stone and glass facade",
+        "caption": "Dusk exterior elevation"
       },
       {
-        title: '3D Elevation Suite',
-        subtitle: 'Photorealistic imagery for visual sign-off',
-        icon: 'Eye',
-        items: [
-          'High-resolution day and dusk exterior 3D renders',
-          'Key room interior flow perspectives',
-          'Material texture and facade lighting views',
-          'Complete visual design presentation',
-        ],
+        "src": "/murali-patharala-associates-assets/exterior_renders/Sushama John.webp",
+        "alt": "White and stone-clad residential exterior elevation",
+        "caption": "Residential facade study"
       },
       {
-        title: 'Engineering & MEP Set',
-        subtitle: 'Coordinated structural & services drawings',
-        icon: 'Calculator',
-        items: [
-          'Structural column, beam, and slab framing schedules',
-          'Footing reinforcement and foundation details',
-          'Plumbing, drainage, and water supply routes',
-          'Electrical points, conduit runs, and DB layouts',
-        ],
+        "src": "/murali-patharala-associates-assets/exterior_renders/WhatsApp Image 2026-09-23 at 16.17.56 (2).webp",
+        "alt": "Contemporary timber and stone residential exterior design",
+        "caption": "Material and form study"
+      }
+    ],
+    "bentoImages": {
+      "hero": {
+        "src": "/murali-patharala-associates-assets/exterior_renders/JAMEE2.webp",
+        "alt": "Contemporary residence rendered at dusk with layered stone and glass facade",
+        "tag": "01 // DUSK ELEVATION",
+        "caption": "Contemporary exterior elevation with layered stone and glass",
+        "location": "Exterior Design"
+      },
+      "sub1": {
+        "src": "/murali-patharala-associates-assets/exterior_renders/Sushama John.webp",
+        "alt": "White and stone-clad residential exterior elevation",
+        "tag": "02 // FACADE STUDY",
+        "caption": "White and stone facade with layered balconies",
+        "location": "Exterior Design"
+      },
+      "sub2": {
+        "src": "/murali-patharala-associates-assets/exterior_renders/WhatsApp Image 2026-09-23 at 16.17.56 (2).webp",
+        "alt": "Contemporary timber and stone residential exterior design",
+        "tag": "03 // MATERIAL STUDY",
+        "caption": "Contemporary timber and stone exterior form",
+        "location": "Exterior Design"
+      }
+    },
+    "faqs": [
+      {
+        "question": "Do you design commercial and institutional buildings?",
+        "answer": "Yes. MPA’s architectural consultancy covers residential, commercial and institutional projects."
       },
       {
-        title: 'Sanction & Costing Pack',
-        subtitle: 'Permits and transparent cost estimate',
-        icon: 'FileCheck',
-        items: [
-          'CMDA / GCC sanction submission drawing set',
-          'FSI, coverage, and setback calculation sheets',
-          'Itemized construction cost estimate (BOQ)',
-          'Area statement with specifications breakdown',
-        ],
+        "question": "Can you help us select a contractor?",
+        "answer": "Our bidding and negotiation services include contractor selection, bid evaluation and contract finalisation."
       },
-    ],
-    gallery: [
-      { src: '/images/architecture/villa-plan-sketch.webp', alt: 'Hand-drawn villa planning study', caption: 'Concept planning' },
-      { src: '/images/architecture/space-planning-atrium.webp', alt: 'Double-height atrium space planning', caption: 'Volume and daylight' },
-      { src: '/images/architecture/geometric-villa-elevation.webp', alt: 'Contemporary geometric villa elevation', caption: 'Facade development' },
-    ],
-    faqs: [
-      { question: 'What is included in the architectural design package?', answer: 'Our package includes land assessment, 100% Vastu-compliant 2D floor plans, photorealistic 3D elevations, structural engineering drawings, electrical & plumbing schematics, CMDA/GCC sanction drawings, and a detailed construction estimate.' },
-      { question: 'Is Vastu compliance compulsory?', answer: 'We ensure 100% Vastu compliance tailored to your preferences — entrance, kitchen, bedrooms, pooja room, and stairs — while ensuring modern aesthetics, abundant natural light, and cross-ventilation.' },
-      { question: 'How do you help us understand construction costs before building?', answer: 'We prepare an itemized construction estimate (BOQ) with clear specifications, built-up areas, and material grades so you know the exact cost before signing a construction contract.' },
-      { question: 'Can we use these drawings to hire our own contractor or build with you?', answer: 'Yes. Our drawings are complete and contractor-ready. You can use them to obtain transparent bids or choose our in-house construction services for seamless turnkey execution.' },
-      { question: 'How long does the architectural design process take?', answer: 'Typically 3 to 5 weeks depending on revisions and client approvals, progressing logically from floor plans to 3D elevations and technical working drawings.' },
-    ],
+      {
+        "question": "What specialist services are available?",
+        "answer": "The practice offers structural and MEP coordination, fire-safety documentation, generator and AC load calculations, authority approvals and green-building documentation. The required scope is agreed for each project."
+      },
+      {
+        "question": "Does your work continue after drawings are issued?",
+        "answer": "Construction administration can include site visits, quality checks, RFIs, change orders and contractor coordination. Post-occupancy evaluation assesses performance and user satisfaction after handover."
+      },
+      {
+        "question": "How are professional fees agreed?",
+        "answer": "We review the project brief, site and required services before providing a proposal defining the scope, deliverables and professional fees."
+      }
+    ]
   },
   {
-    slug: 'residential-construction',
-    number: '02',
-    eyebrow: 'Design + Construction / Branded Materials / Quality Handover',
-    title: 'Residential',
-    accent: 'Construction.',
-    ownership: { label: 'Construction by', company: 'ARCH Foundation · Part of MPA' },
-    summary:
-      'Residential construction by experts. We build buildings professionally using branded materials, experienced in-house engineers, transparent project management, and on-time delivery.',
-    promise: 'High Quality At Reasonable Price. We Build Buildings Professionally.',
-    heroImage: '/images/architecture/structural-construction-frame.webp',
-    heroAlt: 'Engineered reinforced concrete frame under construction',
-    highlights: [
-      'One-Stop Design + Execution',
-      'Branded Materials (Tata, UltraTech)',
-      'Experienced In-House Technical Team',
-      'High Transparency & On-Time Delivery',
+    "slug": "residential-construction",
+    "number": "02",
+    "eyebrow": "Construction & project delivery",
+    "title": "Residential",
+    "accent": "Construction.",
+    "ownership": {
+      "label": "Construction by",
+      "company": "ARCH foundations"
+    },
+    "summary": "Residential construction by ARCH foundations, combining civil works, structural engineering, project management and site supervision.",
+    "shortSummary": "Civil construction, structural engineering and site supervision for your home.",
+    "heroImage": "/images/architecture/site-engineer-audit.webp",
+    "heroAlt": "Site engineer inspecting reinforcement at a residential construction site",
+    "heroMobileImage": "/murali-patharala-associates-assets/exterior_renders/WhatsApp Image 2026-09-23 at 17.38.22 (1).webp",
+    "heroMobileAlt": "Contemporary three-storey residential design with warm facade lighting",
+    "highlights": [
+      "Civil works & structural engineering",
+      "Project management",
+      "Site supervision",
+      "Construction to handover"
     ],
-    stats: [
-      { value: 'Branded', label: 'Tata Steel & UltraTech' },
-      { value: 'In-House', label: 'Architects & Engineers' },
-      { value: '100% Vastu', label: 'Customized Designs' },
-      { value: 'On-Time', label: 'Scheduled Handover' },
+    "overviewKicker": "Our approach",
+    "overviewTitle": "Turn a considered design into a well-built home.",
+    "overviewLead": "ARCH foundations brings construction and project execution to the architectural work of MPA, with attention to quality, craftsmanship and the client’s needs.",
+    "overviewSections": [
+      {
+        "heading": "Plan the construction scope",
+        "body": "The drawings, specifications and site conditions provide the basis for the construction proposal.",
+        "image": "/murali-patharala-associates-assets/exterior_renders/JAMEE2.webp",
+        "imageAlt": "Contemporary villa exterior visualization from the MPA project library",
+        "caption": "Plan the construction scope",
+        "bullets": [
+          "Review architectural and engineering information",
+          "Define civil works and responsibilities",
+          "Discuss the budget and programme"
+        ]
+      },
+      {
+        "heading": "Coordinate the work on site",
+        "body": "Project management and site supervision connect the work of engineers, contractors and service specialists.",
+        "image": "/murali-patharala-associates-assets/exterior_renders/WhatsApp Image 2026-09-23 at 16.17.56 (2).webp",
+        "imageAlt": "Contemporary timber and stone residential elevation by MPA",
+        "caption": "Coordinate the work on site",
+        "bullets": [
+          "Civil works and structural engineering",
+          "Building-service coordination",
+          "Quality checks during execution"
+        ]
+      },
+      {
+        "heading": "Complete the agreed works",
+        "body": "Construction, finishes and utility installations are coordinated towards handover.",
+        "image": "/murali-patharala-associates-assets/exterior_renders/WhatsApp Image 2026-09-23 at 16.36.14.webp",
+        "imageAlt": "Contemporary white residential elevation with layered balconies",
+        "caption": "Complete the agreed works",
+        "bullets": [
+          "Review completed work against the scope",
+          "Coordinate finishes and services",
+          "Plan the handover with the client"
+        ]
+      }
     ],
-    overviewKicker: 'Why Choose Us for Construction',
-    overviewTitle: 'High quality construction at reasonable price.',
-    overviewLead:
-      'We combine architectural expertise, structural engineering, and professional construction under one roof — delivering structurally sound, beautiful homes on time.',
-    overviewSections: [
+    "scopeKicker": "Service scope",
+    "scopeTitle": "Support shaped around your project.",
+    "scopeIntro": "The required services and deliverables are defined in your project proposal.",
+    "scope": [
       {
-        heading: 'Experienced in-house team of experts',
-        body: 'Our in-house team of architects, structural engineers, and project managers oversee every stage of construction, ensuring seamless execution without contractor hassles.',
-        image: '/images/architecture/site-engineer-audit.webp',
-        imageAlt: 'Site engineer reviewing structural work on a residential site',
-        caption: 'In-House Technical Supervision',
-        bullets: [
-          'Direct coordination between architectural design and site execution',
-          'Strict compliance with approved structural drawings and safety norms',
-          'Regular engineering quality checks at every structural milestone',
-        ],
+        "number": "01",
+        "title": "Site & Project Review",
+        "description": "Review the site and the proposed construction scope before work begins.",
+        "image": "/images/service-stages/design-planning.webp",
+        "imageAlt": "Site & Project Review"
       },
       {
-        heading: 'Branded materials & durable construction',
-        body: 'We use only trusted branded materials — Tata Tiscon / JSW steel, UltraTech / Ramco cement — ensuring your home is structurally durable, weather-resistant, and built to last.',
-        image: '/images/architecture/villa-before-frame.webp',
-        imageAlt: 'Reinforcement and shuttering checked before concrete pour',
-        caption: 'Branded Materials & Quality Framing',
-        bullets: [
-          'Certified 550D TMT steel and 53-grade high-performance cement',
-          'Multi-layer waterproofing for terraces, balconies, and wet areas',
-          'High-quality branded plumbing, electrical, and sanitary fittings',
-        ],
+        "number": "02",
+        "title": "Civil & Structural Works",
+        "description": "Coordinate structural engineering and carry out civil construction to the project drawings.",
+        "image": "/images/service-stages/foundation-rcc.webp",
+        "imageAlt": "Civil & Structural Works"
       },
       {
-        heading: 'High transparency & on-time delivery',
-        body: 'We maintain transparent project tracking, regular milestone progress updates, and structured planning to deliver your completed home on time within the agreed budget.',
-        image: '/images/architecture/turnkey-key-handover.webp',
-        imageAlt: 'Engineer documenting site progress with measurements',
-        caption: 'Transparent Milestone Management',
-        bullets: [
-          'Transparent milestone schedule with clear timelines',
-          'Regular construction progress updates for complete peace of mind',
-          'Itemized package specifications with zero hidden surprises',
-        ],
+        "number": "03",
+        "title": "Building Services",
+        "description": "Integrate utility installations with the architectural and structural work.",
+        "image": "/images/service-stages/brickwork-plaster.webp",
+        "imageAlt": "Building Services"
       },
+      {
+        "number": "04",
+        "title": "Materials & Finishes",
+        "description": "Agree material specifications and finish selections as part of the project scope.",
+        "image": "/images/service-stages/plumbing-waterproofing.webp",
+        "imageAlt": "Materials & Finishes"
+      },
+      {
+        "number": "05",
+        "title": "Project Management",
+        "description": "Coordinate activities, responsibilities and the construction programme.",
+        "image": "/images/service-stages/electrical-installation.webp",
+        "imageAlt": "Project Management"
+      },
+      {
+        "number": "06",
+        "title": "Site Supervision & Handover",
+        "description": "Supervise execution, review quality and coordinate completion of the agreed works.",
+        "image": "/images/service-stages/flooring-painting.webp",
+        "imageAlt": "Site Supervision & Handover"
+      }
     ],
-    idealForTitle: 'Choose this if…',
-    idealFor: [
-      { title: 'You want professional execution', text: 'You want your home built by a professional firm with in-house architects and engineers.' },
-      { title: 'You demand branded materials', text: 'You want trusted brands like Tata Tiscon, UltraTech, and Ashirvad named in your agreement.' },
-      { title: 'You value transparency', text: 'You want clear package pricing, milestone tracking, and on-time handover without cost escalations.' },
-      { title: 'You live outside Chennai', text: 'You need reliable remote progress reporting and structured milestone updates.' },
+    "processKicker": "How we work",
+    "processTitle": "A clear sequence, with room for your project.",
+    "processIntro": "Each stage develops the information and coordination needed for the work that follows.",
+    "process": [
+      {
+        "step": "01",
+        "title": "Review the Project",
+        "description": "Discuss the site, drawings, requirements and budget.",
+        "deliverable": "Project brief",
+        "image": "/images/service-stages/soil-assessment.webp"
+      },
+      {
+        "step": "02",
+        "title": "Define the Scope",
+        "description": "Agree construction responsibilities, specifications and proposal.",
+        "deliverable": "Documented construction scope",
+        "image": "/images/service-stages/engineering-permits.webp"
+      },
+      {
+        "step": "03",
+        "title": "Coordinate Engineering",
+        "description": "Resolve structural and service information before the relevant works.",
+        "deliverable": "Coordinated drawings",
+        "image": "/images/service-stages/foundation-rcc.webp"
+      },
+      {
+        "step": "04",
+        "title": "Build & Supervise",
+        "description": "Manage civil works, services and finishes with site supervision.",
+        "deliverable": "Construction progress and quality review",
+        "image": "/images/service-stages/plumbing-waterproofing.webp"
+      },
+      {
+        "step": "05",
+        "title": "Complete & Handover",
+        "description": "Review completion against the agreed scope and coordinate handover.",
+        "deliverable": "Completed works",
+        "image": "/images/service-stages/home-handover.webp"
+      }
     ],
-    scopeKicker: 'What is included',
-    scopeTitle: 'End-to-end residential construction scope.',
-    scopeIntro: 'Comprehensive packages covering design, structural civil work, plumbing, electrical, and finishes.',
-    scope: [
+    "standardsKicker": "What guides the work",
+    "standardsTitle": "Purpose, coordination and care.",
+    "standardsIntro": "Our approach connects the design intent with practical delivery.",
+    "standards": [
       {
-        number: '01',
-        title: 'Design & Statutory Sanction',
-        description: 'Architectural floor plans, 3D elevation design, structural framing, and municipal permit drawings.',
-        image: '/images/architecture/cmda-sanction-drafting.webp',
-        imageAlt: 'Design and statutory permits drafting',
-        tag: 'Scope 01',
+        "label": "Engineering",
+        "title": "Build from coordinated information",
+        "description": "Architectural, structural and service drawings guide construction."
       },
       {
-        number: '02',
-        title: 'Foundation & RCC Structure',
-        description: 'Earthwork excavation, anti-termite treatment, engineered RCC footings, columns, beams, and slabs.',
-        image: '/images/architecture/structural-construction-frame.webp',
-        imageAlt: 'Reinforced concrete frame under construction',
-        tag: 'Scope 02',
+        "label": "Craftsmanship",
+        "title": "Give execution the care it needs",
+        "description": "Material choices and workmanship are reviewed against the project specifications."
       },
       {
-        number: '03',
-        title: 'Brickwork & Wall Plastering',
-        description: 'High-density block masonry / country bricks, lintel beams, and smooth crack-resistant plastering.',
-        image: '/images/architecture/porotherm-clay-facade.webp',
-        imageAlt: 'Masonry construction with precision joints',
-        tag: 'Scope 03',
-      },
-      {
-        number: '04',
-        title: 'Plumbing & Waterproofing',
-        description: 'Concealed CPVC/UPVC water lines, branded sanitaryware, and multi-layer terrace waterproofing.',
-        image: '/images/architecture/terrace-cool-roof.webp',
-        imageAlt: 'Terrace waterproofing and drainage setup',
-        tag: 'Scope 04',
-      },
-      {
-        number: '05',
-        title: 'Electrical Infrastructure',
-        description: 'Concealed fire-resistant copper wiring, modular switches, MCB distribution, and earthing pits.',
-        image: '/images/architecture/staad-structural-engineering.webp',
-        imageAlt: 'Concealed services and MEP infrastructure installation',
-        tag: 'Scope 05',
-      },
-      {
-        number: '06',
-        title: 'Flooring, Painting & Handover',
-        description: 'Vitrified tile flooring, premium wall putty and emulsion painting, doors, windows, and handover.',
-        image: '/images/architecture/villa-after-finished.webp',
-        imageAlt: 'Completed luxury residential villa',
-        tag: 'Scope 06',
-      },
+        "label": "Communication",
+        "title": "Keep responsibilities clear",
+        "description": "The construction proposal sets out the scope, programme and responsibilities."
+      }
     ],
-    processKicker: 'Construction Journey',
-    processTitle: 'Step-by-step from ground breaking to key handover.',
-    processIntro: 'Structured planning, milestone inspections, and transparent progress tracking.',
-    process: [
-      {
-        step: '01',
-        title: 'Requirements & Soil Assessment',
-        description: 'Understand site conditions, soil bearing capacity, family requirements, and finalize package selection.',
-        image: '/images/architecture/site-surveying-raw.webp',
-        deliverable: 'Soil test & project feasibility',
-      },
-      {
-        step: '02',
-        title: 'Plan Finalisation & Agreement',
-        description: 'Architectural drawings approved, built-up areas frozen, and itemized construction contract signed.',
-        image: '/images/architecture/villa-plan-sketch.webp',
-        deliverable: 'Approved plans & construction contract',
-      },
-      {
-        step: '03',
-        title: 'Foundation & RCC Framing',
-        description: 'Excavation, anti-termite treatment, footings, plinth beam, and floor-by-floor concrete frame casting.',
-        image: '/images/architecture/villa-before-frame.webp',
-        deliverable: 'Completed RCC structural frame',
-      },
-      {
-        step: '04',
-        title: 'Brickwork, MEP & Waterproofing',
-        description: 'Masonry walls, concealed electrical conduits, plumbing pipework, and terrace waterproofing.',
-        image: '/images/architecture/structural-construction-frame.webp',
-        deliverable: 'Weatherproof shell & tested services',
-      },
-      {
-        step: '05',
-        title: 'Finishes, Quality Audit & Handover',
-        description: 'Vitrified flooring, painting, door/window installation, sanitary fittings, and key handover.',
-        image: '/images/architecture/turnkey-key-handover.webp',
-        deliverable: 'Completed home & keys handover',
-      },
+    "deliverablesKicker": "Project information",
+    "deliverablesTitle": "A scope you can understand and review.",
+    "deliverablesIntro": "Your proposal identifies which drawings, documents and services apply to the commission.",
+    "deliverables": [
+      "Civil works to the agreed scope",
+      "Structural engineering coordination",
+      "Material and finish specifications",
+      "Utility installation coordination",
+      "Interior fit-outs where included",
+      "Coordination between construction disciplines",
+      "Construction programme coordination",
+      "Site supervision and quality checks",
+      "Completion review and handover"
     ],
-    standardsKicker: 'Our Construction Guarantees',
-    standardsTitle: 'Quality materials and professional execution.',
-    standardsIntro: 'Built to industry engineering codes with trusted Indian brands.',
-    standards: [
+    "deliverableCategories": [
       {
-        label: 'Branded Materials',
-        title: 'Tata / JSW Steel & UltraTech Cement',
-        description: 'Standardized use of certified 550D TMT steel bars and 53-grade cement named explicitly in your agreement.',
-        image: '/images/architecture/structural-construction-frame.webp',
+        "title": "Civil construction",
+        "subtitle": "The building and its structure",
+        "icon": "home",
+        "items": [
+          "Civil works to the agreed scope",
+          "Structural engineering coordination",
+          "Material and finish specifications"
+        ]
       },
       {
-        label: 'In-House Technical Team',
-        title: 'Architects & Engineers on Every Project',
-        description: 'Direct supervision by qualified civil engineers and architects to ensure construction complies with drawings.',
-        image: '/images/architecture/site-engineer-audit.webp',
+        "title": "Services & finishes",
+        "subtitle": "Coordinated execution",
+        "icon": "layers",
+        "items": [
+          "Utility installation coordination",
+          "Interior fit-outs where included",
+          "Coordination between construction disciplines"
+        ]
       },
       {
-        label: 'On-Time Handover',
-        title: 'Milestone Tracking & Timely Delivery',
-        description: 'Structured stage-by-stage planning ensures your home is completed and handed over on schedule.',
-        image: '/images/architecture/villa-after-finished.webp',
-      },
+        "title": "Project delivery",
+        "subtitle": "Management and supervision",
+        "icon": "shield",
+        "items": [
+          "Construction programme coordination",
+          "Site supervision and quality checks",
+          "Completion review and handover"
+        ]
+      }
     ],
-    deliverablesKicker: 'What you take home',
-    deliverablesTitle: 'A ready-to-live home with complete documentation.',
-    deliverablesIntro: 'Full handover package including as-built drawings, material warranties, and keys.',
-    deliverables: [
-      'Soil test report and certified structural drawings',
-      'RCC framed structure built with branded steel and cement',
-      'Precision masonry walls with smooth interior and exterior plastering',
-      'Multi-layer waterproofing for all wet areas and terrace slabs',
-      'Tested concealed electrical and plumbing infrastructure',
-      'Vitrified tile flooring, granite steps, and bathroom tiling',
-      'Interior and exterior painting with premium emulsion coats',
-      'As-built drawings, fixture warranties, and ready-to-live keys handover',
-    ],
-    deliverableCategories: [
+    "gallery": [
       {
-        title: 'Structural Frame & Civil Work',
-        subtitle: 'Engineered concrete framework built to code',
-        icon: 'ShieldCheck',
-        items: [
-          'Earthwork excavation and certified anti-termite treatment',
-          'RCC footings, plinth beams, columns, and roof slabs',
-          'Tata Tiscon / JSW 550D TMT steel reinforcement',
-          'UltraTech / Ramco 53-grade certified cement',
-        ],
+        "src": "/murali-patharala-associates-assets/exterior_renders/WhatsApp Image 2026-09-23 at 17.38.22 (1).webp",
+        "alt": "Residential architectural visualization with warm evening lighting",
+        "caption": "Residential design vision"
       },
       {
-        title: 'Masonry & Waterproofing',
-        subtitle: 'Durable building envelope and weather protection',
-        icon: 'Home',
-        items: [
-          'Solid concrete blocks / country brick wall construction',
-          'Smooth sponge-finish internal and exterior wall plastering',
-          'Multi-layer elastomeric waterproofing on terrace slabs',
-          'Sunken slab waterproofing in all bathrooms and balconies',
-        ],
+        "src": "/murali-patharala-associates-assets/exterior_renders/WhatsApp Image 2026-09-23 at 16.17.56 (2).webp",
+        "alt": "White and stone-clad residence from the MPA project library",
+        "caption": "Project design details"
       },
       {
-        title: 'Plumbing & Electrical Systems',
-        subtitle: 'Safe, tested MEP infrastructure',
-        icon: 'Zap',
-        items: [
-          'Ashirvad / Astral CPVC water lines and UPVC drainage',
-          'Branded CP and sanitary fittings (Parryware / Jaquar / Kohler)',
-          'Finolex / Havells fire-resistant copper wiring',
-          'Modular switches and MCB distribution board with earthing',
-        ],
+        "src": "/murali-patharala-associates-assets/exterior_renders/WhatsApp Image 2026-09-23 at 16.36.14.webp",
+        "alt": "Contemporary white residential elevation with layered balconies",
+        "caption": "Contemporary facade"
+      }
+    ],
+    "bentoImages": {
+      "hero": {
+        "src": "/murali-patharala-associates-assets/exterior_renders/WhatsApp Image 2026-09-23 at 17.38.22 (1).webp",
+        "alt": "Contemporary three-storey residential design with warm facade lighting",
+        "tag": "01 // RESIDENTIAL VISION",
+        "caption": "Contemporary exterior design with layered forms and warm lighting",
+        "location": "Anna Nagar Project"
+      },
+      "sub1": {
+        "src": "/murali-patharala-associates-assets/exterior_renders/WhatsApp Image 2026-09-23 at 16.17.56 (2).webp",
+        "alt": "White and stone-clad residence from the MPA project library",
+        "tag": "02 // MATERIAL PALETTE",
+        "caption": "Stone and timber facade details from the MPA project library",
+        "location": "Site Supervision"
+      },
+      "sub2": {
+        "src": "/murali-patharala-associates-assets/exterior_renders/WhatsApp Image 2026-09-23 at 16.36.14.webp",
+        "alt": "Contemporary white residential elevation with layered balconies",
+        "tag": "03 // PROJECT EXTERIOR",
+        "caption": "Modern white residential elevation and balcony design",
+        "location": "Residential Design"
+      }
+    },
+    "faqs": [
+      {
+        "question": "Do you build from an existing design?",
+        "answer": "Share the available drawings and specifications with the studio. We will review the information and construction scope before proposing the next steps."
       },
       {
-        title: 'Finishes & Handover Package',
-        subtitle: 'Move-in ready finishes with documentation',
-        icon: 'FileText',
-        items: [
-          'Double-charged vitrified tile flooring for living and bedrooms',
-          'Asian Paints primer, wall putty, and premium emulsion coats',
-          'Main teak wood entrance door with brass fittings',
-          'As-built drawing files, fixture warranties, and keys handover',
-        ],
+        "question": "Do you also undertake commercial construction?",
+        "answer": "Yes. ARCH foundations’ profile covers residential, commercial and institutional construction, civil works and structural engineering."
       },
-    ],
-    gallery: [
-      { src: '/images/architecture/site-surveying-raw.webp', alt: 'Site engineer surveying a residential plot', caption: 'Setting out' },
-      { src: '/images/architecture/staad-structural-engineering.webp', alt: 'Structural engineering analysis for a home', caption: 'Structural verification' },
-      { src: '/images/architecture/villa-after-finished.webp', alt: 'Completed contemporary residence after construction', caption: 'Completed handover' },
-    ],
-    faqs: [
-      { question: 'What home construction packages do you offer?', answer: 'We offer customizable construction packages (Standard, Premium, and Luxury) with clear, itemized specifications per square foot, covering design, structural work, plumbing, electrical, flooring, and painting.' },
-      { question: 'Which material brands do you use for construction?', answer: 'We use trusted brands: Tata Tiscon / JSW for TMT steel, UltraTech / Ramco for cement, Ashirvad / Astral for plumbing, Finolex / Havells for wiring, and Asian Paints for wall finishes.' },
-      { question: 'How do you ensure on-time project completion?', answer: 'We use structured milestone scheduling and active project management to coordinate labor, material procurement, and stage approvals without unneeded delays.' },
-      { question: 'Can you construct based on drawings from our own architect?', answer: 'Yes. We review your existing drawings, provide an itemized construction estimate, and execute the civil construction with our in-house engineering team.' },
-      { question: 'How do outstation and NRI clients track progress?', answer: 'We provide regular milestone photo and video updates, scheduled phone/video reviews, and transparent stage-wise billing linked directly to verified progress.' },
-    ],
+      {
+        "question": "What does project supervision cover?",
+        "answer": "Project management and site supervision coordinate construction activities and quality checks. The responsibilities and visit arrangements are set out in the project proposal."
+      },
+      {
+        "question": "How are costs and timelines confirmed?",
+        "answer": "They are established after reviewing the site, drawings, specifications and scope. Your written proposal records the agreed commercial terms."
+      },
+      {
+        "question": "Can interiors be included?",
+        "answer": "Interior fit-outs and utility installations can be coordinated within a turnkey project scope."
+      }
+    ]
   },
   {
-    slug: 'interior-design',
-    number: '03',
-    eyebrow: 'Modular Kitchens / Wardrobes / False Ceilings / Lighting',
-    title: 'Interior',
-    accent: 'Design.',
-    ownership: { label: 'Interior design by', company: 'Murali Patharala & Associates (MPA)' },
-    summary:
-      'End-to-end home interior solutions. Signature luxury interiors covering modular kitchens, wardrobes, false ceilings, lighting, and custom furniture tailored to your lifestyle.',
-    promise: 'Signature Luxury Interiors. End-To-End Home Interior Solutions.',
-    heroImage: '/images/architecture/interior-double-height.webp',
-    heroAlt: 'Bespoke double-height residential interior',
-    highlights: [
-      '100% Customized Solutions',
-      'Bespoke Modular Kitchens',
-      'Full-Height Wardrobes & Storage',
-      'False Ceilings & Lighting Design',
+    "slug": "interior-design",
+    "number": "03",
+    "eyebrow": "Interior design consultancy",
+    "title": "Interior",
+    "accent": "Design.",
+    "ownership": {
+      "label": "Interior design by",
+      "company": "Murali Patharala & Associates (MPA)"
+    },
+    "summary": "Interior design consultancy for homes, workplaces and institutional spaces, with spatial planning, material selection, technical coordination and fit-out support.",
+    "shortSummary": "Interior design that brings function, character and everyday comfort together.",
+    "heroImage": "/murali-patharala-associates-assets/interior_renders/WhatsApp Image 2026-09-23 at 16.42.59 (3).webp",
+    "heroAlt": "Bespoke double-height residential interior designed by Ar. Murali Patharala",
+    "highlights": [
+      "User-centred space planning",
+      "Concepts & materials",
+      "Coordinated interior drawings",
+      "Fit-out coordination"
     ],
-    stats: [
-      { value: '100%', label: 'Customized To Rooms' },
-      { value: 'End-to-End', label: 'Design & Execution' },
-      { value: 'Premium', label: 'Quality Core Materials' },
-      { value: 'On-Time', label: 'Turnkey Handover' },
+    "overviewKicker": "Our approach",
+    "overviewTitle": "Interiors that belong to their people and place.",
+    "overviewLead": "Our interior design work balances practical use with atmosphere, material character and the architectural setting.",
+    "overviewSections": [
+      {
+        "heading": "Start with the people",
+        "body": "Understand how the space is used and the experience the client wants to create.",
+        "image": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.33.webp",
+        "imageAlt": "Completed luxury modular kitchen with backlit onyx wall and custom cabinetry",
+        "caption": "Start with the people",
+        "bullets": [
+          "Daily activities and movement",
+          "Furniture and storage requirements",
+          "Residential, commercial and institutional needs"
+        ]
+      },
+      {
+        "heading": "Shape the character",
+        "body": "Develop the concept through spatial planning, mood boards and material choices.",
+        "image": "/murali-patharala-associates-assets/interior_renders/WhatsApp Image 2026-09-23 at 16.22.23 (5).webp",
+        "imageAlt": "Designed living room media wall with integrated storage",
+        "caption": "Shape the character",
+        "bullets": [
+          "Concept sketches and mood boards",
+          "Materials, colours and finishes",
+          "A balance of tradition and contemporary life"
+        ]
+      },
+      {
+        "heading": "Coordinate the details",
+        "body": "Connect interior design with building services and construction information.",
+        "image": "/murali-patharala-associates-assets/interior_renders/WhatsApp Image 2026-09-23 at 16.42.59 (4).webp",
+        "imageAlt": "Living space with backlit onyx elevator cladding, TV console, and false ceiling lighting",
+        "caption": "Coordinate the details",
+        "bullets": [
+          "Electrical, plumbing and HVAC coordination",
+          "Working drawings and specifications",
+          "Fit-out coordination as part of the agreed scope"
+        ]
+      }
     ],
-    overviewKicker: 'Our Interior Solutions',
-    overviewTitle: 'Transforming spaces with expertise and dedication.',
-    overviewLead:
-      'We plan storage, modular kitchens, lighting, and furniture around your daily routines — crafted with factory precision, premium materials, and on-time handover.',
-    overviewSections: [
+    "scopeKicker": "Service scope",
+    "scopeTitle": "Support shaped around your project.",
+    "scopeIntro": "The required services and deliverables are defined in your project proposal.",
+    "scope": [
       {
-        heading: 'Modular kitchens & ergonomic storage',
-        body: 'Kitchens designed around how you cook. Ergonomic work triangles, soft-close tandem drawers, corner units, appliance garages, and quartz or granite countertops.',
-        image: '/images/architecture/modular-kitchen-luxury.webp',
-        imageAlt: 'Kitchen planned around cooking and storage routines',
-        caption: 'Bespoke Modular Kitchens',
-        bullets: [
-          'Ergonomic kitchen work triangles tailored to your cooking habits',
-          'Heavy-duty soft-close tandem drawers and pullout wire baskets',
-          'Durable quartz, granite, or composite stone countertops with backsplashes',
-        ],
+        "number": "01",
+        "title": "Brief & Space Planning",
+        "description": "Review user requirements, circulation and furniture relationships.",
+        "image": "/murali-patharala-associates-assets/interior_renders/WhatsApp Image 2026-09-23 at 16.22.24 (4).webp",
+        "imageAlt": "Brief & Space Planning"
       },
       {
-        heading: 'Storage, wardrobes & living furniture',
-        body: 'Full-height floor-to-ceiling wardrobes, lofts, dressing units, living room TV consoles, crockery units, and shoe racks custom-built to maximize every inch of space.',
-        image: '/images/architecture/luxury-master-bedroom.webp',
-        imageAlt: 'Master bedroom wardrobe and dressing joinery',
-        caption: 'Custom Wardrobes & Joinery',
-        bullets: [
-          'Floor-to-ceiling wardrobes with sliding or hinged shutters',
-          'Integrated loft storage, internal accessory trays, and dressing mirrors',
-          'Designer TV entertainment units, crockery cabinets, and foyer shoe racks',
-        ],
+        "number": "02",
+        "title": "Concept Development",
+        "description": "Explore the interior direction through sketches, mood boards and design discussion.",
+        "image": "/murali-patharala-associates-assets/interior_renders/WhatsApp Image 2026-09-23 at 16.42.59.webp",
+        "imageAlt": "Concept Development"
       },
       {
-        heading: 'False ceilings, lighting & finish styling',
-        body: 'Architectural false ceilings with layered ambient, task, and warm LED cove lighting to create inviting, sophisticated atmospheres throughout your home.',
-        image: '/images/architecture/living-room-double-height.webp',
-        imageAlt: 'Living space with coordinated lighting and ceiling design',
-        caption: 'False Ceilings & Lighting',
-        bullets: [
-          'Designer Gyproc false ceilings with clean shadow reveals',
-          'Layered ambient, spot, and concealed warm LED strip lighting',
-          'Harmonious wall paint, textured paneling, and curated finishes',
-        ],
+        "number": "03",
+        "title": "Materials & Finishes",
+        "description": "Develop material and finish specifications that support the design.",
+        "image": "/murali-patharala-associates-assets/interior_renders/WhatsApp Image 2026-09-23 at 16.42.59 (4).webp",
+        "imageAlt": "Materials & Finishes"
       },
+      {
+        "number": "04",
+        "title": "Interior Drawings",
+        "description": "Prepare drawings and details to communicate the agreed interior design.",
+        "image": "/murali-patharala-associates-assets/interior_renders/WhatsApp Image 2026-09-23 at 16.22.23 (5).webp",
+        "imageAlt": "Interior Drawings"
+      },
+      {
+        "number": "05",
+        "title": "Service Integration",
+        "description": "Coordinate the interior layout with electrical, plumbing, HVAC and other required services.",
+        "image": "/murali-patharala-associates-assets/interior_renders/WhatsApp Image 2026-09-23 at 16.22.24 (2).webp",
+        "imageAlt": "Service Integration"
+      },
+      {
+        "number": "06",
+        "title": "Fit-out Coordination",
+        "description": "Support the transition from design to interior execution within the commissioned scope.",
+        "image": "/murali-patharala-associates-assets/interior_renders/WhatsApp Image 2026-09-23 at 16.42.57 (7).webp",
+        "imageAlt": "Fit-out Coordination"
+      }
     ],
-    idealForTitle: 'Choose this if…',
-    idealFor: [
-      { title: 'You are building a new home', text: 'You want interiors coordinated seamlessly with civil construction so no walls need hacking later.' },
-      { title: 'You want a functional kitchen', text: 'You want a modular kitchen designed around your family cooking habits with durable, moisture-resistant materials.' },
-      { title: 'You need maximum storage', text: 'You want floor-to-ceiling wardrobes, lofts, TV units, and crockery cabinets tailored to room dimensions.' },
-      { title: 'You want one cohesive look', text: 'False ceilings, lighting, custom joinery, and wall styling composed as one harmonious design.' },
+    "processKicker": "How we work",
+    "processTitle": "A clear sequence, with room for your project.",
+    "processIntro": "Each stage develops the information and coordination needed for the work that follows.",
+    "process": [
+      {
+        "step": "01",
+        "title": "Understand the Space",
+        "description": "Discuss the users, activities, existing conditions and brief.",
+        "deliverable": "Interior brief",
+        "image": "/murali-patharala-associates-assets/interior_renders/WhatsApp Image 2026-09-23 at 16.42.58.webp"
+      },
+      {
+        "step": "02",
+        "title": "Explore the Concept",
+        "description": "Develop spatial planning, mood boards and the design direction.",
+        "deliverable": "Concept proposal",
+        "image": "/murali-patharala-associates-assets/interior_renders/WhatsApp Image 2026-09-23 at 16.42.59 (1).webp"
+      },
+      {
+        "step": "03",
+        "title": "Develop the Design",
+        "description": "Refine layouts, materials and service requirements.",
+        "deliverable": "Developed interior design",
+        "image": "/murali-patharala-associates-assets/interior_renders/WhatsApp Image 2026-09-23 at 16.22.24 (2).webp"
+      },
+      {
+        "step": "04",
+        "title": "Prepare the Information",
+        "description": "Document the design, finishes and coordination requirements.",
+        "deliverable": "Interior drawing and specification set",
+        "image": "/murali-patharala-associates-assets/interior_renders/WhatsApp Image 2026-09-23 at 16.42.59 (4).webp"
+      },
+      {
+        "step": "05",
+        "title": "Coordinate Execution",
+        "description": "Work with the construction team and vendors as agreed in the scope.",
+        "deliverable": "Fit-out coordination",
+        "image": "/murali-patharala-associates-assets/interior_renders/WhatsApp Image 2026-09-23 at 16.42.59.webp"
+      }
     ],
-    scopeKicker: 'What is included',
-    scopeTitle: 'Complete home interior solutions.',
-    scopeIntro: 'Covering modular kitchens, storage, ceilings, lighting, and custom joinery (matching Deejos interior solutions).',
-    scope: [
+    "standardsKicker": "What guides the work",
+    "standardsTitle": "Purpose, coordination and care.",
+    "standardsIntro": "Our approach connects the design intent with practical delivery.",
+    "standards": [
       {
-        number: '01',
-        title: 'Modular Kitchen Solutions',
-        description: 'Tandem drawer systems, pullout baskets, tall pantry units, and quartz countertops.',
-        image: '/images/architecture/modular-kitchen-luxury.webp',
-        imageAlt: 'Luxury modular kitchen with modern finishes',
-        tag: 'Solution 01',
+        "label": "Function",
+        "title": "Make each space work",
+        "description": "Spatial planning begins with the activities and people the interior must support."
       },
       {
-        number: '02',
-        title: 'Storage & Wardrobes',
-        description: 'Floor-to-ceiling wardrobes with lofts, internal sensor lighting, and dressing mirrors.',
-        image: '/images/architecture/luxury-master-bedroom.webp',
-        imageAlt: 'Master bedroom wardrobe and dressing joinery',
-        tag: 'Solution 02',
+        "label": "Character",
+        "title": "Respect context and identity",
+        "description": "The design balances cultural roots with contemporary aspirations."
       },
       {
-        number: '03',
-        title: 'False Ceiling & Lighting',
-        description: 'Designer false ceiling concepts with warm LED cove lights, task spots, and ambient layers.',
-        image: '/images/architecture/interior-double-height.webp',
-        imageAlt: 'Double-height false ceiling and lighting design',
-        tag: 'Solution 03',
-      },
-      {
-        number: '04',
-        title: 'TV & Living Entertainment Units',
-        description: 'Custom acoustic fluted paneling, floating media consoles, and display shelving.',
-        image: '/images/architecture/living-room-double-height.webp',
-        imageAlt: 'Living space layout and TV unit styling',
-        tag: 'Solution 04',
-      },
-      {
-        number: '05',
-        title: 'Crockery Units & Dining Solutions',
-        description: 'Glass-shutter crockery units, breakfast counters, and integrated dining storage cabinets.',
-        image: '/images/architecture/custom-furniture-joinery.webp',
-        imageAlt: 'Custom cabinetry and dining joinery',
-        tag: 'Solution 05',
-      },
-      {
-        number: '06',
-        title: 'Pooja Units, Foyer & Study Tables',
-        description: 'Custom-crafted pooja mandirs, entryway shoe consoles, and ergonomic study workstations.',
-        image: '/images/architecture/pooja-mandir-foyer.webp',
-        imageAlt: 'Pooja unit and foyer design finishes',
-        tag: 'Solution 06',
-      },
+        "label": "Integration",
+        "title": "Connect architecture and interiors",
+        "description": "Material details and building services are considered alongside the overall design."
+      }
     ],
-    processKicker: 'Interior Design Journey',
-    processTitle: 'From 3D concept to finished home.',
-    processIntro: 'Understand requirements, approve 3D views, factory fabrication, and clean on-site installation.',
-    process: [
-      {
-        step: '01',
-        title: 'Consultation & Site Measurement',
-        description: 'Understand family storage requirements, cooking style, aesthetic preferences, and take laser measurements.',
-        image: '/images/architecture/living-room-double-height.webp',
-        deliverable: 'Space measurement & client brief',
-      },
-      {
-        step: '02',
-        title: '3D Designs & Material Selection',
-        description: 'Review photorealistic 3D renders displaying colors, laminates, lighting, and spatial clearances.',
-        image: '/images/architecture/modular-kitchen-luxury.webp',
-        deliverable: 'Approved 3D designs & estimate',
-      },
-      {
-        step: '03',
-        title: 'Production Working Drawings',
-        description: 'Prepare precision joinery drawings, cutting lists, and hardware schedules for factory production.',
-        image: '/images/architecture/custom-furniture-joinery.webp',
-        deliverable: 'Production fabrication drawings',
-      },
-      {
-        step: '04',
-        title: 'Factory Fabrication & Assembly',
-        description: 'Precision factory cutting, edge banding, and modular pre-assembly with high-grade machinery.',
-        image: '/images/architecture/interior-double-height.webp',
-        deliverable: 'Factory fabricated modular units',
-      },
-      {
-        step: '05',
-        title: 'Site Installation & Handover',
-        description: 'On-site installation by master carpenters, false ceiling painting, electrical hookup, and handover.',
-        image: '/images/architecture/luxury-master-bedroom.webp',
-        deliverable: 'Completed interior handover',
-      },
+    "deliverablesKicker": "Project information",
+    "deliverablesTitle": "A scope you can understand and review.",
+    "deliverablesIntro": "Your proposal identifies which drawings, documents and services apply to the commission.",
+    "deliverables": [
+      "User requirements and space planning",
+      "Mood boards and concept development",
+      "Material and finish selections",
+      "Interior layouts and details",
+      "Material specifications",
+      "Coordination with building services",
+      "Coordination with contractors and vendors",
+      "Design clarifications during execution",
+      "Interior fit-outs in a turnkey scope"
     ],
-    standardsKicker: 'Why choose our interior solutions',
-    standardsTitle: 'Quality materials and factory precision.',
-    standardsIntro: 'Built to withstand daily use with high moisture resistance and premium hardware.',
-    standards: [
+    "deliverableCategories": [
       {
-        label: 'Quality Core',
-        title: 'Moisture-Resistant BWR / BWP Plywood',
-        description: 'Heavy-duty Boiling Water Resistant plywood core for all kitchen wet areas and durable wardrobes.',
-        image: '/images/architecture/custom-furniture-joinery.webp',
+        "title": "Design direction",
+        "subtitle": "A shared interior concept",
+        "icon": "compass",
+        "items": [
+          "User requirements and space planning",
+          "Mood boards and concept development",
+          "Material and finish selections"
+        ]
       },
       {
-        label: 'Smooth Hardware',
-        title: 'Soft-Close Hinges & Heavy-Duty Drawers',
-        description: 'Branded soft-close hinges, tandem boxes, and hydraulic lift-ups engineered for smooth daily operation.',
-        image: '/images/architecture/modular-kitchen-luxury.webp',
+        "title": "Interior documentation",
+        "subtitle": "Information for execution",
+        "icon": "file",
+        "items": [
+          "Interior layouts and details",
+          "Material specifications",
+          "Coordination with building services"
+        ]
       },
       {
-        label: 'Clean Execution',
-        title: 'Factory Cutting & Seamless Fitment',
-        description: 'Factory-cut joinery ensures millimeter precision, neat edge-banding, and clean on-site installation.',
-        image: '/images/architecture/interior-double-height.webp',
-      },
+        "title": "Execution support",
+        "subtitle": "From concept to fit-out",
+        "icon": "layers",
+        "items": [
+          "Coordination with contractors and vendors",
+          "Design clarifications during execution",
+          "Interior fit-outs in a turnkey scope"
+        ]
+      }
     ],
-    deliverablesKicker: 'What you take home',
-    deliverablesTitle: 'Fully furnished, ready-to-use interiors.',
-    deliverablesIntro: 'Complete modular joinery, ceilings, lighting, and finishes with hardware documentation.',
-    deliverables: [
-      'Modular kitchen with tandem drawers, pullouts, and countertops',
-      'Floor-to-ceiling wardrobes with lofts and dressing mirrors',
-      'Designer false ceilings with concealed warm LED cove lighting',
-      'Custom living room TV console and decorative wall paneling',
-      'Dining room crockery display unit and breakfast counter',
-      'Pooja mandir unit and entryway shoe rack storage',
-      'Study tables and home office desks with cable organizers',
-      'Clean handover with hardware documentation and care guide',
-    ],
-    deliverableCategories: [
+    "gallery": [
       {
-        title: 'Modular Kitchen & Dining',
-        subtitle: 'Ergonomic cooking & dining storage',
-        icon: 'Layers',
-        items: [
-          'Modular kitchen with soft-close tandem drawers & cutlery trays',
-          'Pullout bottle racks, corner carousels, and tall pantry storage',
-          'Durable quartz or granite countertop with matching backsplash',
-          'Dining crockery display cabinet with glass-frame shutters',
-        ],
+        "src": "/murali-patharala-associates-assets/interior_renders/WhatsApp Image 2026-09-23 at 16.42.59 (3).webp",
+        "alt": "Double height living space with curved marble staircase by Ar. Murali Patharala",
+        "caption": "Signature living"
       },
       {
-        title: 'Wardrobes & Bedroom Storage',
-        subtitle: 'Floor-to-ceiling customized wardrobes',
-        icon: 'Home',
-        items: [
-          'Full-height wardrobes with sliding or hinged soft-close doors',
-          'Integrated top lofts maximizing vertical room storage',
-          'Built-in dresser mirrors, internal accessory trays & lock drawers',
-          'Bed headboard paneling and matching bedside side tables',
-        ],
+        "src": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.33.webp",
+        "alt": "Completed open luxury modular kitchen and dining",
+        "caption": "Completed kitchen & dining"
       },
       {
-        title: 'Ceilings & Ambient Lighting',
-        subtitle: 'Layered architectural lighting for day and night',
-        icon: 'Sun',
-        items: [
-          'Gyproc false ceilings with neat shadow grooves',
-          'Concealed warm LED strip cove lighting and spot lights',
-          'Curtain pelmets with integrated hidden LED channels',
-          'Coordinated two-way switches and concealed AC piping',
-        ],
+        "src": "/murali-patharala-associates-assets/completed_interiors/WhatsApp Image 2026-09-23 at 16.40.29.webp",
+        "alt": "Luxury entrance foyer with marble floor inlay and gold console",
+        "caption": "Executed luxury foyer"
+      }
+    ],
+    "bentoImages": {
+      "hero": {
+        "src": "/murali-patharala-associates-assets/interior_renders/WhatsApp Image 2026-09-23 at 16.42.59 (3).webp",
+        "alt": "Double-height luxury living hall with curved marble staircase, internal courtyard, and onyx wall designed by Ar. Murali Patharala",
+        "tag": "01 // SIGNATURE LIVING",
+        "caption": "Double-height living space with curved marble stair & internal courtyard",
+        "location": "Luxury Residence"
+      },
+      "sub1": {
+        "src": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.33.webp",
+        "alt": "Completed open luxury modular kitchen and dining space with backlit onyx wall and custom cabinetry",
+        "tag": "02 // COMPLETED KITCHEN",
+        "caption": "Executed luxury modular kitchen with backlit onyx feature wall",
+        "location": "Completed Residence"
+      },
+      "sub2": {
+        "src": "/murali-patharala-associates-assets/interior_renders/WhatsApp Image 2026-09-23 at 16.42.59 (1).webp",
+        "alt": "Contemporary kitchen with polished Italian marble floor, breakfast island, and dark stone walls by Ar. Murali Patharala",
+        "tag": "03 // MARBLE ISLAND",
+        "caption": "Contemporary breakfast island kitchen with Italian marble surfaces",
+        "location": "Signature Interiors"
+      }
+    },
+    "faqs": [
+      {
+        "question": "Do you work on spaces other than homes?",
+        "answer": "Yes. MPA’s profile includes residential, commercial and institutional design."
       },
       {
-        title: 'Living Joinery & Pooja Mandir',
-        subtitle: 'Custom furniture and sacred spaces',
-        icon: 'Sparkles',
-        items: [
-          'Living room TV console with fluted paneling and wire hiding',
-          'Custom traditional or contemporary pooja mandir unit',
-          'Foyer shoe rack with cushioned bench seating',
-          'Study desk with bookshelf storage and electrical outlets',
-        ],
+        "question": "How is the interior style decided?",
+        "answer": "It develops from the client brief, the architecture and the users’ needs, using concepts, mood boards and material discussions."
       },
-    ],
-    gallery: [
-      { src: '/images/architecture/modular-kitchen-luxury.webp', alt: 'Bespoke luxury modular kitchen', caption: 'Kitchen systems' },
-      { src: '/images/architecture/luxury-master-bedroom.webp', alt: 'Warm custom-designed master bedroom', caption: 'Private spaces' },
-      { src: '/images/architecture/custom-furniture-joinery.webp', alt: 'Craftsperson working on custom furniture joinery', caption: 'Custom fabrication' },
-    ],
-    faqs: [
-      { question: 'What interior services do you offer?', answer: 'We offer complete end-to-end home interior solutions: modular kitchens, wardrobes & lofts, false ceilings & lighting, TV units, crockery units, pooja mandirs, study desks, and foyer shoe racks.' },
-      { question: 'Can we hire you for only a modular kitchen or wardrobes?', answer: 'Yes. We design and execute room-wise scopes including kitchens and wardrobes, or complete whole-home interior packages.' },
-      { question: 'When should we start interior planning for a newly constructed home?', answer: 'The best time is while brickwork and electrical conduit work is underway. Planning early allows us to align switch points, plumbing, and AC points with zero wall hacking later.' },
-      { question: 'What materials do you use for modular cabinetry?', answer: 'We use Boiling Water Resistant (BWR / BWP) plywood cores for all moisture-prone areas like kitchens and bathrooms, paired with branded soft-close German hardware.' },
-      { question: 'How long does the interior installation take?', answer: 'Once 3D designs and materials are approved, factory production takes approximately 2 to 3 weeks, followed by 10 to 15 days of on-site installation and alignment.' },
-    ],
+      {
+        "question": "Can interior design be coordinated with construction?",
+        "answer": "Yes. ARCH foundations’ turnkey scope can combine planning, construction, interior fit-outs and utility installations."
+      },
+      {
+        "question": "Are specific material brands included automatically?",
+        "answer": "Materials, finishes and any brand requirements are agreed in the project specifications and proposal."
+      },
+      {
+        "question": "How do we start?",
+        "answer": "Share the location, plans or available dimensions, intended use and budget with the studio for an initial discussion."
+      }
+    ]
   },
   {
-    slug: 'turnkey-construction',
-    number: '04',
-    eyebrow: 'One-Stop Solution: Design + Construction + Interior',
-    title: 'Turnkey',
-    accent: 'Construction.',
-    ownership: { label: 'Integrated delivery by', company: 'MPA & ARCH Foundation' },
-    summary:
-      'One-stop solution: end-to-end design & execution. Architecture, residential construction, and interior design delivered seamlessly under one roof — zero contractor hassles.',
-    promise: 'One-Stop Solution: End-To-End Design & Execution Under One Roof.',
-    heroImage: '/images/architecture/tropical-modern-villa.webp',
-    heroAlt: 'Completed tropical modern turnkey villa',
-    highlights: [
-      'One-Stop Solution (Design to Handover)',
-      'Architecture + Civil + Interiors Under One Roof',
-      'Single Point of Accountability',
-      'High Transparency & On-Time Handover',
+    "slug": "turnkey-construction",
+    "number": "04",
+    "eyebrow": "Construction & project delivery",
+    "title": "Turnkey",
+    "accent": "Construction.",
+    "ownership": {
+      "label": "Integrated delivery by",
+      "company": "MPA + ARCH foundations"
+    },
+    "summary": "Turnkey project delivery combines architectural planning, construction, interior fit-outs and utility installations. ARCH foundations also undertakes property development and promotion.",
+    "shortSummary": "Planning, construction, interior fit-outs and utilities coordinated from concept to handover.",
+    "heroImage": "/murali-patharala-associates-assets/exterior_renders/WhatsApp Image 2026-09-23 at 16.17.56 (2).webp",
+    "heroAlt": "Contemporary residential exterior visualization from the MPA project library",
+    "highlights": [
+      "Design to handover",
+      "Integrated planning & construction",
+      "Interior fit-outs & utilities",
+      "Property development & promotion"
     ],
-    stats: [
-      { value: 'One Roof', label: 'Design, Build & Interiors' },
-      { value: 'Single Point', label: 'Complete Accountability' },
-      { value: 'Transparent', label: 'Clear Package Pricing' },
-      { value: 'On-Time', label: 'Ready-to-Live Handover' },
+    "overviewKicker": "Our approach",
+    "overviewTitle": "A connected path from concept to completed space.",
+    "overviewLead": "MPA’s design consultancy and ARCH foundations’ construction expertise bring the disciplines of a project together through execution and handover.",
+    "overviewSections": [
+      {
+        "heading": "Bring the brief together",
+        "body": "Define the building, users, budget and design requirements at the outset.",
+        "image": "/murali-patharala-associates-assets/exterior_renders/JAMEE2.webp",
+        "imageAlt": "Contemporary villa exterior visualization from the MPA project library",
+        "caption": "Bring the brief together",
+        "bullets": [
+          "Residential, commercial or institutional brief",
+          "Site and feasibility review",
+          "Scope and project responsibilities"
+        ]
+      },
+      {
+        "heading": "Coordinate design and delivery",
+        "body": "Develop the architecture alongside engineering, services and construction planning.",
+        "image": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.33.webp",
+        "imageAlt": "Completed kitchen and dining interior from the MPA project library",
+        "caption": "Coordinate design and delivery",
+        "bullets": [
+          "Architectural and structural coordination",
+          "Interior fit-outs and utility installations",
+          "Project management and site supervision"
+        ]
+      },
+      {
+        "heading": "Carry the work through",
+        "body": "Manage the transition from drawings to construction and ready-to-occupy spaces.",
+        "image": "/murali-patharala-associates-assets/exterior_renders/WhatsApp Image 2026-09-23 at 17.38.22 (1).webp",
+        "imageAlt": "Contemporary residential design with warm evening facade lighting",
+        "caption": "Carry the work through",
+        "bullets": [
+          "Coordinated civil and interior works",
+          "Quality and completion reviews",
+          "Handover planning"
+        ]
+      }
     ],
-    overviewKicker: 'Why Choose Turnkey Delivery',
-    overviewTitle: 'One-stop solution: end-to-end design & execution.',
-    overviewLead:
-      'Conventional building turns you into a full-time coordinator mediating between architect, civil contractor, plumber, and carpenter. Our turnkey model unites the entire journey under one accountable team.',
-    overviewSections: [
+    "scopeKicker": "Service scope",
+    "scopeTitle": "Support shaped around your project.",
+    "scopeIntro": "The required services and deliverables are defined in your project proposal.",
+    "scope": [
       {
-        heading: 'Architecture, construction & interiors under one roof',
-        body: 'Our architects, structural engineers, and interior designers work from the identical coordinated plan. Plumbing shifts or site level changes are resolved internally without vendor finger-pointing.',
-        image: '/images/architecture/urban-master-plan.webp',
-        imageAlt: 'Integrated master planning drawings for a turnkey home',
-        caption: 'One-Stop End-to-End Execution',
-        bullets: [
-          'Design studio and construction team work from one coordinated model',
-          'Zero coordination headaches between architects and outside contractors',
-          'Internal resolution of site nuances with zero project delay',
-        ],
+        "number": "01",
+        "title": "Architectural Planning",
+        "description": "Site review, conceptual design and developed architectural information.",
+        "image": "/images/service-stages/design-planning.webp",
+        "imageAlt": "Architectural Planning"
       },
       {
-        heading: 'Clear decisions with transparent pricing upfront',
-        body: 'Approve 2D plans, 3D elevations, materials, and interior joinery with clear package pricing and transparent specifications. Regular milestone updates keep you informed at every step.',
-        image: '/images/architecture/structural-construction-frame.webp',
-        imageAlt: 'Turnkey home structural frame under coordinated execution',
-        caption: 'Transparent Milestone Management',
-        bullets: [
-          'Clear package specifications detailing branded materials and finishes',
-          'Itemized BOQ estimate so you know exact costs before starting',
-          'Regular construction progress updates for complete peace of mind',
-        ],
+        "number": "02",
+        "title": "Technical & Approval Coordination",
+        "description": "Structural and building-service coordination, with statutory submissions where included.",
+        "image": "/images/service-stages/engineering-permits.webp",
+        "imageAlt": "Technical & Approval Coordination"
       },
       {
-        heading: 'Seamless handover: ready for your housewarming',
-        body: 'Wall finishes meet door frames, switchboards match bedside tables, and terrace drains slope perfectly — because one team designed and built everything. Deep-cleaned and move-in ready.',
-        image: '/images/architecture/turnkey-key-handover.webp',
-        imageAlt: 'Handover ceremony with keys delivered to happy homeowners',
-        caption: 'Ready-To-Live Handover',
-        bullets: [
-          'Every electrical switch, tap, and shutter tested before handover',
-          'As-built drawings and fixture documentation given at completion',
-          'Deep cleaned and ready for your family housewarming',
-        ],
+        "number": "03",
+        "title": "Civil Construction",
+        "description": "Civil works and structural engineering coordinated to the project design.",
+        "image": "/images/service-stages/foundation-rcc.webp",
+        "imageAlt": "Civil Construction"
       },
+      {
+        "number": "04",
+        "title": "Utility Installations",
+        "description": "Integration of electrical, plumbing and other required building services.",
+        "image": "/images/service-stages/plumbing-waterproofing.webp",
+        "imageAlt": "Utility Installations"
+      },
+      {
+        "number": "05",
+        "title": "Interior Fit-outs",
+        "description": "Interior execution coordinated with the architecture and construction scope.",
+        "image": "/images/service-stages/interior-fitout.webp",
+        "imageAlt": "Interior Fit-outs"
+      },
+      {
+        "number": "06",
+        "title": "Property Development & Promotion",
+        "description": "Development and promotion services through ARCH foundations, with scope defined for the particular project.",
+        "image": "/images/service-stages/home-handover.webp",
+        "imageAlt": "Property Development & Promotion"
+      }
     ],
-    idealForTitle: 'Choose this if…',
-    idealFor: [
-      { title: 'You want one accountable team', text: 'You do not have time to coordinate between architects, civil contractors, plumbers, and carpenters.' },
-      { title: 'You live abroad or outstation', text: 'You need a trustworthy firm providing structured remote updates and transparent milestone billing.' },
-      { title: 'You want design intent protected', text: 'The approved 3D elevations, floor plans, and interior finishes get built faithfully as designed.' },
-      { title: 'You want clear budget certainty', text: 'One comprehensive package and schedule rather than unpredictable piecemeal contracts.' },
+    "processKicker": "How we work",
+    "processTitle": "A clear sequence, with room for your project.",
+    "processIntro": "Each stage develops the information and coordination needed for the work that follows.",
+    "process": [
+      {
+        "step": "01",
+        "title": "Establish the Brief",
+        "description": "Review the site, intended use, budget and delivery requirements.",
+        "deliverable": "Project scope",
+        "image": "/images/service-stages/design-planning.webp"
+      },
+      {
+        "step": "02",
+        "title": "Develop & Coordinate",
+        "description": "Resolve architecture, engineering, approvals and interior requirements.",
+        "deliverable": "Coordinated design information",
+        "image": "/images/service-stages/engineering-permits.webp"
+      },
+      {
+        "step": "03",
+        "title": "Plan Delivery",
+        "description": "Agree specifications, responsibilities and the construction programme.",
+        "deliverable": "Project delivery proposal",
+        "image": "/images/service-stages/soil-assessment.webp"
+      },
+      {
+        "step": "04",
+        "title": "Execute the Works",
+        "description": "Coordinate construction, fit-outs and utilities with site supervision.",
+        "deliverable": "Completed construction and fit-outs",
+        "image": "/images/service-stages/interior-fitout.webp"
+      },
+      {
+        "step": "05",
+        "title": "Review & Handover",
+        "description": "Review the agreed works and prepare the spaces for occupation.",
+        "deliverable": "Project handover",
+        "image": "/images/service-stages/home-handover.webp"
+      }
     ],
-    scopeKicker: 'What is included',
-    scopeTitle: 'Complete turnkey construction scope.',
-    scopeIntro: 'Design, statutory permits, civil construction, and custom interiors delivered as one seamless journey.',
-    scope: [
+    "standardsKicker": "What guides the work",
+    "standardsTitle": "Purpose, coordination and care.",
+    "standardsIntro": "Our approach connects the design intent with practical delivery.",
+    "standards": [
       {
-        number: '01',
-        title: 'Architectural & 3D Design',
-        description: 'Vastu-compliant floor plans, photorealistic 3D elevations, and complete interior layout planning.',
-        image: '/images/architecture/urban-master-plan.webp',
-        imageAlt: 'Turnkey project master planning and architectural study',
-        tag: 'Phase 01',
+        "label": "Coordination",
+        "title": "Bring the disciplines together",
+        "description": "Planning, construction, interiors and utilities are coordinated around the project brief."
       },
       {
-        number: '02',
-        title: 'Statutory Permits & Engineering',
-        description: 'CMDA / GCC municipal sanction drawings, vetted structural designs, and MEP working layouts.',
-        image: '/images/architecture/staad-structural-engineering.webp',
-        imageAlt: 'Structural engineering and municipal permit package',
-        tag: 'Phase 02',
+        "label": "Purpose",
+        "title": "Build with the user in mind",
+        "description": "The completed space should support its intended use and the client’s priorities."
       },
       {
-        number: '03',
-        title: 'Civil Construction Execution',
-        description: 'Earthwork, RCC framed structure, branded TMT steel, cement, and quality brickwork masonry.',
-        image: '/images/architecture/structural-construction-frame.webp',
-        imageAlt: 'Turnkey structural concrete frame execution',
-        tag: 'Phase 03',
-      },
-      {
-        number: '04',
-        title: 'Building Services & Waterproofing',
-        description: 'Concealed CPVC plumbing, fire-resistant electrical conduits, and multi-layer terrace waterproofing.',
-        image: '/images/architecture/terrace-cool-roof.webp',
-        imageAlt: 'Building services and waterproofing setup',
-        tag: 'Phase 04',
-      },
-      {
-        number: '05',
-        title: 'Complete Interior Solutions',
-        description: 'Custom modular kitchen, full-height wardrobes, designer false ceilings, and ambient lighting.',
-        image: '/images/architecture/interior-double-height.webp',
-        imageAlt: 'Turnkey luxury interior joinery and lighting',
-        tag: 'Phase 05',
-      },
-      {
-        number: '06',
-        title: 'Final Quality Inspection & Handover',
-        description: 'Comprehensive systems check, deep cleaning, as-built documentation, and ready-to-live keys handover.',
-        image: '/images/architecture/turnkey-key-handover.webp',
-        imageAlt: 'Handover ceremony with ceremonial key and documentation pack',
-        tag: 'Phase 06',
-      },
+        "label": "Craftsmanship",
+        "title": "Carry design intent into the work",
+        "description": "Technical coordination and site supervision support the transition from drawings to construction."
+      }
     ],
-    processKicker: 'Turnkey Construction Journey',
-    processTitle: 'From plot to housewarming in five structured stages.',
-    processIntro: 'One accountable team guiding you through every milestone.',
-    process: [
-      {
-        step: '01',
-        title: 'Requirements & Design Brief',
-        description: 'We review your plot dimensions, family room needs, preferred finish level, and investment target.',
-        image: '/images/architecture/urban-master-plan.webp',
-        deliverable: 'Project brief & design framework',
-      },
-      {
-        step: '02',
-        title: 'Integrated Design & Fixed Estimate',
-        description: 'Architectural floor plans, 3D elevations, and interior layouts finalized alongside itemized pricing.',
-        image: '/images/architecture/bim-3d-walkthrough.webp',
-        deliverable: '3D walkthrough & package contract',
-      },
-      {
-        step: '03',
-        title: 'Approvals & Ground Breaking',
-        description: 'Statutory municipal permits prepared, site cleared, soil tested, and excavation initiated.',
-        image: '/images/architecture/cmda-sanction-drafting.webp',
-        deliverable: 'Municipal permits & site mobilization',
-      },
-      {
-        step: '04',
-        title: 'Civil Build & Interior Integration',
-        description: 'RCC structure, masonry, plumbing, electrical, and custom interior cabinetry executed in sync.',
-        image: '/images/architecture/structural-construction-frame.webp',
-        deliverable: 'Completed structure & interior fitment',
-      },
-      {
-        step: '05',
-        title: 'Quality Check & Key Handover',
-        description: 'Full inspection, deep cleaning, as-built documentation file, and ready-to-live key handover.',
-        image: '/images/architecture/turnkey-key-handover.webp',
-        deliverable: 'Ready-to-live home & keys',
-      },
+    "deliverablesKicker": "Project information",
+    "deliverablesTitle": "A scope you can understand and review.",
+    "deliverablesIntro": "Your proposal identifies which drawings, documents and services apply to the commission.",
+    "deliverables": [
+      "Architectural planning and design",
+      "Structural and MEP coordination",
+      "Approval documentation within the agreed scope",
+      "Civil construction and structural works",
+      "Interior fit-outs",
+      "Utility installations",
+      "Project management",
+      "Site supervision and quality review",
+      "Completion and handover coordination"
     ],
-    standardsKicker: 'Single-Source Accountability',
-    standardsTitle: 'One team answers for everything.',
-    standardsIntro: 'Design, structural civil work, and custom interiors managed under one roof.',
-    standards: [
+    "deliverableCategories": [
       {
-        label: 'One Stop Solution',
-        title: 'Design + Construction + Interior',
-        description: 'No coordinating between different contractors. One unified team delivers your complete home from plot to keys.',
-        image: '/images/architecture/site-engineer-audit.webp',
+        "title": "Design & coordination",
+        "subtitle": "A considered starting point",
+        "icon": "compass",
+        "items": [
+          "Architectural planning and design",
+          "Structural and MEP coordination",
+          "Approval documentation within the agreed scope"
+        ]
       },
       {
-        label: 'Transparent Pricing',
-        title: 'Clear Package Specifications',
-        description: 'Itemized specifications detailing branded materials, grades, and prices with zero hidden costs.',
-        image: '/images/architecture/cmda-sanction-drafting.webp',
+        "title": "Construction & fit-out",
+        "subtitle": "Connected execution",
+        "icon": "home",
+        "items": [
+          "Civil construction and structural works",
+          "Interior fit-outs",
+          "Utility installations"
+        ]
       },
       {
-        label: 'On-Time Handover',
-        title: 'Professional Project Management',
-        description: 'Structured stage-by-stage execution ensures your finished residence is delivered on schedule.',
-        image: '/images/architecture/hero-villa-twilight.webp',
-      },
+        "title": "Project delivery",
+        "subtitle": "Concept to occupation",
+        "icon": "shield",
+        "items": [
+          "Project management",
+          "Site supervision and quality review",
+          "Completion and handover coordination"
+        ]
+      }
     ],
-    deliverablesKicker: 'What you take home',
-    deliverablesTitle: 'A ready-to-live home, completely finished.',
-    deliverablesIntro: 'Everything tested, deep-cleaned, and delivered with documentation and keys.',
-    deliverables: [
-      'Custom architectural floor plans, sections, and 3D elevations',
-      'CMDA / GCC statutory municipal sanction approval package',
-      'Complete civil construction delivered with branded steel and cement',
-      'Tested electrical, plumbing, and sanitary infrastructure',
-      'Custom modular kitchen with tandem drawers and stone countertops',
-      'Full-height wardrobes, lofts, false ceilings, and ambient lighting',
-      'Regular milestone construction progress updates',
-      'As-built drawings, fixture documentation, and ready-to-live keys',
-    ],
-    deliverableCategories: [
+    "gallery": [
       {
-        title: 'Design & Statutory Approvals',
-        subtitle: 'All blueprints, 3D elevations & permits',
-        icon: 'Compass',
-        items: [
-          'Custom architectural floor plans & 3D visualizations',
-          'CMDA / GCC municipal sanction approval set',
-          'Vetted structural engineering drawings & schedules',
-          'Coordinated electrical, plumbing & drainage schematics',
-        ],
+        "src": "/murali-patharala-associates-assets/exterior_renders/WhatsApp Image 2026-09-23 at 16.17.56 (2).webp",
+        "alt": "Contemporary timber and stone residence visualization",
+        "caption": "Architectural exterior vision"
       },
       {
-        title: 'Engineered Civil Construction',
-        subtitle: 'Built with branded materials to engineering codes',
-        icon: 'Building2',
-        items: [
-          'Tata Tiscon / JSW steel and UltraTech cement structure',
-          'Engineered RCC footings, columns, beams, and slabs',
-          'High-density block / country brick wall masonry',
-          'Multi-layer waterproofing for all terrace and wet areas',
-        ],
+        "src": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.33.webp",
+        "alt": "Completed kitchen and dining interior by MPA",
+        "caption": "Completed kitchen and dining"
       },
       {
-        title: 'Signature Luxury Interiors',
-        subtitle: 'Move-in ready custom interiors & joinery',
-        icon: 'Sparkles',
-        items: [
-          'Bespoke modular kitchen with tandem drawers & stone tops',
-          'Floor-to-ceiling wardrobes with soft-close German fittings',
-          'Designer false ceilings with layered ambient LED lighting',
-          'Vitrified flooring, painting, doors, and branded sanitaryware',
-        ],
+        "src": "/murali-patharala-associates-assets/completed_interiors/WhatsApp Image 2026-09-23 at 16.40.29.webp",
+        "alt": "Completed residential entrance foyer with custom console and marble flooring",
+        "caption": "Completed entrance interior"
+      }
+    ],
+    "bentoImages": {
+      "hero": {
+        "src": "/murali-patharala-associates-assets/exterior_renders/WhatsApp Image 2026-09-23 at 16.17.56 (2).webp",
+        "alt": "Contemporary timber and stone residence visualization from the MPA project library",
+        "tag": "01 // ARCHITECTURAL DESIGN",
+        "caption": "Contemporary residential exterior concept with layered stone and timber",
+        "location": "Chennai Residence"
+      },
+      "sub1": {
+        "src": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.33.webp",
+        "alt": "Completed kitchen and dining area with custom cabinetry and stone finishes",
+        "tag": "02 // INTERIOR DESIGN",
+        "caption": "Completed kitchen and dining space with coordinated interior finishes",
+        "location": "Completed Residence"
+      },
+      "sub2": {
+        "src": "/murali-patharala-associates-assets/completed_interiors/WhatsApp Image 2026-09-23 at 16.40.29.webp",
+        "alt": "Completed residential entrance foyer with custom console and marble flooring",
+        "tag": "03 // COMPLETED INTERIOR",
+        "caption": "Finished entrance foyer with custom joinery and marble flooring",
+        "location": "Completed Residence"
+      }
+    },
+    "faqs": [
+      {
+        "question": "What does turnkey delivery include?",
+        "answer": "The client profile describes end-to-end delivery from concept to handover, integrating planning, construction, interior fit-outs and utility installations. The proposal defines the inclusions for your project."
       },
       {
-        title: 'Handover & Documentation Pack',
-        subtitle: 'Move-in ready with complete documentation',
-        icon: 'Key',
-        items: [
-          'As-built architectural, plumbing, and electrical drawing sets',
-          'Manufacturer warranty certificates for fittings & appliances',
-          'Complete systems testing and snag closure verification',
-          'Deep-cleaned residence ready for immediate housewarming',
-        ],
+        "question": "Is turnkey work limited to houses?",
+        "answer": "No. The practice and construction profile also cover commercial and institutional projects."
       },
-    ],
-    gallery: [
-      { src: '/images/architecture/urban-master-plan.webp', alt: 'Residential master planning drawings', caption: 'Integrated planning' },
-      { src: '/images/architecture/structural-construction-frame.webp', alt: 'Turnkey residence structural frame', caption: 'Controlled construction' },
-      { src: '/images/architecture/living-room-double-height.webp', alt: 'Completed double-height turnkey home interior', caption: 'Ready-to-live handover' },
-    ],
-    faqs: [
-      { question: 'What is included in the turnkey construction service?', answer: 'Our turnkey service is a complete one-stop solution: architectural design, 3D elevations, statutory sanction approvals, complete civil construction using branded materials, building services, and custom home interiors — delivered ready to live.' },
-      { question: 'We already have drawings from an external architect. Can you execute turnkey construction?', answer: 'Yes. We can review your approved architectural drawings, provide an itemized construction and interior estimate, and execute the entire project under one roof.' },
-      { question: 'Why is turnkey better than hiring separate contractors?', answer: 'Turnkey eliminates vendor finger-pointing between architects, civil builders, and carpenters. You get a single point of accountability, transparent package pricing, and on-time handover.' },
-      { question: 'How do outstation or NRI families manage turnkey projects?', answer: 'Turnkey is the most popular choice for outstation and NRI clients: you get regular milestone photo and video updates, scheduled phone/video reviews, and stage-gated payments linked directly to progress.' },
-      { question: 'How is the project price fixed?', answer: 'We provide an itemized package agreement with clear specifications, brand names, and built-up areas upfront, ensuring complete cost transparency.' },
-    ],
-  },
+      {
+        "question": "Do you undertake property development?",
+        "answer": "ARCH foundations offers property development and promotion alongside its construction services. Contact the studio to discuss the specific development brief."
+      },
+      {
+        "question": "Who handles architecture and construction?",
+        "answer": "Murali Patharala & Associates provides architectural and interior design consultancy. ARCH foundations provides construction and property development expertise."
+      },
+      {
+        "question": "How are the contract terms decided?",
+        "answer": "The team reviews the project before issuing a written proposal covering the scope, specifications, responsibilities, fees and programme."
+      }
+    ]
+  }
 ];
 
 export function getServiceDetail(slug: string) {
-  return SERVICE_DETAILS.find((service) => service.slug === slug);
+  return SERVICE_DETAILS.find(service => service.slug === slug);
 }

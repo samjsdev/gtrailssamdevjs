@@ -1,0 +1,15 @@
+.viewerHeader { display: flex; align-items: center; justify-content: space-between; gap: 20px; padding: 20px 24px; border-bottom: 1px solid #ded9d1; }
+.viewerHeader span { font-size: 9px; color: #aa431e; text-transform: uppercase; letter-spacing: .12em; }
+.viewerHeader h3 { font-family: var(--font-content); font-size: 23px; margin-top: 5px; }
+.close { display: inline-flex; align-items: center; justify-content: center; width: 44px; height: 44px; flex-shrink: 0; border: 1px solid #ded9d1; cursor: pointer; }
+.close:hover { background: var(--color-surface-cream); }
+.fullDrawing { padding: 12px; }
+.originalImage { display: block; width: 100%; height: auto; }
+.viewerFooter { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 15px; padding: 18px 24px; border-top: 1px solid #ded9d1; font-size: 11px; color: #53584f; }
+.viewerFooter a { display: inline-flex; align-items: center; gap: 6px; min-height: 32px; color: #aa431e; text-decoration: underline; text-underline-offset: 4px; }
+.close:focus-visible { outline: 2px solid #c2410c; outline-offset: 3px; }
+@media (max-width: 520px) {
+  .viewerHeader { padding: 16px; }
+  .viewerHeader h3 { font-size: 20px; }
+  .viewerFooter { padding: 14px 16px; }
+}

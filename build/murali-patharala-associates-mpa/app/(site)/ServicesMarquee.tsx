@@ -18,10 +18,10 @@ export default function ServicesMarquee() {
       <div className="marquee-track-fast flex items-center gap-10 whitespace-nowrap w-max">
         {row.map((item, i) => (
           <span key={i} className="flex items-center gap-10">
-            <span className="text-white text-xs sm:text-sm font-extrabold uppercase tracking-[0.2em]">
+            <span className="text-[#302A20] text-xs sm:text-sm font-extrabold uppercase tracking-[0.2em]">
               {item}
             </span>
-            <span className="text-[#FAD4C0] text-lg leading-none">&#9670;</span>
+            <span className="text-ink-muted text-lg leading-none">&#9670;</span>
           </span>
         ))}
       </div>

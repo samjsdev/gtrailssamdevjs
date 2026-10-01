@@ -1,0 +1,47 @@
+{
+  "dialog": {
+    "ariaLabel": null,
+    "labelledBy": null,
+    "bodyOverflow": "",
+    "htmlOverflow": "",
+    "activeTag": "BUTTON",
+    "inputs": [
+      {
+        "placeholder": "e.g. 2400",
+        "labelCount": 0,
+        "required": false,
+        "ariaLabel": null
+      },
+      {
+        "placeholder": "e.g. S. Karthik",
+        "labelCount": 0,
+        "required": true,
+        "ariaLabel": null
+      },
+      {
+        "placeholder": "e.g. 98410 12345",
+        "labelCount": 0,
+        "required": true,
+        "ariaLabel": null
+      },
+      {
+        "placeholder": "e.g. Anna Nagar / OMR",
+        "labelCount": 0,
+        "required": true,
+        "ariaLabel": null
+      },
+      {
+        "placeholder": "e.g. karthik@example.com",
+        "labelCount": 0,
+        "required": false,
+        "ariaLabel": null
+      }
+    ]
+  },
+  "emptySubmit": {
+    "url": "http://localhost:3000/construction-package/",
+    "firstInvalid": "e.g. S. Karthik"
+  },
+  "invalidPhoneAccepted": true,
+  "escapeClosed": false
+}

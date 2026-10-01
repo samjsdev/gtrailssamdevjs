@@ -1,5 +1,6 @@
 'use client';
 
+import { CONTACT_LINKS } from '@/lib/contactLinks';
 import { useState, useMemo } from 'react';
 import { 
   Calculator, ShieldCheck, ArrowRight, Check, 
@@ -182,29 +183,29 @@ export default function CostEstimator({ basePath = '' }: CostEstimatorProps) {
   );
 
   return (
-    <div className="w-full border-4 border-[#111111] bg-white shadow-2xl overflow-hidden font-sans">
+    <div className="w-full border-4 border-[#111111] bg-surface-cream shadow-2xl overflow-hidden font-sans">
       {/* ── Top Header Strip ── */}
-      <div className="bg-[#111111] text-white p-6 sm:p-8 border-b-4 border-[#111111] flex flex-wrap items-center justify-between gap-4">
+      <div className="bg-surface-sand text-[#302A20] p-6 sm:p-8 border-b-4 border-[#111111] flex flex-wrap items-center justify-between gap-4">
         <div className="flex items-center gap-3">
           <div className="w-8 h-8 bg-[#EA580C] text-[#111111] font-bold flex items-center justify-center shrink-0">
             <Calculator className="w-4 h-4" />
           </div>
           <div>
-            <span className="text-[10px] font-bold tracking-[0.2em] uppercase text-[#EA580C] block">
+            <span className="text-[10px] font-bold tracking-[0.2em] uppercase text-[#703015] block">
               Transparent Cost Engineering
             </span>
             <h3
-              className="text-xl sm:text-2xl font-bold font-serif text-white tracking-tight leading-tight"
-              style={{ fontFamily: "'Lora', serif" }}
+              className="text-xl sm:text-2xl font-bold font-serif text-[#302A20] tracking-tight leading-tight"
+              style={{ fontFamily: "var(--font-content)" }}
             >
               Residential Construction &amp; Interior BOQ Calculator
             </h3>
           </div>
         </div>
 
-        <div className="flex items-center gap-2 border border-[#333333] px-3.5 py-2 bg-[#1A1A1A]">
-          <ShieldCheck className="w-4 h-4 text-[#EA580C]" />
-          <span className="text-[11px] font-bold uppercase tracking-wider text-white/90">
+        <div className="flex items-center gap-2 border border-[#333333] px-3.5 py-2 bg-surface-linen">
+          <ShieldCheck className="w-4 h-4 text-[#703015]" />
+          <span className="text-[11px] font-bold uppercase tracking-wider text-ink-muted">
             100% Fixed-Price &bull; Zero Escalation
           </span>
         </div>
@@ -213,15 +214,15 @@ export default function CostEstimator({ basePath = '' }: CostEstimatorProps) {
       {/* ── Main 2-Column Split Workbench ── */}
       <div className="grid lg:grid-cols-12 divide-y-4 lg:divide-y-0 lg:divide-x-4 divide-[#111111]">
         {/* ── Left Column: Configuration Controls (7 Cols) ── */}
-        <div className="lg:col-span-7 p-6 sm:p-10 space-y-8 bg-white">
+        <div className="lg:col-span-7 p-6 sm:p-10 space-y-8 bg-surface-cream">
           {/* Step 1: Project Scope */}
           <div className="space-y-3">
             <div className="flex items-center justify-between">
               <span className="text-xs font-bold uppercase tracking-widest text-[#757575] flex items-center gap-2">
-                <span className="w-5 h-5 bg-[#111111] text-white text-[11px] font-bold flex items-center justify-center">1</span>
+                <span className="w-5 h-5 bg-surface-sand text-[#302A20] text-[11px] font-bold flex items-center justify-center">1</span>
                 <span>Select Project Scope</span>
               </span>
-              <span className="text-[11px] font-bold uppercase text-[#EA580C]">
+              <span className="text-[11px] font-bold uppercase text-[#703015]">
                 {serviceMode === 'turnkey' ? 'Civil + Interiors' : serviceMode === 'construction' ? 'Civil Only' : 'Interiors Only'}
               </span>
             </div>
@@ -240,12 +241,12 @@ export default function CostEstimator({ basePath = '' }: CostEstimatorProps) {
                     onClick={() => setServiceMode(tab.id as ServiceMode)}
                     className={`p-4 border-2 text-left transition-all cursor-pointer flex flex-col justify-between ${
                       isActive
-                        ? 'border-[#111111] bg-[#111111] text-white shadow-md'
-                        : 'border-[#E0E0E0] bg-[#FAFAFA] text-[#111111] hover:border-[#111111]'
+                        ? 'border-[#111111] bg-surface-sand text-[#302A20] shadow-md'
+                        : 'border-[#E0E0E0] bg-surface-cream text-[#111111] hover:border-[#111111]'
                     }`}
                   >
                     <div className="flex items-center justify-between mb-2">
-                      <div className={`p-1.5 ${isActive ? 'text-[#EA580C]' : 'text-[#757575]'}`}>
+                      <div className={`p-1.5 ${isActive ? 'text-[#703015]' : 'text-[#757575]'}`}>
                         {tab.icon}
                       </div>
                       {isActive && (
@@ -254,7 +255,7 @@ export default function CostEstimator({ basePath = '' }: CostEstimatorProps) {
                     </div>
                     <div>
                       <p className="font-bold text-xs uppercase tracking-wider">{tab.label}</p>
-                      <p className={`text-[11px] mt-0.5 ${isActive ? 'text-white/70' : 'text-[#757575]'}`}>{tab.sub}</p>
+                      <p className={`text-[11px] mt-0.5 ${isActive ? 'text-ink-muted' : 'text-[#757575]'}`}>{tab.sub}</p>
                     </div>
                   </button>
                 );
@@ -266,13 +267,13 @@ export default function CostEstimator({ basePath = '' }: CostEstimatorProps) {
           <div className="space-y-4 pt-6 border-t-2 border-[#E0E0E0]">
             <div className="flex items-center justify-between">
               <span className="text-xs font-bold uppercase tracking-widest text-[#757575] flex items-center gap-2">
-                <span className="w-5 h-5 bg-[#111111] text-white text-[11px] font-bold flex items-center justify-center">2</span>
+                <span className="w-5 h-5 bg-surface-sand text-[#302A20] text-[11px] font-bold flex items-center justify-center">2</span>
                 <span>Built-Up Area &amp; Floors</span>
               </span>
               <div className="flex items-baseline gap-1">
                 <span
-                  className="text-3xl font-bold font-serif text-[#EA580C]"
-                  style={{ fontFamily: "'Lora', serif" }}
+                  className="text-3xl font-bold font-serif text-[#703015]"
+                  style={{ fontFamily: "var(--font-content)" }}
                 >
                   {builtUpArea.toLocaleString()}
                 </span>
@@ -289,7 +290,7 @@ export default function CostEstimator({ basePath = '' }: CostEstimatorProps) {
                 step="50"
                 value={builtUpArea}
                 onChange={(e) => setBuiltUpArea(Number(e.target.value))}
-                className="w-full h-3 bg-[#E0E0E0] appearance-none cursor-pointer accent-[#EA580C] border border-[#111111]"
+                className="w-full h-3 bg-surface-oat appearance-none cursor-pointer accent-[#EA580C] border border-[#111111]"
                 aria-label="Adjust built-up area in square feet"
               />
               <div className="flex justify-between text-[10px] font-bold uppercase tracking-wider text-[#757575]">
@@ -311,8 +312,8 @@ export default function CostEstimator({ basePath = '' }: CostEstimatorProps) {
                       onClick={() => setBuiltUpArea(preset)}
                       className={`px-3 py-1.5 text-xs font-bold uppercase tracking-wider border transition-colors cursor-pointer ${
                         builtUpArea === preset
-                          ? 'border-[#111111] bg-[#111111] text-[#EA580C]'
-                          : 'border-[#CCCCCC] bg-white text-[#111111] hover:border-[#111111]'
+                          ? 'border-[#111111] bg-surface-sand text-[#703015]'
+                          : 'border-[#CCCCCC] bg-surface-cream text-[#111111] hover:border-[#111111]'
                       }`}
                     >
                       {preset}
@@ -336,8 +337,8 @@ export default function CostEstimator({ basePath = '' }: CostEstimatorProps) {
                       onClick={() => setFloors(f.val)}
                       className={`py-1.5 text-xs font-bold uppercase border transition-colors cursor-pointer ${
                         floors === f.val
-                          ? 'border-[#111111] bg-[#111111] text-[#EA580C]'
-                          : 'border-[#CCCCCC] bg-white text-[#111111] hover:border-[#111111]'
+                          ? 'border-[#111111] bg-surface-sand text-[#703015]'
+                          : 'border-[#CCCCCC] bg-surface-cream text-[#111111] hover:border-[#111111]'
                       }`}
                     >
                       {f.label}
@@ -351,7 +352,7 @@ export default function CostEstimator({ basePath = '' }: CostEstimatorProps) {
           {/* Step 3: Package Level Selector */}
           <div className="space-y-4 pt-6 border-t-2 border-[#E0E0E0]">
             <span className="text-xs font-bold uppercase tracking-widest text-[#757575] flex items-center gap-2">
-              <span className="w-5 h-5 bg-[#111111] text-white text-[11px] font-bold flex items-center justify-center">3</span>
+              <span className="w-5 h-5 bg-surface-sand text-[#302A20] text-[11px] font-bold flex items-center justify-center">3</span>
               <span>Specification Tier</span>
             </span>
 
@@ -366,8 +367,8 @@ export default function CostEstimator({ basePath = '' }: CostEstimatorProps) {
                     onClick={() => setPackageLevel(pkg)}
                     className={`p-5 border-2 text-left transition-all cursor-pointer flex flex-col justify-between ${
                       isSelected
-                        ? 'border-[#111111] bg-[#111111] text-white shadow-lg'
-                        : 'border-[#E0E0E0] bg-[#FAFAFA] text-[#111111] hover:border-[#111111]'
+                        ? 'border-[#111111] bg-surface-sand text-[#302A20] shadow-lg'
+                        : 'border-[#E0E0E0] bg-surface-cream text-[#111111] hover:border-[#111111]'
                     }`}
                   >
                     <div>
@@ -381,24 +382,24 @@ export default function CostEstimator({ basePath = '' }: CostEstimatorProps) {
                       </div>
                       <div className="flex items-baseline gap-1 my-1">
                         <span
-                          className={`text-2xl font-bold font-serif ${isSelected ? 'text-[#EA580C]' : 'text-[#111111]'}`}
-                          style={{ fontFamily: "'Lora', serif" }}
+                          className={`text-2xl font-bold font-serif ${isSelected ? 'text-[#703015]' : 'text-[#111111]'}`}
+                          style={{ fontFamily: "var(--font-content)" }}
                         >
                           ₹{card.rate}
                         </span>
-                        <span className={`text-[10px] font-bold uppercase ${isSelected ? 'text-white/60' : 'text-[#757575]'}`}>
+                        <span className={`text-[10px] font-bold uppercase ${isSelected ? 'text-ink-muted' : 'text-[#757575]'}`}>
                           /sqft
                         </span>
                       </div>
-                      <p className={`text-[11px] leading-relaxed line-clamp-2 mt-2 ${isSelected ? 'text-white/80' : 'text-[#757575]'}`}>
+                      <p className={`text-[11px] leading-relaxed line-clamp-2 mt-2 ${isSelected ? 'text-ink-muted' : 'text-[#757575]'}`}>
                         {card.description}
                       </p>
                     </div>
 
-                    <div className={`pt-3 mt-4 border-t text-[10px] space-y-1 ${isSelected ? 'border-white/20 text-white/70' : 'border-[#E0E0E0] text-[#757575]'}`}>
+                    <div className={`pt-3 mt-4 border-t text-[10px] space-y-1 ${isSelected ? 'border-[#5D5140]/25 text-ink-muted' : 'border-[#E0E0E0] text-[#757575]'}`}>
                       <p className="truncate"><strong>Steel:</strong> {card.steel.split('(')[0]}</p>
                       <p className="truncate"><strong>Finish:</strong> {card.flooring.split('(')[0]}</p>
-                      <p className="font-bold text-[#EA580C] pt-1">{card.timeline}</p>
+                      <p className="font-bold text-[#703015] pt-1">{card.timeline}</p>
                     </div>
                   </button>
                 );
@@ -408,20 +409,20 @@ export default function CostEstimator({ basePath = '' }: CostEstimatorProps) {
         </div>
 
         {/* ── Right Column: Live Architectural BOQ & Estimate Sheet (5 Cols) ── */}
-        <div className="lg:col-span-5 bg-[#111111] text-white p-6 sm:p-10 flex flex-col justify-between space-y-8">
+        <div className="lg:col-span-5 bg-surface-sand text-[#302A20] p-6 sm:p-10 flex flex-col justify-between space-y-8">
           {/* Top Estimate Summary */}
           <div className="space-y-6">
-            <div className="border-b-2 border-white/20 pb-6 space-y-2">
-              <span className="text-[10px] font-bold uppercase tracking-[0.25em] text-[#EA580C] block">
+            <div className="border-b-2 border-[#5D5140]/25 pb-6 space-y-2">
+              <span className="text-[10px] font-bold uppercase tracking-[0.25em] text-[#703015] block">
                 Estimated Project Investment
               </span>
               <div
-                className="text-4xl sm:text-6xl font-bold font-serif text-[#EA580C] tracking-tight"
-                style={{ fontFamily: "'Lora', serif" }}
+                className="text-4xl sm:text-6xl font-bold font-serif text-[#703015] tracking-tight"
+                style={{ fontFamily: "var(--font-content)" }}
               >
                 {formatIndianCurrency(totalCost)}
               </div>
-              <div className="flex flex-wrap items-center justify-between gap-2 text-xs text-white/80 pt-1">
+              <div className="flex flex-wrap items-center justify-between gap-2 text-xs text-ink-muted pt-1">
                 <span>Total: <strong>{formatIndianFullNumber(totalCost)}</strong></span>
                 <span>₹{ratePerSqFt}/sq.ft &times; {builtUpArea.toLocaleString()} sq.ft</span>
               </div>
@@ -429,13 +430,13 @@ export default function CostEstimator({ basePath = '' }: CostEstimatorProps) {
 
             {/* Itemized Stage Allocation Progress & Figures */}
             <div className="space-y-4">
-              <div className="flex items-center justify-between text-xs font-bold uppercase tracking-wider text-white/90">
+              <div className="flex items-center justify-between text-xs font-bold uppercase tracking-wider text-ink-muted">
                 <span>Itemized Stage Allocation</span>
-                <span className="text-[#EA580C]">Indian BOQ Standards</span>
+                <span className="text-[#703015]">Indian BOQ Standards</span>
               </div>
 
               {/* Multi-segment visual bar */}
-              <div className="h-3 w-full flex overflow-hidden border border-white/30">
+              <div className="h-3 w-full flex overflow-hidden border border-[#5D5140]/25">
                 {currentConfig.breakdown.civil > 0 && (
                   <div
                     style={{ width: `${currentConfig.breakdown.civil}%` }}
@@ -445,7 +446,7 @@ export default function CostEstimator({ basePath = '' }: CostEstimatorProps) {
                 )}
                 <div
                   style={{ width: `${currentConfig.breakdown.finishing}%` }}
-                  className="bg-white h-full"
+                  className="bg-surface-cream h-full"
                   title={`Finishing: ${currentConfig.breakdown.finishing}%`}
                 />
                 <div
@@ -465,74 +466,74 @@ export default function CostEstimator({ basePath = '' }: CostEstimatorProps) {
               {/* Breakdown Rows */}
               <div className="space-y-2.5 pt-2 text-xs">
                 {currentConfig.breakdown.civil > 0 && (
-                  <div className="flex items-center justify-between p-2.5 bg-[#181818] border border-white/10">
+                  <div className="flex items-center justify-between p-2.5 bg-surface-linen border border-[#5D5140]/25">
                     <div className="flex items-center gap-2">
                       <span className="w-2.5 h-2.5 bg-[#EA580C] inline-block shrink-0" />
                       <div>
-                        <p className="font-bold uppercase text-white">Civil &amp; Structural ({currentConfig.breakdown.civil}%)</p>
-                        <p className="text-[10px] text-white/50">Foundation, Steel, Cement, RCC Frame</p>
+                        <p className="font-bold uppercase text-[#302A20]">Civil &amp; Structural ({currentConfig.breakdown.civil}%)</p>
+                        <p className="text-[10px] text-ink-muted">Foundation, Steel, Cement, RCC Frame</p>
                       </div>
                     </div>
-                    <span className="font-bold text-white font-mono">{formatIndianCurrency(calculatedCivil)}</span>
+                    <span className="font-bold text-[#302A20] font-mono">{formatIndianCurrency(calculatedCivil)}</span>
                   </div>
                 )}
 
-                <div className="flex items-center justify-between p-2.5 bg-[#181818] border border-white/10">
+                <div className="flex items-center justify-between p-2.5 bg-surface-linen border border-[#5D5140]/25">
                   <div className="flex items-center gap-2">
-                    <span className="w-2.5 h-2.5 bg-white inline-block shrink-0" />
+                    <span className="w-2.5 h-2.5 bg-surface-cream inline-block shrink-0" />
                     <div>
-                      <p className="font-bold uppercase text-white">Finishing &amp; Elevation ({currentConfig.breakdown.finishing}%)</p>
-                      <p className="text-[10px] text-white/50">Flooring, Exterior Texture, Windows, Paint</p>
+                      <p className="font-bold uppercase text-[#302A20]">Finishing &amp; Elevation ({currentConfig.breakdown.finishing}%)</p>
+                      <p className="text-[10px] text-ink-muted">Flooring, Exterior Texture, Windows, Paint</p>
                     </div>
                   </div>
-                  <span className="font-bold text-white font-mono">{formatIndianCurrency(calculatedFinishing)}</span>
+                  <span className="font-bold text-[#302A20] font-mono">{formatIndianCurrency(calculatedFinishing)}</span>
                 </div>
 
-                <div className="flex items-center justify-between p-2.5 bg-[#181818] border border-white/10">
+                <div className="flex items-center justify-between p-2.5 bg-surface-linen border border-[#5D5140]/25">
                   <div className="flex items-center gap-2">
                     <span className="w-2.5 h-2.5 bg-[#757575] inline-block shrink-0" />
                     <div>
-                      <p className="font-bold uppercase text-white">MEP &amp; Sanitary ({currentConfig.breakdown.mep}%)</p>
-                      <p className="text-[10px] text-white/50">Concealed Wiring, Plumbing, CP Diverters</p>
+                      <p className="font-bold uppercase text-[#302A20]">MEP &amp; Sanitary ({currentConfig.breakdown.mep}%)</p>
+                      <p className="text-[10px] text-ink-muted">Concealed Wiring, Plumbing, CP Diverters</p>
                     </div>
                   </div>
-                  <span className="font-bold text-white font-mono">{formatIndianCurrency(calculatedMep)}</span>
+                  <span className="font-bold text-[#302A20] font-mono">{formatIndianCurrency(calculatedMep)}</span>
                 </div>
 
                 {currentConfig.breakdown.interiors > 0 && (
-                  <div className="flex items-center justify-between p-2.5 bg-[#181818] border border-white/10">
+                  <div className="flex items-center justify-between p-2.5 bg-surface-linen border border-[#5D5140]/25">
                     <div className="flex items-center gap-2">
                       <span className="w-2.5 h-2.5 bg-[#E6C673] inline-block shrink-0" />
                       <div>
-                        <p className="font-bold uppercase text-white">Modular Interiors ({currentConfig.breakdown.interiors}%)</p>
-                        <p className="text-[10px] text-white/50">100% BWR Marine Kitchen, Wardrobes</p>
+                        <p className="font-bold uppercase text-[#302A20]">Modular Interiors ({currentConfig.breakdown.interiors}%)</p>
+                        <p className="text-[10px] text-ink-muted">100% BWR Marine Kitchen, Wardrobes</p>
                       </div>
                     </div>
-                    <span className="font-bold text-white font-mono">{formatIndianCurrency(calculatedInteriors)}</span>
+                    <span className="font-bold text-[#302A20] font-mono">{formatIndianCurrency(calculatedInteriors)}</span>
                   </div>
                 )}
               </div>
             </div>
 
             {/* Assurance Badges */}
-            <div className="p-3 bg-[#181818] border border-[#333333] space-y-1.5 text-[11px] text-white/80">
-              <div className="flex items-center gap-2 font-bold text-[#EA580C]">
+            <div className="p-3 bg-surface-linen border border-[#333333] space-y-1.5 text-[11px] text-ink-muted">
+              <div className="flex items-center gap-2 font-bold text-[#703015]">
                 <ShieldCheck className="w-4 h-4 shrink-0" />
                 <span>10-Year Written Structural Warranty Included</span>
               </div>
-              <p className="text-white/60 leading-relaxed text-[10px]">
+              <p className="text-ink-muted leading-relaxed text-[10px]">
                 Itemized BOQ with zero hidden inflation. Dedicated full-time site engineer with 400+ quality tests.
               </p>
             </div>
           </div>
 
           {/* Action CTAs */}
-          <div className="space-y-3 pt-4 border-t-2 border-white/20">
+          <div className="space-y-3 pt-4 border-t-2 border-[#5D5140]/25">
             <a
-              href={`https://wa.me/919841098490?text=${whatsappMessage}`}
+              href={`${CONTACT_LINKS.whatsapp}?text=${whatsappMessage}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full py-4 bg-[#EA580C] hover:bg-white text-[#111111] font-bold text-xs uppercase tracking-widest transition-colors flex items-center justify-center gap-2 text-center"
+              className="w-full py-4 bg-[#EA580C] hover:bg-surface-cream text-[#111111] font-bold text-xs uppercase tracking-widest transition-colors flex items-center justify-center gap-2 text-center"
             >
               <MessageSquare className="w-4 h-4" />
               <span>Get Estimate on WhatsApp</span>
@@ -540,7 +541,7 @@ export default function CostEstimator({ basePath = '' }: CostEstimatorProps) {
 
             <a
               href="#quick-estimate"
-              className="w-full py-3.5 border-2 border-white/40 hover:border-white text-white hover:bg-white hover:text-[#111111] font-bold text-xs uppercase tracking-widest transition-colors flex items-center justify-center gap-2 text-center"
+              className="w-full py-3.5 border-2 border-[#5D5140]/25 hover:border-[#5D5140]/25 text-[#302A20] hover:bg-surface-cream hover:text-[#111111] font-bold text-xs uppercase tracking-widest transition-colors flex items-center justify-center gap-2 text-center"
             >
               <span>Book Site Feasibility Survey</span>
               <ArrowRight className="w-4 h-4" />

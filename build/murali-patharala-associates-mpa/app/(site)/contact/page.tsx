@@ -1,8 +1,15 @@
+import BrandText from '@/components/BrandText';
+import EnquiryForm from '@/components/EnquiryForm';
+import { CONTACT_LINKS } from '@/lib/contactLinks';
 import type { Metadata } from 'next';
 import { readSourceConfig } from '@/lib/sourceData';
 import { notFound } from 'next/navigation';
 import Image from 'next/image';
+import Link from 'next/link';
 import OfficeLocations from '../OfficeLocations';
+import { STUDIO } from '@/lib/clientProfile';
+import { ArrowUpRight, MapPin, Phone } from 'lucide-react';
+import { FacebookIcon, InstagramIcon, WhatsAppIcon } from '@/components/SocialLinks';
 
 export const metadata: Metadata = {
   title: 'Contact Architectural Studio Anna Nagar | MPA Chennai',
@@ -25,7 +32,7 @@ export const metadata: Metadata = {
     url: 'https://muralipatharalaassociates.com/contact/',
     images: [
       {
-        url: '/og-image.jpg',
+        url: '/og-image.png',
         width: 1200,
         height: 630,
         alt: 'Contact Murali Patharala & Associates',
@@ -37,7 +44,7 @@ export const metadata: Metadata = {
     title: 'Contact Studio | Murali Patharala & Associates Chennai',
     description:
       'Schedule your architectural consultation or site visit in Chennai. Call +91 98410 98490.',
-    images: ['/og-image.jpg'],
+    images: ['/og-image.png'],
   },
 };
 
@@ -55,34 +62,34 @@ export default async function ContactPage({ params }: PageProps) {
   const displayPhone = '+91 98410 98490';
 
   const faqs = [
-    {
-      q: 'What are the types of Home Interior Services you provide?',
-      a: 'We provide End-to-End Luxury Home Interior Services, including Modular Kitchens, false ceilings, architectural lighting solutions, custom-designed walk-in wardrobes, furnishings & decor, wall paneling & painting, Bedroom Interiors, Living Room Interiors, Pooja units, home automation, and upholsteries. We ensure a seamless experience through proper space planning, concept development, and 3D visualization.',
-    },
-    {
-      q: 'What is included in your 10-Year Structural Warranty & Maintenance?',
-      a: 'We provide a legally binding 10-year structural certificate covering foundation, RCC columns, beams, roof slabs, and load-bearing masonry against structural settlement or cracks. We strictly utilize primary TMT steel (Tata Tiscon / JSW) and 53-grade certified cement. For interiors, we provide 5 years warranty on 100% BWR Marine Plywood (IS:710) against borer and termites, plus a 2-year maintenance service on all fittings and moving hardware.',
-    },
-    {
-      q: 'How does the 100% Fixed-Price Contract and Zero Cost Escalation Guarantee work?',
-      a: 'Before breaking ground, our civil engineers prepare an exhaustive, line-by-line Bill of Quantities (BOQ) covering every bag of cement, ton of steel, plumbing conduit, tile, and fixture. Once signed, your price per square foot is 100% frozen. We absorb all market material inflation so you never pay a single rupee extra for the agreed scope.',
-    },
-    {
-      q: 'How do you monitor site quality and prevent construction delays?',
-      a: 'We assign a dedicated, full-time Site Engineer to your project every single day. Every phase undergoes 425+ documented quality checks—including soil bearing capacity, concrete compressive cube testing, slump tests, and curing logs. You receive regular weekly milestone updates with verified photo and video documentation.',
-    },
-    {
-      q: 'What are the different architectural & interior design themes you specialize in?',
-      a: 'We specialize in a variety of design languages tailored to Chennai microclimates: Luxury Contemporary (sleek, modern aesthetics with subtle sophistication), Traditional Chettinad (rich South Indian heritage with intricate wood detailing), Minimalist (clean lines and uncluttered open spaces), and Scandinavian (organic woods with abundant natural daylight).',
-    },
-    {
-      q: "What is the step-by-step booking and consultation process?",
-      a: "1. Initial Contact: Fill out the enquiry form or call our studio directly. 2. Consultation Call: Our senior architectural expert reviews your plot size, requirements, and budget. 3. Studio Visit & Site Inspection: Meet at our Anna Nagar East studio to review 3D models and material samples, followed by a laser plot assessment. 4. Itemized BOQ & Contract: We provide a transparent quotation with line-by-line material specifications and freeze the price. 5. Construction Kick-Off: A dedicated site engineer is assigned and construction begins.",
-    },
-  ];
+  {
+    "q": "What types of projects do you work on?",
+    "a": "MPA provides architecture and interior design for residential, commercial and institutional projects. ARCH foundations provides construction, civil works, property development and turnkey delivery."
+  },
+  {
+    "q": "What should I bring to the first discussion?",
+    "a": "Share your site location, available drawings or dimensions, intended use, priorities and approximate budget. These help the studio understand the brief."
+  },
+  {
+    "q": "Can you assist with tenders and contractor selection?",
+    "a": "Yes. The consultancy services include tender documentation, bid evaluation, contractor selection and contract finalisation."
+  },
+  {
+    "q": "Do you provide technical and approval coordination?",
+    "a": "Services include structural and MEP coordination, fire-safety documentation, generator and AC load calculations, and liaison for CMDA, DTCP, permits and NOCs according to the project requirements."
+  },
+  {
+    "q": "How are fees, specifications and timelines agreed?",
+    "a": "The team reviews your requirements before preparing a written proposal. That proposal defines the services, deliverables, fees, responsibilities and programme for the commission."
+  },
+  {
+    "q": "Do you provide support after construction?",
+    "a": "Post-occupancy evaluation can assess building performance and user satisfaction after handover. Discuss the required scope with the studio."
+  }
+];
 
   return (
-    <div className="mpa-inner w-full bg-[#FAFAFA] text-[#111111]">
+    <div className="mpa-inner w-full bg-surface-cream text-[#111111]">
       {/* ── Dedicated Full-Bleed Architectural Hero Banner ── */}
       <section className="relative overflow-hidden border-b-4 border-[#111111] bg-[#121418] text-white pt-32 pb-20 md:pt-40 md:pb-28 px-6 md:px-12">
         {/* Authentic Studio Workspace Background */}
@@ -100,43 +107,59 @@ export default async function ContactPage({ params }: PageProps) {
         <div className="relative z-10 max-w-5xl mx-auto space-y-8">
           <div className="flex flex-wrap items-center gap-3">
             <span className="px-3 py-1 bg-[#EA580C] text-[#111111] text-[11px] font-bold uppercase tracking-[0.2em]">
-              Regional Studios &amp; Consultations
+              Studio &amp; Project Enquiries
             </span>
             <span className="text-xs font-bold uppercase tracking-widest text-white/70">
-              Chennai • Coimbatore • Bangalore • Pondicherry
+              Anna Nagar East • Chennai
             </span>
           </div>
 
           <div className="space-y-4">
             <h1
               className="text-4xl sm:text-6xl md:text-7xl font-bold font-serif leading-[1.05] tracking-tight text-white"
-              style={{ fontFamily: "'Lora', serif" }}
+              style={{ fontFamily: "var(--font-content)" }}
             >
-              Your home begins <br />
+              Your project begins <br />
               <em className="text-[#EA580C] not-italic">with a conversation.</em>
             </h1>
             <p className="text-base sm:text-xl text-white/80 max-w-3xl font-medium leading-relaxed">
-              Bring your plot dimensions, structural concepts, or sketch ideas. Meet our licensed architects and senior civil engineers for an honest feasibility review, soil insights, and a 100% frozen price per square foot.
+              Bring your site information, drawings or initial ideas. Discuss architecture, interior design, construction or property development with our Chennai studio.
             </p>
           </div>
 
           {/* Studio Credentials Bar */}
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 py-4 border-y border-white/15 text-xs">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 py-4 border-y border-white/15 text-xs">
             <div className="space-y-1">
-              <span className="text-white/50 uppercase tracking-widest font-semibold block text-[10px]">Head Studio</span>
+              <span className="text-white/50 uppercase tracking-widest font-semibold block text-[10px]">Head Studio Address</span>
               <p className="text-white font-bold text-sm">Anna Nagar East, Chennai</p>
-              <p className="text-white/70 text-[11px]">W-Block, Near Roundtana</p>
+              <p className="text-white/70 text-[11px]">W115A, AL Complex, 3rd Avenue, W Block</p>
             </div>
             <div className="space-y-1">
               <span className="text-white/50 uppercase tracking-widest font-semibold block text-[10px]">Direct Studio Hotline</span>
               <a href={`tel:${displayPhone}`} className="text-[#EA580C] font-bold text-sm hover:underline block">
                 {displayPhone}
               </a>
-              <p className="text-white/70 text-[11px]">Mon – Sat: 9:30 AM – 7:30 PM</p>
+              <a href="tel:+918778104969" className="block text-white/70 text-[11px] hover:text-white">+91 87781 04969</a>
+            </div>
+            <div className="space-y-1">
+              <span className="text-white/50 uppercase tracking-widest font-semibold block text-[10px]">WhatsApp &amp; Social</span>
+              <a
+                href={CONTACT_LINKS.whatsapp}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[#25D366] font-bold text-sm hover:underline block"
+              >
+                {CONTACT_LINKS.whatsappPhone}
+              </a>
+              <div className="flex items-center gap-2 text-white/75 text-[11px]">
+                <a href={CONTACT_LINKS.instagram} target="_blank" rel="noopener noreferrer" className="hover:text-[#EA580C] underline underline-offset-2">Instagram</a>
+                <span>•</span>
+                <a href={CONTACT_LINKS.facebook} target="_blank" rel="noopener noreferrer" className="hover:text-[#EA580C] underline underline-offset-2">Facebook</a>
+              </div>
             </div>
             <div className="space-y-1">
               <span className="text-white/50 uppercase tracking-widest font-semibold block text-[10px]">Turnkey Delivery</span>
-              <p className="text-white font-bold text-sm">MPA + ARCH Foundation</p>
+              <p className="text-white font-bold text-sm">MPA + <span className="brand-name">ARCH foundations</span></p>
               <p className="text-white/70 text-[11px]">Integrated Design &amp; Civil Build</p>
             </div>
           </div>
@@ -144,19 +167,135 @@ export default async function ContactPage({ params }: PageProps) {
           {/* Action CTAs */}
           <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 pt-2">
             <a
-              href={`https://wa.me/919841098490?text=${encodeURIComponent('Hi Murali Patharala & Associates (MPA), I would like to schedule an architectural consultation for my residential project.')}`}
+              href={`${CONTACT_LINKS.whatsapp}?text=${encodeURIComponent('Hi Murali Patharala & Associates (MPA), I would like to schedule an architectural consultation for my project.')}`}
               target="_blank"
               rel="noopener noreferrer"
               className="w-full sm:w-auto text-center px-6 py-3 bg-[#EA580C] text-[#111111] font-bold uppercase tracking-wider text-xs hover:bg-white transition-colors"
             >
-              WhatsApp Senior Engineer
+              WhatsApp the studio (+91 877 810 4969)
             </a>
             <a
-              href="#enquiry"
+              href="#contact-address"
               className="w-full sm:w-auto text-center px-6 py-3 border border-white/40 text-white font-bold uppercase tracking-wider text-xs hover:bg-white hover:text-[#111111] transition-colors"
             >
-              Schedule Consultation ↓
+              Contact Address &amp; Channels ↓
             </a>
+          </div>
+        </div>
+      </section>
+
+      {/* ── Dedicated Contact Address & Social Channels Section ── */}
+      <section id="contact-address" className="scroll-mt-24 border-b-4 border-[#111111] bg-surface-cream px-6 py-16 md:px-12 md:py-20">
+        <div className="mx-auto max-w-7xl">
+          <div className="mb-10 text-center md:text-left">
+            <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#C2410C]">Direct Reach</p>
+            <h2
+              className="mt-2 font-serif text-3xl font-bold tracking-tight text-[#111111] sm:text-4xl md:text-5xl"
+              style={{ fontFamily: 'var(--font-content)' }}
+            >
+              Contact Address &amp; Channels
+            </h2>
+            <p className="mt-3 max-w-2xl text-sm leading-relaxed text-[#55534E]">
+              Visit our central studio in Anna Nagar East, connect instantly on WhatsApp Web, or follow our ongoing site execution across Instagram and Facebook.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
+            {/* 1. Contact Address */}
+            <div className="flex flex-col justify-between border border-[#111111]/20 bg-surface-sand p-6 transition-all hover:border-[#C2410C]">
+              <div>
+                <div className="mb-4 inline-flex size-10 items-center justify-center rounded-full bg-[#111111] text-[#FB923C]">
+                  <MapPin size={20} aria-hidden="true" />
+                </div>
+                <span className="block text-[10px] font-bold uppercase tracking-[0.18em] text-[#C2410C]">Contact Address</span>
+                <h3 className="mt-1 font-serif text-xl font-bold text-[#111111]">Head Studio</h3>
+                <p className="mt-3 text-xs font-medium leading-relaxed text-[#302A20]">
+                  {STUDIO.address}
+                </p>
+              </div>
+              <div className="mt-6 border-t border-[#111111]/15 pt-4">
+                <a
+                  href="https://maps.google.com/?q=murali+patharala+%26+associates+W115A+AL+Complex+Anna+Nagar+East+Chennai"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 text-xs font-bold text-[#C2410C] hover:underline"
+                >
+                  Open in Google Maps <ArrowUpRight size={14} aria-hidden="true" />
+                </a>
+              </div>
+            </div>
+
+            {/* 2. WhatsApp Web */}
+            <div className="flex flex-col justify-between border border-[#111111]/20 bg-surface-sand p-6 transition-all hover:border-[#25D366]">
+              <div>
+                <div className="mb-4 inline-flex size-10 items-center justify-center rounded-full bg-[#25D366] text-white">
+                  <WhatsAppIcon size={20} className="text-white" aria-hidden="true" />
+                </div>
+                <span className="block text-[10px] font-bold uppercase tracking-[0.18em] text-[#25D366]">WhatsApp Web &amp; Mobile</span>
+                <h3 className="mt-1 font-serif text-xl font-bold text-[#111111]">+91 877 810 4969</h3>
+                <p className="mt-3 text-xs font-medium leading-relaxed text-[#55534E]">
+                  Share site sketches, ask fee estimates, or start a direct conversation with our architects and site engineers.
+                </p>
+              </div>
+              <div className="mt-6 border-t border-[#111111]/15 pt-4">
+                <a
+                  href={`${CONTACT_LINKS.whatsapp}?text=${encodeURIComponent('Hi Murali Patharala & Associates (MPA), I am reaching out from your website.')}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 text-xs font-bold text-[#25D366] hover:underline"
+                >
+                  Chat on WhatsApp Web <ArrowUpRight size={14} aria-hidden="true" />
+                </a>
+              </div>
+            </div>
+
+            {/* 3. Instagram */}
+            <div className="flex flex-col justify-between border border-[#111111]/20 bg-surface-sand p-6 transition-all hover:border-[#E1306C]">
+              <div>
+                <div className="mb-4 inline-flex size-10 items-center justify-center rounded-full bg-[#E1306C] text-white">
+                  <InstagramIcon size={20} className="text-white" aria-hidden="true" />
+                </div>
+                <span className="block text-[10px] font-bold uppercase tracking-[0.18em] text-[#E1306C]">Instagram</span>
+                <h3 className="mt-1 font-serif text-xl font-bold text-[#111111]">@mpaarchitects</h3>
+                <p className="mt-3 text-xs font-medium leading-relaxed text-[#55534E]">
+                  Follow our daily project reels, material selections, on-site concrete pours, and completed villa walkthroughs.
+                </p>
+              </div>
+              <div className="mt-6 border-t border-[#111111]/15 pt-4">
+                <a
+                  href={CONTACT_LINKS.instagram}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 text-xs font-bold text-[#E1306C] hover:underline"
+                >
+                  Follow on Instagram <ArrowUpRight size={14} aria-hidden="true" />
+                </a>
+              </div>
+            </div>
+
+            {/* 4. Facebook */}
+            <div className="flex flex-col justify-between border border-[#111111]/20 bg-surface-sand p-6 transition-all hover:border-[#1877F2]">
+              <div>
+                <div className="mb-4 inline-flex size-10 items-center justify-center rounded-full bg-[#1877F2] text-white">
+                  <FacebookIcon size={20} className="text-white" aria-hidden="true" />
+                </div>
+                <span className="block text-[10px] font-bold uppercase tracking-[0.18em] text-[#1877F2]">Facebook</span>
+                <h3 className="mt-1 font-serif text-xl font-bold text-[#111111]">MPA Official</h3>
+                <p className="mt-3 text-xs font-medium leading-relaxed text-[#55534E]">
+                  Connect with our community, view client reviews, architectural portfolio updates, and milestone announcements.
+                </p>
+              </div>
+              <div className="mt-6 border-t border-[#111111]/15 pt-4">
+                <a
+                  href={CONTACT_LINKS.facebook}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 text-xs font-bold text-[#1877F2] hover:underline"
+                >
+                  Visit Facebook Page <ArrowUpRight size={14} aria-hidden="true" />
+                </a>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -165,64 +304,38 @@ export default async function ContactPage({ params }: PageProps) {
       <OfficeLocations phone={displayPhone} />
 
       {/* ── Contact Form Section ── */}
-      <section id="enquiry" className="relative scroll-mt-28 py-20 md:py-28 px-6 md:px-12 border-b-4 border-[#111111] bg-[#121418] text-white overflow-hidden">
-        {/* Background architectural studio image */}
-        <Image
-          src="/images/architecture/architect-studio-model.webp"
-          alt=""
-          fill
-          sizes="100vw"
-          className="object-cover opacity-85 pointer-events-none select-none"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#121418]/90 via-[#121418]/60 to-[#121418]/30 pointer-events-none" />
+      <section id="enquiry" className="relative scroll-mt-28 py-20 md:py-28 px-6 md:px-12 border-b-4 border-[#111111] bg-surface-sand text-[#302A20] overflow-hidden">
         <div className="relative z-10 max-w-4xl mx-auto space-y-12">
           <div className="text-center">
-            <p className="text-xs font-bold tracking-[0.2em] uppercase text-[#EA580C] mb-3">GET A QUOTE</p>
+            <p className="text-xs font-bold tracking-[0.2em] uppercase text-[#703015] mb-3">GET A QUOTE</p>
             <h2
-              className="text-3xl sm:text-4xl font-bold font-serif text-white"
-              style={{ fontFamily: "'Lora', serif" }}
+              className="text-3xl sm:text-4xl font-bold font-serif text-[#302A20]"
+              style={{ fontFamily: "var(--font-content)" }}
             >
-              Request a Free Consultation
+              Request a Consultation
             </h2>
-            <p className="text-sm text-white/70 mt-2">
-              Tell us where your project stands today. The right MPA or ARCH Foundation team will review it and get back to you within 24 hours.
+            <p className="text-sm text-ink-muted mt-2">
+              Share your project location and requirements. We’ll help you plan the next step.
             </p>
           </div>
 
-          <div className="bg-[#FAFAFA] border border-[#D8D2C8] overflow-hidden flex justify-center">
-            <iframe 
-              src="https://docs.google.com/forms/d/e/1FAIpQLScTETlX3b5-sJb-jsJXL1hG0vRR0iGfsYOLWnXoUmaMLJVf_A/viewform?embedded=true" 
-              width="100%" 
-              height="1080"
-              frameBorder={0} 
-              marginHeight={0} 
-              marginWidth={0}
-              className="w-full max-w-[640px] bg-transparent mx-auto"
-              title="Contact Form"
-            >
-              Loading…
-            </iframe>
-          </div>
-          <p className="text-center text-sm text-white/70">
-            Prefer a separate window?{' '}
-            <a className="text-[#FB923C] underline underline-offset-4" href="https://docs.google.com/forms/d/e/1FAIpQLScTETlX3b5-sJb-jsJXL1hG0vRR0iGfsYOLWnXoUmaMLJVf_A/viewform" target="_blank" rel="noopener noreferrer">Open the enquiry form ↗</a>
-          </p>
+          <EnquiryForm />
         </div>
       </section>
 
-      {/* ── Architectural FAQ Section (Adapted from Deejos) ── */}
-      <section className="py-20 md:py-28 px-6 md:px-12 border-b-4 border-[#111111] bg-[#FAFAFA]">
+      {/* ── Project enquiry questions ── */}
+      <section className="py-20 md:py-28 px-6 md:px-12 border-b-4 border-[#111111] bg-surface-cream">
         <div className="max-w-4xl mx-auto space-y-12">
           <div className="text-center">
-            <p className="text-xs font-bold tracking-[0.2em] uppercase text-[#EA580C] mb-3">HAVE QUESTIONS?</p>
+            <p className="text-xs font-bold tracking-[0.2em] uppercase text-[#703015] mb-3">HAVE QUESTIONS?</p>
             <h2
               className="text-3xl sm:text-4xl font-bold font-serif text-[#111111]"
-              style={{ fontFamily: "'Lora', serif" }}
+              style={{ fontFamily: "var(--font-content)" }}
             >
               Frequently Asked Questions
             </h2>
             <p className="text-sm text-[#666666] mt-2">
-              Here are answers to the most common questions from homeowners planning to build in Chennai.
+              Answers to common questions about our consultancy, construction services and project proposals.
             </p>
           </div>
 
@@ -230,7 +343,7 @@ export default async function ContactPage({ params }: PageProps) {
             {faqs.map((faq, idx) => (
               <details key={idx}>
                 <summary>{faq.q}</summary>
-                <p>{faq.a}</p>
+                <p><BrandText>{faq.a}</BrandText></p>
               </details>
             ))}
           </div>

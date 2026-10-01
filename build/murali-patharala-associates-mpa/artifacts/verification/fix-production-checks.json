@@ -1,0 +1,77 @@
+[
+  {
+    "route": "/",
+    "status": 200,
+    "type": "text/html"
+  },
+  {
+    "route": "/about/",
+    "status": 200,
+    "type": "text/html"
+  },
+  {
+    "route": "/services/",
+    "status": 200,
+    "type": "text/html"
+  },
+  {
+    "route": "/services/architectural-design/",
+    "status": 200,
+    "type": "text/html"
+  },
+  {
+    "route": "/services/residential-construction/",
+    "status": 200,
+    "type": "text/html"
+  },
+  {
+    "route": "/services/interior-design/",
+    "status": 200,
+    "type": "text/html"
+  },
+  {
+    "route": "/services/turnkey-construction/",
+    "status": 200,
+    "type": "text/html"
+  },
+  {
+    "route": "/design-package/",
+    "status": 200,
+    "type": "text/html"
+  },
+  {
+    "route": "/construction-package/",
+    "status": 200,
+    "type": "text/html"
+  },
+  {
+    "route": "/gallery/",
+    "status": 200,
+    "type": "text/html"
+  },
+  {
+    "route": "/contact/",
+    "status": 200,
+    "type": "text/html"
+  },
+  {
+    "route": "/privacy/",
+    "status": 200,
+    "type": "text/html"
+  },
+  {
+    "route": "/terms/",
+    "status": 200,
+    "type": "text/html"
+  },
+  {
+    "route": "/brand-preview/",
+    "status": 200,
+    "type": "text/html"
+  },
+  {
+    "route": "/og-image.png",
+    "status": 200,
+    "type": "image/png"
+  }
+]

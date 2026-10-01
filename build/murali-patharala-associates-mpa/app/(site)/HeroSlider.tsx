@@ -1,5 +1,7 @@
 'use client';
 
+import BrandText from '@/components/BrandText';
+
 import { useState, useEffect, useCallback } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -106,7 +108,7 @@ export default function HeroSlider() {
           </h1>
 
           <p className="mpa-fade-up d2 mt-6 text-sm sm:text-base text-stone-200/95 leading-relaxed max-w-xl font-normal">
-            {slide.desc}
+            <BrandText>{slide.desc}</BrandText>
           </p>
 
           <div className="mpa-fade-up d3 mt-8 flex flex-wrap items-center gap-4">

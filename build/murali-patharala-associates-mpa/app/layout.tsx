@@ -1,18 +1,25 @@
 import type { Metadata } from 'next';
-import { Lora, Work_Sans } from 'next/font/google';
+import localFont from 'next/font/local';
 import './globals.css';
 import 'lenis/dist/lenis.css';
+import { STUDIO } from '@/lib/clientProfile';
 
-const lora = Lora({
-  subsets: ['latin'],
-  variable: '--font-lora',
+const bauhaus93 = localFont({
+  src: '../public/fonts/bauhaus-93.woff',
+  variable: '--font-bauhaus-93',
+  weight: '400',
+  style: 'normal',
   display: 'swap',
+  adjustFontFallback: false,
 });
 
-const workSans = Work_Sans({
-  subsets: ['latin'],
-  variable: '--font-work-sans',
+const tahoma = localFont({
+  src: '../public/fonts/tahoma.woff',
+  variable: '--font-tahoma',
+  weight: '400',
+  style: 'normal',
   display: 'swap',
+  adjustFontFallback: false,
 });
 
 export const metadata: Metadata = {
@@ -22,7 +29,7 @@ export const metadata: Metadata = {
     template: '%s | Murali Patharala & Associates',
   },
   description:
-    'Murali Patharala & Associates (MPA) delivers bespoke architectural planning, turnkey residential construction by ARCH Foundation, and luxury bespoke interiors across Chennai, Anna Nagar, Coimbatore, Bangalore, and Pondicherry with 28+ years of excellence.',
+    'Architecture and interior design for residential, commercial and institutional projects. Established in Chennai in 1998, with construction and property development by ARCH foundations.',
   keywords: [
     'architectural design chennai',
     'residential architecture anna nagar',
@@ -30,18 +37,18 @@ export const metadata: Metadata = {
     'arch foundation construction',
     'turnkey house contractors chennai',
     'luxury interior design chennai',
-    'modular kitchen manufacturers chennai',
-    'vastu compliant floor plans chennai',
+    'commercial architecture chennai',
+    'institutional architecture chennai',
     '3d exterior elevations chennai',
     'murali patharala associates',
-    'ar s murali architect',
+    'murali patharala architect',
     'civil engineering contractors chennai',
     'independent villa construction chennai',
     'custom furniture joinery chennai',
   ],
   authors: [
-    { name: 'Ar. S. Murali, Principal Architect' },
-    { name: 'ARCH Foundation Civil Engineering' },
+    { name: 'Ar. Murali Patharala, Principal Architect' },
+    { name: 'ARCH foundations Civil Engineering' },
   ],
   creator: 'Murali Patharala & Associates',
   publisher: 'Murali Patharala & Associates',
@@ -57,14 +64,14 @@ export const metadata: Metadata = {
     siteName: 'Murali Patharala & Associates (MPA)',
     title: 'Murali Patharala & Associates (MPA) | Architecture, Construction & Interiors',
     description:
-      'Bespoke architectural planning, turnkey residential construction by ARCH Foundation, and luxury interior design in Chennai with 28+ years of design-build excellence.',
+      'Bespoke architectural planning, turnkey residential construction by ARCH foundations, and luxury interior design in Chennai with 28+ years of design-build excellence.',
     images: [
       {
-        url: '/og-image.jpg',
+        url: '/og-image.png',
         width: 1200,
         height: 630,
         alt: 'Murali Patharala & Associates - Architecture, Construction & Interiors',
-        type: 'image/jpeg',
+        type: 'image/png',
       },
     ],
   },
@@ -72,9 +79,8 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Murali Patharala & Associates (MPA) | Architecture, Construction & Interiors',
     description:
-      'Premier architectural design, engineered home construction with ARCH Foundation, and luxury interior design in Chennai.',
-    images: ['/og-image.jpg'],
-    creator: '@mpa_architects',
+      'Premier architectural design, engineered home construction with ARCH foundations, and luxury interior design in Chennai.',
+    images: ['/og-image.png'],
   },
   robots: {
     index: true,
@@ -89,15 +95,13 @@ export const metadata: Metadata = {
   },
   icons: {
     icon: [
-      { url: '/favicon.ico' },
-      { url: '/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
-      { url: '/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
-      { url: '/icon.png', sizes: '192x192', type: 'image/png' },
+      { url: '/favicon.ico?v=mpa-3d', sizes: '16x16 32x32 48x48', type: 'image/x-icon' },
+      { url: '/favicon-16x16.png?v=mpa-3d', sizes: '16x16', type: 'image/png' },
+      { url: '/favicon-32x32.png?v=mpa-3d', sizes: '32x32', type: 'image/png' },
+      { url: '/icon.png?v=mpa-3d', sizes: '192x192', type: 'image/png' },
     ],
-    apple: [
-      { url: '/apple-icon.png', sizes: '180x180', type: 'image/png' },
-    ],
-    shortcut: ['/favicon.ico'],
+    shortcut: ['/favicon.ico?v=mpa-3d'],
+    apple: [{ url: '/apple-icon.png?v=mpa-3d', sizes: '180x180', type: 'image/png' }],
   },
   manifest: '/site.webmanifest',
   alternates: {
@@ -107,93 +111,22 @@ export const metadata: Metadata = {
 
 const jsonLd = {
   '@context': 'https://schema.org',
-  '@type': ['ProfessionalService', 'GeneralContractor'],
+  '@type': 'ProfessionalService',
   '@id': 'https://muralipatharalaassociates.com/#organization',
-  name: 'Murali Patharala & Associates (MPA)',
-  alternateName: ['MPA Architects', 'ARCH Foundation', 'Murali Patharala Associates'],
+  name: STUDIO.name,
   url: 'https://muralipatharalaassociates.com',
-  logo: 'https://muralipatharalaassociates.com/icon.png',
-  image: 'https://muralipatharalaassociates.com/og-image.jpg',
-  description:
-    'Architecture and interior design practice by Ar. S. Murali, paired with residential construction delivered by ARCH Foundation across Chennai and regional offices.',
-  telephone: '+91 98410 98490',
-  priceRange: '₹₹₹',
-  address: {
-    '@type': 'PostalAddress',
-    streetAddress: 'W115A, 3rd Ave, Annanagar East',
-    addressLocality: 'Chennai',
-    addressRegion: 'Tamil Nadu',
-    postalCode: '600040',
-    addressCountry: 'IN',
-  },
-  geo: {
-    '@type': 'GeoCoordinates',
-    latitude: '13.0878',
-    longitude: '80.2206',
-  },
-  openingHoursSpecification: [
-    {
-      '@type': 'OpeningHoursSpecification',
-      dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
-      opens: '09:00',
-      closes: '19:30',
-    },
-  ],
-  areaServed: [
-    { '@type': 'City', name: 'Chennai' },
-    { '@type': 'AdministrativeArea', name: 'Anna Nagar' },
-    { '@type': 'City', name: 'Coimbatore' },
-    { '@type': 'City', name: 'Bangalore' },
-    { '@type': 'City', name: 'Pondicherry' },
-    { '@type': 'AdministrativeArea', name: 'Tamil Nadu' },
-  ],
-  founder: {
-    '@type': 'Person',
-    name: 'Ar. S. Murali',
-    jobTitle: 'Principal Architect',
-    alumniOf: 'School of Architecture',
-  },
-  hasOfferCatalog: {
-    '@type': 'OfferCatalog',
-    name: 'MPA Core Services',
-    itemListElement: [
-      {
-        '@type': 'Offer',
-        itemOffered: {
-          '@type': 'Service',
-          name: 'Architectural Design & Space Planning',
-          description:
-            'Custom 2D floor plans, photorealistic 3D elevations, structural and MEP working drawings, and itemized construction cost estimates.',
-          url: 'https://muralipatharalaassociates.com/services/architectural-design/',
-        },
-      },
-      {
-        '@type': 'Offer',
-        itemOffered: {
-          '@type': 'Service',
-          name: 'Residential Civil Construction',
-          description:
-            'Turnkey home construction by ARCH Foundation with branded materials (Tata Tiscon 550D, UltraTech 53-Grade), 425+ quality checks, and 10-year structural warranty.',
-          url: 'https://muralipatharalaassociates.com/services/residential-construction/',
-        },
-      },
-      {
-        '@type': 'Offer',
-        itemOffered: {
-          '@type': 'Service',
-          name: 'Bespoke Luxury Interior Design',
-          description:
-            'End-to-end luxury interiors covering custom modular kitchens, wardrobes, false ceilings, architectural lighting, and joinery.',
-          url: 'https://muralipatharalaassociates.com/services/interior-design/',
-        },
-      },
-    ],
-  },
+  logo: 'https://muralipatharalaassociates.com/mpa-3d-logo.webp',
+  description: 'Architecture and interior design consultancy for residential, commercial and institutional projects.',
+  foundingDate: STUDIO.founded,
+  telephone: STUDIO.phone,
+  contactPoint: [STUDIO.phone, STUDIO.alternatePhone].map(telephone => ({'@type': 'ContactPoint', telephone, contactType: 'Project enquiries'})),
+  address: {'@type': 'PostalAddress', streetAddress: 'W115A, AL Complex, 3rd Avenue, W Block, Anna Nagar East', addressLocality: 'Chennai', addressRegion: 'Tamil Nadu', postalCode: '600040', addressCountry: 'IN'},
+  founder: {'@type': 'Person', name: STUDIO.founder, jobTitle: 'Architect and Founder', alumniOf: {'@type': 'CollegeOrUniversity', name: STUDIO.education}},
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${lora.variable} ${workSans.variable}`}>
+    <html lang="en" className={`${bauhaus93.variable} ${tahoma.variable}`}>
       <head>
         <script
           type="application/ld+json"
@@ -201,7 +134,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         />
       </head>
       <body
-        className={`${lora.variable} ${workSans.variable} font-sans bg-[#FAFAFA] text-[#111111] antialiased selection:bg-[#EA580C] selection:text-white`}
+        className="font-sans bg-surface-cream text-[#111111] antialiased selection:bg-[#EA580C] selection:text-white"
       >
         {children}
       </body>
