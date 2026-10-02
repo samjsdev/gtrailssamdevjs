@@ -5,7 +5,7 @@ import 'lenis/dist/lenis.css';
 import { STUDIO } from '@/lib/clientProfile';
 
 const bauhaus93 = localFont({
-  src: '../public/fonts/bauhaus-93.woff',
+  src: '../assets/fonts/bauhaus-93.woff',
   variable: '--font-bauhaus-93',
   weight: '400',
   style: 'normal',
@@ -14,7 +14,7 @@ const bauhaus93 = localFont({
 });
 
 const tahoma = localFont({
-  src: '../public/fonts/tahoma.woff',
+  src: '../assets/fonts/tahoma.woff',
   variable: '--font-tahoma',
   weight: '400',
   style: 'normal',

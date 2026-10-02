@@ -1,12 +1,12 @@
 import Image from 'next/image';
 
 const clients = [
-  { name: 'Bharat Petroleum', image: 'bharat-petroleum.png' },
-  { name: 'IndianOil', image: 'indian-oil.jpeg' },
-  { name: 'TAHDCO', image: 'tahdco.png' },
-  { name: 'Indian Railways', image: 'indian-railways.jpeg' },
-  { name: 'Sri Balaji Hospital', image: 'sri-balaji-hospital.png' },
-  { name: 'SLA', image: 'sla.jpeg' },
+  { name: 'Bharat Petroleum', image: 'bharat-petroleum.webp' },
+  { name: 'IndianOil', image: 'indian-oil.webp' },
+  { name: 'TAHDCO', image: 'tahdco.webp' },
+  { name: 'Indian Railways', image: 'indian-railways.webp' },
+  { name: 'Sri Balaji Hospital', image: 'sri-balaji-hospital.webp' },
+  { name: 'SLA', image: 'sla.webp' },
 ];
 
 export default function ClientPortfolio() {

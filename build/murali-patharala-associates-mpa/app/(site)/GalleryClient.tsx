@@ -5,6 +5,8 @@ import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { X, ArrowUpRight, Layers, MessageCircle } from 'lucide-react';
 import { siteAssets } from '@/lib/siteAssets';
+import { getProjectImageTitle } from '@/lib/projectTitles';
+import titleStyles from './ProjectTitle.module.css';
 import type { ArchiveGroup, ArchiveImage } from '@/lib/projectArchive';
 
 const archiveGroupLabels: Record<ArchiveGroup, string> = {
@@ -217,6 +219,7 @@ export default function GalleryClient({ archiveImages }: GalleryClientProps) {
       const archive = archiveByUrl.get(item.url);
       return {
         ...item,
+        title: getProjectImageTitle(item.url, item.title),
         archiveId: archive?.id,
         archiveGroup: archive?.group,
         rotation: archive?.rotation,
@@ -228,7 +231,7 @@ export default function GalleryClient({ archiveImages }: GalleryClientProps) {
       archiveId: image.id,
       archiveGroup: image.group,
       rotation: image.rotation,
-      title: archiveImageTitles[image.group],
+      title: getProjectImageTitle(image.url, archiveImageTitles[image.group]),
       category: image.group === 'exterior_renders' ? 'architecture' as const : 'living' as const,
       categoryLabel: archiveGroupLabels[image.group],
       area: archiveGroupLabels[image.group],
@@ -309,7 +312,7 @@ export default function GalleryClient({ archiveImages }: GalleryClientProps) {
             <div className="min-h-0 flex items-center justify-between gap-3 px-4 py-4 sm:px-5">
               <div className="min-w-0">
 
-                <h3 className="truncate font-serif text-base sm:text-lg font-bold text-[#111111] group-hover:text-[#703015] transition-colors">
+                <h3 className={`${titleStyles.title} text-[#111111] group-hover:text-[#703015] transition-colors`} title={item.title}>
                   {item.title}
                 </h3>
               </div>

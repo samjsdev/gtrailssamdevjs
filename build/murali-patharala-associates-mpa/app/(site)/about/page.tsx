@@ -31,7 +31,7 @@ const selectedWork = [
 export default function AboutPage() {
   return <div className="bg-surface-cream text-[#111111]">
     <section className="relative overflow-hidden bg-[#121418] px-6 py-20 text-white md:px-12 md:py-28">
-      <Image src="/images/architecture/atelier-design-studio.webp" alt="" fill priority sizes="100vw" className="object-cover opacity-50" />
+      <Image src="/images/architecture/architectural-blueprint-draft.webp" alt="" fill priority sizes="100vw" className="object-cover opacity-50" />
       <div className="absolute inset-0 bg-gradient-to-r from-[#121418]/90 to-[#121418]/50" />
       <div className="relative mx-auto max-w-7xl">
         <p className="mb-6 text-xs font-bold uppercase tracking-[0.2em] text-[#FB923C]">Chennai / Established 1998</p>
@@ -47,7 +47,7 @@ export default function AboutPage() {
         <div className={styles.studioGrid}>
           <div className={styles.studioGallery}>
             <div className={styles.officePhoto}>
-              <Image src="/images/mpa-anna-nagar-office.jpg" alt="Entrance to the MPA and ARCH foundations studio in Anna Nagar East" fill sizes="(max-width: 900px) 100vw, 52vw" className={styles.photoCover} />
+              <Image src="/images/mpa-anna-nagar-office.webp" alt="Entrance to the MPA and ARCH foundations studio in Anna Nagar East" fill sizes="(max-width: 900px) 100vw, 52vw" className={styles.photoCover} />
             </div>
             <div className={styles.signPhoto}>
               <Image src="/murali-patharala-associates-assets/brand_identity/WhatsApp Image 2026-09-23 at 16.52.36 (2).webp" alt="Murali Patharala & Associates office sign" fill sizes="(max-width: 900px) 40vw, 18vw" className={styles.photoCover} />

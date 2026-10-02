@@ -204,7 +204,7 @@ export const SERVICE_DETAILS: ServiceDetail[] = [
         "title": "Pre-design & Feasibility",
         "description": "Review the site, zoning, budget and viability with the client.",
         "deliverable": "Site and project assessment",
-        "image": "/images/architecture/architect-studio-model.webp"
+        "image": "/images/architecture/architectural-blueprint-draft.webp"
       },
       {
         "step": "02",

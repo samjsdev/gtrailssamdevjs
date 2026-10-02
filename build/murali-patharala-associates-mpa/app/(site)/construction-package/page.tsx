@@ -82,9 +82,23 @@ export default function ConstructionPackagePage() {
 
         <div className="relative z-10 max-w-7xl mx-auto w-full grid lg:grid-cols-[1.35fr_.65fr] gap-14 items-end">
           <div className="max-w-4xl">
-            <div className="flex items-center gap-3 text-[11px] font-bold tracking-[0.24em] uppercase text-[#F3B687] mb-7">
-              <span className="w-10 h-px bg-[#A94F2D]" />
-              Residential construction by <span className="brand-name">ARCH foundations</span> / Chennai
+            <div className="mb-8 flex items-center gap-5 sm:gap-6">
+              <div className="shrink-0 border border-[#F3B687]/40 bg-[#172320]/60 p-1 shadow-xl">
+                <Image
+                  src="/murali-patharala-associates-assets/brand_identity/WhatsApp Image 2026-09-23 at 16.52.36.webp"
+                  alt="ARCH foundations logo"
+                  width={800}
+                  height={799}
+                  loading="eager"
+                  sizes="(max-width: 639px) 80px, 112px"
+                  className="size-20 object-contain sm:size-28"
+                />
+              </div>
+              <div className="min-w-0 border-l border-[#F3B687]/30 pl-5 sm:pl-6">
+                <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#F3B687] sm:text-[11px]">Construction packages</p>
+                <p className="brand-name mt-2 text-lg leading-snug text-white sm:text-2xl">ARCH foundations</p>
+                <p className="mt-2 text-[10px] font-medium uppercase tracking-[0.18em] text-white/60">Residential construction / Chennai</p>
+              </div>
             </div>
             <h1
               className="text-4xl sm:text-6xl md:text-7xl font-bold tracking-tight leading-[1.02] drop-shadow-md"

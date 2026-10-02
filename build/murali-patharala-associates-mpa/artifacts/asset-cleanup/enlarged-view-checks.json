@@ -1,0 +1,90 @@
+[
+  {
+    "section": "#architectural-plans",
+    "index": 0,
+    "title": "Ground floor plan — full drawing",
+    "src": "/images/2d%20plan/optimized/ground-floor-full.webp",
+    "width": 1459,
+    "height": 978,
+    "link": "http://localhost:3001/images/2d%20plan/optimized/ground-floor-full.webp",
+    "overflow": 0,
+    "linkStatus": 200
+  },
+  {
+    "section": "#architectural-plans",
+    "index": 1,
+    "title": "First floor plan — full drawing",
+    "src": "/images/2d%20plan/optimized/first-floor-full.webp",
+    "width": 3891,
+    "height": 2934,
+    "link": "http://localhost:3001/images/2d%20plan/optimized/first-floor-full.webp",
+    "overflow": 0,
+    "linkStatus": 200
+  },
+  {
+    "section": "#architectural-plans",
+    "index": 2,
+    "title": "Building elevation — full drawing",
+    "src": "/images/2d%20plan/optimized/elevation-full.webp",
+    "width": 2685,
+    "height": 2015,
+    "link": "http://localhost:3001/images/2d%20plan/optimized/elevation-full.webp",
+    "overflow": 0,
+    "linkStatus": 200
+  },
+  {
+    "section": "#architectural-plans",
+    "index": 3,
+    "title": "Electrical layout — full drawing",
+    "src": "/images/2d%20plan/optimized/electrical-full.webp",
+    "width": 2033,
+    "height": 1064,
+    "link": "http://localhost:3001/images/2d%20plan/optimized/electrical-full.webp",
+    "overflow": 0,
+    "linkStatus": 200
+  },
+  {
+    "section": "[id=\"3d-plans\"]",
+    "index": 0,
+    "title": "Ayanambakkam Villa — 3D visualisation",
+    "src": "/images/3d-plans/ayanambakkam-villa.webp",
+    "width": 1920,
+    "height": 1313,
+    "link": "http://localhost:3001/images/3d-plans/ayanambakkam-villa-full.webp",
+    "overflow": 0,
+    "linkStatus": 200
+  },
+  {
+    "section": "[id=\"3d-plans\"]",
+    "index": 1,
+    "title": "JP House Residence — 3D visualisation",
+    "src": "/images/3d-plans/jp-house-residence.webp",
+    "width": 1920,
+    "height": 1358,
+    "link": "http://localhost:3001/images/3d-plans/jp-house-residence-full.webp",
+    "overflow": 0,
+    "linkStatus": 200
+  },
+  {
+    "section": "[id=\"3d-plans\"]",
+    "index": 2,
+    "title": "Twilight Residence — 3D visualisation",
+    "src": "/images/3d-plans/twilight-residence.webp",
+    "width": 1920,
+    "height": 1312,
+    "link": "http://localhost:3001/images/3d-plans/twilight-residence-full.webp",
+    "overflow": 0,
+    "linkStatus": 200
+  },
+  {
+    "section": "[id=\"3d-plans\"]",
+    "index": 3,
+    "title": "Sree Aksharaa Enclave — 3D visualisation",
+    "src": "/images/3d-plans/aksharaa-enclave.webp",
+    "width": 1920,
+    "height": 1312,
+    "link": "http://localhost:3001/images/3d-plans/aksharaa-enclave-full.webp",
+    "overflow": 0,
+    "linkStatus": 200
+  }
+]

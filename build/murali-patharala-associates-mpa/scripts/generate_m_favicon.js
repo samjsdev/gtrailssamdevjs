@@ -10,7 +10,7 @@ async function generate() {
   const sizes = [16, 32, 48, 180, 192, 512];
   const images = new Map();
   for (const size of sizes) {
-    images.set(size, await sharp(logoPath).resize(size, size).png().toBuffer());
+    images.set(size, await sharp(logoPath).resize(size, size).png({ compressionLevel: 9, adaptiveFiltering: true, palette: false }).toBuffer());
   }
 
   const outputs = [

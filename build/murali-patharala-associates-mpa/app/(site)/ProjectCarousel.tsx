@@ -6,6 +6,8 @@ import Link from 'next/link';
 import { Play, Pause, ArrowRight, Sparkles } from 'lucide-react';
 import ArchitecturalDiagramBg from '@/components/ArchitecturalDiagramBg';
 import { siteAssets } from '@/lib/siteAssets';
+import { getProjectImageTitle } from '@/lib/projectTitles';
+import titleStyles from './ProjectTitle.module.css';
 
 interface Project {
   img: string;
@@ -70,7 +72,10 @@ export default function ProjectCarousel() {
   const [isPaused, setIsPaused] = useState(false);
 
   // Duplicate for smooth seamless infinite continuous scrolling loop
-  const displayProjects = [...PROJECTS, ...PROJECTS];
+  const displayProjects = [...PROJECTS, ...PROJECTS].map((project) => ({
+    ...project,
+    title: getProjectImageTitle(project.img, project.title),
+  }));
 
   return (
     <section id="projects" className="relative border-b-4 border-[#111111] bg-surface-sand text-ink-muted overflow-hidden">
@@ -172,7 +177,7 @@ export default function ProjectCarousel() {
                   />
                 </div>
                 <div className="border-t border-[#5D5140]/15 px-4 py-4 md:px-5">
-                  <h3 className="mpa-heading-compact truncate text-[#302A20]" title={proj.title}>
+                  <h3 className={`${titleStyles.title} text-[#302A20]`} title={proj.title}>
                     {proj.title}
                   </h3>
                 </div>

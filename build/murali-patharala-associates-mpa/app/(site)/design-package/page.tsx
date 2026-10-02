@@ -4,6 +4,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { ArrowDown, ArrowRight, DraftingCompass, FileSearch, Home, WalletCards } from 'lucide-react';
 import DesignPackages from '../DesignPackages';
+import BrandMark from '@/components/BrandMark';
 
 export const metadata: Metadata = {
   title: 'Architectural Design Packages in Chennai | Murali Patharala & Associates',
@@ -81,7 +82,15 @@ export default function DesignPackagePage() {
 
         <div className="relative z-10 max-w-7xl mx-auto grid lg:grid-cols-[1.2fr_.8fr] gap-14 items-end min-h-[410px]">
           <div>
-            <p className="mb-6 text-[11px] font-bold uppercase tracking-[0.2em] text-[#F3B687]">Design packages / <span className="brand-name">Murali Patharala &amp; Associates</span></p>
+            <div className="mb-8 flex items-center gap-5 sm:gap-6">
+              <div className="shrink-0 border border-[#F3B687]/40 bg-[#172320]/60 p-1 shadow-xl">
+                <BrandMark size={112} alt="Murali Patharala & Associates logo" className="size-20 object-contain sm:size-28" />
+              </div>
+              <div className="min-w-0 border-l border-[#F3B687]/30 pl-5 sm:pl-6">
+                <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#F3B687] sm:text-[11px]">Design packages</p>
+                <p className="brand-name mt-2 max-w-[260px] text-lg leading-snug text-white sm:text-2xl">Murali Patharala<br />&amp; Associates</p>
+              </div>
+            </div>
             <h1 className="text-4xl sm:text-6xl md:text-7xl font-bold tracking-tight leading-[1.02] drop-shadow-md">
               Design it first.<br />
               <em className="font-normal text-[#F3B687]">Build with certainty.</em>

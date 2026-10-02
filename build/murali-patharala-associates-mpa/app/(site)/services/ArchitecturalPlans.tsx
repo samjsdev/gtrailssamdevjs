@@ -8,7 +8,7 @@ import Modal from '@/components/Modal';
 import styles from './ThreeDimensionalPlans.module.css';
 import viewerStyles from './ArchitecturalPlans.module.css';
 
-const directory = '/images/2d%20plan/';
+const directory = '/images/2d%20plan/optimized/';
 const drawings = [
   {
     title: 'Ground floor plan',
@@ -18,7 +18,7 @@ const drawings = [
     details: ['Room layouts & furniture', 'Landscape & open spaces', 'Movement & circulation'],
     width: 1459,
     height: 978,
-    original: 'GROUND FLOOR PLAN ( OPTION 2 )_page-0001.jpg',
+    original: 'ground-floor-full.webp',
     alt: 'Residential ground floor drawing showing furnished rooms, a landscaped lawn and circulation',
   },
   {
@@ -29,7 +29,7 @@ const drawings = [
     details: ['Private & shared spaces', 'Staircase & connections', 'Dimensions & room relationships'],
     width: 3891,
     height: 2934,
-    original: '2 FIRST FLOOR PLAN 19.10.2021_page-0001.jpg',
+    original: 'first-floor-full.webp',
     alt: 'Dimensioned first floor architectural drawing showing bedrooms, terraces and a central staircase',
   },
   {
@@ -40,7 +40,7 @@ const drawings = [
     details: ['Facade proportions', 'Openings & balconies', 'Entrance & building character'],
     width: 2685,
     height: 2015,
-    original: 'approval plan - elevation_page-0001.jpg',
+    original: 'elevation-full.webp',
     alt: 'Architectural elevation drawing showing a multi-storey facade, balconies and entrance',
   },
   {
@@ -51,7 +51,7 @@ const drawings = [
     details: ['Lighting & electrical points', 'Switches & wiring routes', 'Coordination with room layouts'],
     width: 2033,
     height: 1064,
-    original: 'GROUND FLOOR ELECRICAL LAYOUT_page-0001.jpg',
+    original: 'electrical-full.webp',
     alt: 'Ground floor electrical drawing showing lighting points, switches and wiring routes',
   },
 ];
@@ -148,7 +148,7 @@ export default function ArchitecturalPlans() {
                 {drawings.map((drawing) => (
                   <div key={drawing.image} className={styles.slideItem}>
                     <Image
-                      src={`${directory}optimized/${drawing.image}.webp`}
+                      src={`${directory}${drawing.image}.webp`}
                       alt={drawing.alt}
                       fill
                       sizes="(max-width: 900px) calc(100vw - 48px), (max-width: 1440px) 65vw, 850px"
@@ -207,7 +207,7 @@ export default function ArchitecturalPlans() {
             >
               <span className={styles.thumbnail}>
                 <Image
-                  src={`${directory}optimized/${drawing.image}-thumb.webp`}
+                  src={`${directory}${drawing.image}-thumb.webp`}
                   alt=""
                   fill
                   sizes="(max-width: 900px) 40vw, 280px"
@@ -236,7 +236,7 @@ export default function ArchitecturalPlans() {
             <button type="button" onClick={() => setExpanded(false)} aria-label="Close drawing" className={viewerStyles.close}><X size={22} aria-hidden="true" /></button>
           </div>
           <div className={viewerStyles.fullDrawing}><Image src={originalUrl} alt={active.alt} width={active.width} height={active.height} sizes="(max-width: 960px) 100vw, 960px" className={viewerStyles.originalImage} /></div>
-          <div className={viewerStyles.viewerFooter}><p>{active.discipline}</p><a href={originalUrl} target="_blank" rel="noopener noreferrer">Open original drawing <ArrowUpRight size={15} aria-hidden="true" /></a></div>
+          <div className={viewerStyles.viewerFooter}><p>{active.discipline}</p><a href={originalUrl} target="_blank" rel="noopener noreferrer">Open full-resolution drawing <ArrowUpRight size={15} aria-hidden="true" /></a></div>
         </Modal>
       )}
     </section>

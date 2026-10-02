@@ -14,11 +14,11 @@ const projects: MarqueeProject[] = [
   { image: '/images/architecture/modern-villa-duplex.webp', title: 'MPA Signature Duplex Villa', location: 'Anna Nagar East' },
   { image: '/images/architecture/geometric-villa-elevation.webp', title: 'Geometric Parametric Facade', location: 'Anna Nagar' },
   { image: '/images/architecture/hero-villa-twilight.webp', title: 'Dusk Contemporary Villa', location: 'Chennai' },
-  { image: '/images/architecture/linear-pool-pavilion.webp', title: 'Poolside Luxury Villa', location: 'ECR, Chennai' },
+  { image: '/images/architecture/hero-villa-twilight.webp', title: 'Poolside Luxury Villa', location: 'ECR, Chennai' },
   { image: '/images/architecture/villa-after-finished.webp', title: 'White Modern Residence', location: 'Neelankarai' },
   { image: '/images/architecture/monolithic-brutalist-facade.webp', title: 'Contemporary Facade Home', location: 'Injambakkam' },
   { image: '/images/architecture/courtyard-water-residence.webp', title: 'Courtyard Villa Elevation', location: 'Velachery' },
-  { image: '/images/architecture/tropical-modern-villa.webp', title: 'Tropical Modern Turnkey Villa', location: 'Kilpauk' },
+  { image: '/images/architecture/modern-villa-duplex.webp', title: 'Tropical Modern Turnkey Villa', location: 'Kilpauk' },
 ];
 
 export default function ProjectMarquee() {

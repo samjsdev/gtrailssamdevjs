@@ -1,0 +1,2517 @@
+{
+  "route": "/gallery/",
+  "width": 1440,
+  "title": "Architectural & Interior Design Portfolio Chennai | MPA Projects | Murali Patharala & Associates",
+  "images": [
+    {
+      "src": "/mpa-3d-logo-small.webp",
+      "alt": "",
+      "loaded": true,
+      "naturalWidth": 128,
+      "naturalHeight": 128,
+      "displayWidth": 46,
+      "displayHeight": 46,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/murali-patharala-associates-assets/exterior_renders/Govindha Rajan-2026.webp",
+      "alt": "Contemporary white duplex exterior design visualization",
+      "loaded": true,
+      "naturalWidth": 1920,
+      "naturalHeight": 1358,
+      "displayWidth": 1440,
+      "displayHeight": 629,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/murali-patharala-associates-assets/exterior_renders/WhatsApp Image 2026-09-23 at 17.38.22 (2).webp",
+      "alt": "Contemporary brick and concrete residence from the MPA project archive",
+      "loaded": true,
+      "naturalWidth": 858,
+      "naturalHeight": 1024,
+      "displayWidth": 0,
+      "displayHeight": 0,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/murali-patharala-associates-assets/exterior_renders/Govindha Rajan-2026.webp",
+      "alt": "Contemporary White Duplex",
+      "loaded": true,
+      "naturalWidth": 1920,
+      "naturalHeight": 1358,
+      "displayWidth": 406,
+      "displayHeight": 351,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/murali-patharala-associates-assets/exterior_renders/Sushama John.webp",
+      "alt": "Geometric Facade Study",
+      "loaded": true,
+      "naturalWidth": 1920,
+      "naturalHeight": 1312,
+      "displayWidth": 406,
+      "displayHeight": 351,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.33.webp",
+      "alt": "Open Kitchen & Dining Interior",
+      "loaded": true,
+      "naturalWidth": 1041,
+      "naturalHeight": 692,
+      "displayWidth": 406,
+      "displayHeight": 351,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/murali-patharala-associates-assets/completed_interiors/WhatsApp Image 2026-09-23 at 16.28.01 (2).webp",
+      "alt": "Entertainment Room Interior",
+      "loaded": true,
+      "naturalWidth": 1600,
+      "naturalHeight": 1200,
+      "displayWidth": 406,
+      "displayHeight": 351,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/murali-patharala-associates-assets/exterior_renders/JAMEE2.webp",
+      "alt": "Contemporary Villa at Dusk",
+      "loaded": true,
+      "naturalWidth": 1920,
+      "naturalHeight": 1358,
+      "displayWidth": 406,
+      "displayHeight": 351,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/murali-patharala-associates-assets/interior_renders/WhatsApp Image 2026-09-23 at 16.42.59 (3).webp",
+      "alt": "Bright Contemporary Living Room",
+      "loaded": true,
+      "naturalWidth": 1600,
+      "naturalHeight": 1067,
+      "displayWidth": 406,
+      "displayHeight": 351,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/murali-patharala-associates-assets/exterior_renders/WhatsApp Image 2026-09-23 at 17.40.31 (1).webp",
+      "alt": "Garden-Facing Courtyard Home",
+      "loaded": true,
+      "naturalWidth": 1600,
+      "naturalHeight": 1259,
+      "displayWidth": 406,
+      "displayHeight": 351,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/murali-patharala-associates-assets/interior_renders/WhatsApp Image 2026-09-23 at 16.42.59 (1).webp",
+      "alt": "Contemporary Island Kitchen",
+      "loaded": true,
+      "naturalWidth": 1600,
+      "naturalHeight": 900,
+      "displayWidth": 406,
+      "displayHeight": 351,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/murali-patharala-associates-assets/exterior_renders/WhatsApp Image 2026-09-23 at 16.17.56 (2).webp",
+      "alt": "Timber Accent Residence",
+      "loaded": true,
+      "naturalWidth": 1600,
+      "naturalHeight": 1200,
+      "displayWidth": 406,
+      "displayHeight": 351,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/murali-patharala-associates-assets/completed_interiors/WhatsApp Image 2026-09-23 at 16.28.00 (3).webp",
+      "alt": "Completed Living & Entertainment Space",
+      "loaded": true,
+      "naturalWidth": 1600,
+      "naturalHeight": 1200,
+      "displayWidth": 406,
+      "displayHeight": 326,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/murali-patharala-associates-assets/exterior_renders/selva kumar (1).webp",
+      "alt": "Vertical Accent Facade",
+      "loaded": true,
+      "naturalWidth": 1920,
+      "naturalHeight": 1313,
+      "displayWidth": 406,
+      "displayHeight": 351,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/murali-patharala-associates-assets/interior_renders/WhatsApp Image 2026-09-23 at 16.22.24 (4).webp",
+      "alt": "Warm Timber Kitchen Concept",
+      "loaded": true,
+      "naturalWidth": 1600,
+      "naturalHeight": 900,
+      "displayWidth": 406,
+      "displayHeight": 351,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/murali-patharala-associates-assets/interior_renders/WhatsApp Image 2026-09-23 at 16.42.59 (4).webp",
+      "alt": "Layered Ceiling Living Concept",
+      "loaded": true,
+      "naturalWidth": 1600,
+      "naturalHeight": 1067,
+      "displayWidth": 406,
+      "displayHeight": 351,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/murali-patharala-associates-assets/exterior_renders/AMG.webp",
+      "alt": "Exterior Render",
+      "loaded": true,
+      "naturalWidth": 1920,
+      "naturalHeight": 1358,
+      "displayWidth": 406,
+      "displayHeight": 351,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/murali-patharala-associates-assets/exterior_renders/Jothi Kumar.webp",
+      "alt": "Exterior Render",
+      "loaded": true,
+      "naturalWidth": 1920,
+      "naturalHeight": 1353,
+      "displayWidth": 406,
+      "displayHeight": 351,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/murali-patharala-associates-assets/exterior_renders/kribushan.webp",
+      "alt": "Exterior Render",
+      "loaded": true,
+      "naturalWidth": 1312,
+      "naturalHeight": 1920,
+      "displayWidth": 406,
+      "displayHeight": 351,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/murali-patharala-associates-assets/exterior_renders/modern-residence-exterior-render-wide.webp",
+      "alt": "Exterior Render",
+      "loaded": true,
+      "naturalWidth": 1600,
+      "naturalHeight": 900,
+      "displayWidth": 406,
+      "displayHeight": 351,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/murali-patharala-associates-assets/exterior_renders/RAMESH.webp",
+      "alt": "Exterior Render",
+      "loaded": true,
+      "naturalWidth": 1920,
+      "naturalHeight": 1312,
+      "displayWidth": 406,
+      "displayHeight": 351,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/murali-patharala-associates-assets/exterior_renders/VENKATASH1.webp",
+      "alt": "Exterior Render",
+      "loaded": true,
+      "naturalWidth": 1920,
+      "naturalHeight": 1312,
+      "displayWidth": 406,
+      "displayHeight": 351,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/murali-patharala-associates-assets/exterior_renders/WhatsApp Image 2026-09-23 at 16.11.39.webp",
+      "alt": "Exterior Render",
+      "loaded": true,
+      "naturalWidth": 1080,
+      "naturalHeight": 1287,
+      "displayWidth": 406,
+      "displayHeight": 351,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/murali-patharala-associates-assets/exterior_renders/WhatsApp Image 2026-09-23 at 16.17.21.webp",
+      "alt": "Exterior Render",
+      "loaded": true,
+      "naturalWidth": 1024,
+      "naturalHeight": 1280,
+      "displayWidth": 406,
+      "displayHeight": 351,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/murali-patharala-associates-assets/exterior_renders/WhatsApp Image 2026-09-23 at 16.17.56 (1).webp",
+      "alt": "Exterior Render",
+      "loaded": true,
+      "naturalWidth": 960,
+      "naturalHeight": 1440,
+      "displayWidth": 406,
+      "displayHeight": 351,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/murali-patharala-associates-assets/exterior_renders/WhatsApp Image 2026-09-23 at 16.28.52.webp",
+      "alt": "Exterior Render",
+      "loaded": true,
+      "naturalWidth": 1600,
+      "naturalHeight": 1131,
+      "displayWidth": 406,
+      "displayHeight": 351,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/murali-patharala-associates-assets/exterior_renders/WhatsApp Image 2026-09-23 at 16.36.14.webp",
+      "alt": "Exterior Render",
+      "loaded": true,
+      "naturalWidth": 1440,
+      "naturalHeight": 1080,
+      "displayWidth": 406,
+      "displayHeight": 351,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/murali-patharala-associates-assets/exterior_renders/WhatsApp Image 2026-09-23 at 17.38.22 (1).webp",
+      "alt": "Exterior Render",
+      "loaded": true,
+      "naturalWidth": 1340,
+      "naturalHeight": 1600,
+      "displayWidth": 406,
+      "displayHeight": 351,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/murali-patharala-associates-assets/exterior_renders/WhatsApp Image 2026-09-23 at 17.38.22 (2).webp",
+      "alt": "Exterior Render",
+      "loaded": true,
+      "naturalWidth": 858,
+      "naturalHeight": 1024,
+      "displayWidth": 406,
+      "displayHeight": 351,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/murali-patharala-associates-assets/exterior_renders/WhatsApp Image 2026-09-23 at 17.38.22.webp",
+      "alt": "Exterior Render",
+      "loaded": true,
+      "naturalWidth": 1040,
+      "naturalHeight": 1600,
+      "displayWidth": 406,
+      "displayHeight": 351,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/murali-patharala-associates-assets/exterior_renders/WhatsApp Image 2026-09-23 at 17.40.31.webp",
+      "alt": "Exterior Render",
+      "loaded": true,
+      "naturalWidth": 1600,
+      "naturalHeight": 1104,
+      "displayWidth": 406,
+      "displayHeight": 351,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/murali-patharala-associates-assets/interior_renders/WhatsApp Image 2026-09-23 at 16.22.23 (3).webp",
+      "alt": "Interior Render",
+      "loaded": true,
+      "naturalWidth": 1600,
+      "naturalHeight": 900,
+      "displayWidth": 406,
+      "displayHeight": 351,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/murali-patharala-associates-assets/interior_renders/WhatsApp Image 2026-09-23 at 16.22.23 (5).webp",
+      "alt": "Interior Render",
+      "loaded": true,
+      "naturalWidth": 1600,
+      "naturalHeight": 900,
+      "displayWidth": 406,
+      "displayHeight": 351,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/murali-patharala-associates-assets/interior_renders/WhatsApp Image 2026-09-23 at 16.22.23 (8).webp",
+      "alt": "Interior Render",
+      "loaded": true,
+      "naturalWidth": 1600,
+      "naturalHeight": 900,
+      "displayWidth": 406,
+      "displayHeight": 351,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/murali-patharala-associates-assets/interior_renders/WhatsApp Image 2026-09-23 at 16.22.23 (9).webp",
+      "alt": "Interior Render",
+      "loaded": true,
+      "naturalWidth": 1600,
+      "naturalHeight": 900,
+      "displayWidth": 406,
+      "displayHeight": 351,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/murali-patharala-associates-assets/interior_renders/WhatsApp Image 2026-09-23 at 16.22.24 (2).webp",
+      "alt": "Interior Render",
+      "loaded": true,
+      "naturalWidth": 1600,
+      "naturalHeight": 900,
+      "displayWidth": 406,
+      "displayHeight": 351,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/murali-patharala-associates-assets/interior_renders/WhatsApp Image 2026-09-23 at 16.22.24.webp",
+      "alt": "Interior Render",
+      "loaded": true,
+      "naturalWidth": 1600,
+      "naturalHeight": 900,
+      "displayWidth": 406,
+      "displayHeight": 351,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/murali-patharala-associates-assets/interior_renders/WhatsApp Image 2026-09-23 at 16.42.57 (1).webp",
+      "alt": "Interior Render",
+      "loaded": true,
+      "naturalWidth": 1600,
+      "naturalHeight": 1067,
+      "displayWidth": 406,
+      "displayHeight": 351,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/murali-patharala-associates-assets/interior_renders/WhatsApp Image 2026-09-23 at 16.42.57 (2).webp",
+      "alt": "Interior Render",
+      "loaded": true,
+      "naturalWidth": 1600,
+      "naturalHeight": 1067,
+      "displayWidth": 406,
+      "displayHeight": 351,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/murali-patharala-associates-assets/interior_renders/WhatsApp Image 2026-09-23 at 16.42.57 (3).webp",
+      "alt": "Interior Render",
+      "loaded": true,
+      "naturalWidth": 1600,
+      "naturalHeight": 1067,
+      "displayWidth": 406,
+      "displayHeight": 351,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/murali-patharala-associates-assets/interior_renders/WhatsApp Image 2026-09-23 at 16.42.57 (5).webp",
+      "alt": "Interior Render",
+      "loaded": true,
+      "naturalWidth": 1600,
+      "naturalHeight": 1067,
+      "displayWidth": 406,
+      "displayHeight": 351,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/murali-patharala-associates-assets/interior_renders/WhatsApp Image 2026-09-23 at 16.42.57 (6).webp",
+      "alt": "Interior Render",
+      "loaded": true,
+      "naturalWidth": 1600,
+      "naturalHeight": 1067,
+      "displayWidth": 406,
+      "displayHeight": 351,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/murali-patharala-associates-assets/interior_renders/WhatsApp Image 2026-09-23 at 16.42.57 (7).webp",
+      "alt": "Interior Render",
+      "loaded": true,
+      "naturalWidth": 1600,
+      "naturalHeight": 1067,
+      "displayWidth": 406,
+      "displayHeight": 351,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/murali-patharala-associates-assets/interior_renders/WhatsApp Image 2026-09-23 at 16.42.57.webp",
+      "alt": "Interior Render",
+      "loaded": true,
+      "naturalWidth": 1600,
+      "naturalHeight": 1067,
+      "displayWidth": 406,
+      "displayHeight": 351,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/murali-patharala-associates-assets/interior_renders/WhatsApp Image 2026-09-23 at 16.42.58.webp",
+      "alt": "Interior Render",
+      "loaded": true,
+      "naturalWidth": 1000,
+      "naturalHeight": 667,
+      "displayWidth": 406,
+      "displayHeight": 351,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/murali-patharala-associates-assets/interior_renders/WhatsApp Image 2026-09-23 at 16.42.59 (2).webp",
+      "alt": "Interior Render",
+      "loaded": true,
+      "naturalWidth": 1020,
+      "naturalHeight": 765,
+      "displayWidth": 406,
+      "displayHeight": 351,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/murali-patharala-associates-assets/interior_renders/WhatsApp Image 2026-09-23 at 16.42.59 (5).webp",
+      "alt": "Interior Render",
+      "loaded": true,
+      "naturalWidth": 1296,
+      "naturalHeight": 731,
+      "displayWidth": 406,
+      "displayHeight": 351,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/murali-patharala-associates-assets/interior_renders/WhatsApp Image 2026-09-23 at 16.42.59.webp",
+      "alt": "Interior Render",
+      "loaded": true,
+      "naturalWidth": 1600,
+      "naturalHeight": 1067,
+      "displayWidth": 406,
+      "displayHeight": 351,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/murali-patharala-associates-assets/completed_interiors/WhatsApp Image 2026-09-23 at 16.28.00 (1).webp",
+      "alt": "Completed Interior",
+      "loaded": true,
+      "naturalWidth": 1600,
+      "naturalHeight": 1200,
+      "displayWidth": 406,
+      "displayHeight": 351,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/murali-patharala-associates-assets/completed_interiors/WhatsApp Image 2026-09-23 at 16.28.00 (2).webp",
+      "alt": "Completed Interior",
+      "loaded": true,
+      "naturalWidth": 1600,
+      "naturalHeight": 1200,
+      "displayWidth": 406,
+      "displayHeight": 351,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/murali-patharala-associates-assets/completed_interiors/WhatsApp Image 2026-09-23 at 16.28.00 (4).webp",
+      "alt": "Completed Interior",
+      "loaded": true,
+      "naturalWidth": 1600,
+      "naturalHeight": 1200,
+      "displayWidth": 406,
+      "displayHeight": 351,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/murali-patharala-associates-assets/completed_interiors/WhatsApp Image 2026-09-23 at 16.28.00 (5).webp",
+      "alt": "Completed Interior",
+      "loaded": true,
+      "naturalWidth": 1600,
+      "naturalHeight": 1200,
+      "displayWidth": 406,
+      "displayHeight": 351,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/murali-patharala-associates-assets/completed_interiors/WhatsApp Image 2026-09-23 at 16.28.00 (6).webp",
+      "alt": "Completed Interior",
+      "loaded": true,
+      "naturalWidth": 1600,
+      "naturalHeight": 1200,
+      "displayWidth": 406,
+      "displayHeight": 351,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/murali-patharala-associates-assets/completed_interiors/WhatsApp Image 2026-09-23 at 16.28.00.webp",
+      "alt": "Completed Interior",
+      "loaded": true,
+      "naturalWidth": 1600,
+      "naturalHeight": 1200,
+      "displayWidth": 406,
+      "displayHeight": 351,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/murali-patharala-associates-assets/completed_interiors/WhatsApp Image 2026-09-23 at 16.28.01 (1).webp",
+      "alt": "Completed Interior",
+      "loaded": true,
+      "naturalWidth": 1600,
+      "naturalHeight": 1200,
+      "displayWidth": 406,
+      "displayHeight": 351,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/murali-patharala-associates-assets/completed_interiors/WhatsApp Image 2026-09-23 at 16.28.01 (3).webp",
+      "alt": "Completed Interior",
+      "loaded": true,
+      "naturalWidth": 1600,
+      "naturalHeight": 1200,
+      "displayWidth": 406,
+      "displayHeight": 351,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/murali-patharala-associates-assets/completed_interiors/WhatsApp Image 2026-09-23 at 16.28.01.webp",
+      "alt": "Completed Interior",
+      "loaded": true,
+      "naturalWidth": 1600,
+      "naturalHeight": 1200,
+      "displayWidth": 406,
+      "displayHeight": 351,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/murali-patharala-associates-assets/completed_interiors/WhatsApp Image 2026-09-23 at 16.39.53.webp",
+      "alt": "Completed Interior",
+      "loaded": true,
+      "naturalWidth": 480,
+      "naturalHeight": 480,
+      "displayWidth": 406,
+      "displayHeight": 351,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/murali-patharala-associates-assets/completed_interiors/WhatsApp Image 2026-09-23 at 16.40.29.webp",
+      "alt": "Completed Interior",
+      "loaded": true,
+      "naturalWidth": 564,
+      "naturalHeight": 857,
+      "displayWidth": 406,
+      "displayHeight": 351,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.27 (1).webp",
+      "alt": "Portfolio Image",
+      "loaded": true,
+      "naturalWidth": 794,
+      "naturalHeight": 1123,
+      "displayWidth": 406,
+      "displayHeight": 351,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.27.webp",
+      "alt": "Portfolio Image",
+      "loaded": true,
+      "naturalWidth": 794,
+      "naturalHeight": 1123,
+      "displayWidth": 406,
+      "displayHeight": 351,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.28 (1).webp",
+      "alt": "Portfolio Image",
+      "loaded": true,
+      "naturalWidth": 794,
+      "naturalHeight": 1123,
+      "displayWidth": 406,
+      "displayHeight": 351,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.28 (2).webp",
+      "alt": "Portfolio Image",
+      "loaded": true,
+      "naturalWidth": 794,
+      "naturalHeight": 1123,
+      "displayWidth": 406,
+      "displayHeight": 351,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.28.webp",
+      "alt": "Portfolio Image",
+      "loaded": true,
+      "naturalWidth": 794,
+      "naturalHeight": 1123,
+      "displayWidth": 406,
+      "displayHeight": 351,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.29 (1).webp",
+      "alt": "Portfolio Image",
+      "loaded": true,
+      "naturalWidth": 794,
+      "naturalHeight": 1123,
+      "displayWidth": 406,
+      "displayHeight": 351,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.29.webp",
+      "alt": "Portfolio Image",
+      "loaded": true,
+      "naturalWidth": 794,
+      "naturalHeight": 1123,
+      "displayWidth": 406,
+      "displayHeight": 351,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.30 (1).webp",
+      "alt": "Portfolio Image",
+      "loaded": true,
+      "naturalWidth": 794,
+      "naturalHeight": 1123,
+      "displayWidth": 406,
+      "displayHeight": 351,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.30.webp",
+      "alt": "Portfolio Image",
+      "loaded": true,
+      "naturalWidth": 794,
+      "naturalHeight": 1123,
+      "displayWidth": 406,
+      "displayHeight": 351,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.31.webp",
+      "alt": "Portfolio Image",
+      "loaded": true,
+      "naturalWidth": 794,
+      "naturalHeight": 1123,
+      "displayWidth": 406,
+      "displayHeight": 351,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.33 (1).webp",
+      "alt": "Portfolio Image",
+      "loaded": true,
+      "naturalWidth": 794,
+      "naturalHeight": 1123,
+      "displayWidth": 406,
+      "displayHeight": 351,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.34 (1).webp",
+      "alt": "Portfolio Image",
+      "loaded": true,
+      "naturalWidth": 794,
+      "naturalHeight": 1123,
+      "displayWidth": 406,
+      "displayHeight": 351,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.34 (2).webp",
+      "alt": "Portfolio Image",
+      "loaded": true,
+      "naturalWidth": 794,
+      "naturalHeight": 1123,
+      "displayWidth": 406,
+      "displayHeight": 351,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.34.webp",
+      "alt": "Portfolio Image",
+      "loaded": true,
+      "naturalWidth": 794,
+      "naturalHeight": 1123,
+      "displayWidth": 406,
+      "displayHeight": 351,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.35 (1).webp",
+      "alt": "Portfolio Image",
+      "loaded": true,
+      "naturalWidth": 794,
+      "naturalHeight": 1123,
+      "displayWidth": 406,
+      "displayHeight": 351,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.35.webp",
+      "alt": "Portfolio Image",
+      "loaded": true,
+      "naturalWidth": 794,
+      "naturalHeight": 1123,
+      "displayWidth": 406,
+      "displayHeight": 351,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.37 (1).webp",
+      "alt": "Portfolio Image",
+      "loaded": true,
+      "naturalWidth": 794,
+      "naturalHeight": 1123,
+      "displayWidth": 406,
+      "displayHeight": 351,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.37.webp",
+      "alt": "Portfolio Image",
+      "loaded": true,
+      "naturalWidth": 794,
+      "naturalHeight": 1123,
+      "displayWidth": 406,
+      "displayHeight": 351,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.38 (1).webp",
+      "alt": "Portfolio Image",
+      "loaded": true,
+      "naturalWidth": 794,
+      "naturalHeight": 1123,
+      "displayWidth": 406,
+      "displayHeight": 351,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.38.webp",
+      "alt": "Portfolio Image",
+      "loaded": true,
+      "naturalWidth": 794,
+      "naturalHeight": 1123,
+      "displayWidth": 406,
+      "displayHeight": 351,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.39 (1).webp",
+      "alt": "Portfolio Image",
+      "loaded": true,
+      "naturalWidth": 794,
+      "naturalHeight": 1123,
+      "displayWidth": 406,
+      "displayHeight": 351,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.39.webp",
+      "alt": "Portfolio Image",
+      "loaded": true,
+      "naturalWidth": 794,
+      "naturalHeight": 1123,
+      "displayWidth": 406,
+      "displayHeight": 351,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.40 (1).webp",
+      "alt": "Portfolio Image",
+      "loaded": true,
+      "naturalWidth": 794,
+      "naturalHeight": 1123,
+      "displayWidth": 406,
+      "displayHeight": 351,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.40.webp",
+      "alt": "Portfolio Image",
+      "loaded": true,
+      "naturalWidth": 794,
+      "naturalHeight": 1123,
+      "displayWidth": 406,
+      "displayHeight": 351,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.41 (1).webp",
+      "alt": "Portfolio Image",
+      "loaded": true,
+      "naturalWidth": 794,
+      "naturalHeight": 1123,
+      "displayWidth": 406,
+      "displayHeight": 351,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.42 (1).webp",
+      "alt": "Portfolio Image",
+      "loaded": true,
+      "naturalWidth": 794,
+      "naturalHeight": 1123,
+      "displayWidth": 406,
+      "displayHeight": 351,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.42.webp",
+      "alt": "Portfolio Image",
+      "loaded": true,
+      "naturalWidth": 794,
+      "naturalHeight": 1123,
+      "displayWidth": 406,
+      "displayHeight": 351,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.43 (1).webp",
+      "alt": "Portfolio Image",
+      "loaded": true,
+      "naturalWidth": 794,
+      "naturalHeight": 1123,
+      "displayWidth": 406,
+      "displayHeight": 351,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.43.webp",
+      "alt": "Portfolio Image",
+      "loaded": true,
+      "naturalWidth": 794,
+      "naturalHeight": 1123,
+      "displayWidth": 406,
+      "displayHeight": 351,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.44 (1).webp",
+      "alt": "Portfolio Image",
+      "loaded": true,
+      "naturalWidth": 794,
+      "naturalHeight": 1123,
+      "displayWidth": 406,
+      "displayHeight": 351,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.44.webp",
+      "alt": "Portfolio Image",
+      "loaded": true,
+      "naturalWidth": 794,
+      "naturalHeight": 1123,
+      "displayWidth": 406,
+      "displayHeight": 351,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.45 (1).webp",
+      "alt": "Portfolio Image",
+      "loaded": true,
+      "naturalWidth": 794,
+      "naturalHeight": 1123,
+      "displayWidth": 406,
+      "displayHeight": 351,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.45.webp",
+      "alt": "Portfolio Image",
+      "loaded": true,
+      "naturalWidth": 794,
+      "naturalHeight": 1123,
+      "displayWidth": 406,
+      "displayHeight": 351,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.46 (1).webp",
+      "alt": "Portfolio Image",
+      "loaded": true,
+      "naturalWidth": 794,
+      "naturalHeight": 1123,
+      "displayWidth": 406,
+      "displayHeight": 351,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.46.webp",
+      "alt": "Portfolio Image",
+      "loaded": true,
+      "naturalWidth": 794,
+      "naturalHeight": 1123,
+      "displayWidth": 406,
+      "displayHeight": 351,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.47 (1).webp",
+      "alt": "Portfolio Image",
+      "loaded": true,
+      "naturalWidth": 794,
+      "naturalHeight": 1123,
+      "displayWidth": 406,
+      "displayHeight": 351,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.47.webp",
+      "alt": "Portfolio Image",
+      "loaded": true,
+      "naturalWidth": 794,
+      "naturalHeight": 1123,
+      "displayWidth": 406,
+      "displayHeight": 351,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.48 (1).webp",
+      "alt": "Portfolio Image",
+      "loaded": true,
+      "naturalWidth": 794,
+      "naturalHeight": 1123,
+      "displayWidth": 406,
+      "displayHeight": 351,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.48.webp",
+      "alt": "Portfolio Image",
+      "loaded": true,
+      "naturalWidth": 794,
+      "naturalHeight": 1123,
+      "displayWidth": 406,
+      "displayHeight": 351,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.49 (1).webp",
+      "alt": "Portfolio Image",
+      "loaded": true,
+      "naturalWidth": 794,
+      "naturalHeight": 1123,
+      "displayWidth": 406,
+      "displayHeight": 351,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.49.webp",
+      "alt": "Portfolio Image",
+      "loaded": true,
+      "naturalWidth": 794,
+      "naturalHeight": 1123,
+      "displayWidth": 406,
+      "displayHeight": 351,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.50 (1).webp",
+      "alt": "Portfolio Image",
+      "loaded": true,
+      "naturalWidth": 794,
+      "naturalHeight": 1123,
+      "displayWidth": 406,
+      "displayHeight": 351,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.50.webp",
+      "alt": "Portfolio Image",
+      "loaded": true,
+      "naturalWidth": 794,
+      "naturalHeight": 1123,
+      "displayWidth": 406,
+      "displayHeight": 351,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.51 (1).webp",
+      "alt": "Portfolio Image",
+      "loaded": true,
+      "naturalWidth": 794,
+      "naturalHeight": 1123,
+      "displayWidth": 406,
+      "displayHeight": 351,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.51.webp",
+      "alt": "Portfolio Image",
+      "loaded": true,
+      "naturalWidth": 794,
+      "naturalHeight": 1123,
+      "displayWidth": 406,
+      "displayHeight": 351,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.52 (1).webp",
+      "alt": "Portfolio Image",
+      "loaded": true,
+      "naturalWidth": 794,
+      "naturalHeight": 1123,
+      "displayWidth": 406,
+      "displayHeight": 351,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.52.webp",
+      "alt": "Portfolio Image",
+      "loaded": true,
+      "naturalWidth": 794,
+      "naturalHeight": 1123,
+      "displayWidth": 406,
+      "displayHeight": 351,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.53 (1).webp",
+      "alt": "Portfolio Image",
+      "loaded": true,
+      "naturalWidth": 794,
+      "naturalHeight": 1123,
+      "displayWidth": 406,
+      "displayHeight": 351,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.54.webp",
+      "alt": "Portfolio Image",
+      "loaded": true,
+      "naturalWidth": 794,
+      "naturalHeight": 1123,
+      "displayWidth": 406,
+      "displayHeight": 351,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.55 (1).webp",
+      "alt": "Portfolio Image",
+      "loaded": true,
+      "naturalWidth": 794,
+      "naturalHeight": 1123,
+      "displayWidth": 406,
+      "displayHeight": 351,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.55.webp",
+      "alt": "Portfolio Image",
+      "loaded": true,
+      "naturalWidth": 794,
+      "naturalHeight": 1123,
+      "displayWidth": 406,
+      "displayHeight": 351,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.56 (1).webp",
+      "alt": "Portfolio Image",
+      "loaded": true,
+      "naturalWidth": 794,
+      "naturalHeight": 1123,
+      "displayWidth": 406,
+      "displayHeight": 351,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.56 (2).webp",
+      "alt": "Portfolio Image",
+      "loaded": true,
+      "naturalWidth": 794,
+      "naturalHeight": 1123,
+      "displayWidth": 406,
+      "displayHeight": 351,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.57 (1).webp",
+      "alt": "Portfolio Image",
+      "loaded": true,
+      "naturalWidth": 794,
+      "naturalHeight": 1123,
+      "displayWidth": 406,
+      "displayHeight": 351,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.57.webp",
+      "alt": "Portfolio Image",
+      "loaded": true,
+      "naturalWidth": 794,
+      "naturalHeight": 1123,
+      "displayWidth": 406,
+      "displayHeight": 351,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.58 (1).webp",
+      "alt": "Portfolio Image",
+      "loaded": true,
+      "naturalWidth": 794,
+      "naturalHeight": 1123,
+      "displayWidth": 406,
+      "displayHeight": 351,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.58.webp",
+      "alt": "Portfolio Image",
+      "loaded": true,
+      "naturalWidth": 794,
+      "naturalHeight": 1123,
+      "displayWidth": 406,
+      "displayHeight": 351,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.59 (1).webp",
+      "alt": "Portfolio Image",
+      "loaded": true,
+      "naturalWidth": 794,
+      "naturalHeight": 1123,
+      "displayWidth": 406,
+      "displayHeight": 351,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.59.webp",
+      "alt": "Portfolio Image",
+      "loaded": true,
+      "naturalWidth": 794,
+      "naturalHeight": 1123,
+      "displayWidth": 406,
+      "displayHeight": 351,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.35.00.webp",
+      "alt": "Portfolio Image",
+      "loaded": true,
+      "naturalWidth": 794,
+      "naturalHeight": 1123,
+      "displayWidth": 406,
+      "displayHeight": 351,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/images/architecture/hero-villa-twilight.webp",
+      "alt": "",
+      "loaded": true,
+      "naturalWidth": 1376,
+      "naturalHeight": 768,
+      "displayWidth": 1440,
+      "displayHeight": 723,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/mpa-3d-logo-small.webp",
+      "alt": "",
+      "loaded": true,
+      "naturalWidth": 128,
+      "naturalHeight": 128,
+      "displayWidth": 44,
+      "displayHeight": 44,
+      "fit": "fill",
+      "hidden": false
+    }
+  ],
+  "backgrounds": [],
+  "decoded": [
+    {
+      "src": "/mpa-3d-logo-small.webp",
+      "ok": true,
+      "width": 128,
+      "height": 128
+    },
+    {
+      "src": "/murali-patharala-associates-assets/exterior_renders/Govindha Rajan-2026.webp",
+      "ok": true,
+      "width": 1920,
+      "height": 1358
+    },
+    {
+      "src": "/murali-patharala-associates-assets/exterior_renders/WhatsApp Image 2026-09-23 at 17.38.22 (2).webp",
+      "ok": true,
+      "width": 858,
+      "height": 1024
+    },
+    {
+      "src": "/murali-patharala-associates-assets/exterior_renders/Sushama John.webp",
+      "ok": true,
+      "width": 1920,
+      "height": 1312
+    },
+    {
+      "src": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.33.webp",
+      "ok": true,
+      "width": 1041,
+      "height": 692
+    },
+    {
+      "src": "/murali-patharala-associates-assets/completed_interiors/WhatsApp Image 2026-09-23 at 16.28.01 (2).webp",
+      "ok": true,
+      "width": 1600,
+      "height": 1200
+    },
+    {
+      "src": "/murali-patharala-associates-assets/exterior_renders/JAMEE2.webp",
+      "ok": true,
+      "width": 1920,
+      "height": 1358
+    },
+    {
+      "src": "/murali-patharala-associates-assets/interior_renders/WhatsApp Image 2026-09-23 at 16.42.59 (3).webp",
+      "ok": true,
+      "width": 1600,
+      "height": 1067
+    },
+    {
+      "src": "/murali-patharala-associates-assets/exterior_renders/WhatsApp Image 2026-09-23 at 17.40.31 (1).webp",
+      "ok": true,
+      "width": 1600,
+      "height": 1259
+    },
+    {
+      "src": "/murali-patharala-associates-assets/interior_renders/WhatsApp Image 2026-09-23 at 16.42.59 (1).webp",
+      "ok": true,
+      "width": 1600,
+      "height": 900
+    },
+    {
+      "src": "/murali-patharala-associates-assets/exterior_renders/WhatsApp Image 2026-09-23 at 16.17.56 (2).webp",
+      "ok": true,
+      "width": 1600,
+      "height": 1200
+    },
+    {
+      "src": "/murali-patharala-associates-assets/completed_interiors/WhatsApp Image 2026-09-23 at 16.28.00 (3).webp",
+      "ok": true,
+      "width": 1600,
+      "height": 1200
+    },
+    {
+      "src": "/murali-patharala-associates-assets/exterior_renders/selva kumar (1).webp",
+      "ok": true,
+      "width": 1920,
+      "height": 1313
+    },
+    {
+      "src": "/murali-patharala-associates-assets/interior_renders/WhatsApp Image 2026-09-23 at 16.22.24 (4).webp",
+      "ok": true,
+      "width": 1600,
+      "height": 900
+    },
+    {
+      "src": "/murali-patharala-associates-assets/interior_renders/WhatsApp Image 2026-09-23 at 16.42.59 (4).webp",
+      "ok": true,
+      "width": 1600,
+      "height": 1067
+    },
+    {
+      "src": "/murali-patharala-associates-assets/exterior_renders/AMG.webp",
+      "ok": true,
+      "width": 1920,
+      "height": 1358
+    },
+    {
+      "src": "/murali-patharala-associates-assets/exterior_renders/Jothi Kumar.webp",
+      "ok": true,
+      "width": 1920,
+      "height": 1353
+    },
+    {
+      "src": "/murali-patharala-associates-assets/exterior_renders/kribushan.webp",
+      "ok": true,
+      "width": 1312,
+      "height": 1920
+    },
+    {
+      "src": "/murali-patharala-associates-assets/exterior_renders/modern-residence-exterior-render-wide.webp",
+      "ok": true,
+      "width": 1600,
+      "height": 900
+    },
+    {
+      "src": "/murali-patharala-associates-assets/exterior_renders/RAMESH.webp",
+      "ok": true,
+      "width": 1920,
+      "height": 1312
+    },
+    {
+      "src": "/murali-patharala-associates-assets/exterior_renders/VENKATASH1.webp",
+      "ok": true,
+      "width": 1920,
+      "height": 1312
+    },
+    {
+      "src": "/murali-patharala-associates-assets/exterior_renders/WhatsApp Image 2026-09-23 at 16.11.39.webp",
+      "ok": true,
+      "width": 1080,
+      "height": 1287
+    },
+    {
+      "src": "/murali-patharala-associates-assets/exterior_renders/WhatsApp Image 2026-09-23 at 16.17.21.webp",
+      "ok": true,
+      "width": 1024,
+      "height": 1280
+    },
+    {
+      "src": "/murali-patharala-associates-assets/exterior_renders/WhatsApp Image 2026-09-23 at 16.17.56 (1).webp",
+      "ok": true,
+      "width": 960,
+      "height": 1440
+    },
+    {
+      "src": "/murali-patharala-associates-assets/exterior_renders/WhatsApp Image 2026-09-23 at 16.28.52.webp",
+      "ok": true,
+      "width": 1600,
+      "height": 1131
+    },
+    {
+      "src": "/murali-patharala-associates-assets/exterior_renders/WhatsApp Image 2026-09-23 at 16.36.14.webp",
+      "ok": true,
+      "width": 1440,
+      "height": 1080
+    },
+    {
+      "src": "/murali-patharala-associates-assets/exterior_renders/WhatsApp Image 2026-09-23 at 17.38.22 (1).webp",
+      "ok": true,
+      "width": 1340,
+      "height": 1600
+    },
+    {
+      "src": "/murali-patharala-associates-assets/exterior_renders/WhatsApp Image 2026-09-23 at 17.38.22.webp",
+      "ok": true,
+      "width": 1040,
+      "height": 1600
+    },
+    {
+      "src": "/murali-patharala-associates-assets/exterior_renders/WhatsApp Image 2026-09-23 at 17.40.31.webp",
+      "ok": true,
+      "width": 1600,
+      "height": 1104
+    },
+    {
+      "src": "/murali-patharala-associates-assets/interior_renders/WhatsApp Image 2026-09-23 at 16.22.23 (3).webp",
+      "ok": true,
+      "width": 1600,
+      "height": 900
+    },
+    {
+      "src": "/murali-patharala-associates-assets/interior_renders/WhatsApp Image 2026-09-23 at 16.22.23 (5).webp",
+      "ok": true,
+      "width": 1600,
+      "height": 900
+    },
+    {
+      "src": "/murali-patharala-associates-assets/interior_renders/WhatsApp Image 2026-09-23 at 16.22.23 (8).webp",
+      "ok": true,
+      "width": 1600,
+      "height": 900
+    },
+    {
+      "src": "/murali-patharala-associates-assets/interior_renders/WhatsApp Image 2026-09-23 at 16.22.23 (9).webp",
+      "ok": true,
+      "width": 1600,
+      "height": 900
+    },
+    {
+      "src": "/murali-patharala-associates-assets/interior_renders/WhatsApp Image 2026-09-23 at 16.22.24 (2).webp",
+      "ok": true,
+      "width": 1600,
+      "height": 900
+    },
+    {
+      "src": "/murali-patharala-associates-assets/interior_renders/WhatsApp Image 2026-09-23 at 16.22.24.webp",
+      "ok": true,
+      "width": 1600,
+      "height": 900
+    },
+    {
+      "src": "/murali-patharala-associates-assets/interior_renders/WhatsApp Image 2026-09-23 at 16.42.57 (1).webp",
+      "ok": true,
+      "width": 1600,
+      "height": 1067
+    },
+    {
+      "src": "/murali-patharala-associates-assets/interior_renders/WhatsApp Image 2026-09-23 at 16.42.57 (2).webp",
+      "ok": true,
+      "width": 1600,
+      "height": 1067
+    },
+    {
+      "src": "/murali-patharala-associates-assets/interior_renders/WhatsApp Image 2026-09-23 at 16.42.57 (3).webp",
+      "ok": true,
+      "width": 1600,
+      "height": 1067
+    },
+    {
+      "src": "/murali-patharala-associates-assets/interior_renders/WhatsApp Image 2026-09-23 at 16.42.57 (5).webp",
+      "ok": true,
+      "width": 1600,
+      "height": 1067
+    },
+    {
+      "src": "/murali-patharala-associates-assets/interior_renders/WhatsApp Image 2026-09-23 at 16.42.57 (6).webp",
+      "ok": true,
+      "width": 1600,
+      "height": 1067
+    },
+    {
+      "src": "/murali-patharala-associates-assets/interior_renders/WhatsApp Image 2026-09-23 at 16.42.57 (7).webp",
+      "ok": true,
+      "width": 1600,
+      "height": 1067
+    },
+    {
+      "src": "/murali-patharala-associates-assets/interior_renders/WhatsApp Image 2026-09-23 at 16.42.57.webp",
+      "ok": true,
+      "width": 1600,
+      "height": 1067
+    },
+    {
+      "src": "/murali-patharala-associates-assets/interior_renders/WhatsApp Image 2026-09-23 at 16.42.58.webp",
+      "ok": true,
+      "width": 1000,
+      "height": 667
+    },
+    {
+      "src": "/murali-patharala-associates-assets/interior_renders/WhatsApp Image 2026-09-23 at 16.42.59 (2).webp",
+      "ok": true,
+      "width": 1020,
+      "height": 765
+    },
+    {
+      "src": "/murali-patharala-associates-assets/interior_renders/WhatsApp Image 2026-09-23 at 16.42.59 (5).webp",
+      "ok": true,
+      "width": 1296,
+      "height": 731
+    },
+    {
+      "src": "/murali-patharala-associates-assets/interior_renders/WhatsApp Image 2026-09-23 at 16.42.59.webp",
+      "ok": true,
+      "width": 1600,
+      "height": 1067
+    },
+    {
+      "src": "/murali-patharala-associates-assets/completed_interiors/WhatsApp Image 2026-09-23 at 16.28.00 (1).webp",
+      "ok": true,
+      "width": 1600,
+      "height": 1200
+    },
+    {
+      "src": "/murali-patharala-associates-assets/completed_interiors/WhatsApp Image 2026-09-23 at 16.28.00 (2).webp",
+      "ok": true,
+      "width": 1600,
+      "height": 1200
+    },
+    {
+      "src": "/murali-patharala-associates-assets/completed_interiors/WhatsApp Image 2026-09-23 at 16.28.00 (4).webp",
+      "ok": true,
+      "width": 1600,
+      "height": 1200
+    },
+    {
+      "src": "/murali-patharala-associates-assets/completed_interiors/WhatsApp Image 2026-09-23 at 16.28.00 (5).webp",
+      "ok": true,
+      "width": 1600,
+      "height": 1200
+    },
+    {
+      "src": "/murali-patharala-associates-assets/completed_interiors/WhatsApp Image 2026-09-23 at 16.28.00 (6).webp",
+      "ok": true,
+      "width": 1600,
+      "height": 1200
+    },
+    {
+      "src": "/murali-patharala-associates-assets/completed_interiors/WhatsApp Image 2026-09-23 at 16.28.00.webp",
+      "ok": true,
+      "width": 1600,
+      "height": 1200
+    },
+    {
+      "src": "/murali-patharala-associates-assets/completed_interiors/WhatsApp Image 2026-09-23 at 16.28.01 (1).webp",
+      "ok": true,
+      "width": 1600,
+      "height": 1200
+    },
+    {
+      "src": "/murali-patharala-associates-assets/completed_interiors/WhatsApp Image 2026-09-23 at 16.28.01 (3).webp",
+      "ok": true,
+      "width": 1600,
+      "height": 1200
+    },
+    {
+      "src": "/murali-patharala-associates-assets/completed_interiors/WhatsApp Image 2026-09-23 at 16.28.01.webp",
+      "ok": true,
+      "width": 1600,
+      "height": 1200
+    },
+    {
+      "src": "/murali-patharala-associates-assets/completed_interiors/WhatsApp Image 2026-09-23 at 16.39.53.webp",
+      "ok": true,
+      "width": 480,
+      "height": 480
+    },
+    {
+      "src": "/murali-patharala-associates-assets/completed_interiors/WhatsApp Image 2026-09-23 at 16.40.29.webp",
+      "ok": true,
+      "width": 564,
+      "height": 857
+    },
+    {
+      "src": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.27 (1).webp",
+      "ok": true,
+      "width": 794,
+      "height": 1123
+    },
+    {
+      "src": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.27.webp",
+      "ok": true,
+      "width": 794,
+      "height": 1123
+    },
+    {
+      "src": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.28 (1).webp",
+      "ok": true,
+      "width": 794,
+      "height": 1123
+    },
+    {
+      "src": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.28 (2).webp",
+      "ok": true,
+      "width": 794,
+      "height": 1123
+    },
+    {
+      "src": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.28.webp",
+      "ok": true,
+      "width": 794,
+      "height": 1123
+    },
+    {
+      "src": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.29 (1).webp",
+      "ok": true,
+      "width": 794,
+      "height": 1123
+    },
+    {
+      "src": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.29.webp",
+      "ok": true,
+      "width": 794,
+      "height": 1123
+    },
+    {
+      "src": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.30 (1).webp",
+      "ok": true,
+      "width": 794,
+      "height": 1123
+    },
+    {
+      "src": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.30.webp",
+      "ok": true,
+      "width": 794,
+      "height": 1123
+    },
+    {
+      "src": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.31.webp",
+      "ok": true,
+      "width": 794,
+      "height": 1123
+    },
+    {
+      "src": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.33 (1).webp",
+      "ok": true,
+      "width": 794,
+      "height": 1123
+    },
+    {
+      "src": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.34 (1).webp",
+      "ok": true,
+      "width": 794,
+      "height": 1123
+    },
+    {
+      "src": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.34 (2).webp",
+      "ok": true,
+      "width": 794,
+      "height": 1123
+    },
+    {
+      "src": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.34.webp",
+      "ok": true,
+      "width": 794,
+      "height": 1123
+    },
+    {
+      "src": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.35 (1).webp",
+      "ok": true,
+      "width": 794,
+      "height": 1123
+    },
+    {
+      "src": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.35.webp",
+      "ok": true,
+      "width": 794,
+      "height": 1123
+    },
+    {
+      "src": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.37 (1).webp",
+      "ok": true,
+      "width": 794,
+      "height": 1123
+    },
+    {
+      "src": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.37.webp",
+      "ok": true,
+      "width": 794,
+      "height": 1123
+    },
+    {
+      "src": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.38 (1).webp",
+      "ok": true,
+      "width": 794,
+      "height": 1123
+    },
+    {
+      "src": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.38.webp",
+      "ok": true,
+      "width": 794,
+      "height": 1123
+    },
+    {
+      "src": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.39 (1).webp",
+      "ok": true,
+      "width": 794,
+      "height": 1123
+    },
+    {
+      "src": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.39.webp",
+      "ok": true,
+      "width": 794,
+      "height": 1123
+    },
+    {
+      "src": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.40 (1).webp",
+      "ok": true,
+      "width": 794,
+      "height": 1123
+    },
+    {
+      "src": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.40.webp",
+      "ok": true,
+      "width": 794,
+      "height": 1123
+    },
+    {
+      "src": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.41 (1).webp",
+      "ok": true,
+      "width": 794,
+      "height": 1123
+    },
+    {
+      "src": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.42 (1).webp",
+      "ok": true,
+      "width": 794,
+      "height": 1123
+    },
+    {
+      "src": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.42.webp",
+      "ok": true,
+      "width": 794,
+      "height": 1123
+    },
+    {
+      "src": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.43 (1).webp",
+      "ok": true,
+      "width": 794,
+      "height": 1123
+    },
+    {
+      "src": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.43.webp",
+      "ok": true,
+      "width": 794,
+      "height": 1123
+    },
+    {
+      "src": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.44 (1).webp",
+      "ok": true,
+      "width": 794,
+      "height": 1123
+    },
+    {
+      "src": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.44.webp",
+      "ok": true,
+      "width": 794,
+      "height": 1123
+    },
+    {
+      "src": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.45 (1).webp",
+      "ok": true,
+      "width": 794,
+      "height": 1123
+    },
+    {
+      "src": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.45.webp",
+      "ok": true,
+      "width": 794,
+      "height": 1123
+    },
+    {
+      "src": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.46 (1).webp",
+      "ok": true,
+      "width": 794,
+      "height": 1123
+    },
+    {
+      "src": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.46.webp",
+      "ok": true,
+      "width": 794,
+      "height": 1123
+    },
+    {
+      "src": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.47 (1).webp",
+      "ok": true,
+      "width": 794,
+      "height": 1123
+    },
+    {
+      "src": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.47.webp",
+      "ok": true,
+      "width": 794,
+      "height": 1123
+    },
+    {
+      "src": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.48 (1).webp",
+      "ok": true,
+      "width": 794,
+      "height": 1123
+    },
+    {
+      "src": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.48.webp",
+      "ok": true,
+      "width": 794,
+      "height": 1123
+    },
+    {
+      "src": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.49 (1).webp",
+      "ok": true,
+      "width": 794,
+      "height": 1123
+    },
+    {
+      "src": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.49.webp",
+      "ok": true,
+      "width": 794,
+      "height": 1123
+    },
+    {
+      "src": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.50 (1).webp",
+      "ok": true,
+      "width": 794,
+      "height": 1123
+    },
+    {
+      "src": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.50.webp",
+      "ok": true,
+      "width": 794,
+      "height": 1123
+    },
+    {
+      "src": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.51 (1).webp",
+      "ok": true,
+      "width": 794,
+      "height": 1123
+    },
+    {
+      "src": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.51.webp",
+      "ok": true,
+      "width": 794,
+      "height": 1123
+    },
+    {
+      "src": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.52 (1).webp",
+      "ok": true,
+      "width": 794,
+      "height": 1123
+    },
+    {
+      "src": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.52.webp",
+      "ok": true,
+      "width": 794,
+      "height": 1123
+    },
+    {
+      "src": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.53 (1).webp",
+      "ok": true,
+      "width": 794,
+      "height": 1123
+    },
+    {
+      "src": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.54.webp",
+      "ok": true,
+      "width": 794,
+      "height": 1123
+    },
+    {
+      "src": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.55 (1).webp",
+      "ok": true,
+      "width": 794,
+      "height": 1123
+    },
+    {
+      "src": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.55.webp",
+      "ok": true,
+      "width": 794,
+      "height": 1123
+    },
+    {
+      "src": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.56 (1).webp",
+      "ok": true,
+      "width": 794,
+      "height": 1123
+    },
+    {
+      "src": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.56 (2).webp",
+      "ok": true,
+      "width": 794,
+      "height": 1123
+    },
+    {
+      "src": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.57 (1).webp",
+      "ok": true,
+      "width": 794,
+      "height": 1123
+    },
+    {
+      "src": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.57.webp",
+      "ok": true,
+      "width": 794,
+      "height": 1123
+    },
+    {
+      "src": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.58 (1).webp",
+      "ok": true,
+      "width": 794,
+      "height": 1123
+    },
+    {
+      "src": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.58.webp",
+      "ok": true,
+      "width": 794,
+      "height": 1123
+    },
+    {
+      "src": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.59 (1).webp",
+      "ok": true,
+      "width": 794,
+      "height": 1123
+    },
+    {
+      "src": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.59.webp",
+      "ok": true,
+      "width": 794,
+      "height": 1123
+    },
+    {
+      "src": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.35.00.webp",
+      "ok": true,
+      "width": 794,
+      "height": 1123
+    },
+    {
+      "src": "/images/architecture/hero-villa-twilight.webp",
+      "ok": true,
+      "width": 1376,
+      "height": 768
+    }
+  ],
+  "overflow": 0,
+  "galleryCards": [
+    {
+      "label": "View Contemporary White Duplex, image EXT-002",
+      "src": "/murali-patharala-associates-assets/exterior_renders/Govindha Rajan-2026.webp"
+    },
+    {
+      "label": "View Geometric Facade Study, image EXT-015",
+      "src": "/murali-patharala-associates-assets/exterior_renders/Sushama John.webp"
+    },
+    {
+      "label": "View Open Kitchen & Dining Interior, image PRT-016",
+      "src": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.33.webp"
+    },
+    {
+      "label": "View Entertainment Room Interior, image CMP-009",
+      "src": "/murali-patharala-associates-assets/completed_interiors/WhatsApp Image 2026-09-23 at 16.28.01 (2).webp"
+    },
+    {
+      "label": "View Contemporary Villa at Dusk, image EXT-005",
+      "src": "/murali-patharala-associates-assets/exterior_renders/JAMEE2.webp"
+    },
+    {
+      "label": "View Bright Contemporary Living Room, image INT-028",
+      "src": "/murali-patharala-associates-assets/interior_renders/WhatsApp Image 2026-09-23 at 16.42.59 (3).webp"
+    },
+    {
+      "label": "View Garden-Facing Courtyard Home, image EXT-028",
+      "src": "/murali-patharala-associates-assets/exterior_renders/WhatsApp Image 2026-09-23 at 17.40.31 (1).webp"
+    },
+    {
+      "label": "View Contemporary Island Kitchen, image INT-026",
+      "src": "/murali-patharala-associates-assets/interior_renders/WhatsApp Image 2026-09-23 at 16.42.59 (1).webp"
+    },
+    {
+      "label": "View Timber Accent Residence, image EXT-020",
+      "src": "/murali-patharala-associates-assets/exterior_renders/WhatsApp Image 2026-09-23 at 16.17.56 (2).webp"
+    },
+    {
+      "label": "View Completed Living & Entertainment Space, image CMP-003",
+      "src": "/murali-patharala-associates-assets/completed_interiors/WhatsApp Image 2026-09-23 at 16.28.00 (3).webp"
+    },
+    {
+      "label": "View Vertical Accent Facade, image EXT-013",
+      "src": "/murali-patharala-associates-assets/exterior_renders/selva kumar (1).webp"
+    },
+    {
+      "label": "View Warm Timber Kitchen Concept, image INT-014",
+      "src": "/murali-patharala-associates-assets/interior_renders/WhatsApp Image 2026-09-23 at 16.22.24 (4).webp"
+    },
+    {
+      "label": "View Layered Ceiling Living Concept, image INT-029",
+      "src": "/murali-patharala-associates-assets/interior_renders/WhatsApp Image 2026-09-23 at 16.42.59 (4).webp"
+    },
+    {
+      "label": "View Exterior Render, image EXT-001",
+      "src": "/murali-patharala-associates-assets/exterior_renders/AMG.webp"
+    },
+    {
+      "label": "View Exterior Render, image EXT-007",
+      "src": "/murali-patharala-associates-assets/exterior_renders/Jothi Kumar.webp"
+    },
+    {
+      "label": "View Exterior Render, image EXT-008",
+      "src": "/murali-patharala-associates-assets/exterior_renders/kribushan.webp"
+    },
+    {
+      "label": "View Exterior Render, image EXT-010",
+      "src": "/murali-patharala-associates-assets/exterior_renders/modern-residence-exterior-render-wide.webp"
+    },
+    {
+      "label": "View Exterior Render, image EXT-012",
+      "src": "/murali-patharala-associates-assets/exterior_renders/RAMESH.webp"
+    },
+    {
+      "label": "View Exterior Render, image EXT-016",
+      "src": "/murali-patharala-associates-assets/exterior_renders/VENKATASH1.webp"
+    },
+    {
+      "label": "View Exterior Render, image EXT-017",
+      "src": "/murali-patharala-associates-assets/exterior_renders/WhatsApp Image 2026-09-23 at 16.11.39.webp"
+    },
+    {
+      "label": "View Exterior Render, image EXT-018",
+      "src": "/murali-patharala-associates-assets/exterior_renders/WhatsApp Image 2026-09-23 at 16.17.21.webp"
+    },
+    {
+      "label": "View Exterior Render, image EXT-019",
+      "src": "/murali-patharala-associates-assets/exterior_renders/WhatsApp Image 2026-09-23 at 16.17.56 (1).webp"
+    },
+    {
+      "label": "View Exterior Render, image EXT-022",
+      "src": "/murali-patharala-associates-assets/exterior_renders/WhatsApp Image 2026-09-23 at 16.28.52.webp"
+    },
+    {
+      "label": "View Exterior Render, image EXT-023",
+      "src": "/murali-patharala-associates-assets/exterior_renders/WhatsApp Image 2026-09-23 at 16.36.14.webp"
+    },
+    {
+      "label": "View Exterior Render, image EXT-025",
+      "src": "/murali-patharala-associates-assets/exterior_renders/WhatsApp Image 2026-09-23 at 17.38.22 (1).webp"
+    },
+    {
+      "label": "View Exterior Render, image EXT-026",
+      "src": "/murali-patharala-associates-assets/exterior_renders/WhatsApp Image 2026-09-23 at 17.38.22 (2).webp"
+    },
+    {
+      "label": "View Exterior Render, image EXT-027",
+      "src": "/murali-patharala-associates-assets/exterior_renders/WhatsApp Image 2026-09-23 at 17.38.22.webp"
+    },
+    {
+      "label": "View Exterior Render, image EXT-029",
+      "src": "/murali-patharala-associates-assets/exterior_renders/WhatsApp Image 2026-09-23 at 17.40.31.webp"
+    },
+    {
+      "label": "View Interior Render, image INT-003",
+      "src": "/murali-patharala-associates-assets/interior_renders/WhatsApp Image 2026-09-23 at 16.22.23 (3).webp"
+    },
+    {
+      "label": "View Interior Render, image INT-005",
+      "src": "/murali-patharala-associates-assets/interior_renders/WhatsApp Image 2026-09-23 at 16.22.23 (5).webp"
+    },
+    {
+      "label": "View Interior Render, image INT-008",
+      "src": "/murali-patharala-associates-assets/interior_renders/WhatsApp Image 2026-09-23 at 16.22.23 (8).webp"
+    },
+    {
+      "label": "View Interior Render, image INT-009",
+      "src": "/murali-patharala-associates-assets/interior_renders/WhatsApp Image 2026-09-23 at 16.22.23 (9).webp"
+    },
+    {
+      "label": "View Interior Render, image INT-012",
+      "src": "/murali-patharala-associates-assets/interior_renders/WhatsApp Image 2026-09-23 at 16.22.24 (2).webp"
+    },
+    {
+      "label": "View Interior Render, image INT-015",
+      "src": "/murali-patharala-associates-assets/interior_renders/WhatsApp Image 2026-09-23 at 16.22.24.webp"
+    },
+    {
+      "label": "View Interior Render, image INT-016",
+      "src": "/murali-patharala-associates-assets/interior_renders/WhatsApp Image 2026-09-23 at 16.42.57 (1).webp"
+    },
+    {
+      "label": "View Interior Render, image INT-017",
+      "src": "/murali-patharala-associates-assets/interior_renders/WhatsApp Image 2026-09-23 at 16.42.57 (2).webp"
+    },
+    {
+      "label": "View Interior Render, image INT-018",
+      "src": "/murali-patharala-associates-assets/interior_renders/WhatsApp Image 2026-09-23 at 16.42.57 (3).webp"
+    },
+    {
+      "label": "View Interior Render, image INT-020",
+      "src": "/murali-patharala-associates-assets/interior_renders/WhatsApp Image 2026-09-23 at 16.42.57 (5).webp"
+    },
+    {
+      "label": "View Interior Render, image INT-021",
+      "src": "/murali-patharala-associates-assets/interior_renders/WhatsApp Image 2026-09-23 at 16.42.57 (6).webp"
+    },
+    {
+      "label": "View Interior Render, image INT-022",
+      "src": "/murali-patharala-associates-assets/interior_renders/WhatsApp Image 2026-09-23 at 16.42.57 (7).webp"
+    },
+    {
+      "label": "View Interior Render, image INT-023",
+      "src": "/murali-patharala-associates-assets/interior_renders/WhatsApp Image 2026-09-23 at 16.42.57.webp"
+    },
+    {
+      "label": "View Interior Render, image INT-025",
+      "src": "/murali-patharala-associates-assets/interior_renders/WhatsApp Image 2026-09-23 at 16.42.58.webp"
+    },
+    {
+      "label": "View Interior Render, image INT-027",
+      "src": "/murali-patharala-associates-assets/interior_renders/WhatsApp Image 2026-09-23 at 16.42.59 (2).webp"
+    },
+    {
+      "label": "View Interior Render, image INT-030",
+      "src": "/murali-patharala-associates-assets/interior_renders/WhatsApp Image 2026-09-23 at 16.42.59 (5).webp"
+    },
+    {
+      "label": "View Interior Render, image INT-033",
+      "src": "/murali-patharala-associates-assets/interior_renders/WhatsApp Image 2026-09-23 at 16.42.59.webp"
+    },
+    {
+      "label": "View Completed Interior, image CMP-001",
+      "src": "/murali-patharala-associates-assets/completed_interiors/WhatsApp Image 2026-09-23 at 16.28.00 (1).webp"
+    },
+    {
+      "label": "View Completed Interior, image CMP-002",
+      "src": "/murali-patharala-associates-assets/completed_interiors/WhatsApp Image 2026-09-23 at 16.28.00 (2).webp"
+    },
+    {
+      "label": "View Completed Interior, image CMP-004",
+      "src": "/murali-patharala-associates-assets/completed_interiors/WhatsApp Image 2026-09-23 at 16.28.00 (4).webp"
+    },
+    {
+      "label": "View Completed Interior, image CMP-005",
+      "src": "/murali-patharala-associates-assets/completed_interiors/WhatsApp Image 2026-09-23 at 16.28.00 (5).webp"
+    },
+    {
+      "label": "View Completed Interior, image CMP-006",
+      "src": "/murali-patharala-associates-assets/completed_interiors/WhatsApp Image 2026-09-23 at 16.28.00 (6).webp"
+    },
+    {
+      "label": "View Completed Interior, image CMP-007",
+      "src": "/murali-patharala-associates-assets/completed_interiors/WhatsApp Image 2026-09-23 at 16.28.00.webp"
+    },
+    {
+      "label": "View Completed Interior, image CMP-008",
+      "src": "/murali-patharala-associates-assets/completed_interiors/WhatsApp Image 2026-09-23 at 16.28.01 (1).webp"
+    },
+    {
+      "label": "View Completed Interior, image CMP-010",
+      "src": "/murali-patharala-associates-assets/completed_interiors/WhatsApp Image 2026-09-23 at 16.28.01 (3).webp"
+    },
+    {
+      "label": "View Completed Interior, image CMP-011",
+      "src": "/murali-patharala-associates-assets/completed_interiors/WhatsApp Image 2026-09-23 at 16.28.01.webp"
+    },
+    {
+      "label": "View Completed Interior, image CMP-012",
+      "src": "/murali-patharala-associates-assets/completed_interiors/WhatsApp Image 2026-09-23 at 16.39.53.webp"
+    },
+    {
+      "label": "View Completed Interior, image CMP-013",
+      "src": "/murali-patharala-associates-assets/completed_interiors/WhatsApp Image 2026-09-23 at 16.40.29.webp"
+    },
+    {
+      "label": "View Portfolio Image, image PRT-002",
+      "src": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.27 (1).webp"
+    },
+    {
+      "label": "View Portfolio Image, image PRT-003",
+      "src": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.27.webp"
+    },
+    {
+      "label": "View Portfolio Image, image PRT-004",
+      "src": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.28 (1).webp"
+    },
+    {
+      "label": "View Portfolio Image, image PRT-005",
+      "src": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.28 (2).webp"
+    },
+    {
+      "label": "View Portfolio Image, image PRT-006",
+      "src": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.28.webp"
+    },
+    {
+      "label": "View Portfolio Image, image PRT-007",
+      "src": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.29 (1).webp"
+    },
+    {
+      "label": "View Portfolio Image, image PRT-008",
+      "src": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.29.webp"
+    },
+    {
+      "label": "View Portfolio Image, image PRT-009",
+      "src": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.30 (1).webp"
+    },
+    {
+      "label": "View Portfolio Image, image PRT-010",
+      "src": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.30.webp"
+    },
+    {
+      "label": "View Portfolio Image, image PRT-012",
+      "src": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.31.webp"
+    },
+    {
+      "label": "View Portfolio Image, image PRT-015",
+      "src": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.33 (1).webp"
+    },
+    {
+      "label": "View Portfolio Image, image PRT-017",
+      "src": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.34 (1).webp"
+    },
+    {
+      "label": "View Portfolio Image, image PRT-018",
+      "src": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.34 (2).webp"
+    },
+    {
+      "label": "View Portfolio Image, image PRT-019",
+      "src": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.34.webp"
+    },
+    {
+      "label": "View Portfolio Image, image PRT-020",
+      "src": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.35 (1).webp"
+    },
+    {
+      "label": "View Portfolio Image, image PRT-021",
+      "src": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.35.webp"
+    },
+    {
+      "label": "View Portfolio Image, image PRT-024",
+      "src": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.37 (1).webp"
+    },
+    {
+      "label": "View Portfolio Image, image PRT-025",
+      "src": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.37.webp"
+    },
+    {
+      "label": "View Portfolio Image, image PRT-026",
+      "src": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.38 (1).webp"
+    },
+    {
+      "label": "View Portfolio Image, image PRT-027",
+      "src": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.38.webp"
+    },
+    {
+      "label": "View Portfolio Image, image PRT-028",
+      "src": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.39 (1).webp"
+    },
+    {
+      "label": "View Portfolio Image, image PRT-030",
+      "src": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.39.webp"
+    },
+    {
+      "label": "View Portfolio Image, image PRT-031",
+      "src": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.40 (1).webp"
+    },
+    {
+      "label": "View Portfolio Image, image PRT-032",
+      "src": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.40.webp"
+    },
+    {
+      "label": "View Portfolio Image, image PRT-033",
+      "src": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.41 (1).webp"
+    },
+    {
+      "label": "View Portfolio Image, image PRT-035",
+      "src": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.42 (1).webp"
+    },
+    {
+      "label": "View Portfolio Image, image PRT-036",
+      "src": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.42.webp"
+    },
+    {
+      "label": "View Portfolio Image, image PRT-037",
+      "src": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.43 (1).webp"
+    },
+    {
+      "label": "View Portfolio Image, image PRT-038",
+      "src": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.43.webp"
+    },
+    {
+      "label": "View Portfolio Image, image PRT-039",
+      "src": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.44 (1).webp"
+    },
+    {
+      "label": "View Portfolio Image, image PRT-041",
+      "src": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.44.webp"
+    },
+    {
+      "label": "View Portfolio Image, image PRT-042",
+      "src": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.45 (1).webp"
+    },
+    {
+      "label": "View Portfolio Image, image PRT-043",
+      "src": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.45.webp"
+    },
+    {
+      "label": "View Portfolio Image, image PRT-044",
+      "src": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.46 (1).webp"
+    },
+    {
+      "label": "View Portfolio Image, image PRT-045",
+      "src": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.46.webp"
+    },
+    {
+      "label": "View Portfolio Image, image PRT-046",
+      "src": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.47 (1).webp"
+    },
+    {
+      "label": "View Portfolio Image, image PRT-047",
+      "src": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.47.webp"
+    },
+    {
+      "label": "View Portfolio Image, image PRT-048",
+      "src": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.48 (1).webp"
+    },
+    {
+      "label": "View Portfolio Image, image PRT-049",
+      "src": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.48.webp"
+    },
+    {
+      "label": "View Portfolio Image, image PRT-050",
+      "src": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.49 (1).webp"
+    },
+    {
+      "label": "View Portfolio Image, image PRT-052",
+      "src": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.49.webp"
+    },
+    {
+      "label": "View Portfolio Image, image PRT-053",
+      "src": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.50 (1).webp"
+    },
+    {
+      "label": "View Portfolio Image, image PRT-054",
+      "src": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.50.webp"
+    },
+    {
+      "label": "View Portfolio Image, image PRT-055",
+      "src": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.51 (1).webp"
+    },
+    {
+      "label": "View Portfolio Image, image PRT-056",
+      "src": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.51.webp"
+    },
+    {
+      "label": "View Portfolio Image, image PRT-057",
+      "src": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.52 (1).webp"
+    },
+    {
+      "label": "View Portfolio Image, image PRT-058",
+      "src": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.52.webp"
+    },
+    {
+      "label": "View Portfolio Image, image PRT-059",
+      "src": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.53 (1).webp"
+    },
+    {
+      "label": "View Portfolio Image, image PRT-062",
+      "src": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.54.webp"
+    },
+    {
+      "label": "View Portfolio Image, image PRT-063",
+      "src": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.55 (1).webp"
+    },
+    {
+      "label": "View Portfolio Image, image PRT-064",
+      "src": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.55.webp"
+    },
+    {
+      "label": "View Portfolio Image, image PRT-065",
+      "src": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.56 (1).webp"
+    },
+    {
+      "label": "View Portfolio Image, image PRT-066",
+      "src": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.56 (2).webp"
+    },
+    {
+      "label": "View Portfolio Image, image PRT-068",
+      "src": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.57 (1).webp"
+    },
+    {
+      "label": "View Portfolio Image, image PRT-069",
+      "src": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.57.webp"
+    },
+    {
+      "label": "View Portfolio Image, image PRT-070",
+      "src": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.58 (1).webp"
+    },
+    {
+      "label": "View Portfolio Image, image PRT-071",
+      "src": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.58.webp"
+    },
+    {
+      "label": "View Portfolio Image, image PRT-072",
+      "src": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.59 (1).webp"
+    },
+    {
+      "label": "View Portfolio Image, image PRT-073",
+      "src": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.59.webp"
+    },
+    {
+      "label": "View Portfolio Image, image PRT-074",
+      "src": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.35.00.webp"
+    }
+  ],
+  "backgroundRepairRechecked": true
+}

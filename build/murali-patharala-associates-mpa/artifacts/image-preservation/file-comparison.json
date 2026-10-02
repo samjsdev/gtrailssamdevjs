@@ -1,0 +1,3526 @@
+{
+  "assets": [
+    {
+      "file": "public/apple-icon.png",
+      "existedBefore": true,
+      "unchanged": false,
+      "optimized": true
+    },
+    {
+      "file": "public/favicon-16x16.png",
+      "existedBefore": true,
+      "unchanged": true,
+      "optimized": false
+    },
+    {
+      "file": "public/favicon-32x32.png",
+      "existedBefore": true,
+      "unchanged": true,
+      "optimized": false
+    },
+    {
+      "file": "public/favicon.ico",
+      "existedBefore": true,
+      "unchanged": true,
+      "optimized": false
+    },
+    {
+      "file": "public/icon-512x512.png",
+      "existedBefore": true,
+      "unchanged": false,
+      "optimized": true
+    },
+    {
+      "file": "public/icon.png",
+      "existedBefore": true,
+      "unchanged": false,
+      "optimized": true
+    },
+    {
+      "file": "public/images/2D TO 3D/option-1-render.webp",
+      "existedBefore": true,
+      "unchanged": true,
+      "optimized": false
+    },
+    {
+      "file": "public/images/2D TO 3D/option-1-sketch.webp",
+      "existedBefore": true,
+      "unchanged": true,
+      "optimized": false
+    },
+    {
+      "file": "public/images/2D TO 3D/option-2-render.webp",
+      "existedBefore": true,
+      "unchanged": true,
+      "optimized": false
+    },
+    {
+      "file": "public/images/2D TO 3D/option-2-sketch.webp",
+      "existedBefore": true,
+      "unchanged": true,
+      "optimized": false
+    },
+    {
+      "file": "public/images/2D TO 3D/option-3-render.webp",
+      "existedBefore": true,
+      "unchanged": true,
+      "optimized": false
+    },
+    {
+      "file": "public/images/2D TO 3D/option-3-sketch.webp",
+      "existedBefore": true,
+      "unchanged": true,
+      "optimized": false
+    },
+    {
+      "file": "public/images/2d plan/optimized/electrical-full.webp",
+      "existedBefore": false,
+      "unchanged": null,
+      "optimized": true
+    },
+    {
+      "file": "public/images/2d plan/optimized/electrical-thumb.webp",
+      "existedBefore": true,
+      "unchanged": true,
+      "optimized": false
+    },
+    {
+      "file": "public/images/2d plan/optimized/electrical.webp",
+      "existedBefore": true,
+      "unchanged": true,
+      "optimized": false
+    },
+    {
+      "file": "public/images/2d plan/optimized/elevation-full.webp",
+      "existedBefore": false,
+      "unchanged": null,
+      "optimized": true
+    },
+    {
+      "file": "public/images/2d plan/optimized/elevation-thumb.webp",
+      "existedBefore": true,
+      "unchanged": true,
+      "optimized": false
+    },
+    {
+      "file": "public/images/2d plan/optimized/elevation.webp",
+      "existedBefore": true,
+      "unchanged": true,
+      "optimized": false
+    },
+    {
+      "file": "public/images/2d plan/optimized/first-floor-full.webp",
+      "existedBefore": false,
+      "unchanged": null,
+      "optimized": true
+    },
+    {
+      "file": "public/images/2d plan/optimized/first-floor-thumb.webp",
+      "existedBefore": true,
+      "unchanged": true,
+      "optimized": false
+    },
+    {
+      "file": "public/images/2d plan/optimized/first-floor.webp",
+      "existedBefore": true,
+      "unchanged": true,
+      "optimized": false
+    },
+    {
+      "file": "public/images/2d plan/optimized/ground-floor-full.webp",
+      "existedBefore": false,
+      "unchanged": null,
+      "optimized": true
+    },
+    {
+      "file": "public/images/2d plan/optimized/ground-floor-thumb.webp",
+      "existedBefore": true,
+      "unchanged": true,
+      "optimized": false
+    },
+    {
+      "file": "public/images/2d plan/optimized/ground-floor.webp",
+      "existedBefore": true,
+      "unchanged": true,
+      "optimized": false
+    },
+    {
+      "file": "public/images/3d-plans/aksharaa-enclave-full.webp",
+      "existedBefore": false,
+      "unchanged": null,
+      "optimized": true
+    },
+    {
+      "file": "public/images/3d-plans/aksharaa-enclave-thumb.webp",
+      "existedBefore": true,
+      "unchanged": true,
+      "optimized": false
+    },
+    {
+      "file": "public/images/3d-plans/aksharaa-enclave.webp",
+      "existedBefore": true,
+      "unchanged": true,
+      "optimized": false
+    },
+    {
+      "file": "public/images/3d-plans/ayanambakkam-villa-full.webp",
+      "existedBefore": false,
+      "unchanged": null,
+      "optimized": true
+    },
+    {
+      "file": "public/images/3d-plans/ayanambakkam-villa-thumb.webp",
+      "existedBefore": true,
+      "unchanged": true,
+      "optimized": false
+    },
+    {
+      "file": "public/images/3d-plans/ayanambakkam-villa.webp",
+      "existedBefore": true,
+      "unchanged": true,
+      "optimized": false
+    },
+    {
+      "file": "public/images/3d-plans/jp-house-residence-full.webp",
+      "existedBefore": false,
+      "unchanged": null,
+      "optimized": true
+    },
+    {
+      "file": "public/images/3d-plans/jp-house-residence-thumb.webp",
+      "existedBefore": true,
+      "unchanged": true,
+      "optimized": false
+    },
+    {
+      "file": "public/images/3d-plans/jp-house-residence.webp",
+      "existedBefore": true,
+      "unchanged": true,
+      "optimized": false
+    },
+    {
+      "file": "public/images/3d-plans/twilight-residence-full.webp",
+      "existedBefore": false,
+      "unchanged": null,
+      "optimized": true
+    },
+    {
+      "file": "public/images/3d-plans/twilight-residence-thumb.webp",
+      "existedBefore": true,
+      "unchanged": true,
+      "optimized": false
+    },
+    {
+      "file": "public/images/3d-plans/twilight-residence.webp",
+      "existedBefore": true,
+      "unchanged": true,
+      "optimized": false
+    },
+    {
+      "file": "public/images/architecture/architectural-blueprint-draft.webp",
+      "existedBefore": true,
+      "unchanged": true,
+      "optimized": false
+    },
+    {
+      "file": "public/images/architecture/bim-3d-walkthrough.webp",
+      "existedBefore": true,
+      "unchanged": true,
+      "optimized": false
+    },
+    {
+      "file": "public/images/architecture/cmda-sanction-drafting.webp",
+      "existedBefore": true,
+      "unchanged": true,
+      "optimized": false
+    },
+    {
+      "file": "public/images/architecture/courtyard-water-residence.webp",
+      "existedBefore": true,
+      "unchanged": true,
+      "optimized": false
+    },
+    {
+      "file": "public/images/architecture/geometric-villa-elevation.webp",
+      "existedBefore": true,
+      "unchanged": true,
+      "optimized": false
+    },
+    {
+      "file": "public/images/architecture/hero-villa-twilight.webp",
+      "existedBefore": true,
+      "unchanged": true,
+      "optimized": false
+    },
+    {
+      "file": "public/images/architecture/living-room-double-height.webp",
+      "existedBefore": true,
+      "unchanged": true,
+      "optimized": false
+    },
+    {
+      "file": "public/images/architecture/luxury-master-bedroom.webp",
+      "existedBefore": true,
+      "unchanged": true,
+      "optimized": false
+    },
+    {
+      "file": "public/images/architecture/modern-villa-duplex.webp",
+      "existedBefore": true,
+      "unchanged": true,
+      "optimized": false
+    },
+    {
+      "file": "public/images/architecture/modular-kitchen-luxury.webp",
+      "existedBefore": true,
+      "unchanged": true,
+      "optimized": false
+    },
+    {
+      "file": "public/images/architecture/monolithic-brutalist-facade.webp",
+      "existedBefore": true,
+      "unchanged": true,
+      "optimized": false
+    },
+    {
+      "file": "public/images/architecture/parallel-kitchen-luxury.webp",
+      "existedBefore": true,
+      "unchanged": true,
+      "optimized": false
+    },
+    {
+      "file": "public/images/architecture/passive-timber-screens.webp",
+      "existedBefore": true,
+      "unchanged": true,
+      "optimized": false
+    },
+    {
+      "file": "public/images/architecture/principal-architect.webp",
+      "existedBefore": true,
+      "unchanged": true,
+      "optimized": false
+    },
+    {
+      "file": "public/images/architecture/site-engineer-audit.webp",
+      "existedBefore": true,
+      "unchanged": true,
+      "optimized": false
+    },
+    {
+      "file": "public/images/architecture/site-surveying-raw.webp",
+      "existedBefore": true,
+      "unchanged": true,
+      "optimized": false
+    },
+    {
+      "file": "public/images/architecture/space-planning-atrium.webp",
+      "existedBefore": true,
+      "unchanged": true,
+      "optimized": false
+    },
+    {
+      "file": "public/images/architecture/staad-structural-engineering.webp",
+      "existedBefore": true,
+      "unchanged": true,
+      "optimized": false
+    },
+    {
+      "file": "public/images/architecture/structural-construction-frame.webp",
+      "existedBefore": true,
+      "unchanged": true,
+      "optimized": false
+    },
+    {
+      "file": "public/images/architecture/turnkey-key-handover.webp",
+      "existedBefore": true,
+      "unchanged": true,
+      "optimized": false
+    },
+    {
+      "file": "public/images/architecture/villa-after-finished.webp",
+      "existedBefore": true,
+      "unchanged": true,
+      "optimized": false
+    },
+    {
+      "file": "public/images/architecture/villa-plan-sketch.webp",
+      "existedBefore": true,
+      "unchanged": true,
+      "optimized": false
+    },
+    {
+      "file": "public/images/clients/bharat-petroleum.webp",
+      "existedBefore": false,
+      "unchanged": null,
+      "optimized": true
+    },
+    {
+      "file": "public/images/clients/indian-oil.webp",
+      "existedBefore": false,
+      "unchanged": null,
+      "optimized": true
+    },
+    {
+      "file": "public/images/clients/indian-railways.webp",
+      "existedBefore": false,
+      "unchanged": null,
+      "optimized": true
+    },
+    {
+      "file": "public/images/clients/sla.webp",
+      "existedBefore": false,
+      "unchanged": null,
+      "optimized": true
+    },
+    {
+      "file": "public/images/clients/sri-balaji-hospital.webp",
+      "existedBefore": false,
+      "unchanged": null,
+      "optimized": true
+    },
+    {
+      "file": "public/images/clients/tahdco.webp",
+      "existedBefore": false,
+      "unchanged": null,
+      "optimized": true
+    },
+    {
+      "file": "public/images/drawings/architectural-axonometric-lines.svg",
+      "existedBefore": true,
+      "unchanged": true,
+      "optimized": false
+    },
+    {
+      "file": "public/images/drawings/architectural-elevation-detail.svg",
+      "existedBefore": true,
+      "unchanged": false,
+      "optimized": false
+    },
+    {
+      "file": "public/images/drawings/architectural-master-plan.svg",
+      "existedBefore": true,
+      "unchanged": false,
+      "optimized": false
+    },
+    {
+      "file": "public/images/drawings/architectural-structural-lines.svg",
+      "existedBefore": true,
+      "unchanged": false,
+      "optimized": false
+    },
+    {
+      "file": "public/images/drawings/residence-plan.svg",
+      "existedBefore": true,
+      "unchanged": true,
+      "optimized": false
+    },
+    {
+      "file": "public/images/mpa-anna-nagar-office.webp",
+      "existedBefore": false,
+      "unchanged": null,
+      "optimized": true
+    },
+    {
+      "file": "public/images/service-stages/brickwork-plaster.webp",
+      "existedBefore": true,
+      "unchanged": true,
+      "optimized": false
+    },
+    {
+      "file": "public/images/service-stages/design-planning.webp",
+      "existedBefore": true,
+      "unchanged": true,
+      "optimized": false
+    },
+    {
+      "file": "public/images/service-stages/electrical-installation.webp",
+      "existedBefore": true,
+      "unchanged": true,
+      "optimized": false
+    },
+    {
+      "file": "public/images/service-stages/engineering-permits.webp",
+      "existedBefore": true,
+      "unchanged": true,
+      "optimized": false
+    },
+    {
+      "file": "public/images/service-stages/flooring-painting.webp",
+      "existedBefore": true,
+      "unchanged": true,
+      "optimized": false
+    },
+    {
+      "file": "public/images/service-stages/foundation-rcc.webp",
+      "existedBefore": true,
+      "unchanged": true,
+      "optimized": false
+    },
+    {
+      "file": "public/images/service-stages/home-handover.webp",
+      "existedBefore": true,
+      "unchanged": true,
+      "optimized": false
+    },
+    {
+      "file": "public/images/service-stages/interior-fitout.webp",
+      "existedBefore": true,
+      "unchanged": true,
+      "optimized": false
+    },
+    {
+      "file": "public/images/service-stages/plumbing-waterproofing.webp",
+      "existedBefore": true,
+      "unchanged": true,
+      "optimized": false
+    },
+    {
+      "file": "public/images/service-stages/site-supervision.webp",
+      "existedBefore": true,
+      "unchanged": true,
+      "optimized": false
+    },
+    {
+      "file": "public/images/service-stages/soil-assessment.webp",
+      "existedBefore": true,
+      "unchanged": true,
+      "optimized": false
+    },
+    {
+      "file": "public/mpa-3d-logo-small.webp",
+      "existedBefore": true,
+      "unchanged": true,
+      "optimized": false
+    },
+    {
+      "file": "public/mpa-3d-logo-social.png",
+      "existedBefore": true,
+      "unchanged": false,
+      "optimized": true
+    },
+    {
+      "file": "public/mpa-3d-logo.webp",
+      "existedBefore": true,
+      "unchanged": true,
+      "optimized": false
+    },
+    {
+      "file": "public/murali-patharala-associates-assets/brand_identity/WhatsApp Image 2026-09-23 at 16.52.36 (1).webp",
+      "existedBefore": true,
+      "unchanged": true,
+      "optimized": false
+    },
+    {
+      "file": "public/murali-patharala-associates-assets/brand_identity/WhatsApp Image 2026-09-23 at 16.52.36 (2).webp",
+      "existedBefore": true,
+      "unchanged": true,
+      "optimized": false
+    },
+    {
+      "file": "public/murali-patharala-associates-assets/brand_identity/WhatsApp Image 2026-09-23 at 16.52.36.webp",
+      "existedBefore": true,
+      "unchanged": true,
+      "optimized": false
+    },
+    {
+      "file": "public/murali-patharala-associates-assets/completed_interiors/WhatsApp Image 2026-09-23 at 16.28.00 (1).webp",
+      "existedBefore": true,
+      "unchanged": true,
+      "optimized": false
+    },
+    {
+      "file": "public/murali-patharala-associates-assets/completed_interiors/WhatsApp Image 2026-09-23 at 16.28.00 (2).webp",
+      "existedBefore": true,
+      "unchanged": true,
+      "optimized": false
+    },
+    {
+      "file": "public/murali-patharala-associates-assets/completed_interiors/WhatsApp Image 2026-09-23 at 16.28.00 (3).webp",
+      "existedBefore": true,
+      "unchanged": true,
+      "optimized": false
+    },
+    {
+      "file": "public/murali-patharala-associates-assets/completed_interiors/WhatsApp Image 2026-09-23 at 16.28.00 (4).webp",
+      "existedBefore": true,
+      "unchanged": true,
+      "optimized": false
+    },
+    {
+      "file": "public/murali-patharala-associates-assets/completed_interiors/WhatsApp Image 2026-09-23 at 16.28.00 (5).webp",
+      "existedBefore": true,
+      "unchanged": true,
+      "optimized": false
+    },
+    {
+      "file": "public/murali-patharala-associates-assets/completed_interiors/WhatsApp Image 2026-09-23 at 16.28.00 (6).webp",
+      "existedBefore": true,
+      "unchanged": true,
+      "optimized": false
+    },
+    {
+      "file": "public/murali-patharala-associates-assets/completed_interiors/WhatsApp Image 2026-09-23 at 16.28.00.webp",
+      "existedBefore": true,
+      "unchanged": true,
+      "optimized": false
+    },
+    {
+      "file": "public/murali-patharala-associates-assets/completed_interiors/WhatsApp Image 2026-09-23 at 16.28.01 (1).webp",
+      "existedBefore": true,
+      "unchanged": true,
+      "optimized": false
+    },
+    {
+      "file": "public/murali-patharala-associates-assets/completed_interiors/WhatsApp Image 2026-09-23 at 16.28.01 (2).webp",
+      "existedBefore": true,
+      "unchanged": true,
+      "optimized": false
+    },
+    {
+      "file": "public/murali-patharala-associates-assets/completed_interiors/WhatsApp Image 2026-09-23 at 16.28.01 (3).webp",
+      "existedBefore": true,
+      "unchanged": true,
+      "optimized": false
+    },
+    {
+      "file": "public/murali-patharala-associates-assets/completed_interiors/WhatsApp Image 2026-09-23 at 16.28.01.webp",
+      "existedBefore": true,
+      "unchanged": true,
+      "optimized": false
+    },
+    {
+      "file": "public/murali-patharala-associates-assets/completed_interiors/WhatsApp Image 2026-09-23 at 16.39.53.webp",
+      "existedBefore": true,
+      "unchanged": true,
+      "optimized": false
+    },
+    {
+      "file": "public/murali-patharala-associates-assets/completed_interiors/WhatsApp Image 2026-09-23 at 16.40.29.webp",
+      "existedBefore": true,
+      "unchanged": true,
+      "optimized": false
+    },
+    {
+      "file": "public/murali-patharala-associates-assets/exterior_renders/AMG.webp",
+      "existedBefore": true,
+      "unchanged": true,
+      "optimized": false
+    },
+    {
+      "file": "public/murali-patharala-associates-assets/exterior_renders/Govindha Rajan-2026.webp",
+      "existedBefore": true,
+      "unchanged": true,
+      "optimized": false
+    },
+    {
+      "file": "public/murali-patharala-associates-assets/exterior_renders/JAMEE2.webp",
+      "existedBefore": true,
+      "unchanged": true,
+      "optimized": false
+    },
+    {
+      "file": "public/murali-patharala-associates-assets/exterior_renders/Jothi Kumar.webp",
+      "existedBefore": true,
+      "unchanged": true,
+      "optimized": false
+    },
+    {
+      "file": "public/murali-patharala-associates-assets/exterior_renders/RAMESH.webp",
+      "existedBefore": true,
+      "unchanged": true,
+      "optimized": false
+    },
+    {
+      "file": "public/murali-patharala-associates-assets/exterior_renders/Sushama John.webp",
+      "existedBefore": true,
+      "unchanged": true,
+      "optimized": false
+    },
+    {
+      "file": "public/murali-patharala-associates-assets/exterior_renders/VENKATASH1.webp",
+      "existedBefore": true,
+      "unchanged": true,
+      "optimized": false
+    },
+    {
+      "file": "public/murali-patharala-associates-assets/exterior_renders/WhatsApp Image 2026-09-23 at 16.11.39.webp",
+      "existedBefore": true,
+      "unchanged": true,
+      "optimized": false
+    },
+    {
+      "file": "public/murali-patharala-associates-assets/exterior_renders/WhatsApp Image 2026-09-23 at 16.17.21.webp",
+      "existedBefore": true,
+      "unchanged": true,
+      "optimized": false
+    },
+    {
+      "file": "public/murali-patharala-associates-assets/exterior_renders/WhatsApp Image 2026-09-23 at 16.17.56 (1).webp",
+      "existedBefore": true,
+      "unchanged": true,
+      "optimized": false
+    },
+    {
+      "file": "public/murali-patharala-associates-assets/exterior_renders/WhatsApp Image 2026-09-23 at 16.17.56 (2).webp",
+      "existedBefore": true,
+      "unchanged": true,
+      "optimized": false
+    },
+    {
+      "file": "public/murali-patharala-associates-assets/exterior_renders/WhatsApp Image 2026-09-23 at 16.28.52.webp",
+      "existedBefore": true,
+      "unchanged": true,
+      "optimized": false
+    },
+    {
+      "file": "public/murali-patharala-associates-assets/exterior_renders/WhatsApp Image 2026-09-23 at 16.36.14.webp",
+      "existedBefore": true,
+      "unchanged": true,
+      "optimized": false
+    },
+    {
+      "file": "public/murali-patharala-associates-assets/exterior_renders/WhatsApp Image 2026-09-23 at 17.38.22 (1).webp",
+      "existedBefore": true,
+      "unchanged": true,
+      "optimized": false
+    },
+    {
+      "file": "public/murali-patharala-associates-assets/exterior_renders/WhatsApp Image 2026-09-23 at 17.38.22 (2).webp",
+      "existedBefore": true,
+      "unchanged": true,
+      "optimized": false
+    },
+    {
+      "file": "public/murali-patharala-associates-assets/exterior_renders/WhatsApp Image 2026-09-23 at 17.38.22.webp",
+      "existedBefore": true,
+      "unchanged": true,
+      "optimized": false
+    },
+    {
+      "file": "public/murali-patharala-associates-assets/exterior_renders/WhatsApp Image 2026-09-23 at 17.40.31 (1).webp",
+      "existedBefore": true,
+      "unchanged": true,
+      "optimized": false
+    },
+    {
+      "file": "public/murali-patharala-associates-assets/exterior_renders/WhatsApp Image 2026-09-23 at 17.40.31.webp",
+      "existedBefore": true,
+      "unchanged": true,
+      "optimized": false
+    },
+    {
+      "file": "public/murali-patharala-associates-assets/exterior_renders/kribushan.webp",
+      "existedBefore": true,
+      "unchanged": true,
+      "optimized": false
+    },
+    {
+      "file": "public/murali-patharala-associates-assets/exterior_renders/modern-residence-exterior-render-wide.webp",
+      "existedBefore": true,
+      "unchanged": true,
+      "optimized": false
+    },
+    {
+      "file": "public/murali-patharala-associates-assets/exterior_renders/selva kumar (1).webp",
+      "existedBefore": true,
+      "unchanged": true,
+      "optimized": false
+    },
+    {
+      "file": "public/murali-patharala-associates-assets/interior_renders/WhatsApp Image 2026-09-23 at 16.22.23 (3).webp",
+      "existedBefore": true,
+      "unchanged": true,
+      "optimized": false
+    },
+    {
+      "file": "public/murali-patharala-associates-assets/interior_renders/WhatsApp Image 2026-09-23 at 16.22.23 (5).webp",
+      "existedBefore": true,
+      "unchanged": true,
+      "optimized": false
+    },
+    {
+      "file": "public/murali-patharala-associates-assets/interior_renders/WhatsApp Image 2026-09-23 at 16.22.23 (8).webp",
+      "existedBefore": true,
+      "unchanged": true,
+      "optimized": false
+    },
+    {
+      "file": "public/murali-patharala-associates-assets/interior_renders/WhatsApp Image 2026-09-23 at 16.22.23 (9).webp",
+      "existedBefore": true,
+      "unchanged": true,
+      "optimized": false
+    },
+    {
+      "file": "public/murali-patharala-associates-assets/interior_renders/WhatsApp Image 2026-09-23 at 16.22.24 (2).webp",
+      "existedBefore": true,
+      "unchanged": true,
+      "optimized": false
+    },
+    {
+      "file": "public/murali-patharala-associates-assets/interior_renders/WhatsApp Image 2026-09-23 at 16.22.24 (4).webp",
+      "existedBefore": true,
+      "unchanged": true,
+      "optimized": false
+    },
+    {
+      "file": "public/murali-patharala-associates-assets/interior_renders/WhatsApp Image 2026-09-23 at 16.22.24.webp",
+      "existedBefore": true,
+      "unchanged": true,
+      "optimized": false
+    },
+    {
+      "file": "public/murali-patharala-associates-assets/interior_renders/WhatsApp Image 2026-09-23 at 16.42.57 (1).webp",
+      "existedBefore": true,
+      "unchanged": true,
+      "optimized": false
+    },
+    {
+      "file": "public/murali-patharala-associates-assets/interior_renders/WhatsApp Image 2026-09-23 at 16.42.57 (2).webp",
+      "existedBefore": true,
+      "unchanged": true,
+      "optimized": false
+    },
+    {
+      "file": "public/murali-patharala-associates-assets/interior_renders/WhatsApp Image 2026-09-23 at 16.42.57 (3).webp",
+      "existedBefore": true,
+      "unchanged": true,
+      "optimized": false
+    },
+    {
+      "file": "public/murali-patharala-associates-assets/interior_renders/WhatsApp Image 2026-09-23 at 16.42.57 (5).webp",
+      "existedBefore": true,
+      "unchanged": true,
+      "optimized": false
+    },
+    {
+      "file": "public/murali-patharala-associates-assets/interior_renders/WhatsApp Image 2026-09-23 at 16.42.57 (6).webp",
+      "existedBefore": true,
+      "unchanged": true,
+      "optimized": false
+    },
+    {
+      "file": "public/murali-patharala-associates-assets/interior_renders/WhatsApp Image 2026-09-23 at 16.42.57 (7).webp",
+      "existedBefore": true,
+      "unchanged": true,
+      "optimized": false
+    },
+    {
+      "file": "public/murali-patharala-associates-assets/interior_renders/WhatsApp Image 2026-09-23 at 16.42.57.webp",
+      "existedBefore": true,
+      "unchanged": true,
+      "optimized": false
+    },
+    {
+      "file": "public/murali-patharala-associates-assets/interior_renders/WhatsApp Image 2026-09-23 at 16.42.58.webp",
+      "existedBefore": true,
+      "unchanged": true,
+      "optimized": false
+    },
+    {
+      "file": "public/murali-patharala-associates-assets/interior_renders/WhatsApp Image 2026-09-23 at 16.42.59 (1).webp",
+      "existedBefore": true,
+      "unchanged": true,
+      "optimized": false
+    },
+    {
+      "file": "public/murali-patharala-associates-assets/interior_renders/WhatsApp Image 2026-09-23 at 16.42.59 (2).webp",
+      "existedBefore": true,
+      "unchanged": true,
+      "optimized": false
+    },
+    {
+      "file": "public/murali-patharala-associates-assets/interior_renders/WhatsApp Image 2026-09-23 at 16.42.59 (3).webp",
+      "existedBefore": true,
+      "unchanged": true,
+      "optimized": false
+    },
+    {
+      "file": "public/murali-patharala-associates-assets/interior_renders/WhatsApp Image 2026-09-23 at 16.42.59 (4).webp",
+      "existedBefore": true,
+      "unchanged": true,
+      "optimized": false
+    },
+    {
+      "file": "public/murali-patharala-associates-assets/interior_renders/WhatsApp Image 2026-09-23 at 16.42.59 (5).webp",
+      "existedBefore": true,
+      "unchanged": true,
+      "optimized": false
+    },
+    {
+      "file": "public/murali-patharala-associates-assets/interior_renders/WhatsApp Image 2026-09-23 at 16.42.59.webp",
+      "existedBefore": true,
+      "unchanged": true,
+      "optimized": false
+    },
+    {
+      "file": "public/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.27 (1).webp",
+      "existedBefore": true,
+      "unchanged": true,
+      "optimized": false
+    },
+    {
+      "file": "public/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.27.webp",
+      "existedBefore": true,
+      "unchanged": true,
+      "optimized": false
+    },
+    {
+      "file": "public/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.28 (1).webp",
+      "existedBefore": true,
+      "unchanged": true,
+      "optimized": false
+    },
+    {
+      "file": "public/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.28 (2).webp",
+      "existedBefore": true,
+      "unchanged": true,
+      "optimized": false
+    },
+    {
+      "file": "public/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.28.webp",
+      "existedBefore": true,
+      "unchanged": true,
+      "optimized": false
+    },
+    {
+      "file": "public/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.29 (1).webp",
+      "existedBefore": true,
+      "unchanged": true,
+      "optimized": false
+    },
+    {
+      "file": "public/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.29.webp",
+      "existedBefore": true,
+      "unchanged": true,
+      "optimized": false
+    },
+    {
+      "file": "public/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.30 (1).webp",
+      "existedBefore": true,
+      "unchanged": true,
+      "optimized": false
+    },
+    {
+      "file": "public/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.30.webp",
+      "existedBefore": true,
+      "unchanged": true,
+      "optimized": false
+    },
+    {
+      "file": "public/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.31.webp",
+      "existedBefore": true,
+      "unchanged": true,
+      "optimized": false
+    },
+    {
+      "file": "public/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.33 (1).webp",
+      "existedBefore": true,
+      "unchanged": true,
+      "optimized": false
+    },
+    {
+      "file": "public/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.33.webp",
+      "existedBefore": true,
+      "unchanged": true,
+      "optimized": false
+    },
+    {
+      "file": "public/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.34 (1).webp",
+      "existedBefore": true,
+      "unchanged": true,
+      "optimized": false
+    },
+    {
+      "file": "public/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.34 (2).webp",
+      "existedBefore": true,
+      "unchanged": true,
+      "optimized": false
+    },
+    {
+      "file": "public/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.34.webp",
+      "existedBefore": true,
+      "unchanged": true,
+      "optimized": false
+    },
+    {
+      "file": "public/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.35 (1).webp",
+      "existedBefore": true,
+      "unchanged": true,
+      "optimized": false
+    },
+    {
+      "file": "public/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.35.webp",
+      "existedBefore": true,
+      "unchanged": true,
+      "optimized": false
+    },
+    {
+      "file": "public/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.37 (1).webp",
+      "existedBefore": true,
+      "unchanged": true,
+      "optimized": false
+    },
+    {
+      "file": "public/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.37.webp",
+      "existedBefore": true,
+      "unchanged": true,
+      "optimized": false
+    },
+    {
+      "file": "public/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.38 (1).webp",
+      "existedBefore": true,
+      "unchanged": true,
+      "optimized": false
+    },
+    {
+      "file": "public/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.38.webp",
+      "existedBefore": true,
+      "unchanged": true,
+      "optimized": false
+    },
+    {
+      "file": "public/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.39 (1).webp",
+      "existedBefore": true,
+      "unchanged": true,
+      "optimized": false
+    },
+    {
+      "file": "public/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.39.webp",
+      "existedBefore": true,
+      "unchanged": true,
+      "optimized": false
+    },
+    {
+      "file": "public/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.40 (1).webp",
+      "existedBefore": true,
+      "unchanged": true,
+      "optimized": false
+    },
+    {
+      "file": "public/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.40.webp",
+      "existedBefore": true,
+      "unchanged": true,
+      "optimized": false
+    },
+    {
+      "file": "public/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.41 (1).webp",
+      "existedBefore": true,
+      "unchanged": true,
+      "optimized": false
+    },
+    {
+      "file": "public/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.42 (1).webp",
+      "existedBefore": true,
+      "unchanged": true,
+      "optimized": false
+    },
+    {
+      "file": "public/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.42.webp",
+      "existedBefore": true,
+      "unchanged": true,
+      "optimized": false
+    },
+    {
+      "file": "public/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.43 (1).webp",
+      "existedBefore": true,
+      "unchanged": true,
+      "optimized": false
+    },
+    {
+      "file": "public/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.43.webp",
+      "existedBefore": true,
+      "unchanged": true,
+      "optimized": false
+    },
+    {
+      "file": "public/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.44 (1).webp",
+      "existedBefore": true,
+      "unchanged": true,
+      "optimized": false
+    },
+    {
+      "file": "public/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.44.webp",
+      "existedBefore": true,
+      "unchanged": true,
+      "optimized": false
+    },
+    {
+      "file": "public/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.45 (1).webp",
+      "existedBefore": true,
+      "unchanged": true,
+      "optimized": false
+    },
+    {
+      "file": "public/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.45.webp",
+      "existedBefore": true,
+      "unchanged": true,
+      "optimized": false
+    },
+    {
+      "file": "public/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.46 (1).webp",
+      "existedBefore": true,
+      "unchanged": true,
+      "optimized": false
+    },
+    {
+      "file": "public/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.46.webp",
+      "existedBefore": true,
+      "unchanged": true,
+      "optimized": false
+    },
+    {
+      "file": "public/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.47 (1).webp",
+      "existedBefore": true,
+      "unchanged": true,
+      "optimized": false
+    },
+    {
+      "file": "public/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.47.webp",
+      "existedBefore": true,
+      "unchanged": true,
+      "optimized": false
+    },
+    {
+      "file": "public/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.48 (1).webp",
+      "existedBefore": true,
+      "unchanged": true,
+      "optimized": false
+    },
+    {
+      "file": "public/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.48.webp",
+      "existedBefore": true,
+      "unchanged": true,
+      "optimized": false
+    },
+    {
+      "file": "public/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.49 (1).webp",
+      "existedBefore": true,
+      "unchanged": true,
+      "optimized": false
+    },
+    {
+      "file": "public/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.49.webp",
+      "existedBefore": true,
+      "unchanged": true,
+      "optimized": false
+    },
+    {
+      "file": "public/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.50 (1).webp",
+      "existedBefore": true,
+      "unchanged": true,
+      "optimized": false
+    },
+    {
+      "file": "public/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.50.webp",
+      "existedBefore": true,
+      "unchanged": true,
+      "optimized": false
+    },
+    {
+      "file": "public/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.51 (1).webp",
+      "existedBefore": true,
+      "unchanged": true,
+      "optimized": false
+    },
+    {
+      "file": "public/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.51.webp",
+      "existedBefore": true,
+      "unchanged": true,
+      "optimized": false
+    },
+    {
+      "file": "public/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.52 (1).webp",
+      "existedBefore": true,
+      "unchanged": true,
+      "optimized": false
+    },
+    {
+      "file": "public/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.52.webp",
+      "existedBefore": true,
+      "unchanged": true,
+      "optimized": false
+    },
+    {
+      "file": "public/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.53 (1).webp",
+      "existedBefore": true,
+      "unchanged": true,
+      "optimized": false
+    },
+    {
+      "file": "public/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.54.webp",
+      "existedBefore": true,
+      "unchanged": true,
+      "optimized": false
+    },
+    {
+      "file": "public/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.55 (1).webp",
+      "existedBefore": true,
+      "unchanged": true,
+      "optimized": false
+    },
+    {
+      "file": "public/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.55.webp",
+      "existedBefore": true,
+      "unchanged": true,
+      "optimized": false
+    },
+    {
+      "file": "public/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.56 (1).webp",
+      "existedBefore": true,
+      "unchanged": true,
+      "optimized": false
+    },
+    {
+      "file": "public/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.56 (2).webp",
+      "existedBefore": true,
+      "unchanged": true,
+      "optimized": false
+    },
+    {
+      "file": "public/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.57 (1).webp",
+      "existedBefore": true,
+      "unchanged": true,
+      "optimized": false
+    },
+    {
+      "file": "public/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.57.webp",
+      "existedBefore": true,
+      "unchanged": true,
+      "optimized": false
+    },
+    {
+      "file": "public/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.58 (1).webp",
+      "existedBefore": true,
+      "unchanged": true,
+      "optimized": false
+    },
+    {
+      "file": "public/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.58.webp",
+      "existedBefore": true,
+      "unchanged": true,
+      "optimized": false
+    },
+    {
+      "file": "public/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.59 (1).webp",
+      "existedBefore": true,
+      "unchanged": true,
+      "optimized": false
+    },
+    {
+      "file": "public/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.59.webp",
+      "existedBefore": true,
+      "unchanged": true,
+      "optimized": false
+    },
+    {
+      "file": "public/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.35.00.webp",
+      "existedBefore": true,
+      "unchanged": true,
+      "optimized": false
+    }
+  ],
+  "unexpectedAssetChanges": [],
+  "svgRenderingFixes": [
+    {
+      "file": "public/images/drawings/architectural-elevation-detail.svg",
+      "existedBefore": true,
+      "unchanged": false,
+      "optimized": false,
+      "onlyEntityCorrection": true
+    },
+    {
+      "file": "public/images/drawings/architectural-master-plan.svg",
+      "existedBefore": true,
+      "unchanged": false,
+      "optimized": false,
+      "onlyEntityCorrection": true
+    },
+    {
+      "file": "public/images/drawings/architectural-structural-lines.svg",
+      "existedBefore": true,
+      "unchanged": false,
+      "optimized": false,
+      "onlyEntityCorrection": true
+    }
+  ],
+  "duplicateReplacements": [
+    {
+      "before": "/images/architecture/architect-studio-model.webp",
+      "after": "/images/architecture/architectural-blueprint-draft.webp",
+      "identical": true,
+      "retained": true
+    },
+    {
+      "before": "/images/architecture/atelier-design-studio.webp",
+      "after": "/images/architecture/architectural-blueprint-draft.webp",
+      "identical": true,
+      "retained": true
+    },
+    {
+      "before": "/images/architecture/brick-perforated-facade.webp",
+      "after": "/images/architecture/passive-timber-screens.webp",
+      "identical": true,
+      "retained": true
+    },
+    {
+      "before": "/images/architecture/brutalist-glass-pavilion.webp",
+      "after": "/images/architecture/cantilever-garden-overhang.webp",
+      "identical": true,
+      "retained": false
+    },
+    {
+      "before": "/images/architecture/civic-landmark-facade.webp",
+      "after": "/images/architecture/geometric-villa-elevation.webp",
+      "identical": true,
+      "retained": true
+    },
+    {
+      "before": "/images/architecture/luxury-modernist-estate.webp",
+      "after": "/images/architecture/geometric-villa-elevation.webp",
+      "identical": true,
+      "retained": true
+    },
+    {
+      "before": "/images/architecture/facade-white-concrete.webp",
+      "after": "/images/architecture/modern-villa-duplex.webp",
+      "identical": true,
+      "retained": true
+    },
+    {
+      "before": "/images/architecture/hero-minimalist-residence.webp",
+      "after": "/images/architecture/modern-villa-duplex.webp",
+      "identical": true,
+      "retained": true
+    },
+    {
+      "before": "/images/architecture/tropical-modern-villa.webp",
+      "after": "/images/architecture/modern-villa-duplex.webp",
+      "identical": true,
+      "retained": true
+    },
+    {
+      "before": "/images/architecture/linear-pool-pavilion.webp",
+      "after": "/images/architecture/hero-villa-twilight.webp",
+      "identical": true,
+      "retained": true
+    },
+    {
+      "before": "/images/architecture/monolithic-concrete-atrium.webp",
+      "after": "/images/architecture/interior-double-height.webp",
+      "identical": true,
+      "retained": false
+    },
+    {
+      "before": "/images/architecture/stone-concrete-residence.webp",
+      "after": "/images/architecture/interior-double-height.webp",
+      "identical": true,
+      "retained": false
+    }
+  ],
+  "conversions": [
+    {
+      "before": "public/images/2d plan/GROUND FLOOR PLAN ( OPTION 2 )_page-0001.jpg",
+      "after": "public/images/2d plan/optimized/ground-floor-full.webp",
+      "originalDimensions": [
+        1459,
+        978
+      ],
+      "currentDimensions": [
+        1459,
+        978
+      ],
+      "aspectRatioDifference": 0,
+      "pixelsIdentical": true,
+      "psnr": null
+    },
+    {
+      "before": "public/images/2d plan/2 FIRST FLOOR PLAN 19.10.2021_page-0001.jpg",
+      "after": "public/images/2d plan/optimized/first-floor-full.webp",
+      "originalDimensions": [
+        3891,
+        2934
+      ],
+      "currentDimensions": [
+        3891,
+        2934
+      ],
+      "aspectRatioDifference": 0,
+      "pixelsIdentical": true,
+      "psnr": null
+    },
+    {
+      "before": "public/images/2d plan/approval plan - elevation_page-0001.jpg",
+      "after": "public/images/2d plan/optimized/elevation-full.webp",
+      "originalDimensions": [
+        2685,
+        2015
+      ],
+      "currentDimensions": [
+        2685,
+        2015
+      ],
+      "aspectRatioDifference": 0,
+      "pixelsIdentical": true,
+      "psnr": null
+    },
+    {
+      "before": "public/images/2d plan/GROUND FLOOR ELECRICAL LAYOUT_page-0001.jpg",
+      "after": "public/images/2d plan/optimized/electrical-full.webp",
+      "originalDimensions": [
+        2033,
+        1064
+      ],
+      "currentDimensions": [
+        2033,
+        1064
+      ],
+      "aspectRatioDifference": 0,
+      "pixelsIdentical": true,
+      "psnr": null
+    },
+    {
+      "before": "public/images/3d images/3d images (10).jpg",
+      "after": "public/images/3d-plans/ayanambakkam-villa-full.webp",
+      "originalDimensions": [
+        5717,
+        3911
+      ],
+      "currentDimensions": [
+        5717,
+        3911
+      ],
+      "aspectRatioDifference": 0,
+      "pixelsIdentical": false,
+      "psnr": 41.60292017089695
+    },
+    {
+      "before": "public/images/3d images/3d images (3).jpg",
+      "after": "public/images/3d-plans/jp-house-residence-full.webp",
+      "originalDimensions": [
+        4964,
+        3511
+      ],
+      "currentDimensions": [
+        4964,
+        3511
+      ],
+      "aspectRatioDifference": 0,
+      "pixelsIdentical": false,
+      "psnr": 42.50728925526615
+    },
+    {
+      "before": "public/images/3d images/3d images (5).jpg",
+      "after": "public/images/3d-plans/twilight-residence-full.webp",
+      "originalDimensions": [
+        5708,
+        3901
+      ],
+      "currentDimensions": [
+        5708,
+        3901
+      ],
+      "aspectRatioDifference": 0,
+      "pixelsIdentical": false,
+      "psnr": 43.697857056389424
+    },
+    {
+      "before": "public/images/3d images/3d images (9).jpg",
+      "after": "public/images/3d-plans/aksharaa-enclave-full.webp",
+      "originalDimensions": [
+        5708,
+        3901
+      ],
+      "currentDimensions": [
+        5708,
+        3901
+      ],
+      "aspectRatioDifference": 0,
+      "pixelsIdentical": false,
+      "psnr": 42.820062676766504
+    },
+    {
+      "before": "public/images/clients/bharat-petroleum.png",
+      "after": "public/images/clients/bharat-petroleum.webp",
+      "originalDimensions": [
+        3840,
+        2160
+      ],
+      "currentDimensions": [
+        512,
+        288
+      ],
+      "aspectRatioDifference": 0,
+      "pixelsIdentical": false,
+      "psnr": 15.925072365903237
+    },
+    {
+      "before": "public/images/clients/indian-oil.jpeg",
+      "after": "public/images/clients/indian-oil.webp",
+      "originalDimensions": [
+        638,
+        768
+      ],
+      "currentDimensions": [
+        425,
+        512
+      ],
+      "aspectRatioDifference": 0.0006510416666666297,
+      "pixelsIdentical": false,
+      "psnr": 35.20400380759473
+    },
+    {
+      "before": "public/images/clients/indian-railways.jpeg",
+      "after": "public/images/clients/indian-railways.webp",
+      "originalDimensions": [
+        90,
+        80
+      ],
+      "currentDimensions": [
+        90,
+        80
+      ],
+      "aspectRatioDifference": 0,
+      "pixelsIdentical": false,
+      "psnr": 36.572595138257824
+    },
+    {
+      "before": "public/images/clients/sla.jpeg",
+      "after": "public/images/clients/sla.webp",
+      "originalDimensions": [
+        838,
+        446
+      ],
+      "currentDimensions": [
+        512,
+        272
+      ],
+      "aspectRatioDifference": 0.0034291743603269698,
+      "pixelsIdentical": false,
+      "psnr": 36.45562608117835
+    },
+    {
+      "before": "public/images/clients/sri-balaji-hospital.png",
+      "after": "public/images/clients/sri-balaji-hospital.webp",
+      "originalDimensions": [
+        135,
+        74
+      ],
+      "currentDimensions": [
+        135,
+        74
+      ],
+      "aspectRatioDifference": 0,
+      "pixelsIdentical": true,
+      "psnr": null
+    },
+    {
+      "before": "public/images/clients/tahdco.png",
+      "after": "public/images/clients/tahdco.webp",
+      "originalDimensions": [
+        400,
+        220
+      ],
+      "currentDimensions": [
+        400,
+        220
+      ],
+      "aspectRatioDifference": 0,
+      "pixelsIdentical": false,
+      "psnr": 19.42119312446937
+    },
+    {
+      "before": "public/images/mpa-anna-nagar-office.jpg",
+      "after": "public/images/mpa-anna-nagar-office.webp",
+      "originalDimensions": [
+        451,
+        338
+      ],
+      "currentDimensions": [
+        451,
+        338
+      ],
+      "aspectRatioDifference": 0,
+      "pixelsIdentical": false,
+      "psnr": 37.46438153750767
+    },
+    {
+      "before": "public/apple-icon.png",
+      "after": "public/apple-icon.png",
+      "originalDimensions": [
+        180,
+        180
+      ],
+      "currentDimensions": [
+        180,
+        180
+      ],
+      "aspectRatioDifference": 0,
+      "pixelsIdentical": true,
+      "psnr": null
+    },
+    {
+      "before": "public/icon.png",
+      "after": "public/icon.png",
+      "originalDimensions": [
+        192,
+        192
+      ],
+      "currentDimensions": [
+        192,
+        192
+      ],
+      "aspectRatioDifference": 0,
+      "pixelsIdentical": true,
+      "psnr": null
+    },
+    {
+      "before": "public/icon-512x512.png",
+      "after": "public/icon-512x512.png",
+      "originalDimensions": [
+        512,
+        512
+      ],
+      "currentDimensions": [
+        512,
+        512
+      ],
+      "aspectRatioDifference": 0,
+      "pixelsIdentical": true,
+      "psnr": null
+    },
+    {
+      "before": "public/mpa-3d-logo-social.png",
+      "after": "public/mpa-3d-logo-social.png",
+      "originalDimensions": [
+        256,
+        256
+      ],
+      "currentDimensions": [
+        256,
+        256
+      ],
+      "aspectRatioDifference": 0,
+      "pixelsIdentical": true,
+      "psnr": null
+    }
+  ],
+  "beforePageImageReferences": [
+    {
+      "route": "/",
+      "images": [
+        {
+          "original": "/mpa-3d-logo.webp",
+          "target": "/mpa-3d-logo.webp",
+          "exists": true
+        },
+        {
+          "original": "/murali-patharala-associates-assets/exterior_renders/JAMEE2.webp",
+          "target": "/murali-patharala-associates-assets/exterior_renders/JAMEE2.webp",
+          "exists": true
+        },
+        {
+          "original": "/murali-patharala-associates-assets/exterior_renders/Govindha Rajan-2026.webp",
+          "target": "/murali-patharala-associates-assets/exterior_renders/Govindha Rajan-2026.webp",
+          "exists": true
+        },
+        {
+          "original": "/murali-patharala-associates-assets/exterior_renders/WhatsApp Image 2026-09-23 at 16.17.56 (2).webp",
+          "target": "/murali-patharala-associates-assets/exterior_renders/WhatsApp Image 2026-09-23 at 16.17.56 (2).webp",
+          "exists": true
+        },
+        {
+          "original": "/murali-patharala-associates-assets/exterior_renders/Sushama John.webp",
+          "target": "/murali-patharala-associates-assets/exterior_renders/Sushama John.webp",
+          "exists": true
+        },
+        {
+          "original": "/murali-patharala-associates-assets/exterior_renders/WhatsApp Image 2026-09-23 at 16.36.14.webp",
+          "target": "/murali-patharala-associates-assets/exterior_renders/WhatsApp Image 2026-09-23 at 16.36.14.webp",
+          "exists": true
+        },
+        {
+          "original": "/murali-patharala-associates-assets/exterior_renders/VENKATASH1.webp",
+          "target": "/murali-patharala-associates-assets/exterior_renders/VENKATASH1.webp",
+          "exists": true
+        },
+        {
+          "original": "/images/2D TO 3D/option-2-sketch.webp",
+          "target": "/images/2D TO 3D/option-2-sketch.webp",
+          "exists": true
+        },
+        {
+          "original": "/images/2D TO 3D/option-2-render.webp",
+          "target": "/images/2D TO 3D/option-2-render.webp",
+          "exists": true
+        },
+        {
+          "original": "/images/2D TO 3D/option-3-sketch.webp",
+          "target": "/images/2D TO 3D/option-3-sketch.webp",
+          "exists": true
+        },
+        {
+          "original": "/images/2D TO 3D/option-3-render.webp",
+          "target": "/images/2D TO 3D/option-3-render.webp",
+          "exists": true
+        },
+        {
+          "original": "/images/2D TO 3D/option-1-sketch.webp",
+          "target": "/images/2D TO 3D/option-1-sketch.webp",
+          "exists": true
+        },
+        {
+          "original": "/images/2D TO 3D/option-1-render.webp",
+          "target": "/images/2D TO 3D/option-1-render.webp",
+          "exists": true
+        },
+        {
+          "original": "/images/architecture/architect-studio-model.webp",
+          "target": "/images/architecture/architectural-blueprint-draft.webp",
+          "exists": true
+        },
+        {
+          "original": "/images/architecture/site-engineer-audit.webp",
+          "target": "/images/architecture/site-engineer-audit.webp",
+          "exists": true
+        },
+        {
+          "original": "/images/architecture/cmda-sanction-drafting.webp",
+          "target": "/images/architecture/cmda-sanction-drafting.webp",
+          "exists": true
+        },
+        {
+          "original": "/images/architecture/geometric-villa-elevation.webp",
+          "target": "/images/architecture/geometric-villa-elevation.webp",
+          "exists": true
+        },
+        {
+          "original": "/images/architecture/turnkey-key-handover.webp",
+          "target": "/images/architecture/turnkey-key-handover.webp",
+          "exists": true
+        },
+        {
+          "original": "/images/architecture/staad-structural-engineering.webp",
+          "target": "/images/architecture/staad-structural-engineering.webp",
+          "exists": true
+        },
+        {
+          "original": "/images/architecture/structural-construction-frame.webp",
+          "target": "/images/architecture/structural-construction-frame.webp",
+          "exists": true
+        },
+        {
+          "original": "/murali-patharala-associates-assets/interior_renders/WhatsApp Image 2026-09-23 at 16.42.59 (3).webp",
+          "target": "/murali-patharala-associates-assets/interior_renders/WhatsApp Image 2026-09-23 at 16.42.59 (3).webp",
+          "exists": true
+        },
+        {
+          "original": "/murali-patharala-associates-assets/exterior_renders/modern-residence-exterior-render-wide.webp",
+          "target": "/murali-patharala-associates-assets/exterior_renders/modern-residence-exterior-render-wide.webp",
+          "exists": true
+        },
+        {
+          "original": "/murali-patharala-associates-assets/brand_identity/WhatsApp Image 2026-09-23 at 16.52.36.webp",
+          "target": "/murali-patharala-associates-assets/brand_identity/WhatsApp Image 2026-09-23 at 16.52.36.webp",
+          "exists": true
+        },
+        {
+          "original": "/murali-patharala-associates-assets/exterior_renders/WhatsApp Image 2026-09-23 at 17.40.31 (1).webp",
+          "target": "/murali-patharala-associates-assets/exterior_renders/WhatsApp Image 2026-09-23 at 17.40.31 (1).webp",
+          "exists": true
+        },
+        {
+          "original": "/murali-patharala-associates-assets/exterior_renders/selva kumar (1).webp",
+          "target": "/murali-patharala-associates-assets/exterior_renders/selva kumar (1).webp",
+          "exists": true
+        },
+        {
+          "original": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.33.webp",
+          "target": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.33.webp",
+          "exists": true
+        },
+        {
+          "original": "/images/clients/bharat-petroleum.png",
+          "target": "/images/clients/bharat-petroleum.webp",
+          "exists": true
+        },
+        {
+          "original": "/images/clients/indian-oil.jpeg",
+          "target": "/images/clients/indian-oil.webp",
+          "exists": true
+        },
+        {
+          "original": "/images/clients/tahdco.png",
+          "target": "/images/clients/tahdco.webp",
+          "exists": true
+        },
+        {
+          "original": "/images/clients/indian-railways.jpeg",
+          "target": "/images/clients/indian-railways.webp",
+          "exists": true
+        },
+        {
+          "original": "/images/clients/sri-balaji-hospital.png",
+          "target": "/images/clients/sri-balaji-hospital.webp",
+          "exists": true
+        },
+        {
+          "original": "/images/clients/sla.jpeg",
+          "target": "/images/clients/sla.webp",
+          "exists": true
+        },
+        {
+          "original": "/images/architecture/hero-villa-twilight.webp",
+          "target": "/images/architecture/hero-villa-twilight.webp",
+          "exists": true
+        },
+        {
+          "original": "/favicon.ico",
+          "target": "/favicon.ico",
+          "exists": true
+        },
+        {
+          "original": "/favicon-16x16.png",
+          "target": "/favicon-16x16.png",
+          "exists": true
+        },
+        {
+          "original": "/favicon-32x32.png",
+          "target": "/favicon-32x32.png",
+          "exists": true
+        },
+        {
+          "original": "/icon.png",
+          "target": "/icon.png",
+          "exists": true
+        },
+        {
+          "original": "/apple-icon.png",
+          "target": "/apple-icon.png",
+          "exists": true
+        },
+        {
+          "original": "/images/drawings/architectural-master-plan.svg",
+          "target": "/images/drawings/architectural-master-plan.svg",
+          "exists": true
+        },
+        {
+          "original": "/images/drawings/architectural-structural-lines.svg",
+          "target": "/images/drawings/architectural-structural-lines.svg",
+          "exists": true
+        },
+        {
+          "original": "/images/drawings/architectural-elevation-detail.svg",
+          "target": "/images/drawings/architectural-elevation-detail.svg",
+          "exists": true
+        }
+      ]
+    },
+    {
+      "route": "/about/",
+      "images": [
+        {
+          "original": "/mpa-3d-logo.webp",
+          "target": "/mpa-3d-logo.webp",
+          "exists": true
+        },
+        {
+          "original": "/images/architecture/atelier-design-studio.webp",
+          "target": "/images/architecture/architectural-blueprint-draft.webp",
+          "exists": true
+        },
+        {
+          "original": "/images/mpa-anna-nagar-office.jpg",
+          "target": "/images/mpa-anna-nagar-office.webp",
+          "exists": true
+        },
+        {
+          "original": "/murali-patharala-associates-assets/brand_identity/WhatsApp Image 2026-09-23 at 16.52.36 (2).webp",
+          "target": "/murali-patharala-associates-assets/brand_identity/WhatsApp Image 2026-09-23 at 16.52.36 (2).webp",
+          "exists": true
+        },
+        {
+          "original": "/images/architecture/structural-construction-frame.webp",
+          "target": "/images/architecture/structural-construction-frame.webp",
+          "exists": true
+        },
+        {
+          "original": "/murali-patharala-associates-assets/brand_identity/WhatsApp Image 2026-09-23 at 16.52.36.webp",
+          "target": "/murali-patharala-associates-assets/brand_identity/WhatsApp Image 2026-09-23 at 16.52.36.webp",
+          "exists": true
+        },
+        {
+          "original": "/murali-patharala-associates-assets/exterior_renders/JAMEE2.webp",
+          "target": "/murali-patharala-associates-assets/exterior_renders/JAMEE2.webp",
+          "exists": true
+        },
+        {
+          "original": "/murali-patharala-associates-assets/interior_renders/WhatsApp Image 2026-09-23 at 16.42.59 (3).webp",
+          "target": "/murali-patharala-associates-assets/interior_renders/WhatsApp Image 2026-09-23 at 16.42.59 (3).webp",
+          "exists": true
+        },
+        {
+          "original": "/murali-patharala-associates-assets/completed_interiors/WhatsApp Image 2026-09-23 at 16.28.00 (3).webp",
+          "target": "/murali-patharala-associates-assets/completed_interiors/WhatsApp Image 2026-09-23 at 16.28.00 (3).webp",
+          "exists": true
+        },
+        {
+          "original": "/images/clients/bharat-petroleum.png",
+          "target": "/images/clients/bharat-petroleum.webp",
+          "exists": true
+        },
+        {
+          "original": "/images/clients/indian-oil.jpeg",
+          "target": "/images/clients/indian-oil.webp",
+          "exists": true
+        },
+        {
+          "original": "/images/clients/tahdco.png",
+          "target": "/images/clients/tahdco.webp",
+          "exists": true
+        },
+        {
+          "original": "/images/clients/indian-railways.jpeg",
+          "target": "/images/clients/indian-railways.webp",
+          "exists": true
+        },
+        {
+          "original": "/images/clients/sri-balaji-hospital.png",
+          "target": "/images/clients/sri-balaji-hospital.webp",
+          "exists": true
+        },
+        {
+          "original": "/images/clients/sla.jpeg",
+          "target": "/images/clients/sla.webp",
+          "exists": true
+        },
+        {
+          "original": "/images/architecture/hero-villa-twilight.webp",
+          "target": "/images/architecture/hero-villa-twilight.webp",
+          "exists": true
+        },
+        {
+          "original": "/favicon.ico",
+          "target": "/favicon.ico",
+          "exists": true
+        },
+        {
+          "original": "/favicon-16x16.png",
+          "target": "/favicon-16x16.png",
+          "exists": true
+        },
+        {
+          "original": "/favicon-32x32.png",
+          "target": "/favicon-32x32.png",
+          "exists": true
+        },
+        {
+          "original": "/icon.png",
+          "target": "/icon.png",
+          "exists": true
+        },
+        {
+          "original": "/apple-icon.png",
+          "target": "/apple-icon.png",
+          "exists": true
+        },
+        {
+          "original": "/images/drawings/architectural-elevation-detail.svg",
+          "target": "/images/drawings/architectural-elevation-detail.svg",
+          "exists": true
+        }
+      ]
+    },
+    {
+      "route": "/services/",
+      "images": [
+        {
+          "original": "/mpa-3d-logo.webp",
+          "target": "/mpa-3d-logo.webp",
+          "exists": true
+        },
+        {
+          "original": "/images/architecture/atelier-design-studio.webp",
+          "target": "/images/architecture/architectural-blueprint-draft.webp",
+          "exists": true
+        },
+        {
+          "original": "/murali-patharala-associates-assets/exterior_renders/JAMEE2.webp",
+          "target": "/murali-patharala-associates-assets/exterior_renders/JAMEE2.webp",
+          "exists": true
+        },
+        {
+          "original": "/murali-patharala-associates-assets/exterior_renders/WhatsApp Image 2026-09-23 at 17.38.22 (1).webp",
+          "target": "/murali-patharala-associates-assets/exterior_renders/WhatsApp Image 2026-09-23 at 17.38.22 (1).webp",
+          "exists": true
+        },
+        {
+          "original": "/murali-patharala-associates-assets/interior_renders/WhatsApp Image 2026-09-23 at 16.42.59 (3).webp",
+          "target": "/murali-patharala-associates-assets/interior_renders/WhatsApp Image 2026-09-23 at 16.42.59 (3).webp",
+          "exists": true
+        },
+        {
+          "original": "/murali-patharala-associates-assets/exterior_renders/WhatsApp Image 2026-09-23 at 16.17.56 (2).webp",
+          "target": "/murali-patharala-associates-assets/exterior_renders/WhatsApp Image 2026-09-23 at 16.17.56 (2).webp",
+          "exists": true
+        },
+        {
+          "original": "/images/architecture/site-surveying-raw.webp",
+          "target": "/images/architecture/site-surveying-raw.webp",
+          "exists": true
+        },
+        {
+          "original": "/images/service-stages/design-planning.webp",
+          "target": "/images/service-stages/design-planning.webp",
+          "exists": true
+        },
+        {
+          "original": "/images/architecture/architectural-blueprint-draft.webp",
+          "target": "/images/architecture/architectural-blueprint-draft.webp",
+          "exists": true
+        },
+        {
+          "original": "/images/service-stages/engineering-permits.webp",
+          "target": "/images/service-stages/engineering-permits.webp",
+          "exists": true
+        },
+        {
+          "original": "/images/service-stages/site-supervision.webp",
+          "target": "/images/service-stages/site-supervision.webp",
+          "exists": true
+        },
+        {
+          "original": "/images/architecture/staad-structural-engineering.webp",
+          "target": "/images/architecture/staad-structural-engineering.webp",
+          "exists": true
+        },
+        {
+          "original": "/images/architecture/cmda-sanction-drafting.webp",
+          "target": "/images/architecture/cmda-sanction-drafting.webp",
+          "exists": true
+        },
+        {
+          "original": "/images/architecture/passive-timber-screens.webp",
+          "target": "/images/architecture/passive-timber-screens.webp",
+          "exists": true
+        },
+        {
+          "original": "/images/service-stages/home-handover.webp",
+          "target": "/images/service-stages/home-handover.webp",
+          "exists": true
+        },
+        {
+          "original": "/images/architecture/hero-villa-twilight.webp",
+          "target": "/images/architecture/hero-villa-twilight.webp",
+          "exists": true
+        },
+        {
+          "original": "/favicon.ico",
+          "target": "/favicon.ico",
+          "exists": true
+        },
+        {
+          "original": "/favicon-16x16.png",
+          "target": "/favicon-16x16.png",
+          "exists": true
+        },
+        {
+          "original": "/favicon-32x32.png",
+          "target": "/favicon-32x32.png",
+          "exists": true
+        },
+        {
+          "original": "/icon.png",
+          "target": "/icon.png",
+          "exists": true
+        },
+        {
+          "original": "/apple-icon.png",
+          "target": "/apple-icon.png",
+          "exists": true
+        }
+      ]
+    },
+    {
+      "route": "/services/architectural-design/",
+      "images": [
+        {
+          "original": "/mpa-3d-logo.webp",
+          "target": "/mpa-3d-logo.webp",
+          "exists": true
+        },
+        {
+          "original": "/images/architecture/architectural-blueprint-draft.webp",
+          "target": "/images/architecture/architectural-blueprint-draft.webp",
+          "exists": true
+        },
+        {
+          "original": "/images/2d plan/optimized/ground-floor.webp",
+          "target": "/images/2d plan/optimized/ground-floor.webp",
+          "exists": true
+        },
+        {
+          "original": "/images/2d plan/optimized/first-floor.webp",
+          "target": "/images/2d plan/optimized/first-floor.webp",
+          "exists": true
+        },
+        {
+          "original": "/images/2d plan/optimized/elevation.webp",
+          "target": "/images/2d plan/optimized/elevation.webp",
+          "exists": true
+        },
+        {
+          "original": "/images/2d plan/optimized/electrical.webp",
+          "target": "/images/2d plan/optimized/electrical.webp",
+          "exists": true
+        },
+        {
+          "original": "/images/2d plan/optimized/ground-floor-thumb.webp",
+          "target": "/images/2d plan/optimized/ground-floor-thumb.webp",
+          "exists": true
+        },
+        {
+          "original": "/images/2d plan/optimized/first-floor-thumb.webp",
+          "target": "/images/2d plan/optimized/first-floor-thumb.webp",
+          "exists": true
+        },
+        {
+          "original": "/images/2d plan/optimized/elevation-thumb.webp",
+          "target": "/images/2d plan/optimized/elevation-thumb.webp",
+          "exists": true
+        },
+        {
+          "original": "/images/2d plan/optimized/electrical-thumb.webp",
+          "target": "/images/2d plan/optimized/electrical-thumb.webp",
+          "exists": true
+        },
+        {
+          "original": "/images/3d-plans/ayanambakkam-villa.webp",
+          "target": "/images/3d-plans/ayanambakkam-villa.webp",
+          "exists": true
+        },
+        {
+          "original": "/images/3d-plans/jp-house-residence.webp",
+          "target": "/images/3d-plans/jp-house-residence.webp",
+          "exists": true
+        },
+        {
+          "original": "/images/3d-plans/twilight-residence.webp",
+          "target": "/images/3d-plans/twilight-residence.webp",
+          "exists": true
+        },
+        {
+          "original": "/images/3d-plans/aksharaa-enclave.webp",
+          "target": "/images/3d-plans/aksharaa-enclave.webp",
+          "exists": true
+        },
+        {
+          "original": "/images/3d-plans/ayanambakkam-villa-thumb.webp",
+          "target": "/images/3d-plans/ayanambakkam-villa-thumb.webp",
+          "exists": true
+        },
+        {
+          "original": "/images/3d-plans/jp-house-residence-thumb.webp",
+          "target": "/images/3d-plans/jp-house-residence-thumb.webp",
+          "exists": true
+        },
+        {
+          "original": "/images/3d-plans/twilight-residence-thumb.webp",
+          "target": "/images/3d-plans/twilight-residence-thumb.webp",
+          "exists": true
+        },
+        {
+          "original": "/images/3d-plans/aksharaa-enclave-thumb.webp",
+          "target": "/images/3d-plans/aksharaa-enclave-thumb.webp",
+          "exists": true
+        },
+        {
+          "original": "/images/architecture/villa-plan-sketch.webp",
+          "target": "/images/architecture/villa-plan-sketch.webp",
+          "exists": true
+        },
+        {
+          "original": "/images/architecture/bim-3d-walkthrough.webp",
+          "target": "/images/architecture/bim-3d-walkthrough.webp",
+          "exists": true
+        },
+        {
+          "original": "/images/architecture/cmda-sanction-drafting.webp",
+          "target": "/images/architecture/cmda-sanction-drafting.webp",
+          "exists": true
+        },
+        {
+          "original": "/images/architecture/space-planning-atrium.webp",
+          "target": "/images/architecture/space-planning-atrium.webp",
+          "exists": true
+        },
+        {
+          "original": "/images/architecture/geometric-villa-elevation.webp",
+          "target": "/images/architecture/geometric-villa-elevation.webp",
+          "exists": true
+        },
+        {
+          "original": "/images/architecture/staad-structural-engineering.webp",
+          "target": "/images/architecture/staad-structural-engineering.webp",
+          "exists": true
+        },
+        {
+          "original": "/images/architecture/architect-studio-model.webp",
+          "target": "/images/architecture/architectural-blueprint-draft.webp",
+          "exists": true
+        },
+        {
+          "original": "/murali-patharala-associates-assets/exterior_renders/JAMEE2.webp",
+          "target": "/murali-patharala-associates-assets/exterior_renders/JAMEE2.webp",
+          "exists": true
+        },
+        {
+          "original": "/murali-patharala-associates-assets/exterior_renders/Sushama John.webp",
+          "target": "/murali-patharala-associates-assets/exterior_renders/Sushama John.webp",
+          "exists": true
+        },
+        {
+          "original": "/murali-patharala-associates-assets/exterior_renders/WhatsApp Image 2026-09-23 at 16.17.56 (2).webp",
+          "target": "/murali-patharala-associates-assets/exterior_renders/WhatsApp Image 2026-09-23 at 16.17.56 (2).webp",
+          "exists": true
+        },
+        {
+          "original": "/images/architecture/hero-villa-twilight.webp",
+          "target": "/images/architecture/hero-villa-twilight.webp",
+          "exists": true
+        },
+        {
+          "original": "/favicon.ico",
+          "target": "/favicon.ico",
+          "exists": true
+        },
+        {
+          "original": "/favicon-16x16.png",
+          "target": "/favicon-16x16.png",
+          "exists": true
+        },
+        {
+          "original": "/favicon-32x32.png",
+          "target": "/favicon-32x32.png",
+          "exists": true
+        },
+        {
+          "original": "/icon.png",
+          "target": "/icon.png",
+          "exists": true
+        },
+        {
+          "original": "/apple-icon.png",
+          "target": "/apple-icon.png",
+          "exists": true
+        },
+        {
+          "original": "/images/drawings/architectural-master-plan.svg",
+          "target": "/images/drawings/architectural-master-plan.svg",
+          "exists": true
+        },
+        {
+          "original": "/images/drawings/architectural-structural-lines.svg",
+          "target": "/images/drawings/architectural-structural-lines.svg",
+          "exists": true
+        }
+      ]
+    },
+    {
+      "route": "/services/residential-construction/",
+      "images": [
+        {
+          "original": "/mpa-3d-logo.webp",
+          "target": "/mpa-3d-logo.webp",
+          "exists": true
+        },
+        {
+          "original": "/images/architecture/site-engineer-audit.webp",
+          "target": "/images/architecture/site-engineer-audit.webp",
+          "exists": true
+        },
+        {
+          "original": "/murali-patharala-associates-assets/exterior_renders/WhatsApp Image 2026-09-23 at 17.38.22 (1).webp",
+          "target": "/murali-patharala-associates-assets/exterior_renders/WhatsApp Image 2026-09-23 at 17.38.22 (1).webp",
+          "exists": true
+        },
+        {
+          "original": "/murali-patharala-associates-assets/exterior_renders/JAMEE2.webp",
+          "target": "/murali-patharala-associates-assets/exterior_renders/JAMEE2.webp",
+          "exists": true
+        },
+        {
+          "original": "/murali-patharala-associates-assets/exterior_renders/WhatsApp Image 2026-09-23 at 16.17.56 (2).webp",
+          "target": "/murali-patharala-associates-assets/exterior_renders/WhatsApp Image 2026-09-23 at 16.17.56 (2).webp",
+          "exists": true
+        },
+        {
+          "original": "/murali-patharala-associates-assets/exterior_renders/WhatsApp Image 2026-09-23 at 16.36.14.webp",
+          "target": "/murali-patharala-associates-assets/exterior_renders/WhatsApp Image 2026-09-23 at 16.36.14.webp",
+          "exists": true
+        },
+        {
+          "original": "/images/service-stages/design-planning.webp",
+          "target": "/images/service-stages/design-planning.webp",
+          "exists": true
+        },
+        {
+          "original": "/images/service-stages/foundation-rcc.webp",
+          "target": "/images/service-stages/foundation-rcc.webp",
+          "exists": true
+        },
+        {
+          "original": "/images/service-stages/brickwork-plaster.webp",
+          "target": "/images/service-stages/brickwork-plaster.webp",
+          "exists": true
+        },
+        {
+          "original": "/images/service-stages/plumbing-waterproofing.webp",
+          "target": "/images/service-stages/plumbing-waterproofing.webp",
+          "exists": true
+        },
+        {
+          "original": "/images/service-stages/electrical-installation.webp",
+          "target": "/images/service-stages/electrical-installation.webp",
+          "exists": true
+        },
+        {
+          "original": "/images/service-stages/flooring-painting.webp",
+          "target": "/images/service-stages/flooring-painting.webp",
+          "exists": true
+        },
+        {
+          "original": "/images/service-stages/soil-assessment.webp",
+          "target": "/images/service-stages/soil-assessment.webp",
+          "exists": true
+        },
+        {
+          "original": "/images/service-stages/engineering-permits.webp",
+          "target": "/images/service-stages/engineering-permits.webp",
+          "exists": true
+        },
+        {
+          "original": "/images/service-stages/home-handover.webp",
+          "target": "/images/service-stages/home-handover.webp",
+          "exists": true
+        },
+        {
+          "original": "/images/architecture/hero-villa-twilight.webp",
+          "target": "/images/architecture/hero-villa-twilight.webp",
+          "exists": true
+        },
+        {
+          "original": "/favicon.ico",
+          "target": "/favicon.ico",
+          "exists": true
+        },
+        {
+          "original": "/favicon-16x16.png",
+          "target": "/favicon-16x16.png",
+          "exists": true
+        },
+        {
+          "original": "/favicon-32x32.png",
+          "target": "/favicon-32x32.png",
+          "exists": true
+        },
+        {
+          "original": "/icon.png",
+          "target": "/icon.png",
+          "exists": true
+        },
+        {
+          "original": "/apple-icon.png",
+          "target": "/apple-icon.png",
+          "exists": true
+        },
+        {
+          "original": "/images/drawings/architectural-master-plan.svg",
+          "target": "/images/drawings/architectural-master-plan.svg",
+          "exists": true
+        },
+        {
+          "original": "/images/drawings/architectural-structural-lines.svg",
+          "target": "/images/drawings/architectural-structural-lines.svg",
+          "exists": true
+        }
+      ]
+    },
+    {
+      "route": "/services/interior-design/",
+      "images": [
+        {
+          "original": "/mpa-3d-logo.webp",
+          "target": "/mpa-3d-logo.webp",
+          "exists": true
+        },
+        {
+          "original": "/murali-patharala-associates-assets/interior_renders/WhatsApp Image 2026-09-23 at 16.42.59 (3).webp",
+          "target": "/murali-patharala-associates-assets/interior_renders/WhatsApp Image 2026-09-23 at 16.42.59 (3).webp",
+          "exists": true
+        },
+        {
+          "original": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.33.webp",
+          "target": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.33.webp",
+          "exists": true
+        },
+        {
+          "original": "/murali-patharala-associates-assets/interior_renders/WhatsApp Image 2026-09-23 at 16.22.23 (5).webp",
+          "target": "/murali-patharala-associates-assets/interior_renders/WhatsApp Image 2026-09-23 at 16.22.23 (5).webp",
+          "exists": true
+        },
+        {
+          "original": "/murali-patharala-associates-assets/interior_renders/WhatsApp Image 2026-09-23 at 16.42.59 (4).webp",
+          "target": "/murali-patharala-associates-assets/interior_renders/WhatsApp Image 2026-09-23 at 16.42.59 (4).webp",
+          "exists": true
+        },
+        {
+          "original": "/murali-patharala-associates-assets/interior_renders/WhatsApp Image 2026-09-23 at 16.22.24 (4).webp",
+          "target": "/murali-patharala-associates-assets/interior_renders/WhatsApp Image 2026-09-23 at 16.22.24 (4).webp",
+          "exists": true
+        },
+        {
+          "original": "/murali-patharala-associates-assets/interior_renders/WhatsApp Image 2026-09-23 at 16.42.59.webp",
+          "target": "/murali-patharala-associates-assets/interior_renders/WhatsApp Image 2026-09-23 at 16.42.59.webp",
+          "exists": true
+        },
+        {
+          "original": "/murali-patharala-associates-assets/interior_renders/WhatsApp Image 2026-09-23 at 16.22.24 (2).webp",
+          "target": "/murali-patharala-associates-assets/interior_renders/WhatsApp Image 2026-09-23 at 16.22.24 (2).webp",
+          "exists": true
+        },
+        {
+          "original": "/murali-patharala-associates-assets/interior_renders/WhatsApp Image 2026-09-23 at 16.42.57 (7).webp",
+          "target": "/murali-patharala-associates-assets/interior_renders/WhatsApp Image 2026-09-23 at 16.42.57 (7).webp",
+          "exists": true
+        },
+        {
+          "original": "/murali-patharala-associates-assets/interior_renders/WhatsApp Image 2026-09-23 at 16.42.58.webp",
+          "target": "/murali-patharala-associates-assets/interior_renders/WhatsApp Image 2026-09-23 at 16.42.58.webp",
+          "exists": true
+        },
+        {
+          "original": "/murali-patharala-associates-assets/interior_renders/WhatsApp Image 2026-09-23 at 16.42.59 (1).webp",
+          "target": "/murali-patharala-associates-assets/interior_renders/WhatsApp Image 2026-09-23 at 16.42.59 (1).webp",
+          "exists": true
+        },
+        {
+          "original": "/images/architecture/hero-villa-twilight.webp",
+          "target": "/images/architecture/hero-villa-twilight.webp",
+          "exists": true
+        },
+        {
+          "original": "/favicon.ico",
+          "target": "/favicon.ico",
+          "exists": true
+        },
+        {
+          "original": "/favicon-16x16.png",
+          "target": "/favicon-16x16.png",
+          "exists": true
+        },
+        {
+          "original": "/favicon-32x32.png",
+          "target": "/favicon-32x32.png",
+          "exists": true
+        },
+        {
+          "original": "/icon.png",
+          "target": "/icon.png",
+          "exists": true
+        },
+        {
+          "original": "/apple-icon.png",
+          "target": "/apple-icon.png",
+          "exists": true
+        },
+        {
+          "original": "/images/drawings/architectural-master-plan.svg",
+          "target": "/images/drawings/architectural-master-plan.svg",
+          "exists": true
+        },
+        {
+          "original": "/images/drawings/architectural-structural-lines.svg",
+          "target": "/images/drawings/architectural-structural-lines.svg",
+          "exists": true
+        }
+      ]
+    },
+    {
+      "route": "/services/turnkey-construction/",
+      "images": [
+        {
+          "original": "/mpa-3d-logo.webp",
+          "target": "/mpa-3d-logo.webp",
+          "exists": true
+        },
+        {
+          "original": "/murali-patharala-associates-assets/exterior_renders/WhatsApp Image 2026-09-23 at 16.17.56 (2).webp",
+          "target": "/murali-patharala-associates-assets/exterior_renders/WhatsApp Image 2026-09-23 at 16.17.56 (2).webp",
+          "exists": true
+        },
+        {
+          "original": "/murali-patharala-associates-assets/exterior_renders/JAMEE2.webp",
+          "target": "/murali-patharala-associates-assets/exterior_renders/JAMEE2.webp",
+          "exists": true
+        },
+        {
+          "original": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.33.webp",
+          "target": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.33.webp",
+          "exists": true
+        },
+        {
+          "original": "/murali-patharala-associates-assets/exterior_renders/WhatsApp Image 2026-09-23 at 17.38.22 (1).webp",
+          "target": "/murali-patharala-associates-assets/exterior_renders/WhatsApp Image 2026-09-23 at 17.38.22 (1).webp",
+          "exists": true
+        },
+        {
+          "original": "/images/service-stages/design-planning.webp",
+          "target": "/images/service-stages/design-planning.webp",
+          "exists": true
+        },
+        {
+          "original": "/images/service-stages/engineering-permits.webp",
+          "target": "/images/service-stages/engineering-permits.webp",
+          "exists": true
+        },
+        {
+          "original": "/images/service-stages/foundation-rcc.webp",
+          "target": "/images/service-stages/foundation-rcc.webp",
+          "exists": true
+        },
+        {
+          "original": "/images/service-stages/plumbing-waterproofing.webp",
+          "target": "/images/service-stages/plumbing-waterproofing.webp",
+          "exists": true
+        },
+        {
+          "original": "/images/service-stages/interior-fitout.webp",
+          "target": "/images/service-stages/interior-fitout.webp",
+          "exists": true
+        },
+        {
+          "original": "/images/service-stages/home-handover.webp",
+          "target": "/images/service-stages/home-handover.webp",
+          "exists": true
+        },
+        {
+          "original": "/images/service-stages/soil-assessment.webp",
+          "target": "/images/service-stages/soil-assessment.webp",
+          "exists": true
+        },
+        {
+          "original": "/murali-patharala-associates-assets/completed_interiors/WhatsApp Image 2026-09-23 at 16.40.29.webp",
+          "target": "/murali-patharala-associates-assets/completed_interiors/WhatsApp Image 2026-09-23 at 16.40.29.webp",
+          "exists": true
+        },
+        {
+          "original": "/images/architecture/hero-villa-twilight.webp",
+          "target": "/images/architecture/hero-villa-twilight.webp",
+          "exists": true
+        },
+        {
+          "original": "/favicon.ico",
+          "target": "/favicon.ico",
+          "exists": true
+        },
+        {
+          "original": "/favicon-16x16.png",
+          "target": "/favicon-16x16.png",
+          "exists": true
+        },
+        {
+          "original": "/favicon-32x32.png",
+          "target": "/favicon-32x32.png",
+          "exists": true
+        },
+        {
+          "original": "/icon.png",
+          "target": "/icon.png",
+          "exists": true
+        },
+        {
+          "original": "/apple-icon.png",
+          "target": "/apple-icon.png",
+          "exists": true
+        },
+        {
+          "original": "/images/drawings/architectural-master-plan.svg",
+          "target": "/images/drawings/architectural-master-plan.svg",
+          "exists": true
+        },
+        {
+          "original": "/images/drawings/architectural-structural-lines.svg",
+          "target": "/images/drawings/architectural-structural-lines.svg",
+          "exists": true
+        }
+      ]
+    },
+    {
+      "route": "/design-package/",
+      "images": [
+        {
+          "original": "/mpa-3d-logo.webp",
+          "target": "/mpa-3d-logo.webp",
+          "exists": true
+        },
+        {
+          "original": "/images/architecture/architectural-blueprint-draft.webp",
+          "target": "/images/architecture/architectural-blueprint-draft.webp",
+          "exists": true
+        },
+        {
+          "original": "/images/architecture/hero-villa-twilight.webp",
+          "target": "/images/architecture/hero-villa-twilight.webp",
+          "exists": true
+        },
+        {
+          "original": "/favicon.ico",
+          "target": "/favicon.ico",
+          "exists": true
+        },
+        {
+          "original": "/favicon-16x16.png",
+          "target": "/favicon-16x16.png",
+          "exists": true
+        },
+        {
+          "original": "/favicon-32x32.png",
+          "target": "/favicon-32x32.png",
+          "exists": true
+        },
+        {
+          "original": "/icon.png",
+          "target": "/icon.png",
+          "exists": true
+        },
+        {
+          "original": "/apple-icon.png",
+          "target": "/apple-icon.png",
+          "exists": true
+        },
+        {
+          "original": "/images/drawings/architectural-elevation-detail.svg",
+          "target": "/images/drawings/architectural-elevation-detail.svg",
+          "exists": true
+        }
+      ]
+    },
+    {
+      "route": "/construction-package/",
+      "images": [
+        {
+          "original": "/mpa-3d-logo.webp",
+          "target": "/mpa-3d-logo.webp",
+          "exists": true
+        },
+        {
+          "original": "/images/architecture/structural-construction-frame.webp",
+          "target": "/images/architecture/structural-construction-frame.webp",
+          "exists": true
+        },
+        {
+          "original": "/images/architecture/hero-villa-twilight.webp",
+          "target": "/images/architecture/hero-villa-twilight.webp",
+          "exists": true
+        },
+        {
+          "original": "/favicon.ico",
+          "target": "/favicon.ico",
+          "exists": true
+        },
+        {
+          "original": "/favicon-16x16.png",
+          "target": "/favicon-16x16.png",
+          "exists": true
+        },
+        {
+          "original": "/favicon-32x32.png",
+          "target": "/favicon-32x32.png",
+          "exists": true
+        },
+        {
+          "original": "/icon.png",
+          "target": "/icon.png",
+          "exists": true
+        },
+        {
+          "original": "/apple-icon.png",
+          "target": "/apple-icon.png",
+          "exists": true
+        },
+        {
+          "original": "/images/drawings/architectural-elevation-detail.svg",
+          "target": "/images/drawings/architectural-elevation-detail.svg",
+          "exists": true
+        }
+      ]
+    },
+    {
+      "route": "/gallery/",
+      "images": [
+        {
+          "original": "/mpa-3d-logo.webp",
+          "target": "/mpa-3d-logo.webp",
+          "exists": true
+        },
+        {
+          "original": "/murali-patharala-associates-assets/exterior_renders/Govindha Rajan-2026.webp",
+          "target": "/murali-patharala-associates-assets/exterior_renders/Govindha Rajan-2026.webp",
+          "exists": true
+        },
+        {
+          "original": "/murali-patharala-associates-assets/exterior_renders/WhatsApp Image 2026-09-23 at 17.38.22 (2).webp",
+          "target": "/murali-patharala-associates-assets/exterior_renders/WhatsApp Image 2026-09-23 at 17.38.22 (2).webp",
+          "exists": true
+        },
+        {
+          "original": "/murali-patharala-associates-assets/exterior_renders/Sushama John.webp",
+          "target": "/murali-patharala-associates-assets/exterior_renders/Sushama John.webp",
+          "exists": true
+        },
+        {
+          "original": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.33.webp",
+          "target": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.33.webp",
+          "exists": true
+        },
+        {
+          "original": "/murali-patharala-associates-assets/completed_interiors/WhatsApp Image 2026-09-23 at 16.28.01 (2).webp",
+          "target": "/murali-patharala-associates-assets/completed_interiors/WhatsApp Image 2026-09-23 at 16.28.01 (2).webp",
+          "exists": true
+        },
+        {
+          "original": "/murali-patharala-associates-assets/exterior_renders/JAMEE2.webp",
+          "target": "/murali-patharala-associates-assets/exterior_renders/JAMEE2.webp",
+          "exists": true
+        },
+        {
+          "original": "/murali-patharala-associates-assets/interior_renders/WhatsApp Image 2026-09-23 at 16.42.59 (3).webp",
+          "target": "/murali-patharala-associates-assets/interior_renders/WhatsApp Image 2026-09-23 at 16.42.59 (3).webp",
+          "exists": true
+        },
+        {
+          "original": "/murali-patharala-associates-assets/exterior_renders/WhatsApp Image 2026-09-23 at 17.40.31 (1).webp",
+          "target": "/murali-patharala-associates-assets/exterior_renders/WhatsApp Image 2026-09-23 at 17.40.31 (1).webp",
+          "exists": true
+        },
+        {
+          "original": "/murali-patharala-associates-assets/interior_renders/WhatsApp Image 2026-09-23 at 16.42.59 (1).webp",
+          "target": "/murali-patharala-associates-assets/interior_renders/WhatsApp Image 2026-09-23 at 16.42.59 (1).webp",
+          "exists": true
+        },
+        {
+          "original": "/murali-patharala-associates-assets/exterior_renders/WhatsApp Image 2026-09-23 at 16.17.56 (2).webp",
+          "target": "/murali-patharala-associates-assets/exterior_renders/WhatsApp Image 2026-09-23 at 16.17.56 (2).webp",
+          "exists": true
+        },
+        {
+          "original": "/murali-patharala-associates-assets/completed_interiors/WhatsApp Image 2026-09-23 at 16.28.00 (3).webp",
+          "target": "/murali-patharala-associates-assets/completed_interiors/WhatsApp Image 2026-09-23 at 16.28.00 (3).webp",
+          "exists": true
+        },
+        {
+          "original": "/murali-patharala-associates-assets/exterior_renders/selva kumar (1).webp",
+          "target": "/murali-patharala-associates-assets/exterior_renders/selva kumar (1).webp",
+          "exists": true
+        },
+        {
+          "original": "/murali-patharala-associates-assets/interior_renders/WhatsApp Image 2026-09-23 at 16.22.24 (4).webp",
+          "target": "/murali-patharala-associates-assets/interior_renders/WhatsApp Image 2026-09-23 at 16.22.24 (4).webp",
+          "exists": true
+        },
+        {
+          "original": "/murali-patharala-associates-assets/interior_renders/WhatsApp Image 2026-09-23 at 16.42.59 (4).webp",
+          "target": "/murali-patharala-associates-assets/interior_renders/WhatsApp Image 2026-09-23 at 16.42.59 (4).webp",
+          "exists": true
+        },
+        {
+          "original": "/murali-patharala-associates-assets/exterior_renders/AMG.webp",
+          "target": "/murali-patharala-associates-assets/exterior_renders/AMG.webp",
+          "exists": true
+        },
+        {
+          "original": "/murali-patharala-associates-assets/exterior_renders/Jothi Kumar.webp",
+          "target": "/murali-patharala-associates-assets/exterior_renders/Jothi Kumar.webp",
+          "exists": true
+        },
+        {
+          "original": "/murali-patharala-associates-assets/exterior_renders/kribushan.webp",
+          "target": "/murali-patharala-associates-assets/exterior_renders/kribushan.webp",
+          "exists": true
+        },
+        {
+          "original": "/murali-patharala-associates-assets/exterior_renders/modern-residence-exterior-render-wide.webp",
+          "target": "/murali-patharala-associates-assets/exterior_renders/modern-residence-exterior-render-wide.webp",
+          "exists": true
+        },
+        {
+          "original": "/murali-patharala-associates-assets/exterior_renders/RAMESH.webp",
+          "target": "/murali-patharala-associates-assets/exterior_renders/RAMESH.webp",
+          "exists": true
+        },
+        {
+          "original": "/murali-patharala-associates-assets/exterior_renders/VENKATASH1.webp",
+          "target": "/murali-patharala-associates-assets/exterior_renders/VENKATASH1.webp",
+          "exists": true
+        },
+        {
+          "original": "/murali-patharala-associates-assets/exterior_renders/WhatsApp Image 2026-09-23 at 16.11.39.webp",
+          "target": "/murali-patharala-associates-assets/exterior_renders/WhatsApp Image 2026-09-23 at 16.11.39.webp",
+          "exists": true
+        },
+        {
+          "original": "/murali-patharala-associates-assets/exterior_renders/WhatsApp Image 2026-09-23 at 16.17.21.webp",
+          "target": "/murali-patharala-associates-assets/exterior_renders/WhatsApp Image 2026-09-23 at 16.17.21.webp",
+          "exists": true
+        },
+        {
+          "original": "/murali-patharala-associates-assets/exterior_renders/WhatsApp Image 2026-09-23 at 16.17.56 (1).webp",
+          "target": "/murali-patharala-associates-assets/exterior_renders/WhatsApp Image 2026-09-23 at 16.17.56 (1).webp",
+          "exists": true
+        },
+        {
+          "original": "/murali-patharala-associates-assets/exterior_renders/WhatsApp Image 2026-09-23 at 16.28.52.webp",
+          "target": "/murali-patharala-associates-assets/exterior_renders/WhatsApp Image 2026-09-23 at 16.28.52.webp",
+          "exists": true
+        },
+        {
+          "original": "/murali-patharala-associates-assets/exterior_renders/WhatsApp Image 2026-09-23 at 16.36.14.webp",
+          "target": "/murali-patharala-associates-assets/exterior_renders/WhatsApp Image 2026-09-23 at 16.36.14.webp",
+          "exists": true
+        },
+        {
+          "original": "/murali-patharala-associates-assets/exterior_renders/WhatsApp Image 2026-09-23 at 17.38.22 (1).webp",
+          "target": "/murali-patharala-associates-assets/exterior_renders/WhatsApp Image 2026-09-23 at 17.38.22 (1).webp",
+          "exists": true
+        },
+        {
+          "original": "/murali-patharala-associates-assets/exterior_renders/WhatsApp Image 2026-09-23 at 17.38.22.webp",
+          "target": "/murali-patharala-associates-assets/exterior_renders/WhatsApp Image 2026-09-23 at 17.38.22.webp",
+          "exists": true
+        },
+        {
+          "original": "/murali-patharala-associates-assets/exterior_renders/WhatsApp Image 2026-09-23 at 17.40.31.webp",
+          "target": "/murali-patharala-associates-assets/exterior_renders/WhatsApp Image 2026-09-23 at 17.40.31.webp",
+          "exists": true
+        },
+        {
+          "original": "/murali-patharala-associates-assets/interior_renders/WhatsApp Image 2026-09-23 at 16.22.23 (3).webp",
+          "target": "/murali-patharala-associates-assets/interior_renders/WhatsApp Image 2026-09-23 at 16.22.23 (3).webp",
+          "exists": true
+        },
+        {
+          "original": "/murali-patharala-associates-assets/interior_renders/WhatsApp Image 2026-09-23 at 16.22.23 (5).webp",
+          "target": "/murali-patharala-associates-assets/interior_renders/WhatsApp Image 2026-09-23 at 16.22.23 (5).webp",
+          "exists": true
+        },
+        {
+          "original": "/murali-patharala-associates-assets/interior_renders/WhatsApp Image 2026-09-23 at 16.22.23 (8).webp",
+          "target": "/murali-patharala-associates-assets/interior_renders/WhatsApp Image 2026-09-23 at 16.22.23 (8).webp",
+          "exists": true
+        },
+        {
+          "original": "/murali-patharala-associates-assets/interior_renders/WhatsApp Image 2026-09-23 at 16.22.23 (9).webp",
+          "target": "/murali-patharala-associates-assets/interior_renders/WhatsApp Image 2026-09-23 at 16.22.23 (9).webp",
+          "exists": true
+        },
+        {
+          "original": "/murali-patharala-associates-assets/interior_renders/WhatsApp Image 2026-09-23 at 16.22.24 (2).webp",
+          "target": "/murali-patharala-associates-assets/interior_renders/WhatsApp Image 2026-09-23 at 16.22.24 (2).webp",
+          "exists": true
+        },
+        {
+          "original": "/murali-patharala-associates-assets/interior_renders/WhatsApp Image 2026-09-23 at 16.22.24.webp",
+          "target": "/murali-patharala-associates-assets/interior_renders/WhatsApp Image 2026-09-23 at 16.22.24.webp",
+          "exists": true
+        },
+        {
+          "original": "/murali-patharala-associates-assets/interior_renders/WhatsApp Image 2026-09-23 at 16.42.57 (1).webp",
+          "target": "/murali-patharala-associates-assets/interior_renders/WhatsApp Image 2026-09-23 at 16.42.57 (1).webp",
+          "exists": true
+        },
+        {
+          "original": "/murali-patharala-associates-assets/interior_renders/WhatsApp Image 2026-09-23 at 16.42.57 (2).webp",
+          "target": "/murali-patharala-associates-assets/interior_renders/WhatsApp Image 2026-09-23 at 16.42.57 (2).webp",
+          "exists": true
+        },
+        {
+          "original": "/murali-patharala-associates-assets/interior_renders/WhatsApp Image 2026-09-23 at 16.42.57 (3).webp",
+          "target": "/murali-patharala-associates-assets/interior_renders/WhatsApp Image 2026-09-23 at 16.42.57 (3).webp",
+          "exists": true
+        },
+        {
+          "original": "/murali-patharala-associates-assets/interior_renders/WhatsApp Image 2026-09-23 at 16.42.57 (5).webp",
+          "target": "/murali-patharala-associates-assets/interior_renders/WhatsApp Image 2026-09-23 at 16.42.57 (5).webp",
+          "exists": true
+        },
+        {
+          "original": "/murali-patharala-associates-assets/interior_renders/WhatsApp Image 2026-09-23 at 16.42.57 (6).webp",
+          "target": "/murali-patharala-associates-assets/interior_renders/WhatsApp Image 2026-09-23 at 16.42.57 (6).webp",
+          "exists": true
+        },
+        {
+          "original": "/murali-patharala-associates-assets/interior_renders/WhatsApp Image 2026-09-23 at 16.42.57 (7).webp",
+          "target": "/murali-patharala-associates-assets/interior_renders/WhatsApp Image 2026-09-23 at 16.42.57 (7).webp",
+          "exists": true
+        },
+        {
+          "original": "/murali-patharala-associates-assets/interior_renders/WhatsApp Image 2026-09-23 at 16.42.57.webp",
+          "target": "/murali-patharala-associates-assets/interior_renders/WhatsApp Image 2026-09-23 at 16.42.57.webp",
+          "exists": true
+        },
+        {
+          "original": "/murali-patharala-associates-assets/interior_renders/WhatsApp Image 2026-09-23 at 16.42.58.webp",
+          "target": "/murali-patharala-associates-assets/interior_renders/WhatsApp Image 2026-09-23 at 16.42.58.webp",
+          "exists": true
+        },
+        {
+          "original": "/murali-patharala-associates-assets/interior_renders/WhatsApp Image 2026-09-23 at 16.42.59 (2).webp",
+          "target": "/murali-patharala-associates-assets/interior_renders/WhatsApp Image 2026-09-23 at 16.42.59 (2).webp",
+          "exists": true
+        },
+        {
+          "original": "/murali-patharala-associates-assets/interior_renders/WhatsApp Image 2026-09-23 at 16.42.59 (5).webp",
+          "target": "/murali-patharala-associates-assets/interior_renders/WhatsApp Image 2026-09-23 at 16.42.59 (5).webp",
+          "exists": true
+        },
+        {
+          "original": "/murali-patharala-associates-assets/interior_renders/WhatsApp Image 2026-09-23 at 16.42.59.webp",
+          "target": "/murali-patharala-associates-assets/interior_renders/WhatsApp Image 2026-09-23 at 16.42.59.webp",
+          "exists": true
+        },
+        {
+          "original": "/murali-patharala-associates-assets/completed_interiors/WhatsApp Image 2026-09-23 at 16.28.00 (1).webp",
+          "target": "/murali-patharala-associates-assets/completed_interiors/WhatsApp Image 2026-09-23 at 16.28.00 (1).webp",
+          "exists": true
+        },
+        {
+          "original": "/murali-patharala-associates-assets/completed_interiors/WhatsApp Image 2026-09-23 at 16.28.00 (2).webp",
+          "target": "/murali-patharala-associates-assets/completed_interiors/WhatsApp Image 2026-09-23 at 16.28.00 (2).webp",
+          "exists": true
+        },
+        {
+          "original": "/murali-patharala-associates-assets/completed_interiors/WhatsApp Image 2026-09-23 at 16.28.00 (4).webp",
+          "target": "/murali-patharala-associates-assets/completed_interiors/WhatsApp Image 2026-09-23 at 16.28.00 (4).webp",
+          "exists": true
+        },
+        {
+          "original": "/murali-patharala-associates-assets/completed_interiors/WhatsApp Image 2026-09-23 at 16.28.00 (5).webp",
+          "target": "/murali-patharala-associates-assets/completed_interiors/WhatsApp Image 2026-09-23 at 16.28.00 (5).webp",
+          "exists": true
+        },
+        {
+          "original": "/murali-patharala-associates-assets/completed_interiors/WhatsApp Image 2026-09-23 at 16.28.00 (6).webp",
+          "target": "/murali-patharala-associates-assets/completed_interiors/WhatsApp Image 2026-09-23 at 16.28.00 (6).webp",
+          "exists": true
+        },
+        {
+          "original": "/murali-patharala-associates-assets/completed_interiors/WhatsApp Image 2026-09-23 at 16.28.00.webp",
+          "target": "/murali-patharala-associates-assets/completed_interiors/WhatsApp Image 2026-09-23 at 16.28.00.webp",
+          "exists": true
+        },
+        {
+          "original": "/murali-patharala-associates-assets/completed_interiors/WhatsApp Image 2026-09-23 at 16.28.01 (1).webp",
+          "target": "/murali-patharala-associates-assets/completed_interiors/WhatsApp Image 2026-09-23 at 16.28.01 (1).webp",
+          "exists": true
+        },
+        {
+          "original": "/murali-patharala-associates-assets/completed_interiors/WhatsApp Image 2026-09-23 at 16.28.01 (3).webp",
+          "target": "/murali-patharala-associates-assets/completed_interiors/WhatsApp Image 2026-09-23 at 16.28.01 (3).webp",
+          "exists": true
+        },
+        {
+          "original": "/murali-patharala-associates-assets/completed_interiors/WhatsApp Image 2026-09-23 at 16.28.01.webp",
+          "target": "/murali-patharala-associates-assets/completed_interiors/WhatsApp Image 2026-09-23 at 16.28.01.webp",
+          "exists": true
+        },
+        {
+          "original": "/murali-patharala-associates-assets/completed_interiors/WhatsApp Image 2026-09-23 at 16.39.53.webp",
+          "target": "/murali-patharala-associates-assets/completed_interiors/WhatsApp Image 2026-09-23 at 16.39.53.webp",
+          "exists": true
+        },
+        {
+          "original": "/murali-patharala-associates-assets/completed_interiors/WhatsApp Image 2026-09-23 at 16.40.29.webp",
+          "target": "/murali-patharala-associates-assets/completed_interiors/WhatsApp Image 2026-09-23 at 16.40.29.webp",
+          "exists": true
+        },
+        {
+          "original": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.27 (1).webp",
+          "target": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.27 (1).webp",
+          "exists": true
+        },
+        {
+          "original": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.27.webp",
+          "target": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.27.webp",
+          "exists": true
+        },
+        {
+          "original": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.28 (1).webp",
+          "target": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.28 (1).webp",
+          "exists": true
+        },
+        {
+          "original": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.28 (2).webp",
+          "target": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.28 (2).webp",
+          "exists": true
+        },
+        {
+          "original": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.28.webp",
+          "target": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.28.webp",
+          "exists": true
+        },
+        {
+          "original": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.29 (1).webp",
+          "target": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.29 (1).webp",
+          "exists": true
+        },
+        {
+          "original": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.29.webp",
+          "target": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.29.webp",
+          "exists": true
+        },
+        {
+          "original": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.30 (1).webp",
+          "target": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.30 (1).webp",
+          "exists": true
+        },
+        {
+          "original": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.30.webp",
+          "target": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.30.webp",
+          "exists": true
+        },
+        {
+          "original": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.31.webp",
+          "target": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.31.webp",
+          "exists": true
+        },
+        {
+          "original": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.33 (1).webp",
+          "target": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.33 (1).webp",
+          "exists": true
+        },
+        {
+          "original": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.34 (1).webp",
+          "target": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.34 (1).webp",
+          "exists": true
+        },
+        {
+          "original": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.34 (2).webp",
+          "target": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.34 (2).webp",
+          "exists": true
+        },
+        {
+          "original": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.34.webp",
+          "target": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.34.webp",
+          "exists": true
+        },
+        {
+          "original": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.35 (1).webp",
+          "target": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.35 (1).webp",
+          "exists": true
+        },
+        {
+          "original": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.35.webp",
+          "target": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.35.webp",
+          "exists": true
+        },
+        {
+          "original": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.37 (1).webp",
+          "target": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.37 (1).webp",
+          "exists": true
+        },
+        {
+          "original": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.37.webp",
+          "target": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.37.webp",
+          "exists": true
+        },
+        {
+          "original": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.38 (1).webp",
+          "target": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.38 (1).webp",
+          "exists": true
+        },
+        {
+          "original": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.38.webp",
+          "target": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.38.webp",
+          "exists": true
+        },
+        {
+          "original": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.39 (1).webp",
+          "target": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.39 (1).webp",
+          "exists": true
+        },
+        {
+          "original": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.39.webp",
+          "target": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.39.webp",
+          "exists": true
+        },
+        {
+          "original": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.40 (1).webp",
+          "target": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.40 (1).webp",
+          "exists": true
+        },
+        {
+          "original": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.40.webp",
+          "target": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.40.webp",
+          "exists": true
+        },
+        {
+          "original": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.41 (1).webp",
+          "target": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.41 (1).webp",
+          "exists": true
+        },
+        {
+          "original": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.42 (1).webp",
+          "target": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.42 (1).webp",
+          "exists": true
+        },
+        {
+          "original": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.42.webp",
+          "target": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.42.webp",
+          "exists": true
+        },
+        {
+          "original": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.43 (1).webp",
+          "target": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.43 (1).webp",
+          "exists": true
+        },
+        {
+          "original": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.43.webp",
+          "target": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.43.webp",
+          "exists": true
+        },
+        {
+          "original": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.44 (1).webp",
+          "target": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.44 (1).webp",
+          "exists": true
+        },
+        {
+          "original": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.44.webp",
+          "target": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.44.webp",
+          "exists": true
+        },
+        {
+          "original": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.45 (1).webp",
+          "target": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.45 (1).webp",
+          "exists": true
+        },
+        {
+          "original": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.45.webp",
+          "target": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.45.webp",
+          "exists": true
+        },
+        {
+          "original": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.46 (1).webp",
+          "target": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.46 (1).webp",
+          "exists": true
+        },
+        {
+          "original": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.46.webp",
+          "target": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.46.webp",
+          "exists": true
+        },
+        {
+          "original": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.47 (1).webp",
+          "target": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.47 (1).webp",
+          "exists": true
+        },
+        {
+          "original": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.47.webp",
+          "target": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.47.webp",
+          "exists": true
+        },
+        {
+          "original": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.48 (1).webp",
+          "target": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.48 (1).webp",
+          "exists": true
+        },
+        {
+          "original": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.48.webp",
+          "target": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.48.webp",
+          "exists": true
+        },
+        {
+          "original": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.49 (1).webp",
+          "target": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.49 (1).webp",
+          "exists": true
+        },
+        {
+          "original": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.49.webp",
+          "target": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.49.webp",
+          "exists": true
+        },
+        {
+          "original": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.50 (1).webp",
+          "target": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.50 (1).webp",
+          "exists": true
+        },
+        {
+          "original": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.50.webp",
+          "target": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.50.webp",
+          "exists": true
+        },
+        {
+          "original": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.51 (1).webp",
+          "target": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.51 (1).webp",
+          "exists": true
+        },
+        {
+          "original": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.51.webp",
+          "target": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.51.webp",
+          "exists": true
+        },
+        {
+          "original": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.52 (1).webp",
+          "target": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.52 (1).webp",
+          "exists": true
+        },
+        {
+          "original": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.52.webp",
+          "target": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.52.webp",
+          "exists": true
+        },
+        {
+          "original": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.53 (1).webp",
+          "target": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.53 (1).webp",
+          "exists": true
+        },
+        {
+          "original": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.54.webp",
+          "target": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.54.webp",
+          "exists": true
+        },
+        {
+          "original": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.55 (1).webp",
+          "target": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.55 (1).webp",
+          "exists": true
+        },
+        {
+          "original": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.55.webp",
+          "target": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.55.webp",
+          "exists": true
+        },
+        {
+          "original": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.56 (1).webp",
+          "target": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.56 (1).webp",
+          "exists": true
+        },
+        {
+          "original": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.56 (2).webp",
+          "target": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.56 (2).webp",
+          "exists": true
+        },
+        {
+          "original": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.57 (1).webp",
+          "target": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.57 (1).webp",
+          "exists": true
+        },
+        {
+          "original": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.57.webp",
+          "target": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.57.webp",
+          "exists": true
+        },
+        {
+          "original": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.58 (1).webp",
+          "target": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.58 (1).webp",
+          "exists": true
+        },
+        {
+          "original": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.58.webp",
+          "target": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.58.webp",
+          "exists": true
+        },
+        {
+          "original": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.59 (1).webp",
+          "target": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.59 (1).webp",
+          "exists": true
+        },
+        {
+          "original": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.59.webp",
+          "target": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.59.webp",
+          "exists": true
+        },
+        {
+          "original": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.35.00.webp",
+          "target": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.35.00.webp",
+          "exists": true
+        },
+        {
+          "original": "/images/architecture/hero-villa-twilight.webp",
+          "target": "/images/architecture/hero-villa-twilight.webp",
+          "exists": true
+        },
+        {
+          "original": "/favicon.ico",
+          "target": "/favicon.ico",
+          "exists": true
+        },
+        {
+          "original": "/favicon-16x16.png",
+          "target": "/favicon-16x16.png",
+          "exists": true
+        },
+        {
+          "original": "/favicon-32x32.png",
+          "target": "/favicon-32x32.png",
+          "exists": true
+        },
+        {
+          "original": "/icon.png",
+          "target": "/icon.png",
+          "exists": true
+        },
+        {
+          "original": "/apple-icon.png",
+          "target": "/apple-icon.png",
+          "exists": true
+        }
+      ]
+    },
+    {
+      "route": "/contact/",
+      "images": [
+        {
+          "original": "/mpa-3d-logo.webp",
+          "target": "/mpa-3d-logo.webp",
+          "exists": true
+        },
+        {
+          "original": "/images/architecture/atelier-design-studio.webp",
+          "target": "/images/architecture/architectural-blueprint-draft.webp",
+          "exists": true
+        },
+        {
+          "original": "/images/architecture/hero-villa-twilight.webp",
+          "target": "/images/architecture/hero-villa-twilight.webp",
+          "exists": true
+        },
+        {
+          "original": "/favicon.ico",
+          "target": "/favicon.ico",
+          "exists": true
+        },
+        {
+          "original": "/favicon-16x16.png",
+          "target": "/favicon-16x16.png",
+          "exists": true
+        },
+        {
+          "original": "/favicon-32x32.png",
+          "target": "/favicon-32x32.png",
+          "exists": true
+        },
+        {
+          "original": "/icon.png",
+          "target": "/icon.png",
+          "exists": true
+        },
+        {
+          "original": "/apple-icon.png",
+          "target": "/apple-icon.png",
+          "exists": true
+        }
+      ]
+    },
+    {
+      "route": "/privacy/",
+      "images": [
+        {
+          "original": "/mpa-3d-logo.webp",
+          "target": "/mpa-3d-logo.webp",
+          "exists": true
+        },
+        {
+          "original": "/images/architecture/hero-villa-twilight.webp",
+          "target": "/images/architecture/hero-villa-twilight.webp",
+          "exists": true
+        },
+        {
+          "original": "/favicon.ico",
+          "target": "/favicon.ico",
+          "exists": true
+        },
+        {
+          "original": "/favicon-16x16.png",
+          "target": "/favicon-16x16.png",
+          "exists": true
+        },
+        {
+          "original": "/favicon-32x32.png",
+          "target": "/favicon-32x32.png",
+          "exists": true
+        },
+        {
+          "original": "/icon.png",
+          "target": "/icon.png",
+          "exists": true
+        },
+        {
+          "original": "/apple-icon.png",
+          "target": "/apple-icon.png",
+          "exists": true
+        }
+      ]
+    },
+    {
+      "route": "/terms/",
+      "images": [
+        {
+          "original": "/mpa-3d-logo.webp",
+          "target": "/mpa-3d-logo.webp",
+          "exists": true
+        },
+        {
+          "original": "/images/architecture/hero-villa-twilight.webp",
+          "target": "/images/architecture/hero-villa-twilight.webp",
+          "exists": true
+        },
+        {
+          "original": "/favicon.ico",
+          "target": "/favicon.ico",
+          "exists": true
+        },
+        {
+          "original": "/favicon-16x16.png",
+          "target": "/favicon-16x16.png",
+          "exists": true
+        },
+        {
+          "original": "/favicon-32x32.png",
+          "target": "/favicon-32x32.png",
+          "exists": true
+        },
+        {
+          "original": "/icon.png",
+          "target": "/icon.png",
+          "exists": true
+        },
+        {
+          "original": "/apple-icon.png",
+          "target": "/apple-icon.png",
+          "exists": true
+        }
+      ]
+    },
+    {
+      "route": "/brand-preview/",
+      "images": [
+        {
+          "original": "/murali-patharala-associates-assets/brand_identity/WhatsApp Image 2026-09-23 at 16.52.36 (1).webp",
+          "target": "/murali-patharala-associates-assets/brand_identity/WhatsApp Image 2026-09-23 at 16.52.36 (1).webp",
+          "exists": true
+        },
+        {
+          "original": "/murali-patharala-associates-assets/exterior_renders/Govindha Rajan-2026.webp",
+          "target": "/murali-patharala-associates-assets/exterior_renders/Govindha Rajan-2026.webp",
+          "exists": true
+        },
+        {
+          "original": "/murali-patharala-associates-assets/brand_identity/WhatsApp Image 2026-09-23 at 16.52.36.webp",
+          "target": "/murali-patharala-associates-assets/brand_identity/WhatsApp Image 2026-09-23 at 16.52.36.webp",
+          "exists": true
+        },
+        {
+          "original": "/favicon.ico",
+          "target": "/favicon.ico",
+          "exists": true
+        },
+        {
+          "original": "/favicon-16x16.png",
+          "target": "/favicon-16x16.png",
+          "exists": true
+        },
+        {
+          "original": "/favicon-32x32.png",
+          "target": "/favicon-32x32.png",
+          "exists": true
+        },
+        {
+          "original": "/icon.png",
+          "target": "/icon.png",
+          "exists": true
+        },
+        {
+          "original": "/apple-icon.png",
+          "target": "/apple-icon.png",
+          "exists": true
+        }
+      ]
+    }
+  ],
+  "missingBeforeImages": [],
+  "css": [
+    {
+      "file": "app/(site)/ArchFoundationSpotlight.module.css",
+      "unchanged": true
+    },
+    {
+      "file": "app/(site)/BeforeAfter.module.css",
+      "unchanged": true
+    },
+    {
+      "file": "app/(site)/DesignDevelopmentCards.module.css",
+      "unchanged": true
+    },
+    {
+      "file": "app/(site)/HeroSection.module.css",
+      "unchanged": true
+    },
+    {
+      "file": "app/(site)/HomeStorySections.module.css",
+      "unchanged": true
+    },
+    {
+      "file": "app/(site)/LegalPage.module.css",
+      "unchanged": true
+    },
+    {
+      "file": "app/(site)/ServicesSection.module.css",
+      "unchanged": true
+    },
+    {
+      "file": "app/(site)/about/AboutPage.module.css",
+      "unchanged": true
+    },
+    {
+      "file": "app/(site)/about/EvolutionTimeline.module.css",
+      "unchanged": true
+    },
+    {
+      "file": "app/(site)/services/ArchitecturalPlans.module.css",
+      "unchanged": true
+    },
+    {
+      "file": "app/(site)/services/ThreeDimensionalPlans.module.css",
+      "unchanged": true
+    },
+    {
+      "file": "app/brand-preview/preview.module.css",
+      "unchanged": true
+    },
+    {
+      "file": "app/globals.css",
+      "unchanged": true
+    },
+    {
+      "file": "components/SocialLinks.module.css",
+      "unchanged": true
+    }
+  ],
+  "gallerySources": [
+    {
+      "file": "app/(site)/GalleryClient.tsx",
+      "unchanged": true
+    },
+    {
+      "file": "app/(site)/gallery/page.tsx",
+      "unchanged": true
+    },
+    {
+      "file": "lib/projectArchive.ts",
+      "unchanged": true
+    },
+    {
+      "file": "lib/siteAssets.ts",
+      "unchanged": true
+    }
+  ]
+}

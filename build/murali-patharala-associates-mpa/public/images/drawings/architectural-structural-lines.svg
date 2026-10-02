@@ -97,7 +97,7 @@
     <circle cx="460" cy="380" r="5" fill="#EA580C" />
 
     <text x="230" y="40" fill="#EA580C" font-family="'Work Sans', sans-serif" font-size="12" font-weight="bold" text-anchor="middle" stroke="none" letter-spacing="2">SEISMIC ZONE III RCC FRAME ANALYSIS</text>
-    <text x="230" y="60" fill="currentColor" fill-opacity="0.6" font-family="'Courier New', monospace" font-size="9" text-anchor="middle" stroke="none">STAAD.PRO FINITE ELEMENT SIMULATION &bull; IS 456:2000 COMPLIANT</text>
-    <text x="230" y="415" fill="currentColor" fill-opacity="0.8" font-family="'Courier New', monospace" font-size="10" text-anchor="middle" stroke="none">M25 CONCRETE &bull; 28-DAY CUBE STRENGTH 25 N/mm²</text>
+    <text x="230" y="60" fill="currentColor" fill-opacity="0.6" font-family="'Courier New', monospace" font-size="9" text-anchor="middle" stroke="none">STAAD.PRO FINITE ELEMENT SIMULATION &#8226; IS 456:2000 COMPLIANT</text>
+    <text x="230" y="415" fill="currentColor" fill-opacity="0.8" font-family="'Courier New', monospace" font-size="10" text-anchor="middle" stroke="none">M25 CONCRETE &#8226; 28-DAY CUBE STRENGTH 25 N/mm²</text>
   </g>
 </svg>

@@ -1,0 +1,289 @@
+{
+  "route": "/services/",
+  "width": 390,
+  "title": "Architecture, Interiors, Construction & Consultancy Services | Murali Patharala & Associates",
+  "images": [
+    {
+      "src": "/mpa-3d-logo-small.webp",
+      "alt": "",
+      "loaded": true,
+      "naturalWidth": 128,
+      "naturalHeight": 128,
+      "displayWidth": 42,
+      "displayHeight": 42,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/images/architecture/architectural-blueprint-draft.webp",
+      "alt": "",
+      "loaded": true,
+      "naturalWidth": 1376,
+      "naturalHeight": 768,
+      "displayWidth": 390,
+      "displayHeight": 552,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/murali-patharala-associates-assets/exterior_renders/JAMEE2.webp",
+      "alt": "Contemporary residence rendered at dusk with layered stone and glass facade",
+      "loaded": true,
+      "naturalWidth": 1920,
+      "naturalHeight": 1358,
+      "displayWidth": 342,
+      "displayHeight": 257,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/murali-patharala-associates-assets/exterior_renders/WhatsApp Image 2026-09-23 at 17.38.22 (1).webp",
+      "alt": "Contemporary three-storey residential design with warm facade lighting",
+      "loaded": true,
+      "naturalWidth": 1340,
+      "naturalHeight": 1600,
+      "displayWidth": 342,
+      "displayHeight": 257,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/murali-patharala-associates-assets/interior_renders/WhatsApp Image 2026-09-23 at 16.42.59 (3).webp",
+      "alt": "Double-height luxury living hall with curved marble staircase, internal courtyard, and onyx wall designed by Ar. Murali Patharala",
+      "loaded": true,
+      "naturalWidth": 1600,
+      "naturalHeight": 1067,
+      "displayWidth": 342,
+      "displayHeight": 257,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/murali-patharala-associates-assets/exterior_renders/WhatsApp Image 2026-09-23 at 16.17.56 (2).webp",
+      "alt": "Contemporary timber and stone residence visualization from the MPA project library",
+      "loaded": true,
+      "naturalWidth": 1600,
+      "naturalHeight": 1200,
+      "displayWidth": 342,
+      "displayHeight": 257,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/images/architecture/site-surveying-raw.webp",
+      "alt": "Surveyors assessing a residential site",
+      "loaded": true,
+      "naturalWidth": 1376,
+      "naturalHeight": 768,
+      "displayWidth": 340,
+      "displayHeight": 212,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/images/service-stages/design-planning.webp",
+      "alt": "Architects developing a home design around plans and a scale model",
+      "loaded": true,
+      "naturalWidth": 1586,
+      "naturalHeight": 992,
+      "displayWidth": 340,
+      "displayHeight": 212,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/images/architecture/architectural-blueprint-draft.webp",
+      "alt": "Architectural working drawings and a building model on a drafting table",
+      "loaded": true,
+      "naturalWidth": 1376,
+      "naturalHeight": 768,
+      "displayWidth": 340,
+      "displayHeight": 212,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/images/service-stages/engineering-permits.webp",
+      "alt": "Project team reviewing drawings and documents together",
+      "loaded": true,
+      "naturalWidth": 1586,
+      "naturalHeight": 992,
+      "displayWidth": 340,
+      "displayHeight": 212,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/images/service-stages/site-supervision.webp",
+      "alt": "Engineers reviewing progress at an active construction site",
+      "loaded": true,
+      "naturalWidth": 1586,
+      "naturalHeight": 992,
+      "displayWidth": 340,
+      "displayHeight": 212,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/images/architecture/staad-structural-engineering.webp",
+      "alt": "Structural engineering team reviewing digital building analysis",
+      "loaded": true,
+      "naturalWidth": 1376,
+      "naturalHeight": 768,
+      "displayWidth": 340,
+      "displayHeight": 212,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/images/architecture/cmda-sanction-drafting.webp",
+      "alt": "Architectural approval drawings prepared for authority review",
+      "loaded": true,
+      "naturalWidth": 1376,
+      "naturalHeight": 768,
+      "displayWidth": 340,
+      "displayHeight": 212,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/images/architecture/passive-timber-screens.webp",
+      "alt": "Shaded building facade with passive screens and planting",
+      "loaded": true,
+      "naturalWidth": 1376,
+      "naturalHeight": 768,
+      "displayWidth": 340,
+      "displayHeight": 212,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/images/service-stages/home-handover.webp",
+      "alt": "Residents meeting the project team at their completed home",
+      "loaded": true,
+      "naturalWidth": 1586,
+      "naturalHeight": 992,
+      "displayWidth": 340,
+      "displayHeight": 212,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/images/architecture/hero-villa-twilight.webp",
+      "alt": "",
+      "loaded": true,
+      "naturalWidth": 1376,
+      "naturalHeight": 768,
+      "displayWidth": 390,
+      "displayHeight": 1668,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/mpa-3d-logo-small.webp",
+      "alt": "",
+      "loaded": true,
+      "naturalWidth": 128,
+      "naturalHeight": 128,
+      "displayWidth": 44,
+      "displayHeight": 44,
+      "fit": "fill",
+      "hidden": false
+    }
+  ],
+  "backgrounds": [],
+  "decoded": [
+    {
+      "src": "/mpa-3d-logo-small.webp",
+      "ok": true,
+      "width": 128,
+      "height": 128
+    },
+    {
+      "src": "/images/architecture/architectural-blueprint-draft.webp",
+      "ok": true,
+      "width": 1376,
+      "height": 768
+    },
+    {
+      "src": "/murali-patharala-associates-assets/exterior_renders/JAMEE2.webp",
+      "ok": true,
+      "width": 1920,
+      "height": 1358
+    },
+    {
+      "src": "/murali-patharala-associates-assets/exterior_renders/WhatsApp Image 2026-09-23 at 17.38.22 (1).webp",
+      "ok": true,
+      "width": 1340,
+      "height": 1600
+    },
+    {
+      "src": "/murali-patharala-associates-assets/interior_renders/WhatsApp Image 2026-09-23 at 16.42.59 (3).webp",
+      "ok": true,
+      "width": 1600,
+      "height": 1067
+    },
+    {
+      "src": "/murali-patharala-associates-assets/exterior_renders/WhatsApp Image 2026-09-23 at 16.17.56 (2).webp",
+      "ok": true,
+      "width": 1600,
+      "height": 1200
+    },
+    {
+      "src": "/images/architecture/site-surveying-raw.webp",
+      "ok": true,
+      "width": 1376,
+      "height": 768
+    },
+    {
+      "src": "/images/service-stages/design-planning.webp",
+      "ok": true,
+      "width": 1586,
+      "height": 992
+    },
+    {
+      "src": "/images/service-stages/engineering-permits.webp",
+      "ok": true,
+      "width": 1586,
+      "height": 992
+    },
+    {
+      "src": "/images/service-stages/site-supervision.webp",
+      "ok": true,
+      "width": 1586,
+      "height": 992
+    },
+    {
+      "src": "/images/architecture/staad-structural-engineering.webp",
+      "ok": true,
+      "width": 1376,
+      "height": 768
+    },
+    {
+      "src": "/images/architecture/cmda-sanction-drafting.webp",
+      "ok": true,
+      "width": 1376,
+      "height": 768
+    },
+    {
+      "src": "/images/architecture/passive-timber-screens.webp",
+      "ok": true,
+      "width": 1376,
+      "height": 768
+    },
+    {
+      "src": "/images/service-stages/home-handover.webp",
+      "ok": true,
+      "width": 1586,
+      "height": 992
+    },
+    {
+      "src": "/images/architecture/hero-villa-twilight.webp",
+      "ok": true,
+      "width": 1376,
+      "height": 768
+    }
+  ],
+  "overflow": 0,
+  "galleryCards": []
+}

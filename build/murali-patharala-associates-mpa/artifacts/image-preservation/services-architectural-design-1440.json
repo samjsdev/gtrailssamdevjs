@@ -1,0 +1,625 @@
+{
+  "route": "/services/architectural-design/",
+  "width": 1440,
+  "title": "Architectural Design in Chennai | Murali Patharala & Associates",
+  "images": [
+    {
+      "src": "/mpa-3d-logo-small.webp",
+      "alt": "",
+      "loaded": true,
+      "naturalWidth": 128,
+      "naturalHeight": 128,
+      "displayWidth": 46,
+      "displayHeight": 46,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/images/architecture/architectural-blueprint-draft.webp",
+      "alt": "Architect developing a detailed residential floor plan",
+      "loaded": true,
+      "naturalWidth": 1376,
+      "naturalHeight": 768,
+      "displayWidth": 1440,
+      "displayHeight": 640,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/images/2d plan/optimized/ground-floor.webp",
+      "alt": "Residential ground floor drawing showing furnished rooms, a landscaped lawn and circulation",
+      "loaded": true,
+      "naturalWidth": 1459,
+      "naturalHeight": 978,
+      "displayWidth": 830,
+      "displayHeight": 587,
+      "fit": "contain",
+      "hidden": false
+    },
+    {
+      "src": "/images/2d plan/optimized/first-floor.webp",
+      "alt": "Dimensioned first floor architectural drawing showing bedrooms, terraces and a central staircase",
+      "loaded": true,
+      "naturalWidth": 1591,
+      "naturalHeight": 1200,
+      "displayWidth": 830,
+      "displayHeight": 587,
+      "fit": "contain",
+      "hidden": false
+    },
+    {
+      "src": "/images/2d plan/optimized/elevation.webp",
+      "alt": "Architectural elevation drawing showing a multi-storey facade, balconies and entrance",
+      "loaded": true,
+      "naturalWidth": 1599,
+      "naturalHeight": 1200,
+      "displayWidth": 830,
+      "displayHeight": 587,
+      "fit": "contain",
+      "hidden": false
+    },
+    {
+      "src": "/images/2d plan/optimized/electrical.webp",
+      "alt": "Ground floor electrical drawing showing lighting points, switches and wiring routes",
+      "loaded": true,
+      "naturalWidth": 1600,
+      "naturalHeight": 837,
+      "displayWidth": 830,
+      "displayHeight": 587,
+      "fit": "contain",
+      "hidden": false
+    },
+    {
+      "src": "/images/2d plan/optimized/ground-floor-thumb.webp",
+      "alt": "",
+      "loaded": true,
+      "naturalWidth": 240,
+      "naturalHeight": 161,
+      "displayWidth": 306,
+      "displayHeight": 165,
+      "fit": "contain",
+      "hidden": false
+    },
+    {
+      "src": "/images/2d plan/optimized/first-floor-thumb.webp",
+      "alt": "",
+      "loaded": true,
+      "naturalWidth": 239,
+      "naturalHeight": 180,
+      "displayWidth": 306,
+      "displayHeight": 165,
+      "fit": "contain",
+      "hidden": false
+    },
+    {
+      "src": "/images/2d plan/optimized/elevation-thumb.webp",
+      "alt": "",
+      "loaded": true,
+      "naturalWidth": 240,
+      "naturalHeight": 180,
+      "displayWidth": 306,
+      "displayHeight": 165,
+      "fit": "contain",
+      "hidden": false
+    },
+    {
+      "src": "/images/2d plan/optimized/electrical-thumb.webp",
+      "alt": "",
+      "loaded": true,
+      "naturalWidth": 240,
+      "naturalHeight": 126,
+      "displayWidth": 306,
+      "displayHeight": 165,
+      "fit": "contain",
+      "hidden": false
+    },
+    {
+      "src": "/images/3d-plans/ayanambakkam-villa.webp",
+      "alt": "3D exterior render of Ayanambakkam contemporary villa with illuminated terraces and warm exterior lighting",
+      "loaded": true,
+      "naturalWidth": 1920,
+      "naturalHeight": 1313,
+      "displayWidth": 830,
+      "displayHeight": 587,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/images/3d-plans/jp-house-residence.webp",
+      "alt": "3D visualization of JP House Residence showing modern angular facade and glass balconies",
+      "loaded": true,
+      "naturalWidth": 1920,
+      "naturalHeight": 1358,
+      "displayWidth": 830,
+      "displayHeight": 587,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/images/3d-plans/twilight-residence.webp",
+      "alt": "Dusk 3D architectural render of Twilight Residence with illuminated stair core and warm terrace lights",
+      "loaded": true,
+      "naturalWidth": 1920,
+      "naturalHeight": 1312,
+      "displayWidth": 830,
+      "displayHeight": 587,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/images/3d-plans/aksharaa-enclave.webp",
+      "alt": "3D architectural rendering of Sree Aksharaa Enclave modern multi-level family home",
+      "loaded": true,
+      "naturalWidth": 1920,
+      "naturalHeight": 1312,
+      "displayWidth": 830,
+      "displayHeight": 587,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/images/3d-plans/ayanambakkam-villa-thumb.webp",
+      "alt": "",
+      "loaded": true,
+      "naturalWidth": 480,
+      "naturalHeight": 270,
+      "displayWidth": 306,
+      "displayHeight": 165,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/images/3d-plans/jp-house-residence-thumb.webp",
+      "alt": "",
+      "loaded": true,
+      "naturalWidth": 480,
+      "naturalHeight": 270,
+      "displayWidth": 306,
+      "displayHeight": 165,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/images/3d-plans/twilight-residence-thumb.webp",
+      "alt": "",
+      "loaded": true,
+      "naturalWidth": 480,
+      "naturalHeight": 270,
+      "displayWidth": 306,
+      "displayHeight": 165,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/images/3d-plans/aksharaa-enclave-thumb.webp",
+      "alt": "",
+      "loaded": true,
+      "naturalWidth": 480,
+      "naturalHeight": 270,
+      "displayWidth": 306,
+      "displayHeight": 165,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/images/architecture/villa-plan-sketch.webp",
+      "alt": "Architect sketching a villa plan around site requirements",
+      "loaded": true,
+      "naturalWidth": 1376,
+      "naturalHeight": 768,
+      "displayWidth": 409,
+      "displayHeight": 254,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/images/architecture/bim-3d-walkthrough.webp",
+      "alt": "Photorealistic 3D walkthrough of a home interior",
+      "loaded": true,
+      "naturalWidth": 1376,
+      "naturalHeight": 768,
+      "displayWidth": 409,
+      "displayHeight": 254,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/images/architecture/cmda-sanction-drafting.webp",
+      "alt": "Sanction drawings and technical specifications",
+      "loaded": true,
+      "naturalWidth": 1376,
+      "naturalHeight": 768,
+      "displayWidth": 409,
+      "displayHeight": 254,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/images/architecture/villa-plan-sketch.webp",
+      "alt": "Pre-design & Feasibility",
+      "loaded": true,
+      "naturalWidth": 1376,
+      "naturalHeight": 768,
+      "displayWidth": 409,
+      "displayHeight": 254,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/images/architecture/space-planning-atrium.webp",
+      "alt": "Conceptual & Schematic Design",
+      "loaded": true,
+      "naturalWidth": 1280,
+      "naturalHeight": 1920,
+      "displayWidth": 409,
+      "displayHeight": 254,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/images/architecture/geometric-villa-elevation.webp",
+      "alt": "Design Development",
+      "loaded": true,
+      "naturalWidth": 1376,
+      "naturalHeight": 768,
+      "displayWidth": 409,
+      "displayHeight": 254,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/images/architecture/staad-structural-engineering.webp",
+      "alt": "Construction Documentation",
+      "loaded": true,
+      "naturalWidth": 1376,
+      "naturalHeight": 768,
+      "displayWidth": 409,
+      "displayHeight": 254,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/images/architecture/architectural-blueprint-draft.webp",
+      "alt": "Specialist Technical Coordination",
+      "loaded": true,
+      "naturalWidth": 1376,
+      "naturalHeight": 768,
+      "displayWidth": 409,
+      "displayHeight": 254,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/images/architecture/cmda-sanction-drafting.webp",
+      "alt": "Approvals & Environmental Support",
+      "loaded": true,
+      "naturalWidth": 1376,
+      "naturalHeight": 768,
+      "displayWidth": 409,
+      "displayHeight": 254,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/images/architecture/architectural-blueprint-draft.webp",
+      "alt": "Pre-design & Feasibility",
+      "loaded": true,
+      "naturalWidth": 1376,
+      "naturalHeight": 768,
+      "displayWidth": 180,
+      "displayHeight": 113,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/images/architecture/villa-plan-sketch.webp",
+      "alt": "Conceptual Design",
+      "loaded": true,
+      "naturalWidth": 1376,
+      "naturalHeight": 768,
+      "displayWidth": 180,
+      "displayHeight": 113,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/images/architecture/space-planning-atrium.webp",
+      "alt": "Schematic Design",
+      "loaded": true,
+      "naturalWidth": 1280,
+      "naturalHeight": 1920,
+      "displayWidth": 180,
+      "displayHeight": 113,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/images/architecture/bim-3d-walkthrough.webp",
+      "alt": "Design Development",
+      "loaded": true,
+      "naturalWidth": 1376,
+      "naturalHeight": 768,
+      "displayWidth": 180,
+      "displayHeight": 113,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/images/architecture/staad-structural-engineering.webp",
+      "alt": "Construction Documentation",
+      "loaded": true,
+      "naturalWidth": 1376,
+      "naturalHeight": 768,
+      "displayWidth": 180,
+      "displayHeight": 113,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/images/architecture/architectural-blueprint-draft.webp",
+      "alt": "Bidding & Negotiation",
+      "loaded": true,
+      "naturalWidth": 1376,
+      "naturalHeight": 768,
+      "displayWidth": 180,
+      "displayHeight": 113,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/images/architecture/architectural-blueprint-draft.webp",
+      "alt": "Construction Administration",
+      "loaded": true,
+      "naturalWidth": 1376,
+      "naturalHeight": 768,
+      "displayWidth": 180,
+      "displayHeight": 113,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/murali-patharala-associates-assets/exterior_renders/JAMEE2.webp",
+      "alt": "Contemporary residence rendered at dusk with layered stone and glass facade",
+      "loaded": true,
+      "naturalWidth": 1920,
+      "naturalHeight": 1358,
+      "displayWidth": 736,
+      "displayHeight": 556,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/murali-patharala-associates-assets/exterior_renders/Sushama John.webp",
+      "alt": "White and stone-clad residential exterior elevation",
+      "loaded": true,
+      "naturalWidth": 1920,
+      "naturalHeight": 1312,
+      "displayWidth": 520,
+      "displayHeight": 268,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/murali-patharala-associates-assets/exterior_renders/WhatsApp Image 2026-09-23 at 16.17.56 (2).webp",
+      "alt": "Contemporary timber and stone residential exterior design",
+      "loaded": true,
+      "naturalWidth": 1600,
+      "naturalHeight": 1200,
+      "displayWidth": 520,
+      "displayHeight": 268,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/images/architecture/hero-villa-twilight.webp",
+      "alt": "",
+      "loaded": true,
+      "naturalWidth": 1376,
+      "naturalHeight": 768,
+      "displayWidth": 1440,
+      "displayHeight": 723,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/mpa-3d-logo-small.webp",
+      "alt": "",
+      "loaded": true,
+      "naturalWidth": 128,
+      "naturalHeight": 128,
+      "displayWidth": 44,
+      "displayHeight": 44,
+      "fit": "fill",
+      "hidden": false
+    }
+  ],
+  "backgrounds": [
+    "/images/drawings/architectural-master-plan.svg",
+    "/images/drawings/architectural-structural-lines.svg"
+  ],
+  "decoded": [
+    {
+      "src": "/mpa-3d-logo-small.webp",
+      "ok": true,
+      "width": 128,
+      "height": 128
+    },
+    {
+      "src": "/images/architecture/architectural-blueprint-draft.webp",
+      "ok": true,
+      "width": 1376,
+      "height": 768
+    },
+    {
+      "src": "/images/2d plan/optimized/ground-floor.webp",
+      "ok": true,
+      "width": 1459,
+      "height": 978
+    },
+    {
+      "src": "/images/2d plan/optimized/first-floor.webp",
+      "ok": true,
+      "width": 1591,
+      "height": 1200
+    },
+    {
+      "src": "/images/2d plan/optimized/elevation.webp",
+      "ok": true,
+      "width": 1599,
+      "height": 1200
+    },
+    {
+      "src": "/images/2d plan/optimized/electrical.webp",
+      "ok": true,
+      "width": 1600,
+      "height": 837
+    },
+    {
+      "src": "/images/2d plan/optimized/ground-floor-thumb.webp",
+      "ok": true,
+      "width": 240,
+      "height": 161
+    },
+    {
+      "src": "/images/2d plan/optimized/first-floor-thumb.webp",
+      "ok": true,
+      "width": 239,
+      "height": 180
+    },
+    {
+      "src": "/images/2d plan/optimized/elevation-thumb.webp",
+      "ok": true,
+      "width": 240,
+      "height": 180
+    },
+    {
+      "src": "/images/2d plan/optimized/electrical-thumb.webp",
+      "ok": true,
+      "width": 240,
+      "height": 126
+    },
+    {
+      "src": "/images/3d-plans/ayanambakkam-villa.webp",
+      "ok": true,
+      "width": 1920,
+      "height": 1313
+    },
+    {
+      "src": "/images/3d-plans/jp-house-residence.webp",
+      "ok": true,
+      "width": 1920,
+      "height": 1358
+    },
+    {
+      "src": "/images/3d-plans/twilight-residence.webp",
+      "ok": true,
+      "width": 1920,
+      "height": 1312
+    },
+    {
+      "src": "/images/3d-plans/aksharaa-enclave.webp",
+      "ok": true,
+      "width": 1920,
+      "height": 1312
+    },
+    {
+      "src": "/images/3d-plans/ayanambakkam-villa-thumb.webp",
+      "ok": true,
+      "width": 480,
+      "height": 270
+    },
+    {
+      "src": "/images/3d-plans/jp-house-residence-thumb.webp",
+      "ok": true,
+      "width": 480,
+      "height": 270
+    },
+    {
+      "src": "/images/3d-plans/twilight-residence-thumb.webp",
+      "ok": true,
+      "width": 480,
+      "height": 270
+    },
+    {
+      "src": "/images/3d-plans/aksharaa-enclave-thumb.webp",
+      "ok": true,
+      "width": 480,
+      "height": 270
+    },
+    {
+      "src": "/images/architecture/villa-plan-sketch.webp",
+      "ok": true,
+      "width": 1376,
+      "height": 768
+    },
+    {
+      "src": "/images/architecture/bim-3d-walkthrough.webp",
+      "ok": true,
+      "width": 1376,
+      "height": 768
+    },
+    {
+      "src": "/images/architecture/cmda-sanction-drafting.webp",
+      "ok": true,
+      "width": 1376,
+      "height": 768
+    },
+    {
+      "src": "/images/architecture/space-planning-atrium.webp",
+      "ok": true,
+      "width": 1280,
+      "height": 1920
+    },
+    {
+      "src": "/images/architecture/geometric-villa-elevation.webp",
+      "ok": true,
+      "width": 1376,
+      "height": 768
+    },
+    {
+      "src": "/images/architecture/staad-structural-engineering.webp",
+      "ok": true,
+      "width": 1376,
+      "height": 768
+    },
+    {
+      "src": "/murali-patharala-associates-assets/exterior_renders/JAMEE2.webp",
+      "ok": true,
+      "width": 1920,
+      "height": 1358
+    },
+    {
+      "src": "/murali-patharala-associates-assets/exterior_renders/Sushama John.webp",
+      "ok": true,
+      "width": 1920,
+      "height": 1312
+    },
+    {
+      "src": "/murali-patharala-associates-assets/exterior_renders/WhatsApp Image 2026-09-23 at 16.17.56 (2).webp",
+      "ok": true,
+      "width": 1600,
+      "height": 1200
+    },
+    {
+      "src": "/images/architecture/hero-villa-twilight.webp",
+      "ok": true,
+      "width": 1376,
+      "height": 768
+    },
+    {
+      "src": "/images/drawings/architectural-master-plan.svg",
+      "ok": true,
+      "width": 233,
+      "height": 150
+    },
+    {
+      "src": "/images/drawings/architectural-structural-lines.svg",
+      "ok": true,
+      "width": 300,
+      "height": 150
+    }
+  ],
+  "overflow": 0,
+  "galleryCards": [],
+  "backgroundRepairRechecked": true
+}

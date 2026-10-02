@@ -13,7 +13,7 @@ const views = [
     title: 'Ayanambakkam Villa',
     category: 'Exterior / Contemporary Villa',
     image: 'ayanambakkam-villa',
-    original: '/images/3d images/3d images (10).jpg',
+    original: '/images/3d-plans/ayanambakkam-villa-full.webp',
     width: 5717,
     height: 3911,
     alt: '3D exterior render of Ayanambakkam contemporary villa with illuminated terraces and warm exterior lighting',
@@ -24,7 +24,7 @@ const views = [
     title: 'JP House Residence',
     category: 'Exterior / Modern Geometric',
     image: 'jp-house-residence',
-    original: '/images/3d images/3d images (3).jpg',
+    original: '/images/3d-plans/jp-house-residence-full.webp',
     width: 4964,
     height: 3511,
     alt: '3D visualization of JP House Residence showing modern angular facade and glass balconies',
@@ -35,7 +35,7 @@ const views = [
     title: 'Twilight Residence',
     category: 'Exterior / Evening Atmosphere',
     image: 'twilight-residence',
-    original: '/images/3d images/3d images (5).jpg',
+    original: '/images/3d-plans/twilight-residence-full.webp',
     width: 5708,
     height: 3901,
     alt: 'Dusk 3D architectural render of Twilight Residence with illuminated stair core and warm terrace lights',
@@ -46,7 +46,7 @@ const views = [
     title: 'Sree Aksharaa Enclave',
     category: 'Exterior / Duplex Residence',
     image: 'aksharaa-enclave',
-    original: '/images/3d images/3d images (9).jpg',
+    original: '/images/3d-plans/aksharaa-enclave-full.webp',
     width: 5708,
     height: 3901,
     alt: '3D architectural rendering of Sree Aksharaa Enclave modern multi-level family home',
@@ -247,7 +247,7 @@ export default function ThreeDimensionalPlans() {
           </div>
           <div className={viewerStyles.fullDrawing}>
             <Image
-              src={active.original}
+              src={`/images/3d-plans/${active.image}.webp`}
               alt={active.alt}
               width={active.width}
               height={active.height}
@@ -258,7 +258,7 @@ export default function ThreeDimensionalPlans() {
           <div className={viewerStyles.viewerFooter}>
             <p>{active.category}</p>
             <a href={active.original} target="_blank" rel="noopener noreferrer">
-              Open original high-res render <ArrowUpRight size={15} aria-hidden="true" />
+              Open full-resolution render <ArrowUpRight size={15} aria-hidden="true" />
             </a>
           </div>
         </Modal>

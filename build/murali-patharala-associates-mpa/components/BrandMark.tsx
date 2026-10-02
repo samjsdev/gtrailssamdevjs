@@ -9,7 +9,7 @@ interface BrandMarkProps {
 export default function BrandMark({ size, className, alt = '' }: BrandMarkProps) {
   return (
     <Image
-      src="/mpa-3d-logo.webp"
+      src={size <= 64 ? '/mpa-3d-logo-small.webp' : '/mpa-3d-logo.webp'}
       alt={alt}
       width={size}
       height={size}

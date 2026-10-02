@@ -1,0 +1,74 @@
+{
+  "route": "/contact/",
+  "width": 390,
+  "title": "Contact Architectural Studio Anna Nagar | MPA Chennai | Murali Patharala & Associates",
+  "images": [
+    {
+      "src": "/mpa-3d-logo-small.webp",
+      "alt": "",
+      "loaded": true,
+      "naturalWidth": 128,
+      "naturalHeight": 128,
+      "displayWidth": 42,
+      "displayHeight": 42,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/images/architecture/architectural-blueprint-draft.webp",
+      "alt": "Architectural studio workspace with drawing boards, blueprints, and models",
+      "loaded": true,
+      "naturalWidth": 1376,
+      "naturalHeight": 768,
+      "displayWidth": 390,
+      "displayHeight": 864,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/images/architecture/hero-villa-twilight.webp",
+      "alt": "",
+      "loaded": true,
+      "naturalWidth": 1376,
+      "naturalHeight": 768,
+      "displayWidth": 390,
+      "displayHeight": 1668,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/mpa-3d-logo-small.webp",
+      "alt": "",
+      "loaded": true,
+      "naturalWidth": 128,
+      "naturalHeight": 128,
+      "displayWidth": 44,
+      "displayHeight": 44,
+      "fit": "fill",
+      "hidden": false
+    }
+  ],
+  "backgrounds": [],
+  "decoded": [
+    {
+      "src": "/mpa-3d-logo-small.webp",
+      "ok": true,
+      "width": 128,
+      "height": 128
+    },
+    {
+      "src": "/images/architecture/architectural-blueprint-draft.webp",
+      "ok": true,
+      "width": 1376,
+      "height": 768
+    },
+    {
+      "src": "/images/architecture/hero-villa-twilight.webp",
+      "ok": true,
+      "width": 1376,
+      "height": 768
+    }
+  ],
+  "overflow": 0,
+  "galleryCards": []
+}

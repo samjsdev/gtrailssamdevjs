@@ -15,7 +15,7 @@ interface Pillar {
 }
 
 const visuals = [
-  { src: 'architect-studio-model', alt: 'Residential model and drawings on an architectural studio desk' },
+  { src: 'architectural-blueprint-draft', alt: 'Residential model and drawings on an architectural studio desk' },
   { src: 'site-engineer-audit', alt: 'Civil engineer conducting structural quality audit on TMT rebar reinforcement' },
   { src: 'cmda-sanction-drafting', alt: 'Itemized BOQ specifications and CMDA municipal sanction drawings' },
   { src: 'geometric-villa-elevation', alt: 'Climate-responsive 3D facade elevation with solar shading' },

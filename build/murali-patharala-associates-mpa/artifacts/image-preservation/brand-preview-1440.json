@@ -1,0 +1,75 @@
+{
+  "route": "/brand-preview/",
+  "width": 1440,
+  "title": "Brand and copy preview | Murali Patharala & Associates",
+  "images": [
+    {
+      "src": "/murali-patharala-associates-assets/brand_identity/WhatsApp Image 2026-09-23 at 16.52.36 (1).webp",
+      "alt": "",
+      "loaded": true,
+      "naturalWidth": 602,
+      "naturalHeight": 800,
+      "displayWidth": 58,
+      "displayHeight": 58,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/murali-patharala-associates-assets/exterior_renders/Govindha Rajan-2026.webp",
+      "alt": "Contemporary residential elevation from the MPA project archive",
+      "loaded": true,
+      "naturalWidth": 1920,
+      "naturalHeight": 1358,
+      "displayWidth": 749,
+      "displayHeight": 650,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/murali-patharala-associates-assets/brand_identity/WhatsApp Image 2026-09-23 at 16.52.36 (1).webp",
+      "alt": "Murali Patharala and Associates supplied logo",
+      "loaded": true,
+      "naturalWidth": 602,
+      "naturalHeight": 800,
+      "displayWidth": 165,
+      "displayHeight": 219,
+      "fit": "fill",
+      "hidden": false
+    },
+    {
+      "src": "/murali-patharala-associates-assets/brand_identity/WhatsApp Image 2026-09-23 at 16.52.36.webp",
+      "alt": "ARCH foundations supplied logo",
+      "loaded": true,
+      "naturalWidth": 800,
+      "naturalHeight": 799,
+      "displayWidth": 214,
+      "displayHeight": 214,
+      "fit": "fill",
+      "hidden": false
+    }
+  ],
+  "backgrounds": [],
+  "decoded": [
+    {
+      "src": "/murali-patharala-associates-assets/brand_identity/WhatsApp Image 2026-09-23 at 16.52.36 (1).webp",
+      "ok": true,
+      "width": 602,
+      "height": 800
+    },
+    {
+      "src": "/murali-patharala-associates-assets/exterior_renders/Govindha Rajan-2026.webp",
+      "ok": true,
+      "width": 1920,
+      "height": 1358
+    },
+    {
+      "src": "/murali-patharala-associates-assets/brand_identity/WhatsApp Image 2026-09-23 at 16.52.36.webp",
+      "ok": true,
+      "width": 800,
+      "height": 799
+    }
+  ],
+  "overflow": 0,
+  "galleryCards": [],
+  "backgroundRepairRechecked": true
+}

@@ -94,7 +94,7 @@ export default async function ContactPage({ params }: PageProps) {
       <section className="relative overflow-hidden border-b-4 border-[#111111] bg-[#121418] text-white pt-32 pb-20 md:pt-40 md:pb-28 px-6 md:px-12">
         {/* Authentic Studio Workspace Background */}
         <Image
-          src="/images/architecture/atelier-design-studio.webp"
+          src="/images/architecture/architectural-blueprint-draft.webp"
           alt="Architectural studio workspace with drawing boards, blueprints, and models"
           fill
           priority

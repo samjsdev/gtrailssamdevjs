@@ -1,10 +1,9 @@
 'use client';
 
-import { CONTACT_LINKS } from '@/lib/contactLinks';
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { ChevronLeft, ChevronRight, Layers, Play, Pause, ArrowUpRight, ArrowRight } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Layers, Play, Pause, ArrowUpRight } from 'lucide-react';
 import { siteAssets } from '@/lib/siteAssets';
 import styles from './HeroSection.module.css';
 
@@ -101,8 +100,8 @@ export default function HeroSection({ phone }: HeroSectionProps) {
           <h1>Thoughtfully designed.<br /><em>Beautifully built.</em></h1>
           <p className={styles.intro}>Architecture, construction and interiors.<br />For homes, workplaces and communities.</p>
           <div className={styles.heroActions}>
+            <Link className={styles.primaryAction} href="/contact#enquiry">Start Your Project <ArrowUpRight size={17} aria-hidden="true" /></Link>
             <Link className="mpa-outline-cta mpa-outline-cta--dark" href="/construction-package">Explore packages <ArrowUpRight size={17} aria-hidden="true" /></Link>
-            <a className="mpa-outline-cta mpa-outline-cta--dark" href={`${CONTACT_LINKS.whatsapp}?text=${encodeURIComponent('Hi ARCH foundations, I would like to discuss a residential construction project in Chennai.')}`} target="_blank" rel="noopener noreferrer">Talk to our construction team <ArrowRight size={17} aria-hidden="true" /></a>
           </div>
         </div>
 

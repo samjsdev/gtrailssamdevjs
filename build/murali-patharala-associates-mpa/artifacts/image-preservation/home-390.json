@@ -1,0 +1,815 @@
+{
+  "route": "/",
+  "width": 390,
+  "title": "Architects & Builders in Chennai | Architecture, Construction & Interiors | Murali Patharala & Associates",
+  "images": [
+    {
+      "src": "/mpa-3d-logo-small.webp",
+      "alt": "",
+      "loaded": true,
+      "naturalWidth": 128,
+      "naturalHeight": 128,
+      "displayWidth": 42,
+      "displayHeight": 42,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/murali-patharala-associates-assets/exterior_renders/JAMEE2.webp",
+      "alt": "Contemporary villa at dusk",
+      "loaded": true,
+      "naturalWidth": 1920,
+      "naturalHeight": 1358,
+      "displayWidth": 390,
+      "displayHeight": 560,
+      "fit": "cover",
+      "hidden": true
+    },
+    {
+      "src": "/murali-patharala-associates-assets/exterior_renders/Govindha Rajan-2026.webp",
+      "alt": "White contemporary duplex",
+      "loaded": true,
+      "naturalWidth": 1920,
+      "naturalHeight": 1358,
+      "displayWidth": 390,
+      "displayHeight": 560,
+      "fit": "cover",
+      "hidden": true
+    },
+    {
+      "src": "/murali-patharala-associates-assets/exterior_renders/WhatsApp Image 2026-09-23 at 16.17.56 (2).webp",
+      "alt": "Timber accent residence",
+      "loaded": true,
+      "naturalWidth": 1600,
+      "naturalHeight": 1200,
+      "displayWidth": 390,
+      "displayHeight": 560,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/murali-patharala-associates-assets/exterior_renders/Sushama John.webp",
+      "alt": "Geometric facade residence",
+      "loaded": true,
+      "naturalWidth": 1920,
+      "naturalHeight": 1312,
+      "displayWidth": 390,
+      "displayHeight": 560,
+      "fit": "cover",
+      "hidden": true
+    },
+    {
+      "src": "/murali-patharala-associates-assets/exterior_renders/WhatsApp Image 2026-09-23 at 16.36.14.webp",
+      "alt": "Urban corner residence",
+      "loaded": true,
+      "naturalWidth": 1440,
+      "naturalHeight": 1080,
+      "displayWidth": 390,
+      "displayHeight": 560,
+      "fit": "cover",
+      "hidden": true
+    },
+    {
+      "src": "/murali-patharala-associates-assets/exterior_renders/VENKATASH1.webp",
+      "alt": "White modern residence",
+      "loaded": true,
+      "naturalWidth": 1920,
+      "naturalHeight": 1312,
+      "displayWidth": 390,
+      "displayHeight": 560,
+      "fit": "cover",
+      "hidden": true
+    },
+    {
+      "src": "/images/2D TO 3D/option-2-sketch.webp",
+      "alt": "Layered facade: 2D elevation sketch",
+      "loaded": true,
+      "naturalWidth": 1100,
+      "naturalHeight": 751,
+      "displayWidth": 340,
+      "displayHeight": 230,
+      "fit": "contain",
+      "hidden": false
+    },
+    {
+      "src": "/images/2D TO 3D/option-2-render.webp",
+      "alt": "Layered facade: 3D exterior visualisation",
+      "loaded": true,
+      "naturalWidth": 1100,
+      "naturalHeight": 752,
+      "displayWidth": 340,
+      "displayHeight": 230,
+      "fit": "contain",
+      "hidden": false
+    },
+    {
+      "src": "/images/2D TO 3D/option-3-sketch.webp",
+      "alt": "Sculpted elevation: 2D elevation sketch",
+      "loaded": true,
+      "naturalWidth": 1100,
+      "naturalHeight": 614,
+      "displayWidth": 340,
+      "displayHeight": 230,
+      "fit": "contain",
+      "hidden": false
+    },
+    {
+      "src": "/images/2D TO 3D/option-3-render.webp",
+      "alt": "Sculpted elevation: 3D exterior visualisation",
+      "loaded": true,
+      "naturalWidth": 1100,
+      "naturalHeight": 752,
+      "displayWidth": 340,
+      "displayHeight": 230,
+      "fit": "contain",
+      "hidden": false
+    },
+    {
+      "src": "/images/2D TO 3D/option-1-sketch.webp",
+      "alt": "Stone & timber: 2D elevation sketch",
+      "loaded": true,
+      "naturalWidth": 879,
+      "naturalHeight": 1100,
+      "displayWidth": 340,
+      "displayHeight": 423,
+      "fit": "contain",
+      "hidden": false
+    },
+    {
+      "src": "/images/2D TO 3D/option-1-render.webp",
+      "alt": "Stone & timber: 3D exterior visualisation",
+      "loaded": true,
+      "naturalWidth": 879,
+      "naturalHeight": 1100,
+      "displayWidth": 340,
+      "displayHeight": 423,
+      "fit": "contain",
+      "hidden": false
+    },
+    {
+      "src": "/images/architecture/architectural-blueprint-draft.webp",
+      "alt": "Residential model and drawings on an architectural studio desk",
+      "loaded": true,
+      "naturalWidth": 1376,
+      "naturalHeight": 768,
+      "displayWidth": 340,
+      "displayHeight": 190,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/images/architecture/site-engineer-audit.webp",
+      "alt": "Civil engineer conducting structural quality audit on TMT rebar reinforcement",
+      "loaded": true,
+      "naturalWidth": 1376,
+      "naturalHeight": 768,
+      "displayWidth": 340,
+      "displayHeight": 190,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/images/architecture/cmda-sanction-drafting.webp",
+      "alt": "Itemized BOQ specifications and CMDA municipal sanction drawings",
+      "loaded": true,
+      "naturalWidth": 1376,
+      "naturalHeight": 768,
+      "displayWidth": 340,
+      "displayHeight": 190,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/images/architecture/geometric-villa-elevation.webp",
+      "alt": "Climate-responsive 3D facade elevation with solar shading",
+      "loaded": true,
+      "naturalWidth": 1376,
+      "naturalHeight": 768,
+      "displayWidth": 340,
+      "displayHeight": 190,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/images/architecture/turnkey-key-handover.webp",
+      "alt": "Celebratory key handover milestone ceremony with happy homeowners",
+      "loaded": true,
+      "naturalWidth": 1376,
+      "naturalHeight": 768,
+      "displayWidth": 340,
+      "displayHeight": 190,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/images/architecture/staad-structural-engineering.webp",
+      "alt": "Engineers tracking structural progress and technical project logs",
+      "loaded": true,
+      "naturalWidth": 1376,
+      "naturalHeight": 768,
+      "displayWidth": 340,
+      "displayHeight": 190,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/murali-patharala-associates-assets/exterior_renders/Sushama John.webp",
+      "alt": "",
+      "loaded": true,
+      "naturalWidth": 1920,
+      "naturalHeight": 1312,
+      "displayWidth": 348,
+      "displayHeight": 195,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/images/architecture/structural-construction-frame.webp",
+      "alt": "",
+      "loaded": true,
+      "naturalWidth": 1376,
+      "naturalHeight": 768,
+      "displayWidth": 348,
+      "displayHeight": 195,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/murali-patharala-associates-assets/interior_renders/WhatsApp Image 2026-09-23 at 16.42.59 (3).webp",
+      "alt": "",
+      "loaded": true,
+      "naturalWidth": 1600,
+      "naturalHeight": 1067,
+      "displayWidth": 348,
+      "displayHeight": 195,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/murali-patharala-associates-assets/exterior_renders/modern-residence-exterior-render-wide.webp",
+      "alt": "",
+      "loaded": true,
+      "naturalWidth": 1600,
+      "naturalHeight": 900,
+      "displayWidth": 348,
+      "displayHeight": 195,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/murali-patharala-associates-assets/brand_identity/WhatsApp Image 2026-09-23 at 16.52.36.webp",
+      "alt": "ARCH foundations logo",
+      "loaded": true,
+      "naturalWidth": 800,
+      "naturalHeight": 799,
+      "displayWidth": 104,
+      "displayHeight": 104,
+      "fit": "contain",
+      "hidden": false
+    },
+    {
+      "src": "/images/architecture/structural-construction-frame.webp",
+      "alt": "Construction work at the structural stage",
+      "loaded": true,
+      "naturalWidth": 1376,
+      "naturalHeight": 768,
+      "displayWidth": 348,
+      "displayHeight": 298,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/murali-patharala-associates-assets/exterior_renders/Govindha Rajan-2026.webp",
+      "alt": "Contemporary Duplex — Exterior render",
+      "loaded": true,
+      "naturalWidth": 1920,
+      "naturalHeight": 1358,
+      "displayWidth": 298,
+      "displayHeight": 205,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/murali-patharala-associates-assets/exterior_renders/JAMEE2.webp",
+      "alt": "Twilight Villa — Exterior render",
+      "loaded": true,
+      "naturalWidth": 1920,
+      "naturalHeight": 1358,
+      "displayWidth": 298,
+      "displayHeight": 205,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/murali-patharala-associates-assets/exterior_renders/Sushama John.webp",
+      "alt": "Geometric Residence — Exterior render",
+      "loaded": true,
+      "naturalWidth": 1920,
+      "naturalHeight": 1312,
+      "displayWidth": 298,
+      "displayHeight": 205,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/murali-patharala-associates-assets/exterior_renders/VENKATASH1.webp",
+      "alt": "White Modern Home — Exterior render",
+      "loaded": true,
+      "naturalWidth": 1920,
+      "naturalHeight": 1312,
+      "displayWidth": 298,
+      "displayHeight": 205,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/murali-patharala-associates-assets/exterior_renders/WhatsApp Image 2026-09-23 at 16.17.56 (2).webp",
+      "alt": "Timber Accent Villa — Exterior render",
+      "loaded": false,
+      "naturalWidth": 1600,
+      "naturalHeight": 1200,
+      "displayWidth": 298,
+      "displayHeight": 205,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/murali-patharala-associates-assets/exterior_renders/WhatsApp Image 2026-09-23 at 16.36.14.webp",
+      "alt": "Urban Corner Residence — Exterior render",
+      "loaded": false,
+      "naturalWidth": 1440,
+      "naturalHeight": 1080,
+      "displayWidth": 298,
+      "displayHeight": 205,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/murali-patharala-associates-assets/exterior_renders/WhatsApp Image 2026-09-23 at 17.40.31 (1).webp",
+      "alt": "Garden Courtyard Home — Exterior render",
+      "loaded": false,
+      "naturalWidth": 0,
+      "naturalHeight": 0,
+      "displayWidth": 298,
+      "displayHeight": 205,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/murali-patharala-associates-assets/exterior_renders/selva kumar (1).webp",
+      "alt": "Vertical Facade Residence — Exterior render",
+      "loaded": false,
+      "naturalWidth": 0,
+      "naturalHeight": 0,
+      "displayWidth": 298,
+      "displayHeight": 205,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.33.webp",
+      "alt": "Kitchen & Dining Interior — Completed interior",
+      "loaded": false,
+      "naturalWidth": 0,
+      "naturalHeight": 0,
+      "displayWidth": 298,
+      "displayHeight": 205,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/murali-patharala-associates-assets/interior_renders/WhatsApp Image 2026-09-23 at 16.42.59 (3).webp",
+      "alt": "Contemporary Living Interior — Interior render",
+      "loaded": false,
+      "naturalWidth": 1600,
+      "naturalHeight": 1067,
+      "displayWidth": 298,
+      "displayHeight": 205,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/murali-patharala-associates-assets/exterior_renders/Govindha Rajan-2026.webp",
+      "alt": "Contemporary Duplex — Exterior render",
+      "loaded": false,
+      "naturalWidth": 1920,
+      "naturalHeight": 1358,
+      "displayWidth": 298,
+      "displayHeight": 205,
+      "fit": "cover",
+      "hidden": true
+    },
+    {
+      "src": "/murali-patharala-associates-assets/exterior_renders/JAMEE2.webp",
+      "alt": "Twilight Villa — Exterior render",
+      "loaded": false,
+      "naturalWidth": 1920,
+      "naturalHeight": 1358,
+      "displayWidth": 298,
+      "displayHeight": 205,
+      "fit": "cover",
+      "hidden": true
+    },
+    {
+      "src": "/murali-patharala-associates-assets/exterior_renders/Sushama John.webp",
+      "alt": "Geometric Residence — Exterior render",
+      "loaded": false,
+      "naturalWidth": 1920,
+      "naturalHeight": 1312,
+      "displayWidth": 298,
+      "displayHeight": 205,
+      "fit": "cover",
+      "hidden": true
+    },
+    {
+      "src": "/murali-patharala-associates-assets/exterior_renders/VENKATASH1.webp",
+      "alt": "White Modern Home — Exterior render",
+      "loaded": false,
+      "naturalWidth": 1920,
+      "naturalHeight": 1312,
+      "displayWidth": 298,
+      "displayHeight": 205,
+      "fit": "cover",
+      "hidden": true
+    },
+    {
+      "src": "/murali-patharala-associates-assets/exterior_renders/WhatsApp Image 2026-09-23 at 16.17.56 (2).webp",
+      "alt": "Timber Accent Villa — Exterior render",
+      "loaded": false,
+      "naturalWidth": 1600,
+      "naturalHeight": 1200,
+      "displayWidth": 298,
+      "displayHeight": 205,
+      "fit": "cover",
+      "hidden": true
+    },
+    {
+      "src": "/murali-patharala-associates-assets/exterior_renders/WhatsApp Image 2026-09-23 at 16.36.14.webp",
+      "alt": "Urban Corner Residence — Exterior render",
+      "loaded": false,
+      "naturalWidth": 1440,
+      "naturalHeight": 1080,
+      "displayWidth": 298,
+      "displayHeight": 205,
+      "fit": "cover",
+      "hidden": true
+    },
+    {
+      "src": "/murali-patharala-associates-assets/exterior_renders/WhatsApp Image 2026-09-23 at 17.40.31 (1).webp",
+      "alt": "Garden Courtyard Home — Exterior render",
+      "loaded": false,
+      "naturalWidth": 0,
+      "naturalHeight": 0,
+      "displayWidth": 298,
+      "displayHeight": 205,
+      "fit": "cover",
+      "hidden": true
+    },
+    {
+      "src": "/murali-patharala-associates-assets/exterior_renders/selva kumar (1).webp",
+      "alt": "Vertical Facade Residence — Exterior render",
+      "loaded": false,
+      "naturalWidth": 0,
+      "naturalHeight": 0,
+      "displayWidth": 298,
+      "displayHeight": 205,
+      "fit": "cover",
+      "hidden": true
+    },
+    {
+      "src": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.33.webp",
+      "alt": "Kitchen & Dining Interior — Completed interior",
+      "loaded": false,
+      "naturalWidth": 0,
+      "naturalHeight": 0,
+      "displayWidth": 298,
+      "displayHeight": 205,
+      "fit": "cover",
+      "hidden": true
+    },
+    {
+      "src": "/murali-patharala-associates-assets/interior_renders/WhatsApp Image 2026-09-23 at 16.42.59 (3).webp",
+      "alt": "Contemporary Living Interior — Interior render",
+      "loaded": false,
+      "naturalWidth": 1600,
+      "naturalHeight": 1067,
+      "displayWidth": 298,
+      "displayHeight": 205,
+      "fit": "cover",
+      "hidden": true
+    },
+    {
+      "src": "/images/clients/bharat-petroleum.webp",
+      "alt": "Bharat Petroleum",
+      "loaded": true,
+      "naturalWidth": 512,
+      "naturalHeight": 288,
+      "displayWidth": 121,
+      "displayHeight": 80,
+      "fit": "contain",
+      "hidden": false
+    },
+    {
+      "src": "/images/clients/indian-oil.webp",
+      "alt": "IndianOil",
+      "loaded": true,
+      "naturalWidth": 425,
+      "naturalHeight": 512,
+      "displayWidth": 121,
+      "displayHeight": 80,
+      "fit": "contain",
+      "hidden": false
+    },
+    {
+      "src": "/images/clients/tahdco.webp",
+      "alt": "TAHDCO",
+      "loaded": true,
+      "naturalWidth": 400,
+      "naturalHeight": 220,
+      "displayWidth": 121,
+      "displayHeight": 80,
+      "fit": "contain",
+      "hidden": false
+    },
+    {
+      "src": "/images/clients/indian-railways.webp",
+      "alt": "Indian Railways",
+      "loaded": true,
+      "naturalWidth": 90,
+      "naturalHeight": 80,
+      "displayWidth": 121,
+      "displayHeight": 80,
+      "fit": "contain",
+      "hidden": false
+    },
+    {
+      "src": "/images/clients/sri-balaji-hospital.webp",
+      "alt": "Sri Balaji Hospital",
+      "loaded": true,
+      "naturalWidth": 135,
+      "naturalHeight": 74,
+      "displayWidth": 121,
+      "displayHeight": 80,
+      "fit": "contain",
+      "hidden": false
+    },
+    {
+      "src": "/images/clients/sla.webp",
+      "alt": "SLA",
+      "loaded": true,
+      "naturalWidth": 512,
+      "naturalHeight": 272,
+      "displayWidth": 121,
+      "displayHeight": 80,
+      "fit": "contain",
+      "hidden": false
+    },
+    {
+      "src": "/images/architecture/hero-villa-twilight.webp",
+      "alt": "",
+      "loaded": true,
+      "naturalWidth": 1376,
+      "naturalHeight": 768,
+      "displayWidth": 390,
+      "displayHeight": 1668,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/mpa-3d-logo-small.webp",
+      "alt": "",
+      "loaded": true,
+      "naturalWidth": 128,
+      "naturalHeight": 128,
+      "displayWidth": 44,
+      "displayHeight": 44,
+      "fit": "fill",
+      "hidden": false
+    }
+  ],
+  "backgrounds": [
+    "/images/drawings/architectural-master-plan.svg",
+    "/images/drawings/architectural-structural-lines.svg",
+    "/images/drawings/architectural-elevation-detail.svg"
+  ],
+  "decoded": [
+    {
+      "src": "/mpa-3d-logo-small.webp",
+      "ok": true,
+      "width": 128,
+      "height": 128
+    },
+    {
+      "src": "/murali-patharala-associates-assets/exterior_renders/JAMEE2.webp",
+      "ok": true,
+      "width": 1920,
+      "height": 1358
+    },
+    {
+      "src": "/murali-patharala-associates-assets/exterior_renders/Govindha Rajan-2026.webp",
+      "ok": true,
+      "width": 1920,
+      "height": 1358
+    },
+    {
+      "src": "/murali-patharala-associates-assets/exterior_renders/WhatsApp Image 2026-09-23 at 16.17.56 (2).webp",
+      "ok": true,
+      "width": 1600,
+      "height": 1200
+    },
+    {
+      "src": "/murali-patharala-associates-assets/exterior_renders/Sushama John.webp",
+      "ok": true,
+      "width": 1920,
+      "height": 1312
+    },
+    {
+      "src": "/murali-patharala-associates-assets/exterior_renders/WhatsApp Image 2026-09-23 at 16.36.14.webp",
+      "ok": true,
+      "width": 1440,
+      "height": 1080
+    },
+    {
+      "src": "/murali-patharala-associates-assets/exterior_renders/VENKATASH1.webp",
+      "ok": true,
+      "width": 1920,
+      "height": 1312
+    },
+    {
+      "src": "/images/2D TO 3D/option-2-sketch.webp",
+      "ok": true,
+      "width": 1100,
+      "height": 751
+    },
+    {
+      "src": "/images/2D TO 3D/option-2-render.webp",
+      "ok": true,
+      "width": 1100,
+      "height": 752
+    },
+    {
+      "src": "/images/2D TO 3D/option-3-sketch.webp",
+      "ok": true,
+      "width": 1100,
+      "height": 614
+    },
+    {
+      "src": "/images/2D TO 3D/option-3-render.webp",
+      "ok": true,
+      "width": 1100,
+      "height": 752
+    },
+    {
+      "src": "/images/2D TO 3D/option-1-sketch.webp",
+      "ok": true,
+      "width": 879,
+      "height": 1100
+    },
+    {
+      "src": "/images/2D TO 3D/option-1-render.webp",
+      "ok": true,
+      "width": 879,
+      "height": 1100
+    },
+    {
+      "src": "/images/architecture/architectural-blueprint-draft.webp",
+      "ok": true,
+      "width": 1376,
+      "height": 768
+    },
+    {
+      "src": "/images/architecture/site-engineer-audit.webp",
+      "ok": true,
+      "width": 1376,
+      "height": 768
+    },
+    {
+      "src": "/images/architecture/cmda-sanction-drafting.webp",
+      "ok": true,
+      "width": 1376,
+      "height": 768
+    },
+    {
+      "src": "/images/architecture/geometric-villa-elevation.webp",
+      "ok": true,
+      "width": 1376,
+      "height": 768
+    },
+    {
+      "src": "/images/architecture/turnkey-key-handover.webp",
+      "ok": true,
+      "width": 1376,
+      "height": 768
+    },
+    {
+      "src": "/images/architecture/staad-structural-engineering.webp",
+      "ok": true,
+      "width": 1376,
+      "height": 768
+    },
+    {
+      "src": "/images/architecture/structural-construction-frame.webp",
+      "ok": true,
+      "width": 1376,
+      "height": 768
+    },
+    {
+      "src": "/murali-patharala-associates-assets/interior_renders/WhatsApp Image 2026-09-23 at 16.42.59 (3).webp",
+      "ok": true,
+      "width": 1600,
+      "height": 1067
+    },
+    {
+      "src": "/murali-patharala-associates-assets/exterior_renders/modern-residence-exterior-render-wide.webp",
+      "ok": true,
+      "width": 1600,
+      "height": 900
+    },
+    {
+      "src": "/murali-patharala-associates-assets/brand_identity/WhatsApp Image 2026-09-23 at 16.52.36.webp",
+      "ok": true,
+      "width": 800,
+      "height": 799
+    },
+    {
+      "src": "/murali-patharala-associates-assets/exterior_renders/WhatsApp Image 2026-09-23 at 17.40.31 (1).webp",
+      "ok": true,
+      "width": 1600,
+      "height": 1259
+    },
+    {
+      "src": "/murali-patharala-associates-assets/exterior_renders/selva kumar (1).webp",
+      "ok": true,
+      "width": 1920,
+      "height": 1313
+    },
+    {
+      "src": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.33.webp",
+      "ok": true,
+      "width": 1041,
+      "height": 692
+    },
+    {
+      "src": "/images/clients/bharat-petroleum.webp",
+      "ok": true,
+      "width": 512,
+      "height": 288
+    },
+    {
+      "src": "/images/clients/indian-oil.webp",
+      "ok": true,
+      "width": 425,
+      "height": 512
+    },
+    {
+      "src": "/images/clients/tahdco.webp",
+      "ok": true,
+      "width": 400,
+      "height": 220
+    },
+    {
+      "src": "/images/clients/indian-railways.webp",
+      "ok": true,
+      "width": 90,
+      "height": 80
+    },
+    {
+      "src": "/images/clients/sri-balaji-hospital.webp",
+      "ok": true,
+      "width": 135,
+      "height": 74
+    },
+    {
+      "src": "/images/clients/sla.webp",
+      "ok": true,
+      "width": 512,
+      "height": 272
+    },
+    {
+      "src": "/images/architecture/hero-villa-twilight.webp",
+      "ok": true,
+      "width": 1376,
+      "height": 768
+    },
+    {
+      "src": "/images/drawings/architectural-master-plan.svg",
+      "ok": true,
+      "width": 233,
+      "height": 150
+    },
+    {
+      "src": "/images/drawings/architectural-structural-lines.svg",
+      "ok": true,
+      "width": 300,
+      "height": 150
+    },
+    {
+      "src": "/images/drawings/architectural-elevation-detail.svg",
+      "ok": true,
+      "width": 280,
+      "height": 150
+    }
+  ],
+  "overflow": 0,
+  "galleryCards": []
+}
