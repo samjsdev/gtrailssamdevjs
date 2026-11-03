@@ -1,0 +1,23 @@
+{
+  "next": "04 / 06",
+  "prev": "03 / 06",
+  "compareEnd": {
+    "value": "100",
+    "text": "100% sketch, 0% 3D view"
+  },
+  "compareHome": {
+    "value": "0",
+    "text": "0% sketch, 100% 3D view"
+  },
+  "desktopServices": [
+    "All Services",
+    "Architectural Design",
+    "Residential Construction",
+    "Interior Design",
+    "Turnkey Construction"
+  ],
+  "desktopPackages": [
+    "Design Packages",
+    "Construction Packages"
+  ]
+}

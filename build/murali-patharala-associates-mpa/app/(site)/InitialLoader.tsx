@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import BrandMark from '@/components/BrandMark';
 
 interface InitialLoaderProps {
   companyName: string;
@@ -11,14 +12,24 @@ export default function InitialLoader({ companyName }: InitialLoaderProps) {
   const [fade, setFade] = useState(false);
 
   useEffect(() => {
-    // 1. Wait a bit, then trigger fade out
+    // Check if user already saw the loader in this session
+    try {
+      if (typeof window !== 'undefined' && sessionStorage.getItem('mpa_visited')) {
+        setLoading(false);
+        return;
+      }
+      sessionStorage.setItem('mpa_visited', '1');
+    } catch {
+      // ignore storage restriction errors
+    }
+
+    // Snappy intro animation for first-time session visitors
     const timer = setTimeout(() => {
       setFade(true);
-      // 2. Wait for fade transition to finish, then unmount
       setTimeout(() => {
         setLoading(false);
-      }, 700); // 700ms matches the duration-700 class
-    }, 1500); // Show loader for 1.5 seconds
+      }, 350);
+    }, 450);
 
     return () => clearTimeout(timer);
   }, []);
@@ -27,8 +38,8 @@ export default function InitialLoader({ companyName }: InitialLoaderProps) {
 
   return (
     <div
-      className={`fixed inset-0 z-[100] flex flex-col items-center justify-center bg-[#111111] transition-opacity duration-700 ease-in-out ${
-        fade ? 'opacity-0' : 'opacity-100'
+      className={`fixed inset-0 z-[100] flex flex-col items-center justify-center bg-surface-sand transition-opacity duration-350 ease-out ${
+        fade ? 'opacity-0 pointer-events-none' : 'opacity-100'
       }`}
     >
       {/* Container to handle the spinning and drawing */}
@@ -61,12 +72,12 @@ export default function InitialLoader({ companyName }: InitialLoaderProps) {
         
         {/* Inner static branding (optional, but looks premium) */}
         <div className="absolute inset-0 flex items-center justify-center">
-          <div className="w-1.5 h-1.5 bg-[#EA580C] animate-pulse"></div>
+          <BrandMark size={42} className="animate-pulse" />
         </div>
       </div>
       
       <div className="mt-8 overflow-hidden">
-        <p className="text-[10px] font-bold tracking-[0.3em] uppercase text-[#EA580C] animate-pulse">
+        <p className="text-[10px] font-bold tracking-[0.3em] uppercase text-[#703015] animate-pulse">
           {companyName}
         </p>
       </div>

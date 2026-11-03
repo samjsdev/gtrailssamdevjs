@@ -11,6 +11,8 @@ import {
   previewMedia,
 } from '@/lib/interiorContent';
 import Reveal from './Reveal';
+import HeroParallax from './HeroParallax';
+import ScrollParallax from './ScrollParallax';
 import LeadForm from './LeadForm';
 import FAQAccordion, { FAQItem } from './FAQAccordion';
 import HeroStats, { HeroStat } from './HeroStats';
@@ -173,10 +175,11 @@ export default async function Template2Home({ params }: PageProps) {
   return (
     <div>
       {/* HERO */}
+      <HeroParallax>
       <section id="hero" className="bg-[#faf7f1] overflow-hidden">
         <div className="max-w-[1240px] mx-auto px-6 pt-[clamp(44px,6vw,80px)] pb-12 sm:pb-16">
           <div className="grid lg:grid-cols-[1.02fr_0.98fr] gap-[clamp(34px,5vw,64px)] items-center">
-            <div>
+            <div className="hero-content">
               <p className="font-[family-name:var(--font-bricolage)] font-bold text-[clamp(22px,2.4vw,28px)] text-[#0e5a43] mb-4 flex items-center gap-2">
                 <span className="w-2.5 h-2.5 rounded-full bg-[#f2a007]" />
                 {cleanName || 'Design Studio'} · {city}
@@ -218,7 +221,7 @@ export default async function Template2Home({ params }: PageProps) {
                 </span>
               </div>
               <div className="rounded-[26px] overflow-hidden aspect-[4/3.5] shadow-[0_24px_60px_rgba(27,27,27,0.12)]">
-                <img src={heroImage} alt={`${cleanName || 'Studio'} interior`} className="w-full h-full object-cover" fetchPriority="high" />
+                <img src={heroImage} alt={`${cleanName || 'Studio'} interior`} className="hero-bg-img w-full h-full object-cover" fetchPriority="high" />
               </div>
               <div className="mt-5 border-t border-[#1b1b1b]/12 pt-5">
                 <p className="text-[11px] font-extrabold tracking-[0.2em] uppercase text-[#0e5a43] mb-3.5">
@@ -246,6 +249,7 @@ export default async function Template2Home({ params }: PageProps) {
           </div>
         </div>
       </section>
+      </HeroParallax>
 
       {/* BRAND PARTNERS & MATERIALS */}
       <section className="bg-white py-8 border-y border-[#1b1b1b]/10 px-6">
@@ -267,7 +271,7 @@ export default async function Template2Home({ params }: PageProps) {
       {/* ROOM BY ROOM DESIGN */}
       <section id="services" className="px-6 py-[clamp(72px,8vw,110px)] bg-[#faf7f1]">
         <div className="max-w-[1240px] mx-auto">
-          <Reveal className="flex flex-wrap justify-between items-end gap-6 mb-12">
+          <Reveal reversible className="flex flex-wrap justify-between items-end gap-6 mb-12">
             <div>
               <span className="inline-flex items-center gap-2.5 text-[12px] font-extrabold tracking-[0.28em] uppercase text-[#0e5a43] mb-3 before:content-[''] before:w-7 before:h-[2.5px] before:rounded-full before:bg-[#f2a007]">
                 Room-by-Room Design
@@ -321,7 +325,7 @@ export default async function Template2Home({ params }: PageProps) {
       <section className="bg-[#1b1b1b] py-[clamp(72px,8vw,110px)] px-6 text-white border-y border-[#1b1b1b]/10">
         <div className="max-w-[1240px] mx-auto">
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-10">
-            <Reveal className="max-w-3xl">
+            <Reveal reversible direction="left" className="max-w-3xl">
               <span className="inline-flex items-center gap-2.5 text-[12px] font-extrabold tracking-[0.28em] uppercase text-[#f2a007] mb-3 before:content-[''] before:w-7 before:h-[2.5px] before:rounded-full before:bg-[#f2a007] after:content-[''] after:w-7 after:h-[2.5px] after:rounded-full after:bg-[#f2a007]">
                 Premium Materials
               </span>
@@ -329,7 +333,7 @@ export default async function Template2Home({ params }: PageProps) {
                 Uncompromising Quality <br className="hidden md:block"/> In Every Detail
               </h2>
             </Reveal>
-            <Reveal delay={0.1} className="max-w-sm flex flex-col items-start gap-6">
+            <Reveal direction="right" delay={0.1} className="max-w-sm flex flex-col items-start gap-6">
               <p className="text-[15px] font-medium leading-[1.7] text-white/70 border-l-[2px] border-[#f2a007]/50 pl-5">
                 For all the spaces we design and execute, we exclusively use premium, certified materials and hardware to ensure generational durability and timeless elegance.
               </p>

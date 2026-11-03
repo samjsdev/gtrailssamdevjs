@@ -1,865 +1,280 @@
 import { readSourceConfig } from '@/lib/dataBuilder';
-import { cleanClinicName, cleanClinicDescription } from '@/lib/copyCleaner';
 import { notFound } from 'next/navigation';
-import Link from 'next/link';
 import Image from 'next/image';
-import CostCalculator from './CostCalculator';
-import {
-  Compass, Building, Sparkles, ShieldCheck, ArrowRight, Phone,
-  CheckCircle2, HardHat, Ruler, FileCheck, Layers, Award,
-  Clock, Check, MapPin, Calculator, Star, Users, CheckSquare,
-  Shield, ChevronRight
-} from 'lucide-react';
+import Link from 'next/link';
+import { ArrowRight, ArrowUpRight, Plus, ExternalLink } from 'lucide-react';
+import { cleanClinicName, cleanArchitectureTagline, cleanArchitectureDescription } from '@/lib/copyCleaner';
+import { ARCHITECTURE_STOCK } from '@/lib/architectureContent';
+import DisciplinesShowcase from './DisciplinesShowcase';
+import CuratedWorks from './CuratedWorks';
+import BeforeAfter from './BeforeAfter';
+import HeroScroll from './HeroScroll';
+import Reveal from './Reveal';
+import ScrollParallax from './ScrollParallax';
+import { Montserrat, Plus_Jakarta_Sans } from 'next/font/google';
 
-interface PageProps {
+const montserrat = Montserrat({ subsets: ['latin'], weight: ['300', '400', '500', '600', '700'] });
+const plusJakarta = Plus_Jakarta_Sans({ subsets: ['latin'], weight: ['300', '400', '500'] });
+
+type PageProps = {
   params: Promise<{ slug: string }>;
-}
+};
 
-export default async function Template10HomePage({ params }: PageProps) {
-  const resolvedParams = await params;
-  const { slug } = resolvedParams;
-  const data = await readSourceConfig(slug, 'template10');
+const PUBLICATIONS = [
+  {
+    tag: "HARPER'S BAZAAR",
+    title: 'Set the tone',
+    image: '/images/architecture/cantilever-garden-overhang.webp',
+  },
+  {
+    tag: 'FORBES',
+    title: 'My Startup My Right',
+    image: '/images/architecture/monolithic-brutalist-facade.webp',
+  },
+  {
+    tag: 'ELLE DECOR',
+    title: 'Design trends 2025',
+    image: '/images/architecture/living-room-double-height.webp',
+  },
+  {
+    tag: 'VOGUE',
+    title: 'Flawless Craftsmanship Stunning Spaces',
+    image: '/images/architecture/courtyard-water-residence.webp',
+  },
+  {
+    tag: 'AD',
+    title: 'Architectural Digest',
+    image: '/images/architecture/hero-villa-twilight.webp',
+  },
+  {
+    tag: 'GQ',
+    title: 'Slow Burn',
+    image: '/images/architecture/modern-villa-duplex.webp',
+  },
+];
 
-  if (!data || !data.clinic) {
-    notFound();
-  }
-
-  const clinicName = cleanClinicName(data.clinic.name);
-  const clinicTagline = data.clinic.tagline || 'End-to-End Architectural Design, Turnkey Residential Construction & Luxury Interiors';
-  const clinicDescription = cleanClinicDescription(data.clinic.description, data.clinic.name);
-  const clinicPhone = data.clinic.contact?.phone || '+91 81100 00384';
-  const clinicAddress = data.clinic.address?.full || 'Corporate Studio & Civil Engineering Center, Prime City Road';
-
-  const doctorName = data.doctor?.name || 'Ar. Rajesh Varma & Senior Associates';
-  const doctorExperience = data.doctor?.experience || '18+ Years';
-  const doctorSpecialization = data.doctor?.specialization || 'Principal Architect & Senior Civil Engineer';
-
-  const servicesList: string[] = (data.business?.services && data.business.services.length > 0)
-    ? (data.business.services as string[])
-    : [
-        'Turnkey Residential House Construction',
-        'Architectural Concept Design & 3D BIM Modeling',
-        'Structural Engineering, Soil Tests & RCC Framed Blueprints',
-        'Bespoke Luxury Interior Design & Custom Millwork',
-        'Building Approvals, Plan Sanctions & Milestone Inspections',
-        '400-Point Rigorous Quality Audits with Fixed Cost Guarantee'
-      ];
-
-  const highlightsList: string[] = (data.business?.highlights && data.business.highlights.length > 0)
-    ? (data.business.highlights as string[])
-    : [
-        'Over 850+ Luxury Homes & Residential Villas Delivered On-Time',
-        '10-Year Comprehensive Structural Warranty on All Civil Work',
-        'Guaranteed Zero Cost Escalation with Itemised Milestone Billing',
-        'Dedicated Senior Project Manager Assigned to Every Individual Site',
-        'Lab-Certified Fe550D TMT Structural Steel & Tested Grade-53 Concrete',
-        'Transparent Digital Stage Tracking with Weekly Photographic Audits'
-      ];
-
-  const media = data.media || {};
-  const heroImage = media.clinicImages?.[0] || 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1920&q=80';
-  const secondaryImage = media.clinicImages?.[1] || 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1200&q=80';
-  const principalImage = media.otherImages?.[0] || 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=800&q=80';
-
-  const projectImages = [
-    media.otherImages?.[1] || 'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=800&q=80',
-    media.otherImages?.[2] || 'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=800&q=80',
-    media.otherImages?.[3] || 'https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=800&q=80',
-    media.otherImages?.[4] || 'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=800&q=80',
-    media.otherImages?.[5] || 'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=800&q=80',
-    media.otherImages?.[6] || 'https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=800&q=80',
-  ];
-
+export default async function Template10Home({ params }: PageProps) {
+  const { slug } = await params;
   const basePath = `/designwebsite/template10/${slug}`;
 
-  return (
-    <div className="w-full bg-[#252A29] text-[#F4F3EE]">
-      {/* ─────────────────────────────────────────────────────────────
-          SECTION 1: HERO SECTION
-          Cinematic Architectural Scale, Burnt Orange Dominant Signage,
-          Charcoal Base, Gold Precision Lines & Live Metric Blocks
-      ────────────────────────────────────────────────────────────── */}
-      <section id="hero" className="relative min-h-[90vh] bg-[#252A29] flex flex-col justify-center border-b-4 border-[#111111] overflow-hidden">
-        {/* Architectural Photo Backdrop with Gradient Shadow */}
-        <div className="absolute inset-0 z-0">
-          <Image
-            src={heroImage}
-            alt="Hero Architectural Construction Banner"
-            fill
-            priority
-            className="object-cover opacity-35 filter contrast-125 saturate-75"
-            sizes="100vw"
-          />
-          <div className="absolute inset-0 bg-gradient-to-r from-[#1A1E1D] via-[#252A29]/90 to-transparent" />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#252A29] via-transparent to-[#1A1E1D]/80" />
-        </div>
+  const data = await readSourceConfig(slug, 'template10');
+  if (!data) return notFound();
 
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-8 py-20 sm:py-28 w-full">
-          <div className="max-w-4xl">
-            {/* Top Signage Badge */}
-            <div className="inline-flex items-center gap-2.5 px-4 py-1.5 bg-[#E94B26] text-[#F4F3EE] text-xs font-black uppercase tracking-[0.25em] mb-6 border-2 border-[#111111] shadow-[4px_4px_0px_#111111]">
-              <HardHat className="w-4 h-4" />
-              <span>TURNKEY RESIDENTIAL CONSTRUCTION & ARCHITECTURE</span>
+  const { clinic, business, doctor } = data;
+
+  const cleanName = cleanClinicName(clinic.name);
+  const city = clinic.address?.city || 'Chennai';
+  const tagline = cleanArchitectureTagline(clinic.tagline);
+  const phone = clinic.contact?.phone || '+91 93103 59993';
+  const doctorName = doctor?.name || 'Aparna Kaushik';
+
+  return (
+    <div className="bg-white text-black">
+      {/* 1. hp_sec1: CINEMATIC FULLSCREEN HERO WITH SCROLL PARALLAX */}
+      <HeroScroll cleanName={cleanName} />
+
+      {/* 2. hp_sec2: BRAND STORY (Aparna Kaushik Signature Layout) */}
+      <section className="py-24 sm:py-32 bg-white text-black border-b border-[#e5e5e5]">
+        <div className="max-w-[1440px] mx-auto px-6 sm:px-12">
+          <div className="grid lg:grid-cols-12 gap-12 lg:gap-20 items-center">
+            {/* Left Content */}
+            <div className="lg:col-span-7">
+              <Reveal direction="up" delay={0}>
+                <span className={`${montserrat.className} text-[11px] tracking-[0.25em] uppercase text-[#888888] font-semibold block mb-3`}>
+                  Brand Story
+                </span>
+
+                <h2
+                  className={`${montserrat.className} text-[32px] sm:text-[44px] md:text-[50px] uppercase font-light tracking-[0.05em] text-black leading-[1.15]`}
+                >
+                  &ldquo;Designing a home is like drawing a portrait of your client&rdquo;
+                </h2>
+              </Reveal>
+
+              <Reveal direction="up" delay={120}>
+                <div className="mt-8 space-y-4">
+                  <p className={`${montserrat.className} text-[12px] tracking-[0.25em] uppercase font-semibold text-black`}>
+                    Know Us Better
+                  </p>
+                  <p className="text-[17px] sm:text-[19px] text-[#555555] font-light">
+                    Iconic Architecture · Interior Design · Turnkey Civil Execution
+                  </p>
+                  <p className="text-[14px] sm:text-[15px] text-[#666666] leading-relaxed max-w-xl pt-2">
+                    The House of {cleanName || 'Aparna Kaushik'} is a fingerprint of the discerning visionary behind its inception. The firm manifests an academically informed canon of work that blends classical proportions with modernist tropical architecture and precision engineering.
+                  </p>
+                </div>
+
+                <div className="mt-10">
+                  <Link
+                    href={`${basePath}/about`}
+                    className="inline-flex items-center gap-2 text-[11px] tracking-[0.22em] uppercase font-semibold text-black hover:text-[#7d3333] transition-colors border-b border-black pb-1 hover:border-[#7d3333]"
+                  >
+                    <span>Read More</span>
+                    <ArrowRight className="w-3.5 h-3.5" />
+                  </Link>
+                </div>
+              </Reveal>
             </div>
 
-            {/* Oversized Heavy Condensed Architectural Title */}
-            <h1 className="text-4xl sm:text-6xl lg:text-7xl font-black uppercase text-[#F4F3EE] tracking-tight leading-[0.95] mb-6 drop-shadow-lg">
-              GET YOUR DREAM HOME CONSTRUCTED BY <span className="text-[#E94B26]">THE EXPERTS</span>
-            </h1>
+            {/* Right Portrait Image */}
+            <div className="lg:col-span-5">
+              <Reveal direction="curtain" delay={80} duration={1.1}>
+                <ScrollParallax speed={0.14} className="aspect-[3/4] w-full bg-[#f7f7f7]">
+                  <Image
+                    src="/images/architecture/cantilever-garden-overhang.webp"
+                    alt="Brand Story Architecture"
+                    fill
+                    className="object-cover"
+                    sizes="(max-width: 1024px) 100vw, 40vw"
+                    priority
+                  />
+                </ScrollParallax>
+              </Reveal>
+            </div>
+          </div>
+        </div>
+      </section>
 
-            <p className="text-sm sm:text-lg font-black uppercase tracking-[0.2em] text-[#C8A84E] mb-4">
-              {clinicName} &bull; {clinicTagline}
-            </p>
+      {/* 3. hp_sec3: PRINCIPAL ARCHITECT (Aparna Kaushik Signature Layout) */}
+      <section className="py-24 sm:py-32 bg-white text-black border-b border-[#e5e5e5]">
+        <div className="max-w-[1440px] mx-auto px-6 sm:px-12">
+          <div className="grid lg:grid-cols-12 gap-12 lg:gap-20 items-center">
+            {/* Left Content */}
+            <div className="lg:col-span-7">
+              <Reveal direction="up" delay={0}>
+                <span className={`${montserrat.className} text-[11px] tracking-[0.25em] uppercase text-[#888888] font-semibold block mb-3`}>
+                  Principal Architect
+                </span>
 
-            <p className="text-sm sm:text-base text-[#F4F3EE]/85 leading-relaxed font-sans max-w-2xl mb-10">
-              {clinicDescription}
-            </p>
+                <h2
+                  className={`${montserrat.className} text-[32px] sm:text-[44px] md:text-[50px] uppercase font-light tracking-[0.05em] text-black leading-[1.15]`}
+                >
+                  &ldquo;My designs are sincere, natural and unforced!&rdquo;
+                </h2>
+              </Reveal>
 
-            {/* Action Triggers with Hard Directional Shadow */}
-            <div className="flex flex-wrap items-center gap-4">
+              <Reveal direction="up" delay={120}>
+                <div className="mt-8 space-y-4">
+                  <p className="text-[14.5px] sm:text-[15.5px] text-[#555555] leading-relaxed max-w-xl">
+                    For me, design is everything. Clarity of purpose and simplicity of line; purity of form and obsessive attention to detail. I strive for perfection.
+                  </p>
+                  <p className="text-[14px] sm:text-[15px] text-[#666666] leading-relaxed max-w-xl">
+                    {cleanName || 'Aparna Kaushik'} is one of the leading designers and builders of ultra-luxury estate homes of all scales and lifestyle creations across India, the UAE, and the world.
+                  </p>
+                </div>
+
+                <div className="mt-10">
+                  <Link
+                    href={`${basePath}/about`}
+                    className="inline-flex items-center gap-2 text-[11px] tracking-[0.22em] uppercase font-semibold text-black hover:text-[#7d3333] transition-colors border-b border-black pb-1 hover:border-[#7d3333]"
+                  >
+                    <span>Read More</span>
+                    <ArrowRight className="w-3.5 h-3.5" />
+                  </Link>
+                </div>
+              </Reveal>
+            </div>
+
+            {/* Right Portrait Image */}
+            <div className="lg:col-span-5">
+              <Reveal direction="curtain" delay={80} duration={1.1}>
+                <ScrollParallax speed={0.14} className="aspect-[3/4] w-full bg-[#f7f7f7]">
+                  <Image
+                    src="/images/architecture/principal-architect.webp"
+                    alt={doctorName}
+                    fill
+                    className="object-cover"
+                    sizes="(max-width: 1024px) 100vw, 40vw"
+                  />
+                </ScrollParallax>
+              </Reveal>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 4. hp_sec4 + hp_sec5: SERVICES (Interactive Full-Width Hover Experience) */}
+      <DisciplinesShowcase basePath={basePath} />
+
+      {/* 5. hp_sec7: FEATURED WORKS (Asymmetrical Editorial Grid) */}
+      <CuratedWorks basePath={basePath} />
+
+      {/* 6. BEFORE & AFTER TRANSFORMATION SLIDER (Civil & Architecture Specialization) */}
+      <BeforeAfter />
+
+      {/* 7. hp_sec8: LATEST INSIGHT / PUBLICATIONS CAROUSEL */}
+      <section className="py-24 bg-white text-black border-t border-[#e5e5e5]">
+        <div className="max-w-[1440px] mx-auto px-6 sm:px-12">
+          <Reveal direction="up">
+            <div className="flex items-baseline justify-between mb-12 border-b border-black pb-8">
+              <h2 className={`${montserrat.className} text-[36px] sm:text-[48px] uppercase font-light tracking-[0.06em] text-black`}>
+                Latest Insight
+              </h2>
               <Link
-                href={`${basePath}#cost-calculator`}
-                className="px-8 py-4 bg-[#E94B26] text-[#F4F3EE] font-black text-xs sm:text-sm uppercase tracking-widest border border-[#111111] shadow-[6px_6px_0px_#111111] hover:shadow-[2px_2px_0px_#111111] hover:translate-x-1 hover:translate-y-1 transition-all flex items-center gap-2.5"
+                href={`${basePath}/gallery`}
+                className="inline-flex items-center gap-2 text-[11px] tracking-[0.22em] uppercase font-semibold text-black hover:text-[#7d3333] transition-colors"
               >
-                <Calculator className="w-4 h-4" />
-                <span>CALCULATE CONSTRUCTION COST</span>
-                <ArrowRight className="w-4 h-4" />
+                <span>View More Publications</span>
+                <ArrowRight className="w-3.5 h-3.5" />
               </Link>
+            </div>
+          </Reveal>
 
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            {PUBLICATIONS.map((pub, idx) => (
+              <Reveal key={pub.tag} direction="up" delay={idx * 80}>
+                <div className="group border border-[#e5e5e5] p-6 hover:border-black transition-all duration-300 flex flex-col justify-between h-full">
+                  <div>
+                    <div className="flex items-center justify-between pb-3 border-b border-[#e5e5e5]">
+                      <span className={`${montserrat.className} text-[11px] tracking-[0.2em] uppercase font-semibold text-black`}>
+                        {pub.tag}
+                      </span>
+                      <ArrowUpRight className="w-4 h-4 text-black group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                    </div>
+                    <h3 className={`${montserrat.className} text-[18px] uppercase font-light tracking-[0.06em] text-black mt-4 leading-snug`}>
+                      {pub.title}
+                    </h3>
+                  </div>
+
+                  <div className="relative aspect-[16/10] w-full mt-6 overflow-hidden bg-[#f7f7f7]">
+                    <Image
+                      src={pub.image}
+                      alt={pub.title}
+                      fill
+                      className="object-cover group-hover:scale-105 transition-transform duration-700"
+                      sizes="(max-width: 768px) 100vw, 33vw"
+                      loading="lazy"
+                    />
+                  </div>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 9. hp_sec9: THE MONUMENTAL LEGACY BANNER (Exact text from aparnakaushik.com) */}
+      <section className="py-24 sm:py-32 bg-[#111111] text-white relative overflow-hidden">
+        <div className="max-w-[1200px] mx-auto px-6 sm:px-12 text-center flex flex-col items-center">
+          <Reveal direction="scale" duration={1.0}>
+            <h2
+              className={`${montserrat.className} text-[26px] sm:text-[38px] md:text-[46px] uppercase font-light tracking-[0.08em] text-white leading-[1.25] max-w-4xl`}
+            >
+              A legacy of 300+ ultra-luxury residences delivered across India, the UAE, and the world.
+            </h2>
+          </Reveal>
+
+          <Reveal direction="up" delay={200}>
+            <div className="mt-10">
               <Link
                 href={`${basePath}/contact`}
-                className="px-8 py-4 bg-[#1A1E1D] text-[#F4F3EE] font-black text-xs sm:text-sm uppercase tracking-widest border-2 border-[#C8A84E] hover:bg-[#252A29] hover:border-[#E94B26] transition-all flex items-center gap-2 shadow-[4px_4px_0px_#111111]"
+                className="inline-flex items-center gap-3 bg-white text-black px-8 py-4 rounded-full text-[11px] tracking-[0.22em] uppercase font-semibold hover:bg-[#7d3333] hover:text-white transition-all duration-300 shadow-xl group"
               >
-                <Phone className="w-4 h-4 text-[#C8A84E]" />
-                <span>BOOK TECHNICAL CONSULTATION</span>
+                <span>Let&rsquo;s connect</span>
+                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </Link>
             </div>
-          </div>
-
-          {/* 4 Architectural Metric Counters */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-16 pt-10 border-t-2 border-[#111111]">
-            <div className="bg-[#1A1E1D] p-5 border-2 border-[#111111] shadow-[4px_4px_0px_#111111]">
-              <span className="text-3xl sm:text-4xl font-black text-[#E94B26] tracking-tight block">
-                {doctorExperience}
-              </span>
-              <span className="text-[10px] sm:text-xs font-bold uppercase tracking-widest text-[#C8A84E] mt-1 block">
-                CIVIL EXCELLENCE
-              </span>
-              <p className="text-[11px] text-[#F4F3EE]/60 font-mono mt-0.5">Established Heritage</p>
-            </div>
-
-            <div className="bg-[#1A1E1D] p-5 border-2 border-[#111111] shadow-[4px_4px_0px_#111111]">
-              <span className="text-3xl sm:text-4xl font-black text-[#F4F3EE] tracking-tight block">
-                850+
-              </span>
-              <span className="text-[10px] sm:text-xs font-bold uppercase tracking-widest text-[#C8A84E] mt-1 block">
-                PROJECTS DELIVERED
-              </span>
-              <p className="text-[11px] text-[#F4F3EE]/60 font-mono mt-0.5">Villas & Homes</p>
-            </div>
-
-            <div className="bg-[#1A1E1D] p-5 border-2 border-[#111111] shadow-[4px_4px_0px_#111111]">
-              <span className="text-3xl sm:text-4xl font-black text-[#E94B26] tracking-tight block">
-                100%
-              </span>
-              <span className="text-[10px] sm:text-xs font-bold uppercase tracking-widest text-[#C8A84E] mt-1 block">
-                ON-TIME HANDOVER
-              </span>
-              <p className="text-[11px] text-[#F4F3EE]/60 font-mono mt-0.5">Guaranteed Timeline</p>
-            </div>
-
-            <div className="bg-[#1A1E1D] p-5 border-2 border-[#111111] shadow-[4px_4px_0px_#111111]">
-              <span className="text-3xl sm:text-4xl font-black text-[#F4F3EE] tracking-tight block">
-                400+
-              </span>
-              <span className="text-[10px] sm:text-xs font-bold uppercase tracking-widest text-[#C8A84E] mt-1 block">
-                QUALITY AUDITS
-              </span>
-              <p className="text-[11px] text-[#F4F3EE]/60 font-mono mt-0.5">Rigorous Checklist</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ─────────────────────────────────────────────────────────────
-          SECTION 2: THREE CORE PILLARS
-          Architectural Designs • Residential Construction • Turnkey Interiors
-      ────────────────────────────────────────────────────────────── */}
-      <section id="pillars" className="py-24 px-4 sm:px-8 bg-[#1A1E1D] border-b-4 border-[#111111]">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center max-w-3xl mx-auto mb-16">
-            <div className="inline-block px-3.5 py-1 bg-[#252A29] text-[#C8A84E] text-xs font-black uppercase tracking-[0.25em] border border-[#C8A84E]/40 mb-3">
-              INTEGRATED DISCIPLINES
-            </div>
-            <h2 className="text-3xl sm:text-5xl font-black uppercase text-[#F4F3EE] tracking-tight">
-              OUR THREE CORE PILLARS
-            </h2>
-            <p className="text-xs sm:text-sm font-mono text-[#F4F3EE]/70 mt-2 uppercase tracking-wider">
-              SEAMLESS CONVERGENCE OF CREATIVE ARCHITECTURE, PRECISION CIVIL ENGINEERING, AND LUXURY INTERIORS
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {/* Pillar 1: Architectural Designs */}
-            <div className="bg-[#252A29] border-2 border-[#111111] p-8 relative group hover:border-[#E94B26] transition-all shadow-[6px_6px_0px_#111111] flex flex-col justify-between">
-              <div>
-                <div className="w-14 h-14 bg-[#1A1E1D] text-[#E94B26] font-black text-2xl flex items-center justify-center border border-[#C8A84E]/40 group-hover:bg-[#E94B26] group-hover:text-[#F4F3EE] transition-colors mb-6">
-                  <Compass className="w-7 h-7" />
-                </div>
-                <span className="text-[10px] font-mono text-[#C8A84E] uppercase tracking-widest block font-bold mb-1">
-                  PILLAR 01 &bull; ARCHITECTURE
-                </span>
-                <h3 className="text-2xl font-black uppercase text-[#F4F3EE] tracking-tight mb-4">
-                  ARCHITECTURAL DESIGNS
-                </h3>
-                <p className="text-xs sm:text-sm text-[#F4F3EE]/80 leading-relaxed mb-6 font-sans">
-                  Contemporary facade elevations, photorealistic 3D BIM visualization, structural floor plans, and 100% Vastu-aligned residential blueprints tailored to your plot geometry.
-                </p>
-                <ul className="space-y-2.5 border-t border-[#1A1E1D] pt-4 text-xs font-mono text-[#F4F3EE]/85 mb-6">
-                  <li className="flex items-center gap-2">
-                    <Check className="w-4 h-4 text-[#E94B26]" />
-                    <span>3D Exterior Elevation Modeling</span>
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <Check className="w-4 h-4 text-[#E94B26]" />
-                    <span>Structural Framing & Soil Reports</span>
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <Check className="w-4 h-4 text-[#E94B26]" />
-                    <span>Municipal Sanction Clearance</span>
-                  </li>
-                </ul>
-              </div>
-              <Link
-                href={`${basePath}/services`}
-                className="inline-flex items-center gap-2 text-xs font-black uppercase tracking-widest text-[#E94B26] hover:text-[#C8A84E] transition-colors"
-              >
-                <span>EXPLORE ARCHITECTURAL SCOPE</span>
-                <ArrowRight className="w-3.5 h-3.5" />
-              </Link>
-            </div>
-
-            {/* Pillar 2: Residential Construction */}
-            <div className="bg-[#1A1E1D] border-3 border-[#E94B26] p-8 relative shadow-[8px_8px_0px_#E94B26] flex flex-col justify-between">
-              <div className="absolute -top-3 right-5 bg-[#E94B26] text-[#F4F3EE] text-[9px] font-black uppercase px-3 py-1 tracking-widest border border-[#111111]">
-                CORE CIVIL SPECIALTY
-              </div>
-              <div>
-                <div className="w-14 h-14 bg-[#E94B26] text-[#F4F3EE] font-black text-2xl flex items-center justify-center border border-[#111111] mb-6">
-                  <Building className="w-7 h-7" />
-                </div>
-                <span className="text-[10px] font-mono text-[#C8A84E] uppercase tracking-widest block font-bold mb-1">
-                  PILLAR 02 &bull; CIVIL EXECUTION
-                </span>
-                <h3 className="text-2xl font-black uppercase text-[#F4F3EE] tracking-tight mb-4">
-                  RESIDENTIAL CONSTRUCTION
-                </h3>
-                <p className="text-xs sm:text-sm text-[#F4F3EE]/90 leading-relaxed mb-6 font-sans">
-                  Turnkey civil execution for luxury individual houses and modern duplex villas using premium Fe550D steel, high-grade certified concrete, and dedicated site project managers.
-                </p>
-                <ul className="space-y-2.5 border-t border-[#252A29] pt-4 text-xs font-mono text-[#F4F3EE] mb-6">
-                  <li className="flex items-center gap-2">
-                    <Check className="w-4 h-4 text-[#C8A84E]" />
-                    <span>RCC Framed Robust Structure</span>
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <Check className="w-4 h-4 text-[#C8A84E]" />
-                    <span>400-Point Quality Audits</span>
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <Check className="w-4 h-4 text-[#C8A84E]" />
-                    <span>Guaranteed Fixed Timelines</span>
-                  </li>
-                </ul>
-              </div>
-              <Link
-                href={`${basePath}/services`}
-                className="inline-flex items-center gap-2 text-xs font-black uppercase tracking-widest text-[#E94B26] hover:text-[#F4F3EE] transition-colors"
-              >
-                <span>EXPLORE CIVIL PACKAGES</span>
-                <ArrowRight className="w-3.5 h-3.5" />
-              </Link>
-            </div>
-
-            {/* Pillar 3: Interior Designs */}
-            <div className="bg-[#252A29] border-2 border-[#111111] p-8 relative group hover:border-[#E94B26] transition-all shadow-[6px_6px_0px_#111111] flex flex-col justify-between">
-              <div>
-                <div className="w-14 h-14 bg-[#1A1E1D] text-[#C8A84E] font-black text-2xl flex items-center justify-center border border-[#C8A84E]/40 group-hover:bg-[#E94B26] group-hover:text-[#F4F3EE] transition-colors mb-6">
-                  <Sparkles className="w-7 h-7" />
-                </div>
-                <span className="text-[10px] font-mono text-[#C8A84E] uppercase tracking-widest block font-bold mb-1">
-                  PILLAR 03 &bull; LUXURY INTERIORS
-                </span>
-                <h3 className="text-2xl font-black uppercase text-[#F4F3EE] tracking-tight mb-4">
-                  INTERIOR DESIGNS
-                </h3>
-                <p className="text-xs sm:text-sm text-[#F4F3EE]/80 leading-relaxed mb-6 font-sans">
-                  Full-home interior fit-outs, bespoke modular kitchens with Blum hardware, custom wardrobe joinery, architectural false ceilings, and integrated ambient lighting systems.
-                </p>
-                <ul className="space-y-2.5 border-t border-[#1A1E1D] pt-4 text-xs font-mono text-[#F4F3EE]/85 mb-6">
-                  <li className="flex items-center gap-2">
-                    <Check className="w-4 h-4 text-[#E94B26]" />
-                    <span>Custom Modular Kitchen Joinery</span>
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <Check className="w-4 h-4 text-[#E94B26]" />
-                    <span>Designer Ceiling & Lighting</span>
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <Check className="w-4 h-4 text-[#E94B26]" />
-                    <span>Italian Marble & Premium Finishes</span>
-                  </li>
-                </ul>
-              </div>
-              <Link
-                href={`${basePath}/services`}
-                className="inline-flex items-center gap-2 text-xs font-black uppercase tracking-widest text-[#E94B26] hover:text-[#C8A84E] transition-colors"
-              >
-                <span>EXPLORE INTERIOR WORKS</span>
-                <ArrowRight className="w-3.5 h-3.5" />
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ─────────────────────────────────────────────────────────────
-          SECTION 3: REAL-TIME COST ESTIMATION CALCULATOR
-      ────────────────────────────────────────────────────────────── */}
-      <section id="cost-calculator" className="py-24 px-4 sm:px-8 bg-[#252A29] border-b-4 border-[#111111]">
-        <div className="max-w-7xl mx-auto">
-          <CostCalculator basePath={basePath} />
-        </div>
-      </section>
-
-      {/* ─────────────────────────────────────────────────────────────
-          SECTION 4: CONSTRUCTION PACKAGES COMPARISON
-      ────────────────────────────────────────────────────────────── */}
-      <section id="packages" className="py-24 px-4 sm:px-8 bg-[#1A1E1D] border-b-4 border-[#111111]">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center max-w-3xl mx-auto mb-16">
-            <div className="inline-block px-3.5 py-1 bg-[#252A29] text-[#C8A84E] text-xs font-black uppercase tracking-[0.25em] border border-[#C8A84E]/40 mb-3">
-              TRANSPARENT SPECIFICATIONS
-            </div>
-            <h2 className="text-3xl sm:text-5xl font-black uppercase text-[#F4F3EE] tracking-tight">
-              OUR RESIDENTIAL CONSTRUCTION PACKAGES
-            </h2>
-            <p className="text-xs sm:text-sm font-mono text-[#F4F3EE]/70 mt-2 uppercase tracking-wider">
-              FIXED-COST CONTRACTS WITH CERTIFIED RAW MATERIALS & METICULOUS CIVIL CRAFTSMANSHIP
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-            {/* Standard Package */}
-            <div className="bg-[#252A29] border-2 border-[#111111] p-8 flex flex-col justify-between shadow-[6px_6px_0px_#111111]">
-              <div>
-                <div className="text-xs font-mono text-[#C8A84E] uppercase tracking-widest font-bold mb-1">
-                  TIER 01 &bull; ESSENTIAL HOMES
-                </div>
-                <h3 className="text-2xl font-black uppercase text-[#F4F3EE] tracking-tight mb-2">
-                  STANDARD PACKAGE
-                </h3>
-                <div className="text-3xl font-black text-[#E94B26] mb-6">
-                  ₹2,150 <span className="text-xs font-normal text-[#F4F3EE]/70 font-mono">/ sq.ft Built-Up</span>
-                </div>
-
-                <div className="space-y-4 text-xs font-mono text-[#F4F3EE]/85 border-t border-[#1A1E1D] pt-6">
-                  <div>
-                    <span className="font-bold text-[#C8A84E] block mb-1">STRUCTURAL & CIVIL</span>
-                    <p className="font-sans">Fe500 TMT Steel (Tata/JSW), UltraTech 53G Cement, Wire-cut red clay bricks.</p>
-                  </div>
-                  <div>
-                    <span className="font-bold text-[#C8A84E] block mb-1">FLOORING & DADO</span>
-                    <p className="font-sans">2x2 Double Charged Vitrified Tiles (Kajaria / Somany), Anti-skid ceramic in baths.</p>
-                  </div>
-                  <div>
-                    <span className="font-bold text-[#C8A84E] block mb-1">PLUMBING & SANITARY</span>
-                    <p className="font-sans">Parryware / Hindware wall-hung closets, CPVC Astral internal water piping.</p>
-                  </div>
-                  <div>
-                    <span className="font-bold text-[#C8A84E] block mb-1">DOORS & WINDOWS</span>
-                    <p className="font-sans">Teakwood main door frame, flush internal doors, powder-coated aluminium windows.</p>
-                  </div>
-                </div>
-              </div>
-
-              <div className="mt-8 pt-6 border-t border-[#1A1E1D]">
-                <Link
-                  href={`${basePath}/contact?package=standard`}
-                  className="w-full py-3.5 bg-[#1A1E1D] text-[#F4F3EE] hover:bg-[#E94B26] font-black text-xs uppercase tracking-widest text-center block transition-colors border border-[#C8A84E]/40"
-                >
-                  SELECT STANDARD PLAN
-                </Link>
-              </div>
-            </div>
-
-            {/* Premium Package */}
-            <div className="bg-[#252A29] border-3 border-[#E94B26] p-8 flex flex-col justify-between relative shadow-[8px_8px_0px_#E94B26]">
-              <div className="absolute -top-3.5 right-6 bg-[#E94B26] text-[#F4F3EE] text-[9px] font-black uppercase px-3 py-1 tracking-widest border border-[#111111]">
-                RECOMMENDED BESTSELLER
-              </div>
-              <div>
-                <div className="text-xs font-mono text-[#C8A84E] uppercase tracking-widest font-bold mb-1">
-                  TIER 02 &bull; PREMIUM ARCHITECTURAL
-                </div>
-                <h3 className="text-2xl font-black uppercase text-[#F4F3EE] tracking-tight mb-2">
-                  PREMIUM PACKAGE
-                </h3>
-                <div className="text-3xl font-black text-[#E94B26] mb-6">
-                  ₹2,750 <span className="text-xs font-normal text-[#F4F3EE]/70 font-mono">/ sq.ft Built-Up</span>
-                </div>
-
-                <div className="space-y-4 text-xs font-mono text-[#F4F3EE] border-t border-[#1A1E1D] pt-6">
-                  <div>
-                    <span className="font-bold text-[#C8A84E] block mb-1">STRUCTURAL & CIVIL</span>
-                    <p className="font-sans">Fe550D High-Corrosion Resistant Steel, M20 Grade RMC Ready-Mix Concrete, 9-inch solid masonry.</p>
-                  </div>
-                  <div>
-                    <span className="font-bold text-[#C8A84E] block mb-1">FLOORING & DADO</span>
-                    <p className="font-sans">4x2 Large Format Glazed Vitrified Tiles, Granite staircases with SS glass railings.</p>
-                  </div>
-                  <div>
-                    <span className="font-bold text-[#C8A84E] block mb-1">PLUMBING & SANITARY</span>
-                    <p className="font-sans">Jaquar / Kohler Concealed Diverters, Grohe bathroom fittings, solar water line.</p>
-                  </div>
-                  <div>
-                    <span className="font-bold text-[#C8A84E] block mb-1">DOORS & WINDOWS</span>
-                    <p className="font-sans">First-Grade First Class Teak main door, 3-track German UPVC soundproof windows with mesh.</p>
-                  </div>
-                </div>
-              </div>
-
-              <div className="mt-8 pt-6 border-t border-[#1A1E1D]">
-                <Link
-                  href={`${basePath}/contact?package=premium`}
-                  className="w-full py-3.5 bg-[#E94B26] text-[#F4F3EE] hover:bg-[#d63d1a] font-black text-xs uppercase tracking-widest text-center block transition-colors border border-[#111111] shadow-[3px_3px_0px_#111111]"
-                >
-                  SELECT PREMIUM PLAN
-                </Link>
-              </div>
-            </div>
-
-            {/* Ultra Luxury Package */}
-            <div className="bg-[#252A29] border-2 border-[#111111] p-8 flex flex-col justify-between shadow-[6px_6px_0px_#111111]">
-              <div>
-                <div className="text-xs font-mono text-[#C8A84E] uppercase tracking-widest font-bold mb-1">
-                  TIER 03 &bull; VILLA BESPOKE
-                </div>
-                <h3 className="text-2xl font-black uppercase text-[#F4F3EE] tracking-tight mb-2">
-                  ULTRA LUXURY
-                </h3>
-                <div className="text-3xl font-black text-[#E94B26] mb-6">
-                  ₹3,500 <span className="text-xs font-normal text-[#F4F3EE]/70 font-mono">/ sq.ft Built-Up</span>
-                </div>
-
-                <div className="space-y-4 text-xs font-mono text-[#F4F3EE]/85 border-t border-[#1A1E1D] pt-6">
-                  <div>
-                    <span className="font-bold text-[#C8A84E] block mb-1">STRUCTURAL & CIVIL</span>
-                    <p className="font-sans">Seismic Zone IV engineered foundation, complete waterproofing warranty, heat insulation.</p>
-                  </div>
-                  <div>
-                    <span className="font-bold text-[#C8A84E] block mb-1">FLOORING & DADO</span>
-                    <p className="font-sans">Imported Italian Marble in foyer, living & dining; engineered wooden flooring in suites.</p>
-                  </div>
-                  <div>
-                    <span className="font-bold text-[#C8A84E] block mb-1">PLUMBING & SANITARY</span>
-                    <p className="font-sans">Grohe / Toto Sensor Bathrooms, rain showers, pressure booster systems, smart automation lines.</p>
-                  </div>
-                  <div>
-                    <span className="font-bold text-[#C8A84E] block mb-1">DOORS & WINDOWS</span>
-                    <p className="font-sans">Solid Burma Teakwood frames throughout, double-glazed Schuco architectural windows.</p>
-                  </div>
-                </div>
-              </div>
-
-              <div className="mt-8 pt-6 border-t border-[#1A1E1D]">
-                <Link
-                  href={`${basePath}/contact?package=luxury`}
-                  className="w-full py-3.5 bg-[#1A1E1D] text-[#F4F3EE] hover:bg-[#E94B26] font-black text-xs uppercase tracking-widest text-center block transition-colors border border-[#C8A84E]/40"
-                >
-                  SELECT ULTRA LUXURY PLAN
-                </Link>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ─────────────────────────────────────────────────────────────
-          SECTION 5: 5-STAGE TURNKEY BLUEPRINT
-      ────────────────────────────────────────────────────────────── */}
-      <section id="roadmap" className="py-24 px-4 sm:px-8 bg-[#252A29] border-b-4 border-[#111111]">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center max-w-3xl mx-auto mb-16">
-            <div className="inline-block px-3.5 py-1 bg-[#1A1E1D] text-[#C8A84E] text-xs font-black uppercase tracking-[0.25em] border border-[#C8A84E]/40 mb-3">
-              EXECUTION DISCIPLINE
-            </div>
-            <h2 className="text-3xl sm:text-5xl font-black uppercase text-[#F4F3EE] tracking-tight">
-              5-STAGE TURNKEY BLUEPRINT
-            </h2>
-            <p className="text-xs sm:text-sm font-mono text-[#F4F3EE]/70 mt-2 uppercase tracking-wider">
-              HOW WE TRANSFORM BARE LAND INTO AN ARCHITECTURAL MASTERPIECE WITH ZERO CONTRACTUAL DELAYS
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-5 gap-4 relative">
-            {[
-              {
-                num: '01',
-                title: 'SPATIAL & ARCHITECTURAL 3D',
-                desc: 'Detailed site soil survey, Vastu layout mapping, photorealistic 3D elevations and municipal sanction clearance.',
-                icon: Ruler,
-              },
-              {
-                num: '02',
-                title: 'STRUCTURAL ENGINEERING',
-                desc: 'BIM modeling, structural column sizing, reinforcement schedules, and soil bearing capacity test audits.',
-                icon: HardHat,
-              },
-              {
-                num: '03',
-                title: 'FOUNDATION & CIVIL SHELL',
-                desc: 'Excavation, anti-termite treatment, plinth beam casting, Fe550D column framework and precision brickwork.',
-                icon: Building,
-              },
-              {
-                num: '04',
-                title: 'MEP & INTERIOR JOINERY',
-                desc: 'Concealed electrical conduits, plumbing pressure tests, flooring, false ceiling, and bespoke modular cabinetry.',
-                icon: Layers,
-              },
-              {
-                num: '05',
-                title: '400-POINT AUDIT & KEYS',
-                desc: 'Exhaustive 400-point structural inspection, deep clean styling, and turnkey keys handover with 10-year warranty.',
-                icon: Award,
-              },
-            ].map((step, idx) => {
-              const StepIcon = step.icon;
-              return (
-                <div
-                  key={step.num}
-                  className="bg-[#1A1E1D] border-2 border-[#111111] p-6 relative flex flex-col justify-between hover:border-[#E94B26] transition-colors shadow-[4px_4px_0px_#111111]"
-                >
-                  <div>
-                    <div className="flex items-center justify-between mb-4">
-                      <span className="text-2xl font-black text-[#E94B26] font-mono">
-                        {step.num}
-                      </span>
-                      <StepIcon className="w-5 h-5 text-[#C8A84E]" />
-                    </div>
-                    <h4 className="text-sm font-black uppercase text-[#F4F3EE] tracking-tight mb-2">
-                      {step.title}
-                    </h4>
-                    <p className="text-xs text-[#F4F3EE]/75 font-sans leading-relaxed">
-                      {step.desc}
-                    </p>
-                  </div>
-                  <div className="mt-4 pt-3 border-t border-[#252A29] text-[10px] font-mono text-[#C8A84E] font-bold">
-                    PHASE {idx + 1} OF 5
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-      </section>
-
-      {/* ─────────────────────────────────────────────────────────────
-          SECTION 6: ENGINEERING STANDARDS & HIGHLIGHTS
-      ────────────────────────────────────────────────────────────── */}
-      <section id="highlights" className="py-24 px-4 sm:px-8 bg-[#1A1E1D] border-b-4 border-[#111111]">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-            <div className="lg:col-span-5 space-y-6">
-              <div className="inline-block px-3.5 py-1 bg-[#252A29] text-[#C8A84E] text-xs font-black uppercase tracking-[0.25em] border border-[#C8A84E]/40">
-                QUALITY ASSURANCE
-              </div>
-              <h2 className="text-3xl sm:text-5xl font-black uppercase text-[#F4F3EE] tracking-tight leading-none">
-                WHY CHOOSE <span className="text-[#E94B26]">{clinicName}</span> FOR YOUR HOME
-              </h2>
-              <p className="text-xs sm:text-sm text-[#F4F3EE]/80 leading-relaxed font-sans">
-                We eliminate the stress of residential construction through absolute technical transparency, fixed pricing, and uncompromising civil craftsmanship under senior registered structural engineers.
-              </p>
-              
-              {/* Image box */}
-              <div className="relative h-64 w-full border-4 border-[#111111] overflow-hidden shadow-[6px_6px_0px_#111111]">
-                <Image
-                  src={secondaryImage}
-                  alt="Quality Civil Engineering On-Site"
-                  fill
-                  className="object-cover contrast-115"
-                  sizes="(max-width: 1024px) 100vw, 500px"
-                />
-                <div className="absolute bottom-3 left-3 bg-[#E94B26] text-[#F4F3EE] text-[10px] font-black uppercase tracking-widest px-3 py-1 border border-[#111111]">
-                  100% QUALITY AUDITED SITES
-                </div>
-              </div>
-            </div>
-
-            <div className="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-4">
-              {highlightsList.map((highlight, idx) => (
-                <div
-                  key={idx}
-                  className="bg-[#252A29] p-6 border-2 border-[#111111] flex flex-col justify-between hover:border-[#C8A84E] transition-colors shadow-[4px_4px_0px_#111111]"
-                >
-                  <div className="flex items-start gap-3">
-                    <CheckCircle2 className="w-5 h-5 text-[#E94B26] shrink-0 mt-0.5" />
-                    <div>
-                      <span className="text-[10px] font-mono text-[#C8A84E] uppercase tracking-wider block font-bold mb-1">
-                        STANDARD ASSURANCE #{idx + 1}
-                      </span>
-                      <p className="text-xs font-bold text-[#F4F3EE] leading-relaxed">
-                        {highlight}
-                      </p>
-                    </div>
-                  </div>
-                  <div className="mt-4 pt-2 border-t border-[#1A1E1D] flex justify-end">
-                    <span className="text-[9px] font-mono text-[#C8A84E] uppercase font-bold">VERIFIED STANDARD</span>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ─────────────────────────────────────────────────────────────
-          SECTION 7: FEATURED PROJECTS SHOWCASE
-      ────────────────────────────────────────────────────────────── */}
-      <section id="projects" className="py-24 px-4 sm:px-8 bg-[#252A29] border-b-4 border-[#111111]">
-        <div className="max-w-7xl mx-auto">
-          <div className="flex flex-wrap items-end justify-between gap-6 mb-12">
-            <div>
-              <div className="inline-block px-3.5 py-1 bg-[#1A1E1D] text-[#C8A84E] text-xs font-black uppercase tracking-[0.25em] border border-[#C8A84E]/40 mb-3">
-                BUILT PORTFOLIO
-              </div>
-              <h2 className="text-3xl sm:text-5xl font-black uppercase text-[#F4F3EE] tracking-tight">
-                RECENT ARCHITECTURAL & RESIDENTIAL PROJECTS
-              </h2>
-            </div>
-            <Link
-              href={`${basePath}/gallery`}
-              className="px-6 py-3 bg-[#1A1E1D] text-[#F4F3EE] hover:bg-[#E94B26] font-black text-xs uppercase tracking-widest border border-[#C8A84E]/40 transition-colors flex items-center gap-2 shadow-[2px_2px_0px_#111111]"
-            >
-              <span>VIEW FULL PORTFOLIO</span>
-              <ArrowRight className="w-4 h-4" />
-            </Link>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {[
-              {
-                title: 'The Obsidian Grand Villa',
-                category: 'RESIDENTIAL CONSTRUCTION',
-                img: projectImages[0],
-                location: 'Grand Enclave, 4,500 sq.ft',
-              },
-              {
-                title: 'Monolith Architectural Residence',
-                category: 'ARCHITECTURAL DESIGN',
-                img: projectImages[1],
-                location: 'Hilltop Avenue, 5,500 sq.ft',
-              },
-              {
-                title: 'Vanguard Penthouse Interior',
-                category: 'TURNKEY INTERIOR',
-                img: projectImages[2],
-                location: 'Prime Skyline, 3,600 sq.ft',
-              },
-              {
-                title: 'The Courtyard Contemporary Villa',
-                category: 'RESIDENTIAL CONSTRUCTION',
-                img: projectImages[3],
-                location: 'Palm Meadows, 4,800 sq.ft',
-              },
-              {
-                title: 'Industrial Brutalist Elevation',
-                category: 'ARCHITECTURAL DESIGN',
-                img: projectImages[4],
-                location: 'Boulevard Road, 6,100 sq.ft',
-              },
-              {
-                title: 'Luxe Living Suite & Kitchen',
-                category: 'TURNKEY INTERIOR',
-                img: projectImages[5],
-                location: 'Central Residency, 3,100 sq.ft',
-              },
-            ].map((item, idx) => (
-              <div
-                key={idx}
-                className="group bg-[#1A1E1D] border-2 border-[#111111] hover:border-[#E94B26] overflow-hidden transition-all shadow-[4px_4px_0px_#111111]"
-              >
-                <div className="relative h-64 w-full overflow-hidden bg-[#111111]">
-                  <Image
-                    src={item.img}
-                    alt={item.title}
-                    fill
-                    className="object-cover group-hover:scale-105 transition-transform duration-500"
-                    sizes="(max-width: 768px) 100vw, 400px"
-                  />
-                  <div className="absolute top-3 left-3 bg-[#111111]/90 text-[#C8A84E] text-[10px] font-bold uppercase tracking-widest px-2.5 py-1 border border-[#C8A84E]/40">
-                    {item.category}
-                  </div>
-                </div>
-                <div className="p-5">
-                  <h4 className="text-lg font-black uppercase text-[#F4F3EE] tracking-tight group-hover:text-[#E94B26] transition-colors mb-1">
-                    {item.title}
-                  </h4>
-                  <p className="text-xs font-mono text-[#F4F3EE]/60">
-                    {item.location}
-                  </p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ─────────────────────────────────────────────────────────────
-          SECTION 8: PRINCIPAL LEADERSHIP & ARCHITECT PROFILE
-      ────────────────────────────────────────────────────────────── */}
-      <section id="leadership" className="py-24 px-4 sm:px-8 bg-[#1A1E1D] border-b-4 border-[#111111]">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center bg-[#252A29] p-8 sm:p-12 border-4 border-[#111111] shadow-[8px_8px_0px_#111111]">
-            <div className="lg:col-span-4 relative h-80 sm:h-96 w-full border-2 border-[#C8A84E]">
-              <Image
-                src={principalImage}
-                alt={doctorName}
-                fill
-                className="object-cover contrast-115"
-                sizes="(max-width: 1024px) 100vw, 400px"
-              />
-              <div className="absolute bottom-3 left-3 bg-[#E94B26] text-[#F4F3EE] text-xs font-black uppercase tracking-widest px-3 py-1 border border-[#111111]">
-                CHIEF OF ARCHITECTURE
-              </div>
-            </div>
-
-            <div className="lg:col-span-8 space-y-4">
-              <div className="inline-block px-3.5 py-1 bg-[#1A1E1D] text-[#C8A84E] text-xs font-black uppercase tracking-[0.25em] border border-[#C8A84E]/40">
-                LEADERSHIP & ENGINEERING CREED
-              </div>
-              <h3 className="text-3xl sm:text-4xl font-black uppercase text-[#F4F3EE] tracking-tight">
-                {doctorName}
-              </h3>
-              <p className="text-xs font-mono text-[#E94B26] uppercase tracking-wider font-bold">
-                {doctorSpecialization} &bull; {doctorExperience} OF TECHNICAL MASTERY
-              </p>
-              <p className="text-xs sm:text-sm text-[#F4F3EE]/85 leading-relaxed font-sans pt-2">
-                &ldquo;True architectural elegance does not compromise structural durability. We approach every single home with the mathematical precision of structural engineering and the artistic vision of contemporary design. Our clients entrust us with their life&apos;s savings, and we deliver enduring spaces that stand firm for generations.&rdquo;
-              </p>
-              <div className="pt-4 flex flex-wrap gap-4 text-xs font-mono text-[#C8A84E]">
-                <span className="flex items-center gap-1.5 font-bold">
-                  <CheckCircle2 className="w-4 h-4 text-[#E94B26]" />
-                  Council of Architecture (COA) Accredited
-                </span>
-                <span className="flex items-center gap-1.5 font-bold">
-                  <CheckCircle2 className="w-4 h-4 text-[#E94B26]" />
-                  Institution of Engineers (IEI) Fellow
-                </span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ─────────────────────────────────────────────────────────────
-          SECTION 9: CLIENT TESTIMONIALS & REVIEWS
-      ────────────────────────────────────────────────────────────── */}
-      <section id="reviews" className="py-24 px-4 sm:px-8 bg-[#252A29] border-b-4 border-[#111111]">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center max-w-3xl mx-auto mb-16">
-            <div className="inline-block px-3.5 py-1 bg-[#1A1E1D] text-[#C8A84E] text-xs font-black uppercase tracking-[0.25em] border border-[#C8A84E]/40 mb-3">
-              CLIENT EXPERIENCES
-            </div>
-            <h2 className="text-3xl sm:text-5xl font-black uppercase text-[#F4F3EE] tracking-tight">
-              WHAT HOMEOWNERS SAY ABOUT OUR CIVIL RIGOR
-            </h2>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {[
-              {
-                name: 'K. Venkatesh & Family',
-                role: '4,500 sq.ft Triplex Villa Homeowner',
-                text: 'From the initial 3D elevation drawings to the final key handover, their civil engineering rigor was unmatched. Zero cost overruns and completed exactly in 11 months as promised in the contract.',
-                rating: 5,
-              },
-              {
-                name: 'Dr. Anita & Dr. Senthil',
-                role: '5,200 sq.ft Contemporary Villa',
-                text: 'The best decision we made for our home construction. The team maintained weekly site photo logs, tested every batch of concrete, and executed the architectural plan with 100% precision.',
-                rating: 5,
-              },
-              {
-                name: 'M. Ramesh Babu',
-                role: 'Turnkey Residential Duplex',
-                text: 'Their one-stop model combining architecture, civil construction, and modular interiors saved us months of coordination headaches. Truly a professional enterprise.',
-                rating: 5,
-              },
-            ].map((review, idx) => (
-              <div
-                key={idx}
-                className="bg-[#1A1E1D] border-2 border-[#111111] p-8 flex flex-col justify-between shadow-[4px_4px_0px_#111111]"
-              >
-                <div>
-                  <div className="flex items-center gap-1 text-[#C8A84E] mb-4">
-                    {[...Array(review.rating)].map((_, i) => (
-                      <Star key={i} className="w-4 h-4 fill-[#C8A84E]" />
-                    ))}
-                  </div>
-                  <p className="text-xs sm:text-sm text-[#F4F3EE]/85 leading-relaxed font-sans italic mb-6">
-                    &ldquo;{review.text}&rdquo;
-                  </p>
-                </div>
-                <div className="pt-4 border-t border-[#252A29]">
-                  <span className="text-sm font-black uppercase text-[#F4F3EE] block">
-                    {review.name}
-                  </span>
-                  <span className="text-[11px] font-mono text-[#E94B26] font-bold">
-                    {review.role}
-                  </span>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ─────────────────────────────────────────────────────────────
-          SECTION 10: HIGH-CONTRAST BURNT ORANGE INDUSTRIAL CTA BANNER
-      ────────────────────────────────────────────────────────────── */}
-      <section id="cta" className="py-16 px-4 sm:px-8 bg-[#E94B26] text-[#F4F3EE] border-b-4 border-[#111111]">
-        <div className="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-8">
-          <div className="max-w-3xl">
-            <span className="text-xs font-black uppercase tracking-[0.25em] bg-[#111111] text-[#C8A84E] px-3.5 py-1 inline-block mb-3 border border-[#111111]">
-              ZERO OBLIGATION CONSULTATION
-            </span>
-            <h2 className="text-3xl sm:text-5xl font-black uppercase tracking-tight text-[#F4F3EE] leading-none mb-3">
-              READY TO CONSTRUCT YOUR RESIDENTIAL MASTERPIECE?
-            </h2>
-            <p className="text-xs sm:text-sm font-bold text-[#F4F3EE]/95 uppercase font-mono tracking-wider">
-              GET A FREE PLOT FEASIBILITY AUDIT, 3D CONCEPT CONSULTATION, AND ITEMIZED CONSTRUCTION ESTIMATE.
-            </p>
-          </div>
-
-          <div className="flex flex-wrap items-center gap-4">
-            <a
-              href={`tel:${clinicPhone.replace(/[^0-9+]/g, '')}`}
-              className="px-8 py-4 bg-[#111111] text-[#F4F3EE] font-black text-xs sm:text-sm uppercase tracking-widest border border-[#111111] shadow-[6px_6px_0px_#000000] hover:shadow-[2px_2px_0px_#000000] hover:translate-x-1 hover:translate-y-1 transition-all flex items-center gap-2"
-            >
-              <Phone className="w-4 h-4 text-[#E94B26]" />
-              <span>CALL NOW: {clinicPhone}</span>
-            </a>
-
-            <Link
-              href={`${basePath}/contact`}
-              className="px-8 py-4 bg-[#F4F3EE] text-[#111111] font-black text-xs sm:text-sm uppercase tracking-widest border border-[#111111] shadow-[6px_6px_0px_#111111] hover:bg-[#F4F3EE]/90 transition-all flex items-center gap-2"
-            >
-              <span>BOOK SITE VISIT</span>
-              <ArrowRight className="w-4 h-4" />
-            </Link>
-          </div>
+          </Reveal>
         </div>
       </section>
     </div>

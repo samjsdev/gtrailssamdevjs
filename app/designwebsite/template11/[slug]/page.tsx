@@ -24,6 +24,9 @@ import {
   previewMedia,
 } from '@/lib/architectureContent';
 import Reveal from './Reveal';
+import HeroParallax from './HeroParallax';
+import ScrollParallax from './ScrollParallax';
+import StaggerReveal from './StaggerReveal';
 import LeadForm from './LeadForm';
 import PackagesSection from './PackagesSection';
 import BeforeAfter from './BeforeAfter';
@@ -208,53 +211,57 @@ export default async function Template11Home({ params }: PageProps) {
   return (
     <div>
       {/* HERO */}
-      <section id="hero" className="relative min-h-[82vh] lg:min-h-[88vh] flex items-center text-white overflow-hidden">
-        <div className="absolute inset-0">
-          <img
-            src={heroImage}
-            alt={`${cleanName || 'Our'} completed architectural project`}
-            className="w-full h-full object-cover"
-            fetchPriority="high"
-          />
-          <div className="absolute inset-0 bg-gradient-to-r from-[#120d09]/92 via-[#120d09]/65 to-transparent" />
-          <div className="absolute inset-0 bg-black/20" />
-        </div>
+      <HeroParallax bgImageSelector=".hero-bg-img" contentSelector=".hero-content">
+        <section id="hero" className="relative min-h-[82vh] lg:min-h-[88vh] flex items-center text-white overflow-hidden !p-0">
+          <div className="absolute inset-0">
+            <img
+              src={heroImage}
+              alt={`${cleanName || 'Our'} completed architectural project`}
+              className="hero-bg-img w-full h-full object-cover scale-105"
+              fetchPriority="high"
+            />
+            <div className="absolute inset-0 bg-gradient-to-r from-[#120d09]/92 via-[#120d09]/65 to-transparent" />
+            <div className="absolute inset-0 bg-black/20" />
+          </div>
 
-        <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 py-20 lg:py-24 w-full">
-          <div className="max-w-2xl">
-            <span className="text-[11px] sm:text-[12px] tracking-[0.32em] uppercase text-[#c9ab7c] font-medium block mb-4">
-              Architecture &amp; Turnkey Construction · {city}
-            </span>
+          <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 py-20 lg:py-24 w-full">
+            <div className="hero-content max-w-2xl">
+              <span className="text-[11px] sm:text-[12px] tracking-[0.32em] uppercase text-[#c9ab7c] font-medium block mb-4">
+                Architecture &amp; Turnkey Construction · {city}
+              </span>
 
-            <h1 className="font-[family-name:var(--font-marcellus)] text-[clamp(36px,4.8vw,64px)] leading-[1.12] text-white">
-              {cleanTagline}
-            </h1>
+              <h1 className="font-[family-name:var(--font-marcellus)] text-[clamp(36px,4.8vw,64px)] leading-[1.12] text-white">
+                {cleanTagline}
+              </h1>
 
-            <p className="mt-5 mb-8 max-w-xl text-[16px] sm:text-[17.5px] font-light leading-[1.7] text-white/85">
-              {cleanDesc}
-            </p>
+              <p className="mt-5 mb-8 max-w-xl text-[16px] sm:text-[17.5px] font-light leading-[1.7] text-white/85">
+                {cleanDesc}
+              </p>
 
-            <div className="flex flex-wrap items-center gap-4">
-              <Link
-                href={`${basePath}/contact`}
-                className="inline-flex items-center justify-center bg-[#a58150] text-white px-7 py-3.5 text-[11px] sm:text-[11.5px] tracking-[0.2em] uppercase font-medium hover:bg-[#8f6e40] transition-colors duration-300 shadow-md shadow-black/30"
-              >
-                Book Consultation
-              </Link>
-              <Link
-                href={`${basePath}/gallery`}
-                className="inline-flex items-center justify-center bg-white/5 backdrop-blur-sm text-white px-7 py-3.5 text-[11px] sm:text-[11.5px] tracking-[0.2em] uppercase font-medium border border-white/30 hover:border-white hover:bg-white/15 transition-all duration-300"
-              >
-                View Completed Projects
-              </Link>
+              <div className="flex flex-wrap items-center gap-4">
+                <Link
+                  href={`${basePath}/contact`}
+                  className="inline-flex items-center justify-center bg-[#a58150] text-white px-7 py-3.5 text-[11px] sm:text-[11.5px] tracking-[0.2em] uppercase font-medium hover:bg-[#8f6e40] transition-colors duration-300 shadow-md shadow-black/30"
+                >
+                  Book Consultation
+                </Link>
+                <Link
+                  href={`${basePath}/gallery`}
+                  className="inline-flex items-center justify-center bg-white/5 backdrop-blur-sm text-white px-7 py-3.5 text-[11px] sm:text-[11.5px] tracking-[0.2em] uppercase font-medium border border-white/30 hover:border-white hover:bg-white/15 transition-all duration-300"
+                >
+                  View Completed Projects
+                </Link>
+              </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
+      </HeroParallax>
 
       {/* STATS */}
       <section className="bg-[#18120c] border-b border-[#211a13]/20">
-        <HeroStats stats={heroStats} />
+        <Reveal>
+          <HeroStats stats={heroStats} />
+        </Reveal>
       </section>
 
       {/* REAL TRANSFORMATION (BEFORE/AFTER) - SINGLE COLUMN IMMERSIVE */}
@@ -281,7 +288,7 @@ export default async function Template11Home({ params }: PageProps) {
             />
           </Reveal>
 
-          <Reveal delay={200} className="mt-9 flex flex-wrap items-center justify-center gap-5 sm:gap-8">
+          <StaggerReveal className="mt-9 flex flex-wrap items-center justify-center gap-5 sm:gap-8" stagger={0.12} yOffset={25}>
             <div className="inline-flex items-center gap-3 bg-white border border-[#211a13]/10 px-5 py-3 shadow-sm">
               <b className="font-[family-name:var(--font-marcellus)] text-[24px] font-normal text-[#a58150]">
                 <CountUp value="10-Year" />
@@ -300,7 +307,7 @@ export default async function Template11Home({ params }: PageProps) {
             >
               Get a feasibility report for your plot <ArrowRight className="w-4 h-4 text-[#a58150]" />
             </Link>
-          </Reveal>
+          </StaggerReveal>
         </div>
       </section>
 
@@ -309,15 +316,15 @@ export default async function Template11Home({ params }: PageProps) {
         <div className="max-w-7xl mx-auto grid lg:grid-cols-[1.05fr_0.95fr] gap-[clamp(44px,6vw,90px)] items-center">
           <Reveal>
             <div className="relative before:content-[''] before:absolute before:-left-4 before:-top-4 before:right-14 before:bottom-14 before:border before:border-[#a58150]">
-              <div className="overflow-hidden aspect-[4/4.7] group">
+              <ScrollParallax speed={12} className="aspect-[4/4.7]">
                 <img
                   src={aboutImage}
                   alt={`${cleanName || 'Architects'} office and project models`}
                   loading="lazy"
-                  className="w-full h-full object-cover transition-transform duration-[1200ms] ease-[cubic-bezier(.19,1,.22,1)] group-hover:scale-[1.04]"
+                  className="w-full h-full object-cover transition-transform duration-[1200ms] ease-[cubic-bezier(.19,1,.22,1)] hover:scale-[1.04]"
                 />
-              </div>
-              <div className="absolute -right-2 sm:-right-4 bottom-11 bg-[#211a13] text-white px-8 py-7 shadow-[0_30px_60px_rgba(33,26,19,0.3)]">
+              </ScrollParallax>
+              <div className="absolute -right-2 sm:-right-4 bottom-11 bg-[#211a13] text-white px-8 py-7 shadow-[0_30px_60px_rgba(33,26,19,0.3)] z-10">
                 <b className="font-[family-name:var(--font-marcellus)] font-normal text-[44px] text-[#c9ab7c] block leading-none">
                   <CountUp value={experienceYears} suffix="+" />
                 </b>
@@ -340,14 +347,14 @@ export default async function Template11Home({ params }: PageProps) {
             <p className="text-[#7d7264] leading-[1.85] font-light text-[15.5px]">
               Led by {doctor?.name || 'our Principal Architect & Senior Civil Engineers'} ({doctorSpecialization}), we provide complete single-point service: custom 3D elevations, CMDA approved plans, soil-tested foundations, and turnkey civil construction with zero budget increases.
             </p>
-            <div className="grid sm:grid-cols-2 gap-x-8 gap-y-5 my-8">
+            <StaggerReveal className="grid sm:grid-cols-2 gap-x-8 gap-y-5 my-8" stagger={0.08} yOffset={20}>
               {highlights.slice(0, 4).map((h) => (
                 <div key={h} className="border-t border-[#211a13]/10 pt-4">
                   <b className="font-[family-name:var(--font-marcellus)] font-normal text-[17px] block mb-1.5">{h}</b>
                   <span className="text-[13px] text-[#7d7264] font-light">Built strictly as per government regulations and engineering standards.</span>
                 </div>
               ))}
-            </div>
+            </StaggerReveal>
             <Link
               href={`${basePath}/about`}
               className="inline-flex items-center gap-2 bg-transparent text-[#211a13] px-5 py-3 sm:px-6 sm:py-3.5 text-[10.5px] sm:text-[11.5px] tracking-[0.2em] uppercase font-medium border border-[#211a13] hover:bg-[#211a13] hover:text-white transition-colors duration-300"
@@ -373,31 +380,29 @@ export default async function Template11Home({ params }: PageProps) {
             </p>
           </Reveal>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <StaggerReveal className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6" stagger={0.12}>
             {DESIGN_PILLARS.map((pillar, idx) => {
               const Icon = pillar.icon;
               return (
-                <Reveal key={pillar.title} delay={idx * 80}>
-                  <div className="bg-[#2c231a] border border-[#a58150]/20 p-8 h-full flex flex-col justify-between transition-all duration-300 hover:border-[#a58150] hover:-translate-y-1">
-                    <div>
-                      <span className="w-12 h-12 border border-[#a58150] grid place-items-center mb-6 text-[#c9ab7c]">
-                        <Icon className="w-5 h-5" strokeWidth={1.8} />
-                      </span>
-                      <h3 className="font-[family-name:var(--font-marcellus)] font-normal text-[20px] mb-3 text-white">
-                        {pillar.title}
-                      </h3>
-                      <p className="text-[13.5px] font-light text-white/70 leading-[1.7]">
-                        {pillar.desc}
-                      </p>
-                    </div>
-                    <span className="font-[family-name:var(--font-marcellus)] text-[14px] text-[#a58150] mt-6 block">
-                      0{idx + 1}
+                <div key={pillar.title} className="bg-[#2c231a] border border-[#a58150]/20 p-8 h-full flex flex-col justify-between transition-all duration-300 hover:border-[#a58150] hover:-translate-y-1">
+                  <div>
+                    <span className="w-12 h-12 border border-[#a58150] grid place-items-center mb-6 text-[#c9ab7c]">
+                      <Icon className="w-5 h-5" strokeWidth={1.8} />
                     </span>
+                    <h3 className="font-[family-name:var(--font-marcellus)] font-normal text-[20px] mb-3 text-white">
+                      {pillar.title}
+                    </h3>
+                    <p className="text-[13.5px] font-light text-white/70 leading-[1.7]">
+                      {pillar.desc}
+                    </p>
                   </div>
-                </Reveal>
+                  <span className="font-[family-name:var(--font-marcellus)] text-[14px] text-[#a58150] mt-6 block">
+                    0{idx + 1}
+                  </span>
+                </div>
               );
             })}
-          </div>
+          </StaggerReveal>
         </div>
       </section>
 
@@ -418,7 +423,7 @@ export default async function Template11Home({ params }: PageProps) {
             </p>
           </Reveal>
 
-          <Reveal className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <StaggerReveal className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6" stagger={0.1}>
             {services.slice(0, 4).map((svc: any, idx: number) => (
               <Link key={svc.title} href={`${basePath}/services`} className="group relative overflow-hidden aspect-[3/4] flex items-end text-white">
                 <img
@@ -439,7 +444,7 @@ export default async function Template11Home({ params }: PageProps) {
                 </div>
               </Link>
             ))}
-          </Reveal>
+          </StaggerReveal>
 
           <Reveal className="text-center mt-12">
             <Link
@@ -471,7 +476,7 @@ export default async function Template11Home({ params }: PageProps) {
               </p>
             </Reveal>
           </div>
-          <Reveal delay={0.2} className="mt-16 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 border-l border-t border-[#c9ab7c]/10">
+          <StaggerReveal className="mt-16 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 border-l border-t border-[#c9ab7c]/10" stagger={0.06} yOffset={25}>
             {[
               { name: "Tata Tiscon Fe550D" },
               { name: "UltraTech Cement" },
@@ -492,7 +497,7 @@ export default async function Template11Home({ params }: PageProps) {
                 <p className="mt-1 text-[9px] font-bold uppercase tracking-[0.2em] text-[#c9ab7c]/60">Certified</p>
               </div>
             ))}
-          </Reveal>
+          </StaggerReveal>
         </div>
       </section>
 
@@ -516,11 +521,11 @@ export default async function Template11Home({ params }: PageProps) {
             </p>
           </Reveal>
 
-          <div className="grid grid-cols-12 gap-5">
+          <StaggerReveal className="grid grid-cols-12 gap-5" stagger={0.1}>
             {gallery.map((img, idx) => {
               const spans = ['col-span-12 md:col-span-7 aspect-[16/10.5]', 'col-span-12 md:col-span-5 aspect-[4/3.36]', 'col-span-12 md:col-span-5 aspect-[4/3.36]', 'col-span-12 md:col-span-7 aspect-[16/10.5]', 'col-span-12 md:col-span-6 aspect-[16/10]', 'col-span-12 md:col-span-6 aspect-[16/10]'];
               return (
-                <Reveal key={idx} className={spans[idx % 6]} delay={(idx % 3) * 80}>
+                <div key={idx} className={`${spans[idx % 6]} overflow-hidden`}>
                   <Link href={`${basePath}/gallery`} className="group relative overflow-hidden flex items-end text-white w-full h-full">
                     <img
                       src={img}
@@ -537,10 +542,10 @@ export default async function Template11Home({ params }: PageProps) {
                       <span className="font-[family-name:var(--font-marcellus)] text-[15px] text-white/55">/ 0{idx + 1}</span>
                     </div>
                   </Link>
-                </Reveal>
+                </div>
               );
             })}
-          </div>
+          </StaggerReveal>
         </div>
       </section>
 
@@ -561,7 +566,7 @@ export default async function Template11Home({ params }: PageProps) {
             </p>
           </Reveal>
 
-          <Reveal className="grid sm:grid-cols-2 lg:grid-cols-4 gap-px bg-[#f6f1e8]/15 border border-[#f6f1e8]/15">
+          <StaggerReveal className="grid sm:grid-cols-2 lg:grid-cols-4 gap-px bg-[#f6f1e8]/15 border border-[#f6f1e8]/15" stagger={0.12}>
             {PROCESS_STEPS.map((step, idx) => (
               <div key={step.title} className="bg-[#211a13] hover:bg-[#2c231a] transition-colors duration-400 px-7 py-9">
                 <span
@@ -574,15 +579,17 @@ export default async function Template11Home({ params }: PageProps) {
                 <p className="text-[13.5px] font-light text-white/65 leading-[1.7]">{step.desc}</p>
               </div>
             ))}
-          </Reveal>
+          </StaggerReveal>
         </div>
       </section>
 
       {/* WHY US */}
       <section id="why" className="py-[clamp(84px,9vw,130px)] px-6 lg:px-7">
         <div className="max-w-7xl mx-auto grid lg:grid-cols-[0.95fr_1.05fr] gap-[clamp(44px,6vw,90px)] items-center">
-          <Reveal className="relative overflow-hidden aspect-[4/4.4]">
-            <img src={whyImage} alt="Design and material planning" loading="lazy" className="w-full h-full object-cover" />
+          <Reveal>
+            <ScrollParallax speed={10} className="relative aspect-[4/4.4]">
+              <img src={whyImage} alt="Design and material planning" loading="lazy" className="w-full h-full object-cover" />
+            </ScrollParallax>
           </Reveal>
 
           <Reveal delay={120}>
@@ -595,7 +602,7 @@ export default async function Template11Home({ params }: PageProps) {
             <p className="text-[#7d7264] leading-[1.85] font-light text-[15.5px] mb-7">
               Most building projects go wrong because architects, engineers, and contractors blame each other. We solved this by keeping designers, structural engineers, government approval work, and site supervision in one company.
             </p>
-            <div>
+            <StaggerReveal className="divide-y divide-[#211a13]/10" stagger={0.08} yOffset={20}>
               {whyChecks.map((check, idx) => {
                 const Icon = check.icon;
                 return (
@@ -610,7 +617,7 @@ export default async function Template11Home({ params }: PageProps) {
                   </div>
                 );
               })}
-            </div>
+            </StaggerReveal>
           </Reveal>
         </div>
       </section>
@@ -632,7 +639,7 @@ export default async function Template11Home({ params }: PageProps) {
             </p>
           </Reveal>
 
-          <Reveal className="grid md:grid-cols-3 gap-6">
+          <StaggerReveal className="grid md:grid-cols-3 gap-6" stagger={0.12}>
             {reviews.slice(0, 3).map((review: any, i: number) => (
               <div
                 key={i}
@@ -655,7 +662,7 @@ export default async function Template11Home({ params }: PageProps) {
                 </div>
               </div>
             ))}
-          </Reveal>
+          </StaggerReveal>
         </div>
       </section>
 
@@ -682,8 +689,10 @@ export default async function Template11Home({ params }: PageProps) {
 
       {/* PROJECT ESTIMATE (FINAL SECTION) */}
       <section id="estimator" className="relative py-[clamp(84px,9vw,130px)] px-6 lg:px-7 text-white overflow-hidden">
-        <div className="absolute inset-0">
-          <img src={ctaImage} alt="" loading="lazy" className="w-full h-full object-cover" />
+        <div className="absolute inset-0 overflow-hidden">
+          <ScrollParallax speed={10} className="w-full h-full">
+            <img src={ctaImage} alt="" loading="lazy" className="w-full h-full object-cover scale-105" />
+          </ScrollParallax>
           <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(24,18,12,0.95)_0%,rgba(24,18,12,0.85)_55%,rgba(24,18,12,0.55)_100%)]" />
         </div>
 
@@ -700,7 +709,7 @@ export default async function Template11Home({ params }: PageProps) {
               Share your plot details and requirements. Our architects will call you back with a free discussion of plan options and an approximate cost estimate.
             </p>
 
-            <div className="mt-8 grid gap-6 sm:grid-cols-2 border-t border-white/15 pt-8">
+            <StaggerReveal className="mt-8 grid gap-6 sm:grid-cols-2 border-t border-white/15 pt-8" stagger={0.12} yOffset={20}>
               <div>
                 <h3 className="text-[17px] font-medium text-[#c9ab7c] mb-2">01 / Share Your Plot Details</h3>
                 <p className="text-[14px] text-white/70 font-light leading-[1.6]">
@@ -713,7 +722,7 @@ export default async function Template11Home({ params }: PageProps) {
                   Get a clear design plan and a fixed item-by-item price with no hidden charges.
                 </p>
               </div>
-            </div>
+            </StaggerReveal>
           </Reveal>
 
           <Reveal delay={120}>

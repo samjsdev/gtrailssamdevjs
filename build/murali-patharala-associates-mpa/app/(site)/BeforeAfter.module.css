@@ -1,0 +1,10 @@
+.labels { display: flex; justify-content: space-between; gap: 16px; padding: 0 24px 18px; color: #703015; font-size: 12px; }
+.frame { position: relative; width: 100%; aspect-ratio: 16 / 11; overflow: hidden; user-select: none; background: var(--color-surface-pale); border-block: 1px solid #5d514026; }
+.image { object-fit: contain; pointer-events: none; }
+.reveal { position: absolute; inset: 0; background: var(--color-surface-pale); pointer-events: none; }
+.divider { position: absolute; top: 0; bottom: 0; width: 3px; transform: translateX(-50%); background: var(--color-surface-cream); box-shadow: 0 0 12px #302a2040; pointer-events: none; }
+.divider span { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); display: grid; place-items: center; width: 44px; height: 44px; border: 1px solid #70301550; border-radius: 50%; background: #ea580c; color: #111111; font-size: 23px; box-shadow: 0 3px 12px #302a2033; }
+.slider { position: absolute; inset: 0; width: 100%; height: 100%; margin: 0; opacity: 0; cursor: ew-resize; }
+.frame:focus-within { outline: 2px solid #a94b20; outline-offset: -3px; }
+.caption { padding: 16px 20px; color: var(--color-ink-muted); font-size: 13px; text-align: center; }
+@media (max-width: 639px) { .labels { padding-inline: 20px; } }

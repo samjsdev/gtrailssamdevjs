@@ -5,6 +5,7 @@ import { readSourceConfig, getAllSlugs } from '@/lib/dataBuilder';
 import { cleanClinicName, cleanClinicDescription } from '@/lib/copyCleaner';
 import { notFound } from 'next/navigation';
 import ClientNavbar from './ClientNavbar';
+import SmoothScroll from './SmoothScroll';
 import { 
   Phone, Mail, MapPin, ShieldCheck, Compass, Building, Award, 
   Clock, ArrowRight, Layers, FileCheck, CheckCircle2, HardHat 
@@ -75,7 +76,8 @@ export default async function Template5Layout({ children, params }: LayoutProps)
   const basePath = `/designwebsite/template5/${slug}`;
 
   return (
-    <div className={`${oswald.variable} ${spaceGrotesk.variable} min-h-screen bg-[#F8F7F4] text-[#1E2322] flex flex-col font-sans selection:bg-[#C85A32] selection:text-white antialiased`}>
+    <SmoothScroll>
+      <div className={`${oswald.variable} ${spaceGrotesk.variable} min-h-screen bg-[#F8F7F4] text-[#1E2322] flex flex-col font-sans selection:bg-[#C85A32] selection:text-white antialiased`}>
       {/* ─── Architectural Sticky Navbar ─── */}
       <ClientNavbar
         slug={slug}
@@ -272,5 +274,6 @@ export default async function Template5Layout({ children, params }: LayoutProps)
         </div>
       </footer>
     </div>
+    </SmoothScroll>
   );
 }

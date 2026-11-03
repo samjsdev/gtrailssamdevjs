@@ -1,0 +1,343 @@
+{
+  "route": "/services/turnkey-construction/",
+  "width": 1440,
+  "title": "Turnkey Construction in Chennai | Murali Patharala & Associates",
+  "images": [
+    {
+      "src": "/mpa-3d-logo-small.webp",
+      "alt": "",
+      "loaded": true,
+      "naturalWidth": 128,
+      "naturalHeight": 128,
+      "displayWidth": 46,
+      "displayHeight": 46,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/murali-patharala-associates-assets/exterior_renders/WhatsApp Image 2026-09-23 at 16.17.56 (2).webp",
+      "alt": "Contemporary residential exterior visualization from the MPA project library",
+      "loaded": true,
+      "naturalWidth": 1600,
+      "naturalHeight": 1200,
+      "displayWidth": 1440,
+      "displayHeight": 640,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/murali-patharala-associates-assets/exterior_renders/JAMEE2.webp",
+      "alt": "Contemporary villa exterior visualization from the MPA project library",
+      "loaded": true,
+      "naturalWidth": 1920,
+      "naturalHeight": 1358,
+      "displayWidth": 409,
+      "displayHeight": 254,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.33.webp",
+      "alt": "Completed kitchen and dining interior from the MPA project library",
+      "loaded": true,
+      "naturalWidth": 1041,
+      "naturalHeight": 692,
+      "displayWidth": 409,
+      "displayHeight": 254,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/murali-patharala-associates-assets/exterior_renders/WhatsApp Image 2026-09-23 at 17.38.22 (1).webp",
+      "alt": "Contemporary residential design with warm evening facade lighting",
+      "loaded": true,
+      "naturalWidth": 1340,
+      "naturalHeight": 1600,
+      "displayWidth": 409,
+      "displayHeight": 254,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/images/service-stages/design-planning.webp",
+      "alt": "Architectural Planning",
+      "loaded": true,
+      "naturalWidth": 1586,
+      "naturalHeight": 992,
+      "displayWidth": 409,
+      "displayHeight": 254,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/images/service-stages/engineering-permits.webp",
+      "alt": "Technical & Approval Coordination",
+      "loaded": true,
+      "naturalWidth": 1586,
+      "naturalHeight": 992,
+      "displayWidth": 409,
+      "displayHeight": 254,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/images/service-stages/foundation-rcc.webp",
+      "alt": "Civil Construction",
+      "loaded": true,
+      "naturalWidth": 1586,
+      "naturalHeight": 992,
+      "displayWidth": 409,
+      "displayHeight": 254,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/images/service-stages/plumbing-waterproofing.webp",
+      "alt": "Utility Installations",
+      "loaded": true,
+      "naturalWidth": 1586,
+      "naturalHeight": 992,
+      "displayWidth": 409,
+      "displayHeight": 254,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/images/service-stages/interior-fitout.webp",
+      "alt": "Interior Fit-outs",
+      "loaded": true,
+      "naturalWidth": 1586,
+      "naturalHeight": 992,
+      "displayWidth": 409,
+      "displayHeight": 254,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/images/service-stages/home-handover.webp",
+      "alt": "Property Development & Promotion",
+      "loaded": true,
+      "naturalWidth": 1586,
+      "naturalHeight": 992,
+      "displayWidth": 409,
+      "displayHeight": 254,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/images/service-stages/design-planning.webp",
+      "alt": "Establish the Brief",
+      "loaded": true,
+      "naturalWidth": 1586,
+      "naturalHeight": 992,
+      "displayWidth": 180,
+      "displayHeight": 113,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/images/service-stages/engineering-permits.webp",
+      "alt": "Develop & Coordinate",
+      "loaded": true,
+      "naturalWidth": 1586,
+      "naturalHeight": 992,
+      "displayWidth": 180,
+      "displayHeight": 113,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/images/service-stages/soil-assessment.webp",
+      "alt": "Plan Delivery",
+      "loaded": true,
+      "naturalWidth": 1586,
+      "naturalHeight": 992,
+      "displayWidth": 180,
+      "displayHeight": 113,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/images/service-stages/interior-fitout.webp",
+      "alt": "Execute the Works",
+      "loaded": true,
+      "naturalWidth": 1586,
+      "naturalHeight": 992,
+      "displayWidth": 180,
+      "displayHeight": 113,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/images/service-stages/home-handover.webp",
+      "alt": "Review & Handover",
+      "loaded": true,
+      "naturalWidth": 1586,
+      "naturalHeight": 992,
+      "displayWidth": 180,
+      "displayHeight": 113,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/murali-patharala-associates-assets/exterior_renders/WhatsApp Image 2026-09-23 at 16.17.56 (2).webp",
+      "alt": "Contemporary timber and stone residence visualization from the MPA project library",
+      "loaded": true,
+      "naturalWidth": 1600,
+      "naturalHeight": 1200,
+      "displayWidth": 736,
+      "displayHeight": 556,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.33.webp",
+      "alt": "Completed kitchen and dining area with custom cabinetry and stone finishes",
+      "loaded": true,
+      "naturalWidth": 1041,
+      "naturalHeight": 692,
+      "displayWidth": 520,
+      "displayHeight": 268,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/murali-patharala-associates-assets/completed_interiors/WhatsApp Image 2026-09-23 at 16.40.29.webp",
+      "alt": "Completed residential entrance foyer with custom console and marble flooring",
+      "loaded": true,
+      "naturalWidth": 564,
+      "naturalHeight": 857,
+      "displayWidth": 520,
+      "displayHeight": 268,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/images/architecture/hero-villa-twilight.webp",
+      "alt": "",
+      "loaded": true,
+      "naturalWidth": 1376,
+      "naturalHeight": 768,
+      "displayWidth": 1440,
+      "displayHeight": 723,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/mpa-3d-logo-small.webp",
+      "alt": "",
+      "loaded": true,
+      "naturalWidth": 128,
+      "naturalHeight": 128,
+      "displayWidth": 44,
+      "displayHeight": 44,
+      "fit": "fill",
+      "hidden": false
+    }
+  ],
+  "backgrounds": [
+    "/images/drawings/architectural-master-plan.svg",
+    "/images/drawings/architectural-structural-lines.svg"
+  ],
+  "decoded": [
+    {
+      "src": "/mpa-3d-logo-small.webp",
+      "ok": true,
+      "width": 128,
+      "height": 128
+    },
+    {
+      "src": "/murali-patharala-associates-assets/exterior_renders/WhatsApp Image 2026-09-23 at 16.17.56 (2).webp",
+      "ok": true,
+      "width": 1600,
+      "height": 1200
+    },
+    {
+      "src": "/murali-patharala-associates-assets/exterior_renders/JAMEE2.webp",
+      "ok": true,
+      "width": 1920,
+      "height": 1358
+    },
+    {
+      "src": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.33.webp",
+      "ok": true,
+      "width": 1041,
+      "height": 692
+    },
+    {
+      "src": "/murali-patharala-associates-assets/exterior_renders/WhatsApp Image 2026-09-23 at 17.38.22 (1).webp",
+      "ok": true,
+      "width": 1340,
+      "height": 1600
+    },
+    {
+      "src": "/images/service-stages/design-planning.webp",
+      "ok": true,
+      "width": 1586,
+      "height": 992
+    },
+    {
+      "src": "/images/service-stages/engineering-permits.webp",
+      "ok": true,
+      "width": 1586,
+      "height": 992
+    },
+    {
+      "src": "/images/service-stages/foundation-rcc.webp",
+      "ok": true,
+      "width": 1586,
+      "height": 992
+    },
+    {
+      "src": "/images/service-stages/plumbing-waterproofing.webp",
+      "ok": true,
+      "width": 1586,
+      "height": 992
+    },
+    {
+      "src": "/images/service-stages/interior-fitout.webp",
+      "ok": true,
+      "width": 1586,
+      "height": 992
+    },
+    {
+      "src": "/images/service-stages/home-handover.webp",
+      "ok": true,
+      "width": 1586,
+      "height": 992
+    },
+    {
+      "src": "/images/service-stages/soil-assessment.webp",
+      "ok": true,
+      "width": 1586,
+      "height": 992
+    },
+    {
+      "src": "/murali-patharala-associates-assets/completed_interiors/WhatsApp Image 2026-09-23 at 16.40.29.webp",
+      "ok": true,
+      "width": 564,
+      "height": 857
+    },
+    {
+      "src": "/images/architecture/hero-villa-twilight.webp",
+      "ok": true,
+      "width": 1376,
+      "height": 768
+    },
+    {
+      "src": "/images/drawings/architectural-master-plan.svg",
+      "ok": true,
+      "width": 233,
+      "height": 150
+    },
+    {
+      "src": "/images/drawings/architectural-structural-lines.svg",
+      "ok": true,
+      "width": 300,
+      "height": 150
+    }
+  ],
+  "overflow": 0,
+  "galleryCards": [],
+  "backgroundRepairRechecked": true
+}

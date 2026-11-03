@@ -1,0 +1,34 @@
+[
+  {
+    "file": "public/images/2d plan/optimized/ground-floor-full.webp",
+    "pixelsIdentical": true
+  },
+  {
+    "file": "public/images/2d plan/optimized/first-floor-full.webp",
+    "pixelsIdentical": true
+  },
+  {
+    "file": "public/images/2d plan/optimized/elevation-full.webp",
+    "pixelsIdentical": true
+  },
+  {
+    "file": "public/images/2d plan/optimized/electrical-full.webp",
+    "pixelsIdentical": true
+  },
+  {
+    "file": "public/apple-icon.png",
+    "pixelsIdentical": true
+  },
+  {
+    "file": "public/icon.png",
+    "pixelsIdentical": true
+  },
+  {
+    "file": "public/icon-512x512.png",
+    "pixelsIdentical": true
+  },
+  {
+    "file": "public/mpa-3d-logo-social.png",
+    "pixelsIdentical": true
+  }
+]

@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 800" fill="none">
+  <defs>
+    <pattern id="hatch" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><path d="M0 0V8" stroke="#888" stroke-width=".7"/></pattern>
+  </defs>
+  <g stroke="#888" stroke-width="1.2">
+    <!-- Survey axes and structural grid -->
+    <path d="M135 65V705M390 65V705M610 65V705M810 65V705M85 140H865M85 365H865M85 610H865" stroke-dasharray="12 5 2 5" opacity=".6"/>
+    <g stroke-width="2.5">
+      <path d="M135 140H810V610H530M450 610H135V140"/>
+      <path d="M147 152H798V598H530M450 598H147V152"/>
+      <path d="M390 152V295M390 360V598M402 152V295M402 360V598"/>
+      <path d="M147 365H315M375 365H390M147 377H315M375 377H390"/>
+      <path d="M610 152V260M610 320V598M622 152V260M622 320V598"/>
+      <path d="M622 365H690M750 365H798M622 377H690M750 377H798"/>
+    </g>
+    <!-- Door swings -->
+    <path d="M450 598V518A80 80 0 0 1 530 598M390 295H325A65 65 0 0 0 390 360M315 365V305A60 60 0 0 1 375 365M622 260H682A60 60 0 0 1 622 320M690 377V437A60 60 0 0 0 750 377"/>
+    <!-- Bedroom furniture -->
+    <rect x="180" y="180" width="145" height="145" rx="3"/><path d="M180 218H325M180 295H325"/>
+    <rect x="190" y="188" width="55" height="24" rx="3"/><rect x="258" y="188" width="55" height="24" rx="3"/>
+    <rect x="155" y="180" width="20" height="28"/><rect x="331" y="180" width="20" height="28"/>
+    <path d="M155 334H290V358H155Z M200 334V358M245 334V358"/>
+    <!-- Living room -->
+    <rect x="176" y="410" width="32" height="136" rx="5"/><path d="M184 418H200V538H184Z M208 452H220M208 503H220"/>
+    <rect x="235" y="444" width="70" height="60" rx="6"/><path d="M350 420V536M356 420V536"/>
+    <path d="M228 556H321V582H228Z M260 556V582M290 556V582"/>
+    <!-- Courtyard and circulation -->
+    <rect x="435" y="190" width="140" height="160" stroke-dasharray="5 4"/>
+    <circle cx="505" cy="267" r="40"/><path d="M505 224V310M463 267H547M476 237L534 297M476 297L534 237"/>
+    <path d="M428 393H582V490H428Z M452 393V490M476 393V490M500 393V490M524 393V490M548 393V490M572 393V490"/>
+    <path d="M435 442H570L558 434M570 442L558 450" stroke="#EA580C"/>
+    <!-- Kitchen and dining -->
+    <path d="M650 177H778V335H752V205H650Z"/>
+    <circle cx="766" cy="245" r="7"/><circle cx="766" cy="267" r="7"/>
+    <rect x="672" y="182" width="38" height="17" rx="4"/>
+    <rect x="665" y="434" width="90" height="100" rx="5"/>
+    <path d="M680 427V413H702V427M720 427V413H742V427M680 541V555H702V541M720 541V555H742V541M658 454H644V478H658M762 490H776V514H762"/>
+    <!-- Terrace -->
+    <path d="M135 610V666H810V610M135 638H810"/>
+    <path d="M147 652H438M542 652H798" stroke-dasharray="3 4"/>
+    <!-- Glazing -->
+    <g stroke="#EA580C"><path d="M192 140H320M192 146H320M135 433V537M141 433V537M810 422V548M804 422V548M665 140H765M665 146H765"/></g>
+    <!-- Dimensions -->
+    <path d="M135 105H810M135 92V122M390 92V122M610 92V122M810 92V122M100 140V610M88 140H118M88 365H118M88 610H118M135 704H810M135 690V719M810 690V719"/>
+    <path d="M128 112L142 98M383 112L397 98M603 112L617 98M803 112L817 98M93 147L107 133M93 372L107 358M93 617L107 603M128 711L142 697M803 711L817 697" stroke="#EA580C" stroke-width="2"/>
+    <g fill="url(#hatch)"><rect x="132" y="137" width="18" height="18"/><rect x="387" y="137" width="18" height="18"/><rect x="607" y="137" width="18" height="18"/><rect x="795" y="137" width="18" height="18"/><rect x="132" y="595" width="18" height="18"/><rect x="795" y="595" width="18" height="18"/></g>
+    <path d="M870 225V145L857 168M870 145L883 168" stroke="#EA580C"/>
+    <circle cx="870" cy="187" r="26"/>
+  </g>
+  <g fill="#888" font-family="monospace" font-size="11" letter-spacing="2">
+    <text x="242" y="93">4 200</text><text x="480" y="93">3 600</text><text x="683" y="93">3 300</text>
+    <text x="439" y="731">11 100</text><text x="862" y="131">N</text>
+    <text x="135" y="770">RESIDENCE / PLAN STUDY</text><text x="720" y="770">A—01</text>
+    <text x="453" y="374" font-size="9">COURTYARD</text>
+  </g>
+</svg>

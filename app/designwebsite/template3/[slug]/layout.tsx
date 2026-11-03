@@ -6,6 +6,7 @@ import { Star, MapPin, Phone } from 'lucide-react';
 import { cleanClinicName, cleanClinicDescription } from '@/lib/copyCleaner';
 import { Manrope, Newsreader } from 'next/font/google';
 import ClientHeader from './ClientHeader';
+import SmoothScroll from './SmoothScroll';
 
 const manrope = Manrope({ subsets: ['latin'], weight: ['400', '500', '600', '700', '800'], variable: '--font-manrope' });
 const newsreader = Newsreader({
@@ -52,7 +53,8 @@ export default async function Template3Layout({ children, params }: LayoutProps)
   const waLink = `https://wa.me/${waPhone}?text=${encodeURIComponent(waText)}`;
 
   return (
-    <div className={`${manrope.className} ${manrope.variable} ${newsreader.variable} min-h-screen flex flex-col bg-[#fbf7f2] text-[#241f1a] leading-[1.6] selection:bg-[#f4b942] selection:text-[#241f1a] scroll-smooth antialiased`}>
+    <SmoothScroll>
+      <div className={`${manrope.className} ${manrope.variable} ${newsreader.variable} min-h-screen flex flex-col bg-[#fbf7f2] text-[#241f1a] leading-[1.6] selection:bg-[#f4b942] selection:text-[#241f1a] antialiased`}>
       {/* Topbar */}
       <div className="bg-[#1d1713] text-white/90 text-[13px] py-2.5 px-7">
         <div className="max-w-[1220px] mx-auto flex justify-between items-center gap-4.5 font-semibold">
@@ -150,5 +152,6 @@ export default async function Template3Layout({ children, params }: LayoutProps)
         </svg>
       </a>
     </div>
+    </SmoothScroll>
   );
 }

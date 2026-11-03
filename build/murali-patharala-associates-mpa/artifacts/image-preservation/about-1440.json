@@ -1,0 +1,304 @@
+{
+  "route": "/about/",
+  "width": 1440,
+  "title": "About the Practice & Ar. Murali Patharala | Murali Patharala & Associates",
+  "images": [
+    {
+      "src": "/mpa-3d-logo-small.webp",
+      "alt": "",
+      "loaded": true,
+      "naturalWidth": 128,
+      "naturalHeight": 128,
+      "displayWidth": 46,
+      "displayHeight": 46,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/images/architecture/architectural-blueprint-draft.webp",
+      "alt": "",
+      "loaded": true,
+      "naturalWidth": 1376,
+      "naturalHeight": 768,
+      "displayWidth": 1440,
+      "displayHeight": 612,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/images/mpa-anna-nagar-office.webp",
+      "alt": "Entrance to the MPA and ARCH foundations studio in Anna Nagar East",
+      "loaded": true,
+      "naturalWidth": 451,
+      "naturalHeight": 338,
+      "displayWidth": 532,
+      "displayHeight": 451,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/murali-patharala-associates-assets/brand_identity/WhatsApp Image 2026-09-23 at 16.52.36 (2).webp",
+      "alt": "Murali Patharala & Associates office sign",
+      "loaded": true,
+      "naturalWidth": 451,
+      "naturalHeight": 490,
+      "displayWidth": 236,
+      "displayHeight": 291,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/images/architecture/structural-construction-frame.webp",
+      "alt": "Engineered concrete structure under construction",
+      "loaded": true,
+      "naturalWidth": 1376,
+      "naturalHeight": 768,
+      "displayWidth": 933,
+      "displayHeight": 360,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/murali-patharala-associates-assets/brand_identity/WhatsApp Image 2026-09-23 at 16.52.36.webp",
+      "alt": "ARCH foundations logo",
+      "loaded": true,
+      "naturalWidth": 800,
+      "naturalHeight": 799,
+      "displayWidth": 230,
+      "displayHeight": 230,
+      "fit": "fill",
+      "hidden": false
+    },
+    {
+      "src": "/murali-patharala-associates-assets/exterior_renders/JAMEE2.webp",
+      "alt": "Residential exterior design from the MPA project archive",
+      "loaded": true,
+      "naturalWidth": 1920,
+      "naturalHeight": 1358,
+      "displayWidth": 414,
+      "displayHeight": 365,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/murali-patharala-associates-assets/interior_renders/WhatsApp Image 2026-09-23 at 16.42.59 (3).webp",
+      "alt": "Contemporary living room design from the MPA project archive",
+      "loaded": true,
+      "naturalWidth": 1600,
+      "naturalHeight": 1067,
+      "displayWidth": 414,
+      "displayHeight": 365,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/murali-patharala-associates-assets/completed_interiors/WhatsApp Image 2026-09-23 at 16.28.00 (3).webp",
+      "alt": "Completed residential living space from the MPA project archive",
+      "loaded": true,
+      "naturalWidth": 1600,
+      "naturalHeight": 1200,
+      "displayWidth": 414,
+      "displayHeight": 365,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/images/clients/bharat-petroleum.webp",
+      "alt": "Bharat Petroleum",
+      "loaded": true,
+      "naturalWidth": 512,
+      "naturalHeight": 288,
+      "displayWidth": 158,
+      "displayHeight": 80,
+      "fit": "contain",
+      "hidden": false
+    },
+    {
+      "src": "/images/clients/indian-oil.webp",
+      "alt": "IndianOil",
+      "loaded": true,
+      "naturalWidth": 425,
+      "naturalHeight": 512,
+      "displayWidth": 158,
+      "displayHeight": 80,
+      "fit": "contain",
+      "hidden": false
+    },
+    {
+      "src": "/images/clients/tahdco.webp",
+      "alt": "TAHDCO",
+      "loaded": true,
+      "naturalWidth": 400,
+      "naturalHeight": 220,
+      "displayWidth": 158,
+      "displayHeight": 80,
+      "fit": "contain",
+      "hidden": false
+    },
+    {
+      "src": "/images/clients/indian-railways.webp",
+      "alt": "Indian Railways",
+      "loaded": true,
+      "naturalWidth": 90,
+      "naturalHeight": 80,
+      "displayWidth": 158,
+      "displayHeight": 80,
+      "fit": "contain",
+      "hidden": false
+    },
+    {
+      "src": "/images/clients/sri-balaji-hospital.webp",
+      "alt": "Sri Balaji Hospital",
+      "loaded": true,
+      "naturalWidth": 135,
+      "naturalHeight": 74,
+      "displayWidth": 158,
+      "displayHeight": 80,
+      "fit": "contain",
+      "hidden": false
+    },
+    {
+      "src": "/images/clients/sla.webp",
+      "alt": "SLA",
+      "loaded": true,
+      "naturalWidth": 512,
+      "naturalHeight": 272,
+      "displayWidth": 158,
+      "displayHeight": 80,
+      "fit": "contain",
+      "hidden": false
+    },
+    {
+      "src": "/images/architecture/hero-villa-twilight.webp",
+      "alt": "",
+      "loaded": true,
+      "naturalWidth": 1376,
+      "naturalHeight": 768,
+      "displayWidth": 1440,
+      "displayHeight": 723,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/mpa-3d-logo-small.webp",
+      "alt": "",
+      "loaded": true,
+      "naturalWidth": 128,
+      "naturalHeight": 128,
+      "displayWidth": 44,
+      "displayHeight": 44,
+      "fit": "fill",
+      "hidden": false
+    }
+  ],
+  "backgrounds": [
+    "/images/drawings/architectural-elevation-detail.svg"
+  ],
+  "decoded": [
+    {
+      "src": "/mpa-3d-logo-small.webp",
+      "ok": true,
+      "width": 128,
+      "height": 128
+    },
+    {
+      "src": "/images/architecture/architectural-blueprint-draft.webp",
+      "ok": true,
+      "width": 1376,
+      "height": 768
+    },
+    {
+      "src": "/images/mpa-anna-nagar-office.webp",
+      "ok": true,
+      "width": 451,
+      "height": 338
+    },
+    {
+      "src": "/murali-patharala-associates-assets/brand_identity/WhatsApp Image 2026-09-23 at 16.52.36 (2).webp",
+      "ok": true,
+      "width": 451,
+      "height": 490
+    },
+    {
+      "src": "/images/architecture/structural-construction-frame.webp",
+      "ok": true,
+      "width": 1376,
+      "height": 768
+    },
+    {
+      "src": "/murali-patharala-associates-assets/brand_identity/WhatsApp Image 2026-09-23 at 16.52.36.webp",
+      "ok": true,
+      "width": 800,
+      "height": 799
+    },
+    {
+      "src": "/murali-patharala-associates-assets/exterior_renders/JAMEE2.webp",
+      "ok": true,
+      "width": 1920,
+      "height": 1358
+    },
+    {
+      "src": "/murali-patharala-associates-assets/interior_renders/WhatsApp Image 2026-09-23 at 16.42.59 (3).webp",
+      "ok": true,
+      "width": 1600,
+      "height": 1067
+    },
+    {
+      "src": "/murali-patharala-associates-assets/completed_interiors/WhatsApp Image 2026-09-23 at 16.28.00 (3).webp",
+      "ok": true,
+      "width": 1600,
+      "height": 1200
+    },
+    {
+      "src": "/images/clients/bharat-petroleum.webp",
+      "ok": true,
+      "width": 512,
+      "height": 288
+    },
+    {
+      "src": "/images/clients/indian-oil.webp",
+      "ok": true,
+      "width": 425,
+      "height": 512
+    },
+    {
+      "src": "/images/clients/tahdco.webp",
+      "ok": true,
+      "width": 400,
+      "height": 220
+    },
+    {
+      "src": "/images/clients/indian-railways.webp",
+      "ok": true,
+      "width": 90,
+      "height": 80
+    },
+    {
+      "src": "/images/clients/sri-balaji-hospital.webp",
+      "ok": true,
+      "width": 135,
+      "height": 74
+    },
+    {
+      "src": "/images/clients/sla.webp",
+      "ok": true,
+      "width": 512,
+      "height": 272
+    },
+    {
+      "src": "/images/architecture/hero-villa-twilight.webp",
+      "ok": true,
+      "width": 1376,
+      "height": 768
+    },
+    {
+      "src": "/images/drawings/architectural-elevation-detail.svg",
+      "ok": true,
+      "width": 280,
+      "height": 150
+    }
+  ],
+  "overflow": 0,
+  "galleryCards": [],
+  "backgroundRepairRechecked": true
+}

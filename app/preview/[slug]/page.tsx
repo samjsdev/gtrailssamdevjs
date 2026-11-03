@@ -75,11 +75,11 @@ const TEMPLATES = [
   },
   { 
     id: 'template10', 
-    name: 'Template 10 - Industrial Architecture & Construction', 
-    description: 'Industrial architectural layout featuring burnt orange signage, deep charcoal surfaces, gold precision rules, and turnkey civil construction calculators.', 
-    color: 'from-orange-600/25 to-stone-900/60',
-    accentColor: '#E94B26',
-    tag: 'Architecture & Civil'
+    name: 'Template 10 - Haute Couture Architecture & Construction', 
+    description: 'Monolithic luxury architectural layout inspired by Aparna Kaushik, featuring bespoke typography, editorial brand stories, principal monograph, curated works gallery, and turnkey civil estimators.', 
+    color: 'from-amber-600/25 to-stone-900/60',
+    accentColor: '#c5a47e',
+    tag: 'Haute Architecture'
   },
   { 
     id: 'template11', 

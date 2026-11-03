@@ -1,0 +1,20 @@
+[
+  {
+    "src": "/images/drawings/architectural-elevation-detail.svg",
+    "ok": true,
+    "width": 280,
+    "height": 150
+  },
+  {
+    "src": "/images/drawings/architectural-master-plan.svg",
+    "ok": true,
+    "width": 233,
+    "height": 150
+  },
+  {
+    "src": "/images/drawings/architectural-structural-lines.svg",
+    "ok": true,
+    "width": 300,
+    "height": 150
+  }
+]

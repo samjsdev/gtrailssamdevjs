@@ -1,242 +1,182 @@
 import { readSourceConfig } from '@/lib/dataBuilder';
-import { cleanClinicName } from '@/lib/copyCleaner';
 import { notFound } from 'next/navigation';
-import { 
-  Phone, Mail, MapPin, Clock, ShieldCheck, 
-  Building, Compass, ArrowRight, CheckCircle2, HardHat 
+import Image from 'next/image';
+import {
+  MapPin,
+  Phone,
+  Mail,
+  Clock,
+  MessageSquare,
+  ShieldCheck,
+  Building2,
+  ArrowUpRight,
 } from 'lucide-react';
+import { cleanClinicName } from '@/lib/copyCleaner';
+import { ARCHITECTURE_STOCK } from '@/lib/architectureContent';
+import LeadForm from '../LeadForm';
+import { Cinzel } from 'next/font/google';
 
-interface PageProps {
+const cinzel = Cinzel({ subsets: ['latin'], weight: ['600', '700', '800'] });
+
+type PageProps = {
   params: Promise<{ slug: string }>;
-  searchParams?: Promise<{ area?: string; package?: string }>;
-}
+  searchParams?: Promise<{ [key: string]: string | string[] | undefined }>;
+};
 
-export default async function Template10ContactPage({ params, searchParams }: PageProps) {
-  const resolvedParams = await params;
-  const { slug } = resolvedParams;
-  const resolvedSearchParams = searchParams ? await searchParams : {};
+export default async function Template10Contact({ params, searchParams }: PageProps) {
+  const { slug } = await params;
+  const sParams = searchParams ? await searchParams : {};
+  const projectParam = typeof sParams?.project === 'string' ? sParams.project : undefined;
+  const serviceParam = typeof sParams?.service === 'string' ? sParams.service : undefined;
+
+  const defaultSelection = projectParam || serviceParam || 'Independent Luxury Villa';
+
   const data = await readSourceConfig(slug, 'template10');
+  if (!data) return notFound();
 
-  if (!data || !data.clinic) {
-    notFound();
-  }
+  const { clinic } = data;
+  const cleanName = cleanClinicName(clinic.name);
+  const phone = clinic.contact?.phone || '+91 93103 59993';
+  const address = clinic.address?.full || '74, G1, Sai Nagar, Chennai, Tamil Nadu';
+  const mapEmbedUrl =
+    clinic.mapEmbedUrl ||
+    'https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d3000!2d80.1964698!3d13.0602586!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sin!4v1';
 
-  const clinicName = cleanClinicName(data.clinic.name);
-  const clinicTagline = data.clinic.tagline || 'Direct Engineering Coordination & Technical Consultation';
-  const clinicPhone = data.clinic.contact?.phone || '+91 81100 00384';
-  const clinicEmail = data.clinic.contact?.email || 'contact@architecturalconstruction.com';
-  const clinicAddress = data.clinic.address?.full || 'Engineering Center & Corporate Studio, Prime City Road';
-
-  const defaultArea = resolvedSearchParams?.area || '2400';
-  const defaultPackage = resolvedSearchParams?.package || 'premium';
+  const waPhone = phone.replace(/\D/g, '') || '919310359993';
+  const waUrl = `https://wa.me/${waPhone}?text=${encodeURIComponent(
+    `Hello ${cleanName || 'Atelier'}, I would like to schedule an architectural consultation regarding our project.`
+  )}`;
 
   return (
-    <div className="w-full bg-[#252A29] text-[#F4F3EE]">
-      {/* ─── Hero Banner Section ─── */}
-      <section id="contact-hero" className="relative py-24 sm:py-32 bg-[#1A1E1D] border-b-4 border-[#111111]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-8">
-          <div className="max-w-3xl">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 bg-[#E94B26] text-[#F4F3EE] text-xs font-black uppercase tracking-[0.2em] mb-4 border border-[#111111] shadow-[3px_3px_0px_#111111]">
-              <HardHat className="w-3.5 h-3.5" />
-              <span>DIRECT TECHNICAL ENQUIRY & ESTIMATES</span>
-            </div>
-            <h1 className="text-4xl sm:text-6xl font-black uppercase text-[#F4F3EE] tracking-tight leading-[0.95] mb-4">
-              CONNECT WITH OUR <span className="text-[#E94B26]">ENGINEERING DESK</span>
-            </h1>
-            <p className="text-sm sm:text-base font-bold uppercase tracking-wider text-[#C8A84E]">
-              {clinicName} &bull; {clinicTagline}
-            </p>
-          </div>
+    <div className="bg-[#faf8f5]">
+      {/* Header Banner */}
+      <section className="py-20 sm:py-28 bg-[#111111] text-white relative overflow-hidden">
+        <div className="absolute inset-0 opacity-25 pointer-events-none">
+          <Image
+            src={ARCHITECTURE_STOCK.studio[0]}
+            alt="Atelier Headquarters"
+            fill
+            className="object-cover"
+            priority
+          />
+        </div>
+
+        <div className="relative z-10 max-w-[1360px] mx-auto px-5 sm:px-8 text-center flex flex-col items-center">
+          <span className="text-[11px] tracking-[0.35em] uppercase font-bold text-[#c5a47e] mb-3">
+            Atelier Headquarters & Consultations
+          </span>
+          <h1
+            className={`${cinzel.className} text-[34px] sm:text-[48px] lg:text-[58px] font-bold text-white tracking-tight leading-tight max-w-4xl`}
+          >
+            Initiate a Private Commission
+          </h1>
+          <p className="mt-5 text-[15px] sm:text-[17px] text-[#cfcac2] max-w-2xl font-light leading-relaxed">
+            Connect directly with our principal architects and engineering directors for confidential site evaluations and architectural commissions.
+          </p>
         </div>
       </section>
 
-      {/* ─── Contact Details & Form Section ─── */}
-      <section id="contact-details" className="py-24 px-4 sm:px-8 bg-[#252A29] border-b-4 border-[#111111]">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
-            {/* Left: Office Coordinates & Credentials */}
-            <div className="lg:col-span-5 space-y-8">
-              <div>
-                <div className="inline-block px-3.5 py-1 bg-[#1A1E1D] text-[#C8A84E] text-xs font-black uppercase tracking-[0.25em] border border-[#C8A84E]/40 mb-3">
-                  CENTRAL COORDINATES
-                </div>
-                <h2 className="text-3xl font-black uppercase text-[#F4F3EE] tracking-tight">
-                  CORPORATE STUDIO & SITE OFFICE
-                </h2>
-                <p className="text-xs text-[#F4F3EE]/70 font-mono mt-2 uppercase tracking-wider">
-                  SCHEDULE AN IN-PERSON SPATIAL BLUEPRINT REVIEW WITH OUR CHIEF ARCHITECTS
-                </p>
-              </div>
-
-              <div className="space-y-6 text-xs font-mono text-[#F4F3EE]">
-                <div className="bg-[#1A1E1D] p-6 border-2 border-[#111111] shadow-[4px_4px_0px_#111111] flex items-start gap-4">
-                  <div className="w-10 h-10 bg-[#252A29] text-[#E94B26] flex items-center justify-center shrink-0 border border-[#C8A84E]/40">
-                    <MapPin className="w-5 h-5" />
-                  </div>
-                  <div>
-                    <span className="text-[10px] font-bold uppercase text-[#C8A84E] tracking-widest block mb-1">
-                      STUDIO & CIVIL HQ
-                    </span>
-                    <p className="font-sans text-sm text-[#F4F3EE] leading-snug">
-                      {clinicAddress}
-                    </p>
-                  </div>
-                </div>
-
-                <div className="bg-[#1A1E1D] p-6 border-2 border-[#111111] shadow-[4px_4px_0px_#111111] flex items-start gap-4">
-                  <div className="w-10 h-10 bg-[#252A29] text-[#E94B26] flex items-center justify-center shrink-0 border border-[#C8A84E]/40">
-                    <Phone className="w-5 h-5" />
-                  </div>
-                  <div>
-                    <span className="text-[10px] font-bold uppercase text-[#C8A84E] tracking-widest block mb-1">
-                      DIRECT CONSULTATION HOTLINE
-                    </span>
-                    <a
-                      href={`tel:${clinicPhone.replace(/[^0-9+]/g, '')}`}
-                      className="text-lg font-black text-[#E94B26] hover:underline"
-                    >
-                      {clinicPhone}
-                    </a>
-                    <p className="text-[11px] text-[#F4F3EE]/60 mt-0.5 font-mono">Available Mon to Sat (09:00 AM - 07:30 PM)</p>
-                  </div>
-                </div>
-
-                <div className="bg-[#1A1E1D] p-6 border-2 border-[#111111] shadow-[4px_4px_0px_#111111] flex items-start gap-4">
-                  <div className="w-10 h-10 bg-[#252A29] text-[#E94B26] flex items-center justify-center shrink-0 border border-[#C8A84E]/40">
-                    <Mail className="w-5 h-5" />
-                  </div>
-                  <div>
-                    <span className="text-[10px] font-bold uppercase text-[#C8A84E] tracking-widest block mb-1">
-                      ENGINEERING & ESTIMATES EMAIL
-                    </span>
-                    <a
-                      href={`mailto:${clinicEmail}`}
-                      className="text-sm font-bold text-[#F4F3EE] hover:text-[#E94B26]"
-                    >
-                      {clinicEmail}
-                    </a>
-                  </div>
-                </div>
-              </div>
+      {/* Main Content Grid */}
+      <section className="py-20 sm:py-28">
+        <div className="max-w-[1360px] mx-auto px-5 sm:px-8">
+          <div className="grid lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+            {/* Form Column */}
+            <div className="lg:col-span-7">
+              <LeadForm
+                clinicName={cleanName}
+                phone={phone}
+                defaultProject={defaultSelection}
+              />
             </div>
 
-            {/* Right: Technical Consultation Form */}
-            <div className="lg:col-span-7 bg-[#1A1E1D] border-4 border-[#111111] p-8 sm:p-10 shadow-[8px_8px_0px_#111111]">
-              <div className="border-b-2 border-[#252A29] pb-4 mb-6">
-                <span className="text-xs font-mono text-[#C8A84E] uppercase tracking-widest font-bold">
-                  PROJECT SPECIFICATIONS & BOQ REQUEST
+            {/* Studio Info Column */}
+            <div className="lg:col-span-5 space-y-8">
+              {/* Studio Details Card */}
+              <div className="bg-[#f5f2ea] border border-[#141414]/10 p-7 sm:p-9 shadow-sm">
+                <span className="text-[10.5px] tracking-[0.25em] uppercase font-bold text-[#b89568] block mb-2">
+                  Headquarters & Practice
                 </span>
-                <h3 className="text-2xl font-black uppercase text-[#F4F3EE] tracking-tight mt-1">
-                  REQUEST A FREE SITE VISIT & QUOTATION
+                <h3 className={`${cinzel.className} text-[22px] font-bold text-[#141414]`}>
+                  {cleanName || 'Architectural Atelier'}
                 </h3>
+
+                <div className="mt-6 space-y-4 text-[13.5px] text-[#5a544c]">
+                  <div className="flex items-start gap-3">
+                    <MapPin className="w-4 h-4 text-[#b89568] shrink-0 mt-1" />
+                    <div>
+                      <div className="font-semibold text-[#141414]">Studio Address</div>
+                      <div className="mt-0.5 leading-relaxed">{address}</div>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start gap-3">
+                    <Phone className="w-4 h-4 text-[#b89568] shrink-0 mt-1" />
+                    <div>
+                      <div className="font-semibold text-[#141414]">Telephone Consultation</div>
+                      <a href={`tel:${phone}`} className="mt-0.5 block hover:text-[#b89568] transition-colors">
+                        {phone}
+                      </a>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start gap-3">
+                    <Clock className="w-4 h-4 text-[#b89568] shrink-0 mt-1" />
+                    <div>
+                      <div className="font-semibold text-[#141414]">Consultation Hours</div>
+                      <div className="mt-0.5">Monday – Saturday: 9:30 AM – 7:30 PM</div>
+                      <div className="text-[11.5px] text-[#7a746d]">By Confirmed Appointment Only</div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Direct WhatsApp Concierge */}
+                <div className="mt-8 pt-6 border-t border-[#141414]/10">
+                  <a
+                    href={waUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center justify-center gap-2 bg-[#141414] text-[#faf8f5] py-3.5 text-[11px] tracking-[0.22em] uppercase font-bold hover:bg-[#c5a47e] hover:text-[#141414] transition-colors"
+                  >
+                    <MessageSquare className="w-4 h-4" />
+                    <span>WhatsApp Atelier Concierge</span>
+                  </a>
+                </div>
               </div>
 
-              <form className="space-y-4">
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <div>
-                    <label className="block text-[11px] font-mono uppercase tracking-wider text-[#C8A84E] font-bold mb-1">
-                      FULL NAME *
-                    </label>
-                    <input
-                      type="text"
-                      required
-                      placeholder="e.g. Rajesh Kumar"
-                      className="w-full bg-[#252A29] border-2 border-[#111111] focus:border-[#E94B26] p-3 text-xs text-[#F4F3EE] font-sans placeholder-[#F4F3EE]/30 focus:outline-none"
-                    />
+              {/* Dedicated Channels */}
+              <div className="bg-[#faf8f5] border border-[#141414]/10 p-7">
+                <span className="text-[10px] tracking-[0.25em] uppercase font-bold text-[#b89568] block mb-3">
+                  Direct Inquiries Directory
+                </span>
+                <div className="space-y-3 text-[12.5px] divide-y divide-[#141414]/10">
+                  <div className="pt-2">
+                    <div className="font-bold text-[#141414]">New Commissions & Feasibility</div>
+                    <div className="text-[#7a746d]">commissions@{slug}.inquiry.studio</div>
                   </div>
-
-                  <div>
-                    <label className="block text-[11px] font-mono uppercase tracking-wider text-[#C8A84E] font-bold mb-1">
-                      CONTACT PHONE *
-                    </label>
-                    <input
-                      type="tel"
-                      required
-                      placeholder="+91 98765 43210"
-                      className="w-full bg-[#252A29] border-2 border-[#111111] focus:border-[#E94B26] p-3 text-xs text-[#F4F3EE] font-sans placeholder-[#F4F3EE]/30 focus:outline-none"
-                    />
+                  <div className="pt-2">
+                    <div className="font-bold text-[#141414]">Media & Architectural Publications</div>
+                    <div className="text-[#7a746d]">press@{slug}.inquiry.studio</div>
+                  </div>
+                  <div className="pt-2">
+                    <div className="font-bold text-[#141414]">Contractor & Material Vendors</div>
+                    <div className="text-[#7a746d]">procurement@{slug}.inquiry.studio</div>
                   </div>
                 </div>
+              </div>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <div>
-                    <label className="block text-[11px] font-mono uppercase tracking-wider text-[#C8A84E] font-bold mb-1">
-                      PLOT / SITE LOCATION *
-                    </label>
-                    <input
-                      type="text"
-                      required
-                      placeholder="e.g. OMR, Anna Nagar, Whitefield"
-                      className="w-full bg-[#252A29] border-2 border-[#111111] focus:border-[#E94B26] p-3 text-xs text-[#F4F3EE] font-sans placeholder-[#F4F3EE]/30 focus:outline-none"
-                    />
-                  </div>
-
-                  <div>
-                    <label className="block text-[11px] font-mono uppercase tracking-wider text-[#C8A84E] font-bold mb-1">
-                      ESTIMATED BUILT-UP AREA (SQ.FT)
-                    </label>
-                    <input
-                      type="text"
-                      defaultValue={defaultArea}
-                      placeholder="e.g. 2500 sq.ft"
-                      className="w-full bg-[#252A29] border-2 border-[#111111] focus:border-[#E94B26] p-3 text-xs text-[#F4F3EE] font-sans placeholder-[#F4F3EE]/30 focus:outline-none"
-                    />
-                  </div>
-                </div>
-
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <div>
-                    <label className="block text-[11px] font-mono uppercase tracking-wider text-[#C8A84E] font-bold mb-1">
-                      PRIMARY SERVICE REQUIREMENT
-                    </label>
-                    <select className="w-full bg-[#252A29] border-2 border-[#111111] focus:border-[#E94B26] p-3 text-xs text-[#F4F3EE] font-sans focus:outline-none">
-                      <option value="turnkey">Turnkey Civil Construction + Architecture</option>
-                      <option value="architecture">Architectural Concept & 3D BIM Only</option>
-                      <option value="interiors">Luxury Interior Design Fitout</option>
-                      <option value="all">Full Turnkey Package (All 3 Pillars)</option>
-                    </select>
-                  </div>
-
-                  <div>
-                    <label className="block text-[11px] font-mono uppercase tracking-wider text-[#C8A84E] font-bold mb-1">
-                      PREFERRED PACKAGE TIER
-                    </label>
-                    <select
-                      defaultValue={defaultPackage}
-                      className="w-full bg-[#252A29] border-2 border-[#111111] focus:border-[#E94B26] p-3 text-xs text-[#F4F3EE] font-sans focus:outline-none"
-                    >
-                      <option value="standard">Standard Package (₹2,150/sq.ft)</option>
-                      <option value="premium">Premium Architectural (₹2,750/sq.ft)</option>
-                      <option value="luxury">Ultra Luxury Villa (₹3,500/sq.ft)</option>
-                    </select>
-                  </div>
-                </div>
-
-                <div>
-                  <label className="block text-[11px] font-mono uppercase tracking-wider text-[#C8A84E] font-bold mb-1">
-                    PROJECT NOTES / SPECIFIC REQUIREMENTS
-                  </label>
-                  <textarea
-                    rows={4}
-                    placeholder="Tell us about your plot dimensions, number of floors, timeline, and design inspirations..."
-                    className="w-full bg-[#252A29] border-2 border-[#111111] focus:border-[#E94B26] p-3 text-xs text-[#F4F3EE] font-sans placeholder-[#F4F3EE]/30 focus:outline-none"
-                  ></textarea>
-                </div>
-
-                <button
-                  type="button"
-                  className="w-full py-4 bg-[#E94B26] text-[#F4F3EE] font-black text-xs uppercase tracking-widest border border-[#111111] shadow-[4px_4px_0px_#111111] hover:shadow-[1px_1px_0px_#111111] hover:translate-x-[2px] hover:translate-y-[2px] transition-all flex items-center justify-center gap-2"
-                >
-                  <span>SUBMIT FOR ARCHITECTURAL REVIEW & BOQ</span>
-                  <ArrowRight className="w-4 h-4" />
-                </button>
-
-                <div className="text-center pt-2">
-                  <span className="text-[10px] font-mono text-[#F4F3EE]/60">
-                    &bull; 100% Privacy Guaranteed &bull; Zero Spam &bull; Confidential Blueprint Protection &bull;
-                  </span>
-                </div>
-              </form>
+              {/* Map Embed */}
+              <div className="border border-[#141414]/15 overflow-hidden shadow-sm aspect-[16/9] w-full">
+                <iframe
+                  src={mapEmbedUrl}
+                  width="100%"
+                  height="100%"
+                  style={{ border: 0 }}
+                  allowFullScreen={false}
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  title="Studio Location"
+                />
+              </div>
             </div>
           </div>
         </div>

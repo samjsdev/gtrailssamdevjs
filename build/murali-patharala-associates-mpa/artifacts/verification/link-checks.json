@@ -1,0 +1,107 @@
+{
+  "pages": [
+    {
+      "route": "/",
+      "status": 200,
+      "title": "Architects & Builders in Chennai | Architecture, Construction & Interiors | Murali Patharala & Associates"
+    },
+    {
+      "route": "/about/",
+      "status": 200,
+      "title": "About the Practice & Ar. Murali Patharala | Murali Patharala & Associates"
+    },
+    {
+      "route": "/services/",
+      "status": 200,
+      "title": "Architecture, Interiors, Construction & Consultancy Services | Murali Patharala & Associates"
+    },
+    {
+      "route": "/services/architectural-design/",
+      "status": 200,
+      "title": "Architectural Design in Chennai | Murali Patharala & Associates"
+    },
+    {
+      "route": "/services/residential-construction/",
+      "status": 200,
+      "title": "Residential Construction in Chennai | Murali Patharala & Associates"
+    },
+    {
+      "route": "/services/interior-design/",
+      "status": 200,
+      "title": "Interior Design in Chennai | Murali Patharala & Associates"
+    },
+    {
+      "route": "/services/turnkey-construction/",
+      "status": 200,
+      "title": "Turnkey Construction in Chennai | Murali Patharala & Associates"
+    },
+    {
+      "route": "/design-package/",
+      "status": 200,
+      "title": "Architectural Design Packages in Chennai | Murali Patharala & Associates | Murali Patharala & Associates"
+    },
+    {
+      "route": "/construction-package/",
+      "status": 200,
+      "title": "Fixed-Price Home Construction Packages in Chennai | ARCH foundations | Murali Patharala & Associates"
+    },
+    {
+      "route": "/gallery/",
+      "status": 200,
+      "title": "Architectural & Interior Design Portfolio Chennai | MPA Projects | Murali Patharala & Associates"
+    },
+    {
+      "route": "/contact/",
+      "status": 200,
+      "title": "Contact Architectural Studio Anna Nagar | MPA Chennai | Murali Patharala & Associates"
+    },
+    {
+      "route": "/privacy/",
+      "status": 200,
+      "title": "Privacy Policy | Murali Patharala & Associates"
+    },
+    {
+      "route": "/terms/",
+      "status": 200,
+      "title": "Terms of Use | Murali Patharala & Associates"
+    },
+    {
+      "route": "/brand-preview/",
+      "status": 200,
+      "title": "Brand and copy preview | Murali Patharala & Associates"
+    }
+  ],
+  "missing": [],
+  "resources": [
+    {
+      "path": "/robots.txt",
+      "status": 200,
+      "contentType": "text/plain"
+    },
+    {
+      "path": "/sitemap.xml",
+      "status": 200,
+      "contentType": "application/xml"
+    },
+    {
+      "path": "/og-image.png",
+      "status": 500,
+      "contentType": "text/html; charset=utf-8"
+    },
+    {
+      "path": "/site.webmanifest",
+      "status": 200,
+      "contentType": "application/manifest+json"
+    },
+    {
+      "path": "/favicon.ico",
+      "status": 200,
+      "contentType": "image/x-icon"
+    },
+    {
+      "path": "/route-that-does-not-exist/",
+      "status": 404,
+      "contentType": "text/html; charset=utf-8"
+    }
+  ]
+}

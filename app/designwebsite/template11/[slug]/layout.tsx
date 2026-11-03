@@ -6,6 +6,7 @@ import { cleanClinicName, cleanArchitectureDescription, cleanArchitectureService
 import { DEFAULT_ARCHITECTURE_SERVICES } from '@/lib/architectureContent';
 import { Marcellus, Jost } from 'next/font/google';
 import ClientHeader from './ClientHeader';
+import SmoothScroll from './SmoothScroll';
 
 const marcellus = Marcellus({ subsets: ['latin'], weight: '400', variable: '--font-marcellus' });
 const jost = Jost({ subsets: ['latin'], weight: ['300', '400', '500', '600'], variable: '--font-jost' });
@@ -46,7 +47,8 @@ export default async function Template11Layout({ children, params }: LayoutProps
   const waLink = `https://wa.me/${waPhone}?text=${encodeURIComponent(waText)}`;
 
   return (
-    <div className={`${jost.className} ${jost.variable} ${marcellus.variable} min-h-screen flex flex-col bg-[#f6f1e8] text-[#211a13] selection:bg-[#a58150] selection:text-white scroll-smooth antialiased`}>
+    <SmoothScroll>
+      <div className={`${jost.className} ${jost.variable} ${marcellus.variable} min-h-screen flex flex-col bg-[#f6f1e8] text-[#211a13] selection:bg-[#a58150] selection:text-white antialiased`}>
       {/* Topbar */}
       <div className="bg-[#211a13] text-[#f6f1e8]/85 text-[12.5px] tracking-[0.06em]">
         <div className="max-w-7xl mx-auto px-6 lg:px-7 py-2.5 flex justify-between items-center gap-4">
@@ -155,5 +157,6 @@ export default async function Template11Layout({ children, params }: LayoutProps
         </svg>
       </a>
     </div>
+    </SmoothScroll>
   );
 }

@@ -1,0 +1,66 @@
+[
+  {
+    "width": 320,
+    "label": "Standard Package — detailed specification enquiry",
+    "topLayer": true,
+    "dialogOverflow": 0,
+    "pageOverflow": 0,
+    "frameWidth": 246,
+    "close": {
+      "left": 244,
+      "right": 288,
+      "top": 37,
+      "width": 44,
+      "height": 44
+    },
+    "bodyLocked": true
+  },
+  {
+    "width": 390,
+    "label": "Standard Package — detailed specification enquiry",
+    "topLayer": true,
+    "dialogOverflow": 0,
+    "pageOverflow": 0,
+    "frameWidth": 316,
+    "close": {
+      "left": 314,
+      "right": 358,
+      "top": 37,
+      "width": 44,
+      "height": 44
+    },
+    "bodyLocked": true
+  },
+  {
+    "width": 768,
+    "label": "Standard Package — detailed specification enquiry",
+    "topLayer": true,
+    "dialogOverflow": 0,
+    "pageOverflow": 0,
+    "frameWidth": 500,
+    "close": {
+      "left": 599,
+      "right": 643,
+      "top": 45,
+      "width": 44,
+      "height": 44
+    },
+    "bodyLocked": true
+  },
+  {
+    "width": 1440,
+    "label": "Standard Package — detailed specification enquiry",
+    "topLayer": true,
+    "dialogOverflow": 0,
+    "pageOverflow": 0,
+    "frameWidth": 500,
+    "close": {
+      "left": 935,
+      "right": 979,
+      "top": 45,
+      "width": 44,
+      "height": 44
+    },
+    "bodyLocked": true
+  }
+]

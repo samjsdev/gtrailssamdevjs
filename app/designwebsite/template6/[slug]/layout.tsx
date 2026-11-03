@@ -5,6 +5,7 @@ import { ReactNode } from "react";
 import { Playfair_Display, Lato } from "next/font/google";
 import { MapPin, Phone } from "lucide-react";
 import ClientHeader from "./ClientHeader";
+import SmoothScroll from "./SmoothScroll";
 
 const playfair = Playfair_Display({
   subsets: ["latin"],
@@ -43,7 +44,8 @@ export default async function DesignStudioLayout({ children, params }: LayoutPro
   const walink = `https://wa.me/${waphone}?text=${encodeURIComponent(watext)}`;
 
   return (
-    <div className={`${lato.className} min-h-screen bg-[#1a1a1a] text-zinc-300 selection:bg-zinc-800 selection:text-white scroll-smooth flex flex-col`}>
+    <SmoothScroll>
+      <div className={`${lato.className} min-h-screen bg-[#1a1a1a] text-zinc-300 selection:bg-zinc-800 selection:text-white flex flex-col`}>
       {/* Dynamic Scrolling Header */}
       <ClientHeader clinic={clinic} basePath={basePath} />
 
@@ -149,5 +151,6 @@ export default async function DesignStudioLayout({ children, params }: LayoutPro
         </div>
       </footer>
     </div>
+    </SmoothScroll>
   );
 }

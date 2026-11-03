@@ -1,0 +1,97 @@
+.inner { width: min(100%, 1280px); margin-inline: auto; }
+.sectionMarker { display: flex; justify-content: space-between; gap: 24px; padding-bottom: 16px; border-bottom: 1px solid #11111130; color: #67615a; font-size: 10px; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; }
+.eyebrow { margin-bottom: 22px; color: #c2410c; font-size: 11px; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; }
+.photoCover { object-fit: cover; }
+.studioSection { overflow: hidden; padding: 100px 48px 118px; background: var(--color-surface-pale); }
+.studioGrid { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, .9fr); align-items: center; gap: clamp(56px, 8vw, 124px); padding-top: 60px; }
+.studioGallery { position: relative; min-height: 610px; }
+.officePhoto, .signPhoto { position: absolute; overflow: hidden; background: var(--color-surface-linen); }
+.officePhoto { top: 0; left: 0; width: 83%; height: 74%; }
+.signPhoto { right: 0; bottom: 0; width: 40%; height: 51%; border: 10px solid #f2ede5; }
+.studioStory { max-width: 520px; }
+.studioTitle { font-family: var(--font-content); font-size: clamp(43px, 4.8vw, 69px); font-weight: 500; line-height: 1.1; letter-spacing: -.055em; text-wrap: balance; }
+.studioTitle em { color: #b3451b; font-weight: 400; }
+.studioStory > p:not(.eyebrow) { max-width: 490px; margin-top: 26px; color: #4c4c46; font-size: 16px; line-height: 1.85; }
+.studioAddress { display: grid; grid-template-columns: 104px minmax(0, 1fr); gap: 18px; margin: 32px 0 28px; padding-top: 23px; border-top: 1px solid #b9aea0; }
+.studioAddress span { color: #aa431e; font-size: 10px; font-weight: 700; letter-spacing: .15em; line-height: 1.7; text-transform: uppercase; }
+.studioAddress address { color: #30322e; font-size: 13px; font-style: normal; line-height: 1.7; }
+.founderSection { padding: 100px 48px 116px; background: var(--color-surface-cream); }
+.founderGrid { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(340px, .8fr); gap: clamp(64px, 9vw, 150px); align-items: start; padding-top: 76px; }
+.founderName { max-width: 700px; font-family: var(--font-content); font-size: clamp(52px, 6vw, 86px); font-weight: 500; line-height: 1.06; letter-spacing: -.055em; text-wrap: balance; }
+.qualification { margin-top: 21px; color: #c2410c; font-size: 13px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; }
+.founderCopy { max-width: 640px; margin-top: 39px; padding-left: 26px; border-left: 2px solid #c2410c; color: #4d4c48; font-size: 17px; line-height: 1.9; }
+.credentials { margin: 0; border-top: 2px solid #111; }
+.credential { display: grid; grid-template-columns: 128px minmax(0, 1fr); gap: 20px; padding: 29px 0 32px; border-bottom: 1px solid #d7d1c8; }
+.credential dt { color: #a14820; font-size: 10px; font-weight: 700; letter-spacing: .13em; line-height: 1.6; text-transform: uppercase; }
+.credential dd { margin: 0; color: #383632; font-size: 14px; line-height: 1.85; }
+.credential strong { color: #111; font-size: 20px; font-weight: 500; letter-spacing: .03em; }
+.archSection { position: relative; overflow: hidden; padding: 100px 48px 88px; background: var(--color-surface-sand); color: #302A20; }
+.archSection::before { position: absolute; inset: 0; content: ''; pointer-events: none; background: linear-gradient(90deg, #F5F5DD09 1px, transparent 1px), linear-gradient(0deg, #F5F5DD06 1px, transparent 1px); background-size: 72px 72px; mask-image: linear-gradient(90deg, transparent 25%, #000); }
+.archSection .inner { position: relative; }
+.sectionMarkerWarm { border-color: #5D51403b; color: var(--color-ink-muted); }
+.archGrid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(50px, 8vw, 130px); padding-top: 80px; }
+.archSection .eyebrow { color: #703015; }
+.archName { font-family: var(--font-content); font-size: clamp(63px, 8vw, 116px); font-weight: 500; line-height: .98; letter-spacing: -.06em; }
+.archName em { color: #703015; font-weight: 400; }
+.archBody { max-width: 570px; padding-top: 10px; }
+.archBody p { margin-bottom: 26px; color: var(--color-ink-muted); font-size: 16px; line-height: 1.9; }
+.archBody a { margin-top: 10px; }
+.archVisuals { display: grid; grid-template-columns: minmax(0, 1.7fr) minmax(220px, .6fr); gap: 18px; margin-top: 76px; }
+.archProjectPhoto { position: relative; min-height: 360px; overflow: hidden; background: var(--color-surface-linen); }
+.archLogoPanel { display: grid; min-height: 360px; place-items: center; padding: 35px; background: var(--color-surface-oat); }
+.archLogo { display: block; width: min(100%, 230px); height: auto; }
+.archQuote { margin-top: 70px; padding-top: 33px; border-top: 1px solid #5D514040; font-family: var(--font-content); font-size: clamp(27px, 3.5vw, 50px); line-height: 1.25; letter-spacing: -.035em; }
+.archQuote em { color: #703015; }
+.workSection { padding: 104px 48px 112px; background: var(--color-surface-pale); }
+.workHeading { display: grid; grid-template-columns: 1fr minmax(280px, .55fr); align-items: end; gap: 50px; margin-bottom: 50px; }
+.workHeading h2 { font-family: var(--font-content); font-size: clamp(42px, 5vw, 72px); font-weight: 500; line-height: 1.08; letter-spacing: -.055em; }
+.workHeading h2 em { color: #b3451b; font-weight: 400; }
+.workHeading > p { max-width: 420px; padding-bottom: 5px; color: #53534e; font-size: 15px; line-height: 1.8; }
+.workGrid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+.workCard { min-width: 0; margin: 0; border: 1px solid #d9d1c6; background: var(--color-surface-cream); }
+.workImage { position: relative; height: clamp(245px, 28vw, 365px); overflow: hidden; background: var(--color-surface-linen); }
+.workCard figcaption { display: grid; gap: 9px; padding: 22px 24px 25px; }
+.workCard figcaption span { color: #a44826; font-size: 10px; font-weight: 700; letter-spacing: .15em; text-transform: uppercase; }
+.workCard figcaption h3 { font-family: var(--font-content); font-size: 22px; font-weight: 500; line-height: 1.2; }
+.workFooter { display: flex; justify-content: flex-end; margin-top: 32px; }
+@media (max-width: 900px) {
+  .studioGrid { grid-template-columns: 1fr; gap: 50px; }
+  .studioGallery { min-height: 520px; }
+  .studioStory { max-width: 690px; }
+  .founderGrid { grid-template-columns: 1fr; gap: 58px; }
+  .credentials { max-width: 680px; }
+  .archGrid { grid-template-columns: 1fr; gap: 42px; }
+  .archBody { padding-top: 0; }
+  .workHeading { grid-template-columns: 1fr; gap: 22px; }
+  .workGrid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 700px) {
+  .archVisuals { grid-template-columns: 1fr 125px; gap: 9px; margin-top: 50px; }
+  .archProjectPhoto, .archLogoPanel { min-height: 280px; }
+  .archLogoPanel { padding: 10px; }
+  .workGrid { grid-template-columns: 1fr; }
+  .workImage { height: 290px; }
+}
+@media (max-width: 640px) {
+  .studioSection, .founderSection, .archSection, .workSection { padding: 68px 24px 74px; }
+  .sectionMarker { font-size: 9px; letter-spacing: .12em; }
+  .sectionMarker span:last-child { text-align: right; }
+  .studioGrid { padding-top: 38px; gap: 42px; }
+  .studioGallery { min-height: 370px; }
+  .signPhoto { border-width: 7px; }
+  .studioTitle { font-size: clamp(42px, 11vw, 57px); }
+  .studioStory > p:not(.eyebrow) { font-size: 15px; }
+  .studioAddress { grid-template-columns: 1fr; gap: 8px; }
+  .founderGrid, .archGrid { padding-top: 48px; }
+  .founderName { font-size: clamp(43px, 12vw, 62px); }
+  .founderCopy { margin-top: 30px; padding-left: 17px; font-size: 15px; line-height: 1.8; }
+  .credential { grid-template-columns: 1fr; gap: 8px; padding: 23px 0; }
+  .credential dd { font-size: 13px; }
+  .archName { font-size: clamp(53px, 15vw, 80px); }
+  .archBody p { font-size: 15px; }
+  .archQuote { margin-top: 60px; font-size: 30px; }
+  .workHeading { margin-bottom: 35px; }
+  .workHeading h2 { font-size: clamp(40px, 11vw, 56px); }
+  .workCard figcaption { padding: 19px 21px 23px; }
+  .workFooter { justify-content: flex-start; }
+}

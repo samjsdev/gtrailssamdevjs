@@ -1,0 +1,189 @@
+import { CONTACT_LINKS } from '@/lib/contactLinks';
+import type { Metadata } from 'next';
+import Link from 'next/link';
+import Image from 'next/image';
+import { ArrowDown, CheckCircle2, FileText, ShieldCheck } from 'lucide-react';
+import ConstructionPackages from '../ConstructionPackages';
+
+export const metadata: Metadata = {
+  title: 'Fixed-Price Home Construction Packages in Chennai | ARCH foundations',
+  description:
+    'Compare Classic, Premium, and Supreme residential construction packages with 100% frozen pricing, Tata Tiscon 550D steel, UltraTech cement, 425+ quality audits, and 10-year structural warranty in Chennai.',
+  keywords: [
+    'home construction packages chennai',
+    'fixed price house construction chennai',
+    'construction cost per sq ft chennai',
+    'civil contractors anna nagar',
+    'arch foundation construction packages',
+    'turnkey builders chennai',
+    'tata tiscon 550d house builders',
+    '10 year warranty home construction',
+  ],
+  alternates: {
+    canonical: '/construction-package/',
+  },
+  openGraph: {
+    title: 'Fixed-Price Home Construction Packages in Chennai | ARCH foundations',
+    description:
+      'Compare transparent building specifications, itemized BOQ inclusions, primary steel specifications, and zero escalation contracts from ARCH foundations Chennai.',
+    url: 'https://muralipatharalaassociates.com/construction-package/',
+    images: [
+      {
+        url: '/images/architecture/structural-construction-frame.webp',
+        width: 1200,
+        height: 630,
+        alt: 'Residential Construction Packages by ARCH foundations',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Home Construction Packages in Chennai | ARCH foundations',
+    description:
+      'Fixed-price home construction packages with branded materials, 425+ quality audits, and zero cost escalation.',
+    images: ['/images/architecture/structural-construction-frame.webp'],
+  },
+};
+
+const PACKAGE_PROMISES = [
+  { icon: FileText, label: 'Itemized BOQ', detail: 'Every material, brand and grade documented' },
+  { icon: ShieldCheck, label: 'Price Freeze', detail: 'No hidden civil or material escalation' },
+  { icon: CheckCircle2, label: '425+ Checks', detail: 'Stage-wise quality control and reporting' },
+];
+
+export default function ConstructionPackagePage() {
+  return (
+    <div className="mpa-package-page w-full bg-surface-cream text-[#202B29]">
+      {/* ── Breadcrumb Navigation ── */}
+      <div className="bg-[#172320] px-6 py-3 md:px-12 border-b border-white/10">
+        <nav aria-label="Breadcrumb" className="max-w-7xl mx-auto flex items-center gap-2 text-[11px] font-bold uppercase tracking-widest text-white/60">
+          <Link href="/" className="hover:text-[#A94F2D] transition-colors">Home</Link>
+          <span>/</span>
+          <Link href="/services" className="hover:text-[#A94F2D] transition-colors">Services</Link>
+          <span>/</span>
+          <span className="text-[#F3B687]">Residential Construction Packages</span>
+        </nav>
+      </div>
+
+      {/* ── Hero Section ── */}
+      <section className="relative min-h-[570px] bg-[#1C2927] text-white overflow-hidden border-b-4 border-[#A94F2D] px-6 md:px-12 py-20 md:py-28 flex items-center">
+        {/* Background Engineered RCC Construction Frame */}
+        <Image
+          src="/images/architecture/structural-construction-frame.webp"
+          alt="ARCH foundations Residential Construction Site"
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover opacity-90 pointer-events-none select-none"
+        />
+        {/* Calibrated Scrim: dark on text side (left), transparent on photo side (right) */}
+        <div className="absolute inset-0 bg-gradient-to-r from-[#1C2927]/95 via-[#1C2927]/70 to-[#1C2927]/20 pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#1C2927]/70 via-transparent to-transparent pointer-events-none" />
+
+        <div className="relative z-10 max-w-7xl mx-auto w-full grid lg:grid-cols-[1.35fr_.65fr] gap-14 items-end">
+          <div className="max-w-4xl">
+            <div className="mb-8 flex items-center gap-5 sm:gap-6">
+              <div className="shrink-0 border border-[#F3B687]/40 bg-[#172320]/60 p-1 shadow-xl">
+                <Image
+                  src="/murali-patharala-associates-assets/brand_identity/WhatsApp Image 2026-09-23 at 16.52.36.webp"
+                  alt="ARCH foundations logo"
+                  width={800}
+                  height={799}
+                  loading="eager"
+                  sizes="(max-width: 639px) 80px, 112px"
+                  className="size-20 object-contain sm:size-28"
+                />
+              </div>
+              <div className="min-w-0 border-l border-[#F3B687]/30 pl-5 sm:pl-6">
+                <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#F3B687] sm:text-[11px]">Construction packages</p>
+                <p className="brand-name mt-2 text-lg leading-snug text-white sm:text-2xl">ARCH foundations</p>
+                <p className="mt-2 text-[10px] font-medium uppercase tracking-[0.18em] text-white/60">Residential construction / Chennai</p>
+              </div>
+            </div>
+            <h1
+              className="text-4xl sm:text-6xl md:text-7xl font-bold tracking-tight leading-[1.02] drop-shadow-md"
+              style={{ fontFamily: "var(--font-content)" }}
+            >
+              Construction packages,<br />
+              <em className="font-normal text-[#F3B687]">specified in full.</em>
+            </h1>
+            <p className="mt-7 max-w-2xl text-base md:text-lg leading-relaxed text-white/85 drop-shadow-sm font-medium">
+              Compare three turnkey build standards with clear rates, named material brands,
+              engineering oversight and a written scope before work begins.
+            </p>
+          </div>
+
+          <div className="border-l border-white/20 pl-7 space-y-6">
+            <div className="flex flex-wrap items-center gap-3">
+              <Link
+                href="#packages"
+                className="mpa-outline-cta mpa-outline-cta--dark"
+              >
+                Compare Packages <ArrowDown className="w-3.5 h-3.5" />
+              </Link>
+              <Link
+                href="/contact#enquiry"
+                className="mpa-outline-cta mpa-outline-cta--dark"
+              >
+                Discuss your site
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── Assurances ── */}
+      <section aria-label="Construction package assurances" className="border-b border-[#202B29]/15 bg-surface-oat px-6 md:px-12">
+        <div className="max-w-7xl mx-auto grid md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-[#202B29]/15">
+          {PACKAGE_PROMISES.map(({ icon: Icon, label, detail }) => (
+            <div key={label} className="py-7 md:px-8 first:pl-0 flex items-center gap-4">
+              <span className="w-11 h-11 bg-surface-linen text-[#703015] flex items-center justify-center shrink-0">
+                <Icon className="w-5 h-5" />
+              </span>
+              <div>
+                <h2 className="mpa-heading-compact font-bold uppercase tracking-wide">{label}</h2>
+                <p className="text-xs text-[#666666] mt-1">{detail}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <ConstructionPackages phone="09841098490" variant="full" />
+
+      {/* ── Above-Footer Pre-Footer CTA ── */}
+      <section className="relative overflow-hidden bg-surface-sand text-[#302A20] px-6 py-20 md:px-12 md:py-24 text-center">
+        <div className="relative z-10 max-w-3xl mx-auto space-y-6">
+          <p className="text-xs font-bold tracking-[0.22em] uppercase text-[#703015]">
+            Ready to Build in Chennai?
+          </p>
+          <h2
+            className="text-3xl sm:text-5xl font-bold font-serif tracking-tight drop-shadow-md"
+            style={{ fontFamily: "var(--font-content)" }}
+          >
+            Get an Itemized BOQ &amp; Site Feasibility for Your Plot
+          </h2>
+          <p className="text-sm sm:text-base text-ink-muted font-medium leading-relaxed max-w-xl mx-auto drop-shadow-sm">
+            Share your plot dimensions and location. Our senior civil engineers will inspect your site, evaluate soil conditions, and prepare a 100% price-frozen specification sheet.
+          </p>
+          <div className="pt-4 flex flex-wrap items-center justify-center gap-3">
+            <Link
+              href="#packages"
+              className="mpa-outline-cta mpa-outline-cta--accent"
+            >
+              Review Packages Above
+            </Link>
+            <a
+              href={`${CONTACT_LINKS.whatsapp}?text=Hi%20ARCH%20foundations%2C%20I%20would%20like%20to%20schedule%20a%20site%20feasibility%20inspection%20for%20my%20plot.`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mpa-outline-cta mpa-outline-cta--accent"
+            >
+              WhatsApp Senior Engineer
+            </a>
+          </div>
+        </div>
+      </section>
+    </div>
+  );
+}

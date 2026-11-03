@@ -1,0 +1,1414 @@
+{
+  "before": {
+    "count": 394,
+    "bytes": 116876502
+  },
+  "aliases": {
+    "/images/architecture/architect-studio-model.webp": "/images/architecture/architectural-blueprint-draft.webp",
+    "/images/architecture/atelier-design-studio.webp": "/images/architecture/architectural-blueprint-draft.webp",
+    "/images/architecture/brick-perforated-facade.webp": "/images/architecture/passive-timber-screens.webp",
+    "/images/architecture/brutalist-glass-pavilion.webp": "/images/architecture/cantilever-garden-overhang.webp",
+    "/images/architecture/civic-landmark-facade.webp": "/images/architecture/geometric-villa-elevation.webp",
+    "/images/architecture/luxury-modernist-estate.webp": "/images/architecture/geometric-villa-elevation.webp",
+    "/images/architecture/facade-white-concrete.webp": "/images/architecture/modern-villa-duplex.webp",
+    "/images/architecture/hero-minimalist-residence.webp": "/images/architecture/modern-villa-duplex.webp",
+    "/images/architecture/tropical-modern-villa.webp": "/images/architecture/modern-villa-duplex.webp",
+    "/images/architecture/linear-pool-pavilion.webp": "/images/architecture/hero-villa-twilight.webp",
+    "/images/architecture/monolithic-concrete-atrium.webp": "/images/architecture/interior-double-height.webp",
+    "/images/architecture/stone-concrete-residence.webp": "/images/architecture/interior-double-height.webp"
+  },
+  "changedSources": [
+    "app/(site)/HomeStorySections.tsx",
+    "app/(site)/ProjectMarquee.tsx",
+    "app/(site)/about/page.tsx",
+    "app/(site)/contact/page.tsx",
+    "app/(site)/services/page.tsx",
+    "lib/serviceDetails.ts",
+    "source.json"
+  ],
+  "removed": [
+    {
+      "file": "public/full-library-audit.html",
+      "bytes": 27766,
+      "reason": "unused"
+    },
+    {
+      "file": "public/images/.DS_Store",
+      "bytes": 6148,
+      "reason": "unused"
+    },
+    {
+      "file": "public/images/2D TO 3D/OPT-1.png",
+      "bytes": 2466054,
+      "reason": "unused"
+    },
+    {
+      "file": "public/images/2D TO 3D/OPTION-1.jpg",
+      "bytes": 838690,
+      "reason": "unused"
+    },
+    {
+      "file": "public/images/2D TO 3D/OPTION-2.jpg",
+      "bytes": 10147673,
+      "reason": "unused"
+    },
+    {
+      "file": "public/images/2D TO 3D/OPTION-2.png",
+      "bytes": 2500290,
+      "reason": "unused"
+    },
+    {
+      "file": "public/images/2D TO 3D/OPTION-3.jpg",
+      "bytes": 2622534,
+      "reason": "unused"
+    },
+    {
+      "file": "public/images/2D TO 3D/OPTION-3.png",
+      "bytes": 2228276,
+      "reason": "unused"
+    },
+    {
+      "file": "public/images/2d plan/1 GROUND FLOOR PLAN.jpg",
+      "bytes": 1585695,
+      "reason": "unused"
+    },
+    {
+      "file": "public/images/2d plan/2 FIRST FLOOR PLAN 19.10.2021_page-0001.jpg",
+      "bytes": 950901,
+      "reason": "unused"
+    },
+    {
+      "file": "public/images/2d plan/GOVINDA first floor 1.12.2021_page-0001.jpg",
+      "bytes": 334651,
+      "reason": "unused"
+    },
+    {
+      "file": "public/images/2d plan/GOVINDA ground floor 1.12.2021_page-0001.jpg",
+      "bytes": 688901,
+      "reason": "unused"
+    },
+    {
+      "file": "public/images/2d plan/GOVINDA second floor 1.12.2021_page-0001.jpg",
+      "bytes": 486420,
+      "reason": "unused"
+    },
+    {
+      "file": "public/images/2d plan/GROUND FLOOR ELECRICAL LAYOUT_page-0001.jpg",
+      "bytes": 411068,
+      "reason": "unused"
+    },
+    {
+      "file": "public/images/2d plan/GROUND FLOOR PLAN ( OPTION 2 )_page-0001.jpg",
+      "bytes": 528183,
+      "reason": "unused"
+    },
+    {
+      "file": "public/images/2d plan/GROUND FLOOR PLAN_page-0001.jpg",
+      "bytes": 498895,
+      "reason": "unused"
+    },
+    {
+      "file": "public/images/2d plan/approval plan - elevation_page-0001.jpg",
+      "bytes": 971943,
+      "reason": "unused"
+    },
+    {
+      "file": "public/images/2d plan/approval plan - typical floor plan_page-0001.jpg",
+      "bytes": 1487584,
+      "reason": "unused"
+    },
+    {
+      "file": "public/images/2d plan/background image for plan dwg.jpg",
+      "bytes": 13004,
+      "reason": "unused"
+    },
+    {
+      "file": "public/images/3d images/3d images (1).jpeg",
+      "bytes": 225602,
+      "reason": "unused"
+    },
+    {
+      "file": "public/images/3d images/3d images (1).jpg",
+      "bytes": 3192211,
+      "reason": "unused"
+    },
+    {
+      "file": "public/images/3d images/3d images (10).jpg",
+      "bytes": 2804289,
+      "reason": "unused"
+    },
+    {
+      "file": "public/images/3d images/3d images (11).jpg",
+      "bytes": 10147673,
+      "reason": "unused"
+    },
+    {
+      "file": "public/images/3d images/3d images (12).jpg",
+      "bytes": 2622534,
+      "reason": "unused"
+    },
+    {
+      "file": "public/images/3d images/3d images (13).jpg",
+      "bytes": 2279277,
+      "reason": "unused"
+    },
+    {
+      "file": "public/images/3d images/3d images (14).jpg",
+      "bytes": 1549272,
+      "reason": "unused"
+    },
+    {
+      "file": "public/images/3d images/3d images (2).jpg",
+      "bytes": 2109834,
+      "reason": "unused"
+    },
+    {
+      "file": "public/images/3d images/3d images (3).jpg",
+      "bytes": 3388115,
+      "reason": "unused"
+    },
+    {
+      "file": "public/images/3d images/3d images (4).jpg",
+      "bytes": 1462402,
+      "reason": "unused"
+    },
+    {
+      "file": "public/images/3d images/3d images (5).jpg",
+      "bytes": 2830026,
+      "reason": "unused"
+    },
+    {
+      "file": "public/images/3d images/3d images (6).jpg",
+      "bytes": 2580961,
+      "reason": "unused"
+    },
+    {
+      "file": "public/images/3d images/3d images (7).jpg",
+      "bytes": 2461358,
+      "reason": "unused"
+    },
+    {
+      "file": "public/images/3d images/3d images (8).jpg",
+      "bytes": 3812521,
+      "reason": "unused"
+    },
+    {
+      "file": "public/images/3d images/3d images (9).jpg",
+      "bytes": 3004457,
+      "reason": "unused"
+    },
+    {
+      "file": "public/images/3d images/DSC00372.JPG",
+      "bytes": 270770,
+      "reason": "unused"
+    },
+    {
+      "file": "public/images/3d images/DSC00373.JPG",
+      "bytes": 232539,
+      "reason": "unused"
+    },
+    {
+      "file": "public/images/3d images/DSC00374.JPG",
+      "bytes": 243329,
+      "reason": "unused"
+    },
+    {
+      "file": "public/images/3d images/DSC00376.JPG",
+      "bytes": 420976,
+      "reason": "unused"
+    },
+    {
+      "file": "public/images/3d images/DSC00377.JPG",
+      "bytes": 250597,
+      "reason": "unused"
+    },
+    {
+      "file": "public/images/3d images/DSC00378.JPG",
+      "bytes": 235805,
+      "reason": "unused"
+    },
+    {
+      "file": "public/images/3d images/DSC00379.JPG",
+      "bytes": 256467,
+      "reason": "unused"
+    },
+    {
+      "file": "public/images/3d images/DSC00380.JPG",
+      "bytes": 245109,
+      "reason": "unused"
+    },
+    {
+      "file": "public/images/3d images/DSC00381.JPG",
+      "bytes": 233417,
+      "reason": "unused"
+    },
+    {
+      "file": "public/images/3d images/DSC00382.JPG",
+      "bytes": 246168,
+      "reason": "unused"
+    },
+    {
+      "file": "public/images/3d images/DSC00383.JPG",
+      "bytes": 224738,
+      "reason": "unused"
+    },
+    {
+      "file": "public/images/3d images/DSC00384.JPG",
+      "bytes": 245092,
+      "reason": "unused"
+    },
+    {
+      "file": "public/images/3d images/DSC00385.JPG",
+      "bytes": 257685,
+      "reason": "unused"
+    },
+    {
+      "file": "public/images/3d images/DSC00386.JPG",
+      "bytes": 242180,
+      "reason": "unused"
+    },
+    {
+      "file": "public/images/3d-plans/contemporary-residence-thumb.webp",
+      "bytes": 17262,
+      "reason": "unused"
+    },
+    {
+      "file": "public/images/3d-plans/contemporary-residence.webp",
+      "bytes": 186968,
+      "reason": "unused"
+    },
+    {
+      "file": "public/images/3d-plans/facade-study-thumb.webp",
+      "bytes": 15068,
+      "reason": "unused"
+    },
+    {
+      "file": "public/images/3d-plans/facade-study.webp",
+      "bytes": 150912,
+      "reason": "unused"
+    },
+    {
+      "file": "public/images/3d-plans/krv-butterfly-villa-thumb.webp",
+      "bytes": 22850,
+      "reason": "unused"
+    },
+    {
+      "file": "public/images/3d-plans/krv-butterfly-villa.webp",
+      "bytes": 403360,
+      "reason": "unused"
+    },
+    {
+      "file": "public/images/3d-plans/landscaped-residence-thumb.webp",
+      "bytes": 27350,
+      "reason": "unused"
+    },
+    {
+      "file": "public/images/3d-plans/landscaped-residence.webp",
+      "bytes": 308412,
+      "reason": "unused"
+    },
+    {
+      "file": "public/images/3d-plans/living-interior-thumb.webp",
+      "bytes": 12196,
+      "reason": "unused"
+    },
+    {
+      "file": "public/images/3d-plans/living-interior.webp",
+      "bytes": 96180,
+      "reason": "unused"
+    },
+    {
+      "file": "public/images/3d-plans/mugalivakkam-duplex-thumb.webp",
+      "bytes": 22978,
+      "reason": "unused"
+    },
+    {
+      "file": "public/images/3d-plans/mugalivakkam-duplex.webp",
+      "bytes": 371706,
+      "reason": "unused"
+    },
+    {
+      "file": "public/images/architecture/architect-studio-model.webp",
+      "bytes": 134360,
+      "reason": "exact duplicate"
+    },
+    {
+      "file": "public/images/architecture/architectural-atelier-studio.webp",
+      "bytes": 47856,
+      "reason": "unused"
+    },
+    {
+      "file": "public/images/architecture/atelier-design-studio.webp",
+      "bytes": 134360,
+      "reason": "exact duplicate"
+    },
+    {
+      "file": "public/images/architecture/brick-perforated-facade.webp",
+      "bytes": 195198,
+      "reason": "exact duplicate"
+    },
+    {
+      "file": "public/images/architecture/brutalist-glass-pavilion.webp",
+      "bytes": 192494,
+      "reason": "exact duplicate"
+    },
+    {
+      "file": "public/images/architecture/cantilever-garden-overhang.webp",
+      "bytes": 192494,
+      "reason": "unused"
+    },
+    {
+      "file": "public/images/architecture/civic-landmark-facade.webp",
+      "bytes": 209944,
+      "reason": "exact duplicate"
+    },
+    {
+      "file": "public/images/architecture/custom-furniture-joinery.webp",
+      "bytes": 130516,
+      "reason": "unused"
+    },
+    {
+      "file": "public/images/architecture/facade-white-concrete.webp",
+      "bytes": 234288,
+      "reason": "exact duplicate"
+    },
+    {
+      "file": "public/images/architecture/glass-curtain-wall.webp",
+      "bytes": 128000,
+      "reason": "unused"
+    },
+    {
+      "file": "public/images/architecture/granite-teak-portal.webp",
+      "bytes": 76300,
+      "reason": "unused"
+    },
+    {
+      "file": "public/images/architecture/hero-minimalist-residence.webp",
+      "bytes": 234288,
+      "reason": "exact duplicate"
+    },
+    {
+      "file": "public/images/architecture/interior-double-height.webp",
+      "bytes": 173470,
+      "reason": "unused"
+    },
+    {
+      "file": "public/images/architecture/linear-pool-pavilion.webp",
+      "bytes": 154862,
+      "reason": "exact duplicate"
+    },
+    {
+      "file": "public/images/architecture/luxury-modernist-estate.webp",
+      "bytes": 209944,
+      "reason": "exact duplicate"
+    },
+    {
+      "file": "public/images/architecture/monolithic-concrete-atrium.webp",
+      "bytes": 173470,
+      "reason": "exact duplicate"
+    },
+    {
+      "file": "public/images/architecture/monumental-facade-entry.webp",
+      "bytes": 140926,
+      "reason": "unused"
+    },
+    {
+      "file": "public/images/architecture/pooja-mandir-foyer.webp",
+      "bytes": 187638,
+      "reason": "unused"
+    },
+    {
+      "file": "public/images/architecture/porotherm-clay-facade.webp",
+      "bytes": 202078,
+      "reason": "unused"
+    },
+    {
+      "file": "public/images/architecture/sculptural-concrete-staircase.webp",
+      "bytes": 49310,
+      "reason": "unused"
+    },
+    {
+      "file": "public/images/architecture/senior-structural-engineer.webp",
+      "bytes": 115558,
+      "reason": "unused"
+    },
+    {
+      "file": "public/images/architecture/stone-concrete-residence.webp",
+      "bytes": 173470,
+      "reason": "exact duplicate"
+    },
+    {
+      "file": "public/images/architecture/terrace-cool-roof.webp",
+      "bytes": 167052,
+      "reason": "unused"
+    },
+    {
+      "file": "public/images/architecture/tropical-modern-villa.webp",
+      "bytes": 234288,
+      "reason": "exact duplicate"
+    },
+    {
+      "file": "public/images/architecture/urban-master-plan.webp",
+      "bytes": 184120,
+      "reason": "unused"
+    },
+    {
+      "file": "public/images/architecture/villa-before-frame.webp",
+      "bytes": 189494,
+      "reason": "unused"
+    },
+    {
+      "file": "public/images/clients/bharat-petroleum.png",
+      "bytes": 33223,
+      "reason": "unused"
+    },
+    {
+      "file": "public/images/clients/indian-oil.jpeg",
+      "bytes": 98414,
+      "reason": "unused"
+    },
+    {
+      "file": "public/images/clients/indian-railways.jpeg",
+      "bytes": 16875,
+      "reason": "unused"
+    },
+    {
+      "file": "public/images/clients/sla.jpeg",
+      "bytes": 48177,
+      "reason": "unused"
+    },
+    {
+      "file": "public/images/clients/sri-balaji-hospital.png",
+      "bytes": 2952,
+      "reason": "unused"
+    },
+    {
+      "file": "public/images/clients/tahdco.png",
+      "bytes": 34308,
+      "reason": "unused"
+    },
+    {
+      "file": "public/images/clinicImages-1.webp",
+      "bytes": 129536,
+      "reason": "unused"
+    },
+    {
+      "file": "public/images/clinicImages-2.webp",
+      "bytes": 183314,
+      "reason": "unused"
+    },
+    {
+      "file": "public/images/clinicImages-3.webp",
+      "bytes": 132152,
+      "reason": "unused"
+    },
+    {
+      "file": "public/images/clinicImages-4.webp",
+      "bytes": 51746,
+      "reason": "unused"
+    },
+    {
+      "file": "public/images/design reference/7597eca1-ec30-43b9-a541-68e40d5e9273.webp",
+      "bytes": 50442,
+      "reason": "unused"
+    },
+    {
+      "file": "public/images/drawings/residence-elevation.svg",
+      "bytes": 2574,
+      "reason": "unused"
+    },
+    {
+      "file": "public/images/fallback-about.webp",
+      "bytes": 187618,
+      "reason": "unused"
+    },
+    {
+      "file": "public/images/fallback-contact.webp",
+      "bytes": 83900,
+      "reason": "unused"
+    },
+    {
+      "file": "public/images/fallback-designer.webp",
+      "bytes": 89364,
+      "reason": "unused"
+    },
+    {
+      "file": "public/images/fallback-gallery.webp",
+      "bytes": 75784,
+      "reason": "unused"
+    },
+    {
+      "file": "public/images/fallback-guides.webp",
+      "bytes": 119316,
+      "reason": "unused"
+    },
+    {
+      "file": "public/images/fallback-home.webp",
+      "bytes": 105334,
+      "reason": "unused"
+    },
+    {
+      "file": "public/images/fallback-services.webp",
+      "bytes": 118910,
+      "reason": "unused"
+    },
+    {
+      "file": "public/images/hero-villa.webp",
+      "bytes": 234104,
+      "reason": "unused"
+    },
+    {
+      "file": "public/images/heroes/about_us_hero_1776016804621.webp",
+      "bytes": 118254,
+      "reason": "unused"
+    },
+    {
+      "file": "public/images/heroes/contact_us_hero_1776016820813.webp",
+      "bytes": 78374,
+      "reason": "unused"
+    },
+    {
+      "file": "public/images/heroes/gallery_hero_1776016836321.webp",
+      "bytes": 53738,
+      "reason": "unused"
+    },
+    {
+      "file": "public/images/heroes/homepage_hero_1776017179849.webp",
+      "bytes": 100570,
+      "reason": "unused"
+    },
+    {
+      "file": "public/images/heroes/patient_guides_hero_1776016856386.webp",
+      "bytes": 71716,
+      "reason": "unused"
+    },
+    {
+      "file": "public/images/heroes/services_hero_1776016873482.webp",
+      "bytes": 97632,
+      "reason": "unused"
+    },
+    {
+      "file": "public/images/mpa-anna-nagar-office.jpg",
+      "bytes": 60039,
+      "reason": "unused"
+    },
+    {
+      "file": "public/images/service-stages/material-inspection.webp",
+      "bytes": 196134,
+      "reason": "unused"
+    },
+    {
+      "file": "public/images/stock/0d97766b.webp",
+      "bytes": 237104,
+      "reason": "unused"
+    },
+    {
+      "file": "public/images/stock/128050b1.webp",
+      "bytes": 88552,
+      "reason": "unused"
+    },
+    {
+      "file": "public/images/stock/13246fc0.webp",
+      "bytes": 168328,
+      "reason": "unused"
+    },
+    {
+      "file": "public/images/stock/1c7b75e9.webp",
+      "bytes": 170794,
+      "reason": "unused"
+    },
+    {
+      "file": "public/images/stock/22a7ca48.webp",
+      "bytes": 59728,
+      "reason": "unused"
+    },
+    {
+      "file": "public/images/stock/284d6d29.webp",
+      "bytes": 109252,
+      "reason": "unused"
+    },
+    {
+      "file": "public/images/stock/342f7398.webp",
+      "bytes": 21856,
+      "reason": "unused"
+    },
+    {
+      "file": "public/images/stock/34bba44b.webp",
+      "bytes": 76282,
+      "reason": "unused"
+    },
+    {
+      "file": "public/images/stock/36e83915.webp",
+      "bytes": 35328,
+      "reason": "unused"
+    },
+    {
+      "file": "public/images/stock/3a01f8b7.webp",
+      "bytes": 29770,
+      "reason": "unused"
+    },
+    {
+      "file": "public/images/stock/456ad59f.webp",
+      "bytes": 111668,
+      "reason": "unused"
+    },
+    {
+      "file": "public/images/stock/463ea892.webp",
+      "bytes": 129458,
+      "reason": "unused"
+    },
+    {
+      "file": "public/images/stock/49bce86b.webp",
+      "bytes": 31802,
+      "reason": "unused"
+    },
+    {
+      "file": "public/images/stock/4a368613.webp",
+      "bytes": 82932,
+      "reason": "unused"
+    },
+    {
+      "file": "public/images/stock/4a89522a.webp",
+      "bytes": 275400,
+      "reason": "unused"
+    },
+    {
+      "file": "public/images/stock/4e96f2e2.webp",
+      "bytes": 11936,
+      "reason": "unused"
+    },
+    {
+      "file": "public/images/stock/507b5184.webp",
+      "bytes": 168328,
+      "reason": "unused"
+    },
+    {
+      "file": "public/images/stock/57b78bb7.webp",
+      "bytes": 88458,
+      "reason": "unused"
+    },
+    {
+      "file": "public/images/stock/5862d7f2.webp",
+      "bytes": 3052,
+      "reason": "unused"
+    },
+    {
+      "file": "public/images/stock/5ab4e561.webp",
+      "bytes": 57124,
+      "reason": "unused"
+    },
+    {
+      "file": "public/images/stock/615f9d34.webp",
+      "bytes": 22150,
+      "reason": "unused"
+    },
+    {
+      "file": "public/images/stock/65d3ec82.webp",
+      "bytes": 27308,
+      "reason": "unused"
+    },
+    {
+      "file": "public/images/stock/68b39046.webp",
+      "bytes": 30174,
+      "reason": "unused"
+    },
+    {
+      "file": "public/images/stock/6dcb103c.webp",
+      "bytes": 120022,
+      "reason": "unused"
+    },
+    {
+      "file": "public/images/stock/704fc1ee.webp",
+      "bytes": 108890,
+      "reason": "unused"
+    },
+    {
+      "file": "public/images/stock/7401dc43.webp",
+      "bytes": 51328,
+      "reason": "unused"
+    },
+    {
+      "file": "public/images/stock/74d75fd4.webp",
+      "bytes": 65276,
+      "reason": "unused"
+    },
+    {
+      "file": "public/images/stock/75c40d2b.webp",
+      "bytes": 45916,
+      "reason": "unused"
+    },
+    {
+      "file": "public/images/stock/7617327a.webp",
+      "bytes": 194076,
+      "reason": "unused"
+    },
+    {
+      "file": "public/images/stock/7743f238.webp",
+      "bytes": 34234,
+      "reason": "unused"
+    },
+    {
+      "file": "public/images/stock/7ac5dbb8.webp",
+      "bytes": 66110,
+      "reason": "unused"
+    },
+    {
+      "file": "public/images/stock/7d1751fd.webp",
+      "bytes": 28582,
+      "reason": "unused"
+    },
+    {
+      "file": "public/images/stock/84fea9c5.webp",
+      "bytes": 82836,
+      "reason": "unused"
+    },
+    {
+      "file": "public/images/stock/881afddc.webp",
+      "bytes": 21780,
+      "reason": "unused"
+    },
+    {
+      "file": "public/images/stock/89479b90.webp",
+      "bytes": 34120,
+      "reason": "unused"
+    },
+    {
+      "file": "public/images/stock/8c6dff4b.webp",
+      "bytes": 73664,
+      "reason": "unused"
+    },
+    {
+      "file": "public/images/stock/8ce16a71.webp",
+      "bytes": 72076,
+      "reason": "unused"
+    },
+    {
+      "file": "public/images/stock/8d41033e.webp",
+      "bytes": 118052,
+      "reason": "unused"
+    },
+    {
+      "file": "public/images/stock/8f61297a.webp",
+      "bytes": 53720,
+      "reason": "unused"
+    },
+    {
+      "file": "public/images/stock/90879216.webp",
+      "bytes": 52402,
+      "reason": "unused"
+    },
+    {
+      "file": "public/images/stock/9de99616.webp",
+      "bytes": 1576,
+      "reason": "unused"
+    },
+    {
+      "file": "public/images/stock/9e00b08a.webp",
+      "bytes": 94374,
+      "reason": "unused"
+    },
+    {
+      "file": "public/images/stock/a0e0726f.webp",
+      "bytes": 21022,
+      "reason": "unused"
+    },
+    {
+      "file": "public/images/stock/a151a9e5.webp",
+      "bytes": 124216,
+      "reason": "unused"
+    },
+    {
+      "file": "public/images/stock/a2cc7706.webp",
+      "bytes": 53056,
+      "reason": "unused"
+    },
+    {
+      "file": "public/images/stock/a7b4cc83.webp",
+      "bytes": 100496,
+      "reason": "unused"
+    },
+    {
+      "file": "public/images/stock/a8311f2b.webp",
+      "bytes": 72664,
+      "reason": "unused"
+    },
+    {
+      "file": "public/images/stock/a8927807.webp",
+      "bytes": 41592,
+      "reason": "unused"
+    },
+    {
+      "file": "public/images/stock/a9daeddb.webp",
+      "bytes": 36542,
+      "reason": "unused"
+    },
+    {
+      "file": "public/images/stock/ae3de7db.webp",
+      "bytes": 10862,
+      "reason": "unused"
+    },
+    {
+      "file": "public/images/stock/aefc4b99.webp",
+      "bytes": 16756,
+      "reason": "unused"
+    },
+    {
+      "file": "public/images/stock/af2da1d1.webp",
+      "bytes": 61688,
+      "reason": "unused"
+    },
+    {
+      "file": "public/images/stock/b448e5cb.webp",
+      "bytes": 33090,
+      "reason": "unused"
+    },
+    {
+      "file": "public/images/stock/b6986c5a.webp",
+      "bytes": 170430,
+      "reason": "unused"
+    },
+    {
+      "file": "public/images/stock/b7119856.webp",
+      "bytes": 2732,
+      "reason": "unused"
+    },
+    {
+      "file": "public/images/stock/bbb7f0e7.webp",
+      "bytes": 49266,
+      "reason": "unused"
+    },
+    {
+      "file": "public/images/stock/bf333360.webp",
+      "bytes": 67116,
+      "reason": "unused"
+    },
+    {
+      "file": "public/images/stock/bfeb918f.webp",
+      "bytes": 27854,
+      "reason": "unused"
+    },
+    {
+      "file": "public/images/stock/c093e1b3.webp",
+      "bytes": 37164,
+      "reason": "unused"
+    },
+    {
+      "file": "public/images/stock/c87d10e5.webp",
+      "bytes": 102864,
+      "reason": "unused"
+    },
+    {
+      "file": "public/images/stock/ca97efb9.webp",
+      "bytes": 42352,
+      "reason": "unused"
+    },
+    {
+      "file": "public/images/stock/caf3a8ac.webp",
+      "bytes": 30174,
+      "reason": "unused"
+    },
+    {
+      "file": "public/images/stock/cf0f5b64.webp",
+      "bytes": 53720,
+      "reason": "unused"
+    },
+    {
+      "file": "public/images/stock/d2a373a2.webp",
+      "bytes": 38238,
+      "reason": "unused"
+    },
+    {
+      "file": "public/images/stock/d2cd7311.webp",
+      "bytes": 20740,
+      "reason": "unused"
+    },
+    {
+      "file": "public/images/stock/d6c16cd8.webp",
+      "bytes": 124216,
+      "reason": "unused"
+    },
+    {
+      "file": "public/images/stock/d73648f1.webp",
+      "bytes": 72076,
+      "reason": "unused"
+    },
+    {
+      "file": "public/images/stock/d8c80cf3.webp",
+      "bytes": 45388,
+      "reason": "unused"
+    },
+    {
+      "file": "public/images/stock/dc1759ad.webp",
+      "bytes": 94374,
+      "reason": "unused"
+    },
+    {
+      "file": "public/images/stock/ddc829e8.webp",
+      "bytes": 27074,
+      "reason": "unused"
+    },
+    {
+      "file": "public/images/stock/de20674b.webp",
+      "bytes": 66110,
+      "reason": "unused"
+    },
+    {
+      "file": "public/images/stock/df95fb87.webp",
+      "bytes": 51974,
+      "reason": "unused"
+    },
+    {
+      "file": "public/images/stock/e4c85f7e.webp",
+      "bytes": 21780,
+      "reason": "unused"
+    },
+    {
+      "file": "public/images/stock/f222f241.webp",
+      "bytes": 46328,
+      "reason": "unused"
+    },
+    {
+      "file": "public/images/stock/f23e9dc6.webp",
+      "bytes": 39810,
+      "reason": "unused"
+    },
+    {
+      "file": "public/images/stock/f40680bb.webp",
+      "bytes": 109070,
+      "reason": "unused"
+    },
+    {
+      "file": "public/images/template8/hero-pool/hero-1.webp",
+      "bytes": 111668,
+      "reason": "unused"
+    },
+    {
+      "file": "public/images/template8/hero-pool/hero-2.webp",
+      "bytes": 120022,
+      "reason": "unused"
+    },
+    {
+      "file": "public/images/template8/hero-pool/hero-3.webp",
+      "bytes": 73664,
+      "reason": "unused"
+    },
+    {
+      "file": "public/images/template8/hero-pool/hero-4.webp",
+      "bytes": 66160,
+      "reason": "unused"
+    },
+    {
+      "file": "public/images/template8/hero-pool/hero-5.webp",
+      "bytes": 88458,
+      "reason": "unused"
+    },
+    {
+      "file": "public/images/template8/hero-pool/hero-6.webp",
+      "bytes": 46328,
+      "reason": "unused"
+    },
+    {
+      "file": "public/images/template8/hero-pool/hero-7.webp",
+      "bytes": 88552,
+      "reason": "unused"
+    },
+    {
+      "file": "public/images/treatmentImages-1.webp",
+      "bytes": 123382,
+      "reason": "unused"
+    }
+  ],
+  "moved": [
+    {
+      "file": "public/mpa-logo-original.png",
+      "destination": "artifacts/source-materials/mpa-logo-original.png"
+    },
+    {
+      "file": "public/mpa-mark.svg",
+      "destination": "artifacts/source-materials/mpa-mark.svg"
+    },
+    {
+      "file": "public/murali-patharala-associates-assets/Ar murali patharala   & ARCH.docx",
+      "destination": "artifacts/source-materials/Ar murali patharala   & ARCH.docx"
+    },
+    {
+      "file": "public/murali-patharala-associates-assets/mpa & arch VC.pdf",
+      "destination": "artifacts/source-materials/mpa & arch VC.pdf"
+    },
+    {
+      "file": "public/fonts/SOURCES.md",
+      "destination": "assets/fonts/SOURCES.md"
+    },
+    {
+      "file": "public/fonts/bauhaus-93.woff",
+      "destination": "assets/fonts/bauhaus-93.woff"
+    },
+    {
+      "file": "public/fonts/tahoma.woff",
+      "destination": "assets/fonts/tahoma.woff"
+    }
+  ],
+  "kept": [
+    "public/apple-icon.png",
+    "public/favicon-16x16.png",
+    "public/favicon-32x32.png",
+    "public/favicon.ico",
+    "public/icon-512x512.png",
+    "public/icon.png",
+    "public/images/2D TO 3D/option-1-render.webp",
+    "public/images/2D TO 3D/option-1-sketch.webp",
+    "public/images/2D TO 3D/option-2-render.webp",
+    "public/images/2D TO 3D/option-2-sketch.webp",
+    "public/images/2D TO 3D/option-3-render.webp",
+    "public/images/2D TO 3D/option-3-sketch.webp",
+    "public/images/2d plan/optimized/electrical-full.webp",
+    "public/images/2d plan/optimized/electrical-thumb.webp",
+    "public/images/2d plan/optimized/electrical.webp",
+    "public/images/2d plan/optimized/elevation-full.webp",
+    "public/images/2d plan/optimized/elevation-thumb.webp",
+    "public/images/2d plan/optimized/elevation.webp",
+    "public/images/2d plan/optimized/first-floor-full.webp",
+    "public/images/2d plan/optimized/first-floor-thumb.webp",
+    "public/images/2d plan/optimized/first-floor.webp",
+    "public/images/2d plan/optimized/ground-floor-full.webp",
+    "public/images/2d plan/optimized/ground-floor-thumb.webp",
+    "public/images/2d plan/optimized/ground-floor.webp",
+    "public/images/3d-plans/aksharaa-enclave-full.webp",
+    "public/images/3d-plans/aksharaa-enclave-thumb.webp",
+    "public/images/3d-plans/aksharaa-enclave.webp",
+    "public/images/3d-plans/ayanambakkam-villa-full.webp",
+    "public/images/3d-plans/ayanambakkam-villa-thumb.webp",
+    "public/images/3d-plans/ayanambakkam-villa.webp",
+    "public/images/3d-plans/jp-house-residence-full.webp",
+    "public/images/3d-plans/jp-house-residence-thumb.webp",
+    "public/images/3d-plans/jp-house-residence.webp",
+    "public/images/3d-plans/twilight-residence-full.webp",
+    "public/images/3d-plans/twilight-residence-thumb.webp",
+    "public/images/3d-plans/twilight-residence.webp",
+    "public/images/architecture/architectural-blueprint-draft.webp",
+    "public/images/architecture/bim-3d-walkthrough.webp",
+    "public/images/architecture/cmda-sanction-drafting.webp",
+    "public/images/architecture/courtyard-water-residence.webp",
+    "public/images/architecture/geometric-villa-elevation.webp",
+    "public/images/architecture/hero-villa-twilight.webp",
+    "public/images/architecture/living-room-double-height.webp",
+    "public/images/architecture/luxury-master-bedroom.webp",
+    "public/images/architecture/modern-villa-duplex.webp",
+    "public/images/architecture/modular-kitchen-luxury.webp",
+    "public/images/architecture/monolithic-brutalist-facade.webp",
+    "public/images/architecture/parallel-kitchen-luxury.webp",
+    "public/images/architecture/passive-timber-screens.webp",
+    "public/images/architecture/principal-architect.webp",
+    "public/images/architecture/site-engineer-audit.webp",
+    "public/images/architecture/site-surveying-raw.webp",
+    "public/images/architecture/space-planning-atrium.webp",
+    "public/images/architecture/staad-structural-engineering.webp",
+    "public/images/architecture/structural-construction-frame.webp",
+    "public/images/architecture/turnkey-key-handover.webp",
+    "public/images/architecture/villa-after-finished.webp",
+    "public/images/architecture/villa-plan-sketch.webp",
+    "public/images/clients/bharat-petroleum.webp",
+    "public/images/clients/indian-oil.webp",
+    "public/images/clients/indian-railways.webp",
+    "public/images/clients/sla.webp",
+    "public/images/clients/sri-balaji-hospital.webp",
+    "public/images/clients/tahdco.webp",
+    "public/images/drawings/architectural-axonometric-lines.svg",
+    "public/images/drawings/architectural-elevation-detail.svg",
+    "public/images/drawings/architectural-master-plan.svg",
+    "public/images/drawings/architectural-structural-lines.svg",
+    "public/images/drawings/residence-plan.svg",
+    "public/images/mpa-anna-nagar-office.webp",
+    "public/images/service-stages/brickwork-plaster.webp",
+    "public/images/service-stages/design-planning.webp",
+    "public/images/service-stages/electrical-installation.webp",
+    "public/images/service-stages/engineering-permits.webp",
+    "public/images/service-stages/flooring-painting.webp",
+    "public/images/service-stages/foundation-rcc.webp",
+    "public/images/service-stages/home-handover.webp",
+    "public/images/service-stages/interior-fitout.webp",
+    "public/images/service-stages/plumbing-waterproofing.webp",
+    "public/images/service-stages/site-supervision.webp",
+    "public/images/service-stages/soil-assessment.webp",
+    "public/mpa-3d-logo-small.webp",
+    "public/mpa-3d-logo-social.png",
+    "public/mpa-3d-logo.webp",
+    "public/murali-patharala-associates-assets/brand_identity/WhatsApp Image 2026-09-23 at 16.52.36 (1).webp",
+    "public/murali-patharala-associates-assets/brand_identity/WhatsApp Image 2026-09-23 at 16.52.36 (2).webp",
+    "public/murali-patharala-associates-assets/brand_identity/WhatsApp Image 2026-09-23 at 16.52.36.webp",
+    "public/murali-patharala-associates-assets/completed_interiors/WhatsApp Image 2026-09-23 at 16.28.00 (1).webp",
+    "public/murali-patharala-associates-assets/completed_interiors/WhatsApp Image 2026-09-23 at 16.28.00 (2).webp",
+    "public/murali-patharala-associates-assets/completed_interiors/WhatsApp Image 2026-09-23 at 16.28.00 (3).webp",
+    "public/murali-patharala-associates-assets/completed_interiors/WhatsApp Image 2026-09-23 at 16.28.00 (4).webp",
+    "public/murali-patharala-associates-assets/completed_interiors/WhatsApp Image 2026-09-23 at 16.28.00 (5).webp",
+    "public/murali-patharala-associates-assets/completed_interiors/WhatsApp Image 2026-09-23 at 16.28.00 (6).webp",
+    "public/murali-patharala-associates-assets/completed_interiors/WhatsApp Image 2026-09-23 at 16.28.00.webp",
+    "public/murali-patharala-associates-assets/completed_interiors/WhatsApp Image 2026-09-23 at 16.28.01 (1).webp",
+    "public/murali-patharala-associates-assets/completed_interiors/WhatsApp Image 2026-09-23 at 16.28.01 (2).webp",
+    "public/murali-patharala-associates-assets/completed_interiors/WhatsApp Image 2026-09-23 at 16.28.01 (3).webp",
+    "public/murali-patharala-associates-assets/completed_interiors/WhatsApp Image 2026-09-23 at 16.28.01.webp",
+    "public/murali-patharala-associates-assets/completed_interiors/WhatsApp Image 2026-09-23 at 16.39.53.webp",
+    "public/murali-patharala-associates-assets/completed_interiors/WhatsApp Image 2026-09-23 at 16.40.29.webp",
+    "public/murali-patharala-associates-assets/exterior_renders/AMG.webp",
+    "public/murali-patharala-associates-assets/exterior_renders/Govindha Rajan-2026.webp",
+    "public/murali-patharala-associates-assets/exterior_renders/JAMEE2.webp",
+    "public/murali-patharala-associates-assets/exterior_renders/Jothi Kumar.webp",
+    "public/murali-patharala-associates-assets/exterior_renders/RAMESH.webp",
+    "public/murali-patharala-associates-assets/exterior_renders/Sushama John.webp",
+    "public/murali-patharala-associates-assets/exterior_renders/VENKATASH1.webp",
+    "public/murali-patharala-associates-assets/exterior_renders/WhatsApp Image 2026-09-23 at 16.11.39.webp",
+    "public/murali-patharala-associates-assets/exterior_renders/WhatsApp Image 2026-09-23 at 16.17.21.webp",
+    "public/murali-patharala-associates-assets/exterior_renders/WhatsApp Image 2026-09-23 at 16.17.56 (1).webp",
+    "public/murali-patharala-associates-assets/exterior_renders/WhatsApp Image 2026-09-23 at 16.17.56 (2).webp",
+    "public/murali-patharala-associates-assets/exterior_renders/WhatsApp Image 2026-09-23 at 16.28.52.webp",
+    "public/murali-patharala-associates-assets/exterior_renders/WhatsApp Image 2026-09-23 at 16.36.14.webp",
+    "public/murali-patharala-associates-assets/exterior_renders/WhatsApp Image 2026-09-23 at 17.38.22 (1).webp",
+    "public/murali-patharala-associates-assets/exterior_renders/WhatsApp Image 2026-09-23 at 17.38.22 (2).webp",
+    "public/murali-patharala-associates-assets/exterior_renders/WhatsApp Image 2026-09-23 at 17.38.22.webp",
+    "public/murali-patharala-associates-assets/exterior_renders/WhatsApp Image 2026-09-23 at 17.40.31 (1).webp",
+    "public/murali-patharala-associates-assets/exterior_renders/WhatsApp Image 2026-09-23 at 17.40.31.webp",
+    "public/murali-patharala-associates-assets/exterior_renders/kribushan.webp",
+    "public/murali-patharala-associates-assets/exterior_renders/modern-residence-exterior-render-wide.webp",
+    "public/murali-patharala-associates-assets/exterior_renders/selva kumar (1).webp",
+    "public/murali-patharala-associates-assets/interior_renders/WhatsApp Image 2026-09-23 at 16.22.23 (3).webp",
+    "public/murali-patharala-associates-assets/interior_renders/WhatsApp Image 2026-09-23 at 16.22.23 (5).webp",
+    "public/murali-patharala-associates-assets/interior_renders/WhatsApp Image 2026-09-23 at 16.22.23 (8).webp",
+    "public/murali-patharala-associates-assets/interior_renders/WhatsApp Image 2026-09-23 at 16.22.23 (9).webp",
+    "public/murali-patharala-associates-assets/interior_renders/WhatsApp Image 2026-09-23 at 16.22.24 (2).webp",
+    "public/murali-patharala-associates-assets/interior_renders/WhatsApp Image 2026-09-23 at 16.22.24 (4).webp",
+    "public/murali-patharala-associates-assets/interior_renders/WhatsApp Image 2026-09-23 at 16.22.24.webp",
+    "public/murali-patharala-associates-assets/interior_renders/WhatsApp Image 2026-09-23 at 16.42.57 (1).webp",
+    "public/murali-patharala-associates-assets/interior_renders/WhatsApp Image 2026-09-23 at 16.42.57 (2).webp",
+    "public/murali-patharala-associates-assets/interior_renders/WhatsApp Image 2026-09-23 at 16.42.57 (3).webp",
+    "public/murali-patharala-associates-assets/interior_renders/WhatsApp Image 2026-09-23 at 16.42.57 (5).webp",
+    "public/murali-patharala-associates-assets/interior_renders/WhatsApp Image 2026-09-23 at 16.42.57 (6).webp",
+    "public/murali-patharala-associates-assets/interior_renders/WhatsApp Image 2026-09-23 at 16.42.57 (7).webp",
+    "public/murali-patharala-associates-assets/interior_renders/WhatsApp Image 2026-09-23 at 16.42.57.webp",
+    "public/murali-patharala-associates-assets/interior_renders/WhatsApp Image 2026-09-23 at 16.42.58.webp",
+    "public/murali-patharala-associates-assets/interior_renders/WhatsApp Image 2026-09-23 at 16.42.59 (1).webp",
+    "public/murali-patharala-associates-assets/interior_renders/WhatsApp Image 2026-09-23 at 16.42.59 (2).webp",
+    "public/murali-patharala-associates-assets/interior_renders/WhatsApp Image 2026-09-23 at 16.42.59 (3).webp",
+    "public/murali-patharala-associates-assets/interior_renders/WhatsApp Image 2026-09-23 at 16.42.59 (4).webp",
+    "public/murali-patharala-associates-assets/interior_renders/WhatsApp Image 2026-09-23 at 16.42.59 (5).webp",
+    "public/murali-patharala-associates-assets/interior_renders/WhatsApp Image 2026-09-23 at 16.42.59.webp",
+    "public/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.27 (1).webp",
+    "public/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.27.webp",
+    "public/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.28 (1).webp",
+    "public/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.28 (2).webp",
+    "public/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.28.webp",
+    "public/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.29 (1).webp",
+    "public/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.29.webp",
+    "public/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.30 (1).webp",
+    "public/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.30.webp",
+    "public/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.31.webp",
+    "public/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.33 (1).webp",
+    "public/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.33.webp",
+    "public/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.34 (1).webp",
+    "public/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.34 (2).webp",
+    "public/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.34.webp",
+    "public/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.35 (1).webp",
+    "public/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.35.webp",
+    "public/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.37 (1).webp",
+    "public/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.37.webp",
+    "public/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.38 (1).webp",
+    "public/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.38.webp",
+    "public/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.39 (1).webp",
+    "public/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.39.webp",
+    "public/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.40 (1).webp",
+    "public/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.40.webp",
+    "public/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.41 (1).webp",
+    "public/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.42 (1).webp",
+    "public/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.42.webp",
+    "public/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.43 (1).webp",
+    "public/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.43.webp",
+    "public/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.44 (1).webp",
+    "public/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.44.webp",
+    "public/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.45 (1).webp",
+    "public/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.45.webp",
+    "public/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.46 (1).webp",
+    "public/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.46.webp",
+    "public/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.47 (1).webp",
+    "public/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.47.webp",
+    "public/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.48 (1).webp",
+    "public/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.48.webp",
+    "public/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.49 (1).webp",
+    "public/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.49.webp",
+    "public/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.50 (1).webp",
+    "public/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.50.webp",
+    "public/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.51 (1).webp",
+    "public/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.51.webp",
+    "public/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.52 (1).webp",
+    "public/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.52.webp",
+    "public/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.53 (1).webp",
+    "public/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.54.webp",
+    "public/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.55 (1).webp",
+    "public/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.55.webp",
+    "public/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.56 (1).webp",
+    "public/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.56 (2).webp",
+    "public/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.57 (1).webp",
+    "public/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.57.webp",
+    "public/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.58 (1).webp",
+    "public/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.58.webp",
+    "public/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.59 (1).webp",
+    "public/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.59.webp",
+    "public/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.35.00.webp",
+    "public/site.webmanifest"
+  ],
+  "after": {
+    "count": 204,
+    "bytes": 34175462,
+    "duplicates": []
+  },
+  "optimized": [
+    {
+      "input": "public/images/2d plan/GROUND FLOOR PLAN ( OPTION 2 )_page-0001.jpg",
+      "output": "public/images/2d plan/optimized/ground-floor-full.webp",
+      "before": 528183,
+      "after": 395814,
+      "width": 1459,
+      "height": 978
+    },
+    {
+      "input": "public/images/2d plan/2 FIRST FLOOR PLAN 19.10.2021_page-0001.jpg",
+      "output": "public/images/2d plan/optimized/first-floor-full.webp",
+      "before": 950901,
+      "after": 596066,
+      "width": 3891,
+      "height": 2934
+    },
+    {
+      "input": "public/images/2d plan/approval plan - elevation_page-0001.jpg",
+      "output": "public/images/2d plan/optimized/elevation-full.webp",
+      "before": 971943,
+      "after": 764906,
+      "width": 2685,
+      "height": 2015
+    },
+    {
+      "input": "public/images/2d plan/GROUND FLOOR ELECRICAL LAYOUT_page-0001.jpg",
+      "output": "public/images/2d plan/optimized/electrical-full.webp",
+      "before": 411068,
+      "after": 357818,
+      "width": 2033,
+      "height": 1064
+    },
+    {
+      "input": "public/images/3d images/3d images (10).jpg",
+      "output": "public/images/3d-plans/ayanambakkam-villa-full.webp",
+      "before": 2804289,
+      "after": 2356812,
+      "width": 5717,
+      "height": 3911
+    },
+    {
+      "input": "public/images/3d images/3d images (3).jpg",
+      "output": "public/images/3d-plans/jp-house-residence-full.webp",
+      "before": 3388115,
+      "after": 2204302,
+      "width": 4964,
+      "height": 3511
+    },
+    {
+      "input": "public/images/3d images/3d images (5).jpg",
+      "output": "public/images/3d-plans/twilight-residence-full.webp",
+      "before": 2830026,
+      "after": 1469960,
+      "width": 5708,
+      "height": 3901
+    },
+    {
+      "input": "public/images/3d images/3d images (9).jpg",
+      "output": "public/images/3d-plans/aksharaa-enclave-full.webp",
+      "before": 3004457,
+      "after": 1807590,
+      "width": 5708,
+      "height": 3901
+    },
+    {
+      "input": "public/images/clients/bharat-petroleum.png",
+      "output": "public/images/clients/bharat-petroleum.webp",
+      "before": 33223,
+      "after": 16056,
+      "width": 512,
+      "height": 288
+    },
+    {
+      "input": "public/images/clients/indian-oil.jpeg",
+      "output": "public/images/clients/indian-oil.webp",
+      "before": 98414,
+      "after": 33368,
+      "width": 425,
+      "height": 512
+    },
+    {
+      "input": "public/images/clients/indian-railways.jpeg",
+      "output": "public/images/clients/indian-railways.webp",
+      "before": 16875,
+      "after": 3910,
+      "width": 90,
+      "height": 80
+    },
+    {
+      "input": "public/images/clients/sla.jpeg",
+      "output": "public/images/clients/sla.webp",
+      "before": 48177,
+      "after": 15868,
+      "width": 512,
+      "height": 272
+    },
+    {
+      "input": "public/images/clients/sri-balaji-hospital.png",
+      "output": "public/images/clients/sri-balaji-hospital.webp",
+      "before": 2952,
+      "after": 1148,
+      "width": 135,
+      "height": 74
+    },
+    {
+      "input": "public/images/clients/tahdco.png",
+      "output": "public/images/clients/tahdco.webp",
+      "before": 34308,
+      "after": 13866,
+      "width": 400,
+      "height": 220
+    },
+    {
+      "input": "public/images/mpa-anna-nagar-office.jpg",
+      "output": "public/images/mpa-anna-nagar-office.webp",
+      "before": 60039,
+      "after": 39044,
+      "width": 451,
+      "height": 338
+    },
+    {
+      "input": "public/apple-icon.png",
+      "output": "public/apple-icon.png",
+      "before": 75044,
+      "after": 48287,
+      "lossless": true
+    },
+    {
+      "input": "public/icon.png",
+      "output": "public/icon.png",
+      "before": 85682,
+      "after": 54982,
+      "lossless": true
+    },
+    {
+      "input": "public/icon-512x512.png",
+      "output": "public/icon-512x512.png",
+      "before": 524651,
+      "after": 355271,
+      "lossless": true
+    },
+    {
+      "input": "public/mpa-3d-logo-social.png",
+      "output": "public/mpa-3d-logo-social.png",
+      "before": 165306,
+      "after": 110587,
+      "lossless": true
+    }
+  ],
+  "exportDuplicateAssets": [],
+  "staleExportAssets": []
+}

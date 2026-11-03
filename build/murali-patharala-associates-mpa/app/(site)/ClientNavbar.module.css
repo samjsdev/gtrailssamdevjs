@@ -1,0 +1,105 @@
+.headerInner { max-width: 1440px; margin: 0 auto; }
+
+.identityRow {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 40px;
+  padding: 16px 0;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  min-width: 0;
+  text-decoration: none;
+}
+.brand:focus-visible, .quickLinks a:focus-visible, .menuButton:focus-visible {
+  outline: 2px solid #fb923c;
+  outline-offset: 4px;
+}
+.arch { flex-direction: row-reverse; text-align: right; }
+.menuBrand { max-width: calc(100% - 48px); }
+.logo {
+  display: flex;
+  width: 76px;
+  height: 76px;
+  flex-shrink: 0;
+  padding: 3px;
+  border: 1px solid rgb(251 146 60 / 50%);
+  transition: border-color 180ms ease;
+}
+.brand:hover .logo { border-color: #fb923c; }
+.wordmark { display: flex; flex-direction: column; gap: 7px; min-width: 0; }
+.name {
+  font-family: var(--font-tahoma), Tahoma, Verdana, sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1.3;
+  letter-spacing: .025em;
+  color: #fb923c;
+}
+.arch .name { letter-spacing: .09em; }
+.subtext {
+  font-family: var(--font-bauhaus-93), "Bauhaus 93", sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  font-synthesis: none;
+  line-height: 1.4;
+  letter-spacing: .03em;
+  color: #ffffff;
+}
+.navigationRow { border-top: 1px solid rgb(255 255 255 / 12%); }
+.desktopLinks {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(28px, 4vw, 64px);
+  min-height: 48px;
+}
+.mobileNavigation { display: none; }
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .identityRow { gap: 24px; }
+  .brand { gap: 12px; }
+  .logo { width: 64px; height: 64px; }
+  .name { font-size: 16px; }
+  .subtext { font-size: 14px; }
+  .desktopLinks { gap: 26px; }
+}
+
+@media (max-width: 767px) {
+  .identityRow { gap: 20px; padding: 12px 0; }
+  .identityRow .brand {
+    display: grid;
+    grid-template-columns: 56px minmax(0, 1fr);
+    grid-template-rows: minmax(56px, auto) auto;
+    column-gap: 8px;
+    row-gap: 8px;
+    align-items: center;
+  }
+  .identityRow .arch { grid-template-columns: minmax(0, 1fr) 56px; }
+  .identityRow .wordmark { display: contents; }
+  .identityRow .logo { grid-column: 1; grid-row: 1; }
+  .identityRow .name { grid-column: 2; grid-row: 1; }
+  .identityRow .arch .logo { grid-column: 2; }
+  .identityRow .arch .name { grid-column: 1; }
+  .identityRow .subtext { grid-column: 1 / -1; grid-row: 2; align-self: start; }
+  .logo { width: 56px; height: 56px; padding: 2px; }
+  .name { font-size: 13px; line-height: 1.3; letter-spacing: .01em; }
+  .arch .name { letter-spacing: .025em; }
+  .subtext { font-size: 12px; line-height: 1.4; letter-spacing: .015em; }
+  .desktopLinks { display: none; }
+  .mobileNavigation { display: flex; align-items: center; justify-content: space-between; min-height: 44px; }
+  .quickLinks { display: flex; align-items: center; gap: 24px; }
+  .quickLinks a { padding: 13px 0; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .1em; color: #eee; }
+  .quickLinks a:hover { color: #fb923c; }
+  .menuButton { display: flex; align-items: center; justify-content: center; min-width: 44px; min-height: 44px; color: #fb923c; }
+  .menuBrand { gap: 10px; }
+  .menuBrand .wordmark { gap: 4px; }
+}
+
+@media (max-width: 359px) {
+  .identityRow { gap: 14px; }
+  .quickLinks { gap: 18px; }
+}

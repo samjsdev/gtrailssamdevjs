@@ -1,0 +1,10 @@
+.title {
+  font-family: var(--font-content) !important;
+  font-size: 13px !important;
+  font-weight: 400;
+  line-height: 1.4 !important;
+  letter-spacing: normal !important;
+  white-space: nowrap !important;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

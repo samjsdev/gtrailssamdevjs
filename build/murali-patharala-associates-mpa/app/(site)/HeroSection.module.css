@@ -1,0 +1,97 @@
+.hero {
+  position: relative;
+  background: #111;
+  color: #fff;
+}
+.scene {
+  position: relative;
+  min-height: 760px;
+  height: min(850px, calc(100svh - 110px));
+  isolation: isolate;
+  overflow: hidden;
+}
+.slide { position: absolute; inset: 0; opacity: 0; transition: opacity 1.2s ease; z-index: -3; }
+.active { opacity: 1; }
+.photo { object-fit: cover; object-position: center 53%; }
+.scrim {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  background: linear-gradient(90deg, #080808a6, #08080816 75%), linear-gradient(0deg, #080808e6, transparent 85%), linear-gradient(180deg, #08080860, transparent 30%);
+}
+.topline {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 4.5%;
+  padding: 27px 0;
+  border-bottom: 1px solid #ffffff40;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: .17em;
+  text-transform: uppercase;
+}
+.disciplines { display: flex; align-items: center; gap: 13px; }
+.disciplines i { width: 3px; height: 3px; background: #fb923c; }
+.established { color: #e5e5e5; }
+.established span { color: #fb923c; padding: 0 14px; }
+.headline { position: absolute; left: 4.5%; bottom: 132px; right: 4.5%; }
+.eyebrow { display: flex; align-items: center; gap: 12px; margin-bottom: 24px; font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: .22em; }
+.eyebrow span { display: block; width: 32px; height: 2px; background: #ea580c; }
+.headline h1 { font-family: var(--font-content); font-size: clamp(48px, 5.3vw, 88px); line-height: 1.12; letter-spacing: -.055em; font-weight: 400; }
+.headline h1 em { color: #fb923c; }
+.intro { margin-top: 28px; font-size: 14px; color: #e5e5e5; line-height: 1.8; }
+.heroActions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
+.primaryAction {
+  display: inline-flex;
+  min-height: 44px;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  padding: 10px 16px;
+  border: 1px solid #ea580c;
+  background: #ea580c;
+  color: #111214;
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 1.3;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: background-color 180ms ease, border-color 180ms ease;
+}
+.primaryAction:hover { background: #fb923c; border-color: #fb923c; }
+.primaryAction:focus-visible { outline: 2px solid #fb923c; outline-offset: 4px; }
+.projectBar { position: absolute; bottom: 0; left: 4.5%; right: 4.5%; height: 80px; display: flex; align-items: center; justify-content: space-between; border-top: 1px solid #ffffff35; }
+.projectInfo { display: flex; align-items: center; gap: 10px; font-size: 11px; }
+.projectInfo svg { color: #fb923c; }
+.projectSize { color: #bfbfbf; padding-left: 16px; margin-left: 6px; border-left: 1px solid #ffffff40; }
+.controls { display: flex; align-items: center; gap: 8px; }
+.counter { font-family: var(--font-content); font-size: 11px; color: #aaa; padding-right: 16px; }
+.counter strong { color: #fff; font-weight: 500; }
+.controls button { display: grid; place-items: center; width: 40px; height: 40px; color: #fff; border: 1px solid #ffffff45; background: #11111140; cursor: pointer; transition: background .2s, border-color .2s; }
+.controls button:hover { background: #ea580c; border-color: #ea580c; }
+@media (max-width: 1100px) {
+  .scene { min-height: 710px; }
+  .headline h1 { font-size: 53px; }
+  .projectSize { display: none; }
+}
+@media (max-width: 767px) {
+  .scene { height: 560px; min-height: 0; }
+  .photo { object-position: 57% center; }
+  .scrim { background: linear-gradient(0deg, #080808ed, #08080820 80%), linear-gradient(180deg, #08080870, transparent 25%); }
+  .topline { margin: 0 24px; padding: 20px 0; font-size: 8px; letter-spacing: .12em; }
+  .disciplines { gap: 8px; }
+  .established { display: none; }
+  .headline { left: 24px; right: 24px; bottom: 104px; }
+  .headline h1 { font-size: clamp(36px, 7vw, 52px); letter-spacing: -.045em; }
+  .eyebrow { font-size: 8px; margin-bottom: 18px; }
+  .intro { font-size: 12px; margin-top: 19px; line-height: 1.7; }
+  .heroActions { gap: 9px; margin-top: 20px; }
+  .projectBar { left: 24px; right: 24px; height: 76px; }
+  .projectInfo { font-size: 9px; gap: 6px; }
+  .counter { padding-right: 3px; font-size: 9px; }
+  .controls { gap: 5px; }
+  .controls button { width: 32px; height: 36px; }
+}
+@media (prefers-reduced-motion: reduce) { .slide { transition: none; } }

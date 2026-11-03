@@ -1,0 +1,21 @@
+{
+  "pages": 14,
+  "viewportChecks": 28,
+  "viewports": [
+    1440,
+    390
+  ],
+  "imageInstances": 666,
+  "backgroundInstances": 28,
+  "failedImageDecodes": [],
+  "horizontalOverflow": [],
+  "galleryImagesBefore": 116,
+  "galleryImagesAfter": 116,
+  "galleryFilesUnchanged": true,
+  "enlargedViewChecks": 16,
+  "galleryFilterChecks": 8,
+  "losslessFloorPlans": 4,
+  "preexistingSvgBackgroundsRepaired": 3,
+  "productionBuild": "passed",
+  "homeSlideshowImageChecks": 32
+}

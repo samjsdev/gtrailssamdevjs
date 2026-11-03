@@ -1,0 +1,32 @@
+[
+  {
+    "label": "Exterior Renders",
+    "summary": "Showing 21 images from MPA's archive",
+    "cardCount": 21,
+    "scrollWidth": 390
+  },
+  {
+    "label": "Interior Renders",
+    "summary": "Showing 21 images from MPA's archive",
+    "cardCount": 21,
+    "scrollWidth": 390
+  },
+  {
+    "label": "Completed Interiors",
+    "summary": "Showing 13 images from MPA's archive",
+    "cardCount": 13,
+    "scrollWidth": 390
+  },
+  {
+    "label": "Portfolio Showcase",
+    "summary": "Showing 61 images from MPA's archive",
+    "cardCount": 61,
+    "scrollWidth": 390
+  },
+  {
+    "label": "All Images",
+    "summary": "Showing 116 images from MPA's archive",
+    "cardCount": 116,
+    "scrollWidth": 390
+  }
+]

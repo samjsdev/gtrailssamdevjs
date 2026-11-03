@@ -1,0 +1,365 @@
+{
+  "route": "/services/residential-construction/",
+  "width": 390,
+  "title": "Residential Construction in Chennai | Murali Patharala & Associates",
+  "images": [
+    {
+      "src": "/mpa-3d-logo-small.webp",
+      "alt": "",
+      "loaded": true,
+      "naturalWidth": 128,
+      "naturalHeight": 128,
+      "displayWidth": 42,
+      "displayHeight": 42,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/images/architecture/site-engineer-audit.webp",
+      "alt": "Site engineer inspecting reinforcement at a residential construction site",
+      "loaded": true,
+      "naturalWidth": 1376,
+      "naturalHeight": 768,
+      "displayWidth": 0,
+      "displayHeight": 0,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/murali-patharala-associates-assets/exterior_renders/WhatsApp Image 2026-09-23 at 17.38.22 (1).webp",
+      "alt": "Contemporary three-storey residential design with warm facade lighting",
+      "loaded": true,
+      "naturalWidth": 1340,
+      "naturalHeight": 1600,
+      "displayWidth": 390,
+      "displayHeight": 560,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/murali-patharala-associates-assets/exterior_renders/JAMEE2.webp",
+      "alt": "Contemporary villa exterior visualization from the MPA project library",
+      "loaded": true,
+      "naturalWidth": 1920,
+      "naturalHeight": 1358,
+      "displayWidth": 340,
+      "displayHeight": 212,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/murali-patharala-associates-assets/exterior_renders/WhatsApp Image 2026-09-23 at 16.17.56 (2).webp",
+      "alt": "Contemporary timber and stone residential elevation by MPA",
+      "loaded": true,
+      "naturalWidth": 1600,
+      "naturalHeight": 1200,
+      "displayWidth": 340,
+      "displayHeight": 212,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/murali-patharala-associates-assets/exterior_renders/WhatsApp Image 2026-09-23 at 16.36.14.webp",
+      "alt": "Contemporary white residential elevation with layered balconies",
+      "loaded": true,
+      "naturalWidth": 1440,
+      "naturalHeight": 1080,
+      "displayWidth": 340,
+      "displayHeight": 212,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/images/service-stages/design-planning.webp",
+      "alt": "Site & Project Review",
+      "loaded": true,
+      "naturalWidth": 1586,
+      "naturalHeight": 992,
+      "displayWidth": 340,
+      "displayHeight": 212,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/images/service-stages/foundation-rcc.webp",
+      "alt": "Civil & Structural Works",
+      "loaded": true,
+      "naturalWidth": 1586,
+      "naturalHeight": 992,
+      "displayWidth": 340,
+      "displayHeight": 212,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/images/service-stages/brickwork-plaster.webp",
+      "alt": "Building Services",
+      "loaded": true,
+      "naturalWidth": 1586,
+      "naturalHeight": 992,
+      "displayWidth": 340,
+      "displayHeight": 212,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/images/service-stages/plumbing-waterproofing.webp",
+      "alt": "Materials & Finishes",
+      "loaded": true,
+      "naturalWidth": 1586,
+      "naturalHeight": 992,
+      "displayWidth": 340,
+      "displayHeight": 212,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/images/service-stages/electrical-installation.webp",
+      "alt": "Project Management",
+      "loaded": true,
+      "naturalWidth": 1586,
+      "naturalHeight": 992,
+      "displayWidth": 340,
+      "displayHeight": 212,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/images/service-stages/flooring-painting.webp",
+      "alt": "Site Supervision & Handover",
+      "loaded": true,
+      "naturalWidth": 1586,
+      "naturalHeight": 992,
+      "displayWidth": 340,
+      "displayHeight": 212,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/images/service-stages/soil-assessment.webp",
+      "alt": "Review the Project",
+      "loaded": true,
+      "naturalWidth": 1586,
+      "naturalHeight": 992,
+      "displayWidth": 292,
+      "displayHeight": 183,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/images/service-stages/engineering-permits.webp",
+      "alt": "Define the Scope",
+      "loaded": true,
+      "naturalWidth": 1586,
+      "naturalHeight": 992,
+      "displayWidth": 292,
+      "displayHeight": 183,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/images/service-stages/foundation-rcc.webp",
+      "alt": "Coordinate Engineering",
+      "loaded": true,
+      "naturalWidth": 1586,
+      "naturalHeight": 992,
+      "displayWidth": 292,
+      "displayHeight": 183,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/images/service-stages/plumbing-waterproofing.webp",
+      "alt": "Build & Supervise",
+      "loaded": true,
+      "naturalWidth": 1586,
+      "naturalHeight": 992,
+      "displayWidth": 292,
+      "displayHeight": 183,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/images/service-stages/home-handover.webp",
+      "alt": "Complete & Handover",
+      "loaded": true,
+      "naturalWidth": 1586,
+      "naturalHeight": 992,
+      "displayWidth": 292,
+      "displayHeight": 183,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/murali-patharala-associates-assets/exterior_renders/WhatsApp Image 2026-09-23 at 17.38.22 (1).webp",
+      "alt": "Contemporary three-storey residential design with warm facade lighting",
+      "loaded": true,
+      "naturalWidth": 1340,
+      "naturalHeight": 1600,
+      "displayWidth": 338,
+      "displayHeight": 276,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/murali-patharala-associates-assets/exterior_renders/WhatsApp Image 2026-09-23 at 16.17.56 (2).webp",
+      "alt": "White and stone-clad residence from the MPA project library",
+      "loaded": true,
+      "naturalWidth": 1600,
+      "naturalHeight": 1200,
+      "displayWidth": 338,
+      "displayHeight": 196,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/murali-patharala-associates-assets/exterior_renders/WhatsApp Image 2026-09-23 at 16.36.14.webp",
+      "alt": "Contemporary white residential elevation with layered balconies",
+      "loaded": true,
+      "naturalWidth": 1440,
+      "naturalHeight": 1080,
+      "displayWidth": 338,
+      "displayHeight": 196,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/images/architecture/hero-villa-twilight.webp",
+      "alt": "",
+      "loaded": true,
+      "naturalWidth": 1376,
+      "naturalHeight": 768,
+      "displayWidth": 390,
+      "displayHeight": 1668,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/mpa-3d-logo-small.webp",
+      "alt": "",
+      "loaded": true,
+      "naturalWidth": 128,
+      "naturalHeight": 128,
+      "displayWidth": 44,
+      "displayHeight": 44,
+      "fit": "fill",
+      "hidden": false
+    }
+  ],
+  "backgrounds": [
+    "/images/drawings/architectural-master-plan.svg",
+    "/images/drawings/architectural-structural-lines.svg"
+  ],
+  "decoded": [
+    {
+      "src": "/mpa-3d-logo-small.webp",
+      "ok": true,
+      "width": 128,
+      "height": 128
+    },
+    {
+      "src": "/images/architecture/site-engineer-audit.webp",
+      "ok": true,
+      "width": 1376,
+      "height": 768
+    },
+    {
+      "src": "/murali-patharala-associates-assets/exterior_renders/WhatsApp Image 2026-09-23 at 17.38.22 (1).webp",
+      "ok": true,
+      "width": 1340,
+      "height": 1600
+    },
+    {
+      "src": "/murali-patharala-associates-assets/exterior_renders/JAMEE2.webp",
+      "ok": true,
+      "width": 1920,
+      "height": 1358
+    },
+    {
+      "src": "/murali-patharala-associates-assets/exterior_renders/WhatsApp Image 2026-09-23 at 16.17.56 (2).webp",
+      "ok": true,
+      "width": 1600,
+      "height": 1200
+    },
+    {
+      "src": "/murali-patharala-associates-assets/exterior_renders/WhatsApp Image 2026-09-23 at 16.36.14.webp",
+      "ok": true,
+      "width": 1440,
+      "height": 1080
+    },
+    {
+      "src": "/images/service-stages/design-planning.webp",
+      "ok": true,
+      "width": 1586,
+      "height": 992
+    },
+    {
+      "src": "/images/service-stages/foundation-rcc.webp",
+      "ok": true,
+      "width": 1586,
+      "height": 992
+    },
+    {
+      "src": "/images/service-stages/brickwork-plaster.webp",
+      "ok": true,
+      "width": 1586,
+      "height": 992
+    },
+    {
+      "src": "/images/service-stages/plumbing-waterproofing.webp",
+      "ok": true,
+      "width": 1586,
+      "height": 992
+    },
+    {
+      "src": "/images/service-stages/electrical-installation.webp",
+      "ok": true,
+      "width": 1586,
+      "height": 992
+    },
+    {
+      "src": "/images/service-stages/flooring-painting.webp",
+      "ok": true,
+      "width": 1586,
+      "height": 992
+    },
+    {
+      "src": "/images/service-stages/soil-assessment.webp",
+      "ok": true,
+      "width": 1586,
+      "height": 992
+    },
+    {
+      "src": "/images/service-stages/engineering-permits.webp",
+      "ok": true,
+      "width": 1586,
+      "height": 992
+    },
+    {
+      "src": "/images/service-stages/home-handover.webp",
+      "ok": true,
+      "width": 1586,
+      "height": 992
+    },
+    {
+      "src": "/images/architecture/hero-villa-twilight.webp",
+      "ok": true,
+      "width": 1376,
+      "height": 768
+    },
+    {
+      "src": "/images/drawings/architectural-master-plan.svg",
+      "ok": true,
+      "width": 233,
+      "height": 150
+    },
+    {
+      "src": "/images/drawings/architectural-structural-lines.svg",
+      "ok": true,
+      "width": 300,
+      "height": 150
+    }
+  ],
+  "overflow": 0,
+  "galleryCards": []
+}

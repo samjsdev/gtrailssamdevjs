@@ -1,5 +1,10 @@
 'use client';
 
+import BrandText from '@/components/BrandText';
+import Modal from '@/components/Modal';
+import EnquiryForm from '@/components/EnquiryForm';
+
+import { CONTACT_LINKS } from '@/lib/contactLinks';
 import { useState } from 'react';
 import Link from 'next/link';
 import {
@@ -14,8 +19,6 @@ import {
   UtensilsCrossed,
   Plus,
   Minus,
-  CheckCircle2,
-  Download,
   MessageSquare,
   X,
   Sparkles,
@@ -24,6 +27,7 @@ import {
   FileText,
   ExternalLink
 } from 'lucide-react';
+import ArchitecturalDiagramBg from '@/components/ArchitecturalDiagramBg';
 
 interface SpecItem {
   label: string;
@@ -93,7 +97,7 @@ const PACKAGES_DATA: PackageData[] = [
         items: [
           { label: 'Site Engineer', detail: 'Site Supervision & Quality Monitoring' },
           { label: 'Project Manager', detail: 'Visit site Twice in a Week' },
-          { label: 'Android/IOS App', detail: 'Daily Photo Upload. Project Status Monitoring' },
+          { label: 'WhatsApp Updates', detail: 'Regular Photo Updates. Project Status Monitoring via WhatsApp' },
           { label: 'Architect', detail: 'Support Till Design Completion' },
         ],
       },
@@ -108,8 +112,8 @@ const PACKAGES_DATA: PackageData[] = [
           { label: 'P Sand', detail: 'Plastering Works' },
           { label: 'Concrete Grade', detail: 'M20 | RMC for Roof' },
           { label: 'Ceiling Height', detail: '10 Feet' },
-          { label: 'Steel Reinforcement', detail: 'As per MPA Standard' },
-          { label: 'Parapet Wall', detail: "3' Feet Height | 6\" Thick (Only for Floor with Headroom)" },
+          { label: 'Steel Reinforcement', detail: 'As per ARCH foundations Standard' },
+          { label: 'Parapet Wall', detail: "3' Feet Height | 4.5\" Thick (Only for Floor with Headroom)" },
           { label: 'Anti-termite treatment', detail: 'Basement' },
         ],
       },
@@ -210,7 +214,7 @@ const PACKAGES_DATA: PackageData[] = [
         items: [
           { label: 'Site Engineer', detail: 'Site Supervision & Quality Monitoring' },
           { label: 'Project Manager', detail: 'Daily Site Visit' },
-          { label: 'Android/IOS App', detail: 'Daily Photo Upload. Project Status Monitoring.' },
+          { label: 'WhatsApp Updates', detail: 'Regular Photo Updates. Project Status Monitoring via WhatsApp.' },
           { label: 'Architect', detail: 'Dedicated Architect throughout the Project. Stage-wise Site Visit. Material Selection Support.' },
         ],
       },
@@ -225,8 +229,8 @@ const PACKAGES_DATA: PackageData[] = [
           { label: 'P Sand', detail: 'Plastering Works' },
           { label: 'Concrete Grade', detail: 'M20 | RMC for Roof' },
           { label: 'Ceiling Height', detail: '10 Feet (FFL to FFL)' },
-          { label: 'Steel Reinforcement', detail: 'As per MPA Structural Detailing.' },
-          { label: 'Parapet Wall', detail: "3.5' Feet Height | 6\" Thick" },
+          { label: 'Steel Reinforcement', detail: 'As per ARCH foundations Structural Detailing.' },
+          { label: 'Parapet Wall', detail: "3.5' Feet Height | 4.5\" Thick" },
           { label: 'RCC Lift Pit', detail: 'Included (If Required)' },
           { label: 'Lift Pit & Shaft', detail: 'Included (If Required)' },
           { label: 'Anti-termite treatment', detail: 'Basement' },
@@ -331,7 +335,7 @@ const PACKAGES_DATA: PackageData[] = [
         items: [
           { label: 'Site Engineer', detail: 'Site Supervision & Quality Monitoring' },
           { label: 'Project Manager', detail: 'Daily Site Visit' },
-          { label: 'Android/IOS App', detail: 'Daily Photo Upload. Project Status Monitoring' },
+          { label: 'WhatsApp Updates', detail: 'Regular Photo Updates. Project Status Monitoring via WhatsApp' },
           { label: 'Architect', detail: 'Dedicated Architect. Frequent Site Visit. Material & Brand Selection Support including Interiors and Home Decor.' },
         ],
       },
@@ -346,8 +350,8 @@ const PACKAGES_DATA: PackageData[] = [
           { label: 'Plastering Sand', detail: 'River Sand for Plastering Works' },
           { label: 'Concrete Grade', detail: 'M25 | RMC for Roof' },
           { label: 'Ceiling Height', detail: '11 Feet (FFL to FFL)' },
-          { label: 'Steel Reinforcement', detail: '1.5 times Strength as per MPA Structural Drawings & Detailing by Senior Structural Engineer.' },
-          { label: 'Parapet Wall', detail: "3.5' Feet Height | 6\" Thick (Or) Toughened Glass Railing if Required" },
+          { label: 'Steel Reinforcement', detail: '1.5 times Strength as per ARCH foundations Structural Drawings & Detailing by Senior Structural Engineer.' },
+          { label: 'Parapet Wall', detail: "3.5' Feet Height | 4.5\" Thick (Or) Toughened Glass Railing if Required" },
           { label: 'RCC Lift Pit', detail: 'Included (If Required)' },
           { label: 'RCC Base', detail: 'RCC Concrete Slab for Base' },
           { label: 'Lift Pit & Shaft', detail: 'Included (If Required)' },
@@ -452,28 +456,18 @@ export default function ConstructionPackages({
   variant = 'full',
 }: ConstructionPackagesProps) {
   // Store open state for each package & section: "pkgIndex-secIndex": boolean
-  const [openSections, setOpenSections] = useState<Record<string, boolean>>({
-    '0-0': true,
-    '0-1': true,
-    '1-0': true,
-    '1-1': true,
-    '2-0': true,
-    '2-1': true,
+  const [openSections, setOpenSections] = useState<Record<string, boolean>>(() => {
+    const initial: Record<string, boolean> = {};
+    PACKAGES_DATA.forEach((pkg, pkgIdx) => pkg.sections.forEach((section, secIdx) => {
+      if (section.isExclusion) initial[`${pkgIdx}-${secIdx}`] = true;
+    }));
+    return initial;
   });
 
   // Modal state
   const [selectedPackage, setSelectedPackage] = useState<PackageData | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [builtUpArea, setBuiltUpArea] = useState<number>(2400);
-  const [clientName, setClientName] = useState('');
-  const [clientPhone, setClientPhone] = useState('');
-  const [clientLocation, setClientLocation] = useState('');
-  const [clientEmail, setClientEmail] = useState('');
-  const [formSubmitted, setFormSubmitted] = useState(false);
-  const [referenceId, setReferenceId] = useState('');
 
-  const rawPhone = phone.replace(/\D/g, '') || '9841098490';
-  const cleanPhone = rawPhone.startsWith('91') ? rawPhone : `91${rawPhone.replace(/^0+/, '')}`;
 
   const toggleSection = (pkgIdx: number, secIdx: number) => {
     const key = `${pkgIdx}-${secIdx}`;
@@ -508,57 +502,42 @@ export default function ConstructionPackages({
 
   const handleOpenModal = (pkg: PackageData) => {
     setSelectedPackage(pkg);
-    setFormSubmitted(false);
-    setReferenceId(`MPA-SPEC-${Math.floor(10000 + Math.random() * 90000)}`);
     setIsModalOpen(true);
   };
 
   const handleCloseModal = () => {
     setIsModalOpen(false);
     setSelectedPackage(null);
-    setFormSubmitted(false);
-  };
-
-  const getWhatsAppUrlForPackage = (pkg: PackageData, customArea?: number) => {
-    const area = customArea || 2400;
-    const text = `Hi Murali Patharala Associates (MPA),
-I would like to receive the Detailed Specification & BOQ for:
-- Package: ${pkg.name} (${pkg.price} ${pkg.unit})
-- Estimated Built-Up Area: ${area.toLocaleString('en-IN')} Sq.Ft
-- Location: ${clientLocation || 'Chennai'}
-- Name: ${clientName || 'Homeowner'}
-
-Please share the complete itemized specification sheet. Thank you!`;
-    return `https://wa.me/${cleanPhone}?text=${encodeURIComponent(text)}`;
-  };
-
-  const handleSubmitModal = (e: React.FormEvent) => {
-    e.preventDefault();
-    setFormSubmitted(true);
   };
 
   return (
-    <section id="packages" className="py-20 md:py-28 px-6 md:px-12 border-b-4 border-[#111111] bg-white">
-      <div className="max-w-7xl mx-auto">
-        {/* Section Heading */}
-        <div className="text-center max-w-3xl mx-auto mb-16 space-y-3">
-          <p className="text-xs font-bold tracking-[0.25em] uppercase text-[#EA580C]">
-            TRANSPARENT CONSTRUCTION PACKAGES
-          </p>
+    <section id="packages" className="relative py-24 md:py-32 px-6 md:px-12 border-b border-[#202B29]/15 bg-surface-pale overflow-hidden">
+      {/* Quiet Architectural Facade Linework Watermark */}
+      <ArchitecturalDiagramBg variant="elevation" theme="light" opacity={0.10} showGrid={false} showCornerMarks={false} />
+
+      <div className="relative z-10 max-w-7xl mx-auto">
+        {/* Section Heading - Clean & Spacious */}
+        <div className="text-center max-w-2xl mx-auto mb-16 md:mb-20 space-y-3">
+          <div className="inline-flex items-center gap-2">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#A94F2D]" />
+            <span className="text-[11px] font-mono tracking-[0.25em] uppercase text-[#777777]">
+              SPECIFICATION SCHEDULE &bull; 2026
+            </span>
+          </div>
           <h2
-            className="text-3xl md:text-5xl font-bold font-serif text-[#111111] tracking-tight"
-            style={{ fontFamily: "'Lora', serif" }}
+            className="text-3xl sm:text-4xl md:text-5xl font-bold font-serif text-[#202B29] tracking-tight"
+            style={{ fontFamily: "var(--font-content)" }}
           >
             Our Home Construction Packages
           </h2>
-          <p className="text-sm md:text-base text-[#666666] font-medium max-w-2xl mx-auto">
+          <p className="text-sm md:text-base text-[#666666] font-normal leading-relaxed">
             {variant === 'simple'
               ? 'Transparent turnkey construction benchmarks with legally binding price freeze guarantees and branded materials.'
-              : 'Itemized Bill of Quantities (BOQ). Fixed rate per sq.ft with branded material benchmarks and a legally binding delivery schedule across 9 distinct categories.'}
+              : 'Itemized Bill of Quantities (BOQ). Fixed rate per sq.ft with branded material benchmarks across 9 distinct categories.'}
           </p>
-          <div className="inline-flex items-center gap-2 bg-[#FFF7ED] border border-[#FDBA74] px-4 py-1.5 rounded-full text-xs font-bold text-[#EA580C] uppercase tracking-wider">
-            <span>* Minimum overall built-up area: 2,000 sq.ft</span>
-          </div>
+          <span className="text-[11px] font-mono text-ink-muted block pt-1">
+            * Minimum overall built-up area: 2,000 sq.ft &bull; Zero escalation guarantee
+          </span>
         </div>
 
         {/* 3 Package Cards */}
@@ -566,75 +545,68 @@ Please share the complete itemized specification sheet. Thank you!`;
           {PACKAGES_DATA.map((pkg, pkgIdx) => {
             const allOpen = isAllExpanded(pkgIdx);
             const highlights = SUMMARY_HIGHLIGHTS[pkg.id] || [];
+            const headerTags: Record<string, { label: string; sub: string }> = {
+              'standard-package': { label: '01 // ESSENTIAL', sub: '2,000–3,500 SQ.FT' },
+              'premium-package': { label: '02 // MOST REQUESTED', sub: 'FULL TURNKEY' },
+              'ultra-luxury': { label: '03 // SIGNATURE', sub: 'BESPOKE RESIDENCE' },
+            };
+            const tagInfo = headerTags[pkg.id] || { label: `0${pkgIdx + 1} // SPEC`, sub: 'TURNKEY' };
 
             return (
               <div
                 key={pkg.id}
-                className={`border-4 border-[#111111] flex flex-col transition-all duration-300 ${
+                className={`mpa-package-tier border flex flex-col transition-all duration-300 ${
                   pkg.highlight
-                    ? 'bg-[#111111] text-white shadow-2xl relative lg:-translate-y-2'
-                    : 'bg-[#FAFAFA] text-[#111111]'
+                    ? 'bg-surface-linen text-[#302A20] border-2 border-[#A94F2D] shadow-sm relative'
+                    : 'bg-surface-cream text-[#202B29] border-[#202B29]/15 hover:border-[#A94F2D]/50 shadow-sm'
                 }`}
               >
-                {/* Highlight Badge */}
-                {pkg.highlight ? (
-                  <div className="bg-[#EA580C] text-[#111111] text-center py-2.5 text-xs font-bold tracking-[0.25em] uppercase flex items-center justify-center gap-2">
-                    <Sparkles className="w-4 h-4 fill-current" />
-                    <span>{pkg.tag}</span>
-                  </div>
-                ) : pkg.luxuryBadge ? (
-                  <div className="bg-[#262626] text-[#EA580C] text-center py-2 text-xs font-bold tracking-[0.25em] uppercase border-b-2 border-[#111111]">
-                    ★ {pkg.tag} ★
-                  </div>
-                ) : (
-                  <div className="bg-[#E5E5E5] text-[#555555] text-center py-1.5 text-[11px] font-bold tracking-[0.2em] uppercase border-b border-[#D4D4D4]">
-                    {pkg.tag}
-                  </div>
-                )}
+                {/* Architectural Tag Header Ribbon */}
+                <div
+                  className={`px-6 py-3 flex items-center justify-between border-b text-[10px] font-mono font-bold tracking-widest ${
+                    pkg.highlight
+                      ? 'bg-[#A94F2D] text-white border-[#A94F2D]'
+                      : pkg.luxuryBadge
+                      ? 'bg-surface-linen text-[#703015] border-[#26342F]'
+                      : 'bg-surface-cream text-[#666666] border-[#D8CFC1]'
+                  }`}
+                >
+                  <span>{tagInfo.label}</span>
+                  <span className="opacity-80 font-normal">{tagInfo.sub}</span>
+                </div>
 
                 {/* Card Header & Pricing */}
-                <div className="p-6 md:p-8 space-y-4 border-b-2 border-current/10">
-                  <div className="flex items-center justify-between">
-                    <h3
-                      className="text-2xl sm:text-3xl font-bold font-serif"
-                      style={{ fontFamily: "'Lora', serif" }}
-                    >
-                      {pkg.name}
-                    </h3>
-                    <span
-                      className={`text-xs font-mono font-bold px-2 py-0.5 border ${
-                        pkg.highlight
-                          ? 'border-[#EA580C] text-[#EA580C]'
-                          : 'border-[#111111] text-[#111111]'
-                      }`}
-                    >
-                      0{pkgIdx + 1}
-                    </span>
-                  </div>
+                <div className="p-6 md:p-8 space-y-4 border-b border-current/10">
+                  <h3
+                    className="text-2xl sm:text-3xl font-bold font-serif"
+                    style={{ fontFamily: "var(--font-content)" }}
+                  >
+                    {pkg.name}
+                  </h3>
 
                   <div className="flex items-baseline gap-2 pt-1">
                     <span
                       className={`text-4xl sm:text-5xl font-bold font-serif ${
-                        pkg.highlight ? 'text-[#EA580C]' : 'text-[#111111]'
+                        pkg.highlight ? 'text-[#703015]' : 'text-[#202B29]'
                       }`}
-                      style={{ fontFamily: "'Lora', serif" }}
+                      style={{ fontFamily: "var(--font-content)" }}
                     >
                       {pkg.price}
                     </span>
                     <span
-                      className={`text-xs font-bold uppercase tracking-wider ${
-                        pkg.highlight ? 'text-white/70' : 'text-[#666666]'
+                      className={`text-xs font-mono font-bold uppercase tracking-wider ${
+                        pkg.highlight ? 'text-ink-muted' : 'text-[#666666]'
                       }`}
                     >
                       {pkg.unit}
                     </span>
                   </div>
 
-                  <div className="flex items-center justify-between text-xs font-semibold pt-1">
-                    <span className={pkg.highlight ? 'text-white/80' : 'text-[#666666]'}>
+                  <div className="flex items-center justify-between text-xs font-medium pt-1">
+                    <span className={pkg.highlight ? 'text-ink-muted' : 'text-[#777777]'}>
                       Estimated Execution:
                     </span>
-                    <span className={`font-bold ${pkg.highlight ? 'text-[#EA580C]' : 'text-[#111111]'}`}>
+                    <span className={`font-mono font-bold ${pkg.highlight ? 'text-[#703015]' : 'text-[#202B29]'}`}>
                       {pkg.timeline}
                     </span>
                   </div>
@@ -644,7 +616,7 @@ Please share the complete itemized specification sheet. Thank you!`;
                     <div className="pt-2 flex items-center justify-between text-[11px]">
                       <span
                         className={`uppercase tracking-wider font-bold ${
-                          pkg.highlight ? 'text-white/60' : 'text-[#777777]'
+                          pkg.highlight ? 'text-ink-muted' : 'text-[#777777]'
                         }`}
                       >
                         9 Specification Areas
@@ -652,8 +624,8 @@ Please share the complete itemized specification sheet. Thank you!`;
                       <button
                         type="button"
                         onClick={() => (allOpen ? collapseAllForPackage(pkgIdx) : expandAllForPackage(pkgIdx))}
-                        className={`font-bold uppercase tracking-wider underline hover:opacity-80 transition-opacity ${
-                          pkg.highlight ? 'text-[#EA580C]' : 'text-[#111111]'
+                        className={`border px-2.5 py-1.5 text-[11px] font-bold uppercase tracking-wider transition-colors ${
+                          pkg.highlight ? 'border-[#F3B687] text-[#703015] hover:bg-[#F3B687] hover:text-[#202B29]' : 'border-[#202B29]/40 text-[#202B29] hover:bg-surface-linen hover:text-[#302A20]'
                         }`}
                       >
                         {allOpen ? 'Collapse All' : 'Expand All'}
@@ -667,7 +639,7 @@ Please share the complete itemized specification sheet. Thank you!`;
                   <div className="p-6 md:p-8 space-y-4 flex-1">
                     <p
                       className={`text-xs font-bold uppercase tracking-widest ${
-                        pkg.highlight ? 'text-[#EA580C]' : 'text-[#111111]'
+                        pkg.highlight ? 'text-[#703015]' : 'text-[#202B29]'
                       }`}
                     >
                       Key Material Benchmarks:
@@ -678,12 +650,12 @@ Please share the complete itemized specification sheet. Thank you!`;
                         <div key={hIdx} className="text-xs leading-relaxed">
                           <span
                             className={`font-bold uppercase text-[10px] tracking-wider block ${
-                              pkg.highlight ? 'text-[#EA580C]' : 'text-[#EA580C]'
+                              pkg.highlight ? 'text-[#703015]' : 'text-[#A94F2D]'
                             }`}
                           >
                             ■ {hl.label}
                           </span>
-                          <span className={`font-medium ${pkg.highlight ? 'text-white/85' : 'text-[#444444]'}`}>
+                          <span className={`font-medium ${pkg.highlight ? 'text-ink-muted' : 'text-[#2B2D31]'}`}>
                             {hl.text}
                           </span>
                         </div>
@@ -704,15 +676,15 @@ Please share the complete itemized specification sheet. Thank you!`;
                           className={`border-2 transition-all ${
                             pkg.highlight
                               ? isExclusion
-                                ? 'border-red-500/40 bg-red-950/20'
+                                ? 'border-red-500/40 bg-red-50'
                                 : isOpen
-                                ? 'border-[#EA580C]/80 bg-[#1A1A1A]'
-                                : 'border-white/15 bg-white/5 hover:border-white/30'
+                                ? 'border-[#F3B687]/70 bg-surface-linen'
+                                : 'border-[#5D5140]/25 bg-surface-cream/5 hover:border-[#5D5140]/25'
                               : isExclusion
                               ? 'border-amber-400 bg-amber-50/70'
                               : isOpen
-                              ? 'border-[#111111] bg-white shadow-sm'
-                              : 'border-[#E5E5E5] bg-white hover:border-[#CCCCCC]'
+                              ? 'border-[#202B29] bg-surface-cream shadow-sm'
+                              : 'border-[#D8CFC1] bg-surface-cream hover:border-[#B6A999]'
                           }`}
                         >
                           {/* Section Accordion Trigger */}
@@ -727,11 +699,11 @@ Please share the complete itemized specification sheet. Thank you!`;
                                 className={`p-1.5 rounded-sm flex items-center justify-center shrink-0 ${
                                   isExclusion
                                     ? pkg.highlight
-                                      ? 'bg-red-900/50 text-red-300'
+                                      ? 'bg-red-100 text-red-800'
                                       : 'bg-amber-100 text-amber-800'
                                     : pkg.highlight
-                                    ? 'bg-[#EA580C]/20 text-[#EA580C]'
-                                    : 'bg-[#111111] text-white'
+                                    ? 'bg-[#F3B687]/15 text-[#703015]'
+                                    : 'bg-surface-linen text-[#302A20]'
                                 }`}
                               >
                                 <IconComponent className="w-4 h-4" />
@@ -744,15 +716,15 @@ Please share the complete itemized specification sheet. Thank you!`;
                                         ? 'text-red-400'
                                         : 'text-red-700'
                                       : pkg.highlight
-                                      ? 'text-white'
-                                      : 'text-[#111111]'
+                                      ? 'text-[#302A20]'
+                                      : 'text-[#202B29]'
                                   }`}
                                 >
                                   {section.title}
                                 </span>
                                 <span
                                   className={`text-[10px] block ${
-                                    pkg.highlight ? 'text-white/60' : 'text-[#888888]'
+                                    pkg.highlight ? 'text-ink-muted' : 'text-ink-muted'
                                   }`}
                                 >
                                   {section.items.length} {section.items.length === 1 ? 'specification' : 'specifications'}
@@ -763,8 +735,8 @@ Please share the complete itemized specification sheet. Thank you!`;
                             <span
                               className={`w-6 h-6 flex items-center justify-center rounded-full shrink-0 transition-transform duration-200 ${
                                 pkg.highlight
-                                  ? 'bg-white/10 text-white group-hover:bg-[#EA580C] group-hover:text-[#111111]'
-                                  : 'bg-[#F0F0F0] text-[#111111] group-hover:bg-[#111111] group-hover:text-white'
+                                  ? 'bg-surface-cream/10 text-[#302A20] group-hover:bg-[#F3B687] group-hover:text-[#202B29]'
+                                  : 'bg-surface-cream text-[#202B29] group-hover:bg-surface-linen group-hover:text-[#302A20]'
                               }`}
                             >
                               {isOpen ? <Minus className="w-3.5 h-3.5" /> : <Plus className="w-3.5 h-3.5" />}
@@ -776,8 +748,8 @@ Please share the complete itemized specification sheet. Thank you!`;
                             <div
                               className={`px-4 pb-4 pt-1 border-t text-xs leading-relaxed space-y-2.5 ${
                                 pkg.highlight
-                                  ? 'border-white/10 text-white/85'
-                                  : 'border-[#F0F0F0] text-[#333333]'
+                                  ? 'border-[#5D5140]/25 text-ink-muted'
+                                  : 'border-[#EFE7DA] text-[#333333]'
                               }`}
                             >
                               {section.items.map((item, itemIdx) => (
@@ -787,8 +759,8 @@ Please share the complete itemized specification sheet. Thank you!`;
                                       isExclusion
                                         ? 'text-red-500'
                                         : pkg.highlight
-                                        ? 'text-[#EA580C]'
-                                        : 'text-[#EA580C]'
+                                        ? 'text-[#703015]'
+                                        : 'text-[#A94F2D]'
                                     }`}
                                   >
                                     {isExclusion ? '✕' : '■'}
@@ -797,14 +769,14 @@ Please share the complete itemized specification sheet. Thank you!`;
                                     {item.label && (
                                       <strong
                                         className={`font-bold mr-1.5 ${
-                                          pkg.highlight ? 'text-white' : 'text-[#111111]'
+                                          pkg.highlight ? 'text-[#302A20]' : 'text-[#202B29]'
                                         }`}
                                       >
                                         {item.label}:
                                       </strong>
                                     )}
-                                    <span className={pkg.highlight ? 'text-white/90' : 'text-[#444444]'}>
-                                      {item.detail}
+                                    <span className={pkg.highlight ? 'text-ink-muted' : 'text-[#444444]'}>
+                                      <BrandText>{item.detail}</BrandText>
                                     </span>
                                   </div>
                                 </div>
@@ -821,12 +793,8 @@ Please share the complete itemized specification sheet. Thank you!`;
                 <div className="p-6 md:p-8 pt-2 mt-auto">
                   {variant === 'simple' ? (
                     <Link
-                      href="/services#packages"
-                      className={`w-full py-4 px-4 text-center text-xs font-bold uppercase tracking-widest transition-all duration-200 flex items-center justify-center gap-2 shadow-sm ${
-                        pkg.highlight
-                          ? 'bg-[#EA580C] text-[#111111] hover:bg-white'
-                          : 'bg-[#111111] text-white hover:bg-[#EA580C] hover:text-[#111111]'
-                      }`}
+                      href="/construction-package#packages"
+                      className={`mpa-outline-cta w-full ${pkg.highlight ? 'mpa-outline-cta--accent' : ''}`}
                     >
                       <span>View Full Specifications</span>
                       <ArrowRight className="w-4 h-4" />
@@ -835,11 +803,7 @@ Please share the complete itemized specification sheet. Thank you!`;
                     <button
                       type="button"
                       onClick={() => handleOpenModal(pkg)}
-                      className={`w-full py-4 px-4 text-center text-xs font-bold uppercase tracking-widest transition-all duration-200 flex items-center justify-center gap-2 shadow-sm ${
-                        pkg.highlight
-                          ? 'bg-[#EA580C] text-[#111111] hover:bg-white'
-                          : 'bg-[#111111] text-white hover:bg-[#EA580C] hover:text-[#111111]'
-                      }`}
+                      className={`mpa-outline-cta w-full ${pkg.highlight ? 'mpa-outline-cta--accent' : ''}`}
                     >
                       <span>Get Detailed Specification</span>
                       <ArrowRight className="w-4 h-4" />
@@ -853,44 +817,45 @@ Please share the complete itemized specification sheet. Thank you!`;
 
         {/* Bottom Banner */}
         {variant === 'simple' ? (
-          <div className="mt-14 p-6 sm:p-8 border-4 border-[#111111] bg-[#111111] text-white flex flex-col md:flex-row items-center justify-between gap-6">
-            <div className="space-y-1">
-              <span className="text-[10px] font-bold uppercase tracking-[0.25em] text-[#EA580C] block">
+          <div className="mt-14 p-6 sm:p-8 border border-[#5D5140]/25 bg-surface-linen text-[#302A20] flex flex-col md:flex-row items-center justify-between gap-6 relative overflow-hidden shadow-xl">
+            <ArchitecturalDiagramBg variant="master-plan" theme="light" opacity={0.2} showCornerMarks={false} showGrid={false} />
+            <div className="space-y-1 relative z-10 max-w-2xl">
+              <span className="text-[10px] font-bold uppercase tracking-[0.25em] text-[#703015] block">
                 Expert Consultation
               </span>
               <h4
-                className="text-lg sm:text-2xl font-bold font-serif text-white"
-                style={{ fontFamily: "'Lora', serif" }}
+                className="text-lg sm:text-2xl font-bold font-serif text-[#302A20]"
+                style={{ fontFamily: "var(--font-content)" }}
               >
                 Planning a custom home or multi-level villa?
               </h4>
-              <p className="text-xs sm:text-sm text-white/70 font-medium">
+              <p className="text-xs sm:text-sm text-ink-muted font-medium">
                 Talk directly with our licensed architectural and structural engineers for plot feasibility and soil testing insights.
               </p>
             </div>
 
             <a
-              href={`https://wa.me/${cleanPhone}?text=${encodeURIComponent(
-                'Hi Murali Patharala Associates (MPA), I am planning a custom residential construction project in Chennai and would like to discuss my plot requirements.'
+              href={`${CONTACT_LINKS.whatsapp}?text=${encodeURIComponent(
+                'Hi ARCH foundations, I am planning a custom residential construction project in Chennai and would like to discuss my plot requirements.'
               )}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="px-8 py-4 bg-[#25D366] text-white hover:bg-[#1EBE5D] text-xs font-bold uppercase tracking-widest transition-colors shrink-0 flex items-center gap-2"
+              className="relative z-10 px-5 py-3 bg-[#25D366] text-white hover:bg-[#1EBE5D] text-[11px] font-bold uppercase tracking-wider transition-colors shrink-0 flex items-center gap-2 shadow-md"
             >
-              <MessageSquare className="w-4 h-4" />
+              <MessageSquare className="w-3.5 h-3.5" />
               <span>WhatsApp Principal Architect &rarr;</span>
             </a>
           </div>
         ) : (
-          <div className="mt-14 p-6 sm:p-8 border-4 border-[#111111] bg-[#FAFAFA] flex flex-col md:flex-row items-center justify-between gap-6">
+          <div className="mt-14 p-6 sm:p-8 border-4 border-[#202B29] bg-surface-cream flex flex-col md:flex-row items-center justify-between gap-6">
             <div className="flex items-center gap-4">
-              <div className="w-12 h-12 rounded-full bg-[#111111] text-[#EA580C] flex items-center justify-center shrink-0">
+              <div className="w-12 h-12 rounded-full bg-surface-linen text-[#703015] flex items-center justify-center shrink-0">
                 <ShieldCheck className="w-6 h-6" />
               </div>
               <div>
                 <h4
-                  className="text-lg sm:text-xl font-bold font-serif text-[#111111]"
-                  style={{ fontFamily: "'Lora', serif" }}
+                  className="text-lg sm:text-xl font-bold font-serif text-[#202B29]"
+                  style={{ fontFamily: "var(--font-content)" }}
                 >
                   100% Price Freeze &amp; Itemized BOQ Contract
                 </h4>
@@ -901,12 +866,12 @@ Please share the complete itemized specification sheet. Thank you!`;
             </div>
 
             <a
-              href={`https://wa.me/${cleanPhone}?text=${encodeURIComponent(
-                'Hi Murali Patharala Associates, I would like to schedule a site feasibility survey in Chennai for my residential plot.'
+              href={`${CONTACT_LINKS.whatsapp}?text=${encodeURIComponent(
+                'Hi ARCH foundations, I would like to schedule a site feasibility survey in Chennai for my residential plot.'
               )}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="px-6 py-3 bg-[#111111] text-white hover:bg-[#EA580C] hover:text-[#111111] text-xs font-bold uppercase tracking-widest transition-colors shrink-0"
+              className="mpa-outline-cta shrink-0"
             >
               Schedule Site Survey
             </a>
@@ -916,200 +881,45 @@ Please share the complete itemized specification sheet. Thank you!`;
 
       {/* ── Detailed Specification Request Modal ── */}
       {isModalOpen && selectedPackage && (
-        <div
-          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm animate-in fade-in duration-200"
-          role="dialog"
-          aria-modal="true"
-          onClick={handleCloseModal}
-        >
+        <Modal label={`${selectedPackage.name} — detailed specification enquiry`} onClose={handleCloseModal}>
           <div
-            className="bg-white border-4 border-[#111111] w-full max-w-xl max-h-[90vh] overflow-y-auto shadow-2xl relative animate-in zoom-in-95 duration-200"
-            onClick={(e) => e.stopPropagation()}
+            className="bg-surface-cream border-4 border-[#202B29] relative"
           >
             {/* Modal Header */}
-            <div className="bg-[#111111] text-white p-6 relative">
+            <div className="bg-surface-linen text-[#302A20] p-4 pr-14 sm:p-6 sm:pr-16 sticky top-0 z-10">
               <button
                 type="button"
                 onClick={handleCloseModal}
-                className="absolute top-4 right-4 text-white/70 hover:text-white p-2 rounded-full hover:bg-white/10 transition-colors"
+                className="absolute top-2 right-2 sm:top-4 sm:right-4 min-h-11 min-w-11 flex items-center justify-center text-ink-muted hover:text-[#302A20] p-2 rounded-full hover:bg-surface-cream/10 transition-colors"
                 aria-label="Close dialog"
               >
                 <X className="w-5 h-5" />
               </button>
 
-              <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#EA580C] mb-1">
+              <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#703015] mb-1">
                 DETAILED BOQ SPECIFICATION
               </p>
               <h3
                 className="text-2xl font-bold font-serif"
-                style={{ fontFamily: "'Lora', serif" }}
+                style={{ fontFamily: "var(--font-content)" }}
               >
                 {selectedPackage.name}
               </h3>
-              <p className="text-xs text-white/75 mt-1">
-                Fixed Rate: <strong className="text-[#EA580C]">{selectedPackage.price} {selectedPackage.unit}</strong> &bull; Execution: {selectedPackage.timeline}
+              <p className="text-xs text-ink-muted mt-1">
+                Fixed Rate: <strong className="text-[#703015]">{selectedPackage.price} {selectedPackage.unit}</strong> &bull; Execution: {selectedPackage.timeline}
               </p>
             </div>
 
             {/* Modal Body */}
-            <div className="p-6 sm:p-8 space-y-6">
-              {formSubmitted ? (
-                <div className="text-center py-8 space-y-4">
-                  <div className="w-16 h-16 bg-[#EA580C] text-[#111111] rounded-full flex items-center justify-center mx-auto shadow-lg">
-                    <CheckCircle2 className="w-8 h-8" />
-                  </div>
-                  <h4
-                    className="text-2xl font-bold font-serif text-[#111111]"
-                    style={{ fontFamily: "'Lora', serif" }}
-                  >
-                    Specification Request Confirmed
-                  </h4>
-                  <p className="text-xs sm:text-sm text-[#555555] max-w-md mx-auto">
-                    Thank you, <strong>{clientName || 'Homeowner'}</strong>. Your specification request reference is{' '}
-                    <span className="font-mono font-bold text-[#EA580C]">{referenceId}</span>.
-                    Our principal engineer will contact you shortly with the itemized BOQ for {builtUpArea} sq.ft.
-                  </p>
-
-                  <div className="pt-4 flex flex-col sm:flex-row gap-3 justify-center">
-                    <a
-                      href={getWhatsAppUrlForPackage(selectedPackage, builtUpArea)}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="px-6 py-3 bg-[#25D366] text-white font-bold text-xs uppercase tracking-widest hover:bg-[#1EBE5D] transition-colors inline-flex items-center justify-center gap-2"
-                    >
-                      <MessageSquare className="w-4 h-4" />
-                      <span>Chat on WhatsApp Now</span>
-                    </a>
-                    <button
-                      type="button"
-                      onClick={handleCloseModal}
-                      className="px-6 py-3 border-2 border-[#111111] text-[#111111] font-bold text-xs uppercase tracking-widest hover:bg-[#111111] hover:text-white transition-colors"
-                    >
-                      Close
-                    </button>
-                  </div>
-                </div>
-              ) : (
-                <form onSubmit={handleSubmitModal} className="space-y-5">
-                  {/* Package Summary Banner */}
-                  <div className="p-4 bg-[#FAFAFA] border-2 border-[#E5E5E5] flex items-center justify-between">
-                    <div>
-                      <p className="text-[11px] font-bold uppercase tracking-wider text-[#757575]">Selected Tier</p>
-                      <p className="text-base font-bold text-[#111111]">{selectedPackage.name}</p>
-                    </div>
-                    <div className="text-right">
-                      <p className="text-[11px] font-bold uppercase tracking-wider text-[#757575]">Rate</p>
-                      <p className="text-lg font-bold font-serif text-[#EA580C]">{selectedPackage.price} <span className="text-xs font-sans text-[#757575] font-normal">{selectedPackage.unit}</span></p>
-                    </div>
-                  </div>
-
-                  {/* Form Inputs */}
-                  <div className="space-y-4 text-xs">
-                    <div>
-                      <label className="block font-bold uppercase tracking-wider text-[#111111] mb-1">
-                        Approx. Built-Up Area (Sq.Ft)
-                      </label>
-                      <input
-                        type="text"
-                        placeholder="e.g. 2400"
-                        value={builtUpArea || ''}
-                        onChange={(e) => setBuiltUpArea(Number(e.target.value.replace(/\D/g, '')))}
-                        className="w-full px-3.5 py-2.5 border-2 border-[#111111] focus:border-[#EA580C] focus:outline-none font-medium"
-                      />
-                    </div>
-                    <div>
-                      <label className="block font-bold uppercase tracking-wider text-[#111111] mb-1">
-                        Full Name *
-                      </label>
-                      <input
-                        type="text"
-                        required
-                        placeholder="e.g. S. Karthik"
-                        value={clientName}
-                        onChange={(e) => setClientName(e.target.value)}
-                        className="w-full px-3.5 py-2.5 border-2 border-[#111111] focus:border-[#EA580C] focus:outline-none font-medium"
-                      />
-                    </div>
-
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                      <div>
-                        <label className="block font-bold uppercase tracking-wider text-[#111111] mb-1">
-                          WhatsApp Mobile *
-                        </label>
-                        <input
-                          type="tel"
-                          required
-                          placeholder="e.g. 98410 12345"
-                          value={clientPhone}
-                          onChange={(e) => setClientPhone(e.target.value)}
-                          className="w-full px-3.5 py-2.5 border-2 border-[#111111] focus:border-[#EA580C] focus:outline-none font-medium"
-                        />
-                      </div>
-
-                      <div>
-                        <label className="block font-bold uppercase tracking-wider text-[#111111] mb-1">
-                          Plot Location (Chennai) *
-                        </label>
-                        <input
-                          type="text"
-                          required
-                          placeholder="e.g. Anna Nagar / OMR"
-                          value={clientLocation}
-                          onChange={(e) => setClientLocation(e.target.value)}
-                          className="w-full px-3.5 py-2.5 border-2 border-[#111111] focus:border-[#EA580C] focus:outline-none font-medium"
-                        />
-                      </div>
-                    </div>
-
-                    <div>
-                      <label className="block font-bold uppercase tracking-wider text-[#111111] mb-1">
-                        Email Address (Optional)
-                      </label>
-                      <input
-                        type="email"
-                        placeholder="e.g. karthik@example.com"
-                        value={clientEmail}
-                        onChange={(e) => setClientEmail(e.target.value)}
-                        className="w-full px-3.5 py-2.5 border-2 border-[#111111] focus:border-[#EA580C] focus:outline-none font-medium"
-                      />
-                    </div>
-                  </div>
-
-                  {/* Summary of What's Included */}
-                  <div className="p-3 bg-[#F5F5F5] text-[11px] text-[#555555] space-y-1">
-                    <p className="font-bold text-[#111111] uppercase tracking-wider">
-                      Specification Sheet Includes:
-                    </p>
-                    <p>
-                      Line-by-line BOQ for all 9 areas (Project Management, Structure, Bath, Flooring, Kitchen, Doors/Windows, Painting, Electrical, Exclusions) with material brands &amp; 10-year warranty certificate.
-                    </p>
-                  </div>
-
-                  {/* Action Buttons */}
-                  <div className="space-y-2 pt-2">
-                    <a
-                      href={getWhatsAppUrlForPackage(selectedPackage, builtUpArea)}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="w-full py-3.5 bg-[#25D366] text-white hover:bg-[#1EBE5D] font-bold text-xs uppercase tracking-widest flex items-center justify-center gap-2 transition-colors shadow-sm"
-                    >
-                      <MessageSquare className="w-4 h-4" />
-                      <span>Receive Full BOQ on WhatsApp &rarr;</span>
-                    </a>
-
-                    <button
-                      type="submit"
-                      className="w-full py-3.5 bg-[#111111] text-white hover:bg-[#EA580C] hover:text-[#111111] font-bold text-xs uppercase tracking-widest flex items-center justify-center gap-2 transition-colors"
-                    >
-                      <Download className="w-4 h-4" />
-                      <span>Request Detailed Specification Callback</span>
-                    </button>
-                  </div>
-                </form>
-              )}
+            <div className="p-3 sm:p-6 space-y-6">
+              <p className="text-sm leading-relaxed text-ink-muted">
+                Request the detailed specification for <strong>{selectedPackage.name}</strong>.
+                Include the package name, plot location and approximate built-up area in your message.
+              </p>
+              <EnquiryForm />
             </div>
           </div>
-        </div>
+        </Modal>
       )}
     </section>
   );

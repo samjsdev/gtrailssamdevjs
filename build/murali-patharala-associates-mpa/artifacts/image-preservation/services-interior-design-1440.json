@@ -1,0 +1,331 @@
+{
+  "route": "/services/interior-design/",
+  "width": 1440,
+  "title": "Interior Design in Chennai | Murali Patharala & Associates",
+  "images": [
+    {
+      "src": "/mpa-3d-logo-small.webp",
+      "alt": "",
+      "loaded": true,
+      "naturalWidth": 128,
+      "naturalHeight": 128,
+      "displayWidth": 46,
+      "displayHeight": 46,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/murali-patharala-associates-assets/interior_renders/WhatsApp Image 2026-09-23 at 16.42.59 (3).webp",
+      "alt": "Bespoke double-height residential interior designed by Ar. Murali Patharala",
+      "loaded": true,
+      "naturalWidth": 1600,
+      "naturalHeight": 1067,
+      "displayWidth": 1440,
+      "displayHeight": 640,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.33.webp",
+      "alt": "Completed luxury modular kitchen with backlit onyx wall and custom cabinetry",
+      "loaded": true,
+      "naturalWidth": 1041,
+      "naturalHeight": 692,
+      "displayWidth": 409,
+      "displayHeight": 254,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/murali-patharala-associates-assets/interior_renders/WhatsApp Image 2026-09-23 at 16.22.23 (5).webp",
+      "alt": "Designed living room media wall with integrated storage",
+      "loaded": true,
+      "naturalWidth": 1600,
+      "naturalHeight": 900,
+      "displayWidth": 409,
+      "displayHeight": 254,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/murali-patharala-associates-assets/interior_renders/WhatsApp Image 2026-09-23 at 16.42.59 (4).webp",
+      "alt": "Living space with backlit onyx elevator cladding, TV console, and false ceiling lighting",
+      "loaded": true,
+      "naturalWidth": 1600,
+      "naturalHeight": 1067,
+      "displayWidth": 409,
+      "displayHeight": 254,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/murali-patharala-associates-assets/interior_renders/WhatsApp Image 2026-09-23 at 16.22.24 (4).webp",
+      "alt": "Brief & Space Planning",
+      "loaded": true,
+      "naturalWidth": 1600,
+      "naturalHeight": 900,
+      "displayWidth": 409,
+      "displayHeight": 254,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/murali-patharala-associates-assets/interior_renders/WhatsApp Image 2026-09-23 at 16.42.59.webp",
+      "alt": "Concept Development",
+      "loaded": true,
+      "naturalWidth": 1600,
+      "naturalHeight": 1067,
+      "displayWidth": 409,
+      "displayHeight": 254,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/murali-patharala-associates-assets/interior_renders/WhatsApp Image 2026-09-23 at 16.42.59 (4).webp",
+      "alt": "Materials & Finishes",
+      "loaded": true,
+      "naturalWidth": 1600,
+      "naturalHeight": 1067,
+      "displayWidth": 409,
+      "displayHeight": 254,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/murali-patharala-associates-assets/interior_renders/WhatsApp Image 2026-09-23 at 16.22.23 (5).webp",
+      "alt": "Interior Drawings",
+      "loaded": true,
+      "naturalWidth": 1600,
+      "naturalHeight": 900,
+      "displayWidth": 409,
+      "displayHeight": 254,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/murali-patharala-associates-assets/interior_renders/WhatsApp Image 2026-09-23 at 16.22.24 (2).webp",
+      "alt": "Service Integration",
+      "loaded": true,
+      "naturalWidth": 1600,
+      "naturalHeight": 900,
+      "displayWidth": 409,
+      "displayHeight": 254,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/murali-patharala-associates-assets/interior_renders/WhatsApp Image 2026-09-23 at 16.42.57 (7).webp",
+      "alt": "Fit-out Coordination",
+      "loaded": true,
+      "naturalWidth": 1600,
+      "naturalHeight": 1067,
+      "displayWidth": 409,
+      "displayHeight": 254,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/murali-patharala-associates-assets/interior_renders/WhatsApp Image 2026-09-23 at 16.42.58.webp",
+      "alt": "Understand the Space",
+      "loaded": true,
+      "naturalWidth": 1000,
+      "naturalHeight": 667,
+      "displayWidth": 180,
+      "displayHeight": 113,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/murali-patharala-associates-assets/interior_renders/WhatsApp Image 2026-09-23 at 16.42.59 (1).webp",
+      "alt": "Explore the Concept",
+      "loaded": true,
+      "naturalWidth": 1600,
+      "naturalHeight": 900,
+      "displayWidth": 180,
+      "displayHeight": 113,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/murali-patharala-associates-assets/interior_renders/WhatsApp Image 2026-09-23 at 16.22.24 (2).webp",
+      "alt": "Develop the Design",
+      "loaded": true,
+      "naturalWidth": 1600,
+      "naturalHeight": 900,
+      "displayWidth": 180,
+      "displayHeight": 113,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/murali-patharala-associates-assets/interior_renders/WhatsApp Image 2026-09-23 at 16.42.59 (4).webp",
+      "alt": "Prepare the Information",
+      "loaded": true,
+      "naturalWidth": 1600,
+      "naturalHeight": 1067,
+      "displayWidth": 180,
+      "displayHeight": 113,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/murali-patharala-associates-assets/interior_renders/WhatsApp Image 2026-09-23 at 16.42.59.webp",
+      "alt": "Coordinate Execution",
+      "loaded": true,
+      "naturalWidth": 1600,
+      "naturalHeight": 1067,
+      "displayWidth": 180,
+      "displayHeight": 113,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/murali-patharala-associates-assets/interior_renders/WhatsApp Image 2026-09-23 at 16.42.59 (3).webp",
+      "alt": "Double-height luxury living hall with curved marble staircase, internal courtyard, and onyx wall designed by Ar. Murali Patharala",
+      "loaded": true,
+      "naturalWidth": 1600,
+      "naturalHeight": 1067,
+      "displayWidth": 736,
+      "displayHeight": 556,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.33.webp",
+      "alt": "Completed open luxury modular kitchen and dining space with backlit onyx wall and custom cabinetry",
+      "loaded": true,
+      "naturalWidth": 1041,
+      "naturalHeight": 692,
+      "displayWidth": 520,
+      "displayHeight": 268,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/murali-patharala-associates-assets/interior_renders/WhatsApp Image 2026-09-23 at 16.42.59 (1).webp",
+      "alt": "Contemporary kitchen with polished Italian marble floor, breakfast island, and dark stone walls by Ar. Murali Patharala",
+      "loaded": true,
+      "naturalWidth": 1600,
+      "naturalHeight": 900,
+      "displayWidth": 520,
+      "displayHeight": 268,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/images/architecture/hero-villa-twilight.webp",
+      "alt": "",
+      "loaded": true,
+      "naturalWidth": 1376,
+      "naturalHeight": 768,
+      "displayWidth": 1440,
+      "displayHeight": 723,
+      "fit": "cover",
+      "hidden": false
+    },
+    {
+      "src": "/mpa-3d-logo-small.webp",
+      "alt": "",
+      "loaded": true,
+      "naturalWidth": 128,
+      "naturalHeight": 128,
+      "displayWidth": 44,
+      "displayHeight": 44,
+      "fit": "fill",
+      "hidden": false
+    }
+  ],
+  "backgrounds": [
+    "/images/drawings/architectural-master-plan.svg",
+    "/images/drawings/architectural-structural-lines.svg"
+  ],
+  "decoded": [
+    {
+      "src": "/mpa-3d-logo-small.webp",
+      "ok": true,
+      "width": 128,
+      "height": 128
+    },
+    {
+      "src": "/murali-patharala-associates-assets/interior_renders/WhatsApp Image 2026-09-23 at 16.42.59 (3).webp",
+      "ok": true,
+      "width": 1600,
+      "height": 1067
+    },
+    {
+      "src": "/murali-patharala-associates-assets/portfolio_showcase/WhatsApp Image 2026-09-23 at 17.34.33.webp",
+      "ok": true,
+      "width": 1041,
+      "height": 692
+    },
+    {
+      "src": "/murali-patharala-associates-assets/interior_renders/WhatsApp Image 2026-09-23 at 16.22.23 (5).webp",
+      "ok": true,
+      "width": 1600,
+      "height": 900
+    },
+    {
+      "src": "/murali-patharala-associates-assets/interior_renders/WhatsApp Image 2026-09-23 at 16.42.59 (4).webp",
+      "ok": true,
+      "width": 1600,
+      "height": 1067
+    },
+    {
+      "src": "/murali-patharala-associates-assets/interior_renders/WhatsApp Image 2026-09-23 at 16.22.24 (4).webp",
+      "ok": true,
+      "width": 1600,
+      "height": 900
+    },
+    {
+      "src": "/murali-patharala-associates-assets/interior_renders/WhatsApp Image 2026-09-23 at 16.42.59.webp",
+      "ok": true,
+      "width": 1600,
+      "height": 1067
+    },
+    {
+      "src": "/murali-patharala-associates-assets/interior_renders/WhatsApp Image 2026-09-23 at 16.22.24 (2).webp",
+      "ok": true,
+      "width": 1600,
+      "height": 900
+    },
+    {
+      "src": "/murali-patharala-associates-assets/interior_renders/WhatsApp Image 2026-09-23 at 16.42.57 (7).webp",
+      "ok": true,
+      "width": 1600,
+      "height": 1067
+    },
+    {
+      "src": "/murali-patharala-associates-assets/interior_renders/WhatsApp Image 2026-09-23 at 16.42.58.webp",
+      "ok": true,
+      "width": 1000,
+      "height": 667
+    },
+    {
+      "src": "/murali-patharala-associates-assets/interior_renders/WhatsApp Image 2026-09-23 at 16.42.59 (1).webp",
+      "ok": true,
+      "width": 1600,
+      "height": 900
+    },
+    {
+      "src": "/images/architecture/hero-villa-twilight.webp",
+      "ok": true,
+      "width": 1376,
+      "height": 768
+    },
+    {
+      "src": "/images/drawings/architectural-master-plan.svg",
+      "ok": true,
+      "width": 233,
+      "height": 150
+    },
+    {
+      "src": "/images/drawings/architectural-structural-lines.svg",
+      "ok": true,
+      "width": 300,
+      "height": 150
+    }
+  ],
+  "overflow": 0,
+  "galleryCards": [],
+  "backgroundRepairRechecked": true
+}
