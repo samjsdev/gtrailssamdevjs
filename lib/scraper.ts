@@ -128,7 +128,7 @@ function promoteGooglePhotoUrl(url: string): string {
     if (url.includes('?')) return url;
 
     // Clean size parameters in the path if any (e.g. /w100-h100/ or /s16-c/)
-    let clean = url
+    const clean = url
         .replace(/\/w\d+-h\d+(-[a-z0-9-]+)?\//gi, '/')
         .replace(/\/s\d+(-[a-z0-9-]+)?\//gi, '/');
 
