@@ -2,6 +2,12 @@ import {
   DEFAULT_ARCHITECTURE_SERVICES,
   DEFAULT_ARCHITECTURE_HIGHLIGHTS,
 } from './architectureContent';
+import {
+  isNicheLockedList,
+  isNicheSpecialization,
+  isNicheTagline,
+  plainIfNiche,
+} from './niches';
 
 /**
  * Cleans a business name by removing trailing spaces, pipes, and SEO suffixes.
@@ -27,6 +33,8 @@ export function cleanClinicName(name: string): string {
  * E.g., "Welcome to SKETCHLAB | Interior Designers... We create refined..." -> "We create refined..."
  */
 export function cleanClinicDescription(description: string, name: string): string {
+  const nicheDescription = plainIfNiche(description);
+  if (nicheDescription) return nicheDescription;
   if (!description) return "";
   
   let cleaned = description.trim();
@@ -71,6 +79,9 @@ export function cleanArchitectureTagline(
   tagline: string | undefined,
   defaultTagline = 'Thoughtful Architecture for Everyday Living'
 ): string {
+  const nicheTagline = plainIfNiche(tagline);
+  if (nicheTagline) return nicheTagline;
+  if (tagline && isNicheTagline(tagline)) return tagline.trim();
   if (!tagline) return defaultTagline;
   const lower = tagline.toLowerCase();
   if (
@@ -99,6 +110,8 @@ export function cleanArchitectureDescription(
   const fallback =
     defaultDesc ||
     `We design and build refined, functional villas, residential homes, and commercial spaces tailored to your plot, budget, and lifestyle.`;
+  const nicheDescription = plainIfNiche(description);
+  if (nicheDescription) return nicheDescription;
   if (!description) return fallback;
 
   const cleaned = cleanClinicDescription(description, name);
@@ -128,6 +141,7 @@ export function cleanArchitectureServices(
   services: string[] | undefined,
   defaultServices: string[] = DEFAULT_ARCHITECTURE_SERVICES
 ): string[] {
+  if (isNicheLockedList(services) && services) return services;
   if (!services || services.length === 0) return defaultServices;
 
   const isInterior = (s: string) =>
@@ -149,6 +163,7 @@ export function cleanArchitectureHighlights(
   highlights: string[] | undefined,
   defaultHighlights: string[] = DEFAULT_ARCHITECTURE_HIGHLIGHTS
 ): string[] {
+  if (isNicheLockedList(highlights) && highlights) return highlights;
   if (!highlights || highlights.length === 0) return defaultHighlights;
 
   const isInterior = (h: string) =>
@@ -169,6 +184,9 @@ export function cleanArchitectureSpecialization(
   specialization: string | undefined,
   defaultSpec = 'Architecture & Turnkey Construction'
 ): string {
+  const nicheSpecialization = plainIfNiche(specialization);
+  if (nicheSpecialization) return nicheSpecialization;
+  if (specialization && isNicheSpecialization(specialization)) return specialization.trim();
   if (!specialization) return defaultSpec;
   if (/interior|decor|furnish/i.test(specialization)) {
     return defaultSpec;

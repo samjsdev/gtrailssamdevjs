@@ -10,10 +10,10 @@ export default function WorkCycleSection({ sourcePage = 'about', sectionIndex = 
 
   const defaultImages = [
     '/images/stock/c093e1b3.webp',
-    '/images/stock/d2cd7311.webp',
+    '/images/stock/interior-concept-design.webp',
     '/images/stock/68b39046.webp',
     '/images/stock/ddc829e8.webp',
-    '/images/stock/75c40d2b.webp',
+    '/images/stock/interior-craftsmanship.webp',
     '/images/stock/463ea892.webp'
   ];
 

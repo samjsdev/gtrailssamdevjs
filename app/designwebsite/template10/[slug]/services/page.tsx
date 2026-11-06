@@ -50,7 +50,7 @@ const DETAILED_SERVICES = [
     tagline: 'Reinforced Concrete Framing & Complete Engineering Execution',
     description:
       'Zero budget overruns. Guaranteed handover milestones. We provide turnkey civil construction using high-grade primary steel (Tata Tiscon Fe550D) and UltraTech cement. Every stage is overseen daily by resident licensed civil engineers.',
-    image: '/images/architecture/structural-construction-frame.webp',
+    image: '/images/architecture/space-planning-atrium.webp',
     deliverables: [
       'IS-456 Structural Concrete Footings, Plinth & Slab Castings',
       'Engineered Plinth Elevation (3 to 4 ft above road) for Flood Safety',
@@ -110,7 +110,7 @@ const DETAILED_SERVICES = [
     tagline: 'Computerized STAAD.Pro Calculations & Soil-Tested Piles',
     description:
       'Engineered for maximum seismic and coastal resilience. We conduct rigorous plot soil testing before designing foundations — deep bored RCC piles for clayey or water-heavy plots, and reinforced raft footings for coastal sands.',
-    image: '/images/architecture/staad-structural-engineering.webp',
+    image: '/images/architecture/custom-furniture-joinery.webp',
     deliverables: [
       'Soil Stratum Investigation & Foundation Selection Report',
       'STAAD.Pro 3D Structural Load Calculations & Shear Wall Detailing',
@@ -130,7 +130,7 @@ const DETAILED_SERVICES = [
     tagline: 'Expedited Online Single-Window Approval Management',
     description:
       'Navigating government regulatory frameworks without delay or uncertainty. We verify road width alignments, maximize legitimate FSI, prepare compliant sanction drawings, and secure your official building permit.',
-    image: '/images/architecture/cmda-sanction-drafting.webp',
+    image: '/images/architecture/architectural-blueprint-draft.webp',
     deliverables: [
       'Development Control Rules (DCR) Compliance & FSI Analysis',
       'Complete CMDA / DTCP / Corporation Sanction Drawing Sets',

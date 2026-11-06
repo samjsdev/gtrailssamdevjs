@@ -1,0 +1,90 @@
+{
+  "clinic": {
+    "name": "Success Construction",
+    "slug": "success-construction",
+    "tagline": "Real Estate Builders & Construction in Toronto & GTA",
+    "description": "Success Construction is a premier builder and general contractor based in Scarborough, Ontario. Specializing in residential development, custom home building, home renovations, and basement finishing built to Canadian National Building Code standards.",
+    "address": {
+      "full": "36 Panda Square, Scarborough, ON M1B 6G5, Canada",
+      "area": "Scarborough",
+      "city": "Scarborough",
+      "state": "Ontario",
+      "country": "Canada",
+      "postalCode": "M1B 6G5"
+    },
+    "contact": {
+      "phone": "+1 647-342-2979",
+      "website": "https://successconstruction.ca",
+      "googleMapsUrl": "https://www.google.com/maps/place/Success+Construction/data=!4m7!3m6!1s0x89d4dbb1ab7ed681:0xac84a58d0dbefe17!8m2!3d43.8079553!4d-79.1838407!16s%2Fg%2F11mv1k4bhj!19sChIJgdZ-q7Hb1IkRF_6-DY2lhKw"
+    },
+    "mapEmbedUrl": "https://maps.google.com/maps?q=43.8079553,-79.1838407&hl=en&z=15&output=embed"
+  },
+  "business": {
+    "rating": "5.0",
+    "reviewCount": "64",
+    "timings": [
+      "Monday: 9:30 AM – 5:00 PM",
+      "Tuesday: 9:30 AM – 5:00 PM",
+      "Wednesday: 9:30 AM – 5:00 PM",
+      "Thursday: 9:30 AM – 5:00 PM",
+      "Friday: 9:30 AM – 5:00 PM",
+      "Saturday: 8:30 AM – 8:00 PM",
+      "Sunday: 9:30 AM – 5:00 PM"
+    ],
+    "services": [
+      "General Contracting",
+      "Residential Building & Development",
+      "Whole-Home Renovations",
+      "Basement Finishing & Second Suites",
+      "Kitchen & Bathroom Remodeling",
+      "Structural Alterations & Additions"
+    ],
+    "highlights": [
+      "Building Code & City Permits",
+      "High R-Value Thermal Envelope",
+      "One contract for the build",
+      "Licensed & Insured Trade Execution"
+    ]
+  },
+  "doctor": {
+    "name": "Manju & Success Construction Team",
+    "images": [],
+    "experience": "10+ years",
+    "specialization": "Real Estate Builders & General Contracting"
+  },
+  "niches": [
+    "general-construction"
+  ],
+  "subNiches": [
+    "real-estate-builders"
+  ],
+  "regions": [
+    "canada"
+  ],
+  "reviews": [
+    {
+      "author": "Yashsvi Shah",
+      "rating": 5,
+      "text": "We had an emergency with our bathroom leaking, and he came to inspect it and helped us right away. He has great plumbing and renovation knowledge and gave us the best advice on what would work for our needs. Very professional and helpful. Definitely recommend his service!"
+    },
+    {
+      "author": "Sandy Raj",
+      "rating": 5,
+      "text": "When he fixed my kitchen, that was the very first time I met Manju, referred by a friend of mine. I was so impressed with his workmanship, transparent pricing, and timely completion. Highly recommend Success Construction."
+    },
+    {
+      "author": "Naveen Kumar",
+      "rating": 5,
+      "text": "The owner of the company has good knowledge and experience in home building, basement renovation, and structural work. Very good service, highly professional, skilled and great in solving issues."
+    },
+    {
+      "author": "Gurpreet Singh",
+      "rating": 5,
+      "text": "I highly recommend this team. Quality of work is one of the greatest, pricing is honest and transparent. Completed our project on schedule."
+    }
+  ],
+  "meta": {
+    "generatedAt": "2026-11-05T18:05:00.000Z",
+    "source": "google-maps-intake"
+  }
+}

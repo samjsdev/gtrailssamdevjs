@@ -17,8 +17,8 @@ export default function BeforeAfter({ image, beforeImage, afterImage, caption }:
   const hasAnimated = useRef(false);
   const userInteracted = useRef(false);
 
-  const beforeSrc = beforeImage || image || '/images/architecture/villa-before-frame.webp';
-  const afterSrc = afterImage || image || '/images/architecture/villa-after-finished.webp';
+  const beforeSrc = beforeImage || image || '/images/architecture/interior-before-bare-shell.webp';
+  const afterSrc = afterImage || image || '/images/architecture/interior-after-luxury-styled.webp';
 
   const triggerSweep = useCallback(() => {
     if (hasAnimated.current || userInteracted.current) return;
@@ -107,27 +107,27 @@ export default function BeforeAfter({ image, beforeImage, afterImage, caption }:
         className="relative overflow-hidden rounded-[24px] sm:rounded-[28px] aspect-[16/10] sm:aspect-[16/9.5] shadow-[0_30px_70px_rgba(33,26,19,0.3)] select-none border border-[#a58150]/30 bg-[#211a13]"
         onPointerDown={handlePointerDown}
       >
-        {/* Before: Raw Structure (Underneath) */}
+        {/* Before: Raw Bare Shell Interior (Underneath) */}
         <img
           src={beforeSrc}
-          alt="Raw structural RCC frame"
+          alt="Bare shell interior space before transformation"
           className="absolute inset-0 w-full h-full object-cover pointer-events-none"
         />
 
-        {/* After: Completed Landmark (Clipped from left at pos%) */}
+        {/* After: Completed Luxury Interior (Clipped from left at pos%) */}
         <img
           src={afterSrc}
-          alt="Completed architectural residence"
+          alt="Completed luxury interior design"
           className="absolute inset-0 w-full h-full object-cover pointer-events-none"
           style={{ clipPath: `inset(0 0 0 ${pos}%)` }}
         />
 
         {/* Badges */}
         <span className="absolute top-3 sm:top-5 left-2 max-[379px]:left-3 sm:left-5 z-[3] text-[8.5px] max-[379px]:text-[7.5px] max-[379px]:tracking-[0.02em] max-[379px]:px-2 max-[379px]:py-1 sm:text-[11.5px] tracking-[0.12em] sm:tracking-[0.2em] uppercase px-2.5 sm:px-4 py-1.5 sm:py-2 bg-[#211a13]/85 text-white backdrop-blur-sm border border-white/10 rounded-full font-medium shadow-md pointer-events-none">
-          Topography &amp; Shell
+          Bare Shell Space
         </span>
         <span className="absolute top-3 sm:top-5 right-2 max-[379px]:right-3 sm:right-5 z-[3] text-[8.5px] max-[379px]:text-[7.5px] max-[379px]:tracking-[0.02em] max-[379px]:px-2 max-[379px]:py-1 sm:text-[11.5px] tracking-[0.12em] sm:tracking-[0.2em] uppercase px-2.5 sm:px-4 py-1.5 sm:py-2 bg-[#a58150] text-white font-semibold rounded-full shadow-md pointer-events-none">
-          Completed Landmark
+          Curated Interior
         </span>
 
         {/* Divider line & handle */}

@@ -1,3 +1,5 @@
+import { getNicheServiceDetail } from './niches';
+
 export type ArchitectureServiceDetail = {
   iconKey: string;
   tagline: string;
@@ -478,6 +480,9 @@ function findArchitectureServiceKey(serviceName: string): string | null {
 }
 
 export function getArchitectureServiceData(serviceName: string): ArchitectureServiceDetail | null {
+  const nicheService = getNicheServiceDetail(serviceName);
+  if (nicheService) return nicheService;
+
   const serviceKey = findArchitectureServiceKey(serviceName);
   if (!serviceKey) return null;
 

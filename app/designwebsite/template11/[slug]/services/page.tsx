@@ -18,12 +18,12 @@ import FAQAccordion, { FAQItem } from '../FAQAccordion';
 type PageProps = { params: Promise<{ slug: string }> };
 
 const SERVICE_FALLBACK_IMAGES = [
-  '/images/architecture/villa-before-frame.webp',
+  '/images/architecture/living-room-double-height.webp',
   '/images/architecture/bim-3d-walkthrough.webp',
-  '/images/architecture/cmda-sanction-drafting.webp',
-  '/images/architecture/staad-structural-engineering.webp',
+  '/images/architecture/space-planning-atrium.webp',
+  '/images/architecture/custom-furniture-joinery.webp',
   '/images/architecture/courtyard-water-residence.webp',
-  '/images/architecture/structural-construction-frame.webp',
+  '/images/architecture/modular-kitchen-luxury.webp',
 ];
 
 const PACKAGES = [

@@ -70,7 +70,7 @@ export default async function Template10About({ params }: PageProps) {
 
   const studioImage = ARCHITECTURE_STOCK.about[0] || '/images/architecture/architectural-atelier-studio.webp';
   const principalImage = ARCHITECTURE_STOCK.people[0] || '/images/architecture/principal-architect.webp';
-  const engineeringImage = ARCHITECTURE_STOCK.construction[1] || '/images/architecture/staad-structural-engineering.webp';
+  const engineeringImage = ARCHITECTURE_STOCK.interiors[3] || '/images/architecture/custom-furniture-joinery.webp';
 
   return (
     <div className="bg-[#faf8f5]">

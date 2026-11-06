@@ -1,4 +1,5 @@
 import { readSourceConfig } from '@/lib/dataBuilder';
+import { faqsFromSite } from '@/lib/niches';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { Check, ShieldCheck, ArrowRight, Home, CheckCircle2 } from 'lucide-react';
@@ -128,7 +129,7 @@ export default async function Template12Home({ params }: PageProps) {
     img: projectImages[idx] || story.defaultImg,
   }));
 
-  const homeFaqs: FAQItem[] = [
+  const homeFaqs: FAQItem[] = faqsFromSite(data, [
     {
       q: `What makes ${cleanName || 'our team'} different from regular building contractors?`,
       a: 'We combine licensed architects with certified civil engineers under one company. This guarantees approved CMDA plans, realistic 3D designs, top-brand materials, and a legally binding 10-year structural warranty.',
@@ -154,7 +155,7 @@ export default async function Template12Home({ params }: PageProps) {
       a: 'Yes. Our civil engineers test the plot soil and design custom foundations—from deep concrete piles for clayey soil to solid footings for sandy soil.',
       tag: 'Engineering',
     },
-  ];
+  ]);
 
   const heroStats: HeroStat[] = [
     {

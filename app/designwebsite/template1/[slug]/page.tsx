@@ -3,8 +3,9 @@ import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import {
   ShieldCheck, FileText, Clock, BadgeCheck, CheckCircle2,
-  Sparkles, Layers, Hammer, Compass, Award, ArrowRight
+  Sparkles, Layers, Hammer, Compass, ArrowRight
 } from 'lucide-react';
+import { faqsFromSite, nicheNote } from '@/lib/niches';
 import { cleanClinicName, cleanClinicDescription } from '@/lib/copyCleaner';
 import {
   DEFAULT_INTERIOR_REVIEWS,
@@ -150,13 +151,13 @@ export default async function Template1Home({ params }: PageProps) {
   }));
 
   const whyChecks = [
-    { icon: ShieldCheck, title: highlights[0] || 'Personalized design concepts', desc: 'Every project starts from your daily lifestyle rituals — never a copy-paste catalogue look.' },
-    { icon: FileText, title: highlights[1] || 'Material and finish guidance', desc: 'Curated palettes, BWP marine plywood, and honest advisory on materials engineered to endure.' },
-    { icon: Clock, title: highlights[2] || 'Transparent project planning', desc: 'Itemised BOQ quotes and a strict 45-day handover schedule you can hold us accountable to.' },
-    { icon: BadgeCheck, title: highlights[3] || 'End-to-end execution support', desc: 'One accountable interior design team from the first sketch to final turnkey styling.' },
+    { icon: ShieldCheck, title: highlights[0] || 'Personalized design concepts', desc: nicheNote(data, 0, 'Every project starts from your daily lifestyle rituals — never a copy-paste catalogue look.') },
+    { icon: FileText, title: highlights[1] || 'Material and finish guidance', desc: nicheNote(data, 1, 'Curated palettes, BWP marine plywood, and honest advisory on materials engineered to endure.') },
+    { icon: Clock, title: highlights[2] || 'Transparent project planning', desc: nicheNote(data, 2, 'Itemised BOQ quotes and a strict 45-day handover schedule you can hold us accountable to.') },
+    { icon: BadgeCheck, title: highlights[3] || 'End-to-end execution support', desc: nicheNote(data, 3, 'One accountable interior design team from the first sketch to final turnkey styling.') },
   ];
 
-  const homeFaqs: FAQItem[] = [
+  const homeFaqs: FAQItem[] = faqsFromSite(data, [
     {
       q: `How does the design consultation with ${cleanName || 'your studio'} work?`,
       a: `Our initial 45-minute consultation is completely free. We review your floor plan, discuss your family's routines, design aesthetic preferences, and budget goals, and present you with spatial concepts and ballpark cost estimates.`,
@@ -182,7 +183,7 @@ export default async function Template1Home({ params }: PageProps) {
       a: `Every line item is clearly specified in our itemised Bill of Quantities (BOQ) before work begins. Once approved, your project price is frozen with our 0% Cost Escalation Guarantee.`,
       tag: 'Budget Guarantee',
     },
-  ];
+  ]);
 
   return (
     <div>
@@ -196,7 +197,7 @@ export default async function Template1Home({ params }: PageProps) {
 
           <div className="hero-content relative z-10 max-w-7xl mx-auto px-6 lg:px-7 pt-28 w-full">
             <span className="inline-flex items-center gap-3.5 text-[12.5px] tracking-[0.38em] uppercase text-[#c9ab7c] mb-6 before:content-[''] before:w-[52px] before:h-px before:bg-[#c9ab7c]">
-              Interior Architecture &amp; Turnkey Design — {city}
+              {data.siteCopy?.eyebrow || 'Interior Architecture & Turnkey Design'} — {city}
             </span>
             <h1 className="font-[family-name:var(--font-marcellus)] text-[clamp(42px,5.8vw,82px)] leading-[1.06] max-w-[780px]">
               {clinic.tagline || 'Uncompromising Quality In Every Detail'}
@@ -228,18 +229,16 @@ export default async function Template1Home({ params }: PageProps) {
       {/* TRUST ASSURANCE RIBBON */}
       <section className="bg-[#1b150f] text-[#c9ab7c] py-5 px-6 border-b border-[#a58150]/20">
         <StaggerReveal className="max-w-7xl mx-auto flex flex-wrap justify-around items-center gap-6 text-[12px] tracking-[0.2em] uppercase font-medium" stagger={0.08} yOffset={15}>
-          <span className="flex items-center gap-2.5">
-            <Award className="w-4 h-4 text-[#a58150]" /> 10-Year Structural Warranty
-          </span>
-          <span className="flex items-center gap-2.5">
-            <Clock className="w-4 h-4 text-[#a58150]" /> 45-Day Handover Guarantee
-          </span>
-          <span className="flex items-center gap-2.5">
-            <CheckCircle2 className="w-4 h-4 text-[#a58150]" /> 140+ Point Quality Audit
-          </span>
-          <span className="flex items-center gap-2.5">
-            <ShieldCheck className="w-4 h-4 text-[#a58150]" /> 0% Cost Overrun Guarantee
-          </span>
+          {(data.siteCopy?.trust?.length ? data.siteCopy.trust : [
+            '10-Year Structural Warranty',
+            '45-Day Handover Guarantee',
+            '140+ Point Quality Audit',
+            '0% Cost Overrun Guarantee',
+          ]).map((item) => (
+            <span key={item} className="flex items-center gap-2.5">
+              <CheckCircle2 className="w-4 h-4 text-[#a58150]" /> {item}
+            </span>
+          ))}
         </StaggerReveal>
       </section>
 

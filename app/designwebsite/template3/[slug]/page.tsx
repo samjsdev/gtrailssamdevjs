@@ -1,4 +1,5 @@
 import { readSourceConfig } from '@/lib/dataBuilder';
+import { faqsFromSite } from '@/lib/niches';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { ArrowRight, ClipboardCheck, ShieldCheck, Check, X, Clock, Sparkles, Layers } from 'lucide-react';
@@ -128,7 +129,7 @@ export default async function Template3Home({ params }: PageProps) {
     })
   );
 
-  const homeFaqs: FAQItem[] = [
+  const homeFaqs: FAQItem[] = faqsFromSite(data, [
     {
       q: `How does ${cleanName || 'your studio'} ensure on-time delivery?`,
       a: 'We manufacture modular components using automated factory machinery while site prep takes place. This parallel workflow enables us to guarantee 45-day handovers with zero contractor delays.',
@@ -149,7 +150,7 @@ export default async function Template3Home({ params }: PageProps) {
       a: 'You meet with a senior designer for 45 minutes to review your floor plan, explore style moodboards, and receive an instant transparent cost estimate.',
       tag: 'Consultation',
     },
-  ];
+  ]);
 
   const heroStats: HeroStat[] = [
     {

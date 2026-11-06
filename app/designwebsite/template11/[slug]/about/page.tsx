@@ -53,7 +53,7 @@ export default async function Template11About({ params }: PageProps) {
     '/images/architecture/principal-architect.webp';
   const craftImage =
     media.otherImages?.[4] ||
-    '/images/architecture/staad-structural-engineering.webp';
+    '/images/architecture/custom-furniture-joinery.webp';
 
   const TIMELINE = [
     {

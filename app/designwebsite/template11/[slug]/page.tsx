@@ -1,4 +1,5 @@
 import { readSourceConfig } from '@/lib/dataBuilder';
+import { faqsFromSite, nicheNote } from '@/lib/niches';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import {
@@ -39,10 +40,10 @@ type PageProps = {
 };
 
 const SERVICE_FALLBACK_IMAGES = [
-  '/images/architecture/villa-before-frame.webp',
+  '/images/architecture/interior-double-height.webp',
   '/images/architecture/bim-3d-walkthrough.webp',
-  '/images/architecture/cmda-sanction-drafting.webp',
-  '/images/architecture/staad-structural-engineering.webp',
+  '/images/architecture/space-planning-atrium.webp',
+  '/images/architecture/custom-furniture-joinery.webp',
 ];
 
 const PORTFOLIO_FALLBACK_IMAGES = [
@@ -106,8 +107,8 @@ export default async function Template11Home({ params }: PageProps) {
   const { clinic, doctor, business } = data;
 
   const media = previewMedia(data.media);
-  const baBefore = '/images/architecture/villa-before-frame.webp';
-  const baAfter = '/images/architecture/villa-after-finished.webp';
+  const baBefore = '/images/architecture/interior-before-bare-shell.webp';
+  const baAfter = '/images/architecture/interior-after-luxury-styled.webp';
 
   const cleanName = cleanClinicName(clinic.name);
   const city = clinic.address?.city || 'Chennai';
@@ -174,13 +175,13 @@ export default async function Template11Home({ params }: PageProps) {
   ];
 
   const whyChecks = [
-    { icon: ShieldCheck, title: highlights[0] || 'Licensed Architects & Civil Engineers', desc: 'Council of Architecture registered professionals managing your project from soil testing to key handover.' },
-    { icon: FileText, title: highlights[1] || '100% CMDA & Corporation Plan Approvals', desc: 'Fast building plan approvals adhering strictly to Chennai setback and road width rules.' },
-    { icon: Clock, title: highlights[2] || 'Tata Tiscon Steel & Grade-53 Cement', desc: 'Tested corrosion-resistant primary steel and certified ready-mix concrete with lab strength reports.' },
-    { icon: BadgeCheck, title: highlights[3] || '100% Vaastu & Smart Natural Ventilation', desc: 'Auspicious room placement with open courtyards that keep your home naturally cool in summer.' },
+    { icon: ShieldCheck, title: highlights[0] || 'Licensed Architects & Civil Engineers', desc: nicheNote(data, 0, 'Council of Architecture registered professionals managing your project from soil testing to key handover.') },
+    { icon: FileText, title: highlights[1] || '100% CMDA & Corporation Plan Approvals', desc: nicheNote(data, 1, 'Fast building plan approvals adhering strictly to Chennai setback and road width rules.') },
+    { icon: Clock, title: highlights[2] || 'Tata Tiscon Steel & Grade-53 Cement', desc: nicheNote(data, 2, 'Tested corrosion-resistant primary steel and certified ready-mix concrete with lab strength reports.') },
+    { icon: BadgeCheck, title: highlights[3] || '100% Vaastu & Smart Natural Ventilation', desc: nicheNote(data, 3, 'Auspicious room placement with open courtyards that keep your home naturally cool in summer.') },
   ];
 
-  const homeFaqs: FAQItem[] = [
+  const homeFaqs: FAQItem[] = faqsFromSite(data, [
     {
       q: `How does the architectural consultation work in ${city}?`,
       a: `Our initial consultation is held at our office or directly on your plot. We inspect your Patta and FMB sketch, review CMDA/DTCP rules, analyze plot orientation, and show you practical floor plan options.`,
@@ -206,7 +207,7 @@ export default async function Template11Home({ params }: PageProps) {
       a: `Every material—from Tata Tiscon 550D steel and UltraTech cement to plumbing and electricals—is clearly listed with fixed rates in a signed contract before starting work. We guarantee zero price increases on approved drawings.`,
       tag: 'Budget Guarantee',
     },
-  ];
+  ]);
 
   return (
     <div>
@@ -284,7 +285,7 @@ export default async function Template11Home({ params }: PageProps) {
             <BeforeAfter
               beforeImage={baBefore}
               afterImage={baAfter}
-              caption="Drag slider to compare raw structural RCC frame vs completed architectural landmark"
+              caption="Drag slider to compare raw bare shell space vs bespoke luxury interior styling"
             />
           </Reveal>
 

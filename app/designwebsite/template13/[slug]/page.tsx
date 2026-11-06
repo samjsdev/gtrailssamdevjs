@@ -1,4 +1,5 @@
 import { readSourceConfig } from '@/lib/dataBuilder';
+import { faqsFromSite } from '@/lib/niches';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { ArrowRight, ClipboardCheck, ShieldCheck, Check, X, Clock, Sparkles, Layers } from 'lucide-react';
@@ -138,7 +139,7 @@ export default async function Template13Home({ params }: PageProps) {
     })
   );
 
-  const homeFaqs: FAQItem[] = [
+  const homeFaqs: FAQItem[] = faqsFromSite(data, [
     {
       q: `How does ${cleanName || 'our atelier'} ensure 0% cost escalation on civil builds?`,
       a: 'We prepare a legally frozen Bill of Quantities (BOQ) covering structural RCC, rebar tonnage, double glazing, and masonry before breaking ground. We guarantee 0% cost escalation on approved blueprints.',
@@ -159,7 +160,7 @@ export default async function Template13Home({ params }: PageProps) {
       a: 'Our architects review your plot survey, calculate statutory FSI/FAR limits and setback rules, and present preliminary volumetric massing models.',
       tag: 'Consultation',
     },
-  ];
+  ]);
 
   const heroStats: HeroStat[] = [
     {

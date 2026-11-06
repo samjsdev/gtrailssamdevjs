@@ -28,6 +28,8 @@ const TEMPLATE_OPTIONS = [
 ];
 
 import { TEMPLATE_SCHEMAS, SHARED_PAGES } from './schemas';
+import { NICHES, buildNicheVoice } from '@/lib/niches';
+import NichePicker from './NichePicker';
 
 type SchemaPage = typeof SHARED_PAGES[number];
 type SchemaSection = SchemaPage['sections'][number];
@@ -974,6 +976,62 @@ export default function EditPage({ params }: { params: Promise<{ slug: string }>
             <span>{error}</span>
           </div>
         )}
+
+        <NichePicker
+          nicheIds={Array.isArray(data.niches) ? data.niches : []}
+          subNicheIds={Array.isArray(data.subNiches) ? data.subNiches : []}
+          regionIds={Array.isArray(data.regions) ? data.regions : []}
+          voice={buildNicheVoice(data.niches || [], data.subNiches || [], {
+            name: data.clinic?.name,
+            city: data.clinic?.address?.city,
+            regions: data.regions || [],
+          })}
+          onToggleRegion={(id) => {
+            setData((prev: any) => {
+              const current = new Set<string>(prev.regions || []);
+              if (current.has(id)) current.delete(id);
+              else current.add(id);
+              return {
+                ...prev,
+                regions: Array.from(current),
+              };
+            });
+          }}
+          onToggleNiche={(id) => {
+            setData((prev: any) => {
+              const current = new Set<string>(prev.niches || []);
+              const subs = new Set<string>(prev.subNiches || []);
+              const niche = NICHES.find((item) => item.id === id);
+              if (current.has(id)) {
+                current.delete(id);
+                niche?.subNiches.forEach((sub) => subs.delete(sub.id));
+              } else {
+                current.add(id);
+              }
+              return {
+                ...prev,
+                niches: NICHES.map((item) => item.id).filter((item) => current.has(item)),
+                subNiches: NICHES.flatMap((item) => item.subNiches.map((sub) => sub.id)).filter((item) => subs.has(item)),
+              };
+            });
+          }}
+          onToggleSub={(nicheId, subId) => {
+            setData((prev: any) => {
+              const current = new Set<string>(prev.niches || []);
+              const subs = new Set<string>(prev.subNiches || []);
+              if (subs.has(subId)) subs.delete(subId);
+              else {
+                subs.add(subId);
+                current.add(nicheId);
+              }
+              return {
+                ...prev,
+                niches: NICHES.map((item) => item.id).filter((item) => current.has(item)),
+                subNiches: NICHES.flatMap((item) => item.subNiches.map((sub) => sub.id)).filter((item) => subs.has(item)),
+              };
+            });
+          }}
+        />
 
         {/* ========================================================
             VISUAL BUSINESS TEMPLATE EDITOR

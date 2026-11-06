@@ -1,4 +1,5 @@
 import { readSourceConfig } from '@/lib/dataBuilder';
+import { faqsFromSite } from '@/lib/niches';
 import { notFound } from 'next/navigation';
 import { MapPin, Phone, Clock, Check, Sparkles, ShieldCheck } from 'lucide-react';
 import { cleanClinicName } from '@/lib/copyCleaner';
@@ -39,7 +40,7 @@ export default async function Template14Contact({ params }: PageProps) {
     media.otherImages?.[0] ||
     '/images/architecture/atelier-design-studio.webp';
 
-  const contactFaqs: FAQItem[] = ARCHITECTURE_FAQS.slice(0, 6).map((faq) => ({
+  const contactFaqs: FAQItem[] = faqsFromSite(data, ARCHITECTURE_FAQS).slice(0, 6).map((faq) => ({
     q: faq.q,
     a: faq.a,
     tag: 'Atelier FAQ',

@@ -350,16 +350,39 @@ export default nextConfig;
   await fs.mkdir(libDir, { recursive: true });
 
   // sourceData.ts (the standalone data reader)
-  await fs.copyFile(
+  let sourceDataTemplate = await fs.readFile(
     path.join(PROJECT_ROOT, 'scripts', 'templates', 'sourceData.ts'),
-    path.join(libDir, 'sourceData.ts')
+    'utf-8'
   );
+  sourceDataTemplate = sourceDataTemplate.replace(
+    "import { applyNicheOverlay } from '@/lib/nicheApply';",
+    "import { applyNicheOverlay } from './nicheApply';"
+  );
+  await fs.writeFile(path.join(libDir, 'sourceData.ts'), sourceDataTemplate, 'utf-8');
 
   // copyCleaner.ts (copied verbatim)
   await fs.copyFile(
     path.join(PROJECT_ROOT, 'lib', 'copyCleaner.ts'),
     path.join(libDir, 'copyCleaner.ts')
   );
+
+  for (const file of ['niches.ts', 'nicheLibrary.ts', 'nicheApply.ts', 'architectureContent.ts']) {
+    await fs.copyFile(
+      path.join(PROJECT_ROOT, 'lib', file),
+      path.join(libDir, file)
+    );
+  }
+
+  // Niche library plus the fallback photos those niches use before the folders are filled.
+  for (const folder of ['niches', 'stock', 'architecture']) {
+    const src = path.join(PROJECT_ROOT, 'public', 'images', folder);
+    const dest = path.join(buildDir, 'public', 'images', folder);
+    try {
+      await fs.cp(src, dest, { recursive: true });
+    } catch (err) {
+      console.warn(`  ⚠️ Could not copy public/images/${folder}: ${err.message}`);
+    }
+  }
 
   // interiorContent.ts - copy and rewrite Unsplash URLs to local paths
   let interiorContent = await fs.readFile(

@@ -1,4 +1,5 @@
 import { readSourceConfig } from '@/lib/dataBuilder';
+import { faqsFromSite } from '@/lib/niches';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { Check, ShieldCheck, ArrowRight, Home, CheckCircle2 } from 'lucide-react';
@@ -112,7 +113,7 @@ export default async function Template2Home({ params }: PageProps) {
     img: projectImages[idx] || ROOM_FALLBACK_IMAGES[(idx + 3) % ROOM_FALLBACK_IMAGES.length],
   }));
 
-  const homeFaqs: FAQItem[] = [
+  const homeFaqs: FAQItem[] = faqsFromSite(data, [
     {
       q: `What makes ${cleanName || 'our studio'} different from local carpenters?`,
       a: 'We combine professional interior architects with factory-precision CNC machinery. This guarantees exact millimeter joins, zero on-site cutting mess, guaranteed 45-day handovers, and an unconditional 10-year warranty.',
@@ -138,7 +139,7 @@ export default async function Template2Home({ params }: PageProps) {
       a: 'Yes. We build strict milestone calendars into our contract and provide weekly photo updates on WhatsApp so you always know the exact handover date.',
       tag: 'Timeline',
     },
-  ];
+  ]);
 
   const heroStats: HeroStat[] = [
     {

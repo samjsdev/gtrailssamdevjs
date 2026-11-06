@@ -18,12 +18,12 @@ interface BeforeAfterProps {
 }
 
 export default function BeforeAfter({
-  beforeImage = '/images/architecture/structural-construction-frame.webp',
-  afterImage = '/images/architecture/villa-after-finished.webp',
-  beforeLabel = 'RAW RCC REINFORCED FRAME',
-  afterLabel = 'DELIVERED TURNKEY MASTERPIECE',
-  title = 'From Structural Concrete to Haute Architecture',
-  subtitle = 'Drag the divider to observe how our rigorous engineering and IS-456 structural standards translate into sculptural permanence.',
+  beforeImage = '/images/architecture/interior-before-bare-shell.webp',
+  afterImage = '/images/architecture/interior-after-luxury-styled.webp',
+  beforeLabel = 'BARE SHELL INTERIOR',
+  afterLabel = 'CURATED LUXURY RESIDENCE',
+  title = 'From Bare Shell to Haute Interior',
+  subtitle = 'Drag the divider to observe how bespoke spatial planning, fine woodwork joinery, and ambient illumination transform an empty space into living art.',
 }: BeforeAfterProps) {
   const [sliderPos, setSliderPos] = useState(100); // starts on before image
   const containerRef = useRef<HTMLDivElement>(null);

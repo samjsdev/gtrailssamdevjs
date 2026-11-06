@@ -63,9 +63,9 @@ const DISCIPLINES: DisciplineItem[] = [
   {
     id: 'turnkey-execution',
     name: 'TURNKEY EXECUTION',
-    category: 'Civil Construction',
-    image: '/images/architecture/structural-construction-frame.webp',
-    description: 'Rigorous civil contracting from soil testing and bored pile foundations to final key handover with a 10-year warranty.',
+    category: 'Interior Fitout',
+    image: '/images/architecture/interior-double-height.webp',
+    description: 'End-to-end turnkey interior execution, acoustic ceiling paneling, bespoke joinery, and premium finishes delivered with meticulous precision.',
   },
 ];
 

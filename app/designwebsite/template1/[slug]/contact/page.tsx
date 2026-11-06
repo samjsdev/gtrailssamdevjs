@@ -1,4 +1,5 @@
 import { readSourceConfig } from '@/lib/dataBuilder';
+import { faqsFromSite } from '@/lib/niches';
 import { notFound } from 'next/navigation';
 import { MapPin, Phone, Clock, MessageCircle, CheckCircle2, ShieldCheck } from 'lucide-react';
 import { cleanClinicName } from '@/lib/copyCleaner';
@@ -57,7 +58,7 @@ export default async function Template1Contact({ params }: PageProps) {
     clinic.mapEmbedUrl ||
     `https://maps.google.com/maps?q=${encodeURIComponent((cleanName || '') + ' ' + address)}&output=embed`;
 
-  const contactFaqs: FAQItem[] = INTERIOR_FAQS.slice(0, 6).map((faq) => ({
+  const contactFaqs: FAQItem[] = faqsFromSite(data, INTERIOR_FAQS).slice(0, 6).map((faq) => ({
     q: faq.q,
     a: faq.a,
     tag: 'FAQ',

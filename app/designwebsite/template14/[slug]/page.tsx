@@ -1,4 +1,5 @@
 import { readSourceConfig } from '@/lib/dataBuilder';
+import { faqsFromSite } from '@/lib/niches';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { Clock, Users, Heart, ShieldCheck, ArrowRight, Sparkles, Compass, Layers } from 'lucide-react';
@@ -172,7 +173,7 @@ export default async function Template14Home({ params }: PageProps) {
     { title: 'Key Handover & 10-Year Warranty', desc: 'A completed dream home backed by our 10-year comprehensive structural warranty.' },
   ];
 
-  const homeFaqs: FAQItem[] = [
+  const homeFaqs: FAQItem[] = faqsFromSite(data, [
     {
       q: `How is ${cleanName || 'our atelier'} different from commercial contracting firms?`,
       a: 'We limit our active commissions each year so our principal architect and senior structural engineers personally oversee every foundation pour, curtain wall detail, and site milestone.',
@@ -193,7 +194,7 @@ export default async function Template14Home({ params }: PageProps) {
       a: 'Every project receives an exhaustive line-item Bill of Quantities (BOQ). Once approved, the budget is contractually locked with zero cost escalations.',
       tag: 'Price Guarantee',
     },
-  ];
+  ]);
 
   return (
     <div>

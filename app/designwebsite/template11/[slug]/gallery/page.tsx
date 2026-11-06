@@ -18,7 +18,7 @@ const GALLERY_FALLBACK = [
   '/images/architecture/porotherm-clay-facade.webp',
   '/images/architecture/monolithic-brutalist-facade.webp',
   '/images/architecture/villa-after-finished.webp',
-  '/images/architecture/structural-construction-frame.webp',
+  '/images/architecture/interior-double-height.webp',
   '/images/architecture/terrace-cool-roof.webp',
 ];
 

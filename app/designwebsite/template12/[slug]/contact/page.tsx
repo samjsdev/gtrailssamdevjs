@@ -1,4 +1,5 @@
 import { readSourceConfig } from '@/lib/dataBuilder';
+import { faqsFromSite } from '@/lib/niches';
 import { notFound } from 'next/navigation';
 import { MapPin, Phone, Clock, MessageCircle, Sparkles, CheckCircle2, ShieldCheck } from 'lucide-react';
 import { cleanClinicName } from '@/lib/copyCleaner';
@@ -60,7 +61,7 @@ export default async function Template12Contact({ params }: PageProps) {
     { icon: Clock, title: 'Office Hours', body: 'Mon – Sat: 9:30 AM – 7:00 PM', href: null },
   ];
 
-  const contactFaqs: FAQItem[] = ARCHITECTURE_FAQS.slice(0, 6).map((faq) => ({
+  const contactFaqs: FAQItem[] = faqsFromSite(data, ARCHITECTURE_FAQS).slice(0, 6).map((faq) => ({
     q: faq.q,
     a: faq.a,
     tag: 'Bylaws & Build',

@@ -1,4 +1,5 @@
 import { readSourceConfig } from '@/lib/dataBuilder';
+import { faqsFromSite } from '@/lib/niches';
 import { notFound } from 'next/navigation';
 import { MapPin, Phone, Clock, MessageCircle, Star, ShieldCheck, CheckCircle2 } from 'lucide-react';
 import { cleanClinicName } from '@/lib/copyCleaner';
@@ -50,7 +51,7 @@ export default async function Template13Contact({ params }: PageProps) {
       : []),
   ];
 
-  const contactFaqs: FAQItem[] = ARCHITECTURE_FAQS.slice(0, 6).map((faq) => ({
+  const contactFaqs: FAQItem[] = faqsFromSite(data, ARCHITECTURE_FAQS).slice(0, 6).map((faq) => ({
     q: faq.q,
     a: faq.a,
     tag: 'Sanctions & Civil',

@@ -4,6 +4,7 @@
  */
 import fs from 'fs/promises';
 import path from 'path';
+import { applyNicheOverlay } from '@/lib/nicheApply';
 
 export interface GeneratedData {
   clinic: any;
@@ -43,11 +44,11 @@ export async function readSourceConfig(slug?: string, template?: string): Promis
     if (baseData && template) {
       const overrides = (baseData as any).templateOverrides?.[template];
       if (overrides) {
-        return deepMerge(baseData, overrides) as GeneratedData;
+        baseData = deepMerge(baseData, overrides) as GeneratedData;
       }
     }
 
-    return baseData;
+    return applyNicheOverlay(baseData);
   } catch (error) {
     console.error('Failed to read source.json:', error);
     return null;

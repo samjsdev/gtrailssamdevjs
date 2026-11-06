@@ -1,3 +1,5 @@
+import { getNicheServiceDetail } from './niches';
+
 export type InteriorServiceDetail = {
   iconKey: string;
   tagline: string;
@@ -68,10 +70,10 @@ export const INTERIOR_STOCK = {
   ],
   themes: [
     '/images/stock/c093e1b3.webp',
-    '/images/stock/d2cd7311.webp',
+    '/images/stock/interior-concept-design.webp',
     '/images/stock/68b39046.webp',
     '/images/stock/ddc829e8.webp',
-    '/images/stock/75c40d2b.webp',
+    '/images/stock/interior-craftsmanship.webp',
   ],
   about: [
     '/images/stock/a9daeddb.webp',
@@ -558,6 +560,9 @@ function findInteriorServiceKey(serviceName: string): string | null {
 }
 
 export function getInteriorServiceData(serviceName: string): InteriorServiceDetail | null {
+  const nicheService = getNicheServiceDetail(serviceName);
+  if (nicheService) return nicheService;
+
   const serviceKey = findInteriorServiceKey(serviceName);
   if (!serviceKey) return null;
 

@@ -6,6 +6,7 @@ import {
   DEFAULT_INTERIOR_SERVICES,
   previewMedia,
 } from '@/lib/interiorContent';
+import { applyNicheOverlay } from '@/lib/nicheApply';
 import crypto from 'crypto';
 
 /** Lazy Appwrite import — template previews that hit local JSON never load the DB client. */
@@ -28,6 +29,18 @@ export interface GeneratedData {
   philosophy?: any;
   templateOverrides?: any;
   selected_template?: string;
+  niches?: string[];
+  subNiches?: string[];
+  regions?: string[];
+  siteCopy?: {
+    eyebrow?: string;
+    tagline?: string;
+    description?: string;
+    trust?: string[];
+    highlightNotes?: string[];
+    faqs?: { q: string; a: string; tag?: string }[];
+    services?: string[];
+  };
 }
 
 export function getDocId(slug: string): string {
@@ -300,7 +313,7 @@ async function readSourceConfigUncached(slug: string, template?: string): Promis
     };
   }
 
-  return result;
+  return applyNicheOverlay(result);
 }
 
 /** Request-deduped reader — layout + page share one load. */

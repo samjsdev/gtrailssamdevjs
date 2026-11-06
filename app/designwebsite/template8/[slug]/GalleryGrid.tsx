@@ -18,7 +18,7 @@ export default function GalleryGrid() {
     '/images/stock/a8927807.webp',
     '/images/stock/65d3ec82.webp',
     '/images/stock/68b39046.webp',
-    '/images/stock/d2cd7311.webp',
+    '/images/stock/interior-luxury-dining.webp',
     '/images/stock/c093e1b3.webp'
   ];
 

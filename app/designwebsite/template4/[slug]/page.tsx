@@ -1,4 +1,5 @@
 import { readSourceConfig } from '@/lib/dataBuilder';
+import { faqsFromSite } from '@/lib/niches';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { Clock, Users, Heart, ShieldCheck, ArrowRight, Sparkles, Compass, Layers } from 'lucide-react';
@@ -165,7 +166,7 @@ export default async function Template4Home({ params }: PageProps) {
     { title: 'Move In, Smiling', desc: 'A styled, deep-cleaned, turnkey home backed by a 10-year warranty certificate.' },
   ];
 
-  const homeFaqs: FAQItem[] = [
+  const homeFaqs: FAQItem[] = faqsFromSite(data, [
     {
       q: `How is ${cleanName || 'our atelier'} different from commercial interior firms?`,
       a: 'We limit our active commissions each month so our principal designer personally oversees every joinery drawing, material selection, and site milestone.',
@@ -186,7 +187,7 @@ export default async function Template4Home({ params }: PageProps) {
       a: 'Every project receives an exhaustive line-item Bill of Quantities. Once approved, the budget is locked with zero mid-project escalations.',
       tag: 'Price Guarantee',
     },
-  ];
+  ]);
 
   return (
     <div>
