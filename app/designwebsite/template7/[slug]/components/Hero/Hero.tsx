@@ -52,9 +52,17 @@ export default function Hero() {
   const watermarkText = data?.clinic?.name || 'Interior Design Studio';
   const ctaText = data?.hero?.ctaText || 'Consult Now';
 
-  // Read images from data.media.clinicImages or fallback to stock
-  const dataImages = data?.media?.clinicImages?.filter(Boolean) || [];
-  const heroImages = dataImages.length >= 5 ? dataImages.slice(0, 5) : INITIAL_IMAGES;
+  // Pool all available client and niche images without duplicates
+  const candidateImages = Array.from(new Set([
+    ...(data?.media?.clinicImages || []),
+    ...(data?.media?.treatmentImages || []),
+    ...(data?.media?.otherImages || []),
+  ].filter(Boolean)));
+
+  // If candidate images exist, cycle through them so all 5 cards display relevant project imagery
+  const heroImages = candidateImages.length > 0
+    ? Array.from({ length: 5 }, (_, i) => candidateImages[i % candidateImages.length])
+    : INITIAL_IMAGES;
 
   useGSAP(() => {
 

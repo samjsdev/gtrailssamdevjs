@@ -15,23 +15,13 @@ async function listSlot(nicheId: string, slot: Slot, regionIds: string[] = []): 
   const root = libraryRoot();
   const results: string[] = [];
 
-  // 1. Regional specific images if regions are checked
+  // 1. Regional specific images for this specific niche
   for (const reg of regionIds) {
-    // Check niche-level region directory: public/images/niches/[nicheId]/[slot]/[reg]/
     try {
       const nicheRegDir = path.join(root, nicheId, slot, reg);
       const entries = await fs.readdir(nicheRegDir);
       for (const name of entries.filter((n) => IMAGE_EXT.test(n) && !n.startsWith('.')).sort((a, b) => a.localeCompare(b))) {
         results.push(`/images/niches/${nicheId}/${slot}/${reg}/${name}`);
-      }
-    } catch {}
-
-    // Check global region directory: public/images/niches/regions/[reg]/[slot]/
-    try {
-      const globalRegDir = path.join(root, 'regions', reg, slot);
-      const entries = await fs.readdir(globalRegDir);
-      for (const name of entries.filter((n) => IMAGE_EXT.test(n) && !n.startsWith('.')).sort((a, b) => a.localeCompare(b))) {
-        results.push(`/images/niches/regions/${reg}/${slot}/${name}`);
       }
     } catch {}
   }
@@ -50,10 +40,15 @@ async function listSlot(nicheId: string, slot: Slot, regionIds: string[] = []): 
 
 function interleave(groups: string[][]): string[] {
   const out: string[] = [];
+  const seen = new Set<string>();
   const max = groups.reduce((length, group) => Math.max(length, group.length), 0);
   for (let index = 0; index < max; index += 1) {
     for (const group of groups) {
-      if (group[index]) out.push(group[index]);
+      const item = group[index];
+      if (item && !seen.has(item)) {
+        seen.add(item);
+        out.push(item);
+      }
     }
   }
   return out;
@@ -68,13 +63,32 @@ function fallbackSlot(nicheId: string, slot: Slot): string[] {
 export async function nicheImagesFor(nicheIds: string[], regionIds: string[] = []): Promise<NicheImages> {
   const selected = nicheIds.filter((id) => NICHES.some((niche) => niche.id === id));
   const images = {} as NicheImages;
+  const root = libraryRoot();
 
   for (const slot of SLOTS) {
     const groups: string[][] = [];
+
+    // 1. Specific niche folders
     for (const id of selected) {
       const custom = await listSlot(id, slot, regionIds);
       groups.push(custom.length ? custom : fallbackSlot(id, slot));
     }
+
+    // 2. Global regional folders (added once per slot to avoid cross-niche duplication)
+    const regionalImages: string[] = [];
+    for (const reg of regionIds) {
+      try {
+        const globalRegDir = path.join(root, 'regions', reg, slot);
+        const entries = await fs.readdir(globalRegDir);
+        for (const name of entries.filter((n) => IMAGE_EXT.test(n) && !n.startsWith('.')).sort((a, b) => a.localeCompare(b))) {
+          regionalImages.push(`/images/niches/regions/${reg}/${slot}/${name}`);
+        }
+      } catch {}
+    }
+    if (regionalImages.length) {
+      groups.push(regionalImages);
+    }
+
     images[slot] = interleave(groups);
   }
 
@@ -107,9 +121,11 @@ export async function nicheMediaFor(nicheIds: string[], regionIds: string[] = []
   const about = images.about.length ? images.about : heroes;
   const people = images.people.length ? images.people : about;
 
+  const allAvailable = Array.from(new Set([...heroes, ...services, ...gallery, ...about, ...people]));
+
   return {
-    clinicImages: pad([...heroes, ...about], 6).slice(0, 8),
-    treatmentImages: pad(services, 6).slice(0, 8),
-    otherImages: pad([...gallery, ...about, ...people, ...services], 14).slice(0, 16),
+    clinicImages: Array.from(new Set([...heroes, ...about, ...gallery, ...allAvailable])).slice(0, 10),
+    treatmentImages: Array.from(new Set([...services, ...gallery, ...heroes, ...allAvailable])).slice(0, 10),
+    otherImages: Array.from(new Set([...gallery, ...about, ...people, ...services, ...allAvailable])).slice(0, 16),
   };
 }

@@ -16,8 +16,10 @@ export default async function Template10Gallery({ params }: PageProps) {
   const data = await readSourceConfig(slug, 'template10');
   if (!data) return notFound();
 
-  const { clinic } = data;
+  const { clinic, business } = data;
   const cleanName = cleanClinicName(clinic.name);
+  const isCanada = data.regions?.includes('canada') || clinic.address?.country?.toLowerCase() === 'canada';
+  const bannerImage = data.media?.clinicImages?.[0] || ARCHITECTURE_STOCK.gallery[0];
 
   return (
     <div className="bg-[#faf8f5]">
@@ -25,7 +27,7 @@ export default async function Template10Gallery({ params }: PageProps) {
       <section className="py-20 sm:py-28 bg-[#111111] text-white relative overflow-hidden">
         <div className="absolute inset-0 opacity-25 pointer-events-none">
           <Image
-            src={ARCHITECTURE_STOCK.gallery[0]}
+            src={bannerImage}
             alt="Gallery Monograph"
             fill
             className="object-cover"
@@ -35,21 +37,28 @@ export default async function Template10Gallery({ params }: PageProps) {
 
         <div className="relative z-10 max-w-[1360px] mx-auto px-5 sm:px-8 text-center flex flex-col items-center">
           <span className="text-[11px] tracking-[0.35em] uppercase font-bold text-[#c5a47e] mb-3">
-            Architectural Portfolio
+            Portfolio Archive
           </span>
           <h1
             className={`${cinzel.className} text-[34px] sm:text-[48px] lg:text-[58px] font-bold text-white tracking-tight leading-tight max-w-4xl`}
           >
-            Curated Architectural Archive
+            Curated Project Archive
           </h1>
           <p className="mt-5 text-[15px] sm:text-[17px] text-[#cfcac2] max-w-2xl font-light leading-relaxed">
-            Explore our built oeuvre across ultra-luxury coastal villas, private family estates, double-height interior atriums, and monolithic structural frames.
+            {clinic.description || `Explore our built oeuvre across fine custom transformations, turnkey renovations, and meticulous spatial execution.`}
           </p>
         </div>
       </section>
 
       {/* Main Works Grid */}
-      <CuratedWorks basePath={basePath} />
+      <CuratedWorks
+        basePath={basePath}
+        isCanada={isCanada}
+        services={business?.services}
+        media={data.media}
+        clinicName={cleanName}
+        city={clinic.address?.city}
+      />
 
       {/* Additional Architectural Captures Strip */}
       <section className="py-20 sm:py-28 bg-[#f5f2ea] border-t border-[#141414]/10">

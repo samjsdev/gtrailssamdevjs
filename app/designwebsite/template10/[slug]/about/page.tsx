@@ -78,9 +78,9 @@ export default async function Template10About({ params }: PageProps) {
     return m;
   });
 
-  const studioImage = ARCHITECTURE_STOCK.about[0] || '/images/architecture/architectural-atelier-studio.webp';
-  const principalImage = ARCHITECTURE_STOCK.people[0] || '/images/architecture/principal-architect.webp';
-  const engineeringImage = ARCHITECTURE_STOCK.interiors[3] || '/images/architecture/custom-furniture-joinery.webp';
+  const studioImage = data.media?.clinicImages?.[0] || ARCHITECTURE_STOCK.about[0] || '/images/architecture/architectural-atelier-studio.webp';
+  const principalImage = doctor?.images?.[0] || data.media?.otherImages?.[0] || ARCHITECTURE_STOCK.people[0] || '/images/architecture/principal-architect.webp';
+  const engineeringImage = data.media?.treatmentImages?.[0] || ARCHITECTURE_STOCK.interiors[3] || '/images/architecture/custom-furniture-joinery.webp';
 
   return (
     <div className="bg-[#faf8f5]">

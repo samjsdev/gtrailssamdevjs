@@ -78,22 +78,26 @@
   ],
   "media": {
     "clinicImages": [
-      "/images/clients/gtb-renovations-services/business-card.webp",
-      "/images/niches/regions/canada/heroes/01-canada-custom-home.webp",
-      "/images/niches/remodeling/gallery/02-bathroom-renovation.webp",
-      "/images/niches/regions/canada/gallery/03-canada-exterior-deck.webp"
+      "/images/clients/gtb-renovations-services/washroom-restoration.webp",
+      "/images/clients/gtb-renovations-services/hardwood-flooring.webp",
+      "/images/clients/gtb-renovations-services/house-painting.webp",
+      "/images/clients/gtb-renovations-services/backyard-deck.webp",
+      "/images/clients/gtb-renovations-services/basement-finishing.webp"
     ],
     "treatmentImages": [
-      "/images/niches/remodeling/services/02-bathroom-waterproofing.webp",
-      "/images/niches/regions/canada/gallery/03-canada-exterior-deck.webp",
-      "/images/niches/remodeling/gallery/01-kitchen-remodel.webp",
-      "/images/niches/regions/canada/services/01-canada-wood-framing.webp",
-      "/images/niches/remodeling/gallery/03-open-living.webp"
+      "/images/clients/gtb-renovations-services/washroom-restoration.webp",
+      "/images/clients/gtb-renovations-services/hardwood-flooring.webp",
+      "/images/clients/gtb-renovations-services/house-painting.webp",
+      "/images/clients/gtb-renovations-services/backyard-deck.webp",
+      "/images/clients/gtb-renovations-services/basement-finishing.webp",
+      "/images/niches/remodeling/gallery/01-kitchen-remodel.webp"
     ],
     "otherImages": [
       "/images/clients/gtb-renovations-services/business-card.webp",
-      "/images/niches/regions/canada/about/01-canada-blueprint-review.webp",
-      "/images/niches/regions/canada/people/01-canada-general-contractor.webp"
+      "/images/clients/gtb-renovations-services/before-bare-washroom.webp",
+      "/images/clients/gtb-renovations-services/washroom-restoration.webp",
+      "/images/clients/gtb-renovations-services/backyard-deck.webp",
+      "/images/clients/gtb-renovations-services/hardwood-flooring.webp"
     ]
   },
   "reviews": [

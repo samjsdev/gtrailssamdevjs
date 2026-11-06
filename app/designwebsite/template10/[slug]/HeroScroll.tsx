@@ -7,9 +7,11 @@ import { montserrat } from '../fonts';
 
 interface HeroScrollProps {
   cleanName: string;
+  posterImage?: string;
+  heroVideo?: string;
 }
 
-export default function HeroScroll({ cleanName }: HeroScrollProps) {
+export default function HeroScroll({ cleanName, posterImage, heroVideo }: HeroScrollProps) {
   const [scrollY, setScrollY] = useState(0);
 
   const lenis = useLenis(({ scroll }) => {
@@ -46,10 +48,10 @@ export default function HeroScroll({ cleanName }: HeroScrollProps) {
           muted
           loop
           playsInline
-          poster="/images/architecture/hero-villa-twilight.webp"
+          poster={posterImage || "/images/architecture/hero-villa-twilight.webp"}
           className="w-full h-full object-cover opacity-75"
         >
-          <source src="https://aparnakaushik.com/frontend/assets/images/homepage.mp4" type="video/mp4" />
+          <source src={heroVideo || "https://aparnakaushik.com/frontend/assets/images/homepage.mp4"} type="video/mp4" />
         </video>
         <div className="absolute inset-0 bg-gradient-to-b from-black/55 via-black/20 to-black/65" />
       </div>

@@ -31,8 +31,15 @@ export default function HighlightsCarousel({ data }: { data?: any }) {
       const titles = data?.business?.highlights?.length ? data.business.highlights : defaultTitles;
       const subtitles = data?.projects?.descriptions?.length ? data.projects.descriptions : defaultSubtitles;
       
-      const dataImages = data?.media?.treatmentImages?.filter(Boolean) || [];
-      const images = dataImages.length > 1 ? dataImages : defaultImages;
+      const candidateImages = Array.from(new Set([
+        ...(data?.media?.treatmentImages || []),
+        ...(data?.media?.clinicImages || []),
+        ...(data?.media?.otherImages || []),
+      ].filter(Boolean)));
+      
+      const images = candidateImages.length > 0
+        ? Array.from({ length: 7 }, (_, i) => candidateImages[i % candidateImages.length])
+        : defaultImages;
 
       return defaultTitles.map((_, i) => ({
         id: `s${i + 1}`,

@@ -108,8 +108,8 @@ export default async function Template11Home({ params }: PageProps) {
   const isCanada = data.regions?.includes('canada') || clinic.address?.country?.toLowerCase() === 'canada';
 
   const media = previewMedia(data.media);
-  const baBefore = '/images/architecture/interior-before-bare-shell.webp';
-  const baAfter = '/images/architecture/interior-after-luxury-styled.webp';
+  const baBefore = media.otherImages?.find((img: string) => img.includes('before')) || '/images/architecture/interior-before-bare-shell.webp';
+  const baAfter = media.treatmentImages?.[0] || media.clinicImages?.[0] || '/images/architecture/interior-after-luxury-styled.webp';
 
   const cleanName = cleanClinicName(clinic.name);
   const city = clinic.address?.city || (isCanada ? 'Toronto & GTA' : 'Chennai');

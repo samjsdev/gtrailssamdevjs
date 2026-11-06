@@ -1,4 +1,4 @@
-import { buildNicheVoice, lockNicheList } from './niches';
+import { buildNicheVoice, lockNicheList, isNicheTagline } from './niches';
 import { nicheMediaFor } from './nicheLibrary';
 
 type NicheData = {
@@ -46,24 +46,40 @@ export async function applyNicheOverlay<T>(data: T): Promise<T> {
 
   const media = await nicheMediaFor(voice.nicheIds, regionIds);
 
+  // Preserve client-specific assets and place them first
+  const clientClinicImages = (source.media?.clinicImages || []).filter(Boolean);
+  const clientTreatmentImages = (source.media?.treatmentImages || []).filter(Boolean);
+  const clientOtherImages = (source.media?.otherImages || []).filter(Boolean);
+
+  const finalMedia = {
+    clinicImages: clientClinicImages.length ? [...new Set([...clientClinicImages, ...media.clinicImages])] : media.clinicImages,
+    treatmentImages: clientTreatmentImages.length ? [...new Set([...clientTreatmentImages, ...media.treatmentImages])] : media.treatmentImages,
+    otherImages: clientOtherImages.length ? [...new Set([...clientOtherImages, ...media.otherImages])] : media.otherImages,
+  };
+
+  const hasCustomTagline = Boolean(source.clinic?.tagline && !isNicheTagline(source.clinic.tagline));
+  const hasCustomDesc = Boolean(source.clinic?.description && !source.clinic.description.includes('brings together'));
+  const hasCustomServices = Boolean(source.business?.services?.length);
+  const hasCustomHighlights = Boolean(source.business?.highlights?.length);
+
   return {
     ...source,
     siteCopy: voice,
     clinic: {
       ...(source.clinic || {}),
-      tagline: voice.tagline,
-      description: voice.description,
+      tagline: hasCustomTagline ? source.clinic!.tagline : voice.tagline,
+      description: hasCustomDesc ? source.clinic!.description : voice.description,
     },
     business: {
       ...(source.business || {}),
-      services: lockNicheList(voice.services),
-      highlights: lockNicheList(voice.highlights),
+      services: hasCustomServices ? source.business!.services : lockNicheList(voice.services),
+      highlights: hasCustomHighlights ? source.business!.highlights : lockNicheList(voice.highlights),
     },
     doctor: {
       ...(source.doctor || {}),
-      specialization: voice.specialization,
+      specialization: source.doctor?.specialization || voice.specialization,
     },
     reviews: source.reviews?.length ? source.reviews : voice.reviews,
-    media,
+    media: finalMedia,
   } as T;
 }

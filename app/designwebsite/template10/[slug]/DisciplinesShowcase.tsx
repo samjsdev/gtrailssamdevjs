@@ -67,13 +67,80 @@ const DISCIPLINES: DisciplineItem[] = [
   },
 ];
 
-interface DisciplinesShowcaseProps {
-  basePath: string;
+function getCategoryAndDesc(name: string, index: number) {
+  const lower = name.toLowerCase();
+  if (lower.includes('washroom') || lower.includes('bath')) {
+    return {
+      category: 'Restoration & Tile',
+      description: 'Curbless frameless showers, custom vanities, waterproofing to Ontario Building Code, and Italian porcelain tilework.'
+    };
+  }
+  if (lower.includes('floor')) {
+    return {
+      category: 'Flooring Systems',
+      description: 'Wide-plank natural hardwood, luxury vinyl plank, subfloor levelling, and soundproof underlayment.'
+    };
+  }
+  if (lower.includes('paint')) {
+    return {
+      category: 'Finishes & Coating',
+      description: 'Interior and exterior architectural coating, precision edge cut-lines, and spray enamel finishes.'
+    };
+  }
+  if (lower.includes('deck') || lower.includes('patio')) {
+    return {
+      category: 'Outdoor Living',
+      description: 'Custom Western red cedar and composite decks, aluminum glass railings, and integrated step illumination.'
+    };
+  }
+  if (lower.includes('basement') || lower.includes('suite')) {
+    return {
+      category: 'Turnkey Living',
+      description: 'Full legal basement suites, acoustic ceiling isolation, drywall framing, and contemporary media lounges.'
+    };
+  }
+  if (lower.includes('remodel') || lower.includes('renovat')) {
+    return {
+      category: 'Whole-Home Remodeling',
+      description: 'Complete interior transformations, structural opening modifications, and premium architectural finishing.'
+    };
+  }
+  return {
+    category: `Specialty 0${index + 1}`,
+    description: `Bespoke residential craftsmanship delivered with obsessive attention to detail and turnkey project management.`
+  };
 }
 
-export default function DisciplinesShowcase({ basePath }: DisciplinesShowcaseProps) {
+interface DisciplinesShowcaseProps {
+  basePath: string;
+  services?: string[];
+  media?: any;
+}
+
+export default function DisciplinesShowcase({ basePath, services, media }: DisciplinesShowcaseProps) {
   const [activeIndex, setActiveIndex] = useState(0);
-  const activeItem = DISCIPLINES[activeIndex];
+
+  const candidateImages = Array.from(new Set([
+    ...(media?.treatmentImages || []),
+    ...(media?.clinicImages || []),
+    ...(media?.otherImages || []),
+  ].filter(Boolean)));
+
+  const disciplines: DisciplineItem[] = (services && services.length > 0)
+    ? services.slice(0, 6).map((service, idx) => {
+        const meta = getCategoryAndDesc(service, idx);
+        return {
+          id: `discipline-${idx}`,
+          name: service.toUpperCase(),
+          category: meta.category,
+          image: candidateImages[idx % candidateImages.length] || DISCIPLINES[idx % DISCIPLINES.length]?.image || '/images/architecture/cantilever-garden-overhang.webp',
+          description: meta.description,
+        };
+      })
+    : DISCIPLINES;
+
+  const safeIndex = activeIndex < disciplines.length ? activeIndex : 0;
+  const activeItem = disciplines[safeIndex] || disciplines[0];
 
   return (
     <section className="py-24 bg-white text-black">
@@ -88,21 +155,21 @@ export default function DisciplinesShowcase({ basePath }: DisciplinesShowcasePro
             </div>
             <div className="lg:col-span-8">
               <p className="text-[15px] sm:text-[17px] text-[#444444] font-light leading-relaxed max-w-3xl">
-                Working across disciplines of architecture, interiors, furniture, lighting, and civil construction, our dedicated team conceives and executes synergistic, forward-thinking, and visually striking projects.
+                Dedicated residential craftsmanship conceiving and executing synergistic, forward-thinking, and visually striking projects across GTA.
               </p>
             </div>
           </div>
         </Reveal>
       </div>
 
-      {/* Signature Aparna Kaushik Full-Width Interactive Hover Experience (hp_sec5) */}
+      {/* Signature Full-Width Interactive Hover Experience */}
       <div className="relative w-full h-[620px] sm:h-[700px] overflow-hidden bg-black select-none">
         {/* Dynamic Background Image Switcher */}
-        {DISCIPLINES.map((item, idx) => (
+        {disciplines.map((item, idx) => (
           <div
             key={item.id}
             className={`absolute inset-0 transition-opacity duration-700 ease-in-out ${
-              activeIndex === idx ? 'opacity-70 scale-100' : 'opacity-0 scale-105 pointer-events-none'
+              safeIndex === idx ? 'opacity-70 scale-100' : 'opacity-0 scale-105 pointer-events-none'
             }`}
           >
             <Image
@@ -120,20 +187,20 @@ export default function DisciplinesShowcase({ basePath }: DisciplinesShowcasePro
         <div className="relative z-10 h-full max-w-[1440px] mx-auto px-6 sm:px-12 flex flex-col justify-between py-12">
           {/* Top metadata badge */}
           <div className="flex justify-between items-center text-white text-[11px] tracking-[0.25em] uppercase font-medium">
-            <span>Discipline 0{activeIndex + 1} / 0{DISCIPLINES.length}</span>
+            <span>Discipline 0{safeIndex + 1} / 0{disciplines.length}</span>
             <span className="text-[#e2b88b]">{activeItem.category}</span>
           </div>
 
-          {/* Center: List of services in Aparna Kaushik large typography */}
+          {/* Center: List of services in large typography */}
           <div className="flex flex-wrap gap-x-10 gap-y-4 items-center justify-center text-center my-auto max-w-5xl mx-auto">
-            {DISCIPLINES.map((item, idx) => {
-              const isSelected = activeIndex === idx;
+            {disciplines.map((item, idx) => {
+              const isSelected = safeIndex === idx;
               return (
                 <button
                   key={item.id}
                   onMouseEnter={() => setActiveIndex(idx)}
                   onClick={() => setActiveIndex(idx)}
-                  className={`${montserrat.className} text-[22px] sm:text-[34px] md:text-[42px] uppercase tracking-[0.06em] font-light transition-all duration-300 ${
+                  className={`${montserrat.className} text-[20px] sm:text-[30px] md:text-[38px] uppercase tracking-[0.06em] font-light transition-all duration-300 ${
                     isSelected
                       ? 'text-white font-medium scale-105 underline decoration-1 underline-offset-8'
                       : 'text-white/45 hover:text-white/80'

@@ -64,11 +64,11 @@ export default function TreatmentShowcase({ data }: { data?: any }) {
   }
   const services = mergedServices.slice(0, 5);
 
-  const candidateImages = [
+  const candidateImages = Array.from(new Set([
     ...(data?.media?.treatmentImages || []),
-    ...(data?.media?.otherImages || []),
     ...(data?.media?.clinicImages || []),
-  ].filter(Boolean);
+    ...(data?.media?.otherImages || []),
+  ].filter(Boolean)));
 
   const defaultStockImages = [
     '/images/stock/7617327a.webp',
@@ -78,7 +78,9 @@ export default function TreatmentShowcase({ data }: { data?: any }) {
     '/images/stock/13246fc0.webp',
   ];
 
-  const images = candidateImages.length >= 5 ? candidateImages : [...candidateImages, ...defaultStockImages];
+  const images = candidateImages.length > 0
+    ? Array.from({ length: 5 }, (_, i) => candidateImages[i % candidateImages.length])
+    : defaultStockImages;
 
   const treatments = services.map((srv: string, i: number) => ({
     id: `service-${i}`,

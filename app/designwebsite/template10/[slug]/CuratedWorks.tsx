@@ -9,6 +9,10 @@ import { montserrat } from '../fonts';
 interface CuratedWorksProps {
   basePath: string;
   isCanada?: boolean;
+  services?: string[];
+  media?: any;
+  clinicName?: string;
+  city?: string;
 }
 
 const FEATURED_WORKS = [
@@ -49,19 +53,33 @@ const FEATURED_WORKS = [
   },
 ];
 
-export default function CuratedWorks({ basePath, isCanada }: CuratedWorksProps) {
+export default function CuratedWorks({ basePath, isCanada, services, media, clinicName, city }: CuratedWorksProps) {
   const canadianLocations = [
-    'Scarborough, Toronto',
-    'Markham, GTA',
-    'North York, Ontario',
+    'Brampton, GTA',
+    'Mississauga, GTA',
+    'Caledon, Ontario',
     'Vaughan, Ontario',
-    'Downtown Toronto',
+    'Toronto, Ontario',
   ];
 
-  const works = FEATURED_WORKS.map((work, idx) => ({
-    ...work,
-    location: isCanada ? (canadianLocations[idx] || 'Toronto, ON') : work.location,
-  }));
+  const candidateImages = Array.from(new Set([
+    ...(media?.treatmentImages || []),
+    ...(media?.clinicImages || []),
+    ...(media?.otherImages || []),
+  ].filter(Boolean)));
+
+  const works = (services && services.length > 0 && candidateImages.length > 0)
+    ? services.slice(0, 5).map((srv, idx) => ({
+        id: `project-${idx + 1}`,
+        title: `The ${srv.replace(/&.*/, '').trim()} Project`,
+        typology: srv,
+        location: isCanada ? (canadianLocations[idx % canadianLocations.length]) : (FEATURED_WORKS[idx % FEATURED_WORKS.length]?.location || 'GTA, Ontario'),
+        image: candidateImages[idx % candidateImages.length],
+      }))
+    : FEATURED_WORKS.map((work, idx) => ({
+        ...work,
+        location: isCanada ? (canadianLocations[idx] || 'Toronto, ON') : work.location,
+      }));
   return (
     <section className="py-24 bg-white text-black">
       <div className="max-w-[1440px] mx-auto px-6 sm:px-12">

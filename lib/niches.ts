@@ -1069,7 +1069,9 @@ export function buildNicheVoice(
   subNicheIds: string[] = [],
   ctx: { name?: string; city?: string; regions?: string[] } = {}
 ): SiteCopy | null {
-  const selected = NICHES.filter((niche) => nicheIds.includes(niche.id));
+  const selected = nicheIds
+    .map((id) => NICHES.find((niche) => niche.id === id))
+    .filter((niche): niche is NicheDefinition => Boolean(niche));
   if (!selected.length) return null;
 
   const subIds = new Set(subNicheIds);
@@ -1124,8 +1126,8 @@ export function buildNicheVoice(
     regionIds,
     labels,
     eyebrow,
-    tagline: selected.length === 1 ? selected[0].tagline : eyebrow,
-    specialization: selected.length === 1 ? selected[0].specialization : eyebrow,
+    tagline: selected[0]?.tagline || eyebrow,
+    specialization: selected[0]?.specialization || eyebrow,
     description,
     services: mergedServices.map((service) => service.name),
     highlights: highlights.map((item) => item.title),

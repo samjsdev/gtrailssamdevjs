@@ -66,10 +66,27 @@ export default async function Template10Home({ params }: PageProps) {
   const phone = clinic.contact?.phone || '+91 93103 59993';
   const doctorName = doctor?.name || 'Aparna Kaushik';
 
+  const clinicImages = (data.media?.clinicImages || []).filter(Boolean);
+  const treatmentImages = (data.media?.treatmentImages || []).filter(Boolean);
+  const otherImages = (data.media?.otherImages || []).filter(Boolean);
+
+  const heroPoster = clinicImages[0] || '/images/architecture/hero-villa-twilight.webp';
+  const brandStoryImage = clinicImages[1] || treatmentImages[0] || '/images/architecture/cantilever-garden-overhang.webp';
+  const doctorImage = doctor?.images?.[0] || otherImages[0] || '/images/architecture/principal-architect.webp';
+
+  const beforeImg = otherImages.find((img: string) => img.includes('before')) || '/images/architecture/interior-before-bare-shell.webp';
+  const afterImg = clinicImages[0] || treatmentImages[0] || '/images/architecture/interior-after-luxury-styled.webp';
+
+  const isRenovation = Boolean(
+    data.niches?.some((n: string) => n.includes('remodel') || n.includes('renov') || n.includes('trade')) ||
+    clinic.description?.toLowerCase().includes('renovation') ||
+    clinic.name?.toLowerCase().includes('renovation')
+  );
+
   return (
     <div className="bg-white text-black">
       {/* 1. hp_sec1: CINEMATIC FULLSCREEN HERO WITH SCROLL PARALLAX */}
-      <HeroScroll cleanName={cleanName} />
+      <HeroScroll cleanName={cleanName} posterImage={heroPoster} />
 
       {/* 2. hp_sec2: BRAND STORY (Aparna Kaushik Signature Layout) */}
       <section className="py-24 sm:py-32 bg-white text-black border-b border-[#e5e5e5]">
@@ -95,10 +112,10 @@ export default async function Template10Home({ params }: PageProps) {
                     Know Us Better
                   </p>
                   <p className="text-[17px] sm:text-[19px] text-[#555555] font-light">
-                    Iconic Architecture · Interior Design · Turnkey Civil Execution
+                    {business.services?.slice(0, 3).join(' · ') || 'Iconic Architecture · Interior Design · Turnkey Civil Execution'}
                   </p>
                   <p className="text-[14px] sm:text-[15px] text-[#666666] leading-relaxed max-w-xl pt-2">
-                    The House of {cleanName || 'Aparna Kaushik'} is a fingerprint of the discerning visionary behind its inception. The firm manifests an academically informed canon of work that blends classical proportions with modernist tropical architecture and precision engineering.
+                    {clinic.description || `The House of ${cleanName || 'Aparna Kaushik'} is a fingerprint of the discerning visionary behind its inception. The firm manifests an academically informed canon of work that blends classical proportions with modernist tropical architecture and precision engineering.`}
                   </p>
                 </div>
 
@@ -119,8 +136,8 @@ export default async function Template10Home({ params }: PageProps) {
               <Reveal direction="curtain" delay={80} duration={1.1}>
                 <ScrollParallax speed={0.14} className="aspect-[3/4] w-full bg-[#f7f7f7]">
                   <Image
-                    src="/images/architecture/cantilever-garden-overhang.webp"
-                    alt="Brand Story Architecture"
+                    src={brandStoryImage}
+                    alt={`${cleanName} Craftsmanship`}
                     fill
                     className="object-cover"
                     sizes="(max-width: 1024px) 100vw, 40vw"
@@ -133,7 +150,7 @@ export default async function Template10Home({ params }: PageProps) {
         </div>
       </section>
 
-      {/* 3. hp_sec3: PRINCIPAL ARCHITECT (Aparna Kaushik Signature Layout) */}
+      {/* 3. hp_sec3: PRINCIPAL ARCHITECT / LEADERSHIP */}
       <section className="py-24 sm:py-32 bg-white text-black border-b border-[#e5e5e5]">
         <div className="max-w-[1440px] mx-auto px-6 sm:px-12">
           <div className="grid lg:grid-cols-12 gap-12 lg:gap-20 items-center">
@@ -141,23 +158,23 @@ export default async function Template10Home({ params }: PageProps) {
             <div className="lg:col-span-7">
               <Reveal direction="up" delay={0}>
                 <span className={`${montserrat.className} text-[11px] tracking-[0.25em] uppercase text-[#888888] font-semibold block mb-3`}>
-                  Principal Architect
+                  {doctor?.specialization ? 'Leadership & Craft' : 'Principal Architect'}
                 </span>
 
                 <h2
                   className={`${montserrat.className} text-[32px] sm:text-[44px] md:text-[50px] uppercase font-light tracking-[0.05em] text-black leading-[1.15]`}
                 >
-                  &ldquo;My designs are sincere, natural and unforced!&rdquo;
+                  &ldquo;Every project is built on precision, integrity and craftsmanship&rdquo;
                 </h2>
               </Reveal>
 
               <Reveal direction="up" delay={120}>
                 <div className="mt-8 space-y-4">
                   <p className="text-[14.5px] sm:text-[15.5px] text-[#555555] leading-relaxed max-w-xl">
-                    For me, design is everything. Clarity of purpose and simplicity of line; purity of form and obsessive attention to detail. I strive for perfection.
+                    {doctor?.specialization || 'Clarity of purpose and simplicity of line; purity of form and obsessive attention to detail.'}
                   </p>
                   <p className="text-[14px] sm:text-[15px] text-[#666666] leading-relaxed max-w-xl">
-                    {cleanName || 'Aparna Kaushik'} is one of the leading designers and builders of ultra-luxury estate homes of all scales and lifestyle creations across India, the UAE, and the world.
+                    {cleanName} delivers exemplary standards of craftsmanship, dedicated single-point management, and turnkey perfection across {city} and surrounding areas.
                   </p>
                 </div>
 
@@ -178,7 +195,7 @@ export default async function Template10Home({ params }: PageProps) {
               <Reveal direction="curtain" delay={80} duration={1.1}>
                 <ScrollParallax speed={0.14} className="aspect-[3/4] w-full bg-[#f7f7f7]">
                   <Image
-                    src="/images/architecture/principal-architect.webp"
+                    src={doctorImage}
                     alt={doctorName}
                     fill
                     className="object-cover"
@@ -192,13 +209,29 @@ export default async function Template10Home({ params }: PageProps) {
       </section>
 
       {/* 4. hp_sec4 + hp_sec5: SERVICES (Interactive Full-Width Hover Experience) */}
-      <DisciplinesShowcase basePath={basePath} />
+      <DisciplinesShowcase basePath={basePath} services={business.services} media={data.media} />
 
       {/* 5. hp_sec7: FEATURED WORKS (Asymmetrical Editorial Grid) */}
-      <CuratedWorks basePath={basePath} isCanada={isCanada} />
+      <CuratedWorks
+        basePath={basePath}
+        isCanada={isCanada}
+        services={business.services}
+        media={data.media}
+        clinicName={cleanName}
+        city={city}
+      />
 
-      {/* 6. BEFORE & AFTER TRANSFORMATION SLIDER (Civil & Architecture Specialization) */}
-      <BeforeAfter />
+      {/* 6. BEFORE & AFTER TRANSFORMATION SLIDER */}
+      <BeforeAfter
+        beforeImage={beforeImg}
+        afterImage={afterImg}
+        beforeLabel={isRenovation ? "BEFORE: DEMOLITION & ROUGH-IN" : "BARE SHELL INTERIOR"}
+        afterLabel={isRenovation ? "AFTER: TURNKEY RESTORATION" : "CURATED LUXURY RESIDENCE"}
+        title={isRenovation ? "The Transformation Standard" : "From Bare Shell to Haute Interior"}
+        subtitle={isRenovation
+          ? "Drag the divider to observe how meticulous waterproofing, precision tilework, and bespoke craftsmanship elevate living spaces to turnkey perfection."
+          : "Drag the divider to observe how bespoke spatial planning, fine woodwork joinery, and ambient illumination transform an empty space into living art."}
+      />
 
       {/* 7. hp_sec8: LATEST INSIGHT / PUBLICATIONS CAROUSEL */}
       <section className="py-24 bg-white text-black border-t border-[#e5e5e5]">
