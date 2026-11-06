@@ -2,13 +2,8 @@
 
 import { useState } from 'react';
 import { ArrowUpRight } from 'lucide-react';
-import { Playfair_Display } from "next/font/google";
 
-const playfair = Playfair_Display({
-  subsets: ["latin"],
-  weight: ["400", "500", "600"],
-  display: "swap",
-});
+const playfair = { className: 'font-serif' };
 
 type GalleryItem = {
   cat: string;

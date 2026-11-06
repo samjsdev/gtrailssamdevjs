@@ -69,6 +69,22 @@ export default async function Template10About({ params }: PageProps) {
   const tagline = cleanArchitectureTagline(clinic.tagline);
   const doctorName = doctor?.name || 'Principal Architect';
 
+  const milestonesList = MILESTONES.map((m) => {
+    if (m.year === 'Chapter II' && isCanada) {
+      return {
+        ...m,
+        desc: 'Pioneered high-performance thermal building envelopes, continuous air-barrier wraps, and four-season comfort engineering.',
+      };
+    }
+    if (m.year === 'Chapter III' && isCanada) {
+      return {
+        ...m,
+        desc: 'Integrated resident site engineering supervision, Ontario Building Code (OBC) certified inspections, and turnkey municipal permit management.',
+      };
+    }
+    return m;
+  });
+
   const studioImage = ARCHITECTURE_STOCK.about[0] || '/images/architecture/architectural-atelier-studio.webp';
   const principalImage = ARCHITECTURE_STOCK.people[0] || '/images/architecture/principal-architect.webp';
   const engineeringImage = ARCHITECTURE_STOCK.interiors[3] || '/images/architecture/custom-furniture-joinery.webp';
@@ -261,7 +277,7 @@ export default async function Template10About({ params }: PageProps) {
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {MILESTONES.map((m) => (
+            {milestonesList.map((m) => (
               <div
                 key={m.year}
                 className="bg-[#f5f2ea] border border-[#141414]/10 p-7 flex flex-col justify-between"

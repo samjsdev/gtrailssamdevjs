@@ -61,9 +61,10 @@ export default async function Template10Home({ params }: PageProps) {
   if (!data) return notFound();
 
   const { clinic, business, doctor } = data;
+  const isCanada = data.regions?.includes('canada') || clinic.address?.country?.toLowerCase() === 'canada';
 
   const cleanName = cleanClinicName(clinic.name);
-  const city = clinic.address?.city || 'Chennai';
+  const city = clinic.address?.city || (isCanada ? 'Toronto & GTA' : 'Chennai');
   const tagline = cleanArchitectureTagline(clinic.tagline);
   const phone = clinic.contact?.phone || '+91 93103 59993';
   const doctorName = doctor?.name || 'Aparna Kaushik';
@@ -197,7 +198,7 @@ export default async function Template10Home({ params }: PageProps) {
       <DisciplinesShowcase basePath={basePath} />
 
       {/* 5. hp_sec7: FEATURED WORKS (Asymmetrical Editorial Grid) */}
-      <CuratedWorks basePath={basePath} />
+      <CuratedWorks basePath={basePath} isCanada={isCanada} />
 
       {/* 6. BEFORE & AFTER TRANSFORMATION SLIDER (Civil & Architecture Specialization) */}
       <BeforeAfter />

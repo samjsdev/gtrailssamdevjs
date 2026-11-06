@@ -10,6 +10,7 @@ const montserrat = Montserrat({ subsets: ['latin'], weight: ['300', '400', '500'
 
 interface CuratedWorksProps {
   basePath: string;
+  isCanada?: boolean;
 }
 
 const FEATURED_WORKS = [
@@ -50,7 +51,19 @@ const FEATURED_WORKS = [
   },
 ];
 
-export default function CuratedWorks({ basePath }: CuratedWorksProps) {
+export default function CuratedWorks({ basePath, isCanada }: CuratedWorksProps) {
+  const canadianLocations = [
+    'Scarborough, Toronto',
+    'Markham, GTA',
+    'North York, Ontario',
+    'Vaughan, Ontario',
+    'Downtown Toronto',
+  ];
+
+  const works = FEATURED_WORKS.map((work, idx) => ({
+    ...work,
+    location: isCanada ? (canadianLocations[idx] || 'Toronto, ON') : work.location,
+  }));
   return (
     <section className="py-24 bg-white text-black">
       <div className="max-w-[1440px] mx-auto px-6 sm:px-12">
@@ -72,7 +85,7 @@ export default function CuratedWorks({ basePath }: CuratedWorksProps) {
         <div className="space-y-10 sm:space-y-12">
           {/* Row 1: Dual Grid */}
           <div className="grid md:grid-cols-2 gap-8 sm:gap-10">
-            {FEATURED_WORKS.slice(0, 2).map((work, idx) => (
+            {works.slice(0, 2).map((work, idx) => (
               <Reveal key={work.id} direction="up" delay={idx * 120}>
                 <Link
                   href={`${basePath}/gallery`}
@@ -105,7 +118,7 @@ export default function CuratedWorks({ basePath }: CuratedWorksProps) {
           </div>
 
           {/* Row 2: Large Centerpiece Work */}
-          {FEATURED_WORKS[2] && (
+          {works[2] && (
             <Reveal direction="scale" duration={1.0}>
               <Link
                 href={`${basePath}/gallery`}
@@ -113,8 +126,8 @@ export default function CuratedWorks({ basePath }: CuratedWorksProps) {
               >
                 <div className="relative aspect-[16/9] w-full overflow-hidden">
                   <Image
-                    src={FEATURED_WORKS[2].image}
-                    alt={FEATURED_WORKS[2].title}
+                    src={works[2].image}
+                    alt={works[2].title}
                     fill
                     className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
                     sizes="100vw"
@@ -124,10 +137,10 @@ export default function CuratedWorks({ basePath }: CuratedWorksProps) {
                 <div className="pt-4 flex items-center justify-between">
                   <div>
                     <h3 className={`${montserrat.className} text-[20px] uppercase font-light tracking-[0.08em] text-black group-hover:text-[#7d3333] transition-colors`}>
-                      {FEATURED_WORKS[2].title}
+                      {works[2].title}
                     </h3>
                     <p className="text-[12.5px] text-[#777777] mt-0.5">
-                      {FEATURED_WORKS[2].typology} · {FEATURED_WORKS[2].location}
+                      {works[2].typology} · {works[2].location}
                     </p>
                   </div>
                   <ArrowUpRight className="w-5 h-5 text-black group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
@@ -138,7 +151,7 @@ export default function CuratedWorks({ basePath }: CuratedWorksProps) {
 
           {/* Row 3: Dual Grid */}
           <div className="grid md:grid-cols-2 gap-8 sm:gap-10">
-            {FEATURED_WORKS.slice(3, 5).map((work, idx) => (
+            {works.slice(3, 5).map((work, idx) => (
               <Reveal key={work.id} direction="up" delay={idx * 120}>
                 <Link
                   href={`${basePath}/gallery`}
