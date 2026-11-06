@@ -1,0 +1,125 @@
+{
+  "clinic": {
+    "name": "GTB Renovations Services",
+    "slug": "gtb-renovations-services",
+    "tagline": "Custom Home Improvement, Renovation & Remodeling across GTA",
+    "description": "GTB Renovations Services is a trusted custom home improvement and renovation contractor based in Brampton, Ontario. Serving homeowners across the Greater Toronto Area (GTA), specializing in washroom restorations, hardwood & luxury vinyl flooring, interior & exterior house painting, custom backyard decks, and turnkey basement finishing delivered to Ontario Building Code (OBC) standards.",
+    "address": {
+      "full": "51 Speedwell St, Brampton, ON L6X 0R8, Canada",
+      "area": "Speedwell St",
+      "city": "Brampton",
+      "state": "Ontario",
+      "country": "Canada",
+      "postalCode": "L6X 0R8"
+    },
+    "contact": {
+      "phone": "+1 905-965-1274",
+      "email": "gurkirat1274@gmail.com",
+      "website": "https://gtbrenovation.ca",
+      "googleMapsUrl": "https://www.google.com/maps/place/GTB+Renovations+Services/@43.6670387,-79.7929397,17z"
+    },
+    "mapEmbedUrl": "https://maps.google.com/maps?q=43.6670387,-79.7929397&hl=en&z=15&output=embed"
+  },
+  "business": {
+    "rating": "5.0",
+    "reviewCount": "18",
+    "timings": [
+      "Monday: 9:00 AM – 6:00 PM",
+      "Tuesday: 9:00 AM – 6:00 PM",
+      "Wednesday: 9:00 AM – 6:00 PM",
+      "Thursday: 9:00 AM – 6:00 PM",
+      "Friday: 9:00 AM – 6:00 PM",
+      "Saturday: 9:00 AM – 6:00 PM",
+      "Sunday: Closed"
+    ],
+    "services": [
+      "Washroom Restoration & Remodeling",
+      "Hardwood & Luxury Vinyl Flooring",
+      "Interior & Exterior House Painting",
+      "Custom Backyard Decks & Patios",
+      "Basement Finishing & Second Suites",
+      "Custom Home Improvement & Remodeling"
+    ],
+    "highlights": [
+      "GTA-Wide Service Coverage (Brampton, Mississauga & Beyond)",
+      "Ontario Building Code (OBC) Compliant",
+      "Single-Point Turnkey Management",
+      "Clean Worksite & On-Schedule Delivery"
+    ]
+  },
+  "doctor": {
+    "name": "Gurkirat Singh & GTB Team",
+    "images": [
+      "/images/clients/gtb-renovations-services/business-card.webp"
+    ],
+    "experience": "8+ years",
+    "specialization": "Custom Home Improvement & Remodeling Specialists"
+  },
+  "niches": [
+    "remodeling",
+    "trades",
+    "home-builders",
+    "general-construction"
+  ],
+  "subNiches": [
+    "bathroom-remodeler",
+    "remodeler",
+    "kitchen-remodeler",
+    "interior-construction",
+    "painter",
+    "flooring",
+    "custom-home-builder",
+    "home-builder",
+    "handyman",
+    "general-contractor"
+  ],
+  "regions": [
+    "canada"
+  ],
+  "media": {
+    "clinicImages": [
+      "/images/clients/gtb-renovations-services/business-card.webp",
+      "/images/niches/regions/canada/heroes/01-canada-custom-home.webp",
+      "/images/niches/remodeling/gallery/02-bathroom-renovation.webp",
+      "/images/niches/regions/canada/gallery/03-canada-exterior-deck.webp"
+    ],
+    "treatmentImages": [
+      "/images/niches/remodeling/services/02-bathroom-waterproofing.webp",
+      "/images/niches/regions/canada/gallery/03-canada-exterior-deck.webp",
+      "/images/niches/remodeling/gallery/01-kitchen-remodel.webp",
+      "/images/niches/regions/canada/services/01-canada-wood-framing.webp",
+      "/images/niches/remodeling/gallery/03-open-living.webp"
+    ],
+    "otherImages": [
+      "/images/clients/gtb-renovations-services/business-card.webp",
+      "/images/niches/regions/canada/about/01-canada-blueprint-review.webp",
+      "/images/niches/regions/canada/people/01-canada-general-contractor.webp"
+    ]
+  },
+  "reviews": [
+    {
+      "author": "Prince Sharma",
+      "rating": 5,
+      "text": "I’m very pleased with the transformation of my home by GTB Renovation. The quality of their work was impressive, and the entire process was smooth and well-managed. I would gladly choose them again for future projects."
+    },
+    {
+      "author": "Charan hussan preet Singh",
+      "rating": 5,
+      "text": "GTB Renovation did an amazing job on my place! The crew was super friendly, worked hard, and paid attention to every little detail. They finished everything on time and left the space spotless. Really happy with the final results — my home looks brand new! Definitely recommending them to friends and family."
+    },
+    {
+      "author": "GURKIRAT SINGH",
+      "rating": 5,
+      "text": "GTB Renovations turned my vision into reality! The team worked with care, stayed on schedule, and delivered amazing results. Quality work, honest service, and great attention to detail. Highly recommended!"
+    },
+    {
+      "author": "Amandeep Gill",
+      "rating": 5,
+      "text": "The team was professional, efficient, and delivered top-quality work. I’m really happy with their work and highly recommend everyone to contact them."
+    }
+  ],
+  "meta": {
+    "generatedAt": "2026-11-06T17:45:00.000Z",
+    "source": "google-maps-intake"
+  }
+}
