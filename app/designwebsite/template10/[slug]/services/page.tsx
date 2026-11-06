@@ -153,7 +153,32 @@ export default async function Template10Services({ params }: PageProps) {
   if (!data) return notFound();
 
   const { clinic } = data;
+  const isCanada = data.regions?.includes('canada') || clinic.address?.country?.toLowerCase() === 'canada';
   const cleanName = cleanClinicName(clinic.name);
+
+  const servicesList = DETAILED_SERVICES.map((srv) => {
+    if (srv.id === 'cmda-sanctions' && isCanada) {
+      return {
+        ...srv,
+        title: 'Building Code & City Permits',
+        tagline: 'Expedited Municipal Approvals & Ontario Building Code (OBC) Permitting',
+        description:
+          'Navigating municipal regulatory frameworks across Ontario without delays or uncertainty. We prepare stamped architectural, structural, and HVAC sets, verify zoning and setback bylaws, and secure your official building permit.',
+        deliverables: [
+          'Ontario Building Code (OBC) & Zoning Bylaw Review',
+          'Architectural, Structural & Mechanical Permit Drawings',
+          'Committee of Adjustment & Minor Variance Submissions',
+          'Building Permit Approval & Inspection Pass Handover',
+        ],
+        specifications: [
+          { label: 'Jurisdiction', value: 'City of Toronto & Greater Toronto Area (GTA)' },
+          { label: 'Process', value: 'Municipal Online Permitting & Inspections' },
+          { label: 'Standard', value: '100% Ontario Building Code (OBC) Compliant' },
+        ],
+      };
+    }
+    return srv;
+  });
 
   return (
     <div className="bg-[#faf8f5]">
@@ -187,7 +212,7 @@ export default async function Template10Services({ params }: PageProps) {
       {/* Services List Section */}
       <section className="py-20 sm:py-28">
         <div className="max-w-[1360px] mx-auto px-5 sm:px-8 space-y-20">
-          {DETAILED_SERVICES.map((srv, idx) => {
+          {servicesList.map((srv, idx) => {
             const isEven = idx % 2 === 1;
             const Icon = srv.icon;
 

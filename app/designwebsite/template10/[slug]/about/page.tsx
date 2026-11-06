@@ -63,8 +63,9 @@ export default async function Template10About({ params }: PageProps) {
 
   const { clinic, doctor, business } = data;
 
+  const isCanada = data.regions?.includes('canada') || clinic.address?.country?.toLowerCase() === 'canada';
   const cleanName = cleanClinicName(clinic.name);
-  const city = clinic.address?.city || 'Chennai';
+  const city = clinic.address?.city || (isCanada ? 'Toronto & GTA' : 'Chennai');
   const tagline = cleanArchitectureTagline(clinic.tagline);
   const doctorName = doctor?.name || 'Principal Architect';
 
@@ -123,7 +124,9 @@ export default async function Template10About({ params }: PageProps) {
                   Founded in {city}, {cleanName || 'our atelier'} operates at the convergence of architectural sculpture and disciplined civil contracting. We believe that true luxury does not rely on transient decor, but on monumental volumes, refined tactile stone, and intelligent climate shielding.
                 </p>
                 <p className="mt-4 text-[15px] sm:text-[16px] text-[#5a544c] leading-relaxed">
-                  From deep soil load calculations on coastal terrains to high-grade Tata Tiscon Fe550D concrete framing, every detail is engineered to endure for generations without settling or structural fatigue.
+                  {isCanada
+                    ? 'From engineered frost-protected footings below local frost lines to high-efficiency thermal envelopes and Ontario Building Code framing, every detail is built to endure harsh four-season climates without settling or thermal fatigue.'
+                    : 'From deep soil load calculations on coastal terrains to high-grade Tata Tiscon Fe550D concrete framing, every detail is engineered to endure for generations without settling or structural fatigue.'}
                 </p>
               </Reveal>
 
@@ -131,15 +134,15 @@ export default async function Template10About({ params }: PageProps) {
                 <div className="mt-8 space-y-3 pt-6 border-t border-[#141414]/10">
                   <div className="flex items-center gap-3 text-[14px] text-[#141414] font-semibold">
                     <CheckCircle2 className="w-4 h-4 text-[#c5a47e]" />
-                    <span>Registered Practice with Council of Architecture (CoA)</span>
+                    <span>{isCanada ? 'Licensed Building Practice & Red Seal Certified Trades' : 'Registered Practice with Council of Architecture (CoA)'}</span>
                   </div>
                   <div className="flex items-center gap-3 text-[14px] text-[#141414] font-semibold">
                     <CheckCircle2 className="w-4 h-4 text-[#c5a47e]" />
-                    <span>100% CMDA & Greater Chennai Corporation Single-Window Sanctions</span>
+                    <span>{isCanada ? '100% Ontario Building Code (OBC) & Municipal Permit Sanctions' : '100% CMDA & Greater Chennai Corporation Single-Window Sanctions'}</span>
                   </div>
                   <div className="flex items-center gap-3 text-[14px] text-[#141414] font-semibold">
                     <CheckCircle2 className="w-4 h-4 text-[#c5a47e]" />
-                    <span>10-Year Comprehensive Structural Warranty on All Concrete Pours</span>
+                    <span>{isCanada ? 'Comprehensive Structural Warranty on All Foundations & Framed Structures' : '10-Year Comprehensive Structural Warranty on All Concrete Pours'}</span>
                   </div>
                 </div>
               </Reveal>

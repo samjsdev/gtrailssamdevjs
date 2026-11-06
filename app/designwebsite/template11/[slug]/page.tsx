@@ -105,17 +105,64 @@ export default async function Template11Home({ params }: PageProps) {
   if (!data) return notFound();
 
   const { clinic, doctor, business } = data;
+  const isCanada = data.regions?.includes('canada') || clinic.address?.country?.toLowerCase() === 'canada';
 
   const media = previewMedia(data.media);
   const baBefore = '/images/architecture/interior-before-bare-shell.webp';
   const baAfter = '/images/architecture/interior-after-luxury-styled.webp';
 
   const cleanName = cleanClinicName(clinic.name);
-  const city = clinic.address?.city || 'Chennai';
+  const city = clinic.address?.city || (isCanada ? 'Toronto & GTA' : 'Chennai');
   const cleanDesc = cleanArchitectureDescription(clinic.description, clinic.name, city);
   const cleanTagline = cleanArchitectureTagline(clinic.tagline);
   const phone = clinic.contact?.phone || '';
   const waPhone = phone.replace(/\D/g, '') || '919751396117';
+
+  const processSteps = isCanada
+    ? [
+        {
+          title: 'Site Consultation & Scoping',
+          desc: 'Meet our project leads on site. We evaluate zoning, grading, setbacks, and understand your family requirements for custom builds or renovations.',
+        },
+        {
+          title: 'Architectural Drawings & Municipal Permits',
+          desc: 'We produce comprehensive architectural and structural sets engineered to Ontario Building Code (OBC) standards and manage city permit approvals.',
+        },
+        {
+          title: 'Engineered Framing & High-Efficiency Systems',
+          desc: 'Continuous air barrier wrap, high R-value insulation, frost-protected footings, and licensed Red Seal trade coordination.',
+        },
+        {
+          title: 'Quality Construction & Walkthrough Handover',
+          desc: 'Daily site supervision, staged municipal building inspections, dust containment, progress updates, and formal key handover with warranty.',
+        },
+      ]
+    : PROCESS_STEPS;
+
+  const designPillars = isCanada
+    ? [
+        {
+          icon: Compass,
+          title: 'High R-Value Envelope & Thermal Comfort',
+          desc: 'Continuous exterior insulation, air-barrier membranes, and energy-rated Low-E windows engineered for four-season Canadian winters and summers.',
+        },
+        {
+          icon: Hammer,
+          title: 'Frost-Protected Footings & Structural Durability',
+          desc: 'Engineered foundations poured below local frost depth with weeping tile drainage and snow-load calculated framing designed for lifetime durability.',
+        },
+        {
+          icon: Layers,
+          title: 'Four-Season Living & High Indoor Air Quality',
+          desc: 'Integrated ERV/HRV air exchange systems, balanced heating, and moisture-controlled basement assemblies for year-round fresh indoor air.',
+        },
+        {
+          icon: Sparkles,
+          title: 'Custom Homes, Additions & Legal Suites',
+          desc: 'Purpose-built floor plans, vaulted ceilings, and legal basement secondary suites tailored for modern Toronto & GTA living and property value.',
+        },
+      ]
+    : DESIGN_PILLARS;
 
   const heroImage =
     media.clinicImages?.[0] ||
@@ -151,14 +198,14 @@ export default async function Template11Home({ params }: PageProps) {
         getArchitectureServiceImage(svc, media) ||
         SERVICE_FALLBACK_IMAGES[idx % SERVICE_FALLBACK_IMAGES.length],
       benefits: detail?.benefits || [
-        'Council of Architecture registered architects and civil engineers',
+        isCanada ? 'Licensed Ontario builders and Red Seal certified trades' : 'Council of Architecture registered architects and civil engineers',
         'Direct supervision with daily site progress updates',
-        '100% compliance with Chennai municipal building setback rules',
+        isCanada ? '100% compliance with Ontario Building Code (OBC) and municipal bylaws' : '100% compliance with Chennai municipal building setback rules',
       ],
       process: detail?.process || [
-        'Plot inspection and family requirement discussion',
-        '3D elevation design, structural drawings, and municipal approval',
-        'Civil construction, quality inspection, and key handover',
+        isCanada ? 'Site inspection and project brief review' : 'Plot inspection and family requirement discussion',
+        isCanada ? 'Architectural drawings, engineering review, and permit approval' : '3D elevation design, structural drawings, and municipal approval',
+        isCanada ? 'Turnkey construction, staged municipal inspection, and handover' : 'Civil construction, quality inspection, and key handover',
       ],
     };
   });
@@ -168,7 +215,7 @@ export default async function Template11Home({ params }: PageProps) {
   ).slice(0, 6);
 
   const heroStats: HeroStat[] = [
-    { value: parseFloat(experienceYears) || 14, suffix: '+ Yrs', label: 'In Chennai' },
+    { value: parseFloat(experienceYears) || 14, suffix: '+ Yrs', label: isCanada ? 'In GTA' : 'In Chennai' },
     { value: Math.max(reviewCount, 150), suffix: '+', label: 'Delivered Projects' },
     { value: parseFloat(rating) || 4.9, decimals: 1, suffix: '★', label: 'Client Rating' },
     { value: 100, suffix: '%', label: 'CMDA Approved' },
@@ -382,7 +429,7 @@ export default async function Template11Home({ params }: PageProps) {
           </Reveal>
 
           <StaggerReveal className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6" stagger={0.12}>
-            {DESIGN_PILLARS.map((pillar, idx) => {
+            {designPillars.map((pillar, idx) => {
               const Icon = pillar.icon;
               return (
                 <div key={pillar.title} className="bg-[#2c231a] border border-[#a58150]/20 p-8 h-full flex flex-col justify-between transition-all duration-300 hover:border-[#a58150] hover:-translate-y-1">
@@ -568,7 +615,7 @@ export default async function Template11Home({ params }: PageProps) {
           </Reveal>
 
           <StaggerReveal className="grid sm:grid-cols-2 lg:grid-cols-4 gap-px bg-[#f6f1e8]/15 border border-[#f6f1e8]/15" stagger={0.12}>
-            {PROCESS_STEPS.map((step, idx) => (
+            {processSteps.map((step, idx) => (
               <div key={step.title} className="bg-[#211a13] hover:bg-[#2c231a] transition-colors duration-400 px-7 py-9">
                 <span
                   className="font-[family-name:var(--font-marcellus)] text-[52px] block mb-5 text-transparent"

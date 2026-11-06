@@ -53,10 +53,23 @@
     "specialization": "Real Estate Builders & General Contracting"
   },
   "niches": [
-    "general-construction"
+    "general-construction",
+    "home-builders",
+    "remodeling",
+    "trades"
   ],
   "subNiches": [
-    "real-estate-builders"
+    "real-estate-builders",
+    "general-contractor",
+    "construction-company",
+    "custom-home-builder",
+    "home-builder",
+    "remodeler",
+    "kitchen-remodeler",
+    "bathroom-remodeler",
+    "interior-construction",
+    "plumber",
+    "handyman"
   ],
   "regions": [
     "canada"

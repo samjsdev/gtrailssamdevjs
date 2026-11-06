@@ -133,7 +133,7 @@ export default function Contact() {
               
                <div className="mb-8 flex items-center justify-between">
                   <h2 className="text-2xl font-bold text-slate-800">Visit Us</h2>
-                   <span className="text-xs font-mono text-teal-600 px-3 py-1 bg-teal-50 rounded-full border border-teal-100">LOC: CHENNAI</span>
+                   <span className="text-xs font-mono text-teal-600 px-3 py-1 bg-teal-50 rounded-full border border-teal-100">LOC: {((data?.clinic?.address?.city || 'CHENNAI') as string).toUpperCase()}</span>
                </div>
 
                <div className="w-full h-[370px] overflow-hidden rounded-2xl bg-slate-100 border border-slate-200 relative">
