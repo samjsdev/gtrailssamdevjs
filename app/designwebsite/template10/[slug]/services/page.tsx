@@ -16,9 +16,7 @@ import {
 import { cleanClinicName } from '@/lib/copyCleaner';
 import { ARCHITECTURE_STOCK } from '@/lib/architectureContent';
 import Reveal from '../Reveal';
-import { Cinzel } from 'next/font/google';
-
-const cinzel = Cinzel({ subsets: ['latin'], weight: ['600', '700', '800'] });
+import { cinzel } from '../../fonts';
 
 type PageProps = { params: Promise<{ slug: string }> };
 

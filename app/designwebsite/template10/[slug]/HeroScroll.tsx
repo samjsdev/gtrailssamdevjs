@@ -1,11 +1,9 @@
 'use client';
 
 import { useState } from 'react';
-import { Montserrat } from 'next/font/google';
 import { useLenis } from 'lenis/react';
 import { ChevronDown } from 'lucide-react';
-
-const montserrat = Montserrat({ subsets: ['latin'], weight: ['300', '400', '500', '600'] });
+import { montserrat } from '../fonts';
 
 interface HeroScrollProps {
   cleanName: string;

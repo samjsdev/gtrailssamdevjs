@@ -4,22 +4,10 @@ import Link from 'next/link';
 import { ReactNode } from 'react';
 import { ArrowRight, Phone, MessageSquare } from 'lucide-react';
 import { cleanClinicName } from '@/lib/copyCleaner';
-import { Montserrat, Plus_Jakarta_Sans } from 'next/font/google';
+import { montserrat, plusJakarta } from '../fonts';
 import ClientHeader from './ClientHeader';
 import FloatingTalkButton from './FloatingTalkButton';
 import SmoothScroll from './SmoothScroll';
-
-const montserrat = Montserrat({
-  subsets: ['latin'],
-  weight: ['300', '400', '500', '600', '700'],
-  variable: '--font-heading',
-});
-
-const plusJakarta = Plus_Jakarta_Sans({
-  subsets: ['latin'],
-  weight: ['300', '400', '500', '600'],
-  variable: '--font-body',
-});
 
 export const dynamic = 'force-static';
 

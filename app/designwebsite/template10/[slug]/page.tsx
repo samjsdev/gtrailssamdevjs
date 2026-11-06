@@ -11,10 +11,7 @@ import BeforeAfter from './BeforeAfter';
 import HeroScroll from './HeroScroll';
 import Reveal from './Reveal';
 import ScrollParallax from './ScrollParallax';
-import { Montserrat, Plus_Jakarta_Sans } from 'next/font/google';
-
-const montserrat = Montserrat({ subsets: ['latin'], weight: ['300', '400', '500', '600', '700'] });
-const plusJakarta = Plus_Jakarta_Sans({ subsets: ['latin'], weight: ['300', '400', '500'] });
+import { montserrat, plusJakarta } from '../fonts';
 
 type PageProps = {
   params: Promise<{ slug: string }>;

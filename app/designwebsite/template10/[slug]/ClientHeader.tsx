@@ -4,10 +4,8 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Menu, X, Plus } from 'lucide-react';
-import { Montserrat } from 'next/font/google';
 import { useLenis } from 'lenis/react';
-
-const montserrat = Montserrat({ subsets: ['latin'], weight: ['300', '400', '500', '600'] });
+import { montserrat } from '../fonts';
 
 interface ClientHeaderProps {
   clinicName: string;

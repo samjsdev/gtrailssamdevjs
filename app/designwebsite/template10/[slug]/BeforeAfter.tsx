@@ -3,10 +3,8 @@
 import { useState, useRef, useCallback, useEffect } from 'react';
 import Image from 'next/image';
 import { ChevronsLeftRight } from 'lucide-react';
-import { Cinzel } from 'next/font/google';
 import Reveal from './Reveal';
-
-const cinzel = Cinzel({ subsets: ['latin'], weight: ['600', '700'] });
+import { cinzel } from '../fonts';
 
 interface BeforeAfterProps {
   beforeImage?: string;

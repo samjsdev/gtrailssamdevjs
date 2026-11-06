@@ -4,21 +4,13 @@ import dynamic from 'next/dynamic';
 import Hero from './components/Hero/Hero';
 import LazySection from './components/LazySection';
 
-// Standard imports for text-heavy sections (Better for SEO & Stability)
+// Standard imports for text-heavy and interactive sections
 import AboutSection from './components/AboutSection/AboutSection';
+import TreatmentShowcase from './components/TreatmentShowcase/TreatmentShowcase';
 import WhyChooseUs from './components/WhyChooseUs/WhyChooseUs';
 import StatsGrid from './components/StatsGrid/StatsGrid';
 import TestimonialsSection from './components/TestimonialsSection/TestimonialsSection';
 import CTASection from './components/CTASection/CTASection';
-
-// Only Lazy Load the HEAVY visual components (3D, Video, Carousel)
-const TreatmentShowcase = dynamic(
-  () => import('./components/TreatmentShowcase/TreatmentShowcase'),
-  { 
-    ssr: false,
-    loading: () => <div className="h-[650px] md:h-[850px] w-full bg-gray-50 animate-pulse rounded-3xl" />
-  }
-);
 
 const HighlightsCarousel = dynamic(
   () => import('./components/HighlightsCarousel/HighlightsCarousel'),
@@ -33,13 +25,9 @@ export default function Home({ data }: { data?: any }) {
     <div className="min-h-screen">
       <Hero />
       
-      {/* Text sections load normally to prevent "blank site" feel */}
+      {/* About and Services render with full SSR for immediate stability */}
       <AboutSection data={data} />
-      
-      {/* Heavy sections mount only when close to viewport */}
-      <LazySection minHeight="800px" threshold={0.05} rootMargin="0px 0px 250px 0px">
-        <TreatmentShowcase data={data} />
-      </LazySection>
+      <TreatmentShowcase data={data} />
 
       <LazySection minHeight="700px" threshold={0.05} rootMargin="0px 0px 250px 0px">
         <HighlightsCarousel data={data} />

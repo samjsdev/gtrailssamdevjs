@@ -3,10 +3,8 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { ArrowRight, ArrowUpRight } from 'lucide-react';
-import { Montserrat } from 'next/font/google';
 import Reveal from './Reveal';
-
-const montserrat = Montserrat({ subsets: ['latin'], weight: ['300', '400', '500', '600'] });
+import { montserrat } from '../fonts';
 
 interface CuratedWorksProps {
   basePath: string;

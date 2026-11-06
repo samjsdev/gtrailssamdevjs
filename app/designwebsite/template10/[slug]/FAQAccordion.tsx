@@ -2,9 +2,7 @@
 
 import { useState } from 'react';
 import { ChevronDown } from 'lucide-react';
-import { Cinzel } from 'next/font/google';
-
-const cinzel = Cinzel({ subsets: ['latin'], weight: ['600', '700'] });
+import { cinzel } from '../fonts';
 
 export interface FAQItem {
   q: string;

@@ -36,9 +36,22 @@ export default function AboutSection({ data }: { data?: any }) {
   const leaderBio = doctor.bio || 'With a visionary approach to modern architecture and a deep understanding of spatial psychology, we have led our studio to become a recognized design firm. Our philosophy centers on transparency, compassionate client care, and uncompromising elegance.';
   const leaderImg = data?.media?.otherImages?.[0] || '/images/stock/bbb7f0e7.webp';
 
-  const servicesList = (business.services?.length ? business.services : [
-    'Residential Design', 'Commercial Spaces', 'Full Renovations', 'Custom Furnishing'
-  ]).slice(0, 4).map((svc: string) => {
+  const rawServices: string[] = Array.isArray(business.services) ? business.services.filter(Boolean) : [];
+  const defaultServices = [
+    'General Contracting',
+    'Custom Home Building',
+    'Whole-Home Renovations',
+    'Turnkey Construction Delivery',
+  ];
+  const mergedServices = rawServices.slice();
+  for (const s of defaultServices) {
+    if (mergedServices.length >= 4) break;
+    if (!mergedServices.some((existing) => existing.toLowerCase() === s.toLowerCase())) {
+      mergedServices.push(s);
+    }
+  }
+
+  const servicesList = mergedServices.slice(0, 4).map((svc: string) => {
     const svcData = getInteriorServiceData(svc);
     return {
       title: svc,

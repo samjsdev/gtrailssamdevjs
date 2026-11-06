@@ -2,9 +2,7 @@
 
 import { useState } from 'react';
 import { Send, CheckCircle2, MessageSquare } from 'lucide-react';
-import { Cinzel } from 'next/font/google';
-
-const cinzel = Cinzel({ subsets: ['latin'], weight: ['600', '700'] });
+import { cinzel } from '../fonts';
 
 interface LeadFormProps {
   clinicName?: string;

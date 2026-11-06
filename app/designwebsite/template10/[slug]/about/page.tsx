@@ -20,14 +20,7 @@ import {
 } from '@/lib/copyCleaner';
 import { ARCHITECTURE_STOCK } from '@/lib/architectureContent';
 import Reveal from '../Reveal';
-import { Cinzel, Cormorant_Garamond } from 'next/font/google';
-
-const cinzel = Cinzel({ subsets: ['latin'], weight: ['600', '700', '800'] });
-const cormorant = Cormorant_Garamond({
-  subsets: ['latin'],
-  weight: ['400', '500', '600', '700'],
-  style: ['normal', 'italic'],
-});
+import { cinzel, cormorant } from '../../fonts';
 
 type PageProps = { params: Promise<{ slug: string }> };
 
