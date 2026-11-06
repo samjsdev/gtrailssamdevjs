@@ -8,10 +8,25 @@ import { useGSAP } from '@gsap/react';
 
 gsap.registerPlugin(ScrollTrigger);
 
-const ICONS = ['🛋️', '🍳', '🛏️', '💻', '🌿'];
 const ACCENTS = ['#3b82f6', '#f59e0b', '#8b5cf6', '#10b981', '#06b6d4'];
 
 const CYCLE_DURATION = 3500; // ms per slide
+
+function getServiceIcon(name: string, index: number): string {
+  const l = (name || '').toLowerCase();
+  if (l.includes('build') || l.includes('home') || l.includes('estate') || l.includes('villa') || l.includes('civil')) return '🏗️';
+  if (l.includes('contract') || l.includes('turnkey') || l.includes('commercial')) return '🏢';
+  if (l.includes('kitchen') || l.includes('modular')) return '🍳';
+  if (l.includes('bath') || l.includes('plumb') || l.includes('leak')) return '🚿';
+  if (l.includes('remodel') || l.includes('renovat') || l.includes('alter') || l.includes('basement')) return '🔨';
+  if (l.includes('electric') || l.includes('hvac') || l.includes('vent')) return '⚡';
+  if (l.includes('plan') || l.includes('draw') || l.includes('architect') || l.includes('spec')) return '📐';
+  if (l.includes('exterior') || l.includes('landscape') || l.includes('garden')) return '🌿';
+  if (l.includes('living') || l.includes('decor') || l.includes('styling') || l.includes('interior')) return '🛋️';
+  if (l.includes('handyman') || l.includes('repair')) return '🔧';
+  const fallbacks = ['🏗️', '🔨', '📐', '🏢', '🏡', '✨', '🛋️'];
+  return fallbacks[index % fallbacks.length];
+}
 
 export default function TreatmentShowcase({ data }: { data?: any }) {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -25,23 +40,51 @@ export default function TreatmentShowcase({ data }: { data?: any }) {
   const lastTimeRef = useRef<number | null>(null);
   const elapsedTimeRef = useRef<number>(0);
 
-  const sectionTitle = data?.gallery?.exploreTitle || 'Explore Our Designs';
-  const services = data?.business?.services?.length ? data.business.services : ['Living Room Design', 'Modern Kitchens', 'Bedroom Styling', 'Home Office', 'Outdoor Spaces'];
-  const dataImages = data?.media?.otherImages?.filter(Boolean) || [];
+  const sectionTitle = data?.gallery?.exploreTitle || (
+    data?.clinic?.tagline?.toLowerCase().includes('construction') || data?.niches?.includes('general-construction')
+      ? 'Explore Our Services & Builds'
+      : 'Explore Our Designs'
+  );
+
+  const rawServices: string[] = Array.isArray(data?.business?.services) ? data.business.services.filter(Boolean) : [];
+  const defaultServices = [
+    'General Contracting',
+    'Custom Home Building',
+    'Whole-Home Renovations',
+    'Kitchen & Bath Remodeling',
+    'Turnkey Construction Delivery',
+  ];
   
-  const images = dataImages.length > 1 ? dataImages.slice(1, 6) : [
+  const mergedServices = rawServices.slice();
+  for (const s of defaultServices) {
+    if (mergedServices.length >= 5) break;
+    if (!mergedServices.some((existing) => existing.toLowerCase() === s.toLowerCase())) {
+      mergedServices.push(s);
+    }
+  }
+  const services = mergedServices.slice(0, 5);
+
+  const candidateImages = [
+    ...(data?.media?.treatmentImages || []),
+    ...(data?.media?.otherImages || []),
+    ...(data?.media?.clinicImages || []),
+  ].filter(Boolean);
+
+  const defaultStockImages = [
     '/images/stock/7617327a.webp',
     '/images/stock/bf333360.webp',
     '/images/stock/84fea9c5.webp',
     '/images/stock/284d6d29.webp',
-    '/images/stock/13246fc0.webp'
+    '/images/stock/13246fc0.webp',
   ];
 
-  const treatments = services.slice(0, 5).map((srv: string, i: number) => ({
+  const images = candidateImages.length >= 5 ? candidateImages : [...candidateImages, ...defaultStockImages];
+
+  const treatments = services.map((srv: string, i: number) => ({
     id: `service-${i}`,
     label: srv,
     imagePath: images[i] || images[0],
-    icon: ICONS[i % ICONS.length],
+    icon: getServiceIcon(srv, i),
     accent: ACCENTS[i % ACCENTS.length]
   }));
 
@@ -313,6 +356,36 @@ export default function TreatmentShowcase({ data }: { data?: any }) {
 
                 {/* Gradient overlay */}
                 <div className="absolute inset-0 z-30 bg-gradient-to-t from-black/50 via-transparent to-black/10 pointer-events-none" />
+              </div>
+
+              {/* Prev / Next Navigation Arrows */}
+              <div className="absolute inset-y-0 left-4 right-4 flex items-center justify-between z-40 pointer-events-none">
+                <button
+                  type="button"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    handleSelect((activeIndex - 1 + treatments.length) % treatments.length);
+                  }}
+                  className="pointer-events-auto w-11 h-11 rounded-full glass-card bg-black/40 hover:bg-black/75 text-white flex items-center justify-center transition-all duration-200 border border-white/30 hover:scale-110 shadow-xl"
+                  aria-label="Previous slide"
+                >
+                  <svg className="w-5 h-5 -translate-x-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M15 19l-7-7 7-7" />
+                  </svg>
+                </button>
+                <button
+                  type="button"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    handleSelect((activeIndex + 1) % treatments.length);
+                  }}
+                  className="pointer-events-auto w-11 h-11 rounded-full glass-card bg-black/40 hover:bg-black/75 text-white flex items-center justify-center transition-all duration-200 border border-white/30 hover:scale-110 shadow-xl"
+                  aria-label="Next slide"
+                >
+                  <svg className="w-5 h-5 translate-x-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" />
+                  </svg>
+                </button>
               </div>
 
               {/* Active Treatment Label */}

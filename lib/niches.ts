@@ -1049,8 +1049,19 @@ function roundRobin<T>(groups: T[][], max: number): T[] {
 
 function servicesFor(niche: NicheDefinition, subIds: Set<string>): NicheService[] {
   const chosen = niche.subNiches.filter((sub) => subIds.has(sub.id));
-  if (chosen.length) return chosen.flatMap((sub) => sub.services);
-  return niche.services;
+  const subServices = chosen.flatMap((sub) => sub.services);
+  // Specialized sub-niche services lead, followed by parent services to ensure a robust roster
+  const combined = [...subServices, ...niche.services];
+  const seen = new Set<string>();
+  const out: NicheService[] = [];
+  for (const s of combined) {
+    const key = s.name.toLowerCase();
+    if (!seen.has(key)) {
+      seen.add(key);
+      out.push(s);
+    }
+  }
+  return out;
 }
 
 export function buildNicheVoice(
